@@ -59,7 +59,11 @@ class LocalKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
             if normalized and normalized in normalized_question:
                 score += 3
         for node in record.ontology_nodes:
-            if normalize_text(node).replace("_", " ") in normalized_question:
+            aliases = record.ontology_aliases.get(node, [])
+            normalized_aliases = [normalize_text(alias).replace("_", " ") for alias in aliases]
+            if normalize_text(node).replace("_", " ") in normalized_question or any(
+                alias and alias in normalized_question for alias in normalized_aliases
+            ):
                 score += 1
         for token in normalized_question.split():
             if token in STOPWORDS:

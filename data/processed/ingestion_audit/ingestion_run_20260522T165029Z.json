@@ -1,0 +1,130 @@
+{
+  "started_at": "2026-05-22T16:50:00.756131+00:00",
+  "finished_at": "2026-05-22T16:50:29.767640+00:00",
+  "mode": "apply",
+  "reasoning_mode": "none",
+  "raw_path": "data/raw",
+  "source_files": [
+    {
+      "path": "data/raw/banking_synonyms_and_glossary_runtime.txt",
+      "kind": "text",
+      "sha256": "540d71b813bac319c5bf07c8a3eaaa8dbc762c289ea345a59793f305cd0c38ed"
+    },
+    {
+      "path": "data/raw/savings_glossary.csv",
+      "kind": "text",
+      "sha256": "848977b233d13b7fc0d50a28ef414eab66806ceb951777bfa7f1399758ae07de"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_extra1.txt",
+      "kind": "text",
+      "sha256": "5274da053b6b698565275a4d2d25d552cd8141382711ccd2f005a87dea6abb47"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_extra2.txt",
+      "kind": "text",
+      "sha256": "45a5bf014d56e540f775f2e92fa7cb31603adecdd59ca4267efdc9f3933e6035"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_extra3.txt",
+      "kind": "text",
+      "sha256": "71abbbadb708a0944878af8bbb1a8a336e2d179309b81b0b3af5ca4592ae0afd"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_extra4.txt",
+      "kind": "text",
+      "sha256": "bb7f569a911f00af276822477ece9f26b87558388d3dc70186126bc34580a0c2"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_extra5.txt",
+      "kind": "text",
+      "sha256": "a98fb24e02fe18918703d6ba05cb7c0a95be8f9feccf686982cf13ad990765f3"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_raw.txt",
+      "kind": "text",
+      "sha256": "1b7d13807cbc4c48905e0a9783868784831344393de69699a352e6d90191ad39"
+    }
+  ],
+  "outputs": {
+    "flow_directory": "data/flows",
+    "user_task_directory": "data/user_tasks",
+    "action_registry_directory": "data/action_registry",
+    "flows": [
+      "claim_filing_process",
+      "loan_application_process",
+      "savings_account_opening"
+    ],
+    "user_tasks": [
+      "apply_for_loan",
+      "file_claim",
+      "open_savings_account"
+    ],
+    "actions": [
+      "account.create",
+      "claim.evidence.collect",
+      "claim.intake",
+      "customer.documents.collect",
+      "customer.identification.validate",
+      "human.approval",
+      "loan.eligibility.calculate",
+      "ui.claim.file",
+      "ui.loan.apply",
+      "ui.savings_account.open"
+    ]
+  },
+  "steps": [
+    {
+      "name": "scan_and_parse_corpus",
+      "owner": "custom",
+      "status": "ok",
+      "timestamp": "2026-05-22T16:50:00.759113+00:00",
+      "metadata": {
+        "documents": 8,
+        "source_files": [
+          "data/raw/banking_synonyms_and_glossary_runtime.txt",
+          "data/raw/savings_glossary.csv",
+          "data/raw/savings_loans_domain_extra1.txt",
+          "data/raw/savings_loans_domain_extra2.txt",
+          "data/raw/savings_loans_domain_extra3.txt",
+          "data/raw/savings_loans_domain_extra4.txt",
+          "data/raw/savings_loans_domain_extra5.txt",
+          "data/raw/savings_loans_domain_raw.txt"
+        ]
+      }
+    },
+    {
+      "name": "reason_extract_validate_json",
+      "owner": "llm_extraction_plus_custom_validation",
+      "status": "ok",
+      "timestamp": "2026-05-22T16:50:29.711223+00:00",
+      "metadata": {
+        "reasoning_mode": "none",
+        "flows": 3,
+        "user_tasks": 3,
+        "actions": 10
+      }
+    },
+    {
+      "name": "write_artifacts",
+      "owner": "custom",
+      "status": "ok",
+      "timestamp": "2026-05-22T16:50:29.764607+00:00",
+      "metadata": {
+        "mode": "apply",
+        "flow_directory": "data/flows",
+        "user_task_directory": "data/user_tasks",
+        "action_registry_directory": "data/action_registry"
+      }
+    },
+    {
+      "name": "write_audit",
+      "owner": "custom",
+      "status": "ok",
+      "timestamp": "2026-05-22T16:50:29.767372+00:00",
+      "metadata": {
+        "audit_path": "data/processed/ingestion_audit/ingestion_run_20260522T165029Z.json"
+      }
+    }
+  ]
+}

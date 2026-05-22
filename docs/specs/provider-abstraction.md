@@ -45,7 +45,12 @@ Each component follows the same shape when useful:
 - `local.py` contains deterministic local behavior.
 - `ai.py` contains optional AI-backed behavior when that component needs it.
 
-For GraphRAG intent resolution, `app/retrieval/graph.py` owns Neo4j retrieval and `app/intent/ai.py` owns LangChain prompt orchestration plus LLM classification. The LLM receives only graph-derived candidate flows/actions and must not invent new tasks.
+For GraphRAG intent resolution, `app/intent/service.py` owns the LangGraph
+`AskState` workflow, `app/retrieval/graph.py` owns Neo4j retrieval,
+`app/ontology/service.py` owns deterministic term normalization and synonym
+aliases, and `app/intent/ai.py` owns LangChain prompt orchestration plus LLM
+classification. The LLM receives only graph-derived candidate flows/actions and
+must not invent new tasks.
 
 ## Future Replacement Strategy
 Add a new adapter inside the owning component, bind it in `app/factory.py`, and leave use cases unchanged.

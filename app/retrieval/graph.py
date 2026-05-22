@@ -25,6 +25,7 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
         MATCH (f:Flow)
         OPTIONAL MATCH (f)-[:EXEMPLIFIES]->(u:Utterance)
         OPTIONAL MATCH (f)-[:HAS_ONTOLOGY]->(o:Ontology)
+        OPTIONAL MATCH (o)-[:HAS_SYNONYM]->(s:Synonym)
         OPTIONAL MATCH (f)-[task_rel:HAS_USER_TASK]->(t:UserTask)
         OPTIONAL MATCH (t)-[:HAS_FRONT_ACTION]->(front:Action)
         OPTIONAL MATCH (t)-[:HAS_BACK_ACTION]->(back:Action)
@@ -36,6 +37,7 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
           f.explanation AS explanation,
           collect(DISTINCT u.text) AS utterances,
           collect(DISTINCT o.name) AS ontology_nodes,
+          collect(DISTINCT s.term) AS ontology_aliases,
           collect(DISTINCT t.task) AS user_tasks,
           collect(DISTINCT front.action) AS front_actions,
           collect(DISTINCT back.action) AS back_actions
@@ -46,9 +48,11 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
         MATCH (f:Flow)
         OPTIONAL MATCH (f)-[:EXEMPLIFIES]->(u_match:Utterance)
         OPTIONAL MATCH (f)-[:HAS_ONTOLOGY]->(o_match:Ontology)
+        OPTIONAL MATCH (o_match)-[:HAS_SYNONYM]->(s_match:Synonym)
         WITH f,
              collect(DISTINCT u_match.text) AS all_utterances,
              collect(DISTINCT o_match.name) AS all_ontology_nodes,
+             collect(DISTINCT s_match.term) AS all_ontology_aliases,
              toLower(
                coalesce(f.flow_id, '') + ' ' +
                coalesce(f.flow_name, '') + ' ' +
@@ -56,9 +60,10 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                coalesce(f.business_event, '') + ' ' +
                coalesce(f.explanation, '') + ' ' +
                reduce(text = '', value IN collect(DISTINCT u_match.text) | text + ' ' + coalesce(value, '')) + ' ' +
-               reduce(text = '', value IN collect(DISTINCT o_match.name) | text + ' ' + coalesce(value, ''))
+               reduce(text = '', value IN collect(DISTINCT o_match.name) | text + ' ' + coalesce(value, '')) + ' ' +
+               reduce(text = '', value IN collect(DISTINCT s_match.term) | text + ' ' + coalesce(value, ''))
              ) AS haystack
-        WITH f, all_utterances, all_ontology_nodes,
+        WITH f, all_utterances, all_ontology_nodes, all_ontology_aliases,
              [token IN $tokens WHERE haystack CONTAINS token] AS matched_tokens
         WHERE size(matched_tokens) > 0
         OPTIONAL MATCH (f)-[task_rel:HAS_USER_TASK]->(t:UserTask)
@@ -72,6 +77,7 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
           f.explanation AS explanation,
           all_utterances AS utterances,
           all_ontology_nodes AS ontology_nodes,
+          all_ontology_aliases AS ontology_aliases,
           collect(DISTINCT t.task) AS user_tasks,
           collect(DISTINCT front.action) AS front_actions,
           collect(DISTINCT back.action) AS back_actions,
@@ -194,6 +200,7 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                     "business_event": row.get("business_event"),
                     "utterances": (row.get("utterances") or [])[:5],
                     "ontology_nodes": (row.get("ontology_nodes") or [])[:8],
+                    "ontology_aliases": (row.get("ontology_aliases") or [])[:8],
                     "user_tasks": (row.get("user_tasks") or [])[:8],
                     "front_actions": (row.get("front_actions") or [])[:8],
                     "back_actions": (row.get("back_actions") or [])[:8],
@@ -213,6 +220,7 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                 f"business_event: {row.get('business_event')}",
                 f"utterances: {', '.join(row.get('utterances') or [])}",
                 f"ontology_nodes: {', '.join(row.get('ontology_nodes') or [])}",
+                f"ontology_aliases: {', '.join(row.get('ontology_aliases') or [])}",
                 f"user_tasks: {', '.join(row.get('user_tasks') or [])}",
                 f"front_actions: {', '.join(row.get('front_actions') or [])}",
                 f"back_actions: {', '.join(row.get('back_actions') or [])}",

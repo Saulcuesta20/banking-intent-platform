@@ -9,6 +9,8 @@ import urllib.request
 from dataclasses import dataclass, field
 from typing import Any, Protocol
 
+from app.ontology.service import OntologyTermNormalizer
+
 
 @dataclass(frozen=True)
 class QueryUnderstanding:
@@ -60,22 +62,6 @@ class LocalQueryUnderstandingProvider:
         "mis",
     }
 
-    SYNONYMS = {
-        "prestamo": ["credito", "loan"],
-        "credito": ["prestamo", "loan"],
-        "refinanciar": ["refinance", "bajar", "cuota", "condiciones"],
-        "cuota": ["refinanciar", "refinance", "condiciones"],
-        "transferir": ["transferencia", "transfer", "cbu"],
-        "transferencia": ["transferir", "transfer", "cbu"],
-        "dinero": ["transferencia", "payment", "pago"],
-        "pagar": ["pago", "payment"],
-        "pago": ["pagar", "payment"],
-        "cuenta": ["account", "savings"],
-        "ahorro": ["savings", "cuenta"],
-        "reclamo": ["claim", "claims"],
-        "nota": ["debit", "credit"],
-    }
-
     ENTITY_HINTS = {
         "prestamo": "Loan",
         "credito": "Loan",
@@ -90,24 +76,23 @@ class LocalQueryUnderstandingProvider:
         "pagar": "Payment",
     }
 
+    def __init__(self, ontology_normalizer: OntologyTermNormalizer | None = None):
+        self.ontology_normalizer = ontology_normalizer or OntologyTermNormalizer()
+
     def understand(self, question: str) -> QueryUnderstanding:
         tokens = self._tokens(question)
-        terms = []
-        seen = set()
         entities = []
         for token in tokens:
-            self._append_unique(terms, seen, token)
-            for synonym in self.SYNONYMS.get(token, []):
-                self._append_unique(terms, seen, synonym)
             entity = self.ENTITY_HINTS.get(token)
             if entity and entity not in entities:
                 entities.append(entity)
+        terms = self.ontology_normalizer.expand_search_terms(tokens)
         return QueryUnderstanding(
             original_question=question,
             search_terms=terms[:20],
             entities=entities,
             provider="local_query_understanding",
-            explanation="Normalized terms plus curated banking synonyms.",
+            explanation="Normalized terms plus ontology synonym aliases.",
         )
 
     def _tokens(self, question: str) -> list[str]:

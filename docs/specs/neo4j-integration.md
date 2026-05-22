@@ -4,7 +4,7 @@
 Use Neo4j as the first graph database for banking knowledge.
 
 ## Responsibilities
-- Store ontology, intent, event, user task, and action nodes.
+- Store ontology, synonym, intent, event, user task, and action nodes.
 - Store relationships for explainability.
 - Support graph lookup during question answering.
 
@@ -20,7 +20,9 @@ Ingested records are converted to Cypher upserts. `app/retrieval/graph.py` queri
 ## Example Input/Output
 Input record: `loan_refinance.flow.json`
 
-Output graph path: `Flow -> UserTask -> Action`, where `Action.type` is `front_action` or `back_action`.
+Output graph paths include `Flow -> UserTask -> Action`, where `Action.type` is
+`front_action` or `back_action`, and `Flow -> Ontology -> Synonym`, where
+`Synonym.term` contains normalized aliases such as `credito` or `prestamo`.
 
 ## Interfaces
 - `GraphRepository.upsert_record(record)`

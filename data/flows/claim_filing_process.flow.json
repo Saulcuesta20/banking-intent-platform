@@ -1,0 +1,46 @@
+{
+  "flow_id": "claim_filing_process",
+  "flow_name": "Claim Filing Process",
+  "intent": "claim.file.submit",
+  "business_event": "ClaimFiled",
+  "confidence": 0.75,
+  "utterances": [
+    "Quiero hacer un reclamo",
+    "Cómo presento un reclamo?"
+  ],
+  "plan": [
+    "file_claim"
+  ],
+  "user_task_refs": [
+    "file_claim"
+  ],
+  "capabilities": [
+    "claim.create"
+  ],
+  "ontology_nodes": [
+    "Claim"
+  ],
+  "ontology_aliases": {
+    "Claim": [
+      "claim",
+      "reclamo",
+      "queja",
+      "disputa"
+    ]
+  },
+  "explanation": "This flow exists to allow customers to file claims for review and resolution.",
+  "source": "data/raw/banking_synonyms_and_glossary_runtime.txt;data/raw/savings_glossary.csv;data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt;data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt;data/raw/savings_loans_domain_extra5.txt;data/raw/savings_loans_domain_raw.txt",
+  "metadata": {
+    "generated_by": "llm_corpus_flow_loader",
+    "source_files": [
+      "data/raw/banking_synonyms_and_glossary_runtime.txt",
+      "data/raw/savings_glossary.csv",
+      "data/raw/savings_loans_domain_extra1.txt",
+      "data/raw/savings_loans_domain_extra2.txt",
+      "data/raw/savings_loans_domain_extra3.txt",
+      "data/raw/savings_loans_domain_extra4.txt",
+      "data/raw/savings_loans_domain_extra5.txt",
+      "data/raw/savings_loans_domain_raw.txt"
+    ]
+  }
+}

@@ -104,6 +104,7 @@ class KnowledgeRecord(BaseModel):
     user_tasks: list[UserTask] = Field(default_factory=list)
     capabilities: list[str]
     ontology_nodes: list[str]
+    ontology_aliases: dict[str, list[str]] = Field(default_factory=dict)
     explanation: str
     source: str
     metadata: dict[str, Any] = {}

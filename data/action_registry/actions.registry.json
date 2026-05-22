@@ -1,521 +1,94 @@
 [
   {
-    "action": "account.balance.validate",
-    "type": "back_action",
-    "operation": "validate",
-    "resource": "account",
-    "label": null,
-    "triggers": null,
-    "description": "Validate funds for payment.",
-    "user_tasks": [
-      "make_loan_payment",
-      "transfer_money"
-    ],
-    "flows": [
-      "loan.payment",
-      "money.transfer",
-      "savings.account.domain"
-    ]
-  },
-  {
-    "action": "account.cbu.assign",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "account",
-    "label": null,
-    "triggers": null,
-    "description": "Assign CBU to the account.",
-    "user_tasks": [
-      "create_savings_account"
-    ],
-    "flows": [
-      "savings_account.open"
-    ]
-  },
-  {
     "action": "account.create",
     "type": "back_action",
     "operation": "create",
-    "resource": "account",
+    "resource": "savingsaccount",
     "label": null,
     "triggers": null,
-    "description": "Create savings account.",
+    "description": "Create the savings account in the system.",
     "user_tasks": [
-      "create_savings_account"
+      "open_savings_account"
     ],
     "flows": [
-      "savings_account.open"
+      "savings_account_opening"
     ]
   },
   {
-    "action": "account.read",
-    "type": "back_action",
-    "operation": "read",
-    "resource": "account",
-    "label": null,
-    "triggers": null,
-    "description": "Read related account.",
-    "user_tasks": [
-      "deposit_money",
-      "issue_credit_note",
-      "issue_debit_note",
-      "manage_account_operation"
-    ],
-    "flows": [
-      "credit_note.issue",
-      "debit_note.issue",
-      "savings.account.domain",
-      "savings.operations",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "account_operation.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "account_operation",
-    "label": null,
-    "triggers": null,
-    "description": "Create account operation case.",
-    "user_tasks": [
-      "manage_account_operation"
-    ],
-    "flows": [
-      "savings.account.domain",
-      "savings.operations"
-    ]
-  },
-  {
-    "action": "api.account.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "api",
-    "label": null,
-    "triggers": null,
-    "description": "Call account creation API.",
-    "user_tasks": [
-      "execute_backend_operation"
-    ],
-    "flows": [
-      "backend.operations"
-    ]
-  },
-  {
-    "action": "api.customer.get",
-    "type": "back_action",
-    "operation": "read",
-    "resource": "api",
-    "label": null,
-    "triggers": null,
-    "description": "Call customer API.",
-    "user_tasks": [
-      "execute_backend_operation"
-    ],
-    "flows": [
-      "backend.operations"
-    ]
-  },
-  {
-    "action": "api.transaction.post",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "api",
-    "label": null,
-    "triggers": null,
-    "description": "Post transaction API request.",
-    "user_tasks": [
-      "execute_backend_operation"
-    ],
-    "flows": [
-      "backend.operations"
-    ]
-  },
-  {
-    "action": "approval.update",
-    "type": "back_action",
-    "operation": "approve",
-    "resource": "approval",
-    "label": null,
-    "triggers": null,
-    "description": "Record human approval decision.",
-    "user_tasks": [
-      "approve_business_case"
-    ],
-    "flows": [
-      "credit_note.issue",
-      "customer.onboarding",
-      "debit_note.issue",
-      "fees.claims",
-      "loan.disbursement",
-      "loan.evaluation",
-      "loan.payment",
-      "loan.refinance",
-      "loan.request",
-      "money.transfer",
-      "savings.operations",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "billing.read",
-    "type": "back_action",
-    "operation": "read",
-    "resource": "billing",
-    "label": null,
-    "triggers": null,
-    "description": "Read billed fees or charges.",
-    "user_tasks": [
-      "manage_claim"
-    ],
-    "flows": [
-      "fees.claims"
-    ]
-  },
-  {
-    "action": "claim.create",
+    "action": "claim.evidence.collect",
     "type": "back_action",
     "operation": "create",
     "resource": "claim",
     "label": null,
     "triggers": null,
-    "description": "Create claim case.",
+    "description": "Collect evidence related to the claim.",
     "user_tasks": [
-      "manage_claim"
+      "file_claim"
     ],
     "flows": [
-      "fees.claims"
+      "claim_filing_process"
     ]
   },
   {
-    "action": "credit_history.read",
-    "type": "back_action",
-    "operation": "read",
-    "resource": "credit_history",
-    "label": null,
-    "triggers": null,
-    "description": "Read credit history.",
-    "user_tasks": [
-      "evaluate_loan_application"
-    ],
-    "flows": [
-      "loan.domain.consumer",
-      "loan.evaluation",
-      "loan.request"
-    ]
-  },
-  {
-    "action": "credit_note.create",
+    "action": "claim.intake",
     "type": "back_action",
     "operation": "create",
-    "resource": "credit_note",
+    "resource": "claim",
     "label": null,
     "triggers": null,
-    "description": "Create credit note.",
+    "description": "Intake the claim details for processing.",
     "user_tasks": [
-      "issue_credit_note"
+      "file_claim"
     ],
     "flows": [
-      "credit_note.issue"
+      "claim_filing_process"
     ]
   },
   {
-    "action": "customer.conditions.validate",
+    "action": "customer.documents.collect",
+    "type": "back_action",
+    "operation": "create",
+    "resource": "customerdocuments",
+    "label": null,
+    "triggers": null,
+    "description": "Collect required documents for account opening.",
+    "user_tasks": [
+      "apply_for_loan",
+      "open_savings_account"
+    ],
+    "flows": [
+      "loan_application_process",
+      "savings_account_opening"
+    ]
+  },
+  {
+    "action": "customer.identification.validate",
     "type": "back_action",
     "operation": "validate",
     "resource": "customer",
     "label": null,
     "triggers": null,
-    "description": "Validate onboarding conditions.",
+    "description": "Validate customer identity for account opening.",
     "user_tasks": [
-      "handle_customer_onboarding"
+      "open_savings_account"
     ],
     "flows": [
-      "customer.onboarding"
+      "savings_account_opening"
     ]
   },
   {
-    "action": "customer.create",
+    "action": "human.approval",
     "type": "back_action",
-    "operation": "create",
-    "resource": "customer",
-    "label": null,
-    "triggers": null,
-    "description": "Create customer profile.",
-    "user_tasks": [
-      "handle_customer_onboarding"
-    ],
-    "flows": [
-      "customer.onboarding"
-    ]
-  },
-  {
-    "action": "customer.identity.validate",
-    "type": "back_action",
-    "operation": "validate",
-    "resource": "customer",
-    "label": null,
-    "triggers": null,
-    "description": "Validate customer identity and status.",
-    "user_tasks": [
-      "identify_customer"
-    ],
-    "flows": [
-      "credit_note.issue",
-      "debit_note.issue",
-      "fees.claims",
-      "loan.disbursement",
-      "loan.inquiry",
-      "loan.payment",
-      "loan.refinance",
-      "loan.request",
-      "money.transfer",
-      "savings.operations",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "customer.read",
-    "type": "back_action",
-    "operation": "read",
-    "resource": "customer",
-    "label": null,
-    "triggers": null,
-    "description": "Retrieve customer profile.",
-    "user_tasks": [
-      "identify_customer"
-    ],
-    "flows": [
-      "credit_note.issue",
-      "debit_note.issue",
-      "fees.claims",
-      "loan.disbursement",
-      "loan.inquiry",
-      "loan.payment",
-      "loan.refinance",
-      "loan.request",
-      "money.transfer",
-      "savings.operations",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "customer.validate",
-    "type": "back_action",
-    "operation": "validate",
-    "resource": "customer",
-    "label": null,
-    "triggers": null,
-    "description": "Validate the customer.",
-    "user_tasks": [
-      "transfer_money"
-    ],
-    "flows": [
-      "money.transfer",
-      "savings.account.domain"
-    ]
-  },
-  {
-    "action": "debit_note.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "debit_note",
-    "label": null,
-    "triggers": null,
-    "description": "Create debit note.",
-    "user_tasks": [
-      "issue_debit_note"
-    ],
-    "flows": [
-      "debit_note.issue"
-    ]
-  },
-  {
-    "action": "disbursement.conditions.validate",
-    "type": "back_action",
-    "operation": "validate",
-    "resource": "disbursement",
-    "label": null,
-    "triggers": null,
-    "description": "Validate disbursement conditions.",
-    "user_tasks": [
-      "disburse_loan"
-    ],
-    "flows": [
-      "loan.disbursement"
-    ]
-  },
-  {
-    "action": "disbursement.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "disbursement",
-    "label": null,
-    "triggers": null,
-    "description": "Disburse loan funds.",
-    "user_tasks": [
-      "disburse_loan"
-    ],
-    "flows": [
-      "loan.disbursement"
-    ]
-  },
-  {
-    "action": "document.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "document",
-    "label": null,
-    "triggers": null,
-    "description": "Store customer documents.",
-    "user_tasks": [
-      "collect_customer_documents"
-    ],
-    "flows": [
-      "customer.onboarding",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "document.verify",
-    "type": "back_action",
-    "operation": "validate",
-    "resource": "document",
-    "label": null,
-    "triggers": null,
-    "description": "Verify required documents are complete.",
-    "user_tasks": [
-      "collect_customer_documents"
-    ],
-    "flows": [
-      "customer.onboarding",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "financial_ratios.dti.calculate",
-    "type": "back_action",
-    "operation": "calculate",
-    "resource": "financial_ratio",
-    "label": null,
-    "triggers": null,
-    "description": "Calculate DTI.",
-    "user_tasks": [
-      "evaluate_loan_application"
-    ],
-    "flows": [
-      "loan.domain.consumer",
-      "loan.evaluation",
-      "loan.request"
-    ]
-  },
-  {
-    "action": "glossary.read",
-    "type": "back_action",
-    "operation": "read",
-    "resource": "glossary",
-    "label": null,
-    "triggers": null,
-    "description": "Read glossary term.",
-    "user_tasks": [
-      "review_glossary_terms"
-    ],
-    "flows": [
-      "glossary.savings",
-      "savings.account.domain"
-    ]
-  },
-  {
-    "action": "income.verify",
-    "type": "back_action",
-    "operation": "validate",
-    "resource": "income",
-    "label": null,
-    "triggers": null,
-    "description": "Verify declared income.",
-    "user_tasks": [
-      "collect_loan_application"
-    ],
-    "flows": [
-      "loan.domain.consumer",
-      "loan.evaluation",
-      "loan.request"
-    ]
-  },
-  {
-    "action": "integration.sync",
-    "type": "back_action",
-    "operation": "sync",
-    "resource": "integration",
-    "label": null,
-    "triggers": null,
-    "description": "Synchronize external systems.",
-    "user_tasks": [
-      "execute_backend_operation"
-    ],
-    "flows": [
-      "backend.operations"
-    ]
-  },
-  {
-    "action": "intent.match",
-    "type": "back_action",
-    "operation": "match",
-    "resource": "intent",
-    "label": null,
-    "triggers": null,
-    "description": "Match utterance to intent.",
-    "user_tasks": [
-      "match_customer_intent"
-    ],
-    "flows": [
-      "utterance.intent.matching"
-    ]
-  },
-  {
-    "action": "kyc.screen",
-    "type": "back_action",
-    "operation": "validate",
-    "resource": "kyc",
-    "label": null,
-    "triggers": null,
-    "description": "Run KYC and risk screening.",
-    "user_tasks": [
-      "run_kyc_screening"
-    ],
-    "flows": [
-      "customer.onboarding",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "loan.calculate",
-    "type": "back_action",
-    "operation": "calculate",
+    "operation": "approve",
     "resource": "loan",
     "label": null,
     "triggers": null,
-    "description": "Calculate terms and installment amount.",
+    "description": "Request human approval for borderline loan applications.",
     "user_tasks": [
-      "prepare_loan_proposal"
+      "apply_for_loan"
     ],
     "flows": [
-      "loan.request"
-    ]
-  },
-  {
-    "action": "loan.conditions.calculate",
-    "type": "back_action",
-    "operation": "calculate",
-    "resource": "loan",
-    "label": null,
-    "triggers": null,
-    "description": "Calculate new conditions.",
-    "user_tasks": [
-      "review_refinance_options"
-    ],
-    "flows": [
-      "loan.domain.consumer",
-      "loan.refinance"
+      "loan_application_process"
     ]
   },
   {
@@ -525,626 +98,57 @@
     "resource": "loan",
     "label": null,
     "triggers": null,
-    "description": "Calculate loan eligibility.",
+    "description": "Calculate eligibility for the loan based on provided details.",
     "user_tasks": [
-      "evaluate_loan_application"
+      "apply_for_loan"
     ],
     "flows": [
-      "loan.domain.consumer",
-      "loan.evaluation",
-      "loan.request"
+      "loan_application_process"
     ]
   },
   {
-    "action": "loan.read",
-    "type": "back_action",
-    "operation": "read",
-    "resource": "loan",
-    "label": null,
-    "triggers": null,
-    "description": "Read loan information.",
-    "user_tasks": [
-      "disburse_loan",
-      "make_loan_payment",
-      "review_loan_status",
-      "review_refinance_options"
-    ],
-    "flows": [
-      "loan.disbursement",
-      "loan.domain.consumer",
-      "loan.inquiry",
-      "loan.payment",
-      "loan.refinance"
-    ]
-  },
-  {
-    "action": "loan.status.summarize",
-    "type": "back_action",
-    "operation": "read",
-    "resource": "loan",
-    "label": null,
-    "triggers": null,
-    "description": "Summarize loan status.",
-    "user_tasks": [
-      "review_loan_status"
-    ],
-    "flows": [
-      "loan.disbursement",
-      "loan.domain.consumer",
-      "loan.inquiry",
-      "loan.refinance"
-    ]
-  },
-  {
-    "action": "loan_application.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "loan_application",
-    "label": null,
-    "triggers": null,
-    "description": "Create loan application.",
-    "user_tasks": [
-      "collect_loan_application"
-    ],
-    "flows": [
-      "loan.domain.consumer",
-      "loan.evaluation",
-      "loan.request"
-    ]
-  },
-  {
-    "action": "loan_refinance.compare",
-    "type": "back_action",
-    "operation": "calculate",
-    "resource": "loan_refinance",
-    "label": null,
-    "triggers": null,
-    "description": "Compare savings against restructuring costs.",
-    "user_tasks": [
-      "review_refinance_options"
-    ],
-    "flows": [
-      "loan.domain.consumer",
-      "loan.refinance"
-    ]
-  },
-  {
-    "action": "loan_refinance.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "loan_refinance",
-    "label": null,
-    "triggers": null,
-    "description": "Create refinance request.",
-    "user_tasks": [
-      "prepare_refinance_request"
-    ],
-    "flows": [
-      "loan.refinance"
-    ]
-  },
-  {
-    "action": "notification.send",
-    "type": "back_action",
-    "operation": "notify",
-    "resource": "notification",
-    "label": null,
-    "triggers": null,
-    "description": "Notify the customer.",
-    "user_tasks": [
-      "deposit_money",
-      "disburse_loan",
-      "make_loan_payment",
-      "transfer_money"
-    ],
-    "flows": [
-      "loan.disbursement",
-      "loan.payment",
-      "money.transfer",
-      "savings.account.domain",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "payment.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "payment",
-    "label": null,
-    "triggers": null,
-    "description": "Create loan payment.",
-    "user_tasks": [
-      "make_loan_payment"
-    ],
-    "flows": [
-      "loan.payment"
-    ]
-  },
-  {
-    "action": "repayment_schedule.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "repayment_schedule",
-    "label": null,
-    "triggers": null,
-    "description": "Create repayment schedule.",
-    "user_tasks": [
-      "prepare_loan_proposal"
-    ],
-    "flows": [
-      "loan.request"
-    ]
-  },
-  {
-    "action": "response.generate",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "response",
-    "label": null,
-    "triggers": null,
-    "description": "Generate response draft.",
-    "user_tasks": [
-      "match_customer_intent"
-    ],
-    "flows": [
-      "utterance.intent.matching"
-    ]
-  },
-  {
-    "action": "scoring.evaluate",
-    "type": "back_action",
-    "operation": "calculate",
-    "resource": "scoring",
-    "label": null,
-    "triggers": null,
-    "description": "Apply scoring rules.",
-    "user_tasks": [
-      "evaluate_loan_application"
-    ],
-    "flows": [
-      "loan.domain.consumer",
-      "loan.evaluation",
-      "loan.request"
-    ]
-  },
-  {
-    "action": "transaction.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "transaction",
-    "label": null,
-    "triggers": null,
-    "description": "Post deposit transaction.",
-    "user_tasks": [
-      "deposit_money"
-    ],
-    "flows": [
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "transaction.reconcile",
-    "type": "back_action",
-    "operation": "validate",
-    "resource": "transaction",
-    "label": null,
-    "triggers": null,
-    "description": "Reconcile transaction.",
-    "user_tasks": [
-      "manage_claim"
-    ],
-    "flows": [
-      "fees.claims"
-    ]
-  },
-  {
-    "action": "transfer.create",
-    "type": "back_action",
-    "operation": "create",
-    "resource": "transfer",
-    "label": null,
-    "triggers": null,
-    "description": "Create money transfer.",
-    "user_tasks": [
-      "transfer_money"
-    ],
-    "flows": [
-      "money.transfer",
-      "savings.account.domain"
-    ]
-  },
-  {
-    "action": "utterance.normalize",
-    "type": "back_action",
-    "operation": "normalize",
-    "resource": "utterance",
-    "label": null,
-    "triggers": null,
-    "description": "Normalize utterance.",
-    "user_tasks": [
-      "match_customer_intent"
-    ],
-    "flows": [
-      "utterance.intent.matching"
-    ]
-  },
-  {
-    "action": "ui.account.open_submit",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "account",
-    "label": "Open account",
-    "triggers": "account.create",
-    "description": null,
-    "user_tasks": [
-      "create_savings_account"
-    ],
-    "flows": [
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "ui.account_operation.submit",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "account_operation",
-    "label": "Submit operation",
-    "triggers": "account_operation.create",
-    "description": null,
-    "user_tasks": [
-      "manage_account_operation"
-    ],
-    "flows": [
-      "savings.account.domain",
-      "savings.operations"
-    ]
-  },
-  {
-    "action": "ui.approval.decision_submit",
-    "type": "front_action",
-    "operation": "approve",
-    "resource": "approval",
-    "label": "Submit approval",
-    "triggers": "approval.update",
-    "description": null,
-    "user_tasks": [
-      "approve_business_case"
-    ],
-    "flows": [
-      "credit_note.issue",
-      "customer.onboarding",
-      "debit_note.issue",
-      "fees.claims",
-      "loan.disbursement",
-      "loan.evaluation",
-      "loan.payment",
-      "loan.refinance",
-      "loan.request",
-      "money.transfer",
-      "savings.operations",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "ui.backend_operation.run",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "executor",
-    "label": "Run operation",
-    "triggers": "executor.create",
-    "description": null,
-    "user_tasks": [
-      "execute_backend_operation"
-    ],
-    "flows": [
-      "backend.operations"
-    ]
-  },
-  {
-    "action": "ui.claim.submit",
+    "action": "ui.claim.file",
     "type": "front_action",
     "operation": "create",
     "resource": "claim",
-    "label": "Submit claim",
+    "label": "File Claim",
     "triggers": "claim.create",
     "description": null,
     "user_tasks": [
-      "manage_claim"
+      "file_claim"
     ],
     "flows": [
-      "fees.claims"
+      "claim_filing_process"
     ]
   },
   {
-    "action": "ui.credit_note.submit",
+    "action": "ui.loan.apply",
     "type": "front_action",
     "operation": "create",
-    "resource": "credit_note",
-    "label": "Issue credit note",
-    "triggers": "credit_note.create",
+    "resource": "loanapplication",
+    "label": "Apply for Loan",
+    "triggers": "loan.application.create",
     "description": null,
     "user_tasks": [
-      "issue_credit_note"
+      "apply_for_loan"
     ],
     "flows": [
-      "credit_note.issue"
+      "loan_application_process"
     ]
   },
   {
-    "action": "ui.customer.search_submit",
-    "type": "front_action",
-    "operation": "read",
-    "resource": "customer",
-    "label": "Search customer",
-    "triggers": "customer.read",
-    "description": null,
-    "user_tasks": [
-      "identify_customer"
-    ],
-    "flows": [
-      "credit_note.issue",
-      "debit_note.issue",
-      "fees.claims",
-      "loan.disbursement",
-      "loan.inquiry",
-      "loan.payment",
-      "loan.refinance",
-      "loan.request",
-      "money.transfer",
-      "savings.operations",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "ui.debit_note.submit",
+    "action": "ui.savings_account.open",
     "type": "front_action",
     "operation": "create",
-    "resource": "debit_note",
-    "label": "Issue debit note",
-    "triggers": "debit_note.create",
+    "resource": "savingsaccount",
+    "label": "Open Account",
+    "triggers": "savings_account.create",
     "description": null,
     "user_tasks": [
-      "issue_debit_note"
+      "open_savings_account"
     ],
     "flows": [
-      "debit_note.issue"
-    ]
-  },
-  {
-    "action": "ui.deposit.submit",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "transaction",
-    "label": "Deposit money",
-    "triggers": "transaction.create",
-    "description": null,
-    "user_tasks": [
-      "deposit_money"
-    ],
-    "flows": [
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "ui.disbursement.submit",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "disbursement",
-    "label": "Disburse loan",
-    "triggers": "disbursement.create",
-    "description": null,
-    "user_tasks": [
-      "disburse_loan"
-    ],
-    "flows": [
-      "loan.disbursement"
-    ]
-  },
-  {
-    "action": "ui.documents.upload",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "document",
-    "label": "Upload documents",
-    "triggers": "document.create",
-    "description": null,
-    "user_tasks": [
-      "collect_customer_documents"
-    ],
-    "flows": [
-      "customer.onboarding",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "ui.glossary.search",
-    "type": "front_action",
-    "operation": "read",
-    "resource": "glossary",
-    "label": "Search glossary",
-    "triggers": "glossary.read",
-    "description": null,
-    "user_tasks": [
-      "review_glossary_terms"
-    ],
-    "flows": [
-      "glossary.savings",
-      "savings.account.domain"
-    ]
-  },
-  {
-    "action": "ui.intent.test",
-    "type": "front_action",
-    "operation": "match",
-    "resource": "intent",
-    "label": "Test intent",
-    "triggers": "intent.match",
-    "description": null,
-    "user_tasks": [
-      "match_customer_intent"
-    ],
-    "flows": [
-      "utterance.intent.matching"
-    ]
-  },
-  {
-    "action": "ui.kyc.run",
-    "type": "front_action",
-    "operation": "validate",
-    "resource": "kyc",
-    "label": "Run KYC",
-    "triggers": "kyc.screen",
-    "description": null,
-    "user_tasks": [
-      "run_kyc_screening"
-    ],
-    "flows": [
-      "customer.onboarding",
-      "savings_account.open"
-    ]
-  },
-  {
-    "action": "ui.loan.evaluate",
-    "type": "front_action",
-    "operation": "calculate",
-    "resource": "loan",
-    "label": "Evaluate loan",
-    "triggers": "loan.evaluate",
-    "description": null,
-    "user_tasks": [
-      "evaluate_loan_application"
-    ],
-    "flows": [
-      "loan.domain.consumer",
-      "loan.evaluation",
-      "loan.request"
-    ]
-  },
-  {
-    "action": "ui.loan_application.submit",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "loan_application",
-    "label": "Submit loan application",
-    "triggers": "loan_application.create",
-    "description": null,
-    "user_tasks": [
-      "collect_loan_application"
-    ],
-    "flows": [
-      "loan.domain.consumer",
-      "loan.evaluation",
-      "loan.request"
-    ]
-  },
-  {
-    "action": "ui.loan_payment.submit",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "payment",
-    "label": "Pay loan",
-    "triggers": "payment.create",
-    "description": null,
-    "user_tasks": [
-      "make_loan_payment"
-    ],
-    "flows": [
-      "loan.payment"
-    ]
-  },
-  {
-    "action": "ui.loan_proposal.prepare",
-    "type": "front_action",
-    "operation": "prepare",
-    "resource": "loan",
-    "label": "Prepare proposal",
-    "triggers": "loan_proposal.prepare",
-    "description": null,
-    "user_tasks": [
-      "prepare_loan_proposal"
-    ],
-    "flows": [
-      "loan.request"
-    ]
-  },
-  {
-    "action": "ui.loan_status.open",
-    "type": "front_action",
-    "operation": "read",
-    "resource": "loan",
-    "label": "View loan status",
-    "triggers": "loan.read",
-    "description": null,
-    "user_tasks": [
-      "review_loan_status"
-    ],
-    "flows": [
-      "loan.disbursement",
-      "loan.domain.consumer",
-      "loan.inquiry",
-      "loan.refinance"
-    ]
-  },
-  {
-    "action": "ui.onboarding.submit",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "customer",
-    "label": "Create customer",
-    "triggers": "customer.create",
-    "description": null,
-    "user_tasks": [
-      "handle_customer_onboarding"
-    ],
-    "flows": [
-      "customer.onboarding"
-    ]
-  },
-  {
-    "action": "ui.refinance.calculate",
-    "type": "front_action",
-    "operation": "calculate",
-    "resource": "loan_refinance",
-    "label": "Calculate refinance",
-    "triggers": "loan_refinance.calculate",
-    "description": null,
-    "user_tasks": [
-      "review_refinance_options"
-    ],
-    "flows": [
-      "loan.domain.consumer",
-      "loan.refinance"
-    ]
-  },
-  {
-    "action": "ui.refinance.submit",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "loan_refinance",
-    "label": "Submit refinance",
-    "triggers": "loan_refinance.create",
-    "description": null,
-    "user_tasks": [
-      "prepare_refinance_request"
-    ],
-    "flows": [
-      "loan.refinance"
-    ]
-  },
-  {
-    "action": "ui.transfer.form_submit",
-    "type": "front_action",
-    "operation": "create",
-    "resource": "transfer",
-    "label": "Submit transfer",
-    "triggers": "transfer.create",
-    "description": null,
-    "user_tasks": [
-      "transfer_money"
-    ],
-    "flows": [
-      "money.transfer",
-      "savings.account.domain"
+      "savings_account_opening"
     ]
   }
 ]

@@ -50,7 +50,14 @@ class FlowAnswerContextService:
         fallback = []
         for node in record.ontology_nodes:
             normalized_node = self._normalize_text(node).replace("_", " ")
-            if normalized_node and normalized_node in normalized_question:
+            normalized_aliases = [
+                self._normalize_text(alias).replace("_", " ")
+                for alias in record.ontology_aliases.get(node, [])
+            ]
+            if normalized_node and (
+                normalized_node in normalized_question
+                or any(alias and alias in normalized_question for alias in normalized_aliases)
+            ):
                 related.append(node)
             else:
                 fallback.append(node)

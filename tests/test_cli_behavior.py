@@ -25,6 +25,14 @@ def test_refinance_question_returns_expected_plan():
     ]
 
 
+def test_synonym_question_returns_expected_flow():
+    result = build_intent_service().resolve("Quiero refinanciar mi credito")
+
+    assert result.intent == "loan.refinance"
+    assert result.flow_id == "loan.refinance"
+    assert "Loan" in result.related_ontology_nodes
+
+
 def test_service_registers_actions_on_startup():
     service = build_intent_service()
     registry = service.capability_service.list_registered_actions()

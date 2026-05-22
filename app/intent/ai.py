@@ -187,6 +187,7 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
                             f"business_event: {record.business_event}",
                             f"utterances: {', '.join(record.utterances)}",
                             f"ontology_nodes: {', '.join(record.ontology_nodes)}",
+                            f"ontology_aliases: {self._alias_text(record.ontology_aliases)}",
                             f"explanation: {record.explanation}",
                         ]
                     )
@@ -201,6 +202,7 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
             "business_event:",
             "utterances:",
             "ontology_nodes:",
+            "ontology_aliases:",
             "explanation:",
         )
         lines = []
@@ -217,6 +219,12 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
         if len(items) <= max_items:
             return line
         return f"{label}: {', '.join(items[:max_items])}, ..."
+
+    def _alias_text(self, aliases: dict[str, list[str]]) -> str:
+        values = []
+        for node, node_aliases in aliases.items():
+            values.append(f"{node} => {', '.join(node_aliases)}")
+        return "; ".join(values)
 
     def _load_prompt_template(self):
         try:

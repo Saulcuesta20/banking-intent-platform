@@ -30,6 +30,8 @@ def ask(
         "requires_human_approval=",
         "file=",
         "cannot_resolve=",
+        "workflow=",
+        "langgraph_unavailable=",
     )
 
     def print_trace(component: str, message: str) -> None:

@@ -7,6 +7,7 @@ import pytest
 from app.ingestion.llm_flow_loader import CorpusFlowLoader, FlowExtractionError
 from app.ingestion.pipeline import IngestionPipelineConfig, IngestionPipelineService
 from app.ingestion import pipeline as ingestion_pipeline
+from app.ontology.service import OntologyTermNormalizer
 from app.ingestion.reasoning import (
     AutoGenIngestionReasoningProvider,
     INGESTION_AGENT_SPECS,
@@ -82,6 +83,8 @@ def test_corpus_flow_loader_extracts_and_validates(tmp_path: Path):
 
     assert result["flows"][0]["flow_id"] == "loan.refinance"
     assert result["flows"][0]["user_task_refs"] == ["review_refinance_options"]
+    assert "credito" in result["flows"][0]["ontology_aliases"]["Loan"]
+    assert "prestamo" in result["flows"][0]["ontology_aliases"]["Loan"]
     assert result["user_tasks"][0]["back_actions"][0]["action"] == "loan.conditions.calculate"
     assert result["action_registry"] == [
         {
@@ -123,6 +126,18 @@ def test_corpus_flow_loader_loads_images_as_llm_visual_content(tmp_path: Path):
 
     assert documents[0].kind == "image"
     assert any(item.get("type") == "image_url" for item in content)
+
+
+def test_ontology_normalizer_maps_synonyms_to_canonical_terms():
+    normalizer = OntologyTermNormalizer()
+
+    normalized = normalizer.normalize_term("credito")
+    expanded = normalizer.expand_search_terms(["credito"])
+
+    assert normalized.canonical == "loan"
+    assert "prestamo" in normalized.aliases
+    assert "loan" in expanded
+    assert "credito" in expanded
 
 
 def test_corpus_flow_loader_extracts_docx_text(tmp_path: Path):

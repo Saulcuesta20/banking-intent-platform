@@ -4,7 +4,7 @@
 Represent banking knowledge and relationships in a graph database.
 
 ## Responsibilities
-- Store ontology nodes, intents, user tasks, front actions, back actions, business events, and relationships.
+- Store ontology nodes, ontology synonym aliases, intents, user tasks, front actions, back actions, business events, and relationships.
 - Provide the bounded knowledge context used by GraphRAG and the LLM.
 - Use Neo4j as the first graph database.
 
@@ -15,12 +15,15 @@ Represent banking knowledge and relationships in a graph database.
 - Query service
 
 ## Data Flow
-Ingestion creates records and an action registry, graph loading maps records to nodes and relationships, GraphRAG retrieval queries flows, tasks, actions, utterances, and ontology nodes for constrained LLM reasoning.
+Ingestion creates records, ontology alias maps, and an action registry. Graph
+loading maps records to nodes and relationships. GraphRAG retrieval queries
+flows, tasks, actions, utterances, ontology nodes, and synonym aliases for
+constrained LLM reasoning.
 
 ## Example Input/Output
 Input node: `loan.refinance`
 
-Output neighbors: `LoanRefinancingRequested`, `Loan`, `LoanConditions`, `refinance.proposal.prepare`.
+Output neighbors: `LoanRefinancingRequested`, `Loan`, `Synonym(prestamo)`, `Synonym(credito)`, `LoanConditions`, `refinance.proposal.prepare`.
 
 ## Interfaces
 - `GraphRepository.upsert_record(record)`

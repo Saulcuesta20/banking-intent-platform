@@ -1,0 +1,47 @@
+{
+  "user_task_id": "apply_for_loan",
+  "task": "apply_for_loan",
+  "type": "user_task",
+  "name": "Apply for Loan",
+  "description": "Process to capture details and documents for a loan application.",
+  "front_actions": [
+    {
+      "action": "ui.loan.apply",
+      "type": "front_action",
+      "operation": "create",
+      "resource": "loanapplication",
+      "label": "Apply for Loan",
+      "triggers": "loan.application.create",
+      "description": null
+    }
+  ],
+  "back_actions": [
+    {
+      "action": "loan.eligibility.calculate",
+      "type": "back_action",
+      "operation": "calculate",
+      "resource": "loan",
+      "label": null,
+      "triggers": null,
+      "description": "Calculate eligibility for the loan based on provided details."
+    },
+    {
+      "action": "customer.documents.collect",
+      "type": "back_action",
+      "operation": "create",
+      "resource": "customerdocuments",
+      "label": null,
+      "triggers": null,
+      "description": "Collect required documents for loan application."
+    },
+    {
+      "action": "human.approval",
+      "type": "back_action",
+      "operation": "approve",
+      "resource": "loan",
+      "label": null,
+      "triggers": null,
+      "description": "Request human approval for borderline loan applications."
+    }
+  ]
+}

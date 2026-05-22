@@ -56,6 +56,7 @@ class LlamaIndexKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
             f"Plan steps: {'; '.join(record.plan)}\n"
             f"Capabilities: {'; '.join(record.capabilities)}\n"
             f"Ontology nodes: {'; '.join(record.ontology_nodes)}\n"
+            f"Ontology aliases: {self._alias_text(record.ontology_aliases)}\n"
             f"Explanation: {record.explanation}"
         )
 
@@ -73,10 +74,17 @@ class LlamaIndexKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
     def _score(self, question: str, record: KnowledgeRecord) -> int:
         score = 0
         normalized_question = question.lower()
-        for text in [record.intent, record.business_event] + record.utterances + record.ontology_nodes:
+        alias_values = [alias for aliases in record.ontology_aliases.values() for alias in aliases]
+        for text in [record.intent, record.business_event] + record.utterances + record.ontology_nodes + alias_values:
             if text.lower() in normalized_question:
                 score += 4
         for token in normalized_question.split():
             if len(token) > 3 and token in record.explanation.lower():
                 score += 1
         return score
+
+    def _alias_text(self, aliases: dict[str, list[str]]) -> str:
+        return "; ".join(
+            f"{node} => {', '.join(node_aliases)}"
+            for node, node_aliases in aliases.items()
+        )

@@ -1,0 +1,38 @@
+{
+  "user_task_id": "file_claim",
+  "task": "file_claim",
+  "type": "user_task",
+  "name": "File a Claim",
+  "description": "Process to submit a claim for review.",
+  "front_actions": [
+    {
+      "action": "ui.claim.file",
+      "type": "front_action",
+      "operation": "create",
+      "resource": "claim",
+      "label": "File Claim",
+      "triggers": "claim.create",
+      "description": null
+    }
+  ],
+  "back_actions": [
+    {
+      "action": "claim.intake",
+      "type": "back_action",
+      "operation": "create",
+      "resource": "claim",
+      "label": null,
+      "triggers": null,
+      "description": "Intake the claim details for processing."
+    },
+    {
+      "action": "claim.evidence.collect",
+      "type": "back_action",
+      "operation": "create",
+      "resource": "claim",
+      "label": null,
+      "triggers": null,
+      "description": "Collect evidence related to the claim."
+    }
+  ]
+}

@@ -29,7 +29,7 @@ stories with acceptance criteria, see
 - Audit service
 
 ## Data Flow
-Natural Language -> GraphRAG Retrieval Service -> Neo4j Knowledge Graph -> LangChain-Constrained Intent Classification -> Flow Answer Context Projection -> Approval Service -> Audit Service -> Output JSON
+Natural Language -> LangGraph AskState Orchestration -> Query Understanding + Ontology Synonym Normalization -> GraphRAG Retrieval Service -> Neo4j Knowledge Graph -> LangChain-Constrained Intent Classification -> Flow Answer Context Projection -> Approval Service -> Audit Service -> Output JSON
 
 ## Example Input/Output
 Input: `Quiero refinanciar mi prestamo`
@@ -59,7 +59,17 @@ Output:
 - `app/audit/providers.py::AuditSink`
 
 ## Implementation Notes
-The operational path uses GraphRAG over Neo4j plus LangChain prompt orchestration and an OpenAI-compatible LLM. The deterministic local resolver remains available as an explicit fallback. Ingestion uses a custom deterministic pipeline for scan, parse, validation, artifact writing, audit, and graph loading. AutoGen may provide ingestion recommendations, but it does not own final JSON or Neo4j loading. Runtime does not create plans, tasks, events, or ontology; it projects ingested knowledge through `FlowAnswerContextService`. Each component keeps its own service, provider protocol, and local or AI adapter under `app/<component>`. `app/factory.py` wires runtime services together but does not own component business logic.
+The operational path uses LangGraph ask orchestration, GraphRAG over Neo4j,
+LangChain prompt orchestration, and an OpenAI-compatible LLM. The deterministic
+local resolver remains available as an explicit fallback. Ingestion uses a
+custom deterministic pipeline for scan, parse, validation, ontology synonym
+normalization, artifact writing, audit, and graph loading. AutoGen may provide
+ingestion recommendations, but it does not own final JSON or Neo4j loading.
+Runtime does not create plans, tasks, events, or ontology; it projects ingested
+knowledge through `FlowAnswerContextService`. Each component keeps its own
+service, provider protocol, and local or AI adapter under `app/<component>`.
+`app/factory.py` wires runtime services together but does not own component
+business logic.
 
 ## Future Replacement Strategy
 Any provider can be replaced by implementing the corresponding component-local interface without changing domain services or CLI contracts.

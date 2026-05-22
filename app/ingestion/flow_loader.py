@@ -6,6 +6,7 @@ from pathlib import Path
 from app.capability.local import LocalCapabilityProvider
 from app.ingestion.providers import KnowledgeIngestionProvider
 from app.models import Action, KnowledgeRecord, Task, UserTask
+from app.ontology.service import OntologyTermNormalizer
 
 
 SUPPORTED_SUFFIXES = {
@@ -22,6 +23,9 @@ SUPPORTED_SUFFIXES = {
 
 
 class FlowKnowledgeLoader:
+    def __init__(self, ontology_normalizer: OntologyTermNormalizer | None = None):
+        self.ontology_normalizer = ontology_normalizer or OntologyTermNormalizer()
+
     def load_directory(self, directory: Path) -> list[KnowledgeRecord]:
         if not directory.exists():
             return []
@@ -50,6 +54,11 @@ class FlowKnowledgeLoader:
         if not tasks:
             tasks = [Task(task=item["task"], type=item["type"]) for item in data.get("tasks", [])]
 
+        ontology_nodes = list(data.get("ontology_nodes", []))
+        ontology_aliases = dict(data.get("ontology_aliases", {}))
+        if not ontology_aliases:
+            ontology_aliases = self.ontology_normalizer.build_aliases_for_ontology_nodes(ontology_nodes)
+
         return KnowledgeRecord(
             flow_id=data.get("flow_id", data["intent"]),
             flow_name=data.get("flow_name", data["intent"].replace(".", " ").replace("_", " ").title()),
@@ -61,7 +70,8 @@ class FlowKnowledgeLoader:
             tasks=tasks,
             user_tasks=user_tasks,
             capabilities=list(data.get("capabilities", [])),
-            ontology_nodes=list(data.get("ontology_nodes", [])),
+            ontology_nodes=ontology_nodes,
+            ontology_aliases=ontology_aliases,
             explanation=data.get("explanation", "Matched from flow knowledge."),
             source=str(path),
             metadata=dict(data.get("metadata", {})),
@@ -197,6 +207,7 @@ class LocalKnowledgeIngestionProvider(KnowledgeIngestionProvider):
             "user_tasks": [task.to_dict() for task in record.user_tasks],
             "capabilities": record.capabilities,
             "ontology_nodes": record.ontology_nodes,
+            "ontology_aliases": record.ontology_aliases,
             "explanation": record.explanation,
             "source": record.source,
             "metadata": record.metadata,

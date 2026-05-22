@@ -16,6 +16,8 @@ from typing import Any
 
 from neo4j import GraphDatabase
 
+from app.ontology.service import OntologyTermNormalizer
+
 
 def get_driver():
     uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
@@ -28,6 +30,7 @@ def create_constraints(tx):
     tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (f:Flow) REQUIRE f.flow_id IS UNIQUE")
     tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (a:Action) REQUIRE a.action IS UNIQUE")
     tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (o:Ontology) REQUIRE o.name IS UNIQUE")
+    tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (s:Synonym) REQUIRE s.term IS UNIQUE")
     tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (t:UserTask) REQUIRE t.task IS UNIQUE")
     tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (u:Utterance) REQUIRE u.text IS UNIQUE")
 
@@ -62,13 +65,29 @@ def upsert_record(tx, record: dict[str, Any]) -> None:
             {"flow_id": flow_id, "action": cap},
         )
 
-    for node in record.get("ontology_nodes", []):
+    ontology_nodes = record.get("ontology_nodes", [])
+    ontology_aliases = record.get("ontology_aliases") or OntologyTermNormalizer().build_aliases_for_ontology_nodes(
+        [str(node) for node in ontology_nodes]
+    )
+    for node in ontology_nodes:
         tx.run("MERGE (o:Ontology {name: $node})", {"node": node})
         tx.run(
             "MATCH (f:Flow {flow_id: $flow_id}), (o:Ontology {name: $node}) "
             "MERGE (f)-[:HAS_ONTOLOGY]->(o)",
             {"flow_id": flow_id, "node": node},
         )
+        for alias in ontology_aliases.get(node, []):
+            tx.run(
+                "MERGE (s:Synonym {term: $alias}) "
+                "SET s.normalized = true",
+                {"alias": alias},
+            )
+            tx.run(
+                "MATCH (o:Ontology {name: $node}), (s:Synonym {term: $alias}) "
+                "MERGE (o)-[:HAS_SYNONYM]->(s) "
+                "MERGE (s)-[:NORMALIZES_TO]->(o)",
+                {"node": node, "alias": alias},
+            )
 
     user_tasks = record.get("user_tasks") or record.get("tasks", [])
     for index, task in enumerate(user_tasks, start=1):
@@ -157,7 +176,7 @@ def clear_imported_graph(tx):
     tx.run(
         "MATCH (n) "
         "WHERE n:Flow OR n:KnowledgeRecord OR n:Action OR n:Capability OR n:Ontology OR n:Task "
-        "OR n:UserTask OR n:FrontAction OR n:BackAction OR n:Utterance "
+        "OR n:UserTask OR n:FrontAction OR n:BackAction OR n:Utterance OR n:Synonym "
         "DETACH DELETE n"
     )
 

@@ -1,0 +1,143 @@
+Banking Intent Platform - Synonyms, Glossary, and Ontology Mapping Guidance
+
+Purpose:
+This raw corpus file teaches ingestion which informal banking words should map
+to formal ontology concepts, flow names, utterances, user tasks, and actions.
+The runtime ask process must not invent terms. It should retrieve validated
+concepts, synonyms, flows, user tasks, and actions from the graph.
+
+Canonical ontology concepts and aliases:
+
+1. Loan
+   Informal terms: prestamo, credito, financiamiento, loan, prestamo personal,
+   linea de credito.
+   Example utterances:
+   - "Quiero pedir un credito"
+   - "Necesito un prestamo personal"
+   - "Me pueden financiar una compra?"
+   Mapping rule: credito and prestamo are synonyms and must resolve to Loan.
+
+2. LoanRefinance
+   Informal terms: refinanciar, refinanciacion, reestructurar credito, bajar
+   cuota, renegociar prestamo, reprogramar deuda, cambiar condiciones.
+   Example utterances:
+   - "Quiero bajar la cuota de mi credito"
+   - "Necesito refinanciar mi prestamo"
+   - "Quiero renegociar las condiciones"
+   Mapping rule: bajar cuota should retrieve LoanRefinance and LoanConditions.
+
+3. LoanConditions
+   Informal terms: cuota, tasa, plazo, cronograma, condiciones crediticias,
+   monto aprobado, interes.
+   Example utterances:
+   - "Cual seria mi nueva cuota?"
+   - "Quiero cambiar el plazo"
+   - "La tasa esta muy alta"
+   Mapping rule: questions about quota, rate, term, or schedule must include
+   LoanConditions in ontology_nodes or ontology_aliases.
+
+4. LoanPayment
+   Informal terms: pagar cuota, pago de credito, repayment, abono de prestamo,
+   debito automatico, vencimiento.
+   Example utterances:
+   - "Quiero pagar mi cuota"
+   - "Como pago el credito?"
+   - "Puedo programar un debito automatico?"
+   Mapping rule: payment registration is a flow; debit posting and balance
+   updates are back_actions, not user_tasks.
+
+5. LoanApplication
+   Informal terms: solicitar prestamo, pedir credito, aplicar a prestamo,
+   originacion, evaluar prestamo.
+   Example utterances:
+   - "Quiero solicitar un prestamo"
+   - "Necesito pedir un credito"
+   - "Que documentos necesito para aplicar?"
+   Mapping rule: application capture is a user/business task; scoring, bureau
+   checks, and eligibility calculation are back_actions.
+
+6. SavingsAccount
+   Informal terms: cuenta de ahorro, cuenta, ahorro, savings account, cuenta
+   bancaria, deposit account.
+   Example utterances:
+   - "Quiero abrir una cuenta"
+   - "Necesito una cuenta de ahorro"
+   - "Como obtengo mi CBU?"
+   Mapping rule: account opening should include Customer, SavingsAccount,
+   CustomerDocuments, and KYC concepts.
+
+7. Transfer
+   Informal terms: transferencia, transferir, envio de dinero, CBU,
+   beneficiario, interbancaria.
+   Example utterances:
+   - "Quiero transferir dinero"
+   - "Necesito enviar plata a un CBU"
+   - "Como agrego un beneficiario?"
+   Mapping rule: beneficiary registration can be a user_task; posting the
+   transfer is a back_action.
+
+8. Customer
+   Informal terms: cliente, titular, usuario, customer, persona natural.
+   Example utterances:
+   - "Soy cliente nuevo"
+   - "Necesito actualizar mis datos"
+   - "Quiero identificar al titular"
+   Mapping rule: identity checks and customer lookup are required context for
+   regulated flows.
+
+9. CustomerDocuments
+   Informal terms: documentos, documentacion, recibos, comprobantes, ID,
+   soporte de ingresos, constancia.
+   Example utterances:
+   - "Que documentos necesito?"
+   - "Tengo que subir recibos?"
+   - "Me falta comprobante de domicilio"
+   Mapping rule: collecting documents is a user_task; OCR, validation, and
+   storage are back_actions.
+
+10. Claim
+    Informal terms: reclamo, queja, disputa, cargo no reconocido, incidencia,
+    caso.
+    Example utterances:
+    - "Quiero hacer un reclamo"
+    - "No reconozco este debito"
+    - "Necesito disputar un cargo"
+    Mapping rule: claim intake and evidence collection are user_tasks; movement
+    matching and case status updates are back_actions.
+
+11. CreditNote
+    Informal terms: nota de credito, ajuste a favor, reversion positiva,
+    devolucion.
+    Example utterances:
+    - "Necesito emitir una nota de credito"
+    - "Hay que devolver un cargo"
+    Mapping rule: issuing a credit note requires review and audit evidence.
+
+12. DebitNote
+    Informal terms: nota de debito, cargo, ajuste en contra, debito adicional.
+    Example utterances:
+    - "Necesito emitir una nota de debito"
+    - "Hay que registrar un cargo adicional"
+    Mapping rule: issuing a debit note requires validated reason and approval.
+
+User task modeling rules:
+- A UserTask is a human or business step: identify_customer,
+  collect_customer_documents, review_loan_status, review_refinance_options,
+  prepare_refinance_request, approve_business_case.
+- A backend API operation is never a UserTask. Backend operations belong in
+  back_actions, for example loan.conditions.calculate, customer.profile.read,
+  account.balance.check, transfer.post, notification.send.
+- A frontend click, submit, screen, or UI command belongs in front_actions, for
+  example ui.loan_refinance.calculate or ui.transfer.submit.
+
+Graph retrieval expectations:
+- Utterance nodes should preserve representative customer phrases.
+- Ontology nodes should use formal concepts such as Loan, LoanRefinance,
+  LoanConditions, SavingsAccount, Transfer, Customer, CustomerDocuments, Claim,
+  CreditNote, and DebitNote.
+- Synonym aliases should be linked to ontology concepts so a question using
+  "credito" can retrieve flows that mention "prestamo", and a question using
+  "bajar cuota" can retrieve loan refinance flows.
+- The LLM classifier may choose only an existing flow_id from retrieved graph
+  context. It must not create new plans, tasks, actions, events, or ontology at
+  ask time.
