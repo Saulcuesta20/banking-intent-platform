@@ -1,0 +1,191 @@
+{
+  "timestamp": "2026-05-22T19:19:41.567939+00:00",
+  "question": "No tengo dinero que haog",
+  "retrieval": {
+    "matched_records": 3,
+    "candidate_flows": [
+      "money.transfer",
+      "loan_application_process",
+      "loan.request"
+    ],
+    "provider": "local_flow_file_retrieval",
+    "input": {
+      "question": "No tengo dinero que haog",
+      "normalized_question": "no tengo dinero que haog",
+      "corrected_question": "no tengo dinero que hago",
+      "corrections": [
+        {
+          "from": "haog",
+          "to": "hago"
+        }
+      ]
+    },
+    "filters": {
+      "minimum_score": 2,
+      "ignored_stopwords": [
+        "como",
+        "cual",
+        "cuales",
+        "cuando",
+        "desde",
+        "donde",
+        "esta",
+        "este",
+        "esto",
+        "hacer",
+        "necesito",
+        "para",
+        "pero",
+        "puedo",
+        "que",
+        "quiero",
+        "sobre",
+        "tengo",
+        "unas",
+        "unos"
+      ]
+    },
+    "local_top_candidates": [
+      {
+        "flow_id": "money.transfer",
+        "intent": "money.transfer",
+        "score": 2,
+        "matched": [
+          {
+            "type": "token",
+            "value": "dinero",
+            "points": 1
+          },
+          {
+            "type": "ambiguous_financial_need",
+            "value": "dinero",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan_application_process",
+        "intent": "loan.application.submit",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ambiguous_financial_need",
+            "value": "dinero",
+            "points": 2
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.request",
+        "intent": "loan.request.generated",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ambiguous_financial_need",
+            "value": "dinero",
+            "points": 2
+          }
+        ]
+      },
+      {
+        "flow_id": "savings.operations",
+        "intent": "savings.operations.glossary.part1",
+        "score": 1,
+        "matched": [
+          {
+            "type": "token",
+            "value": "hago",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "backend.operations",
+        "intent": "backend.operations.executors.part4",
+        "score": 0,
+        "matched": []
+      },
+      {
+        "flow_id": "claim_filing_process",
+        "intent": "claim.file.submit",
+        "score": 0,
+        "matched": []
+      },
+      {
+        "flow_id": "credit_note.issue",
+        "intent": "credit_note.issue",
+        "score": 0,
+        "matched": []
+      },
+      {
+        "flow_id": "customer.onboarding",
+        "intent": "customer.onboarding",
+        "score": 0,
+        "matched": []
+      }
+    ]
+  },
+  "query_understanding": null,
+  "graph": {
+    "query_summary": null,
+    "rows_preview": null
+  },
+  "langchain_llm": {
+    "provider": null,
+    "prompt": null,
+    "prompt_summary": null,
+    "answer": null,
+    "reason": null
+  },
+  "local_reasoning": {
+    "provider": null,
+    "reason": null,
+    "score": null,
+    "matched": null,
+    "ambiguity": {
+      "type": "financial_need_requires_clarification",
+      "reason": "The question expresses lack of money, but does not say whether the customer wants a loan, transfer, or another operation.",
+      "options": [
+        {
+          "flow_id": "loan.request",
+          "flow_name": "Loan Application And Origination",
+          "intent": "loan.request.generated"
+        },
+        {
+          "flow_id": "loan_application_process",
+          "flow_name": "Loan Application Process",
+          "intent": "loan.application.submit"
+        },
+        {
+          "flow_id": "money.transfer",
+          "flow_name": "Money Transfer",
+          "intent": "money.transfer"
+        }
+      ]
+    }
+  },
+  "selected_flow": null,
+  "flow_context": null,
+  "result": {
+    "can_resolve": false,
+    "flow_id": "unknown",
+    "flow_name": "Unknown flow",
+    "intent": "unknown",
+    "confidence": 0.0,
+    "business_event": "UnknownBusinessQuestionAsked",
+    "requires_human_approval": true,
+    "plan": [
+      "clarify_customer_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [],
+    "related_ontology_nodes": [],
+    "explanation": "The request is ambiguous. The customer may need one of these flows: loan.request (Loan Application And Origination), loan_application_process (Loan Application Process), money.transfer (Money Transfer). Ask a clarification question before selecting an intent."
+  }
+}

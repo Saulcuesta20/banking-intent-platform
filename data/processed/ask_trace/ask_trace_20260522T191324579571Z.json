@@ -1,0 +1,442 @@
+{
+  "timestamp": "2026-05-22T19:13:24.579571+00:00",
+  "question": "Quiero refinanciar mi prestamo",
+  "retrieval": {
+    "matched_records": 8,
+    "candidate_flows": [
+      "loan.refinance",
+      "loan_application_process",
+      "loan.disbursement",
+      "loan.domain.consumer",
+      "loan.inquiry",
+      "loan.payment",
+      "loan.request",
+      "utterance.intent.matching"
+    ],
+    "provider": "graph_rag_neo4j_connection_error_local_fallback",
+    "input": {
+      "question": "Quiero refinanciar mi prestamo",
+      "normalized_question": "quiero refinanciar mi prestamo"
+    },
+    "filters": {
+      "minimum_score": 2,
+      "ignored_stopwords": [
+        "como",
+        "cual",
+        "cuales",
+        "cuando",
+        "desde",
+        "donde",
+        "esta",
+        "este",
+        "esto",
+        "hacer",
+        "necesito",
+        "para",
+        "pero",
+        "puedo",
+        "quiero",
+        "sobre",
+        "tengo",
+        "unas",
+        "unos"
+      ]
+    },
+    "local_top_candidates": [
+      {
+        "flow_id": "loan.refinance",
+        "intent": "loan.refinance",
+        "score": 7,
+        "matched": [
+          {
+            "type": "utterance_or_identifier",
+            "value": "quiero refinanciar mi prestamo",
+            "points": 3
+          },
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "prestamo"
+            ],
+            "points": 1
+          },
+          {
+            "type": "ontology_or_synonym",
+            "node": "LoanRefinance",
+            "synonyms": [
+              "refinanciar"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "refinanciar",
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "prestamo",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan_application_process",
+        "intent": "loan.application.submit",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "prestamo"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "prestamo",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.disbursement",
+        "intent": "loan.disbursement",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "prestamo"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "prestamo",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.domain.consumer",
+        "intent": "loan.domain.consumer.large",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "prestamo"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "prestamo",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.inquiry",
+        "intent": "loan.inquiry",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "prestamo"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "prestamo",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.payment",
+        "intent": "loan.payment",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "prestamo"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "prestamo",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.request",
+        "intent": "loan.request.generated",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "prestamo"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "prestamo",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "utterance.intent.matching",
+        "intent": "utterances.templates.part5",
+        "score": 2,
+        "matched": [
+          {
+            "type": "token",
+            "value": "refinanciar",
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "prestamo",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "query_understanding": {
+    "original_question": "Quiero refinanciar mi prestamo",
+    "search_terms": [
+      "refiniciar prestamo",
+      "refinanciacion prestamo",
+      "renegociar prestamo",
+      "consolidar deuda",
+      "cambiar plazo de prestamo",
+      "nueva cuota",
+      "tasa interes refinanciacion",
+      "solicitar refinanciacion",
+      "refinanciar",
+      "loan refinance",
+      "loan_refinance",
+      "refinanciacion",
+      "bajar cuota",
+      "renegociar credito",
+      "prestamo",
+      "loan",
+      "credito",
+      "credit",
+      "financiamiento"
+    ],
+    "entities": [
+      "refinanciacion_prestamo",
+      "prestamo",
+      "LoanRefinance",
+      "Loan"
+    ],
+    "possible_intents": [
+      "solicitar_refinanciacion",
+      "consulta_tasas",
+      "calcular_nueva_cuota",
+      "comparar_ofertas_refinanciamiento",
+      "requisitos_crediticios"
+    ],
+    "provider": "llm_query_understanding",
+    "explanation": "El usuario desea refinanciar un préstamo, por lo que se deben recuperar términos, tasas, plazos y requisitos para evaluar la refinanciación."
+  },
+  "graph": {
+    "query_summary": null,
+    "rows_preview": null
+  },
+  "langchain_llm": {
+    "provider": "langchain_graph_rag_llm",
+    "prompt": "Customer question:\nQuiero refinanciar mi prestamo\n\nValid banking graph context follows. These are the only allowed flows, user tasks, front actions, and back actions:\nflow_id: loan.refinance\nflow_name: Loan Refinance\nintent: loan.refinance\nbusiness_event: LoanRefinancingRequested\nutterances: quiero refinanciar mi prestamo, quiero bajar la cuota de mi prestamo, necesito mejores condiciones para mi credito, refinanciar prestamo, bajar cuota\nontology_nodes: Customer, Loan, LoanRefinance, LoanConditions, CustomerConditions\nontology_aliases: Customer => customer, cliente, titular, usuario; Loan => loan, prestamo, credito, credit, financiamiento; LoanRefinance => loan refinance, refinanciar, refinanciacion, bajar cuota, renegociar credito; LoanConditions => loan conditions, cuota, condiciones, tasa, plazo; CustomerConditions => customer conditions\nexplanation: Refinance is a business flow; calculations are backend actions inside refinance review, not user tasks.\n\n---\n\nflow_id: loan_application_process\nflow_name: Loan Application Process\nintent: loan.application.submit\nbusiness_event: LoanApplied\nutterances: Quiero solicitar un préstamo personal, Cómo puedo aplicar para un préstamo?\nontology_nodes: Loan, LoanApplication, Customer, CustomerDocuments\nontology_aliases: Loan => loan, prestamo, credito, credit, financiamiento; LoanApplication => loan application; Customer => customer, cliente, titular, usuario; CustomerDocuments => customer documents\nexplanation: This flow exists to guide customers through the loan application process.\n\n---\n\nflow_id: loan.disbursement\nflow_name: Loan Disbursement\nintent: loan.disbursement\nbusiness_event: LoanDisbursementRequested\nutterances: desembolsar prestamo, cuando desembolsan mi credito, solicitar desembolso\nontology_nodes: Customer, Loan, LoanConditions, Disbursement\nontology_aliases: Customer => customer, cliente, titular, usuario; Loan => loan, prestamo, credito, credit, financiamiento; LoanConditions => loan conditions, cuota, condiciones, tasa, plazo; Disbursement => disbursement\nexplanation: Disbursement validates approved loan conditions before executing the transaction.\n\n---\n\nflow_id: loan.domain.consumer\nflow_name: Consumer Loan Domain Support\nintent: loan.domain.consumer.large\nbusiness_event: LoanDomainQuestionAsked\nutterances: cuanto puedo pedir prestado, como pago mi prestamo, como refinancio mi prestamo, que pasa si me atraso en un pago\nontology_nodes: Loan, CreditHistory, Collateral, RepaymentSchedule\nontology_aliases: Loan => loan, prestamo, credito, credit, financiamiento; CreditHistory => credit history; Collateral => collateral; RepaymentSchedule => repayment schedule\nexplanation: Broad loan support can route to status, application, eligibility, or refinance tasks.\n\n---\n\nflow_id: loan.inquiry\nflow_name: Loan Status Inquiry\nintent: loan.inquiry\nbusiness_event: LoanInformationRequested\nutterances: quiero informacion de mi prestamo, ver mi credito, consultar prestamo\nontology_nodes: Customer, Loan, LoanConditions\nontology_aliases: Customer => customer, cliente, titular, usuario; Loan => loan, prestamo, credito, credit, financiamiento; LoanConditions => loan conditions, cuota, condiciones, tasa, plazo\nexplanation: Loan inquiry is a read-only flow to identify the customer and show loan status.\n\n---\n\nflow_id: loan.payment\nflow_name: Loan Payment\nintent: loan.payment\nbusiness_event: LoanPaymentRequested\nutterances: quiero pagar mi prestamo, pagar cuota, hacer pago de credito\nontology_nodes: Customer, Loan, Payment, Transaction\nontology_aliases: Customer => customer, cliente, titular, usuario; Loan => loan, prestamo, credito, credit, financiamiento; Payment => payment, pago, pagar, abono; Transaction => transaction\nexplanation: Loan payment is a transaction flow that validates funds and posts a payment.\n\n---\n\nflow_id: loan.request\nflow_name: Loan Application And Origination\nintent: loan.request.generated\nbusiness_event: LoanRequestSubmitted\nutterances: quiero solicitar un prestamo, necesito un prestamo personal, como solicito un prestamo, solicitud de credito\nontology_nodes: Customer, Loan, LoanApplication, CreditHistory, LoanProposal, RepaymentSchedule\nontology_aliases: Customer => customer, cliente, titular, usuario; Loan => loan, prestamo, credito, credit, financiamiento; LoanApplication => loan application; CreditHistory => credit history; LoanProposal => loan proposal; RepaymentSchedule => repayment schedule\nexplanation: Loan origination includes application collection, credit evaluation, proposal preparation, and approval.\n\n---\n\nflow_id: utterance.intent.matching\nflow_name: Utterance Intent Matching\nintent: utterances.templates.part5\nbusiness_event: IntentMatchingRequested\nutterances: Quiero abrir una cuenta de ahorro con CBU, Puedo pagar mi cuota con tarjeta de debito, Que documentos necesito para refinanciar mi prestamo\nontology_nodes: Intent, Utterance, Template\nontology_aliases: Intent => intent; Utterance => utterance; Template => template\nexplanation: Intent matching normalizes user phrases and maps them to known flows.\n\nReturn only JSON with this exact shape:\n{\n  \"can_resolve\": true|false,\n  \"selected_flow_id\": \"flow_id or unknown\",\n  \"confidence\": 0.0,\n  \"reason\": \"short explanation grounded in graph context\"\n}\n\nRules:\n- If no flow clearly matches the question, return can_resolve=false and selected_flow_id=unknown.\n- If a flow matches, selected_flow_id must be exactly one flow_id from the graph context.\n- Do not propose tasks or actions that are not in the graph context.\n",
+    "prompt_summary": {
+      "chars": 5526,
+      "preview": "Customer question:\nQuiero refinanciar mi prestamo\n\nValid banking graph context follows. These are the only allowed flows, user tasks, front actions, and back actions:\nflow_id: loan.refinance\nflow_name: Loan Refinance\nintent: loan.refinance\nbusiness_event: LoanRefinancingRequested\nutterances: quiero refinanciar mi prestamo, quiero bajar la cuota de mi prestamo, necesito mejores condiciones para mi credito, refinanciar prestamo, bajar cuota\nontology_nodes: Customer, Loan, LoanRefinance, LoanConditions, CustomerConditions\nontology_aliases: Customer => customer, cliente, titular, usuario; Loan => loan, prestamo, credito, credit, financiamiento; LoanRefinance => loan refinance, refinanciar, refinanciacion, bajar cuota, renegociar credito; LoanConditions => loan conditions, cuota, condiciones, tasa, plazo; CustomerConditions => customer conditions\nexplanation: Refinance is a business flow; calculations are backend actions inside refinance review, not user tasks.\n\n---\n\nflow_id: loan_application_process\nflow_name: Loan Application Process\nintent: loan.application.submit\nbusiness_event: LoanApplied\nutterances: Quiero solicitar un préstamo personal, Cómo puedo aplicar para un préstamo?\nontol"
+    },
+    "answer": {
+      "can_resolve": true,
+      "selected_flow_id": "loan.refinance",
+      "confidence": 1.0,
+      "reason": "The user wants to refinance their loan, which directly matches the 'loan.refinance' flow and its associated intent 'loan.refinance'."
+    },
+    "reason": "The user wants to refinance their loan, which directly matches the 'loan.refinance' flow and its associated intent 'loan.refinance'."
+  },
+  "local_reasoning": {
+    "provider": "langchain_graph_rag_llm",
+    "reason": null,
+    "score": 7,
+    "matched": [
+      {
+        "type": "utterance_or_identifier",
+        "value": "quiero refinanciar mi prestamo",
+        "points": 3
+      },
+      {
+        "type": "ontology_or_synonym",
+        "node": "Loan",
+        "synonyms": [
+          "prestamo"
+        ],
+        "points": 1
+      },
+      {
+        "type": "ontology_or_synonym",
+        "node": "LoanRefinance",
+        "synonyms": [
+          "refinanciar"
+        ],
+        "points": 1
+      },
+      {
+        "type": "token",
+        "value": "refinanciar",
+        "points": 1
+      },
+      {
+        "type": "token",
+        "value": "prestamo",
+        "points": 1
+      }
+    ]
+  },
+  "selected_flow": {
+    "flow_id": "loan.refinance",
+    "flow_name": "Loan Refinance",
+    "intent": "loan.refinance",
+    "confidence": 1.0,
+    "business_event": "LoanRefinancingRequested",
+    "source": "/app/data/flows/loan_refinance.flow.json"
+  },
+  "flow_context": {
+    "business_event": "LoanRefinancingRequested",
+    "plan": [
+      "identify_customer",
+      "review_loan_status",
+      "review_refinance_options",
+      "prepare_refinance_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "identify_customer",
+        "type": "user_task"
+      },
+      {
+        "task": "review_loan_status",
+        "type": "user_task"
+      },
+      {
+        "task": "review_refinance_options",
+        "type": "user_task"
+      },
+      {
+        "task": "prepare_refinance_request",
+        "type": "user_task"
+      },
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [
+      "loan.read",
+      "loan.conditions.calculate",
+      "loan_refinance.compare",
+      "loan_refinance.create",
+      "ui.customer.search_submit",
+      "customer.read",
+      "customer.identity.validate",
+      "ui.loan_status.open",
+      "loan.status.summarize",
+      "ui.refinance.calculate",
+      "ui.refinance.submit",
+      "ui.approval.decision_submit",
+      "approval.update"
+    ],
+    "related_ontology_nodes": [
+      "Loan",
+      "LoanRefinance",
+      "Customer",
+      "LoanConditions",
+      "CustomerConditions"
+    ]
+  },
+  "result": {
+    "can_resolve": true,
+    "flow_id": "loan.refinance",
+    "flow_name": "Loan Refinance",
+    "intent": "loan.refinance",
+    "confidence": 1.0,
+    "business_event": "LoanRefinancingRequested",
+    "requires_human_approval": true,
+    "plan": [
+      "identify_customer",
+      "review_loan_status",
+      "review_refinance_options",
+      "prepare_refinance_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "identify_customer",
+        "type": "user_task"
+      },
+      {
+        "task": "review_loan_status",
+        "type": "user_task"
+      },
+      {
+        "task": "review_refinance_options",
+        "type": "user_task"
+      },
+      {
+        "task": "prepare_refinance_request",
+        "type": "user_task"
+      },
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [
+      "loan.read",
+      "loan.conditions.calculate",
+      "loan_refinance.compare",
+      "loan_refinance.create",
+      "ui.customer.search_submit",
+      "customer.read",
+      "customer.identity.validate",
+      "ui.loan_status.open",
+      "loan.status.summarize",
+      "ui.refinance.calculate",
+      "ui.refinance.submit",
+      "ui.approval.decision_submit",
+      "approval.update"
+    ],
+    "related_ontology_nodes": [
+      "Loan",
+      "LoanRefinance",
+      "Customer",
+      "LoanConditions",
+      "CustomerConditions"
+    ],
+    "explanation": "GraphRAG LLM decision: The user wants to refinance their loan, which directly matches the 'loan.refinance' flow and its associated intent 'loan.refinance'."
+  }
+}

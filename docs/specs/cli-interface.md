@@ -31,7 +31,7 @@ Output: trace, `can_resolve`, intent, confidence, event, approval flag, plan, ta
 - `AskQuestionUseCase.execute(question)`
 
 ## Implementation Notes
-Typer is the CLI framework, but command modules stay thin and framework-light. `make ask` uses GraphRAG + LangChain + LLM by default. `make ask-deterministic` is the explicit non-LLM fallback.
+Typer is the CLI framework, but command modules stay thin and framework-light. `make ask` uses LangGraph + GraphRAG + Neo4j + LangChain + LLM. There is no non-LLM intent resolver for the ask path.
 
 Corpus extraction uses the deterministic ingestion pipeline in `app/ingestion/pipeline.py`. `make extract-autogen` enables AutoGen recommendations, but custom code still owns sequence, validation, artifact writing, and audit.
 

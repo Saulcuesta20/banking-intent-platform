@@ -1,0 +1,150 @@
+{
+  "timestamp": "2026-05-22T18:58:27.056154+00:00",
+  "question": "Quiero refinanciar mi credito",
+  "retrieval": {
+    "matched_records": 5,
+    "candidate_flows": [
+      "loan.refinance",
+      "loan.disbursement",
+      "loan.inquiry",
+      "loan.payment",
+      "loan.request"
+    ],
+    "provider": "local_flow_file_retrieval"
+  },
+  "query_understanding": null,
+  "graph": {
+    "query_summary": null,
+    "rows_preview": null
+  },
+  "langchain_llm": {
+    "provider": "local_first_match_reasoning",
+    "prompt": null,
+    "prompt_summary": null,
+    "answer": null,
+    "reason": null
+  },
+  "selected_flow": {
+    "flow_id": "loan.refinance",
+    "flow_name": "Loan Refinance",
+    "intent": "loan.refinance",
+    "confidence": 0.9,
+    "business_event": "LoanRefinancingRequested",
+    "source": "/home/saul/banking-intent-platform/data/flows/loan_refinance.flow.json"
+  },
+  "flow_context": {
+    "business_event": "LoanRefinancingRequested",
+    "plan": [
+      "identify_customer",
+      "review_loan_status",
+      "review_refinance_options",
+      "prepare_refinance_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "identify_customer",
+        "type": "user_task"
+      },
+      {
+        "task": "review_loan_status",
+        "type": "user_task"
+      },
+      {
+        "task": "review_refinance_options",
+        "type": "user_task"
+      },
+      {
+        "task": "prepare_refinance_request",
+        "type": "user_task"
+      },
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [
+      "loan.read",
+      "loan.conditions.calculate",
+      "loan_refinance.compare",
+      "loan_refinance.create",
+      "ui.customer.search_submit",
+      "customer.read",
+      "customer.identity.validate",
+      "ui.loan_status.open",
+      "loan.status.summarize",
+      "ui.refinance.calculate",
+      "ui.refinance.submit",
+      "ui.approval.decision_submit",
+      "approval.update"
+    ],
+    "related_ontology_nodes": [
+      "Loan",
+      "LoanRefinance",
+      "Customer",
+      "LoanConditions",
+      "CustomerConditions"
+    ]
+  },
+  "result": {
+    "can_resolve": true,
+    "flow_id": "loan.refinance",
+    "flow_name": "Loan Refinance",
+    "intent": "loan.refinance",
+    "confidence": 0.9,
+    "business_event": "LoanRefinancingRequested",
+    "requires_human_approval": true,
+    "plan": [
+      "identify_customer",
+      "review_loan_status",
+      "review_refinance_options",
+      "prepare_refinance_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "identify_customer",
+        "type": "user_task"
+      },
+      {
+        "task": "review_loan_status",
+        "type": "user_task"
+      },
+      {
+        "task": "review_refinance_options",
+        "type": "user_task"
+      },
+      {
+        "task": "prepare_refinance_request",
+        "type": "user_task"
+      },
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [
+      "loan.read",
+      "loan.conditions.calculate",
+      "loan_refinance.compare",
+      "loan_refinance.create",
+      "ui.customer.search_submit",
+      "customer.read",
+      "customer.identity.validate",
+      "ui.loan_status.open",
+      "loan.status.summarize",
+      "ui.refinance.calculate",
+      "ui.refinance.submit",
+      "ui.approval.decision_submit",
+      "approval.update"
+    ],
+    "related_ontology_nodes": [
+      "Loan",
+      "LoanRefinance",
+      "Customer",
+      "LoanConditions",
+      "CustomerConditions"
+    ],
+    "explanation": "Refinance is a business flow; calculations are backend actions inside refinance review, not user tasks."
+  }
+}

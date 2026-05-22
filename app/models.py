@@ -124,6 +124,7 @@ class IntentResult(BaseModel):
     related_capabilities: list[str]
     related_ontology_nodes: list[str]
     explanation: str
+    clarification_options: list[dict[str, Any]] = Field(default_factory=list)
 
     model_config = {"frozen": True}
 
@@ -141,4 +142,5 @@ class IntentResult(BaseModel):
             "related_capabilities": self.related_capabilities,
             "related_ontology_nodes": self.related_ontology_nodes,
             "explanation": self.explanation,
+            "clarification_options": self.clarification_options,
         }

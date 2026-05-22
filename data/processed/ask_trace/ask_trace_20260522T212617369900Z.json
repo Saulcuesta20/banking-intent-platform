@@ -1,0 +1,520 @@
+{
+  "timestamp": "2026-05-22T21:26:17.369900+00:00",
+  "question": "No tengo dinero que haog\nAclaracion del usuario: quiere Check Balance (check_balance).",
+  "retrieval": {
+    "matched_records": 11,
+    "candidate_flows": [
+      "backend.operations",
+      "money.transfer",
+      "savings.account.domain",
+      "credit_note.issue",
+      "debit_note.issue",
+      "fees.claims",
+      "glossary.savings",
+      "savings.operations",
+      "savings_account.open",
+      "savings_account_opening",
+      "utterance.intent.matching"
+    ],
+    "provider": "graph_rag_neo4j",
+    "input": null,
+    "filters": null
+  },
+  "query_understanding": {
+    "original_question": "No tengo dinero que haog\nAclaracion del usuario: quiere Check Balance (check_balance).",
+    "search_terms": [
+      "saldo",
+      "cuenta",
+      "dinero",
+      "consultar saldo",
+      "ver dinero"
+    ],
+    "corrected_question": "No tengo dinero, ¿qué hago?",
+    "corrections": [
+      {
+        "from": "haog",
+        "to": "hago"
+      }
+    ],
+    "entities": [
+      "AccountBalance"
+    ],
+    "possible_intents": [
+      "check_balance"
+    ],
+    "ambiguity": {
+      "is_ambiguous": false,
+      "reason": "The user explicitly stated they want to check their balance.",
+      "options": []
+    },
+    "provider": "llm_query_understanding",
+    "explanation": "The user wants to know their account balance."
+  },
+  "graph": {
+    "query_summary": {
+      "query": "MATCH (f:Flow) OPTIONAL MATCH (f)-[:EXEMPLIFIES]->(u_match:Utterance) OPTIONAL MATCH (f)-[:HAS_ONTOLOGY]->(o_match:Ontology) OPTIONAL MATCH (o_match)-[:HAS_SYNONYM]->(s_match:Synonym) WITH f, collect(DISTINCT u_match.text) AS all_utterances, collect(DISTINCT o_match.name) AS all_ontology_nodes, collect(DISTINCT s_match.term) AS all_ontology_aliases, toLower( coalesce(f.flow_id, '') + ' ' + coalesce(f.flow_name, '') + ' ' + coalesce(f.intent, '') + ' ' + coalesce(f.business_event, '') + ' ' + coalesce(f.explanation, '') + ' ' + reduce(text = '', value IN collect(DISTINCT u_match.text) | text + ' ' + coalesce(value, '')) + ' ' + reduce(text = '', value IN collect(DISTINCT o_match.name) | text + ' ' + coalesce(value, '')) + ' ' + reduce(text = '', value IN collect(DISTINCT s_match.term) | text + ' ' + coalesce(value, '')) ) AS haystack WITH f, all_utterances, all_ontology_nodes, all_ontology_aliases, [token IN $tokens WHERE haystack CONTAINS token] AS matched_tokens WHERE size(matched_tokens) > 0 OPTIONAL MATCH (f)-[task_rel:HAS_USER_TASK]->(t:UserTask) OPTIONAL MATCH (t)-[:HAS_FRONT_ACTION]->(front:Action) OPTIONAL MATCH (t)-[:HAS_BACK_ACTION]->(back:Action) RETURN f.flow_id AS flow_id, f.flow_name AS flow_name, f.intent AS intent, f.business_event AS business_event, f.explanation AS explanation, all_utterances AS utterances, all_ontology_nodes AS ontology_nodes, all_ontology_aliases AS ontology_aliases, collect(DISTINCT t.task) AS user_tasks, collect(DISTINCT front.action) AS front_actions, collect(DISTINCT back.action) AS back_actions, matched_tokens AS matched_tokens, size(matched_tokens) AS match_score ORDER BY match_score DESC, flow_id LIMIT $limit",
+      "rows_returned": 11,
+      "limit": 50,
+      "tokens": [
+        "saldo",
+        "cuenta",
+        "dinero",
+        "consultar saldo",
+        "ver dinero"
+      ],
+      "search_mode": "filtered_graph_context"
+    },
+    "rows_preview": [
+      {
+        "flow_id": "backend.operations",
+        "intent": "backend.operations.executors.part4",
+        "business_event": "BackendOperationRequested",
+        "utterances": [
+          "que apis usan para crear cuentas",
+          "cuales son los endpoints del backend",
+          "como se conectan los sistemas para sincronizar saldos"
+        ],
+        "ontology_nodes": [
+          "API",
+          "Executor",
+          "Integration"
+        ],
+        "ontology_aliases": [
+          "a p i",
+          "executor",
+          "integration"
+        ],
+        "user_tasks": [
+          "execute_backend_operation"
+        ],
+        "front_actions": [
+          "ui.backend_operation.run"
+        ],
+        "back_actions": [
+          "api.customer.get",
+          "api.transaction.post",
+          "api.account.create",
+          "integration.sync"
+        ],
+        "matched_tokens": [
+          "saldo",
+          "cuenta"
+        ],
+        "match_score": 2
+      },
+      {
+        "flow_id": "money.transfer",
+        "intent": "money.transfer",
+        "business_event": "MoneyTransferRequested",
+        "utterances": [
+          "transferir desde mi cuenta de ahorro",
+          "quiero transferir dinero",
+          "hacer transferencia con CBU"
+        ],
+        "ontology_nodes": [
+          "Customer",
+          "CBU",
+          "Transfer",
+          "Transaction",
+          "SavingsAccount"
+        ],
+        "ontology_aliases": [
+          "titular",
+          "customer",
+          "cliente",
+          "usuario",
+          "c b u",
+          "transferir",
+          "cbu",
+          "transferencia"
+        ],
+        "user_tasks": [
+          "identify_customer",
+          "transfer_money",
+          "approve_business_case"
+        ],
+        "front_actions": [
+          "ui.customer.search_submit",
+          "ui.transfer.form_submit",
+          "ui.approval.decision_submit"
+        ],
+        "back_actions": [
+          "customer.read",
+          "customer.identity.validate",
+          "transfer.create",
+          "account.balance.validate",
+          "notification.send",
+          "customer.validate",
+          "approval.update"
+        ],
+        "matched_tokens": [
+          "cuenta",
+          "dinero"
+        ],
+        "match_score": 2
+      },
+      {
+        "flow_id": "savings.account.domain",
+        "intent": "savings.account.domain.large",
+        "business_event": "SavingsAccountDomainQuestionAsked",
+        "utterances": [
+          "como hacer transferencia desde mi cuenta de ahorro",
+          "como pedir un estado de cuenta",
+          "que es CBU y como lo obtengo",
+          "requisitos para abrir cuenta de ahorro"
+        ],
+        "ontology_nodes": [
+          "Transfer",
+          "Interest",
+          "SavingsAccount",
+          "AccountOpening",
+          "CBU",
+          "Statement"
+        ],
+        "ontology_aliases": [
+          "transferir",
+          "cbu",
+          "transferencia",
+          "transfer",
+          "envio dinero",
+          "interest",
+          "savings account",
+          "cuenta"
+        ],
+        "user_tasks": [
+          "manage_account_operation",
+          "transfer_money",
+          "review_glossary_terms"
+        ],
+        "front_actions": [
+          "ui.account_operation.submit",
+          "ui.transfer.form_submit",
+          "ui.glossary.search"
+        ],
+        "back_actions": [
+          "account.read",
+          "account_operation.create",
+          "transfer.create",
+          "account.balance.validate",
+          "notification.send",
+          "customer.validate",
+          "glossary.read"
+        ],
+        "matched_tokens": [
+          "cuenta",
+          "dinero"
+        ],
+        "match_score": 2
+      },
+      {
+        "flow_id": "credit_note.issue",
+        "intent": "credit_note.issue",
+        "business_event": "CreditNoteIssueRequested",
+        "utterances": [
+          "emitir nota credito",
+          "necesito una nota de credito",
+          "generar nota credito"
+        ],
+        "ontology_nodes": [
+          "CreditNote",
+          "SavingsAccount",
+          "Transaction",
+          "Customer"
+        ],
+        "ontology_aliases": [
+          "nota credito",
+          "credit note",
+          "nota de credito",
+          "savings account",
+          "cuenta",
+          "account",
+          "cuenta ahorro",
+          "ahorro"
+        ],
+        "user_tasks": [
+          "identify_customer",
+          "approve_business_case",
+          "issue_credit_note"
+        ],
+        "front_actions": [
+          "ui.customer.search_submit",
+          "ui.approval.decision_submit",
+          "ui.credit_note.submit"
+        ],
+        "back_actions": [
+          "customer.read",
+          "customer.identity.validate",
+          "approval.update",
+          "account.read",
+          "credit_note.create"
+        ],
+        "matched_tokens": [
+          "cuenta"
+        ],
+        "match_score": 1
+      },
+      {
+        "flow_id": "debit_note.issue",
+        "intent": "debit_note.issue",
+        "business_event": "DebitNoteIssueRequested",
+        "utterances": [
+          "generar nota debito",
+          "necesito una nota de debito",
+          "emitir nota debito"
+        ],
+        "ontology_nodes": [
+          "Transaction",
+          "DebitNote",
+          "SavingsAccount",
+          "Customer"
+        ],
+        "ontology_aliases": [
+          "transaction",
+          "nota de debito",
+          "nota debito",
+          "debit note",
+          "savings account",
+          "cuenta",
+          "account",
+          "cuenta ahorro"
+        ],
+        "user_tasks": [
+          "issue_debit_note",
+          "identify_customer",
+          "approve_business_case"
+        ],
+        "front_actions": [
+          "ui.debit_note.submit",
+          "ui.customer.search_submit",
+          "ui.approval.decision_submit"
+        ],
+        "back_actions": [
+          "account.read",
+          "debit_note.create",
+          "customer.read",
+          "customer.identity.validate",
+          "approval.update"
+        ],
+        "matched_tokens": [
+          "cuenta"
+        ],
+        "match_score": 1
+      },
+      {
+        "flow_id": "fees.claims",
+        "intent": "fees.processes.checks.part3",
+        "business_event": "FeeOrClaimRequested",
+        "utterances": [
+          "que comisiones aplica la cuenta",
+          "como gestiono un reclamo",
+          "por qué me cobraron una comisión por descubierto"
+        ],
+        "ontology_nodes": [
+          "Reconciliation",
+          "Fee",
+          "Claim"
+        ],
+        "ontology_aliases": [
+          "reconciliation",
+          "fee",
+          "disputa",
+          "claim",
+          "reclamo",
+          "queja"
+        ],
+        "user_tasks": [
+          "identify_customer",
+          "manage_claim",
+          "approve_business_case"
+        ],
+        "front_actions": [
+          "ui.customer.search_submit",
+          "ui.claim.submit",
+          "ui.approval.decision_submit"
+        ],
+        "back_actions": [
+          "customer.read",
+          "customer.identity.validate",
+          "transaction.reconcile",
+          "billing.read",
+          "claim.create",
+          "approval.update"
+        ],
+        "matched_tokens": [
+          "cuenta"
+        ],
+        "match_score": 1
+      },
+      {
+        "flow_id": "glossary.savings",
+        "intent": "glossary.savings.generated",
+        "business_event": "GlossaryLookupRequested",
+        "utterances": [
+          "ahorro",
+          "cuenta de ahorro",
+          "interes",
+          "tasa de interes",
+          "CBU"
+        ],
+        "ontology_nodes": [
+          "Term",
+          "Glossary"
+        ],
+        "ontology_aliases": [
+          "term",
+          "glossary"
+        ],
+        "user_tasks": [
+          "review_glossary_terms"
+        ],
+        "front_actions": [
+          "ui.glossary.search"
+        ],
+        "back_actions": [
+          "glossary.read"
+        ],
+        "matched_tokens": [
+          "cuenta"
+        ],
+        "match_score": 1
+      },
+      {
+        "flow_id": "savings.operations",
+        "intent": "savings.operations.glossary.part1",
+        "business_event": "SavingsAccountOperationRequested",
+        "utterances": [
+          "qué es una cuenta inactiva",
+          "como hago una conciliación",
+          "quiero activar domiciliación",
+          "solicitar duplicado de estado de cuenta"
+        ],
+        "ontology_nodes": [
+          "AccountOperation",
+          "Glossary",
+          "Process"
+        ],
+        "ontology_aliases": [
+          "account operation",
+          "glossary",
+          "process"
+        ],
+        "user_tasks": [
+          "identify_customer",
+          "manage_account_operation",
+          "approve_business_case"
+        ],
+        "front_actions": [
+          "ui.customer.search_submit",
+          "ui.account_operation.submit",
+          "ui.approval.decision_submit"
+        ],
+        "back_actions": [
+          "customer.read",
+          "customer.identity.validate",
+          "account.read",
+          "account_operation.create",
+          "approval.update"
+        ],
+        "matched_tokens": [
+          "cuenta"
+        ],
+        "match_score": 1
+      }
+    ]
+  },
+  "langchain_llm": {
+    "provider": "langchain_graph_rag_llm",
+    "prompt": "Customer question:\nNo tengo dinero que haog\nAclaracion del usuario: quiere Check Balance (check_balance).\n\nLLM query understanding context:\n{\"ambiguity\": {\"is_ambiguous\": false, \"options\": [], \"reason\": \"The user explicitly stated they want to check their balance.\"}, \"corrected_question\": \"No tengo dinero, ¿qué hago?\", \"corrections\": [{\"from\": \"haog\", \"to\": \"hago\"}], \"entities\": [\"AccountBalance\"], \"explanation\": \"The user wants to know their account balance.\", \"possible_intents\": [\"check_balance\"], \"search_terms\": [\"saldo\", \"cuenta\", \"dinero\", \"consultar saldo\", \"ver dinero\"]}\n\nValid banking graph context follows. These are the only allowed flows, user tasks, front actions, and back actions:\nflow_id: backend.operations\nflow_name: Backend Operations\nintent: backend.operations.executors.part4\nbusiness_event: BackendOperationRequested\nutterances: que apis usan para crear cuentas, cuales son los endpoints del backend, como se conectan los sistemas para sincronizar saldos\nontology_nodes: API, Executor, Integration\nontology_aliases: a p i, executor, integration\nexplanation: Backend operations describe executor/API orchestration for technical processes.\n\n---\n\nflow_id: money.transfer\nflow_name: Money Transfer\nintent: money.transfer\nbusiness_event: MoneyTransferRequested\nutterances: transferir desde mi cuenta de ahorro, quiero transferir dinero, hacer transferencia con CBU\nontology_nodes: Customer, CBU, Transfer, Transaction, SavingsAccount\nontology_aliases: titular, customer, cliente, usuario, c b u, transferir, ...\nexplanation: A transfer is a customer transaction flow with validation, balance check, transfer creation, and notification.\n\n---\n\nflow_id: savings.account.domain\nflow_name: Savings Account Domain Support\nintent: savings.account.domain.large\nbusiness_event: SavingsAccountDomainQuestionAsked\nutterances: como hacer transferencia desde mi cuenta de ahorro, como pedir un estado de cuenta, que es CBU y como lo obtengo, requisitos para abrir cuenta de ahorro\nontology_nodes: Transfer, Interest, SavingsAccount, AccountOpening, CBU, Statement\nontology_aliases: transferir, cbu, transferencia, transfer, envio dinero, interest, ...\nexplanation: Broad savings support can route to glossary, account operations, or transfer flows.\n\n---\n\nflow_id: credit_note.issue\nflow_name: Credit Note Issuance\nintent: credit_note.issue\nbusiness_event: CreditNoteIssueRequested\nutterances: emitir nota credito, necesito una nota de credito, generar nota credito\nontology_nodes: CreditNote, SavingsAccount, Transaction, Customer\nontology_aliases: nota credito, credit note, nota de credito, savings account, cuenta, account, ...\nexplanation: Credit note issuance is a transaction flow for account adjustment.\n\n---\n\nflow_id: debit_note.issue\nflow_name: Debit Note Issuance\nintent: debit_note.issue\nbusiness_event: DebitNoteIssueRequested\nutterances: generar nota debito, necesito una nota de debito, emitir nota debito\nontology_nodes: Transaction, DebitNote, SavingsAccount, Customer\nontology_aliases: transaction, nota de debito, nota debito, debit note, savings account, cuenta, ...\nexplanation: Debit note issuance is a transaction flow for account adjustment.\n\n---\n\nflow_id: fees.claims\nflow_name: Fees And Claims Handling\nintent: fees.processes.checks.part3\nbusiness_event: FeeOrClaimRequested\nutterances: que comisiones aplica la cuenta, como gestiono un reclamo, por qué me cobraron una comisión por descubierto\nontology_nodes: Reconciliation, Fee, Claim\nontology_aliases: reconciliation, fee, disputa, claim, reclamo, queja\nexplanation: Fee and claim handling registers the customer's request and runs billing/reconciliation actions.\n\n---\n\nflow_id: glossary.savings\nflow_name: Savings Glossary Lookup\nintent: glossary.savings.generated\nbusiness_event: GlossaryLookupRequested\nutterances: ahorro, cuenta de ahorro, interes, tasa de interes, CBU, cuenta de ahorros, ...\nontology_nodes: Term, Glossary\nontology_aliases: term, glossary\nexplanation: Glossary lookup explains savings terms from the raw glossary.\n\n---\n\nflow_id: savings.operations\nflow_name: Savings Account Operations\nintent: savings.operations.glossary.part1\nbusiness_event: SavingsAccountOperationRequested\nutterances: qué es una cuenta inactiva, como hago una conciliación, quiero activar domiciliación, solicitar duplicado de estado de cuenta\nontology_nodes: AccountOperation, Glossary, Process\nontology_aliases: account operation, glossary, process\nexplanation: Savings operations are customer account processes such as duplicate statements and account changes.\n\n---\n\nflow_id: savings_account.open\nflow_name: Savings Account Opening\nintent: savings_account.open\nbusiness_event: SavingsAccountOpeningRequested\nutterances: quiero abrir una cuenta de ahorro, abrir cuenta, necesito una cuenta de ahorros\nontology_nodes: SavingsAccount, Customer, AccountOpening, Transaction, CBU\nontology_aliases: savings account, cuenta, account, cuenta ahorro, ahorro, titular, ...\nexplanation: Account opening is a business flow composed of identification, documents, KYC, account creation, initial deposit, and approval.\n\n---\n\nflow_id: savings_account_opening\nflow_name: Savings Account Opening\nintent: savings.account.open\nbusiness_event: AccountOpened\nutterances: Quiero abrir una cuenta de ahorro, Cómo puedo crear una cuenta para ahorrar?\nontology_nodes: SavingsAccount, CustomerDocuments, Customer\nontology_aliases: savings account, cuenta, account, cuenta ahorro, ahorro, customer documents, ...\nexplanation: This flow exists to facilitate the process of opening a savings account for customers.\n\n---\n\nflow_id: utterance.intent.matching\nflow_name: Utterance Intent Matching\nintent: utterances.templates.part5\nbusiness_event: IntentMatchingRequested\nutterances: Que documentos necesito para refinanciar mi prestamo, Quiero abrir una cuenta de ahorro con CBU, Puedo pagar mi cuota con tarjeta de debito\nontology_nodes: Template, Intent, Utterance\nontology_aliases: template, intent, utterance\nexplanation: Intent matching normalizes user phrases and maps them to known flows.\n\nReturn only JSON with this exact shape:\n{\n  \"can_resolve\": true|false,\n  \"selected_flow_id\": \"flow_id or unknown\",\n  \"confidence\": 0.0,\n  \"reason\": \"short explanation grounded in graph context\"\n}\n\nRules:\n- If no flow clearly matches the question, return can_resolve=false and selected_flow_id=unknown.\n- If a flow matches, selected_flow_id must be exactly one flow_id from the graph context.\n- If query understanding says the request is ambiguous and the user did not explicitly ask for one candidate flow, return can_resolve=false.\n- Do not choose a broad domain-support flow just because it is loosely related to the words in the question.\n- If the customer needs a clarification question before choosing between multiple possible intents, return can_resolve=false.\n- Do not propose tasks or actions that are not in the graph context.\n",
+    "prompt_summary": {
+      "chars": 6887,
+      "preview": "Customer question:\nNo tengo dinero que haog\nAclaracion del usuario: quiere Check Balance (check_balance).\n\nLLM query understanding context:\n{\"ambiguity\": {\"is_ambiguous\": false, \"options\": [], \"reason\": \"The user explicitly stated they want to check their balance.\"}, \"corrected_question\": \"No tengo dinero, ¿qué hago?\", \"corrections\": [{\"from\": \"haog\", \"to\": \"hago\"}], \"entities\": [\"AccountBalance\"], \"explanation\": \"The user wants to know their account balance.\", \"possible_intents\": [\"check_balance\"], \"search_terms\": [\"saldo\", \"cuenta\", \"dinero\", \"consultar saldo\", \"ver dinero\"]}\n\nValid banking graph context follows. These are the only allowed flows, user tasks, front actions, and back actions:\nflow_id: backend.operations\nflow_name: Backend Operations\nintent: backend.operations.executors.part4\nbusiness_event: BackendOperationRequested\nutterances: que apis usan para crear cuentas, cuales son los endpoints del backend, como se conectan los sistemas para sincronizar saldos\nontology_nodes: API, Executor, Integration\nontology_aliases: a p i, executor, integration\nexplanation: Backend operations describe executor/API orchestration for technical processes.\n\n---\n\nflow_id: money.transfer\nflow"
+    },
+    "answer": {
+      "can_resolve": false,
+      "selected_flow_id": "unknown",
+      "confidence": 0.0,
+      "reason": "The user's intent is to check their balance, but there is no flow in the provided graph context that directly supports this intent. The closest related intents are for backend operations, money transfers, or savings account operations, none of which specifically address checking account balance."
+    },
+    "reason": "The user's intent is to check their balance, but there is no flow in the provided graph context that directly supports this intent. The closest related intents are for backend operations, money transfers, or savings account operations, none of which specifically address checking account balance."
+  },
+  "selected_flow": null,
+  "flow_context": null,
+  "result": {
+    "can_resolve": false,
+    "flow_id": "unknown",
+    "flow_name": "Unknown flow",
+    "intent": "unknown",
+    "confidence": 0.0,
+    "business_event": "UnknownBusinessQuestionAsked",
+    "requires_human_approval": true,
+    "plan": [
+      "clarify_customer_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [],
+    "related_ontology_nodes": [],
+    "explanation": "The request is ambiguous. The customer may need one of these flows: . Ask a clarification question before selecting an intent.",
+    "clarification_options": [
+      {
+        "label": "Check Balance",
+        "value": "check_balance",
+        "source": "llm_possible_intent",
+        "intent": "check_balance"
+      },
+      {
+        "label": "Backend Operations",
+        "value": "backend.operations",
+        "source": "graph_candidate",
+        "flow_id": "backend.operations",
+        "intent": "backend.operations.executors.part4",
+        "reason": "Backend operations describe executor/API orchestration for technical processes."
+      },
+      {
+        "label": "Money Transfer",
+        "value": "money.transfer",
+        "source": "graph_candidate",
+        "flow_id": "money.transfer",
+        "intent": "money.transfer",
+        "reason": "A transfer is a customer transaction flow with validation, balance check, transfer creation, and notification."
+      },
+      {
+        "label": "Savings Account Domain Support",
+        "value": "savings.account.domain",
+        "source": "graph_candidate",
+        "flow_id": "savings.account.domain",
+        "intent": "savings.account.domain.large",
+        "reason": "Broad savings support can route to glossary, account operations, or transfer flows."
+      },
+      {
+        "label": "Credit Note Issuance",
+        "value": "credit_note.issue",
+        "source": "graph_candidate",
+        "flow_id": "credit_note.issue",
+        "intent": "credit_note.issue",
+        "reason": "Credit note issuance is a transaction flow for account adjustment."
+      },
+      {
+        "label": "Debit Note Issuance",
+        "value": "debit_note.issue",
+        "source": "graph_candidate",
+        "flow_id": "debit_note.issue",
+        "intent": "debit_note.issue",
+        "reason": "Debit note issuance is a transaction flow for account adjustment."
+      },
+      {
+        "label": "Fees And Claims Handling",
+        "value": "fees.claims",
+        "source": "graph_candidate",
+        "flow_id": "fees.claims",
+        "intent": "fees.processes.checks.part3",
+        "reason": "Fee and claim handling registers the customer's request and runs billing/reconciliation actions."
+      }
+    ]
+  }
+}

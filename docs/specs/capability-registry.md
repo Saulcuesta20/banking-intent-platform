@@ -12,7 +12,7 @@ Resolve and register banking actions related to intents and tasks without execut
 ## Main Components
 - `CapabilityService`
 - `app/capability/providers.py::CapabilityProvider`
-- `app/capability/local.py`
+- `app/capability/registry.py`
 - `ActionRegistryEntry`
 - `data/action_registry/actions.registry.json`
 

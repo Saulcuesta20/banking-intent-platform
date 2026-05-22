@@ -7,6 +7,9 @@ For the product vision, full feature catalog, banking flow coverage, and user
 stories with acceptance criteria, see
 `docs/specs/system-vision-and-user-stories.md`.
 
+For the runtime `ask` flow diagrams, including invoked classes and methods, see
+`docs/specs/ask-sequence-diagrams.md`.
+
 ## Responsibilities
 - Establish the target architecture and development order.
 - Keep business logic independent from provider frameworks.
@@ -60,14 +63,15 @@ Output:
 
 ## Implementation Notes
 The operational path uses LangGraph ask orchestration, GraphRAG over Neo4j,
-LangChain prompt orchestration, and an OpenAI-compatible LLM. The deterministic
-local resolver remains available as an explicit fallback. Ingestion uses a
+LangChain prompt orchestration, and an OpenAI-compatible LLM. The runtime ask
+path requires those providers and does not resolve intent through a local
+non-LLM path. Ingestion uses a
 custom deterministic pipeline for scan, parse, validation, ontology synonym
 normalization, artifact writing, audit, and graph loading. AutoGen may provide
 ingestion recommendations, but it does not own final JSON or Neo4j loading.
 Runtime does not create plans, tasks, events, or ontology; it projects ingested
 knowledge through `FlowAnswerContextService`. Each component keeps its own
-service, provider protocol, and local or AI adapter under `app/<component>`.
+service, provider protocol, and adapter under `app/<component>`.
 `app/factory.py` wires runtime services together but does not own component
 business logic.
 

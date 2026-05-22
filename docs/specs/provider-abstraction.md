@@ -42,7 +42,7 @@ Provider modules live inside the component they implement. For example, capabili
 Each component follows the same shape when useful:
 - `service.py` owns orchestration logic for that component.
 - `providers.py` defines the replaceable protocol.
-- `local.py` contains deterministic local behavior.
+- Provider implementation modules use descriptive names such as `graph.py`, `registry.py`, `noop.py`, or `ai.py`.
 - `ai.py` contains optional AI-backed behavior when that component needs it.
 
 For GraphRAG intent resolution, `app/intent/service.py` owns the LangGraph

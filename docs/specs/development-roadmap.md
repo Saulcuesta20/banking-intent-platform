@@ -10,7 +10,7 @@ Sequence MVP delivery while preserving replaceable architecture.
 - Expand graph and document ingestion.
 
 ## Main Components
-- Phase 1: specs, structure, flows, user tasks, deterministic CLI fallback
+- Phase 1: specs, structure, flows, user tasks, GraphRAG CLI ask path
 - Phase 2: Neo4j adapter and graph loading
 - Phase 3: action registry and flow/user-task JSON generation from corpus
 - Phase 4: AutoGen ingestion reasoning for corpus review, flow design, task decomposition, action extraction, ontology linking, and validation

@@ -47,7 +47,7 @@ class FlowAnswerContextService:
     def _related_ontology_nodes(self, question: str, record: KnowledgeRecord) -> list[str]:
         normalized_question = self._normalize_text(question)
         related = []
-        fallback = []
+        remaining = []
         for node in record.ontology_nodes:
             normalized_node = self._normalize_text(node).replace("_", " ")
             normalized_aliases = [
@@ -60,8 +60,8 @@ class FlowAnswerContextService:
             ):
                 related.append(node)
             else:
-                fallback.append(node)
-        return related + fallback
+                remaining.append(node)
+        return related + remaining
 
     def _append_unique(self, values: list[str], seen: set[str], value: str) -> None:
         if value not in seen:

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from app.capability.local import LocalCapabilityProvider
+from app.capability.registry import RegistryCapabilityProvider
 from app.ingestion.providers import KnowledgeIngestionProvider
 from app.models import Action, KnowledgeRecord, Task, UserTask
 from app.ontology.service import OntologyTermNormalizer
@@ -158,7 +158,7 @@ class FlowKnowledgeLoader:
         ]
 
 
-class LocalKnowledgeIngestionProvider(KnowledgeIngestionProvider):
+class FileKnowledgeIngestionProvider(KnowledgeIngestionProvider):
     def __init__(self, flow_directory: Path, processed_directory: Path):
         self.flow_directory = flow_directory
         self.processed_directory = processed_directory
@@ -167,7 +167,7 @@ class LocalKnowledgeIngestionProvider(KnowledgeIngestionProvider):
     def ingest(self, source: Path) -> list[KnowledgeRecord]:
         source_files = self._discover_source_files(source)
         records = self.loader.load_directory(self.flow_directory)
-        action_registry = LocalCapabilityProvider().build_action_registry(records)
+        action_registry = RegistryCapabilityProvider().build_action_registry(records)
         self.processed_directory.mkdir(parents=True, exist_ok=True)
         index_path = self.processed_directory / "knowledge_index.json"
         payload = {

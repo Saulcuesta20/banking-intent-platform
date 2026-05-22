@@ -2,7 +2,7 @@ from pathlib import Path
 
 from app.approval.policy import AlwaysHumanApprovalPolicy
 from app.approval.service import ApprovalService
-from app.audit.local import NoopAuditSink
+from app.audit.noop import NoopAuditSink
 from app.audit.service import AuditService
 from app.capability.service import CapabilityService
 from app.flow_context.service import FlowAnswerContextService

@@ -12,7 +12,7 @@ Make AI decisions explainable and traceable.
 - Audit event model
 - `AuditService`
 - `app/audit/providers.py::AuditSink`
-- `app/audit/local.py::NoopAuditSink`
+- `app/audit/noop.py::NoopAuditSink`
 - Future database audit adapter
 
 ## Data Flow

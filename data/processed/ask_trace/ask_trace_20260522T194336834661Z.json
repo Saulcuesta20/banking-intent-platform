@@ -1,0 +1,192 @@
+{
+  "timestamp": "2026-05-22T19:43:36.834661+00:00",
+  "question": "No tengo dinero que haog",
+  "retrieval": {
+    "matched_records": 1,
+    "candidate_flows": [
+      "money.transfer"
+    ],
+    "provider": "local_flow_file_retrieval",
+    "input": {
+      "question": "No tengo dinero que haog",
+      "normalized_question": "no tengo dinero que haog",
+      "corrected_question": "no tengo dinero que haog",
+      "corrections": []
+    },
+    "filters": {
+      "minimum_score": 2,
+      "ignored_stopwords": [
+        "como",
+        "cual",
+        "cuales",
+        "cuando",
+        "desde",
+        "donde",
+        "esta",
+        "este",
+        "esto",
+        "hacer",
+        "necesito",
+        "para",
+        "pero",
+        "puedo",
+        "que",
+        "quiero",
+        "sobre",
+        "tengo",
+        "unas",
+        "unos"
+      ]
+    },
+    "local_top_candidates": [
+      {
+        "flow_id": "money.transfer",
+        "intent": "money.transfer",
+        "score": 2,
+        "matched": [
+          {
+            "type": "token",
+            "value": "dinero",
+            "points": 1
+          },
+          {
+            "type": "query_understanding_term",
+            "value": "dinero",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "backend.operations",
+        "intent": "backend.operations.executors.part4",
+        "score": 0,
+        "matched": []
+      },
+      {
+        "flow_id": "claim_filing_process",
+        "intent": "claim.file.submit",
+        "score": 0,
+        "matched": []
+      },
+      {
+        "flow_id": "credit_note.issue",
+        "intent": "credit_note.issue",
+        "score": 0,
+        "matched": []
+      },
+      {
+        "flow_id": "customer.onboarding",
+        "intent": "customer.onboarding",
+        "score": 0,
+        "matched": []
+      },
+      {
+        "flow_id": "debit_note.issue",
+        "intent": "debit_note.issue",
+        "score": 0,
+        "matched": []
+      },
+      {
+        "flow_id": "fees.claims",
+        "intent": "fees.processes.checks.part3",
+        "score": 0,
+        "matched": []
+      },
+      {
+        "flow_id": "glossary.savings",
+        "intent": "glossary.savings.generated",
+        "score": 0,
+        "matched": []
+      }
+    ]
+  },
+  "query_understanding": {
+    "original_question": "No tengo dinero que haog",
+    "search_terms": [
+      "dinero",
+      "haog"
+    ],
+    "corrected_question": null,
+    "corrections": [],
+    "entities": [],
+    "possible_intents": [
+      "money.transfer",
+      "savings.account.domain"
+    ],
+    "ambiguity": {
+      "type": "multiple_possible_flows",
+      "reason": "Multiple flows share terms with the question; ask for clarification before selecting one.",
+      "options": [
+        {
+          "flow_id": "money.transfer",
+          "flow_name": "Money Transfer",
+          "intent": "money.transfer"
+        },
+        {
+          "flow_id": "savings.account.domain",
+          "flow_name": "Savings Account Domain Support",
+          "intent": "savings.account.domain.large"
+        }
+      ]
+    },
+    "provider": "flow_vocabulary_query_understanding",
+    "explanation": "Corrected likely typos with difflib over flow vocabulary and expanded terms with ontology aliases."
+  },
+  "graph": {
+    "query_summary": null,
+    "rows_preview": null
+  },
+  "langchain_llm": {
+    "provider": null,
+    "prompt": null,
+    "prompt_summary": null,
+    "answer": null,
+    "reason": null
+  },
+  "local_reasoning": {
+    "provider": null,
+    "reason": null,
+    "score": null,
+    "matched": null,
+    "ambiguity": {
+      "type": "multiple_possible_flows",
+      "reason": "Multiple flows share terms with the question; ask for clarification before selecting one.",
+      "options": [
+        {
+          "flow_id": "money.transfer",
+          "flow_name": "Money Transfer",
+          "intent": "money.transfer"
+        },
+        {
+          "flow_id": "savings.account.domain",
+          "flow_name": "Savings Account Domain Support",
+          "intent": "savings.account.domain.large"
+        }
+      ]
+    }
+  },
+  "selected_flow": null,
+  "flow_context": null,
+  "result": {
+    "can_resolve": false,
+    "flow_id": "unknown",
+    "flow_name": "Unknown flow",
+    "intent": "unknown",
+    "confidence": 0.0,
+    "business_event": "UnknownBusinessQuestionAsked",
+    "requires_human_approval": true,
+    "plan": [
+      "clarify_customer_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [],
+    "related_ontology_nodes": [],
+    "explanation": "The request is ambiguous. The customer may need one of these flows: money.transfer (Money Transfer), savings.account.domain (Savings Account Domain Support). Ask a clarification question before selecting an intent."
+  }
+}

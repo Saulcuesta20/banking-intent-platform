@@ -1,0 +1,376 @@
+{
+  "timestamp": "2026-05-22T19:06:27.506382+00:00",
+  "question": "Quiero refinanciar mi credito",
+  "retrieval": {
+    "matched_records": 5,
+    "candidate_flows": [
+      "loan.refinance",
+      "loan.disbursement",
+      "loan.inquiry",
+      "loan.payment",
+      "loan.request"
+    ],
+    "provider": "local_flow_file_retrieval",
+    "input": {
+      "question": "Quiero refinanciar mi credito",
+      "normalized_question": "quiero refinanciar mi credito"
+    },
+    "filters": {
+      "minimum_score": 2,
+      "ignored_stopwords": [
+        "como",
+        "cual",
+        "cuales",
+        "cuando",
+        "desde",
+        "donde",
+        "esta",
+        "este",
+        "esto",
+        "hacer",
+        "necesito",
+        "para",
+        "pero",
+        "puedo",
+        "quiero",
+        "sobre",
+        "tengo",
+        "unas",
+        "unos"
+      ]
+    },
+    "local_top_candidates": [
+      {
+        "flow_id": "loan.refinance",
+        "intent": "loan.refinance",
+        "score": 4,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "credito",
+              "credit"
+            ],
+            "points": 1
+          },
+          {
+            "type": "ontology_or_synonym",
+            "node": "LoanRefinance",
+            "synonyms": [
+              "refinanciar"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "refinanciar",
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "credito",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.disbursement",
+        "intent": "loan.disbursement",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "credito",
+              "credit"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "credito",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.inquiry",
+        "intent": "loan.inquiry",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "credito",
+              "credit"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "credito",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.payment",
+        "intent": "loan.payment",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "credito",
+              "credit"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "credito",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.request",
+        "intent": "loan.request.generated",
+        "score": 2,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "credito",
+              "credit"
+            ],
+            "points": 1
+          },
+          {
+            "type": "token",
+            "value": "credito",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "credit_note.issue",
+        "intent": "credit_note.issue",
+        "score": 1,
+        "matched": [
+          {
+            "type": "token",
+            "value": "credito",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan_application_process",
+        "intent": "loan.application.submit",
+        "score": 1,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "credito",
+              "credit"
+            ],
+            "points": 1
+          }
+        ]
+      },
+      {
+        "flow_id": "loan.domain.consumer",
+        "intent": "loan.domain.consumer.large",
+        "score": 1,
+        "matched": [
+          {
+            "type": "ontology_or_synonym",
+            "node": "Loan",
+            "synonyms": [
+              "credito",
+              "credit"
+            ],
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "query_understanding": null,
+  "graph": {
+    "query_summary": null,
+    "rows_preview": null
+  },
+  "langchain_llm": {
+    "provider": "local_first_match_reasoning",
+    "prompt": null,
+    "prompt_summary": null,
+    "answer": null,
+    "reason": null
+  },
+  "local_reasoning": {
+    "provider": "local_first_match_reasoning",
+    "reason": "Selected the highest-scored local flow match.",
+    "score": 4,
+    "matched": [
+      {
+        "type": "ontology_or_synonym",
+        "node": "Loan",
+        "synonyms": [
+          "credito",
+          "credit"
+        ],
+        "points": 1
+      },
+      {
+        "type": "ontology_or_synonym",
+        "node": "LoanRefinance",
+        "synonyms": [
+          "refinanciar"
+        ],
+        "points": 1
+      },
+      {
+        "type": "token",
+        "value": "refinanciar",
+        "points": 1
+      },
+      {
+        "type": "token",
+        "value": "credito",
+        "points": 1
+      }
+    ]
+  },
+  "selected_flow": {
+    "flow_id": "loan.refinance",
+    "flow_name": "Loan Refinance",
+    "intent": "loan.refinance",
+    "confidence": 0.9,
+    "business_event": "LoanRefinancingRequested",
+    "source": "/home/saul/banking-intent-platform/data/flows/loan_refinance.flow.json"
+  },
+  "flow_context": {
+    "business_event": "LoanRefinancingRequested",
+    "plan": [
+      "identify_customer",
+      "review_loan_status",
+      "review_refinance_options",
+      "prepare_refinance_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "identify_customer",
+        "type": "user_task"
+      },
+      {
+        "task": "review_loan_status",
+        "type": "user_task"
+      },
+      {
+        "task": "review_refinance_options",
+        "type": "user_task"
+      },
+      {
+        "task": "prepare_refinance_request",
+        "type": "user_task"
+      },
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [
+      "loan.read",
+      "loan.conditions.calculate",
+      "loan_refinance.compare",
+      "loan_refinance.create",
+      "ui.customer.search_submit",
+      "customer.read",
+      "customer.identity.validate",
+      "ui.loan_status.open",
+      "loan.status.summarize",
+      "ui.refinance.calculate",
+      "ui.refinance.submit",
+      "ui.approval.decision_submit",
+      "approval.update"
+    ],
+    "related_ontology_nodes": [
+      "Loan",
+      "LoanRefinance",
+      "Customer",
+      "LoanConditions",
+      "CustomerConditions"
+    ]
+  },
+  "result": {
+    "can_resolve": true,
+    "flow_id": "loan.refinance",
+    "flow_name": "Loan Refinance",
+    "intent": "loan.refinance",
+    "confidence": 0.9,
+    "business_event": "LoanRefinancingRequested",
+    "requires_human_approval": true,
+    "plan": [
+      "identify_customer",
+      "review_loan_status",
+      "review_refinance_options",
+      "prepare_refinance_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "identify_customer",
+        "type": "user_task"
+      },
+      {
+        "task": "review_loan_status",
+        "type": "user_task"
+      },
+      {
+        "task": "review_refinance_options",
+        "type": "user_task"
+      },
+      {
+        "task": "prepare_refinance_request",
+        "type": "user_task"
+      },
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [
+      "loan.read",
+      "loan.conditions.calculate",
+      "loan_refinance.compare",
+      "loan_refinance.create",
+      "ui.customer.search_submit",
+      "customer.read",
+      "customer.identity.validate",
+      "ui.loan_status.open",
+      "loan.status.summarize",
+      "ui.refinance.calculate",
+      "ui.refinance.submit",
+      "ui.approval.decision_submit",
+      "approval.update"
+    ],
+    "related_ontology_nodes": [
+      "Loan",
+      "LoanRefinance",
+      "Customer",
+      "LoanConditions",
+      "CustomerConditions"
+    ],
+    "explanation": "Refinance is a business flow; calculations are backend actions inside refinance review, not user tasks."
+  }
+}

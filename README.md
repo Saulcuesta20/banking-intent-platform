@@ -24,8 +24,8 @@ python -m app.cli.ingest ./data/raw
 # Start the API server:
 python -m app.cli serve
 
-# Deterministic local fallback:
-USE_AI_PROVIDERS=false python -m app.cli ask "Quiero refinanciar mi prestamo"
+# Ask always requires LLM + GraphRAG + Neo4j:
+python -m app.cli ask "Quiero refinanciar mi prestamo"
 ```
 
 Neo4j helper commands:
@@ -53,8 +53,7 @@ make neo4j-stop
 
 `make ask` uses GraphRAG over Neo4j plus LangChain prompt orchestration and an
 LLM. Configure the key once with `make configure-ai KEY=...`; it writes `.env`,
-which is ignored by git. Use `make ask-deterministic` only when you explicitly
-want the local non-LLM fallback.
+which is ignored by git. The ask path does not have a local non-LLM resolver.
 
 `make ask` prints the component trace by default. Use `--no-trace` only when
 calling the CLI directly and you want just the result payload:

@@ -5,7 +5,7 @@ from typing import Any
 
 from app.ingestion.flow_loader import FlowKnowledgeLoader
 from app.models import KnowledgeRecord
-from app.query_understanding.service import LocalQueryUnderstandingProvider, QueryUnderstandingService
+from app.query_understanding.service import QueryUnderstandingService
 from app.retrieval.providers import KnowledgeRetrievalProvider
 
 
@@ -98,11 +98,13 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
     ):
         neo4j = _optional_import("neo4j")
         self.driver = neo4j.GraphDatabase.driver(neo4j_uri, auth=(neo4j_user, neo4j_password))
+        self.flow_directory = flow_directory
+        self.neo4j_uri = neo4j_uri
         self.records = FlowKnowledgeLoader().load_directory(flow_directory)
         self.records_by_flow_id = {record.flow_id: record for record in self.records}
-        self.query_understanding_service = query_understanding_service or QueryUnderstandingService(
-            LocalQueryUnderstandingProvider()
-        )
+        if query_understanding_service is None:
+            raise RuntimeError("LLM QueryUnderstandingService is required for GraphRAG retrieval.")
+        self.query_understanding_service = query_understanding_service
         self.limit = limit
 
     def retrieve(self, question: str) -> list[KnowledgeRecord]:
@@ -110,26 +112,30 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
         tokens = understanding.search_terms
         graph_rows = self._query_graph_context(tokens)
         if not graph_rows:
-            fallback_rows = self._query_all_graph_context()
-            return [
-                record.model_copy(
+            broad_rows = self._query_all_graph_context()
+            candidates = []
+            for row in broad_rows[: self.limit]:
+                record = self.records_by_flow_id.get(row["flow_id"])
+                if record is None:
+                    continue
+                candidates.append(record.model_copy(
                     update={
                         "metadata": {
                             **record.metadata,
-                            "retrieval_provider": "graph_rag_neo4j_empty_fallback",
+                            "retrieval_provider": "graph_rag_neo4j_broad_context",
                             "graph_query_summary": self._query_summary(
                                 query=self.GRAPH_CONTEXT_QUERY,
-                                row_count=len(fallback_rows),
+                                row_count=len(broad_rows),
                                 tokens=tokens,
-                                fallback=True,
+                                search_mode="broad_graph_context",
                             ),
-                            "graph_rows_preview": [],
+                            "graph_rows_preview": self._rows_preview(broad_rows),
+                            "graph_context": self._context_text(row),
                             "query_understanding": understanding.__dict__,
                         }
                     }
-                )
-                for record in self.records[: self.limit]
-            ]
+                ))
+            return candidates
 
         candidates = []
         for row in graph_rows:
@@ -147,7 +153,7 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                                 query=self.FILTERED_GRAPH_CONTEXT_QUERY,
                                 row_count=len(graph_rows),
                                 tokens=tokens,
-                                fallback=False,
+                                search_mode="filtered_graph_context",
                             ),
                             "graph_rows_preview": self._rows_preview(graph_rows),
                             "graph_context": self._context_text(row),
@@ -179,7 +185,7 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
         query: str,
         row_count: int,
         tokens: list[str],
-        fallback: bool,
+        search_mode: str,
     ) -> dict[str, Any]:
         compact_query = " ".join(query.split())
         return {
@@ -187,7 +193,7 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
             "rows_returned": row_count,
             "limit": self.limit,
             "tokens": tokens,
-            "fallback": fallback,
+            "search_mode": search_mode,
         }
 
     def _rows_preview(self, rows: list[dict[str, Any]], limit: int = 8) -> list[dict[str, Any]]:

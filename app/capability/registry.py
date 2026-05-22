@@ -4,7 +4,7 @@ from app.capability.providers import CapabilityProvider
 from app.models import ActionRegistryEntry, KnowledgeRecord, Task
 
 
-class LocalCapabilityProvider(CapabilityProvider):
+class RegistryCapabilityProvider(CapabilityProvider):
     def __init__(self, records: list[KnowledgeRecord] | None = None):
         self.action_registry = self.build_action_registry(records or [])
 

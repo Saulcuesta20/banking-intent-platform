@@ -116,10 +116,12 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
             return None
 
         prompt = self.PromptTemplate(
-            input_variables=["question", "graph_context"],
+            input_variables=["question", "query_understanding", "graph_context"],
             template=(
                 "Customer question:\n"
                 "{question}\n\n"
+                "LLM query understanding context:\n"
+                "{query_understanding}\n\n"
                 "Valid banking graph context follows. These are the only allowed flows, "
                 "user tasks, front actions, and back actions:\n"
                 "{graph_context}\n\n"
@@ -133,10 +135,14 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
                 "Rules:\n"
                 "- If no flow clearly matches the question, return can_resolve=false and selected_flow_id=unknown.\n"
                 "- If a flow matches, selected_flow_id must be exactly one flow_id from the graph context.\n"
+                "- If query understanding says the request is ambiguous and the user did not explicitly ask for one candidate flow, return can_resolve=false.\n"
+                "- Do not choose a broad domain-support flow just because it is loosely related to the words in the question.\n"
+                "- If the customer needs a clarification question before choosing between multiple possible intents, return can_resolve=false.\n"
                 "- Do not propose tasks or actions that are not in the graph context.\n"
             ),
         ).format(
             question=question,
+            query_understanding=self._query_understanding_context(records),
             graph_context=self._graph_context(records),
         )
         answer = self.llm_client.complete_json(prompt)
@@ -193,6 +199,25 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
                     )
                 )
         return "\n\n---\n\n".join(blocks)
+
+    def _query_understanding_context(self, records: list[KnowledgeRecord]) -> str:
+        metadata = records[0].metadata if records else {}
+        understanding = metadata.get("query_understanding") or {}
+        if not isinstance(understanding, dict):
+            return "{}"
+        return json.dumps(
+            {
+                "corrected_question": understanding.get("corrected_question"),
+                "corrections": understanding.get("corrections"),
+                "search_terms": understanding.get("search_terms"),
+                "entities": understanding.get("entities"),
+                "possible_intents": understanding.get("possible_intents"),
+                "ambiguity": understanding.get("ambiguity"),
+                "explanation": understanding.get("explanation"),
+            },
+            ensure_ascii=False,
+            sort_keys=True,
+        )
 
     def _compact_graph_context(self, context: str) -> str:
         keep_prefixes = (

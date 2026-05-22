@@ -3,6 +3,7 @@ DOCKER ?= docker
 APP_IMAGE ?= banking-intent-platform-app
 APP_CONTAINER ?= banking-intent-app
 NEO4J_CONTAINER ?= banking-intent-neo4j
+NEO4J_COMPOSE_CONTAINER ?= banking-intent-platform-neo4j-1
 DOCKER_NETWORK ?= banking-intent-net
 NEO4J_VOLUME ?= banking-intent-neo4j-data
 PYTHON ?= .venv/bin/python
@@ -20,7 +21,7 @@ ifeq ($(firstword $(MAKECMDGOALS)),configure-openrouter-prompt)
 OPENROUTER_KEY_FROM_GOALS := $(word 2,$(MAKECMDGOALS))
 endif
 
-.PHONY: docker-network app-image platform-up up neo4j-up neo4j-ps neo4j-logs neo4j-stop neo4j-down app-up app-ps app-logs app-stop configure-ai configure-openrouter configure-openrouter-prompt configure-ai-prompt configure-ai-check configure-ai-inline ask ask-ai ask-local ask-deterministic ask-trace-latest ingest ingest-graph extract extract-reasoning extract-autogen extract-langgraph extract-autogen-langgraph extract-apply extract-autogen-apply graph-load graph-tree graph-tree-all test require-openai-key
+.PHONY: docker-network app-image platform-up up neo4j-up neo4j-ps neo4j-logs neo4j-stop neo4j-down app-up app-ps app-logs app-stop configure-ai configure-openrouter configure-openrouter-prompt configure-ai-prompt configure-ai-check configure-ai-inline ask ask-ai ask-trace-latest ingest ingest-graph extract extract-reasoning extract-autogen extract-langgraph extract-autogen-langgraph extract-apply extract-autogen-apply graph-load graph-tree graph-tree-all test require-openai-key
 
 ifneq ($(OPENROUTER_KEY_FROM_GOALS),)
 .PHONY: $(OPENROUTER_KEY_FROM_GOALS)
@@ -32,7 +33,7 @@ docker-network:
 	@$(DOCKER) network inspect $(DOCKER_NETWORK) >/dev/null 2>&1 || $(DOCKER) network create $(DOCKER_NETWORK)
 
 app-image:
-	$(DOCKER) build -t $(APP_IMAGE) .
+	@$(DOCKER) build --quiet -t $(APP_IMAGE) . >/dev/null 2>&1
 
 platform-up: docker-network neo4j-up app-up
 
@@ -42,6 +43,9 @@ neo4j-up: docker-network
 	@$(DOCKER) volume inspect $(NEO4J_VOLUME) >/dev/null 2>&1 || $(DOCKER) volume create $(NEO4J_VOLUME)
 	@if $(DOCKER) ps -a --format '{{.Names}}' | grep -qx '$(NEO4J_CONTAINER)'; then \
 		$(DOCKER) start $(NEO4J_CONTAINER) >/dev/null; \
+	elif $(DOCKER) ps -a --format '{{.Names}}' | grep -qx '$(NEO4J_COMPOSE_CONTAINER)'; then \
+		$(DOCKER) start $(NEO4J_COMPOSE_CONTAINER) >/dev/null; \
+		$(DOCKER) network connect --alias $(NEO4J_CONTAINER) $(DOCKER_NETWORK) $(NEO4J_COMPOSE_CONTAINER) >/dev/null 2>&1 || true; \
 	else \
 		$(DOCKER) run -d --name $(NEO4J_CONTAINER) --network $(DOCKER_NETWORK) -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=$(NEO4J_USER)/$(NEO4J_PASSWORD) -v $(NEO4J_VOLUME):/data neo4j:5-community >/dev/null; \
 	fi
@@ -108,18 +112,9 @@ require-openai-key:
 	@test "$$OPENAI_API_KEY" != "tu_api_key" || (echo "OPENAI_API_KEY still has the placeholder value. Run: make configure-ai KEY=<real_key>"; exit 1)
 
 ask: require-openai-key neo4j-up app-image
-	$(DOCKER) run --rm --network $(DOCKER_NETWORK) -v $(PWD):/app -w /app -e PYTHONPATH=/app -e USE_AI_PROVIDERS=true -e OPENAI_API_KEY -e OPENAI_BASE_URL -e INTENT_LLM_MODEL -e NEO4J_URI=bolt://$(NEO4J_CONTAINER):7687 -e NEO4J_USER -e NEO4J_PASSWORD $(APP_IMAGE) python -m app.cli ask "$(Q)"
+	$(DOCKER) run --rm -i --network $(DOCKER_NETWORK) -v $(PWD):/app -w /app -e PYTHONPATH=/app -e USE_AI_PROVIDERS=true -e OPENAI_API_KEY -e OPENAI_BASE_URL -e INTENT_LLM_MODEL -e NEO4J_URI=bolt://$(NEO4J_CONTAINER):7687 -e NEO4J_USER -e NEO4J_PASSWORD $(APP_IMAGE) python -m app.cli ask "$(Q)"
 
 ask-ai: ask
-
-ask-local:
-	USE_AI_PROVIDERS=true $(PYTHON) -m app.cli ask "$(Q)"
-
-ask-deterministic:
-	USE_AI_PROVIDERS=false $(PYTHON) -m app.cli ask "$(Q)"
-
-ask-deterministic-full:
-	USE_AI_PROVIDERS=false $(PYTHON) -m app.cli ask "$(Q)" --full-result
 
 ask-trace-latest:
 	@ls -t data/processed/ask_trace/ask_trace_*.json 2>/dev/null | head -1 | xargs -r $(PYTHON) -m json.tool

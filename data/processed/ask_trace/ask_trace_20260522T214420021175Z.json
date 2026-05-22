@@ -1,0 +1,169 @@
+{
+  "timestamp": "2026-05-22T21:44:20.021175+00:00",
+  "question": "quiero amplicar mi prestamos que transaccion puedo hacer",
+  "retrieval": {
+    "matched_records": 1,
+    "candidate_flows": [
+      "loan_application_process"
+    ],
+    "provider": "graph_rag_neo4j",
+    "input": null,
+    "filters": null
+  },
+  "query_understanding": {
+    "original_question": "quiero amplicar mi prestamos que transaccion puedo hacer",
+    "search_terms": [
+      "ampliar préstamo",
+      "aumentar crédito",
+      "solicitar más dinero",
+      "préstamo personal",
+      "préstamo hipotecario"
+    ],
+    "corrected_question": "quiero ampliar mi préstamo, qué transacción puedo hacer",
+    "corrections": [
+      {
+        "from": "prestamos",
+        "to": "préstamo"
+      },
+      {
+        "from": "que",
+        "to": "qué"
+      }
+    ],
+    "entities": [
+      "Préstamo"
+    ],
+    "possible_intents": [
+      "banking.loan.increase",
+      "banking.loan.new"
+    ],
+    "ambiguity": {
+      "is_ambiguous": true,
+      "reason": "The user wants to increase their existing loan, but it's not specified if they want to increase the amount of an existing loan or apply for a new, larger loan.",
+      "options": [
+        "banking.loan.increase",
+        "banking.loan.new"
+      ]
+    },
+    "provider": "llm_query_understanding",
+    "explanation": "The user wants to know how to increase their loan."
+  },
+  "graph": {
+    "query_summary": {
+      "query": "MATCH (f:Flow) OPTIONAL MATCH (f)-[:EXEMPLIFIES]->(u_match:Utterance) OPTIONAL MATCH (f)-[:HAS_ONTOLOGY]->(o_match:Ontology) OPTIONAL MATCH (o_match)-[:HAS_SYNONYM]->(s_match:Synonym) WITH f, collect(DISTINCT u_match.text) AS all_utterances, collect(DISTINCT o_match.name) AS all_ontology_nodes, collect(DISTINCT s_match.term) AS all_ontology_aliases, toLower( coalesce(f.flow_id, '') + ' ' + coalesce(f.flow_name, '') + ' ' + coalesce(f.intent, '') + ' ' + coalesce(f.business_event, '') + ' ' + coalesce(f.explanation, '') + ' ' + reduce(text = '', value IN collect(DISTINCT u_match.text) | text + ' ' + coalesce(value, '')) + ' ' + reduce(text = '', value IN collect(DISTINCT o_match.name) | text + ' ' + coalesce(value, '')) + ' ' + reduce(text = '', value IN collect(DISTINCT s_match.term) | text + ' ' + coalesce(value, '')) ) AS haystack WITH f, all_utterances, all_ontology_nodes, all_ontology_aliases, [token IN $tokens WHERE haystack CONTAINS token] AS matched_tokens WHERE size(matched_tokens) > 0 OPTIONAL MATCH (f)-[task_rel:HAS_USER_TASK]->(t:UserTask) OPTIONAL MATCH (t)-[:HAS_FRONT_ACTION]->(front:Action) OPTIONAL MATCH (t)-[:HAS_BACK_ACTION]->(back:Action) RETURN f.flow_id AS flow_id, f.flow_name AS flow_name, f.intent AS intent, f.business_event AS business_event, f.explanation AS explanation, all_utterances AS utterances, all_ontology_nodes AS ontology_nodes, all_ontology_aliases AS ontology_aliases, collect(DISTINCT t.task) AS user_tasks, collect(DISTINCT front.action) AS front_actions, collect(DISTINCT back.action) AS back_actions, matched_tokens AS matched_tokens, size(matched_tokens) AS match_score ORDER BY match_score DESC, flow_id LIMIT $limit",
+      "rows_returned": 1,
+      "limit": 50,
+      "tokens": [
+        "ampliar préstamo",
+        "aumentar crédito",
+        "solicitar más dinero",
+        "préstamo personal",
+        "préstamo hipotecario"
+      ],
+      "search_mode": "filtered_graph_context"
+    },
+    "rows_preview": [
+      {
+        "flow_id": "loan_application_process",
+        "intent": "loan.application.submit",
+        "business_event": "LoanApplied",
+        "utterances": [
+          "Cómo puedo aplicar para un préstamo?",
+          "Quiero solicitar un préstamo personal"
+        ],
+        "ontology_nodes": [
+          "LoanApplication",
+          "Customer",
+          "CustomerDocuments",
+          "Loan"
+        ],
+        "ontology_aliases": [
+          "loan application",
+          "titular",
+          "customer",
+          "cliente",
+          "usuario",
+          "customer documents",
+          "prestamo",
+          "credit"
+        ],
+        "user_tasks": [
+          "apply_for_loan"
+        ],
+        "front_actions": [
+          "ui.loan.apply"
+        ],
+        "back_actions": [
+          "loan.eligibility.calculate",
+          "human.approval",
+          "customer.documents.collect"
+        ],
+        "matched_tokens": [
+          "préstamo personal"
+        ],
+        "match_score": 1
+      }
+    ]
+  },
+  "langchain_llm": {
+    "provider": "langchain_graph_rag_llm",
+    "prompt": "Customer question:\nquiero amplicar mi prestamos que transaccion puedo hacer\n\nLLM query understanding context:\n{\"ambiguity\": {\"is_ambiguous\": true, \"options\": [\"banking.loan.increase\", \"banking.loan.new\"], \"reason\": \"The user wants to increase their existing loan, but it's not specified if they want to increase the amount of an existing loan or apply for a new, larger loan.\"}, \"corrected_question\": \"quiero ampliar mi préstamo, qué transacción puedo hacer\", \"corrections\": [{\"from\": \"prestamos\", \"to\": \"préstamo\"}, {\"from\": \"que\", \"to\": \"qué\"}], \"entities\": [\"Préstamo\"], \"explanation\": \"The user wants to know how to increase their loan.\", \"possible_intents\": [\"banking.loan.increase\", \"banking.loan.new\"], \"search_terms\": [\"ampliar préstamo\", \"aumentar crédito\", \"solicitar más dinero\", \"préstamo personal\", \"préstamo hipotecario\"]}\n\nValid banking graph context follows. These are the only allowed flows, user tasks, front actions, and back actions:\nflow_id: loan_application_process\nflow_name: Loan Application Process\nintent: loan.application.submit\nbusiness_event: LoanApplied\nutterances: Cómo puedo aplicar para un préstamo?, Quiero solicitar un préstamo personal\nontology_nodes: LoanApplication, Customer, CustomerDocuments, Loan\nontology_aliases: loan application, titular, customer, cliente, usuario, customer documents, ...\nexplanation: This flow exists to guide customers through the loan application process.\n\nReturn only JSON with this exact shape:\n{\n  \"can_resolve\": true|false,\n  \"selected_flow_id\": \"flow_id or unknown\",\n  \"confidence\": 0.0,\n  \"reason\": \"short explanation grounded in graph context\"\n}\n\nRules:\n- If no flow clearly matches the question, return can_resolve=false and selected_flow_id=unknown.\n- If a flow matches, selected_flow_id must be exactly one flow_id from the graph context.\n- If query understanding says the request is ambiguous and the user did not explicitly ask for one candidate flow, return can_resolve=false.\n- Do not choose a broad domain-support flow just because it is loosely related to the words in the question.\n- If the customer needs a clarification question before choosing between multiple possible intents, return can_resolve=false.\n- Do not propose tasks or actions that are not in the graph context.\n",
+    "prompt_summary": {
+      "chars": 2261,
+      "preview": "Customer question:\nquiero amplicar mi prestamos que transaccion puedo hacer\n\nLLM query understanding context:\n{\"ambiguity\": {\"is_ambiguous\": true, \"options\": [\"banking.loan.increase\", \"banking.loan.new\"], \"reason\": \"The user wants to increase their existing loan, but it's not specified if they want to increase the amount of an existing loan or apply for a new, larger loan.\"}, \"corrected_question\": \"quiero ampliar mi préstamo, qué transacción puedo hacer\", \"corrections\": [{\"from\": \"prestamos\", \"to\": \"préstamo\"}, {\"from\": \"que\", \"to\": \"qué\"}], \"entities\": [\"Préstamo\"], \"explanation\": \"The user wants to know how to increase their loan.\", \"possible_intents\": [\"banking.loan.increase\", \"banking.loan.new\"], \"search_terms\": [\"ampliar préstamo\", \"aumentar crédito\", \"solicitar más dinero\", \"préstamo personal\", \"préstamo hipotecario\"]}\n\nValid banking graph context follows. These are the only allowed flows, user tasks, front actions, and back actions:\nflow_id: loan_application_process\nflow_name: Loan Application Process\nintent: loan.application.submit\nbusiness_event: LoanApplied\nutterances: Cómo puedo aplicar para un préstamo?, Quiero solicitar un préstamo personal\nontology_nodes: LoanApplicat"
+    },
+    "answer": {
+      "can_resolve": false,
+      "selected_flow_id": "unknown",
+      "confidence": 0.0,
+      "reason": "The user's request is ambiguous between increasing an existing loan or applying for a new one, and no specific flow in the provided graph context directly addresses increasing an existing loan. The 'Loan Application Process' flow is for new applications, not modifications to existing ones."
+    },
+    "reason": "The user's request is ambiguous between increasing an existing loan or applying for a new one, and no specific flow in the provided graph context directly addresses increasing an existing loan. The 'Loan Application Process' flow is for new applications, not modifications to existing ones."
+  },
+  "selected_flow": null,
+  "flow_context": null,
+  "result": {
+    "can_resolve": false,
+    "flow_id": "unknown",
+    "flow_name": "Unknown flow",
+    "intent": "unknown",
+    "confidence": 0.0,
+    "business_event": "UnknownBusinessQuestionAsked",
+    "requires_human_approval": true,
+    "plan": [
+      "clarify_customer_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [],
+    "related_ontology_nodes": [],
+    "explanation": "The request is ambiguous. The customer may need one of these flows: banking.loan.increase, banking.loan.new. Ask a clarification question before selecting an intent.",
+    "clarification_options": [
+      {
+        "label": "Banking Loan Increase",
+        "value": "banking.loan.increase",
+        "source": "llm_ambiguity",
+        "intent": "banking.loan.increase"
+      },
+      {
+        "label": "Banking Loan New",
+        "value": "banking.loan.new",
+        "source": "llm_ambiguity",
+        "intent": "banking.loan.new"
+      },
+      {
+        "label": "Loan Application Process",
+        "value": "loan_application_process",
+        "source": "graph_candidate",
+        "flow_id": "loan_application_process",
+        "intent": "loan.application.submit",
+        "reason": "This flow exists to guide customers through the loan application process."
+      }
+    ]
+  }
+}

@@ -12,8 +12,8 @@ The system should:
 - Understand customer questions in natural language, including Spanish banking utterances.
 - Match the request to a known, validated banking flow.
 - Return the selected intent, business event, confidence, plan, user tasks, actions, ontology nodes, and explanation.
-- Use graph-backed knowledge and LLM reasoning where configured.
-- Fall back to deterministic local providers when AI providers are disabled.
+- Use graph-backed knowledge and LLM reasoning for runtime question answering.
+- Fail clearly when LLM, LangGraph, or Neo4j runtime providers are unavailable.
 - Keep banking execution behind human approval and external systems.
 - Preserve provider boundaries so graph, LLM, retrieval, audit, approval, and ingestion implementations can be replaced.
 
@@ -46,16 +46,16 @@ Current output includes:
 ### GraphRAG Knowledge Retrieval
 When AI providers are enabled, the retrieval layer queries Neo4j for graph context across flows, utterances, ontology nodes, user tasks, front actions, and back actions.
 
-The graph retrieval path attaches metadata such as retrieval provider, query understanding, Cypher row count, tokens, fallback status, and graph row preview.
+The graph retrieval path attaches metadata such as retrieval provider, query understanding, Cypher row count, tokens, search mode, and graph row preview.
 
 ### Query Understanding
-The system extracts search terms and entities from the customer question. It can use a local provider or an LLM-backed provider, depending on configuration.
+The system calls an LLM to correct obvious typos, extract search terms and entities, propose possible intent hints, and detect ambiguity before graph retrieval.
 
 ### Constrained LLM Intent Classification
 The LLM reasoning provider classifies a question only against retrieved, existing knowledge records. It must select an existing flow or return `unknown`.
 
-### Deterministic Local Fallback
-When `USE_AI_PROVIDERS=false`, the platform uses local retrieval and local semantic reasoning so the MVP can run without Neo4j or LLM access.
+### Required LLM And Graph Runtime
+Runtime ask requires `USE_AI_PROVIDERS=true`, an OpenAI-compatible API key, LangGraph orchestration, and Neo4j GraphRAG retrieval. If one of these providers is unavailable, the platform reports a configuration/runtime error instead of selecting an intent locally.
 
 ### Flow Answer Context Projection
 After a flow is selected, runtime projects already-ingested knowledge into the answer. Runtime does not create new plans, tasks, business events, actions, or ontology nodes.
@@ -157,14 +157,14 @@ As an operations analyst, I want the selected flow to include plan, task, action
 Acceptance criteria:
 - Given a selected `KnowledgeRecord`, when flow context is built, then the system returns the record's ingested business event, plan, and tasks.
 - Given user tasks contain front and back actions, when related capabilities are projected, then those actions are included without duplicates.
-- Given ontology nodes exist, when related ontology nodes are projected, then nodes matching the question are prioritized before fallback nodes.
+- Given ontology nodes exist, when related ontology nodes are projected, then nodes matching the question are prioritized before remaining nodes.
 
 ### Story 5: Require Human Approval
 As a risk owner, I want sensitive banking operations to require human approval so that the platform cannot directly execute regulated actions.
 
 Acceptance criteria:
 - Given any resolved banking flow, when the final result is returned, then `requires_human_approval=true`.
-- Given an unknown question, when the fallback result is returned, then approval is still required before any sensitive downstream action.
+- Given an unknown question, when the unknown result is returned, then approval is still required before any sensitive downstream action.
 - Given approval is enforced, when the result plan and tasks are returned, then they remain advisory workflow context and not direct execution.
 
 ### Story 6: Trace The Ask Flow
@@ -175,13 +175,13 @@ Acceptance criteria:
 - Given a trace directory is configured, when resolution completes, then an ask trace JSON file is written.
 - Given a trace file is written, when it is inspected, then it includes retrieval metadata, query understanding, graph summary, LLM metadata, selected flow, flow context, and result.
 
-### Story 7: Run Without AI Providers
-As a developer, I want a deterministic local fallback so that I can develop and test the platform without external AI or graph services.
+### Story 7: Require AI Providers For Ask
+As a developer, I want the ask runtime to require LLM and graph providers so that every intent decision follows the same traceable AI + GraphRAG path.
 
 Acceptance criteria:
-- Given `USE_AI_PROVIDERS=false`, when the intent service is built, then it uses local retrieval and local semantic reasoning.
-- Given a known local flow utterance, when the CLI asks a question, then the system can resolve it from local flow files.
-- Given local fallback mode, when the system starts, then it does not require Neo4j or an LLM API key.
+- Given `USE_AI_PROVIDERS=false`, when the intent service is built, then it fails with a clear configuration error.
+- Given no LLM API key is configured, when the CLI asks a question, then the system reports that the API key is required.
+- Given Neo4j is unavailable, when retrieval runs, then the system reports the graph connection issue instead of resolving locally.
 
 ### Story 8: Ingest Raw Banking Knowledge
 As a knowledge engineer, I want to ingest source documents so that flow, user task, and action artifacts can be generated from banking corpus material.
@@ -259,8 +259,8 @@ Acceptance criteria:
 - Explainability: every resolved answer must expose the selected intent, business event, plan, tasks, capabilities, ontology nodes, and explanation.
 - Auditability: ask and ingestion flows must be traceable through audit or trace records.
 - Safety: AI may classify and explain, but must not directly execute banking operations.
-- Configurability: AI and graph providers must be optional and replaceable.
-- Determinism: local fallback must remain available for development and baseline behavior.
+- Configurability: AI and graph providers must be replaceable through provider interfaces.
+- Runtime consistency: ask must always use the LLM + GraphRAG + Neo4j path or fail clearly.
 - Data quality: ingestion must validate generated JSON artifacts before they become runtime knowledge.
 - Separation of concerns: runtime question answering must project ingested knowledge rather than generating new operational plans.
 

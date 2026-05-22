@@ -31,7 +31,7 @@ Output neighbors: `LoanRefinancingRequested`, `Loan`, `Synonym(prestamo)`, `Syno
 - `GraphRepository.search_concepts(text)`
 
 ## Implementation Notes
-The MVP includes Neo4j graph loading and GraphRAG retrieval for the default ask flow. A flow-backed in-memory implementation remains available for deterministic local fallback.
+The MVP includes Neo4j graph loading and GraphRAG retrieval for the default ask flow. Runtime ask requires graph-backed retrieval so the LLM classifies only against approved graph candidates.
 
 ## Future Replacement Strategy
 Graph storage can move to another graph database if the repository interface is preserved.

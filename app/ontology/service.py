@@ -1,22 +1,11 @@
 from __future__ import annotations
 
+import json
+import os
 import re
 import unicodedata
 from dataclasses import dataclass, field
-
-
-DEFAULT_TERM_SYNONYMS: dict[str, list[str]] = {
-    "loan": ["prestamo", "credito", "credit", "financiamiento"],
-    "loan_refinance": ["refinanciar", "refinanciacion", "bajar cuota", "renegociar credito"],
-    "loan_conditions": ["cuota", "condiciones", "tasa", "plazo"],
-    "payment": ["pago", "pagar", "abono"],
-    "transfer": ["transferencia", "transferir", "cbu", "envio dinero"],
-    "savings_account": ["cuenta", "cuenta ahorro", "ahorro", "account"],
-    "claim": ["reclamo", "queja", "disputa"],
-    "credit_note": ["nota credito", "nota de credito"],
-    "debit_note": ["nota debito", "nota de debito"],
-    "customer": ["cliente", "titular", "usuario"],
-}
+from pathlib import Path
 
 
 @dataclass(frozen=True)
@@ -29,8 +18,14 @@ class NormalizedTerm:
 class OntologyTermNormalizer:
     """Normalize domain terms and provide ingestion-time synonym aliases."""
 
-    def __init__(self, synonym_catalog: dict[str, list[str]] | None = None):
-        self.synonym_catalog = synonym_catalog or DEFAULT_TERM_SYNONYMS
+    def __init__(
+        self,
+        synonym_catalog: dict[str, list[str]] | None = None,
+        synonym_catalog_path: Path | str | None = None,
+    ):
+        self.synonym_catalog = synonym_catalog if synonym_catalog is not None else self._load_synonym_catalog(
+            synonym_catalog_path
+        )
         self._alias_to_canonical = self._build_alias_index(self.synonym_catalog)
 
     def normalize_term(self, term: str) -> NormalizedTerm:
@@ -83,6 +78,24 @@ class OntologyTermNormalizer:
         text = ascii_value.lower().replace("_", " ")
         text = re.sub(r"[^a-z0-9 ]+", " ", text)
         return re.sub(r"\s+", " ", text).strip()
+
+    def _load_synonym_catalog(self, synonym_catalog_path: Path | str | None = None) -> dict[str, list[str]]:
+        path = Path(
+            synonym_catalog_path
+            or os.getenv("ONTOLOGY_SYNONYM_CATALOG_PATH", "")
+            or Path(__file__).resolve().parents[2] / "data" / "ontology" / "term_synonyms.json"
+        )
+        if not path.exists():
+            return {}
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            raise ValueError(f"Ontology synonym catalog must be a JSON object: {path}")
+        catalog: dict[str, list[str]] = {}
+        for canonical, aliases in data.items():
+            if not isinstance(aliases, list):
+                continue
+            catalog[str(canonical)] = [str(alias) for alias in aliases]
+        return catalog
 
     def _ontology_key(self, value: str) -> str:
         text = re.sub(r"(?<!^)(?=[A-Z])", "_", str(value)).lower()

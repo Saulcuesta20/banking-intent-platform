@@ -59,14 +59,23 @@ class IntentResolutionService:
         self.use_langgraph_orchestration = use_langgraph_orchestration
 
     def resolve(self, question: str, trace: Callable[[str, str], None] | None = None) -> IntentResult:
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=resolve input="
+            + self._json({"question": question, "use_langgraph_orchestration": self.use_langgraph_orchestration}),
+        )
         if self.use_langgraph_orchestration:
-            try:
-                return self._resolve_with_langgraph(question, trace)
-            except RuntimeError as exc:
-                self._trace(trace, "orchestration", f"langgraph_unavailable={exc}")
+            return self._resolve_with_langgraph(question, trace)
         return self._resolve_linear(question, trace)
 
     def _resolve_with_langgraph(self, question: str, trace: Callable[[str, str], None] | None) -> IntentResult:
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=_resolve_with_langgraph input="
+            + self._json({"question": question}),
+        )
         graph_module = self._optional_import("langgraph.graph", "langgraph")
         StateGraph = graph_module.StateGraph
         START = graph_module.START
@@ -89,15 +98,33 @@ class IntentResolutionService:
         )
         workflow.add_edge("project_flow_context", END)
         workflow.add_edge("unknown_result", END)
+        self._trace(trace, "orchestration", "workflow=langgraph_ask")
+        self._trace(
+            trace,
+            "orchestration",
+            "workflow=langgraph_ask nodes="
+            + self._json(["retrieve_context", "classify_intent", "project_flow_context", "unknown_result"]),
+        )
 
         app = workflow.compile()
         final_state = app.invoke({"question": question, "trace": trace})
         result = final_state.get("result_model")
         if result is None:
             raise RuntimeError("LangGraph ask workflow finished without an IntentResult.")
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=_resolve_with_langgraph output="
+            + self._json({"flow_id": result.flow_id, "intent": result.intent, "confidence": result.confidence}),
+        )
         return result
 
     def _resolve_linear(self, question: str, trace: Callable[[str, str], None] | None = None) -> IntentResult:
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=_resolve_linear input=" + self._json({"question": question}),
+        )
         self._trace(trace, "input", f"question={question}")
         self._trace(trace, "retrieval", "loading flow/user-task knowledge")
         records = self.retrieval_service.retrieve(question)
@@ -109,6 +136,8 @@ class IntentResolutionService:
 
         self._trace(trace, "intent", "classifying intent from retrieved records")
         record = self.classification_service.classify(question, records)
+        if record is None:
+            self._trace_llm_classifier_decision(trace)
 
         if record is None:
             return self._build_unknown_result(question, records, trace)
@@ -118,8 +147,13 @@ class IntentResolutionService:
     def _ask_node_retrieve_context(self, state: AskState) -> AskState:
         question = state["question"]
         trace = state.get("trace")
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=_ask_node_retrieve_context input="
+            + self._json({"question": question}),
+        )
         self._trace(trace, "input", f"question={question}")
-        self._trace(trace, "orchestration", "workflow=langgraph_ask")
         self._trace(trace, "retrieval", "loading flow/user-task knowledge")
         records = self.retrieval_service.retrieve(question)
         self._trace(trace, "retrieval", f"matched_records={len(records)}")
@@ -130,6 +164,12 @@ class IntentResolutionService:
         if records:
             query_understanding = records[0].metadata.get("query_understanding") or {}
             entities = list(query_understanding.get("entities") or [])
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=_ask_node_retrieve_context output="
+            + self._json({"records": len(records), "entities": entities}),
+        )
         return {
             "retrieved_context": records,
             "entities": entities,
@@ -139,14 +179,33 @@ class IntentResolutionService:
         question = state["question"]
         trace = state.get("trace")
         records = state.get("retrieved_context", [])
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=_ask_node_classify_intent input="
+            + self._json({"question": question, "candidate_flows": [record.flow_id for record in records]}),
+        )
         self._trace(trace, "intent", "classifying intent from retrieved records")
         record = self.classification_service.classify(question, records)
         if record is None:
+            self._trace_llm_classifier_decision(trace)
             self._trace(trace, "intent", "no matching flow found")
+            self._trace(
+                trace,
+                "call",
+                "class=IntentResolutionService method=_ask_node_classify_intent output="
+                + self._json({"selected_record": None}),
+            )
             return {
                 "selected_record": None,
                 "selected_flow": {},
             }
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=_ask_node_classify_intent output="
+            + self._json({"flow_id": record.flow_id, "intent": record.intent, "confidence": record.confidence}),
+        )
         return {
             "selected_record": record,
             "selected_flow": {
@@ -158,9 +217,23 @@ class IntentResolutionService:
         }
 
     def _ask_route_after_classification(self, state: AskState) -> str:
-        return "project" if state.get("selected_record") is not None else "unknown"
+        route = "project" if state.get("selected_record") is not None else "unknown"
+        trace = state.get("trace")
+        self._trace(
+            trace,
+            "orchestration",
+            "class=IntentResolutionService method=_ask_route_after_classification output="
+            + self._json({"route": route}),
+        )
+        return route
 
     def _ask_node_project_flow_context(self, state: AskState) -> AskState:
+        self._trace(
+            state.get("trace"),
+            "call",
+            "class=IntentResolutionService method=_ask_node_project_flow_context input="
+            + self._json({"selected_flow": state.get("selected_flow")}),
+        )
         result = self._build_projected_result(
             state["question"],
             state.get("retrieved_context", []),
@@ -190,6 +263,17 @@ class IntentResolutionService:
         trace: Callable[[str, str], None] | None,
     ) -> IntentResult:
         self._trace(trace, "resolution", "cannot_resolve=true reason=no flow knowledge matched")
+        explanation = "No flow knowledge matched the question."
+        query_understanding = records[0].metadata.get("query_understanding") if records else None
+        ambiguity = query_understanding.get("ambiguity") if isinstance(query_understanding, dict) else None
+        if ambiguity:
+            option_text = ", ".join(self._format_ambiguity_option(option) for option in ambiguity.get("options", []))
+            explanation = (
+                "The request is ambiguous. The customer may need one of these flows: "
+                f"{option_text}. Ask a clarification question before selecting an intent."
+            )
+            self._trace(trace, "intent", f"reason={ambiguity.get('reason')}")
+        clarification_options = self._build_clarification_options(records)
         plan, tasks = self.approval_service.enforce(["clarify_customer_request"], [])
         result = IntentResult(
             flow_id="unknown",
@@ -202,13 +286,20 @@ class IntentResolutionService:
             tasks=tasks,
             related_capabilities=[],
             related_ontology_nodes=[],
-            explanation="No flow knowledge matched the question.",
+            explanation=explanation,
+            clarification_options=clarification_options,
         )
         self.audit_service.record_intent_result(question, result)
         trace_path = self._write_ask_trace(question, records, None, None, result)
         if trace_path:
             self._trace(trace, "debug_trace", f"file={trace_path}")
         self._trace(trace, "audit", "recorded unknown intent result")
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=_build_unknown_result output="
+            + self._json(result.to_dict()),
+        )
         return result
 
     def _build_projected_result(
@@ -218,6 +309,12 @@ class IntentResolutionService:
         record: KnowledgeRecord,
         trace: Callable[[str, str], None] | None,
     ) -> IntentResult:
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=_build_projected_result input="
+            + self._json({"question": question, "selected_flow": record.flow_id, "candidate_count": len(records)}),
+        )
         self._trace_selected_record(trace, record)
         self._trace(trace, "flow_context", "projecting ingested event/plan/tasks/actions/ontology")
         context = self.flow_context_service.build(question, record)
@@ -249,6 +346,12 @@ class IntentResolutionService:
             self._trace(trace, "debug_trace", f"file={trace_path}")
         self._trace(trace, "resolution", "can_resolve=true")
         self._trace(trace, "audit", "recorded intent result")
+        self._trace(
+            trace,
+            "call",
+            "class=IntentResolutionService method=_build_projected_result output="
+            + self._json(result.to_dict()),
+        )
         return result
 
     def _trace_retrieval_metadata(
@@ -261,6 +364,12 @@ class IntentResolutionService:
         provider_name = records[0].metadata.get("retrieval_provider")
         if provider_name:
             self._trace(trace, "retrieval", f"provider={provider_name}")
+        retrieval_input = records[0].metadata.get("retrieval_input")
+        if retrieval_input:
+            self._trace(trace, "retrieval", "input=" + self._json(retrieval_input))
+        retrieval_filter = records[0].metadata.get("retrieval_filter")
+        if retrieval_filter:
+            self._trace(trace, "retrieval", "filters=" + self._json(retrieval_filter))
         query_understanding = records[0].metadata.get("query_understanding")
         if query_understanding:
             self._trace(
@@ -268,13 +377,38 @@ class IntentResolutionService:
                 "query_understanding",
                 f"provider={query_understanding.get('provider')} terms={query_understanding.get('search_terms')} entities={query_understanding.get('entities')}",
             )
+            self._trace(
+                trace,
+                "query_understanding",
+                "output="
+                + self._json(
+                    {
+                        "search_terms": query_understanding.get("search_terms"),
+                        "corrected_question": query_understanding.get("corrected_question"),
+                        "corrections": query_understanding.get("corrections"),
+                        "entities": query_understanding.get("entities"),
+                        "possible_intents": query_understanding.get("possible_intents"),
+                        "ambiguity": query_understanding.get("ambiguity"),
+                        "explanation": query_understanding.get("explanation"),
+                    }
+                ),
+            )
         graph_summary = records[0].metadata.get("graph_query_summary")
         if graph_summary:
             self._trace(
                 trace,
                 "graph",
-                f"cypher_rows={graph_summary.get('rows_returned')} tokens={graph_summary.get('tokens')} fallback={graph_summary.get('fallback')}",
+                f"cypher_rows={graph_summary.get('rows_returned')} tokens={graph_summary.get('tokens')} search_mode={graph_summary.get('search_mode')}",
             )
+            self._trace(trace, "graph", "query=" + str(graph_summary.get("query")))
+            self._trace(
+                trace,
+                "graph",
+                "params=" + self._json({"tokens": graph_summary.get("tokens"), "limit": graph_summary.get("limit")}),
+            )
+        graph_rows_preview = records[0].metadata.get("graph_rows_preview")
+        if graph_rows_preview:
+            self._trace(trace, "graph", "rows_preview=" + self._json(graph_rows_preview))
         flow_ids = ", ".join(record.flow_id for record in records[:10])
         if flow_ids:
             self._trace(trace, "retrieval", f"candidate_flows={flow_ids}")
@@ -295,6 +429,8 @@ class IntentResolutionService:
                 "llm",
                 f"prompt_chars={llm_prompt_summary.get('chars')}",
             )
+            if llm_prompt_summary.get("preview"):
+                self._trace(trace, "llm", f"prompt_preview={llm_prompt_summary.get('preview')}")
         llm_answer = record.metadata.get("llm_answer")
         if llm_answer:
             self._trace(
@@ -302,13 +438,126 @@ class IntentResolutionService:
                 "llm",
                 f"answer can_resolve={llm_answer.get('can_resolve')} selected_flow_id={llm_answer.get('selected_flow_id')} confidence={llm_answer.get('confidence')}",
             )
+            self._trace(trace, "llm", "answer_json=" + self._json(llm_answer))
         llm_reason = record.metadata.get("llm_reason")
         if llm_reason:
             self._trace(trace, "llm", f"reason={llm_reason}")
 
+    def _trace_llm_classifier_decision(self, trace: Callable[[str, str], None] | None) -> None:
+        recorder = getattr(self.classification_service.provider, "decision_recorder", None)
+        if recorder is None:
+            return
+        prompt = getattr(recorder, "prompt", "")
+        answer = getattr(recorder, "answer", {})
+        if prompt:
+            summary = {"chars": len(prompt), "preview": prompt[:1200]}
+            self._trace(trace, "llm", f"prompt_chars={summary['chars']}")
+            self._trace(trace, "llm", f"prompt_preview={summary['preview']}")
+        if answer:
+            self._trace(
+                trace,
+                "llm",
+                f"answer can_resolve={answer.get('can_resolve')} selected_flow_id={answer.get('selected_flow_id')} confidence={answer.get('confidence')}",
+            )
+            self._trace(trace, "llm", "answer_json=" + self._json(answer))
+            if answer.get("reason"):
+                self._trace(trace, "llm", f"reason={answer.get('reason')}")
+
+    def _llm_classifier_trace_payload(self) -> dict[str, Any]:
+        recorder = getattr(self.classification_service.provider, "decision_recorder", None)
+        if recorder is None:
+            return {
+                "provider": None,
+                "prompt": None,
+                "prompt_summary": None,
+                "answer": None,
+                "reason": None,
+            }
+        prompt = getattr(recorder, "prompt", "")
+        answer = getattr(recorder, "answer", {})
+        return {
+            "provider": "langchain_graph_rag_llm" if prompt or answer else None,
+            "prompt": prompt or None,
+            "prompt_summary": {"chars": len(prompt), "preview": prompt[:1200]} if prompt else None,
+            "answer": answer or None,
+            "reason": answer.get("reason") if isinstance(answer, dict) else None,
+        }
+
     def _trace(self, trace: Callable[[str, str], None] | None, component: str, message: str) -> None:
         if trace is not None:
             trace(component, message)
+
+    def _json(self, value: Any) -> str:
+        return json.dumps(value, ensure_ascii=False, sort_keys=True)
+
+    def _format_ambiguity_option(self, option: Any) -> str:
+        if isinstance(option, dict):
+            flow_id = option.get("flow_id") or option.get("intent") or option.get("name") or "unknown"
+            flow_name = option.get("flow_name")
+            return f"{flow_id} ({flow_name})" if flow_name else str(flow_id)
+        return str(option)
+
+    def _build_clarification_options(self, records: list[KnowledgeRecord]) -> list[dict[str, Any]]:
+        options: list[dict[str, Any]] = []
+        seen: set[str] = set()
+        first_metadata = records[0].metadata if records else {}
+        query_understanding = first_metadata.get("query_understanding") or {}
+        if isinstance(query_understanding, dict):
+            ambiguity = query_understanding.get("ambiguity")
+            if isinstance(ambiguity, dict):
+                for option in ambiguity.get("options", []):
+                    self._append_clarification_option(options, seen, option, "llm_ambiguity")
+            for option in query_understanding.get("possible_intents", []):
+                self._append_clarification_option(options, seen, option, "llm_possible_intent")
+        for record in records[:6]:
+            self._append_clarification_option(
+                options,
+                seen,
+                {
+                    "label": record.flow_name,
+                    "flow_id": record.flow_id,
+                    "intent": record.intent,
+                    "reason": record.explanation,
+                },
+                "graph_candidate",
+            )
+        return options[:8]
+
+    def _append_clarification_option(
+        self,
+        options: list[dict[str, Any]],
+        seen: set[str],
+        option: Any,
+        source: str,
+    ) -> None:
+        if isinstance(option, dict):
+            value = str(option.get("flow_id") or option.get("intent") or option.get("label") or option.get("name") or "")
+            label = str(option.get("label") or option.get("name") or option.get("intent") or option.get("flow_id") or value)
+            reason = option.get("reason")
+            flow_id = option.get("flow_id")
+            intent = option.get("intent")
+        else:
+            value = str(option)
+            label = value.replace("_", " ").replace(".", " ").strip().title() or value
+            reason = None
+            flow_id = None
+            intent = value
+        key = value.strip().lower()
+        if not key or key in seen:
+            return
+        seen.add(key)
+        payload = {
+            "label": label,
+            "value": value,
+            "source": source,
+        }
+        if flow_id:
+            payload["flow_id"] = flow_id
+        if intent:
+            payload["intent"] = intent
+        if reason:
+            payload["reason"] = reason
+        options.append(payload)
 
     def _optional_import(self, module_name: str, friendly_name: str | None = None):
         try:
@@ -329,16 +578,20 @@ class IntentResolutionService:
         if self.trace_directory is None:
             return None
         self.trace_directory.mkdir(parents=True, exist_ok=True)
-        path = self.trace_directory / f"ask_trace_{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}.json"
+        timestamp = datetime.now(timezone.utc)
+        path = self.trace_directory / f"ask_trace_{timestamp.strftime('%Y%m%dT%H%M%S%fZ')}.json"
         first_metadata = records[0].metadata if records else {}
         selected_metadata = selected_record.metadata if selected_record is not None else {}
+        llm_trace = self._llm_classifier_trace_payload()
         payload = {
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "timestamp": timestamp.isoformat(),
             "question": question,
             "retrieval": {
                 "matched_records": len(records),
                 "candidate_flows": [record.flow_id for record in records],
                 "provider": first_metadata.get("retrieval_provider"),
+                "input": first_metadata.get("retrieval_input"),
+                "filters": first_metadata.get("retrieval_filter"),
             },
             "query_understanding": first_metadata.get("query_understanding"),
             "graph": {
@@ -346,11 +599,11 @@ class IntentResolutionService:
                 "rows_preview": first_metadata.get("graph_rows_preview"),
             },
             "langchain_llm": {
-                "provider": selected_metadata.get("reasoning_provider"),
-                "prompt": selected_metadata.get("llm_prompt"),
-                "prompt_summary": selected_metadata.get("llm_prompt_summary"),
-                "answer": selected_metadata.get("llm_answer"),
-                "reason": selected_metadata.get("llm_reason"),
+                "provider": selected_metadata.get("reasoning_provider") or llm_trace["provider"],
+                "prompt": selected_metadata.get("llm_prompt") or llm_trace["prompt"],
+                "prompt_summary": selected_metadata.get("llm_prompt_summary") or llm_trace["prompt_summary"],
+                "answer": selected_metadata.get("llm_answer") or llm_trace["answer"],
+                "reason": selected_metadata.get("llm_reason") or llm_trace["reason"],
             },
             "selected_flow": None
             if selected_record is None

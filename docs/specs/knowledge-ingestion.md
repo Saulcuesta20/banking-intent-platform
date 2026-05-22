@@ -18,7 +18,7 @@ Load external banking knowledge from raw documents into normalized flow and user
 - AutoGen ingestion reasoning provider
 - LLM-assisted corpus extractor
 - `FlowKnowledgeLoader`
-- `LocalKnowledgeIngestionProvider`
+- `FileKnowledgeIngestionProvider`
 - User task catalog loader
 - Action registry builder
 - Processed artifact writer

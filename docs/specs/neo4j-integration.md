@@ -29,7 +29,7 @@ Output graph paths include `Flow -> UserTask -> Action`, where `Action.type` is
 - `GraphRepository.find_related(intent)`
 
 ## Implementation Notes
-Neo4j credentials are environment-driven. Inside Docker, application containers connect with `bolt://neo4j:7687`; local scripts connect with `bolt://localhost:7687`. The deterministic fallback can run without Neo4j.
+Neo4j credentials are environment-driven. Inside Docker, application containers connect with `bolt://neo4j:7687`; host scripts connect with `bolt://localhost:7687`. Runtime ask requires Neo4j-backed GraphRAG retrieval.
 
 ## Future Replacement Strategy
 Another graph provider can replace Neo4j if it implements graph repository methods and relationship semantics.
