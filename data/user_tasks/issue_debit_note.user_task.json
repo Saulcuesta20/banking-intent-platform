@@ -1,0 +1,33 @@
+{
+  "user_task_id": "issue_debit_note",
+  "task": "issue_debit_note",
+  "type": "user_task",
+  "name": "Issue Debit Note",
+  "description": "Prepare and issue a debit note for an account.",
+  "front_actions": [
+    {
+      "action": "ui.debit_note.submit",
+      "type": "front_action",
+      "operation": "create",
+      "resource": "debit_note",
+      "label": "Issue debit note",
+      "triggers": "debit_note.create"
+    }
+  ],
+  "back_actions": [
+    {
+      "action": "account.read",
+      "type": "back_action",
+      "operation": "read",
+      "resource": "account",
+      "description": "Read related account."
+    },
+    {
+      "action": "debit_note.create",
+      "type": "back_action",
+      "operation": "create",
+      "resource": "debit_note",
+      "description": "Create debit note."
+    }
+  ]
+}

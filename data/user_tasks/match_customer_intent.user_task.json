@@ -1,0 +1,40 @@
+{
+  "user_task_id": "match_customer_intent",
+  "task": "match_customer_intent",
+  "type": "user_task",
+  "name": "Match Customer Intent",
+  "description": "Normalize a customer utterance and match it to a known intent.",
+  "front_actions": [
+    {
+      "action": "ui.intent.test",
+      "type": "front_action",
+      "operation": "match",
+      "resource": "intent",
+      "label": "Test intent",
+      "triggers": "intent.match"
+    }
+  ],
+  "back_actions": [
+    {
+      "action": "utterance.normalize",
+      "type": "back_action",
+      "operation": "normalize",
+      "resource": "utterance",
+      "description": "Normalize utterance."
+    },
+    {
+      "action": "intent.match",
+      "type": "back_action",
+      "operation": "match",
+      "resource": "intent",
+      "description": "Match utterance to intent."
+    },
+    {
+      "action": "response.generate",
+      "type": "back_action",
+      "operation": "create",
+      "resource": "response",
+      "description": "Generate response draft."
+    }
+  ]
+}

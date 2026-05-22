@@ -1,0 +1,26 @@
+{
+  "user_task_id": "review_glossary_terms",
+  "task": "review_glossary_terms",
+  "type": "user_task",
+  "name": "Review Glossary Terms",
+  "description": "Look up glossary terms and explain banking concepts.",
+  "front_actions": [
+    {
+      "action": "ui.glossary.search",
+      "type": "front_action",
+      "operation": "read",
+      "resource": "glossary",
+      "label": "Search glossary",
+      "triggers": "glossary.read"
+    }
+  ],
+  "back_actions": [
+    {
+      "action": "glossary.read",
+      "type": "back_action",
+      "operation": "read",
+      "resource": "glossary",
+      "description": "Read glossary term."
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "user_task_id": "disburse_loan",
+  "task": "disburse_loan",
+  "type": "user_task",
+  "name": "Disburse Loan",
+  "description": "Validate conditions and disburse approved loan funds.",
+  "front_actions": [
+    {
+      "action": "ui.disbursement.submit",
+      "type": "front_action",
+      "operation": "create",
+      "resource": "disbursement",
+      "label": "Disburse loan",
+      "triggers": "disbursement.create"
+    }
+  ],
+  "back_actions": [
+    {
+      "action": "loan.read",
+      "type": "back_action",
+      "operation": "read",
+      "resource": "loan",
+      "description": "Read approved loan."
+    },
+    {
+      "action": "disbursement.conditions.validate",
+      "type": "back_action",
+      "operation": "validate",
+      "resource": "disbursement",
+      "description": "Validate disbursement conditions."
+    },
+    {
+      "action": "disbursement.create",
+      "type": "back_action",
+      "operation": "create",
+      "resource": "disbursement",
+      "description": "Disburse loan funds."
+    },
+    {
+      "action": "notification.send",
+      "type": "back_action",
+      "operation": "notify",
+      "resource": "notification",
+      "description": "Notify the customer."
+    }
+  ]
+}

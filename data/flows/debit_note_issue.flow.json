@@ -1,0 +1,46 @@
+{
+  "flow_id": "debit_note.issue",
+  "flow_name": "Debit Note Issuance",
+  "intent": "debit_note.issue",
+  "business_event": "DebitNoteIssueRequested",
+  "confidence": 0.8,
+  "utterances": [
+    "generar nota debito",
+    "necesito una nota de debito",
+    "emitir nota debito"
+  ],
+  "plan": [
+    "identify_customer",
+    "issue_debit_note",
+    "approve_business_case"
+  ],
+  "user_task_refs": [
+    "identify_customer",
+    "issue_debit_note",
+    "approve_business_case"
+  ],
+  "capabilities": [
+    "customer.read",
+    "account.read",
+    "debit_note.create"
+  ],
+  "ontology_nodes": [
+    "Customer",
+    "SavingsAccount",
+    "DebitNote",
+    "Transaction"
+  ],
+  "explanation": "Debit note issuance is a transaction flow for account adjustment.",
+  "source": "data/raw/savings_loans_domain_raw.txt;data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt;data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt;data/raw/savings_loans_domain_extra5.txt;data/raw/savings_glossary.csv",
+  "metadata": {
+    "generated_from_raw_sources": [
+      "data/raw/savings_loans_domain_raw.txt",
+      "data/raw/savings_loans_domain_extra1.txt",
+      "data/raw/savings_loans_domain_extra2.txt",
+      "data/raw/savings_loans_domain_extra3.txt",
+      "data/raw/savings_loans_domain_extra4.txt",
+      "data/raw/savings_loans_domain_extra5.txt",
+      "data/raw/savings_glossary.csv"
+    ]
+  }
+}

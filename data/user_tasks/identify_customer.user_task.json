@@ -1,0 +1,33 @@
+{
+  "user_task_id": "identify_customer",
+  "task": "identify_customer",
+  "type": "user_task",
+  "name": "Identify Customer",
+  "description": "Find or validate the customer before starting a banking operation.",
+  "front_actions": [
+    {
+      "action": "ui.customer.search_submit",
+      "type": "front_action",
+      "operation": "read",
+      "resource": "customer",
+      "label": "Search customer",
+      "triggers": "customer.read"
+    }
+  ],
+  "back_actions": [
+    {
+      "action": "customer.read",
+      "type": "back_action",
+      "operation": "read",
+      "resource": "customer",
+      "description": "Retrieve customer profile."
+    },
+    {
+      "action": "customer.identity.validate",
+      "type": "back_action",
+      "operation": "validate",
+      "resource": "customer",
+      "description": "Validate customer identity and status."
+    }
+  ]
+}

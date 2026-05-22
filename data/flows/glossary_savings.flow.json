@@ -1,0 +1,42 @@
+{
+  "flow_id": "glossary.savings",
+  "flow_name": "Savings Glossary Lookup",
+  "intent": "glossary.savings.generated",
+  "business_event": "GlossaryLookupRequested",
+  "confidence": 0.75,
+  "utterances": [
+    "cuenta de ahorro",
+    "cuenta de ahorros",
+    "CBU",
+    "clave bancaria uniforme",
+    "interes",
+    "tasa de interes",
+    "ahorro"
+  ],
+  "plan": [
+    "review_glossary_terms"
+  ],
+  "user_task_refs": [
+    "review_glossary_terms"
+  ],
+  "capabilities": [
+    "glossary.read"
+  ],
+  "ontology_nodes": [
+    "Glossary",
+    "Term"
+  ],
+  "explanation": "Glossary lookup explains savings terms from the raw glossary.",
+  "source": "data/raw/savings_loans_domain_raw.txt;data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt;data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt;data/raw/savings_loans_domain_extra5.txt;data/raw/savings_glossary.csv",
+  "metadata": {
+    "generated_from_raw_sources": [
+      "data/raw/savings_loans_domain_raw.txt",
+      "data/raw/savings_loans_domain_extra1.txt",
+      "data/raw/savings_loans_domain_extra2.txt",
+      "data/raw/savings_loans_domain_extra3.txt",
+      "data/raw/savings_loans_domain_extra4.txt",
+      "data/raw/savings_loans_domain_extra5.txt",
+      "data/raw/savings_glossary.csv"
+    ]
+  }
+}

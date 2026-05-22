@@ -1,0 +1,32 @@
+Glosario Extendido - Ahorros y Préstamos (Parte 1)
+
+Términos clave:
+- Apertura de cuenta: proceso para crear una nueva cuenta bancaria para un cliente.
+- Beneficiario: persona autorizada a recibir fondos.
+- Chequera: talonario de cheques asociado a una cuenta corriente.
+- Comisión por mantenimiento: cargo recurrente por mantener la cuenta activa.
+- Conciliación: proceso de verificación de transacciones entre registros.
+- Cuenta inactiva: cuenta sin movimientos por un periodo definido.
+- Domiciliación: autorización de débitos automáticos desde una cuenta.
+- Estado de cuenta: reporte periódico de saldos y movimientos.
+- Extracto bancario: sinónimo de estado de cuenta.
+- FP: fondos propios del cliente.
+
+Procesos (breves):
+1) Apertura de cuenta de ahorro con validación de KYC.
+2) Renovación de plazo fijo al vencimiento.
+3) Generación de estado de cuenta mensual y envío por mail.
+4) Tramitación de cierre de cuenta y liquidación de saldos.
+
+Reglas de negocio (ejemplos adicionales):
+- Las transferencias interbancarias pueden tardar hasta 48 horas hábiles.
+- Las solicitudes de cierre con saldo negativo requieren contacto con cobranzas.
+- El acceso a banca online se habilita tras verificación telefónica.
+
+Operaciones y acciones:
+- Activar notificaciones SMS para movimientos.
+- Bloquear tarjeta por pérdida/robo.
+- Solicitar duplicado de estado de cuenta.
+
+Notas de cumplimiento:
+- Reportar operaciones sospechosas mayores a umbral configurado.

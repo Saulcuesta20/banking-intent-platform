@@ -1,0 +1,26 @@
+{
+  "user_task_id": "run_kyc_screening",
+  "task": "run_kyc_screening",
+  "type": "user_task",
+  "name": "Run KYC Screening",
+  "description": "Screen the customer against KYC, risk, and compliance rules.",
+  "front_actions": [
+    {
+      "action": "ui.kyc.run",
+      "type": "front_action",
+      "operation": "validate",
+      "resource": "kyc",
+      "label": "Run KYC",
+      "triggers": "kyc.screen"
+    }
+  ],
+  "back_actions": [
+    {
+      "action": "kyc.screen",
+      "type": "back_action",
+      "operation": "validate",
+      "resource": "kyc",
+      "description": "Run KYC and risk screening."
+    }
+  ]
+}

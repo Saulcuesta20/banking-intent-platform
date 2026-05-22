@@ -1,0 +1,437 @@
+{
+  "timestamp": "2026-05-21T22:49:17.380499+00:00",
+  "question": "Quiero refinanciar mi prestamo",
+  "retrieval": {
+    "matched_records": 18,
+    "candidate_flows": [
+      "backend.operations",
+      "credit_note.issue",
+      "customer.onboarding",
+      "debit_note.issue",
+      "fees.claims",
+      "glossary.savings",
+      "loan.disbursement",
+      "loan.domain.consumer",
+      "loan.evaluation",
+      "loan.inquiry",
+      "loan.payment",
+      "loan.refinance",
+      "loan.request",
+      "money.transfer",
+      "savings.account.domain",
+      "savings.operations",
+      "savings_account.open",
+      "utterance.intent.matching"
+    ],
+    "provider": "graph_rag_neo4j"
+  },
+  "graph": {
+    "query_summary": {
+      "query": "MATCH (f:Flow) OPTIONAL MATCH (f)-[:EXEMPLIFIES]->(u:Utterance) OPTIONAL MATCH (f)-[:HAS_ONTOLOGY]->(o:Ontology) OPTIONAL MATCH (f)-[task_rel:HAS_USER_TASK]->(t:UserTask) OPTIONAL MATCH (t)-[:HAS_FRONT_ACTION]->(front:Action) OPTIONAL MATCH (t)-[:HAS_BACK_ACTION]->(back:Action) RETURN f.flow_id AS flow_id, f.flow_name AS flow_name, f.intent AS intent, f.business_event AS business_event, f.explanation AS explanation, collect(DISTINCT u.text) AS utterances, collect(DISTINCT o.name) AS ontology_nodes, collect(DISTINCT t.task) AS user_tasks, collect(DISTINCT front.action) AS front_actions, collect(DISTINCT back.action) AS back_actions ORDER BY flow_id",
+      "rows_returned": 18,
+      "limit": 50
+    },
+    "rows_preview": [
+      {
+        "flow_id": "backend.operations",
+        "intent": "backend.operations.executors.part4",
+        "business_event": "BackendOperationRequested",
+        "utterances": [
+          "como se conectan los sistemas para sincronizar saldos",
+          "cuales son los endpoints del backend",
+          "que apis usan para crear cuentas"
+        ],
+        "ontology_nodes": [
+          "Executor",
+          "API",
+          "Integration"
+        ],
+        "user_tasks": [
+          "execute_backend_operation"
+        ],
+        "front_actions": [
+          "ui.backend_operation.run"
+        ],
+        "back_actions": [
+          "api.transaction.post",
+          "api.customer.get",
+          "integration.sync",
+          "api.account.create"
+        ]
+      },
+      {
+        "flow_id": "credit_note.issue",
+        "intent": "credit_note.issue",
+        "business_event": "CreditNoteIssueRequested",
+        "utterances": [
+          "emitir nota credito",
+          "necesito una nota de credito",
+          "generar nota credito"
+        ],
+        "ontology_nodes": [
+          "CreditNote",
+          "SavingsAccount",
+          "Transaction",
+          "Customer"
+        ],
+        "user_tasks": [
+          "approve_business_case",
+          "issue_credit_note",
+          "identify_customer"
+        ],
+        "front_actions": [
+          "ui.approval.decision_submit",
+          "ui.credit_note.submit",
+          "ui.customer.search_submit"
+        ],
+        "back_actions": [
+          "approval.update",
+          "account.read",
+          "credit_note.create",
+          "customer.identity.validate",
+          "customer.read"
+        ]
+      },
+      {
+        "flow_id": "customer.onboarding",
+        "intent": "customer.onboarding",
+        "business_event": "CustomerOnboardingRequested",
+        "utterances": [
+          "alta de cliente",
+          "registrar nuevo cliente",
+          "quiero ser cliente"
+        ],
+        "ontology_nodes": [
+          "Customer",
+          "CustomerConditions"
+        ],
+        "user_tasks": [
+          "handle_customer_onboarding",
+          "approve_business_case",
+          "collect_customer_documents",
+          "run_kyc_screening"
+        ],
+        "front_actions": [
+          "ui.onboarding.submit",
+          "ui.approval.decision_submit",
+          "ui.documents.upload",
+          "ui.kyc.run"
+        ],
+        "back_actions": [
+          "customer.create",
+          "customer.conditions.validate",
+          "approval.update",
+          "document.create",
+          "document.verify",
+          "kyc.screen"
+        ]
+      },
+      {
+        "flow_id": "debit_note.issue",
+        "intent": "debit_note.issue",
+        "business_event": "DebitNoteIssueRequested",
+        "utterances": [
+          "generar nota debito",
+          "emitir nota debito",
+          "necesito una nota de debito"
+        ],
+        "ontology_nodes": [
+          "SavingsAccount",
+          "Transaction",
+          "Customer",
+          "DebitNote"
+        ],
+        "user_tasks": [
+          "approve_business_case",
+          "issue_debit_note",
+          "identify_customer"
+        ],
+        "front_actions": [
+          "ui.approval.decision_submit",
+          "ui.debit_note.submit",
+          "ui.customer.search_submit"
+        ],
+        "back_actions": [
+          "approval.update",
+          "account.read",
+          "debit_note.create",
+          "customer.identity.validate",
+          "customer.read"
+        ]
+      },
+      {
+        "flow_id": "fees.claims",
+        "intent": "fees.processes.checks.part3",
+        "business_event": "FeeOrClaimRequested",
+        "utterances": [
+          "por qué me cobraron una comisión por descubierto",
+          "como gestiono un reclamo",
+          "que comisiones aplica la cuenta"
+        ],
+        "ontology_nodes": [
+          "Claim",
+          "Reconciliation",
+          "Fee"
+        ],
+        "user_tasks": [
+          "identify_customer",
+          "manage_claim",
+          "approve_business_case"
+        ],
+        "front_actions": [
+          "ui.customer.search_submit",
+          "ui.claim.submit",
+          "ui.approval.decision_submit"
+        ],
+        "back_actions": [
+          "customer.identity.validate",
+          "customer.read",
+          "transaction.reconcile",
+          "claim.create",
+          "billing.read",
+          "approval.update"
+        ]
+      },
+      {
+        "flow_id": "glossary.savings",
+        "intent": "glossary.savings.generated",
+        "business_event": "GlossaryLookupRequested",
+        "utterances": [
+          "tasa de interes",
+          "CBU",
+          "ahorro",
+          "cuenta de ahorro",
+          "clave bancaria uniforme"
+        ],
+        "ontology_nodes": [
+          "Term",
+          "Glossary"
+        ],
+        "user_tasks": [
+          "review_glossary_terms"
+        ],
+        "front_actions": [
+          "ui.glossary.search"
+        ],
+        "back_actions": [
+          "glossary.read"
+        ]
+      },
+      {
+        "flow_id": "loan.disbursement",
+        "intent": "loan.disbursement",
+        "business_event": "LoanDisbursementRequested",
+        "utterances": [
+          "solicitar desembolso",
+          "cuando desembolsan mi credito",
+          "desembolsar prestamo"
+        ],
+        "ontology_nodes": [
+          "Customer",
+          "LoanConditions",
+          "Disbursement",
+          "Loan"
+        ],
+        "user_tasks": [
+          "review_loan_status",
+          "approve_business_case",
+          "disburse_loan",
+          "identify_customer"
+        ],
+        "front_actions": [
+          "ui.loan_status.open",
+          "ui.approval.decision_submit",
+          "ui.disbursement.submit",
+          "ui.customer.search_submit"
+        ],
+        "back_actions": [
+          "loan.status.summarize",
+          "loan.read",
+          "approval.update",
+          "disbursement.create",
+          "notification.send",
+          "disbursement.conditions.validate",
+          "customer.identity.validate",
+          "customer.read"
+        ]
+      },
+      {
+        "flow_id": "loan.domain.consumer",
+        "intent": "loan.domain.consumer.large",
+        "business_event": "LoanDomainQuestionAsked",
+        "utterances": [
+          "cuanto puedo pedir prestado",
+          "como refinancio mi prestamo",
+          "como pago mi prestamo",
+          "que pasa si me atraso en un pago"
+        ],
+        "ontology_nodes": [
+          "CreditHistory",
+          "RepaymentSchedule",
+          "Collateral",
+          "Loan"
+        ],
+        "user_tasks": [
+          "review_refinance_options",
+          "collect_loan_application",
+          "evaluate_loan_application",
+          "review_loan_status"
+        ],
+        "front_actions": [
+          "ui.refinance.calculate",
+          "ui.loan_application.submit",
+          "ui.loan.evaluate",
+          "ui.loan_status.open"
+        ],
+        "back_actions": [
+          "loan.read",
+          "loan.conditions.calculate",
+          "loan_refinance.compare",
+          "income.verify",
+          "loan_application.create",
+          "scoring.evaluate",
+          "loan.eligibility.calculate",
+          "financial_ratios.dti.calculate"
+        ]
+      }
+    ]
+  },
+  "langchain_llm": {
+    "provider": "langchain_graph_rag_llm",
+    "prompt": "Customer question:\nQuiero refinanciar mi prestamo\n\nValid banking graph context follows. These are the only allowed flows, user tasks, front actions, and back actions:\nflow_id: backend.operations\nflow_name: Backend Operations\nintent: backend.operations.executors.part4\nbusiness_event: BackendOperationRequested\nutterances: como se conectan los sistemas para sincronizar saldos, cuales son los endpoints del backend, que apis usan para crear cuentas\nontology_nodes: Executor, API, Integration\nuser_tasks: execute_backend_operation\nfront_actions: ui.backend_operation.run\nback_actions: api.transaction.post, api.customer.get, integration.sync, api.account.create\nexplanation: Backend operations describe executor/API orchestration for technical processes.\n\n---\n\nflow_id: credit_note.issue\nflow_name: Credit Note Issuance\nintent: credit_note.issue\nbusiness_event: CreditNoteIssueRequested\nutterances: emitir nota credito, necesito una nota de credito, generar nota credito\nontology_nodes: CreditNote, SavingsAccount, Transaction, Customer\nuser_tasks: approve_business_case, issue_credit_note, identify_customer\nfront_actions: ui.approval.decision_submit, ui.credit_note.submit, ui.customer.search_submit\nback_actions: approval.update, account.read, credit_note.create, customer.identity.validate, customer.read\nexplanation: Credit note issuance is a transaction flow for account adjustment.\n\n---\n\nflow_id: customer.onboarding\nflow_name: Customer Onboarding\nintent: customer.onboarding\nbusiness_event: CustomerOnboardingRequested\nutterances: alta de cliente, registrar nuevo cliente, quiero ser cliente\nontology_nodes: Customer, CustomerConditions\nuser_tasks: handle_customer_onboarding, approve_business_case, collect_customer_documents, run_kyc_screening\nfront_actions: ui.onboarding.submit, ui.approval.decision_submit, ui.documents.upload, ui.kyc.run\nback_actions: customer.create, customer.conditions.validate, approval.update, document.create, document.verify, kyc.screen\nexplanation: Customer onboarding creates a customer profile and validates documents and conditions.\n\n---\n\nflow_id: debit_note.issue\nflow_name: Debit Note Issuance\nintent: debit_note.issue\nbusiness_event: DebitNoteIssueRequested\nutterances: generar nota debito, emitir nota debito, necesito una nota de debito\nontology_nodes: SavingsAccount, Transaction, Customer, DebitNote\nuser_tasks: approve_business_case, issue_debit_note, identify_customer\nfront_actions: ui.approval.decision_submit, ui.debit_note.submit, ui.customer.search_submit\nback_actions: approval.update, account.read, debit_note.create, customer.identity.validate, customer.read\nexplanation: Debit note issuance is a transaction flow for account adjustment.\n\n---\n\nflow_id: fees.claims\nflow_name: Fees And Claims Handling\nintent: fees.processes.checks.part3\nbusiness_event: FeeOrClaimRequested\nutterances: por qué me cobraron una comisión por descubierto, como gestiono un reclamo, que comisiones aplica la cuenta\nontology_nodes: Claim, Reconciliation, Fee\nuser_tasks: identify_customer, manage_claim, approve_business_case\nfront_actions: ui.customer.search_submit, ui.claim.submit, ui.approval.decision_submit\nback_actions: customer.identity.validate, customer.read, transaction.reconcile, claim.create, billing.read, approval.update\nexplanation: Fee and claim handling registers the customer's request and runs billing/reconciliation actions.\n\n---\n\nflow_id: glossary.savings\nflow_name: Savings Glossary Lookup\nintent: glossary.savings.generated\nbusiness_event: GlossaryLookupRequested\nutterances: tasa de interes, CBU, ahorro, cuenta de ahorro, clave bancaria uniforme, cuenta de ahorros, interes\nontology_nodes: Term, Glossary\nuser_tasks: review_glossary_terms\nfront_actions: ui.glossary.search\nback_actions: glossary.read\nexplanation: Glossary lookup explains savings terms from the raw glossary.\n\n---\n\nflow_id: loan.disbursement\nflow_name: Loan Disbursement\nintent: loan.disbursement\nbusiness_event: LoanDisbursementRequested\nutterances: solicitar desembolso, cuando desembolsan mi credito, desembolsar prestamo\nontology_nodes: Customer, LoanConditions, Disbursement, Loan\nuser_tasks: review_loan_status, approve_business_case, disburse_loan, identify_customer\nfront_actions: ui.loan_status.open, ui.approval.decision_submit, ui.disbursement.submit, ui.customer.search_submit\nback_actions: loan.status.summarize, loan.read, approval.update, disbursement.create, notification.send, disbursement.conditions.validate, customer.identity.validate, customer.read\nexplanation: Disbursement validates approved loan conditions before executing the transaction.\n\n---\n\nflow_id: loan.domain.consumer\nflow_name: Consumer Loan Domain Support\nintent: loan.domain.consumer.large\nbusiness_event: LoanDomainQuestionAsked\nutterances: cuanto puedo pedir prestado, como refinancio mi prestamo, como pago mi prestamo, que pasa si me atraso en un pago\nontology_nodes: CreditHistory, RepaymentSchedule, Collateral, Loan\nuser_tasks: review_refinance_options, collect_loan_application, evaluate_loan_application, review_loan_status\nfront_actions: ui.refinance.calculate, ui.loan_application.submit, ui.loan.evaluate, ui.loan_status.open\nback_actions: loan.read, loan.conditions.calculate, loan_refinance.compare, income.verify, loan_application.create, scoring.evaluate, loan.eligibility.calculate, financial_ratios.dti.calculate, credit_history.read, loan.status.summarize\nexplanation: Broad loan support can route to status, application, eligibility, or refinance tasks.\n\n---\n\nflow_id: loan.evaluation\nflow_name: Loan Evaluation\nintent: loan.evaluation.processes.part2\nbusiness_event: LoanEvaluationRequested\nutterances: qué es el DTI y como se usa, como evalúan la elegibilidad de un préstamo, requisitos para refinanciación\nontology_nodes: LoanApplication, DTI, CreditScore\nuser_tasks: evaluate_loan_application, collect_loan_application, approve_business_case\nfront_actions: ui.loan.evaluate, ui.loan_application.submit, ui.approval.decision_submit\nback_actions: scoring.evaluate, loan.eligibility.calculate, financial_ratios.dti.calculate, credit_history.read, income.verify, loan_application.create, approval.update\nexplanation: Loan evaluation is a process flow; DTI and scoring are backend actions in evaluation.\n\n---\n\nflow_id: loan.inquiry\nflow_name: Loan Status Inquiry\nintent: loan.inquiry\nbusiness_event: LoanInformationRequested\nutterances: ver mi credito, consultar prestamo, quiero informacion de mi prestamo\nontology_nodes: Loan, LoanConditions, Customer\nuser_tasks: review_loan_status, identify_customer\nfront_actions: ui.loan_status.open, ui.customer.search_submit\nback_actions: loan.status.summarize, loan.read, customer.identity.validate, customer.read\nexplanation: Loan inquiry is a read-only flow to identify the customer and show loan status.\n\n---\n\nflow_id: loan.payment\nflow_name: Loan Payment\nintent: loan.payment\nbusiness_event: LoanPaymentRequested\nutterances: quiero pagar mi prestamo, pagar cuota, hacer pago de credito\nontology_nodes: Transaction, Payment, Customer, Loan\nuser_tasks: approve_business_case, make_loan_payment, identify_customer\nfront_actions: ui.approval.decision_submit, ui.loan_payment.submit, ui.customer.search_submit\nback_actions: approval.update, payment.create, loan.read, notification.send, account.balance.validate, customer.identity.validate, customer.read\nexplanation: Loan payment is a transaction flow that validates funds and posts a payment.\n\n---\n\nflow_id: loan.refinance\nflow_name: Loan Refinance\nintent: loan.refinance\nbusiness_event: LoanRefinancingRequested\nutterances: bajar cuota, refinanciar prestamo, necesito mejores condiciones para mi credito, quiero bajar la cuota de mi prestamo, quiero refinanciar mi prestamo\nontology_nodes: CustomerConditions, LoanConditions, LoanRefinance, Loan, Customer\nuser_tasks: approve_business_case, prepare_refinance_request, review_refinance_options, review_loan_status, identify_customer\nfront_actions: ui.approval.decision_submit, ui.refinance.submit, ui.refinance.calculate, ui.loan_status.open, ui.customer.search_submit\nback_actions: approval.update, loan_refinance.create, loan.read, loan.conditions.calculate, loan_refinance.compare, loan.status.summarize, customer.identity.validate, customer.read\nexplanation: Refinance is a business flow; calculations are backend actions inside refinance review, not user tasks.\n\n---\n\nflow_id: loan.request\nflow_name: Loan Application And Origination\nintent: loan.request.generated\nbusiness_event: LoanRequestSubmitted\nutterances: como solicito un prestamo, quiero solicitar un prestamo, necesito un prestamo personal, solicitud de credito\nontology_nodes: Loan, LoanApplication, LoanProposal, Customer, CreditHistory, RepaymentSchedule\nuser_tasks: approve_business_case, collect_loan_application, evaluate_loan_application, identify_customer, prepare_loan_proposal\nfront_actions: ui.approval.decision_submit, ui.loan_application.submit, ui.loan.evaluate, ui.customer.search_submit, ui.loan_proposal.prepare\nback_actions: approval.update, income.verify, loan_application.create, scoring.evaluate, loan.eligibility.calculate, financial_ratios.dti.calculate, credit_history.read, customer.identity.validate, customer.read, repayment_schedule.create, loan.calculate\nexplanation: Loan origination includes application collection, credit evaluation, proposal preparation, and approval.\n\n---\n\nflow_id: money.transfer\nflow_name: Money Transfer\nintent: money.transfer\nbusiness_event: MoneyTransferRequested\nutterances: hacer transferencia con CBU, transferir desde mi cuenta de ahorro, quiero transferir dinero\nontology_nodes: Transaction, Customer, CBU, Transfer, SavingsAccount\nuser_tasks: approve_business_case, identify_customer, transfer_money\nfront_actions: ui.approval.decision_submit, ui.customer.search_submit, ui.transfer.form_submit\nback_actions: approval.update, customer.identity.validate, customer.read, customer.validate, transfer.create, account.balance.validate, notification.send\nexplanation: A transfer is a customer transaction flow with validation, balance check, transfer creation, and notification.\n\n---\n\nflow_id: savings.account.domain\nflow_name: Savings Account Domain Support\nintent: savings.account.domain.large\nbusiness_event: SavingsAccountDomainQuestionAsked\nutterances: que es CBU y como lo obtengo, como pedir un estado de cuenta, requisitos para abrir cuenta de ahorro, como hacer transferencia desde mi cuenta de ahorro\nontology_nodes: CBU, AccountOpening, SavingsAccount, Interest, Transfer, Statement\nuser_tasks: manage_account_operation, review_glossary_terms, transfer_money\nfront_actions: ui.account_operation.submit, ui.glossary.search, ui.transfer.form_submit\nback_actions: account.read, account_operation.create, glossary.read, customer.validate, transfer.create, account.balance.validate, notification.send\nexplanation: Broad savings support can route to glossary, account operations, or transfer flows.\n\n---\n\nflow_id: savings.operations\nflow_name: Savings Account Operations\nintent: savings.operations.glossary.part1\nbusiness_event: SavingsAccountOperationRequested\nutterances: qué es una cuenta inactiva, quiero activar domiciliación, como hago una conciliación, solicitar duplicado de estado de cuenta\nontology_nodes: Glossary, AccountOperation, Process\nuser_tasks: identify_customer, approve_business_case, manage_account_operation\nfront_actions: ui.customer.search_submit, ui.approval.decision_submit, ui.account_operation.submit\nback_actions: customer.identity.validate, customer.read, approval.update, account.read, account_operation.create\nexplanation: Savings operations are customer account processes such as duplicate statements and account changes.\n\n---\n\nflow_id: savings_account.open\nflow_name: Savings Account Opening\nintent: savings_account.open\nbusiness_event: SavingsAccountOpeningRequested\nutterances: quiero abrir una cuenta de ahorro, necesito una cuenta de ahorros, abrir cuenta\nontology_nodes: Transaction, CBU, Customer, AccountOpening, SavingsAccount\nuser_tasks: run_kyc_screening, collect_customer_documents, approve_business_case, create_savings_account, deposit_money, identify_customer\nfront_actions: ui.kyc.run, ui.documents.upload, ui.approval.decision_submit, ui.account.open_submit, ui.deposit.submit, ui.customer.search_submit\nback_actions: kyc.screen, document.create, document.verify, approval.update, account.create, account.cbu.assign, notification.send, transaction.create, account.read, customer.identity.validate, customer.read\nexplanation: Account opening is a business flow composed of identification, documents, KYC, account creation, initial deposit, and approval.\n\n---\n\nflow_id: utterance.intent.matching\nflow_name: Utterance Intent Matching\nintent: utterances.templates.part5\nbusiness_event: IntentMatchingRequested\nutterances: Puedo pagar mi cuota con tarjeta de debito, Que documentos necesito para refinanciar mi prestamo, Quiero abrir una cuenta de ahorro con CBU\nontology_nodes: Intent, Template, Utterance\nuser_tasks: match_customer_intent\nfront_actions: ui.intent.test\nback_actions: intent.match, utterance.normalize, response.generate\nexplanation: Intent matching normalizes user phrases and maps them to known flows.\n\nReturn only JSON with this exact shape:\n{\n  \"can_resolve\": true|false,\n  \"selected_flow_id\": \"flow_id or unknown\",\n  \"confidence\": 0.0,\n  \"reason\": \"short explanation grounded in graph context\"\n}\n\nRules:\n- If no flow clearly matches the question, return can_resolve=false and selected_flow_id=unknown.\n- If a flow matches, selected_flow_id must be exactly one flow_id from the graph context.\n- Do not propose tasks or actions that are not in the graph context.\n",
+    "prompt_summary": {
+      "chars": 13632,
+      "preview": "Customer question:\nQuiero refinanciar mi prestamo\n\nValid banking graph context follows. These are the only allowed flows, user tasks, front actions, and back actions:\nflow_id: backend.operations\nflow_name: Backend Operations\nintent: backend.operations.executors.part4\nbusiness_event: BackendOperationRequested\nutterances: como se conectan los sistemas para sincronizar saldos, cuales son los endpoints del backend, que apis usan para crear cuentas\nontology_nodes: Executor, API, Integration\nuser_tasks: execute_backend_operation\nfront_actions: ui.backend_operation.run\nback_actions: api.transaction.post, api.customer.get, integration.sync, api.account.create\nexplanation: Backend operations describe executor/API orchestration for technical processes.\n\n---\n\nflow_id: credit_note.issue\nflow_name: Credit Note Issuance\nintent: credit_note.issue\nbusiness_event: CreditNoteIssueRequested\nutterances: emitir nota credito, necesito una nota de credito, generar nota credito\nontology_nodes: CreditNote, SavingsAccount, Transaction, Customer\nuser_tasks: approve_business_case, issue_credit_note, identify_customer\nfront_actions: ui.approval.decision_submit, ui.credit_note.submit, ui.customer.search_submit\n"
+    },
+    "answer": {
+      "can_resolve": true,
+      "selected_flow_id": "loan.refinance",
+      "confidence": 1.0,
+      "reason": "The user wants to refinance their loan, which directly maps to the loan.refinance flow. The utterance 'Quiero refinanciar mi prestamo' is present in the utterances for this flow."
+    },
+    "reason": "The user wants to refinance their loan, which directly maps to the loan.refinance flow. The utterance 'Quiero refinanciar mi prestamo' is present in the utterances for this flow."
+  },
+  "selected_flow": {
+    "flow_id": "loan.refinance",
+    "flow_name": "Loan Refinance",
+    "intent": "loan.refinance",
+    "confidence": 1.0,
+    "business_event": "LoanRefinancingRequested",
+    "source": "/app/data/flows/loan_refinance.flow.json"
+  },
+  "flow_context": {
+    "business_event": "LoanRefinancingRequested",
+    "plan": [
+      "identify_customer",
+      "review_loan_status",
+      "review_refinance_options",
+      "prepare_refinance_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "identify_customer",
+        "type": "user_task"
+      },
+      {
+        "task": "review_loan_status",
+        "type": "user_task"
+      },
+      {
+        "task": "review_refinance_options",
+        "type": "user_task"
+      },
+      {
+        "task": "prepare_refinance_request",
+        "type": "user_task"
+      },
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [
+      "loan.read",
+      "loan.conditions.calculate",
+      "loan_refinance.compare",
+      "loan_refinance.create",
+      "ui.customer.search_submit",
+      "customer.read",
+      "customer.identity.validate",
+      "ui.loan_status.open",
+      "loan.status.summarize",
+      "ui.refinance.calculate",
+      "ui.refinance.submit",
+      "ui.approval.decision_submit",
+      "approval.update"
+    ],
+    "related_ontology_nodes": [
+      "Customer",
+      "Loan",
+      "LoanRefinance",
+      "LoanConditions",
+      "CustomerConditions"
+    ]
+  },
+  "result": {
+    "can_resolve": true,
+    "flow_id": "loan.refinance",
+    "flow_name": "Loan Refinance",
+    "intent": "loan.refinance",
+    "confidence": 1.0,
+    "business_event": "LoanRefinancingRequested",
+    "requires_human_approval": true,
+    "plan": [
+      "identify_customer",
+      "review_loan_status",
+      "review_refinance_options",
+      "prepare_refinance_request",
+      "approve_business_case"
+    ],
+    "tasks": [
+      {
+        "task": "identify_customer",
+        "type": "user_task"
+      },
+      {
+        "task": "review_loan_status",
+        "type": "user_task"
+      },
+      {
+        "task": "review_refinance_options",
+        "type": "user_task"
+      },
+      {
+        "task": "prepare_refinance_request",
+        "type": "user_task"
+      },
+      {
+        "task": "approve_business_case",
+        "type": "approval"
+      }
+    ],
+    "related_capabilities": [
+      "loan.read",
+      "loan.conditions.calculate",
+      "loan_refinance.compare",
+      "loan_refinance.create",
+      "ui.customer.search_submit",
+      "customer.read",
+      "customer.identity.validate",
+      "ui.loan_status.open",
+      "loan.status.summarize",
+      "ui.refinance.calculate",
+      "ui.refinance.submit",
+      "ui.approval.decision_submit",
+      "approval.update"
+    ],
+    "related_ontology_nodes": [
+      "Customer",
+      "Loan",
+      "LoanRefinance",
+      "LoanConditions",
+      "CustomerConditions"
+    ],
+    "explanation": "GraphRAG LLM decision: The user wants to refinance their loan, which directly maps to the loan.refinance flow. The utterance 'Quiero refinanciar mi prestamo' is present in the utterances for this flow."
+  }
+}

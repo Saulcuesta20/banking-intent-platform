@@ -1,0 +1,50 @@
+{
+  "flow_id": "savings.account.domain",
+  "flow_name": "Savings Account Domain Support",
+  "intent": "savings.account.domain.large",
+  "business_event": "SavingsAccountDomainQuestionAsked",
+  "confidence": 0.78,
+  "utterances": [
+    "requisitos para abrir cuenta de ahorro",
+    "que es CBU y como lo obtengo",
+    "como hacer transferencia desde mi cuenta de ahorro",
+    "como pedir un estado de cuenta"
+  ],
+  "plan": [
+    "review_glossary_terms",
+    "manage_account_operation",
+    "transfer_money"
+  ],
+  "user_task_refs": [
+    "review_glossary_terms",
+    "manage_account_operation",
+    "transfer_money"
+  ],
+  "capabilities": [
+    "glossary.read",
+    "account.read",
+    "account_operation.create",
+    "transfer.create"
+  ],
+  "ontology_nodes": [
+    "SavingsAccount",
+    "AccountOpening",
+    "CBU",
+    "Statement",
+    "Interest",
+    "Transfer"
+  ],
+  "explanation": "Broad savings support can route to glossary, account operations, or transfer flows.",
+  "source": "data/raw/savings_loans_domain_raw.txt;data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt;data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt;data/raw/savings_loans_domain_extra5.txt;data/raw/savings_glossary.csv",
+  "metadata": {
+    "generated_from_raw_sources": [
+      "data/raw/savings_loans_domain_raw.txt",
+      "data/raw/savings_loans_domain_extra1.txt",
+      "data/raw/savings_loans_domain_extra2.txt",
+      "data/raw/savings_loans_domain_extra3.txt",
+      "data/raw/savings_loans_domain_extra4.txt",
+      "data/raw/savings_loans_domain_extra5.txt",
+      "data/raw/savings_glossary.csv"
+    ]
+  }
+}

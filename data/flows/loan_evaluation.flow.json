@@ -1,0 +1,46 @@
+{
+  "flow_id": "loan.evaluation",
+  "flow_name": "Loan Evaluation",
+  "intent": "loan.evaluation.processes.part2",
+  "business_event": "LoanEvaluationRequested",
+  "confidence": 0.77,
+  "utterances": [
+    "qué es el DTI y como se usa",
+    "requisitos para refinanciación",
+    "como evalúan la elegibilidad de un préstamo"
+  ],
+  "plan": [
+    "collect_loan_application",
+    "evaluate_loan_application",
+    "approve_business_case"
+  ],
+  "user_task_refs": [
+    "collect_loan_application",
+    "evaluate_loan_application",
+    "approve_business_case"
+  ],
+  "capabilities": [
+    "loan_application.create",
+    "financial_ratios.dti.calculate",
+    "credit_history.read",
+    "scoring.evaluate"
+  ],
+  "ontology_nodes": [
+    "LoanApplication",
+    "DTI",
+    "CreditScore"
+  ],
+  "explanation": "Loan evaluation is a process flow; DTI and scoring are backend actions in evaluation.",
+  "source": "data/raw/savings_loans_domain_raw.txt;data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt;data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt;data/raw/savings_loans_domain_extra5.txt;data/raw/savings_glossary.csv",
+  "metadata": {
+    "generated_from_raw_sources": [
+      "data/raw/savings_loans_domain_raw.txt",
+      "data/raw/savings_loans_domain_extra1.txt",
+      "data/raw/savings_loans_domain_extra2.txt",
+      "data/raw/savings_loans_domain_extra3.txt",
+      "data/raw/savings_loans_domain_extra4.txt",
+      "data/raw/savings_loans_domain_extra5.txt",
+      "data/raw/savings_glossary.csv"
+    ]
+  }
+}

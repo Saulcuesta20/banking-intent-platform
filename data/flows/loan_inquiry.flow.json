@@ -1,0 +1,43 @@
+{
+  "flow_id": "loan.inquiry",
+  "flow_name": "Loan Status Inquiry",
+  "intent": "loan.inquiry",
+  "business_event": "LoanInformationRequested",
+  "confidence": 0.82,
+  "utterances": [
+    "quiero informacion de mi prestamo",
+    "ver mi credito",
+    "consultar prestamo"
+  ],
+  "plan": [
+    "identify_customer",
+    "review_loan_status"
+  ],
+  "user_task_refs": [
+    "identify_customer",
+    "review_loan_status"
+  ],
+  "capabilities": [
+    "customer.read",
+    "loan.read",
+    "loan.status.summarize"
+  ],
+  "ontology_nodes": [
+    "Customer",
+    "Loan",
+    "LoanConditions"
+  ],
+  "explanation": "Loan inquiry is a read-only flow to identify the customer and show loan status.",
+  "source": "data/raw/savings_loans_domain_raw.txt;data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt;data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt;data/raw/savings_loans_domain_extra5.txt;data/raw/savings_glossary.csv",
+  "metadata": {
+    "generated_from_raw_sources": [
+      "data/raw/savings_loans_domain_raw.txt",
+      "data/raw/savings_loans_domain_extra1.txt",
+      "data/raw/savings_loans_domain_extra2.txt",
+      "data/raw/savings_loans_domain_extra3.txt",
+      "data/raw/savings_loans_domain_extra4.txt",
+      "data/raw/savings_loans_domain_extra5.txt",
+      "data/raw/savings_glossary.csv"
+    ]
+  }
+}

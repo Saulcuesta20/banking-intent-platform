@@ -1,0 +1,45 @@
+{
+  "flow_id": "savings.operations",
+  "flow_name": "Savings Account Operations",
+  "intent": "savings.operations.glossary.part1",
+  "business_event": "SavingsAccountOperationRequested",
+  "confidence": 0.76,
+  "utterances": [
+    "qué es una cuenta inactiva",
+    "quiero activar domiciliación",
+    "solicitar duplicado de estado de cuenta",
+    "como hago una conciliación"
+  ],
+  "plan": [
+    "identify_customer",
+    "manage_account_operation",
+    "approve_business_case"
+  ],
+  "user_task_refs": [
+    "identify_customer",
+    "manage_account_operation",
+    "approve_business_case"
+  ],
+  "capabilities": [
+    "account.read",
+    "account_operation.create"
+  ],
+  "ontology_nodes": [
+    "Glossary",
+    "Process",
+    "AccountOperation"
+  ],
+  "explanation": "Savings operations are customer account processes such as duplicate statements and account changes.",
+  "source": "data/raw/savings_loans_domain_raw.txt;data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt;data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt;data/raw/savings_loans_domain_extra5.txt;data/raw/savings_glossary.csv",
+  "metadata": {
+    "generated_from_raw_sources": [
+      "data/raw/savings_loans_domain_raw.txt",
+      "data/raw/savings_loans_domain_extra1.txt",
+      "data/raw/savings_loans_domain_extra2.txt",
+      "data/raw/savings_loans_domain_extra3.txt",
+      "data/raw/savings_loans_domain_extra4.txt",
+      "data/raw/savings_loans_domain_extra5.txt",
+      "data/raw/savings_glossary.csv"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "flow_id": "loan.domain.consumer",
+  "flow_name": "Consumer Loan Domain Support",
+  "intent": "loan.domain.consumer.large",
+  "business_event": "LoanDomainQuestionAsked",
+  "confidence": 0.78,
+  "utterances": [
+    "cuanto puedo pedir prestado",
+    "como pago mi prestamo",
+    "como refinancio mi prestamo",
+    "que pasa si me atraso en un pago"
+  ],
+  "plan": [
+    "review_loan_status",
+    "collect_loan_application",
+    "evaluate_loan_application",
+    "review_refinance_options"
+  ],
+  "user_task_refs": [
+    "review_loan_status",
+    "collect_loan_application",
+    "evaluate_loan_application",
+    "review_refinance_options"
+  ],
+  "capabilities": [
+    "loan.read",
+    "loan_application.create",
+    "loan.eligibility.calculate",
+    "loan.conditions.calculate"
+  ],
+  "ontology_nodes": [
+    "Loan",
+    "CreditHistory",
+    "Collateral",
+    "RepaymentSchedule"
+  ],
+  "explanation": "Broad loan support can route to status, application, eligibility, or refinance tasks.",
+  "source": "data/raw/savings_loans_domain_raw.txt;data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt;data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt;data/raw/savings_loans_domain_extra5.txt;data/raw/savings_glossary.csv",
+  "metadata": {
+    "generated_from_raw_sources": [
+      "data/raw/savings_loans_domain_raw.txt",
+      "data/raw/savings_loans_domain_extra1.txt",
+      "data/raw/savings_loans_domain_extra2.txt",
+      "data/raw/savings_loans_domain_extra3.txt",
+      "data/raw/savings_loans_domain_extra4.txt",
+      "data/raw/savings_loans_domain_extra5.txt",
+      "data/raw/savings_glossary.csv"
+    ]
+  }
+}

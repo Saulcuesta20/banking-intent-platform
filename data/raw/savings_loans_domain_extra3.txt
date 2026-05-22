@@ -1,0 +1,28 @@
+Glosario Extendido - Ahorros y Préstamos (Parte 3)
+
+Reglas de tarifas y comisiones:
+- Comisión por manejo de cuenta: aplicable mensualmente si el saldo promedio cae bajo umbral.
+- Comisión por transferencia urgente: tarifa fija por transferencias con prioridad.
+- Comisión por descubierto: porcentaje sobre el monto sobregirado.
+
+Procesos de atención:
+1) Gestión de reclamos:
+   - Recepción del reclamo en canales (phone, mail, sucursal).
+   - Revisión documental y conciliación de movimientos.
+   - Resolución y comunicación al cliente en 7 días hábiles.
+2) Reexpedición de tarjeta:
+   - Verificar identidad.
+   - Bloquear tarjeta anterior.
+   - Emitir y enviar nueva tarjeta.
+
+Políticas de riesgo:
+- Clientes con score bajo requieren co-deudor o colateral.
+- Límites de exposición por cliente por tipo de producto.
+
+Tareas operativas (ejemplos nombrables como tasks para seeds):
+- customer.lookup
+- account.balance.check
+- transaction.list
+- loan.eligibility.calculate
+- loan.refinance.prepare
+- human.approval

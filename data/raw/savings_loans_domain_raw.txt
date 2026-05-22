@@ -1,0 +1,60 @@
+Savings Accounts and Loans - Domain Documentation
+
+Overview:
+This document provides a synthesized domain description for retail banking focused on savings accounts and consumer loans. It consolidates glossary terms, common processes, business rules, compliance notes, and example utterances for NLP intent creation.
+
+Glossary (sample):
+- Savings Account: A deposit account that earns interest, used for saving money.
+- Term Deposit: A time-bound deposit with fixed interest rate.
+- CBU: Clave Bancaria Uniforme, unique bank account identifier.
+- Interest Rate: The percentage paid by a bank on deposits or charged on loans.
+- APR: Annual Percentage Rate for loans, includes fees.
+- Collateral: Asset pledged to secure a loan.
+- Principal: The original sum borrowed or deposited.
+- Installment: Periodic payment toward loan principal and interest.
+
+Common Processes:
+1. Account Opening
+   - Customer identification
+   - Document collection (ID, proof of address, tax ID)
+   - Risk and KYC screening
+   - Account creation and CBU assignment
+   - Initial deposit and product enrollment
+
+2. Savings Account Maintenance
+   - Deposit and withdrawal processing
+   - Interest accrual and posting schedule
+   - Account statements generation
+   - Dormancy and closure procedures
+
+3. Loan Application and Origination
+   - Collect application details (amount, term, purpose)
+   - Verify identity and income
+   - Check credit history and scoring
+   - Calculate eligibility and propose terms
+   - Request human underwriter approval for borderline cases
+   - Disbursement and repayment schedule setup
+
+Business Rules (examples):
+- Minimum initial deposit for savings account: 100 units of currency.
+- Savings interest is compounded monthly and credited on the last business day.
+- Loan eligibility requires debt-to-income ratio below 40% unless supplemental collateral provided.
+- Loans above 50,000 require manual underwriting approval.
+
+Compliance Notes:
+- Collect and retain KYC documents for 5 years.
+- Ensure customer consent for electronic statements.
+
+Example Utterances (savings):
+- "Quiero abrir una cuenta de ahorro"
+- "Cómo puedo crear una cuenta para ahorrar?"
+- "Cuál es la tasa de interés para cuentas de ahorro?"
+- "Necesito cerrar mi cuenta de ahorros"
+
+Example Utterances (loans):
+- "Quiero solicitar un préstamo personal"
+- "Cuál es la tasa para préstamos a 12 meses?"
+- "Cómo refinancio mi préstamo?"
+- "Necesito pagar mi cuota de préstamo"
+
+End of synthesized domain raw text.

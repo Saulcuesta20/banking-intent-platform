@@ -1,0 +1,47 @@
+{
+  "flow_id": "loan.payment",
+  "flow_name": "Loan Payment",
+  "intent": "loan.payment",
+  "business_event": "LoanPaymentRequested",
+  "confidence": 0.85,
+  "utterances": [
+    "quiero pagar mi prestamo",
+    "pagar cuota",
+    "hacer pago de credito"
+  ],
+  "plan": [
+    "identify_customer",
+    "make_loan_payment",
+    "approve_business_case"
+  ],
+  "user_task_refs": [
+    "identify_customer",
+    "make_loan_payment",
+    "approve_business_case"
+  ],
+  "capabilities": [
+    "loan.read",
+    "account.balance.validate",
+    "payment.create",
+    "notification.send"
+  ],
+  "ontology_nodes": [
+    "Customer",
+    "Loan",
+    "Payment",
+    "Transaction"
+  ],
+  "explanation": "Loan payment is a transaction flow that validates funds and posts a payment.",
+  "source": "data/raw/savings_loans_domain_raw.txt;data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt;data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt;data/raw/savings_loans_domain_extra5.txt;data/raw/savings_glossary.csv",
+  "metadata": {
+    "generated_from_raw_sources": [
+      "data/raw/savings_loans_domain_raw.txt",
+      "data/raw/savings_loans_domain_extra1.txt",
+      "data/raw/savings_loans_domain_extra2.txt",
+      "data/raw/savings_loans_domain_extra3.txt",
+      "data/raw/savings_loans_domain_extra4.txt",
+      "data/raw/savings_loans_domain_extra5.txt",
+      "data/raw/savings_glossary.csv"
+    ]
+  }
+}

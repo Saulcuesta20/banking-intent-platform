@@ -1,0 +1,29 @@
+Glosario Extendido - Ahorros y Préstamos (Parte 2)
+
+Términos operativos:
+- Anticipo de haberes: adelanto de parte del salario.
+- Aval: garantía personal que respalda una obligación crediticia.
+- Beneficio por paquete bancario: descuentos o bonificaciones por producto combinado.
+- Capitalización: proceso de sumar intereses al capital.
+- Clave de seguridad: credenciales para operar canales digitales.
+
+Procesos detallados:
+1) Evaluación de elegibilidad de préstamo:
+   - Recopilar ingresos y documentos.
+   - Calcular DTI (debt-to-income ratio).
+   - Consultar buró de crédito.
+   - Aplicar reglas de scoring y límites.
+2) Refinanciación de un préstamo:
+   - Obtener condiciones actuales del cliente.
+   - Calcular nuevo cronograma y costos asociados.
+   - Comparar ahorro neto vs. costos de reestructuración.
+
+Reglas de negocio específicas:
+- Las cuotas pueden pagarse por débito automático o transferencia.
+- Penalidades por mora se aplican desde el primer día hábil de atraso.
+- Los préstamos con colateral requieren tasación previa.
+
+Acciones de usuarios (ejemplos):
+- Solicitar cambio de titularidad de la cuenta.
+- Solicitar aumento de límite de crédito.
+- Iniciar reclamo por débito no reconocido.

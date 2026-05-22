@@ -1,0 +1,42 @@
+{
+  "flow_id": "backend.operations",
+  "flow_name": "Backend Operations",
+  "intent": "backend.operations.executors.part4",
+  "business_event": "BackendOperationRequested",
+  "confidence": 0.72,
+  "utterances": [
+    "cuales son los endpoints del backend",
+    "que apis usan para crear cuentas",
+    "como se conectan los sistemas para sincronizar saldos"
+  ],
+  "plan": [
+    "execute_backend_operation"
+  ],
+  "user_task_refs": [
+    "execute_backend_operation"
+  ],
+  "capabilities": [
+    "api.customer.get",
+    "api.account.create",
+    "api.transaction.post",
+    "integration.sync"
+  ],
+  "ontology_nodes": [
+    "API",
+    "Executor",
+    "Integration"
+  ],
+  "explanation": "Backend operations describe executor/API orchestration for technical processes.",
+  "source": "data/raw/savings_loans_domain_raw.txt;data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt;data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt;data/raw/savings_loans_domain_extra5.txt;data/raw/savings_glossary.csv",
+  "metadata": {
+    "generated_from_raw_sources": [
+      "data/raw/savings_loans_domain_raw.txt",
+      "data/raw/savings_loans_domain_extra1.txt",
+      "data/raw/savings_loans_domain_extra2.txt",
+      "data/raw/savings_loans_domain_extra3.txt",
+      "data/raw/savings_loans_domain_extra4.txt",
+      "data/raw/savings_loans_domain_extra5.txt",
+      "data/raw/savings_glossary.csv"
+    ]
+  }
+}

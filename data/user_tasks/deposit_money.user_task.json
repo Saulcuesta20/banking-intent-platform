@@ -1,0 +1,40 @@
+{
+  "user_task_id": "deposit_money",
+  "task": "deposit_money",
+  "type": "user_task",
+  "name": "Deposit Money",
+  "description": "Receive and post money into an account.",
+  "front_actions": [
+    {
+      "action": "ui.deposit.submit",
+      "type": "front_action",
+      "operation": "create",
+      "resource": "transaction",
+      "label": "Deposit money",
+      "triggers": "transaction.create"
+    }
+  ],
+  "back_actions": [
+    {
+      "action": "account.read",
+      "type": "back_action",
+      "operation": "read",
+      "resource": "account",
+      "description": "Read target account."
+    },
+    {
+      "action": "transaction.create",
+      "type": "back_action",
+      "operation": "create",
+      "resource": "transaction",
+      "description": "Post deposit transaction."
+    },
+    {
+      "action": "notification.send",
+      "type": "back_action",
+      "operation": "notify",
+      "resource": "notification",
+      "description": "Notify the customer."
+    }
+  ]
+}
