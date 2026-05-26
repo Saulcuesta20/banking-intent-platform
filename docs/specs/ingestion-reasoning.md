@@ -1,7 +1,7 @@
 # Ingestion Reasoning
 
 ## Purpose
-Use agentic reasoning during knowledge ingestion to recommend grounded flows, reusable user tasks, front actions, back actions, ontology nodes, and utterances before deterministic validation.
+Use agentic reasoning during knowledge ingestion to recommend grounded flows, reusable user tasks, front actions, back actions, concepts, and utterances before deterministic validation.
 
 ## Responsibilities
 - Analyze raw corpus content before normalized flow generation.
@@ -20,7 +20,7 @@ Use agentic reasoning during knowledge ingestion to recommend grounded flows, re
 - Flow/user-task/action validators
 
 ## Data Flow
-Raw corpus files are loaded by `CorpusFlowLoader`, summarized, and passed to an ingestion reasoning provider. The reasoning provider returns agent findings such as business events, candidate flows, reusable user tasks, action boundaries, ontology concepts, ambiguity notes, and validation warnings. Those findings are added to the LLM extraction prompt. The extractor then produces normalized JSON, and deterministic validators approve or reject it before the pipeline writes `data/flows`, `data/user_tasks`, and `data/action_registry`.
+Raw corpus files are loaded by `CorpusFlowLoader`, summarized, and passed to an ingestion reasoning provider. The reasoning provider returns agent findings such as business events, candidate flows, reusable user tasks, action boundaries, concepts, ambiguity notes, and validation warnings. Those findings are added to the LLM extraction prompt. The extractor then produces normalized JSON, and deterministic validators approve or reject it before the pipeline writes `data/flows`, `data/user_tasks`, and `data/action_registry`.
 
 ## Agent Roles
 | Agent | Responsibility |
@@ -29,7 +29,7 @@ Raw corpus files are loaded by `CorpusFlowLoader`, summarized, and passed to an 
 | `FlowDesignerAgent` | Proposes complete business flows only when the corpus supports the end-to-end process. |
 | `TaskDecomposerAgent` | Converts business steps into reusable `user_tasks`. |
 | `ActionExtractorAgent` | Separates UI `front_actions` from system/API `back_actions`. |
-| `OntologyAgent` | Attaches domain concepts that help retrieval and explanation. |
+| `ConceptAgent` | Attaches domain concepts that help retrieval and explanation. |
 | `ValidatorAgent` | Rejects missing references, invalid schemas, unsupported actions, and backend operations disguised as user tasks. |
 
 ## Interfaces
@@ -38,7 +38,7 @@ Raw corpus files are loaded by `CorpusFlowLoader`, summarized, and passed to an 
 - `CorpusFlowLoader(..., reasoning_service=...)`
 
 ## Implementation Notes
-This component belongs under ingestion, not runtime ask question. Runtime uses `FlowAnswerContextService` to project already-created flow knowledge after a flow has been selected. Ingestion reasoning operates before the flow exists and is allowed to spend more LLM/agent effort because the result is reviewed, validated, versioned, and loaded into Neo4j before customer use.
+This component belongs under ingestion, not runtime ask question. Runtime uses `AnswerBuilder` to project already-created flow knowledge after a flow has been selected. Ingestion reasoning operates before the flow exists and is allowed to spend more LLM/agent effort because the result is reviewed, validated, versioned, and loaded into Neo4j before customer use.
 
 `RoleBasedIngestionReasoningProvider` models the same roles as deterministic guidance for local runs and tests. `AutoGenIngestionReasoningProvider` runs the real agents with AutoGen AgentChat using `AssistantAgent`, `RoundRobinGroupChat`, `MaxMessageTermination`, and `OpenAIChatCompletionClient`.
 

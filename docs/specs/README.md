@@ -20,19 +20,19 @@ For the runtime `ask` flow diagrams, including invoked classes and methods, see
 - Deterministic ingestion pipeline
 - LangGraph ingestion orchestration
 - Ingestion reasoning
-- Knowledge retrieval
-- Ontology service
+- Knowledge graph search
+- Concept vocabulary
 - Knowledge graph
-- Intent resolution
+- Ask flow selection
 - Ask question trace
-- Flow answer context projection
+- Ask answer building
 - Ingestion-time business event, planning, and task decomposition
 - Capability service
 - Approval service
 - Audit service
 
 ## Data Flow
-Natural Language -> LangGraph AskState Orchestration -> Query Understanding + Ontology Synonym Normalization -> GraphRAG Retrieval Service -> Neo4j Knowledge Graph -> LangChain-Constrained Intent Classification -> Flow Answer Context Projection -> Approval Service -> Audit Service -> Output JSON
+Natural Language -> AskService -> Question Understanding -> KnowledgeGraphService Search -> Flow Selection -> AnswerBuilder -> Approval -> Audit -> Output JSON
 
 ## Example Input/Output
 Input: `Quiero refinanciar mi prestamo`
@@ -53,10 +53,9 @@ Output:
 - `app/ingestion/pipeline.py::IngestionPipelineService`
 - `app/ingestion/pipeline.py::LangGraphIngestionPipelineService`
 - `app/ingestion/reasoning.py::IngestionReasoningProvider`
-- `app/retrieval/providers.py::KnowledgeRetrievalProvider`
-- `app/graph/providers.py::GraphRepository`
-- `app/intent/providers.py::SemanticReasoningProvider`
-- `app/flow_context/service.py::FlowAnswerContextService`
+- `app/knowledge_graph/providers.py::KnowledgeGraphRepository`
+- `app/ask/providers.py::FlowSelectionProvider`
+- `app/ask/answer.py::AnswerBuilder`
 - `app/capability/providers.py::CapabilityProvider`
 - `app/approval/providers.py::ApprovalProvider`
 - `app/audit/providers.py::AuditSink`
@@ -66,11 +65,11 @@ The operational path uses LangGraph ask orchestration, GraphRAG over Neo4j,
 LangChain prompt orchestration, and an OpenAI-compatible LLM. The runtime ask
 path requires those providers and does not resolve intent through a local
 non-LLM path. Ingestion uses a
-custom deterministic pipeline for scan, parse, validation, ontology synonym
+custom deterministic pipeline for scan, parse, validation, concept synonym
 normalization, artifact writing, audit, and graph loading. AutoGen may provide
 ingestion recommendations, but it does not own final JSON or Neo4j loading.
-Runtime does not create plans, tasks, events, or ontology; it projects ingested
-knowledge through `FlowAnswerContextService`. Each component keeps its own
+Runtime does not create plans, tasks, events, or concepts; it projects ingested
+knowledge through `AnswerBuilder`. Each component keeps its own
 service, provider protocol, and adapter under `app/<component>`.
 `app/factory.py` wires runtime services together but does not own component
 business logic.

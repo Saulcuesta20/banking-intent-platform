@@ -33,7 +33,7 @@
     "account.cbu.assign",
     "transaction.create"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Customer",
     "SavingsAccount",
     "AccountOpening",

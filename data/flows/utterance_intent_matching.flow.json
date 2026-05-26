@@ -20,7 +20,7 @@
     "intent.match",
     "response.generate"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Intent",
     "Utterance",
     "Template"

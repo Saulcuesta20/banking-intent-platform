@@ -17,10 +17,10 @@
   "capabilities": [
     "claim.create"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Claim"
   ],
-  "ontology_aliases": {
+  "concept_aliases": {
     "Claim": [
       "claim",
       "reclamo",

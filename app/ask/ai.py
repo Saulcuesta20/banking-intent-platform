@@ -7,7 +7,7 @@ import urllib.request
 from importlib import import_module
 from typing import Any, Protocol
 
-from app.intent.providers import SemanticReasoningProvider
+from app.ask.providers import FlowSelectionProvider
 from app.models import KnowledgeRecord
 
 
@@ -90,7 +90,7 @@ class LLMDecisionRecorder:
         self.answer = dict(answer)
 
 
-class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
+class LLMFlowSelectionProvider(FlowSelectionProvider):
     """Use LangChain prompt templating plus an LLM to choose only valid graph flows."""
 
     def __init__(
@@ -109,19 +109,19 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
         )
         self.decision_recorder = decision_recorder or LLMDecisionRecorder()
 
-    def classify_intent(
+    def select_intent(
         self, question: str, records: list[KnowledgeRecord]
     ) -> KnowledgeRecord | None:
         if not records:
             return None
 
         prompt = self.PromptTemplate(
-            input_variables=["question", "query_understanding", "graph_context"],
+            input_variables=["question", "question_understanding", "graph_context"],
             template=(
                 "Customer question:\n"
                 "{question}\n\n"
                 "LLM query understanding context:\n"
-                "{query_understanding}\n\n"
+                "{question_understanding}\n\n"
                 "Valid banking graph context follows. These are the only allowed flows, "
                 "user tasks, front actions, and back actions:\n"
                 "{graph_context}\n\n"
@@ -142,7 +142,7 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
             ),
         ).format(
             question=question,
-            query_understanding=self._query_understanding_context(records),
+            question_understanding=self._question_understanding_context(records),
             graph_context=self._graph_context(records),
         )
         answer = self.llm_client.complete_json(prompt)
@@ -192,17 +192,17 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
                             f"intent: {record.intent}",
                             f"business_event: {record.business_event}",
                             f"utterances: {', '.join(record.utterances)}",
-                            f"ontology_nodes: {', '.join(record.ontology_nodes)}",
-                            f"ontology_aliases: {self._alias_text(record.ontology_aliases)}",
+                            f"concepts: {', '.join(record.concepts)}",
+                            f"concept_aliases: {self._alias_text(record.concept_aliases)}",
                             f"explanation: {record.explanation}",
                         ]
                     )
                 )
         return "\n\n---\n\n".join(blocks)
 
-    def _query_understanding_context(self, records: list[KnowledgeRecord]) -> str:
+    def _question_understanding_context(self, records: list[KnowledgeRecord]) -> str:
         metadata = records[0].metadata if records else {}
-        understanding = metadata.get("query_understanding") or {}
+        understanding = metadata.get("question_understanding") or {}
         if not isinstance(understanding, dict):
             return "{}"
         return json.dumps(
@@ -226,8 +226,8 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
             "intent:",
             "business_event:",
             "utterances:",
-            "ontology_nodes:",
-            "ontology_aliases:",
+            "concepts:",
+            "concept_aliases:",
             "explanation:",
         )
         lines = []
@@ -261,4 +261,4 @@ class LangchainGraphRAGReasoningProvider(SemanticReasoningProvider):
 
 
 # Backward-compatible name used by older factory imports/docs.
-LangchainReasoningProvider = LangchainGraphRAGReasoningProvider
+LangchainReasoningProvider = LLMFlowSelectionProvider

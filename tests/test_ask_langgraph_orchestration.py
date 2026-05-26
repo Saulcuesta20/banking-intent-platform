@@ -4,11 +4,13 @@ from app.approval.policy import AlwaysHumanApprovalPolicy
 from app.approval.service import ApprovalService
 from app.audit.noop import NoopAuditSink
 from app.audit.service import AuditService
+from app.ask.answer import AnswerBuilder
+from app.ask.intent import FlowSelectionService
+from app.ask.service import AskService
+from app.ask.understanding import QuestionUnderstanding
 from app.capability.service import CapabilityService
-from app.flow_context.service import FlowAnswerContextService
-from app.intent.service import IntentClassificationService, IntentResolutionService
+from app.knowledge_graph.service import KnowledgeGraphService
 from app.models import KnowledgeRecord, Task
-from app.retrieval.service import KnowledgeRetrievalService
 
 
 class FakeCompiledGraph:
@@ -59,17 +61,25 @@ class FakeGraphModule:
     END = "__end__"
 
 
-class FakeRetrievalProvider:
+class FakeKnowledgeGraphRepository:
     def __init__(self, record):
         self.record = record
 
-    def retrieve(self, question: str):
+    def search(self, search_terms: list[str]):
         return [self.record]
+
+    def upsert_record(self, record: KnowledgeRecord):
+        return None
 
 
 class FakeReasoningProvider:
-    def classify_intent(self, question: str, records: list[KnowledgeRecord]):
+    def select_intent(self, question: str, records: list[KnowledgeRecord]):
         return records[0]
+
+
+class FakeQuestionUnderstandingService:
+    def understand(self, question: str):
+        return QuestionUnderstanding(original_question=question, search_terms=["credito"], entities=["Loan"])
 
 
 class FakeCapabilityProvider:
@@ -83,7 +93,7 @@ class FakeCapabilityProvider:
         return []
 
 
-def test_intent_resolution_uses_langgraph_ask_orchestration(monkeypatch, tmp_path: Path):
+def test_ask_service_uses_langgraph_orchestration(monkeypatch, tmp_path: Path):
     record = KnowledgeRecord(
         flow_id="loan.refinance",
         flow_name="Loan Refinance",
@@ -94,16 +104,17 @@ def test_intent_resolution_uses_langgraph_ask_orchestration(monkeypatch, tmp_pat
         plan=["review_refinance_options"],
         tasks=[Task(task="review_refinance_options", type="user_task")],
         capabilities=[],
-        ontology_nodes=["Loan"],
-        ontology_aliases={"Loan": ["credito", "prestamo"]},
+        concepts=["Loan"],
+        concept_aliases={"Loan": ["credito", "prestamo"]},
         explanation="Matched refinance flow.",
         source="test",
     )
-    service = IntentResolutionService(
-        retrieval_service=KnowledgeRetrievalService(FakeRetrievalProvider(record)),
-        classification_service=IntentClassificationService(FakeReasoningProvider()),
+    service = AskService(
+        knowledge_graph_service=KnowledgeGraphService(FakeKnowledgeGraphRepository(record)),
+        question_understanding_service=FakeQuestionUnderstandingService(),
+        flow_selection_service=FlowSelectionService(FakeReasoningProvider()),
         capability_service=CapabilityService(FakeCapabilityProvider()),
-        flow_context_service=FlowAnswerContextService(),
+        answer_builder=AnswerBuilder(),
         approval_service=ApprovalService(AlwaysHumanApprovalPolicy()),
         audit_service=AuditService(NoopAuditSink()),
         trace_directory=tmp_path,
@@ -123,4 +134,6 @@ def test_intent_resolution_uses_langgraph_ask_orchestration(monkeypatch, tmp_pat
 
     assert result.flow_id == "loan.refinance"
     assert result.to_dict()["can_resolve"] is True
+    assert result.to_dict()["related_concepts"] == ["Loan"]
     assert ("orchestration", "workflow=langgraph_ask") in trace_events
+    assert any(component == "question_understanding" for component, _ in trace_events)

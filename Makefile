@@ -81,7 +81,7 @@ app-stop:
 configure-ai:
 	@test -n "$(KEY)" || (echo "Usage: make configure-ai KEY=<real_openai_key>"; exit 1)
 	@printf "NEO4J_URI=bolt://localhost:7687\nNEO4J_USER=neo4j\nNEO4J_PASSWORD=banking-intent-dev\n\nOPENAI_API_KEY=%s\nINTENT_LLM_MODEL=gpt-4o-mini\nUSE_AI_PROVIDERS=true\n\nQDRANT_HOST=http://localhost:6333\nQDRANT_API_KEY=\n" "$(KEY)" > .env
-	@echo ".env configured. Future 'make ask' calls will use GraphRAG + LangChain + LLM."
+	@echo ".env configured. Future 'make ask' calls will use knowledge graph + LangChain + LLM."
 
 configure-openrouter:
 	@test -n "$(KEY)" || (echo "Usage: make configure-openrouter KEY=<real_openrouter_key>"; exit 1)
@@ -98,7 +98,7 @@ configure-ai-prompt:
 	@printf "OpenAI API key: "; stty -echo; read key; stty echo; printf "\n"; \
 	if [ -z "$$key" ]; then echo "Missing key"; exit 1; fi; \
 	printf "NEO4J_URI=bolt://localhost:7687\nNEO4J_USER=neo4j\nNEO4J_PASSWORD=banking-intent-dev\n\nOPENAI_API_KEY=%s\nINTENT_LLM_MODEL=gpt-4o-mini\nUSE_AI_PROVIDERS=true\n\nQDRANT_HOST=http://localhost:6333\nQDRANT_API_KEY=\n" "$$key" > .env; \
-	echo ".env configured. Future 'make ask' calls will use GraphRAG + LangChain + LLM."
+	echo ".env configured. Future 'make ask' calls will use knowledge graph + LangChain + LLM."
 
 configure-ai-check:
 	$(PYTHON) tools/configure_openai_key.py --provider "$(PROVIDER)" $(if $(MODEL),--model "$(MODEL)",)

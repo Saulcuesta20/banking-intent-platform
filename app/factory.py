@@ -7,16 +7,14 @@ from app.audit.service import AuditService
 from app.capability.registry import RegistryCapabilityProvider
 from app.capability.service import CapabilityService
 from app.config.settings import load_settings
-from app.flow_context.service import FlowAnswerContextService
+from app.ask.ai import LLMFlowSelectionProvider
+from app.ask.answer import AnswerBuilder
+from app.ask.intent import FlowSelectionService
+from app.ask.service import AskService
+from app.ask.understanding import LLMQuestionUnderstandingProvider, QuestionUnderstandingService
 from app.ingestion.flow_loader import FileKnowledgeIngestionProvider, FlowKnowledgeLoader
-from app.intent.ai import LangchainReasoningProvider
-from app.intent.service import IntentClassificationService, IntentResolutionService
-from app.query_understanding.service import (
-    LLMQueryUnderstandingProvider,
-    QueryUnderstandingService,
-)
-from app.retrieval.graph import GraphRAGKnowledgeRetrievalProvider
-from app.retrieval.service import KnowledgeRetrievalService
+from app.knowledge_graph.neo4j import Neo4jKnowledgeGraphRepository
+from app.knowledge_graph.service import KnowledgeGraphService
 
 
 def build_ingestion_provider() -> FileKnowledgeIngestionProvider:
@@ -24,51 +22,59 @@ def build_ingestion_provider() -> FileKnowledgeIngestionProvider:
     return FileKnowledgeIngestionProvider(
         flow_directory=settings.flow_directory,
         processed_directory=settings.processed_directory,
+        knowledge_graph_service=KnowledgeGraphService(
+            Neo4jKnowledgeGraphRepository(
+                settings.flow_directory,
+                neo4j_uri=settings.neo4j_uri,
+                neo4j_user=settings.neo4j_user,
+                neo4j_password=settings.neo4j_password,
+            )
+        ),
     )
 
 
-def build_intent_service() -> IntentResolutionService:
+def build_ask_service() -> AskService:
     settings = load_settings()
     if not settings.use_ai_providers:
         raise RuntimeError(
-            "USE_AI_PROVIDERS must be true. The ask flow requires LLM + GraphRAG + Neo4j."
+            "USE_AI_PROVIDERS must be true. The ask flow requires an LLM and the Neo4j knowledge graph."
         )
 
     startup_records = FlowKnowledgeLoader().load_directory(settings.flow_directory)
     capability_service = CapabilityService(RegistryCapabilityProvider(startup_records))
-    flow_context_service = FlowAnswerContextService()
+    answer_builder = AnswerBuilder()
     approval_service = ApprovalService(AlwaysHumanApprovalPolicy())
     audit_service = AuditService(NoopAuditSink())
 
     try:
-        return IntentResolutionService(
-            retrieval_service=KnowledgeRetrievalService(
-                GraphRAGKnowledgeRetrievalProvider(
+        return AskService(
+            knowledge_graph_service=KnowledgeGraphService(
+                Neo4jKnowledgeGraphRepository(
                     settings.flow_directory,
                     neo4j_uri=settings.neo4j_uri,
                     neo4j_user=settings.neo4j_user,
                     neo4j_password=settings.neo4j_password,
-                    query_understanding_service=QueryUnderstandingService(
-                        LLMQueryUnderstandingProvider(
-                            api_key=settings.openai_api_key,
-                            base_url=settings.openai_base_url,
-                            model=settings.intent_llm_model,
-                        )
-                    ),
                 )
             ),
-            classification_service=IntentClassificationService(
-                LangchainReasoningProvider(
+            question_understanding_service=QuestionUnderstandingService(
+                LLMQuestionUnderstandingProvider(
+                    api_key=settings.openai_api_key,
+                    base_url=settings.openai_base_url,
+                    model=settings.intent_llm_model,
+                )
+            ),
+            flow_selection_service=FlowSelectionService(
+                LLMFlowSelectionProvider(
                     openai_api_key=settings.openai_api_key,
                     base_url=settings.openai_base_url,
                     model=settings.intent_llm_model,
                 )
             ),
             capability_service=capability_service,
-            flow_context_service=flow_context_service,
+            answer_builder=answer_builder,
             approval_service=approval_service,
             audit_service=audit_service,
             trace_directory=settings.processed_directory / "ask_trace",
         )
     except RuntimeError as exc:
-        raise RuntimeError(f"Could not start required GraphRAG LLM providers: {exc}") from exc
+        raise RuntimeError(f"Could not start required knowledge graph/LLM providers: {exc}") from exc

@@ -24,7 +24,7 @@
     "account.read",
     "debit_note.create"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Customer",
     "SavingsAccount",
     "DebitNote",

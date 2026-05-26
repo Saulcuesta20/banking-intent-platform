@@ -22,7 +22,7 @@
   "capabilities": [
     "glossary.read"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Glossary",
     "Term"
   ],

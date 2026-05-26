@@ -4,7 +4,7 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-from app.factory import build_ingestion_provider, build_intent_service
+from app.factory import build_ask_service, build_ingestion_provider
 
 
 class AskRequest(BaseModel):
@@ -18,12 +18,12 @@ class IngestRequest(BaseModel):
 def create_app() -> FastAPI:
     app = FastAPI(
         title="Banking Intent Platform",
-        description="Enterprise banking intent resolution with AI-assisted planning and decomposition.",
+        description="Enterprise banking answers grounded in an approved knowledge graph.",
     )
 
     @app.post("/ask")
     def ask(request: AskRequest) -> dict:
-        service = build_intent_service()
+        service = build_ask_service()
         try:
             result = service.resolve(request.question)
             return result.to_dict()

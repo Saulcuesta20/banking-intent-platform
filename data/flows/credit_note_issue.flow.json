@@ -24,7 +24,7 @@
     "account.read",
     "credit_note.create"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Customer",
     "SavingsAccount",
     "CreditNote",

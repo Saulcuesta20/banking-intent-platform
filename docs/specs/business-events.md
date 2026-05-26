@@ -12,11 +12,11 @@ Document where business events are created and how runtime projects them.
 ## Main Components
 - Ingestion extractor and validators
 - `KnowledgeRecord.business_event`
-- `FlowAnswerContextService`
+- `AnswerBuilder`
 - Event name conventions
 
 ## Data Flow
-Ingestion creates `business_event` on each flow. During ask question, `FlowAnswerContextService` reads `record.business_event` from the selected flow and includes it in the final `IntentResult`.
+Ingestion creates `business_event` on each flow. During ask question, `AnswerBuilder` reads `record.business_event` from the selected flow and includes it in the final `AnswerResult`.
 
 ## Example Input/Output
 Input intent: `loan.refinance`
@@ -25,10 +25,10 @@ Output event: `LoanRefinancingRequested`.
 
 ## Interfaces
 - `KnowledgeRecord.business_event`
-- `FlowAnswerContextService.build(question, record)`
+- `AnswerBuilder.build(question, record)`
 
 ## Implementation Notes
-Flow JSON defines the event catalog. The old `BusinessEventService` runtime package was removed from the active codebase; event projection now lives in `FlowAnswerContextService`.
+Flow JSON defines the event catalog. The old `BusinessEventService` runtime package was removed from the active codebase; event projection now lives in `AnswerBuilder`.
 
 ## Future Replacement Strategy
 Events can later align with enterprise event schemas or AsyncAPI catalogs during ingestion, then continue to be projected at runtime.

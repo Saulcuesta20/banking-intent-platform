@@ -89,11 +89,11 @@ INGESTION_AGENT_SPECS = [
         ),
     ),
     IngestionAgentSpec(
-        name="OntologyAgent",
-        responsibility="Identify ontology concepts and retrieval anchors.",
+        name="ConceptAgent",
+        responsibility="Identify concepts and retrieval anchors.",
         system_message=(
-            "You are OntologyAgent. Identify domain concepts, entities, products, events, and synonyms that should "
-            "be attached as ontology_nodes or utterances for future retrieval and explanation. "
+            "You are ConceptAgent. Identify domain concepts, entities, products, events, and synonyms that should "
+            "be attached as concepts or utterances for future retrieval and explanation. "
             "Respond with concise FINDING lines."
         ),
     ),
@@ -102,7 +102,7 @@ INGESTION_AGENT_SPECS = [
         responsibility="Challenge and validate the candidate extraction.",
         system_message=(
             "You are ValidatorAgent. Review the other agents' findings. Reject unsupported inferred actions, "
-            "missing user_task_refs, backend operations modeled as user_tasks, unclear ontology nodes, and unsafe "
+            "missing user_task_refs, backend operations modeled as user_tasks, unclear concepts, and unsafe "
             "runtime assumptions. End with final validation guidance. Respond with concise FINDING lines."
         ),
     ),
@@ -184,7 +184,7 @@ class AutoGenIngestionReasoningProvider:
             "- reusable user_tasks\n"
             "- front_actions and back_actions\n"
             "- business_events\n"
-            "- ontology_nodes and utterances\n"
+            "- concepts and utterances\n"
             "- validation risks\n\n"
             f"Corpus summary:\n{corpus_summary[:24000]}"
         )
@@ -243,7 +243,7 @@ class RoleBasedIngestionReasoningProvider:
                     finding="Separate UI-triggered front_actions from service or system back_actions.",
                 ),
                 IngestionReasoningFinding(
-                    agent="OntologyAgent",
+                    agent="ConceptAgent",
                     finding="Attach domain concepts that explain why a flow matches future customer questions.",
                 ),
                 IngestionReasoningFinding(

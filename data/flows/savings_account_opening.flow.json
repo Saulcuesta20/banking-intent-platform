@@ -17,12 +17,12 @@
   "capabilities": [
     "savings_account.create"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "SavingsAccount",
     "Customer",
     "CustomerDocuments"
   ],
-  "ontology_aliases": {
+  "concept_aliases": {
     "SavingsAccount": [
       "savings account",
       "cuenta",

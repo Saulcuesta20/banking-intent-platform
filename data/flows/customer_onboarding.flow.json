@@ -27,7 +27,7 @@
     "kyc.screen",
     "customer.conditions.validate"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Customer",
     "CustomerConditions"
   ],

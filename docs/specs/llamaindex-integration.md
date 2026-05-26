@@ -9,12 +9,12 @@ Use LlamaIndex as an optional retrieval provider inside the retrieval component.
 - Return context snippets without coupling domain logic to LlamaIndex types.
 
 ## Main Components
-- `app/retrieval/ai.py::LlamaIndexKnowledgeRetrievalProvider`
+- A future document-index adapter behind `app/knowledge_graph/providers.py::KnowledgeGraphRepository`
 - Document parser registry
 - Index configuration
 
 ## Data Flow
-Flow records are converted into documents, LlamaIndex indexes them, and retrieval returns context for ontology and intent services.
+Flow records are converted into documents, LlamaIndex indexes them, and retrieval returns context for concepts and intent services.
 
 ## Example Input/Output
 Input: OpenAPI or flow JSON describing loan refinance.
@@ -22,10 +22,10 @@ Input: OpenAPI or flow JSON describing loan refinance.
 Output: retrieved context mentioning loan refinance event, actions, and tasks.
 
 ## Interfaces
-- `app/retrieval/providers.py::KnowledgeRetrievalProvider`
+- `app/knowledge_graph/providers.py::KnowledgeGraphRepository`
 
 ## Implementation Notes
-The default ask path now uses Neo4j GraphRAG in `app/retrieval/graph.py`. The LlamaIndex adapter boundary remains available in `app/retrieval/ai.py` for future vector or document-index retrieval experiments.
+The default ask path uses Neo4j in `app/knowledge_graph/neo4j.py`. A future LlamaIndex experiment should implement the `KnowledgeGraphRepository` port without adding a second runtime component.
 
 ## Future Replacement Strategy
-GraphRAG is implemented separately in `app/retrieval/graph.py` for Neo4j-backed retrieval. Haystack, LlamaIndex, or custom retrieval can replace either retrieval provider behind the same port.
+GraphRAG is implemented separately in `app/knowledge_graph/neo4j.py` for Neo4j-backed retrieval. Haystack, LlamaIndex, or custom retrieval can replace either retrieval provider behind the same port.

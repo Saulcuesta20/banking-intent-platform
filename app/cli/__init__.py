@@ -7,7 +7,7 @@ from textwrap import indent
 import typer
 from rich.console import Console
 from rich.table import Table
-from app.factory import build_ingestion_provider, build_intent_service
+from app.factory import build_ask_service, build_ingestion_provider
 
 console = Console()
 app = typer.Typer()
@@ -21,15 +21,15 @@ def ask(
     full_result: bool = typer.Option(False, "--full-result", help="Print the full result payload."),
     interactive: bool = typer.Option(True, "--interactive/--no-interactive", help="Ask for clarification when the intent is ambiguous."),
 ) -> None:
-    """Ask a banking question using the configured intent service."""
+    """Ask a banking question using the configured answer service."""
     trace_events: list[tuple[str, str]] = []
 
     def collect_trace(component: str, message: str) -> None:
         trace_events.append((component, message))
 
     try:
-        intent_service = build_intent_service()
-        result = intent_service.resolve(question, trace=collect_trace if trace else None)
+        ask_service = build_ask_service()
+        result = ask_service.resolve(question, trace=collect_trace if trace else None)
     except Exception as exc:
         console.print("[bold red]Error[/bold red] No pude completar la pregunta.")
         console.print(_friendly_error(str(exc)))
@@ -43,7 +43,7 @@ def ask(
         if clarified_question:
             trace_events = []
             try:
-                result = intent_service.resolve(clarified_question, trace=collect_trace if trace else None)
+                result = ask_service.resolve(clarified_question, trace=collect_trace if trace else None)
             except Exception as exc:
                 console.print("[bold red]Error[/bold red] No pude completar la aclaracion.")
                 console.print(_friendly_error(str(exc)))
@@ -88,8 +88,8 @@ def ask(
         suffix = f" (+{hidden_count} more)" if hidden_count else ""
         console.print("[bold]Actions[/bold] " + ", ".join(shown_actions) + suffix)
 
-    if payload["related_ontology_nodes"]:
-        console.print("[bold]Ontology[/bold] " + ", ".join(payload["related_ontology_nodes"]))
+    if payload["related_concepts"]:
+        console.print("[bold]Concepts[/bold] " + ", ".join(payload["related_concepts"]))
 
 
 def _prompt_for_clarification(question: str, payload: dict) -> str | None:
@@ -125,25 +125,25 @@ def _prompt_for_clarification(question: str, payload: dict) -> str | None:
 
 def _print_ask_flow_trace(question: str, events: list[tuple[str, str]], result) -> None:
     payload = result.to_dict()
-    provider = _message_value(events, "retrieval", "provider=") or "unknown"
-    matched_records = _message_value(events, "retrieval", "matched_records=") or "0"
-    candidate_flows = _message_value(events, "retrieval", "candidate_flows=") or "none"
-    query_provider = _query_understanding_provider(events)
+    provider = _message_value(events, "knowledge_graph", "provider=") or "unknown"
+    matched_records = _message_value(events, "knowledge_graph", "matched_records=") or "0"
+    candidate_flows = _message_value(events, "knowledge_graph", "candidate_flows=") or "none"
+    question_provider = _question_understanding_provider(events)
     route = _route(events, payload["can_resolve"])
     trace_file = _message_value(events, "debug_trace", "file=") or "not written"
     llm_answer = _message_value(events, "llm", "answer can_resolve=")
     llm_reason = _message_value(events, "llm", "reason=")
-    warning = _message_value(events, "retrieval", "warning=")
-    query_output = _json_message_value(events, "query_understanding", "output=") or {}
-    corrected_question = query_output.get("corrected_question") or question
-    corrections = query_output.get("corrections") or []
-    search_terms = query_output.get("search_terms") or []
-    entities = query_output.get("entities") or []
-    possible_intents = query_output.get("possible_intents") or []
-    ambiguity = query_output.get("ambiguity")
+    warning = _message_value(events, "knowledge_graph", "warning=")
+    question_output = _json_message_value(events, "question_understanding", "output=") or {}
+    corrected_question = question_output.get("corrected_question") or question
+    corrections = question_output.get("corrections") or []
+    search_terms = question_output.get("search_terms") or []
+    entities = question_output.get("entities") or []
+    possible_intents = question_output.get("possible_intents") or []
+    ambiguity = question_output.get("ambiguity")
     llm_json = _json_message_value(events, "llm", "answer_json=")
 
-    console.print("[bold]Banking Intent flow[/bold]")
+    console.print("[bold]Banking Ask flow[/bold]")
     console.print("Con tu ejemplo:")
     console.print("")
     console.print(question)
@@ -158,31 +158,31 @@ def _print_ask_flow_trace(question: str, events: list[tuple[str, str]], result) 
     console.print("Entra por:")
     console.print("app.cli.ask()")
     console.print("Luego llama:")
-    console.print("app.factory.build_intent_service()")
+    console.print("app.factory.build_ask_service()")
     console.print("Ahi se arma el servicio principal:")
-    console.print("IntentResolutionService")
-    console.print("con retrieval, classifier, approval, audit y trace.")
+    console.print("AskService")
+    console.print("con knowledge graph, seleccion de flow, answer, approval, audit y trace.")
     console.print("")
 
     console.print("[bold]2. LangGraph orquesta los pasos[/bold]")
     console.print("")
-    console.print("IntentResolutionService.resolve() intenta correr LangGraph:")
-    console.print("IntentResolutionService._resolve_with_langgraph()")
+    console.print("AskService.resolve() intenta correr LangGraph:")
+    console.print("AskService._resolve_with_langgraph()")
     console.print("LangGraph arma este workflow:")
     console.print("")
-    console.print("retrieve_context -> classify_intent -> project_flow_context")
+    console.print("search_knowledge -> select_intent -> build_answer")
     console.print("                                      -> unknown_result")
     console.print("Si el LLM no encuentra un flow unico, termina en unknown_result.")
-    console.print("Si el LLM selecciona un flow valido, termina en project_flow_context.")
+    console.print("Si el LLM selecciona un flow valido, termina en build_answer.")
     console.print(f"Ruta real de este run: {route}")
     console.print("")
 
-    console.print("[bold]3. Query Understanding entiende la pregunta[/bold]")
+    console.print("[bold]3. Question Understanding entiende la pregunta[/bold]")
     console.print("")
     console.print("Antes de buscar en el grafo, se llama:")
-    console.print("QueryUnderstandingService.understand(question)")
+    console.print("QuestionUnderstandingService.understand(question)")
     console.print("Si estas con AI activo:")
-    console.print("LLMQueryUnderstandingProvider.understand()")
+    console.print("LLMQuestionUnderstandingProvider.understand()")
     console.print("El LLM deberia recibir algo como:")
     console.print("")
     console.print("Question:")
@@ -201,9 +201,9 @@ def _print_ask_flow_trace(question: str, events: list[tuple[str, str]], result) 
         },
     }))
     console.print("Aqui el LLM no decide el flow final. Solo ayuda a entender, corregir y ampliar la busqueda.")
-    if query_provider:
-        console.print("Salida real de Query Understanding en este run:")
-        console.print(f"provider: {query_provider}")
+    if question_provider:
+        console.print("Salida real de Question Understanding en este run:")
+        console.print(f"provider: {question_provider}")
         console.print(_pretty_json({
             "corrected_question": corrected_question,
             "corrections": corrections,
@@ -214,12 +214,12 @@ def _print_ask_flow_trace(question: str, events: list[tuple[str, str]], result) 
         }))
     console.print("")
 
-    console.print("[bold]4. Retrieval usa el grafo Neo4j[/bold]")
+    console.print("[bold]4. Knowledge Graph busca en Neo4j[/bold]")
     console.print("")
     console.print("Luego se llama:")
-    console.print("KnowledgeRetrievalService.retrieve(question)")
-    console.print("Si USE_AI_PROVIDERS=true, usa:")
-    console.print("GraphRAGKnowledgeRetrievalProvider.retrieve()")
+    console.print("KnowledgeGraphService.search(question)")
+    console.print("Usa:")
+    console.print("Neo4jKnowledgeGraphRepository.search()")
     console.print("Este usa los terminos generados por el LLM:")
     for term in search_terms:
         console.print(term)
@@ -227,13 +227,13 @@ def _print_ask_flow_trace(question: str, events: list[tuple[str, str]], result) 
     console.print("")
     console.print("MATCH (f:Flow)")
     console.print("OPTIONAL MATCH (f)-[:EXEMPLIFIES]->(u:Utterance)")
-    console.print("OPTIONAL MATCH (f)-[:HAS_ONTOLOGY]->(o:Ontology)")
-    console.print("OPTIONAL MATCH (o)-[:HAS_SYNONYM]->(s:Synonym)")
+    console.print("OPTIONAL MATCH (f)-[:RELATES_TO]->(c:Concept)")
+    console.print("OPTIONAL MATCH (c)-[:HAS_SYNONYM]->(s:Synonym)")
     console.print("...")
     console.print("WHERE size(matched_tokens) > 0")
-    console.print("RETURN flow_id, intent, business_event, utterances, ontology_nodes, actions...")
+    console.print("RETURN flow_id, intent, business_event, utterances, concepts, actions...")
     console.print("Neo4j devuelve candidatos.")
-    console.print("Resultado real de retrieval en este run:")
+    console.print("Resultado real de knowledge search en este run:")
     console.print(f"provider: {provider}")
     if warning:
         console.print(f"warning: {warning}")
@@ -244,17 +244,17 @@ def _print_ask_flow_trace(question: str, events: list[tuple[str, str]], result) 
     console.print("[bold]5. LLM clasifica contra esos candidatos[/bold]")
     console.print("")
     console.print("Despues LangGraph pasa al nodo:")
-    console.print("classify_intent")
+    console.print("select_intent")
     console.print("Que llama:")
-    console.print("IntentClassificationService.classify()")
+    console.print("FlowSelectionService.select()")
     console.print("Y este usa:")
-    console.print("LangchainGraphRAGReasoningProvider.classify_intent()")
+    console.print("LLMFlowSelectionProvider.select_intent()")
     console.print("Aqui LangChain arma un prompt con:")
     console.print("- pregunta original")
     console.print("- pregunta corregida/contexto")
     console.print("- flows candidatos del grafo")
     console.print("- utterances")
-    console.print("- ontology nodes")
+    console.print("- concepts")
     console.print("- acciones")
     console.print("- explicacion de cada flow")
     console.print("El LLM debe responder JSON con esta forma:")
@@ -279,18 +279,18 @@ def _print_ask_flow_trace(question: str, events: list[tuple[str, str]], result) 
     console.print("")
     console.print("LangGraph evalua:")
     console.print("selected_record is None")
-    console.print("Si es None toma unknown_result; si existe toma project_flow_context.")
+    console.print("Si es None toma unknown_result; si existe toma build_answer.")
     console.print(f"Ruta real de este run: {route}")
     if route == "unknown":
-        console.print("No toma project_flow_context porque no hay flow unico.")
+        console.print("No toma build_answer porque no hay flow unico.")
     else:
-        console.print("Toma project_flow_context porque hay flow unico seleccionado.")
+        console.print("Toma build_answer porque hay flow unico seleccionado.")
     console.print("")
 
     console.print("[bold]7. Se arma la respuesta final[/bold]")
     console.print("")
     console.print("Se llama:")
-    console.print("IntentResolutionService._build_unknown_result()" if route == "unknown" else "IntentResolutionService._build_projected_result()")
+    console.print("AskService._build_unknown_result()" if route == "unknown" else "AskService._build_projected_result()")
     console.print("Resultado:")
     if route == "unknown":
         console.print(_pretty_json({
@@ -324,26 +324,26 @@ def _print_ask_flow_trace(question: str, events: list[tuple[str, str]], result) 
     console.print("[bold]Resumen del flujo[/bold]")
     console.print("")
     console.print("CLI")
-    console.print(" -> build_intent_service")
-    console.print(" -> IntentResolutionService.resolve")
+    console.print(" -> build_ask_service")
+    console.print(" -> AskService.resolve")
     console.print(" -> LangGraph")
-    console.print("    -> retrieve_context")
-    console.print("       -> QueryUnderstandingService")
-    if query_provider == "llm_query_understanding":
+    console.print("    -> search_knowledge")
+    console.print("       -> QuestionUnderstandingService")
+    if question_provider == "llm_question_understanding":
         console.print("          -> LLM corrige/entiende pregunta")
     else:
         console.print("          -> LLM requerido no ejecuto")
-    console.print("       -> GraphRAGKnowledgeRetrievalProvider")
+    console.print("       -> Neo4jKnowledgeGraphRepository")
     console.print("          -> Neo4j busca flows candidatos")
-    console.print("    -> classify_intent")
+    console.print("    -> select_intent")
     if llm_answer:
-        console.print("       -> LangchainGraphRAGReasoningProvider")
+        console.print("       -> LLMFlowSelectionProvider")
         console.print("          -> LLM decide si hay flow unico")
     else:
-        console.print("       -> LangchainGraphRAGReasoningProvider")
+        console.print("       -> LLMFlowSelectionProvider")
         console.print("          -> LLM requerido no ejecuto")
     if payload["can_resolve"]:
-        console.print("    -> project_flow_context")
+        console.print("    -> build_answer")
         console.print("       -> proyecta plan y tareas")
     else:
         console.print("    -> unknown_result")
@@ -405,16 +405,16 @@ def _pretty_json(value) -> str:
     return json.dumps(value, indent=2, ensure_ascii=False)
 
 
-def _query_understanding_provider(events: list[tuple[str, str]]) -> str | None:
+def _question_understanding_provider(events: list[tuple[str, str]]) -> str | None:
     for component, message in events:
-        if component == "query_understanding" and message.startswith("provider="):
+        if component == "question_understanding" and message.startswith("provider="):
             return message.split(" ", 1)[0].removeprefix("provider=")
     return None
 
 
 def _route(events: list[tuple[str, str]], can_resolve: bool) -> str:
     for component, message in events:
-        if component == "orchestration" and "method=_ask_route_after_classification output=" in message:
+        if component == "orchestration" and "method=_ask_route_after_selection output=" in message:
             raw = message.split("output=", 1)[1]
             try:
                 return json.loads(raw)["route"]

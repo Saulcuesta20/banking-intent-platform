@@ -1,12 +1,12 @@
-Banking Intent Platform - Synonyms, Glossary, and Ontology Mapping Guidance
+Banking Intent Platform - Synonyms, Glossary, and Concept Mapping Guidance
 
 Purpose:
 This raw corpus file teaches ingestion which informal banking words should map
-to formal ontology concepts, flow names, utterances, user tasks, and actions.
+to formal concepts, flow names, utterances, user tasks, and actions.
 The runtime ask process must not invent terms. It should retrieve validated
 concepts, synonyms, flows, user tasks, and actions from the graph.
 
-Canonical ontology concepts and aliases:
+Canonical concepts and aliases:
 
 1. Loan
    Informal terms: prestamo, credito, financiamiento, loan, prestamo personal,
@@ -34,7 +34,7 @@ Canonical ontology concepts and aliases:
    - "Quiero cambiar el plazo"
    - "La tasa esta muy alta"
    Mapping rule: questions about quota, rate, term, or schedule must include
-   LoanConditions in ontology_nodes or ontology_aliases.
+   LoanConditions in concepts or concept_aliases.
 
 4. LoanPayment
    Informal terms: pagar cuota, pago de credito, repayment, abono de prestamo,
@@ -132,12 +132,12 @@ User task modeling rules:
 
 Graph retrieval expectations:
 - Utterance nodes should preserve representative customer phrases.
-- Ontology nodes should use formal concepts such as Loan, LoanRefinance,
+- Concepts should use formal concepts such as Loan, LoanRefinance,
   LoanConditions, SavingsAccount, Transfer, Customer, CustomerDocuments, Claim,
   CreditNote, and DebitNote.
-- Synonym aliases should be linked to ontology concepts so a question using
+- Synonym aliases should be linked to concepts so a question using
   "credito" can retrieve flows that mention "prestamo", and a question using
   "bajar cuota" can retrieve loan refinance flows.
 - The LLM classifier may choose only an existing flow_id from retrieved graph
-  context. It must not create new plans, tasks, actions, events, or ontology at
+  context. It must not create new plans, tasks, actions, events, or concepts at
   ask time.

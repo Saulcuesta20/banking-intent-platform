@@ -22,7 +22,7 @@
     "loan.read",
     "loan.status.summarize"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Customer",
     "Loan",
     "LoanConditions"

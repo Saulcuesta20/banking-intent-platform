@@ -6,32 +6,37 @@ from app.approval.policy import AlwaysHumanApprovalPolicy
 from app.approval.service import ApprovalService
 from app.audit.noop import NoopAuditSink
 from app.audit.service import AuditService
+from app.ask.answer import AnswerBuilder
+from app.ask.intent import FlowSelectionService
+from app.ask.service import AskService
+from app.ask.understanding import QuestionUnderstanding
 from app.capability.registry import RegistryCapabilityProvider
 from app.capability.service import CapabilityService
-from app.factory import build_intent_service
-from app.flow_context.service import FlowAnswerContextService
+from app.factory import build_ask_service
 from app.ingestion.flow_loader import FlowKnowledgeLoader
-from app.intent.service import IntentClassificationService, IntentResolutionService
+from app.knowledge_graph.service import KnowledgeGraphService
 from app.models import KnowledgeRecord
-from app.retrieval.service import KnowledgeRetrievalService
 
 
 FLOW_DIR = Path(__file__).resolve().parents[1] / "data" / "flows"
 
 
-class FakeGraphRetrievalProvider:
+class FakeKnowledgeGraphRepository:
     def __init__(self, records: list[KnowledgeRecord]):
         self.records = records
 
-    def retrieve(self, question: str):
+    def search(self, search_terms: list[str]):
         return self.records
+
+    def upsert_record(self, record: KnowledgeRecord):
+        return None
 
 
 class FakeLLMReasoningProvider:
     def __init__(self, selected_flow_id: str | None):
         self.selected_flow_id = selected_flow_id
 
-    def classify_intent(self, question: str, records: list[KnowledgeRecord]):
+    def select_intent(self, question: str, records: list[KnowledgeRecord]):
         if self.selected_flow_id is None:
             return None
         for record in records:
@@ -53,13 +58,19 @@ class FakeLLMReasoningProvider:
         return None
 
 
+class FakeQuestionUnderstandingService:
+    def understand(self, question: str):
+        return QuestionUnderstanding(original_question=question, search_terms=question.lower().split())
+
+
 def build_test_service(records: list[KnowledgeRecord], selected_flow_id: str | None):
     startup_records = FlowKnowledgeLoader().load_directory(FLOW_DIR)
-    return IntentResolutionService(
-        retrieval_service=KnowledgeRetrievalService(FakeGraphRetrievalProvider(records)),
-        classification_service=IntentClassificationService(FakeLLMReasoningProvider(selected_flow_id)),
+    return AskService(
+        knowledge_graph_service=KnowledgeGraphService(FakeKnowledgeGraphRepository(records)),
+        question_understanding_service=FakeQuestionUnderstandingService(),
+        flow_selection_service=FlowSelectionService(FakeLLMReasoningProvider(selected_flow_id)),
         capability_service=CapabilityService(RegistryCapabilityProvider(startup_records)),
-        flow_context_service=FlowAnswerContextService(),
+        answer_builder=AnswerBuilder(),
         approval_service=ApprovalService(AlwaysHumanApprovalPolicy()),
         audit_service=AuditService(NoopAuditSink()),
         use_langgraph_orchestration=False,
@@ -105,4 +116,4 @@ def test_factory_rejects_non_ai_ask_flow(monkeypatch):
     monkeypatch.setenv("USE_AI_PROVIDERS", "false")
 
     with pytest.raises(RuntimeError, match="USE_AI_PROVIDERS must be true"):
-        build_intent_service()
+        build_ask_service()

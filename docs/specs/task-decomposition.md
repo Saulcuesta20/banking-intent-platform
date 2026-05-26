@@ -15,10 +15,10 @@ Define how flow plans are decomposed into reusable user tasks during ingestion a
 - `CorpusFlowLoader.normalize_and_validate`
 - `KnowledgeRecord.tasks`
 - `KnowledgeRecord.user_tasks`
-- `FlowAnswerContextService`
+- `AnswerBuilder`
 
 ## Data Flow
-Ingestion extracts reusable user tasks and validates that flow `user_task_refs` exist. During ask question, `FlowAnswerContextService` reads the selected flow's tasks and action references. `ApprovalService` may append an approval task after projection.
+Ingestion extracts reusable user tasks and validates that flow `user_task_refs` exist. During ask question, `AnswerBuilder` reads the selected flow's tasks and action references. `ApprovalService` may append an approval task after projection.
 
 ## Example Input/Output
 Input plan step: `review_refinance_options`
@@ -28,7 +28,7 @@ Projected task: `review_refinance_options` with back action `loan.conditions.cal
 ## Interfaces
 - `KnowledgeRecord.tasks`
 - `KnowledgeRecord.user_tasks`
-- `FlowAnswerContextService.build(question, record)`
+- `AnswerBuilder.build(question, record)`
 
 ## Implementation Notes
 The older `DecompositionService` runtime package was removed from the active codebase. Decomposition happens during ingestion through AutoGen/LLM recommendations plus deterministic validation.

@@ -17,13 +17,13 @@
   "capabilities": [
     "loan.application.create"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Loan",
     "LoanApplication",
     "Customer",
     "CustomerDocuments"
   ],
-  "ontology_aliases": {
+  "concept_aliases": {
     "Loan": [
       "loan",
       "prestamo",

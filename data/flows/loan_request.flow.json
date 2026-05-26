@@ -31,7 +31,7 @@
     "loan.eligibility.calculate",
     "loan.calculate"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Customer",
     "Loan",
     "LoanApplication",

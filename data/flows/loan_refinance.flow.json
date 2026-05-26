@@ -31,7 +31,7 @@
     "loan_refinance.compare",
     "loan_refinance.create"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Customer",
     "Loan",
     "LoanRefinance",

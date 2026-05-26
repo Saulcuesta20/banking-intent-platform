@@ -4,21 +4,23 @@ MVP for an Enterprise Banking Intent Engine and Knowledge Graph Platform.
 
 The first implementation is flow-backed and framework-light. It preserves provider interfaces for AutoGen, LlamaIndex, Neo4j, GraphRAG, and future replacements while keeping banking decisions explainable and approval-gated.
 
-Each application component owns its service and provider contract. Retrieval,
-intent, flow context projection, graph, ingestion, capability, approval, and
+Each application component owns its service and provider contract. `knowledge_graph`
+owns concepts, relationships and Neo4j access; `ask` owns question understanding,
+flow selection and answer building; ingestion, capability, approval, and
 audit all keep their logic inside their own `app/<component>`
 package. `app/factory.py` is only the central composition root that chooses and
 wires implementations.
 
 ## Architecture
 
-Natural Language -> Knowledge Retrieval Service -> Intent Classification Service -> Flow Answer Context Service -> Approval Service -> Audit Service -> Output JSON
+Natural Language -> Ask Service -> Question Understanding -> Knowledge Graph Search -> Flow Selection -> Answer Builder -> Approval -> Audit -> Output JSON
 
 ## Commands
 
 Run from this directory:
 
 ```bash
+# Requires Neo4j because ingestion persists through knowledge_graph:
 python -m app.cli.ingest ./data/raw
 
 # Start the API server:
@@ -73,9 +75,9 @@ When the service starts, `app/factory.py` rebuilds the live action registry from
 the current flow and user task JSON files, so the runtime registry follows the
 corpus-generated data.
 
-Plans, user tasks, actions, business events, and ontology nodes are created
+Plans, user tasks, actions, business events, and concepts are created
 during ingestion. Runtime question answering selects a flow and projects those
-validated fields with `FlowAnswerContextService`; it does not create or
+validated fields with `AnswerBuilder`; it does not create or
 decompose plans dynamically.
 
 ```bash
@@ -112,7 +114,8 @@ OPENAI_API_KEY=... python tools/extract_flows_from_corpus.py --raw-dir data/raw 
 The extraction command is coordinated by a deterministic pipeline. Custom code
 scans/parses files, validates JSON, writes artifacts, and writes an audit record
 under `data/processed/ingestion_audit`. AutoGen only contributes advisory
-findings for the extractor.
+findings for the extractor. The application ingestion provider invokes
+`KnowledgeGraphService` to persist approved records in Neo4j.
 
 Make shortcuts:
 

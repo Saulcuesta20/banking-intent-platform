@@ -24,7 +24,7 @@ The user runs a CLI command, the CLI calls a use case, and the result is printed
 ## Example Input/Output
 Input: `make ask Q="Quiero refinanciar mi prestamo"`
 
-Output: trace, `can_resolve`, intent, confidence, event, approval flag, plan, tasks, action capabilities, and ontology nodes.
+Output: trace, `can_resolve`, intent, confidence, event, approval flag, plan, tasks, action capabilities, and concepts.
 
 ## Interfaces
 - `IngestKnowledgeUseCase.execute(path)`

@@ -7,29 +7,29 @@ from app.models import KnowledgeRecord, Task
 
 
 @dataclass(frozen=True)
-class FlowAnswerContext:
+class AnswerContext:
     business_event: str
     plan: list[str]
     tasks: list[Task]
     related_capabilities: list[str]
-    related_ontology_nodes: list[str]
+    related_concepts: list[str]
 
 
-class FlowAnswerContextService:
-    """Project already-ingested flow knowledge for an ask response.
+class AnswerBuilder:
+    """Project already-ingested knowledge for an ask response.
 
-    This service does not create plans, tasks, events, actions, or ontology.
+    This service does not create plans, tasks, events, actions, or concepts.
     Ingestion creates those artifacts. Runtime only selects a flow and projects
     the relevant fields into the answer.
     """
 
-    def build(self, question: str, record: KnowledgeRecord) -> FlowAnswerContext:
-        return FlowAnswerContext(
+    def build(self, question: str, record: KnowledgeRecord) -> AnswerContext:
+        return AnswerContext(
             business_event=record.business_event,
             plan=list(record.plan),
             tasks=list(record.tasks),
             related_capabilities=self._related_capabilities(record),
-            related_ontology_nodes=self._related_ontology_nodes(question, record),
+            related_concepts=self._related_concepts(question, record),
         )
 
     def _related_capabilities(self, record: KnowledgeRecord) -> list[str]:
@@ -44,15 +44,15 @@ class FlowAnswerContextService:
                 self._append_unique(values, seen, action.action)
         return values
 
-    def _related_ontology_nodes(self, question: str, record: KnowledgeRecord) -> list[str]:
+    def _related_concepts(self, question: str, record: KnowledgeRecord) -> list[str]:
         normalized_question = self._normalize_text(question)
         related = []
         remaining = []
-        for node in record.ontology_nodes:
+        for node in record.concepts:
             normalized_node = self._normalize_text(node).replace("_", " ")
             normalized_aliases = [
                 self._normalize_text(alias).replace("_", " ")
-                for alias in record.ontology_aliases.get(node, [])
+                for alias in record.concept_aliases.get(node, [])
             ]
             if normalized_node and (
                 normalized_node in normalized_question

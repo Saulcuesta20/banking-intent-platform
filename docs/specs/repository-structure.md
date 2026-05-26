@@ -11,13 +11,9 @@ Define the project layout for a small but extensible MVP.
 ## Main Components
 - `app/cli`
 - `app/ingestion`
-- `app/ontology`
-- `app/graph`
-- `app/intent`
-- `app/planning`
-- `app/decomposition`
+- `app/knowledge_graph`
+- `app/ask`
 - `app/capability`
-- `app/events`
 - `app/approval`
 - `app/audit`
 - `app/config`
@@ -31,10 +27,10 @@ Command: `python -m app.cli.ask "Quiero refinanciar mi prestamo"`
 Output: JSON intent response.
 
 ## Interfaces
-Each component package exposes simple Python classes or protocols. Provider contracts live beside the component they serve, for example `app/planning/providers.py`, `app/capability/providers.py`, and `app/ontology/providers.py`.
+Each component package exposes simple Python classes or protocols. Provider contracts live beside the component they serve, for example `app/ask/providers.py`, `app/capability/providers.py`, and `app/knowledge_graph/providers.py`.
 
 ## Implementation Notes
 The first implementation is intentionally small and avoids hidden framework coupling. Component logic belongs in the component folder, while `app/factory.py` only composes services and adapters.
 
 ## Future Replacement Strategy
-New adapters can be added inside the owning component package, such as `app/planning/ai.py` or `app/retrieval/ai.py`, while keeping the public CLI stable.
+New adapters can be added inside the owning component package, such as `app/ask/ai.py` or `app/knowledge_graph/neo4j.py`, while keeping the public CLI stable.

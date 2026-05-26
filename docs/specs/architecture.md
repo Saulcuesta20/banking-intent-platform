@@ -19,14 +19,14 @@ Describe the end-to-end architecture for converting banking questions into expla
 - Central provider composition in `app/factory.py`
 
 ## Data Flow
-Natural language enters a primary adapter. `IntentResolutionService.resolve`
+Natural language enters a primary adapter. `AskService.resolve`
 uses `AskState` and LangGraph `StateGraph` to orchestrate runtime nodes:
 retrieval, classification, projection, approval, and audit. Query understanding
-expands terms through the ontology synonym catalog, GraphRAG retrieval reads
-valid flows, user tasks, actions, ontology nodes, and synonym aliases from
+expands terms through the concept synonym catalog, GraphRAG retrieval reads
+valid flows, user tasks, actions, concepts, and synonym aliases from
 Neo4j, LangChain builds a restricted prompt, and the LLM selects one existing
-flow or returns `unknown`. `FlowAnswerContextService` then projects the selected
-flow's ingested business event, plan, tasks, related actions, and ontology nodes
+flow or returns `unknown`. `AnswerBuilder` then projects the selected
+flow's ingested business event, plan, tasks, related actions, and concepts
 into the answer. Approval service marks approval required, audit service records
 the result, and JSON is returned.
 
@@ -40,17 +40,17 @@ Output: intent `loan.refinance`, event `LoanRefinancingRequested`, approval `tru
 ## Interfaces
 - Primary adapters: CLI and FastAPI routes.
 - Input ports: `IngestKnowledgeUseCase`, `AskQuestionUseCase`.
-- Output ports: graph, retrieval, reasoning, flow context, capability registry, approval, audit.
+- Output ports: graph, retrieval, reasoning, answer, capability registry, approval, audit.
 
 ## Implementation Notes
-Dependencies point inward. Domain models know banking concepts, not framework types. Provider contracts live beside their component (`app/retrieval/providers.py`, `app/planning/providers.py`, `app/capability/providers.py`, etc.), while `app/factory.py` wires the chosen implementations.
+Dependencies point inward. Domain models know banking concepts, not framework types. Provider contracts live beside their component (`app/knowledge_graph/providers.py`, `app/ask/providers.py`, `app/capability/providers.py`), while `app/factory.py` wires the chosen implementations.
 
-Runtime planning, task decomposition, business-event creation, and ontology
+Runtime planning, task decomposition, business-event creation, and concept
 creation should not happen during ask question. Those elements are created
-during ingestion and projected by `app.flow_context.service.FlowAnswerContextService`
+during ingestion and projected by `app.ask.answer.AnswerBuilder`
 after a `KnowledgeRecord` has been selected. Synonym aliases are normalized by
-`app.ontology.service.OntologyTermNormalizer` during ingestion and reused by
-query understanding. Ingestion reasoning operates before a `KnowledgeRecord`
+`app.knowledge_graph.vocabulary.ConceptVocabulary` during ingestion and reused by
+question understanding. Ingestion reasoning operates before a `KnowledgeRecord`
 exists and belongs under `app/ingestion`.
 
 LangGraph is integrated in two places. Runtime ask uses `AskState` and a

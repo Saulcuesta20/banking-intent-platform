@@ -1,14 +1,14 @@
 from __future__ import annotations
 
 from app.audit.providers import AuditSink
-from app.models import IntentResult
+from app.models import AnswerResult
 
 
 class AuditService:
     def __init__(self, sink: AuditSink):
         self.sink = sink
 
-    def record_intent_result(self, question: str, result: IntentResult) -> None:
+    def record_intent_result(self, question: str, result: AnswerResult) -> None:
         self.sink.record(
             {
                 "event_type": "intent_resolved",

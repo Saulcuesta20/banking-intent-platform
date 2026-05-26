@@ -6,12 +6,12 @@ Define the product vision, feature catalog, user stories, and acceptance criteri
 This document is a product-facing companion to the technical specifications in `docs/specs`. It describes what the system does for users and operators, while keeping the current safety rule clear: the platform resolves, explains, plans, traces, and approval-gates banking intent, but it does not directly execute banking operations.
 
 ## Vision
-The Banking Intent Platform helps a bank convert natural-language customer requests into explainable, auditable, human-approved banking workflow context.
+The Banking Intent Platform helps a bank convert natural-language customer requests into explainable, auditable, human-approved banking workanswer.
 
 The system should:
 - Understand customer questions in natural language, including Spanish banking utterances.
 - Match the request to a known, validated banking flow.
-- Return the selected intent, business event, confidence, plan, user tasks, actions, ontology nodes, and explanation.
+- Return the selected intent, business event, confidence, plan, user tasks, actions, concepts, and explanation.
 - Use graph-backed knowledge and LLM reasoning for runtime question answering.
 - Fail clearly when LLM, LangGraph, or Neo4j runtime providers are unavailable.
 - Keep banking execution behind human approval and external systems.
@@ -40,15 +40,15 @@ Current output includes:
 - `plan`
 - `tasks`
 - `related_capabilities`
-- `related_ontology_nodes`
+- `related_concepts`
 - `explanation`
 
 ### GraphRAG Knowledge Retrieval
-When AI providers are enabled, the retrieval layer queries Neo4j for graph context across flows, utterances, ontology nodes, user tasks, front actions, and back actions.
+When AI providers are enabled, the retrieval layer queries Neo4j for graph context across flows, utterances, concepts, user tasks, front actions, and back actions.
 
-The graph retrieval path attaches metadata such as retrieval provider, query understanding, Cypher row count, tokens, search mode, and graph row preview.
+The graph retrieval path attaches metadata such as retrieval provider, question understanding, Cypher row count, tokens, search mode, and graph row preview.
 
-### Query Understanding
+### Question Understanding
 The system calls an LLM to correct obvious typos, extract search terms and entities, propose possible intent hints, and detect ambiguity before graph retrieval.
 
 ### Constrained LLM Intent Classification
@@ -57,14 +57,14 @@ The LLM reasoning provider classifies a question only against retrieved, existin
 ### Required LLM And Graph Runtime
 Runtime ask requires `USE_AI_PROVIDERS=true`, an OpenAI-compatible API key, LangGraph orchestration, and Neo4j GraphRAG retrieval. If one of these providers is unavailable, the platform reports a configuration/runtime error instead of selecting an intent locally.
 
-### Flow Answer Context Projection
-After a flow is selected, runtime projects already-ingested knowledge into the answer. Runtime does not create new plans, tasks, business events, actions, or ontology nodes.
+### Ask Answer Projection
+After a flow is selected, runtime projects already-ingested knowledge into the answer. Runtime does not create new plans, tasks, business events, actions, or concepts.
 
 ### Human Approval Gate
 The approval service marks banking outcomes as requiring human approval. Sensitive banking operations remain gated and are not executed directly by AI.
 
 ### Audit And Ask Trace
-The system records intent results through the audit service and writes ask traces under `data/processed/ask_trace` when configured. Trace data includes retrieval, query understanding, graph, LLM, selected flow, projected context, and final result.
+The system records intent results through the audit service and writes ask traces under `data/processed/ask_trace` when configured. Trace data includes retrieval, question understanding, graph, LLM, selected flow, projected context, and final result.
 
 ### Knowledge Ingestion
 The ingestion pipeline scans raw corpus files, extracts flow/user-task/action artifacts, validates output, writes preview or applied artifacts, and records ingestion audits.
@@ -100,7 +100,7 @@ The API supports:
 ### Provider Abstraction
 Each major capability owns a local provider contract under its component package. `app/factory.py` composes providers but does not own component business logic.
 
-Replaceable provider areas include retrieval, intent reasoning, query understanding, graph repository, ingestion, capability registry, approval, and audit.
+Replaceable provider areas include retrieval, intent reasoning, question understanding, graph repository, ingestion, capability registry, approval, and audit.
 
 ## Banking Flow Coverage
 
@@ -128,18 +128,18 @@ Replaceable provider areas include retrieval, intent reasoning, query understand
 ## User Stories And Acceptance Criteria
 
 ### Story 1: Resolve A Customer Banking Question
-As a customer service agent, I want to ask a natural-language banking question so that I can see the matching banking intent and workflow context.
+As a customer service agent, I want to ask a natural-language banking question so that I can see the matching banking intent and workanswer.
 
 Acceptance criteria:
 - Given a question that matches a known flow, when the agent submits it, then the system returns `can_resolve=true`.
-- Given a resolved question, when the response is returned, then it includes `flow_id`, `flow_name`, `intent`, `confidence`, `business_event`, `plan`, `tasks`, `related_capabilities`, `related_ontology_nodes`, and `explanation`.
+- Given a resolved question, when the response is returned, then it includes `flow_id`, `flow_name`, `intent`, `confidence`, `business_event`, `plan`, `tasks`, `related_capabilities`, `related_concepts`, and `explanation`.
 - Given a question that does not match current flow knowledge, when the agent submits it, then the system returns `intent=unknown`, `can_resolve=false`, and an explanation.
 
 ### Story 2: Use Graph Knowledge For Candidate Retrieval
 As a platform engineer, I want the system to retrieve candidate flows from Neo4j so that LLM reasoning is grounded in validated graph knowledge.
 
 Acceptance criteria:
-- Given AI providers are enabled and Neo4j is configured, when a question is submitted, then the retrieval provider queries flow, utterance, ontology, task, and action graph context.
+- Given AI providers are enabled and Neo4j is configured, when a question is submitted, then the retrieval provider queries flow, utterance, concept, task, and action graph context.
 - Given matching graph rows are found, when retrieval completes, then candidate records include graph metadata and are limited by the configured retrieval limit.
 - Given no filtered graph rows are found, when retrieval completes, then the system falls back to broad graph context instead of failing silently.
 
@@ -152,12 +152,12 @@ Acceptance criteria:
 - Given no matching flow, when classification runs, then the system returns the unknown-intent response path.
 
 ### Story 4: Project Ingested Flow Context
-As an operations analyst, I want the selected flow to include plan, task, action, and ontology context so that I can understand the next operational steps.
+As an operations analyst, I want the selected flow to include plan, task, action, and concept context so that I can understand the next operational steps.
 
 Acceptance criteria:
-- Given a selected `KnowledgeRecord`, when flow context is built, then the system returns the record's ingested business event, plan, and tasks.
+- Given a selected `KnowledgeRecord`, when answer is built, then the system returns the record's ingested business event, plan, and tasks.
 - Given user tasks contain front and back actions, when related capabilities are projected, then those actions are included without duplicates.
-- Given ontology nodes exist, when related ontology nodes are projected, then nodes matching the question are prioritized before remaining nodes.
+- Given concepts exist, when related concepts are projected, then nodes matching the question are prioritized before remaining nodes.
 
 ### Story 5: Require Human Approval
 As a risk owner, I want sensitive banking operations to require human approval so that the platform cannot directly execute regulated actions.
@@ -165,7 +165,7 @@ As a risk owner, I want sensitive banking operations to require human approval s
 Acceptance criteria:
 - Given any resolved banking flow, when the final result is returned, then `requires_human_approval=true`.
 - Given an unknown question, when the unknown result is returned, then approval is still required before any sensitive downstream action.
-- Given approval is enforced, when the result plan and tasks are returned, then they remain advisory workflow context and not direct execution.
+- Given approval is enforced, when the result plan and tasks are returned, then they remain advisory workanswer and not direct execution.
 
 ### Story 6: Trace The Ask Flow
 As a platform engineer, I want each ask operation to produce useful trace data so that I can debug retrieval, graph, LLM, and final response behavior.
@@ -173,7 +173,7 @@ As a platform engineer, I want each ask operation to produce useful trace data s
 Acceptance criteria:
 - Given trace output is enabled in the CLI, when a question is submitted, then important component steps are printed.
 - Given a trace directory is configured, when resolution completes, then an ask trace JSON file is written.
-- Given a trace file is written, when it is inspected, then it includes retrieval metadata, query understanding, graph summary, LLM metadata, selected flow, flow context, and result.
+- Given a trace file is written, when it is inspected, then it includes retrieval metadata, question understanding, graph summary, LLM metadata, selected flow, answer, and result.
 
 ### Story 7: Require AI Providers For Ask
 As a developer, I want the ask runtime to require LLM and graph providers so that every intent decision follows the same traceable AI + GraphRAG path.
@@ -256,7 +256,7 @@ Acceptance criteria:
 - Given utterances for money transfer, credit note, debit note, fees/claims, customer onboarding, backend operations, or intent matching, when questions are submitted, then the system resolves to the matching operational flow where knowledge exists.
 
 ## Non-Functional Requirements
-- Explainability: every resolved answer must expose the selected intent, business event, plan, tasks, capabilities, ontology nodes, and explanation.
+- Explainability: every resolved answer must expose the selected intent, business event, plan, tasks, capabilities, concepts, and explanation.
 - Auditability: ask and ingestion flows must be traceable through audit or trace records.
 - Safety: AI may classify and explain, but must not directly execute banking operations.
 - Configurability: AI and graph providers must be replaceable through provider interfaces.
@@ -270,7 +270,7 @@ Acceptance criteria:
 - Persistent production audit sink beyond the current provider abstraction.
 - End-user UI.
 - Real-time core banking integration.
-- Dynamic runtime creation of new flows, tasks, events, or ontology nodes during question answering.
+- Dynamic runtime creation of new flows, tasks, events, or concepts during question answering.
 
 ## Success Metrics
 - Known-flow questions resolve to the correct `flow_id` with meaningful confidence.

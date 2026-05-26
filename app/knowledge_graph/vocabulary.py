@@ -15,8 +15,8 @@ class NormalizedTerm:
     aliases: list[str] = field(default_factory=list)
 
 
-class OntologyTermNormalizer:
-    """Normalize domain terms and provide ingestion-time synonym aliases."""
+class ConceptVocabulary:
+    """Normalize domain concepts and provide ingestion-time synonym aliases."""
 
     def __init__(
         self,
@@ -50,10 +50,10 @@ class OntologyTermNormalizer:
         aliases = [normalized, *self.synonym_catalog.get(normalized, [])]
         return self._dedupe([self.normalize_text(alias) for alias in aliases])
 
-    def build_aliases_for_ontology_nodes(self, ontology_nodes: list[str]) -> dict[str, list[str]]:
+    def build_aliases_for_concepts(self, concepts: list[str]) -> dict[str, list[str]]:
         aliases_by_node: dict[str, list[str]] = {}
-        for node in ontology_nodes:
-            canonical = self._ontology_key(node)
+        for node in concepts:
+            canonical = self._concept_key(node)
             aliases = self.aliases_for(canonical)
             if aliases:
                 aliases_by_node[node] = aliases
@@ -82,14 +82,14 @@ class OntologyTermNormalizer:
     def _load_synonym_catalog(self, synonym_catalog_path: Path | str | None = None) -> dict[str, list[str]]:
         path = Path(
             synonym_catalog_path
-            or os.getenv("ONTOLOGY_SYNONYM_CATALOG_PATH", "")
-            or Path(__file__).resolve().parents[2] / "data" / "ontology" / "term_synonyms.json"
+            or os.getenv("CONCEPT_ALIAS_CATALOG_PATH", "")
+            or Path(__file__).resolve().parents[2] / "data" / "knowledge_graph" / "concept_aliases.json"
         )
         if not path.exists():
             return {}
         data = json.loads(path.read_text(encoding="utf-8"))
         if not isinstance(data, dict):
-            raise ValueError(f"Ontology synonym catalog must be a JSON object: {path}")
+            raise ValueError(f"Concept alias catalog must be a JSON object: {path}")
         catalog: dict[str, list[str]] = {}
         for canonical, aliases in data.items():
             if not isinstance(aliases, list):
@@ -97,7 +97,7 @@ class OntologyTermNormalizer:
             catalog[str(canonical)] = [str(alias) for alias in aliases]
         return catalog
 
-    def _ontology_key(self, value: str) -> str:
+    def _concept_key(self, value: str) -> str:
         text = re.sub(r"(?<!^)(?=[A-Z])", "_", str(value)).lower()
         text = self.normalize_text(text)
         return text.replace(" ", "_")

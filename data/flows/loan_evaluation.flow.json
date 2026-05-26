@@ -25,7 +25,7 @@
     "credit_history.read",
     "scoring.evaluate"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "LoanApplication",
     "DTI",
     "CreditScore"

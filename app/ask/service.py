@@ -10,70 +10,66 @@ from typing import Any, NotRequired, TypedDict
 from app.approval.service import ApprovalService
 from app.audit.service import AuditService
 from app.capability.service import CapabilityService
-from app.flow_context.service import FlowAnswerContext
-from app.flow_context.service import FlowAnswerContextService
-from app.intent.providers import SemanticReasoningProvider
-from app.models import IntentResult, KnowledgeRecord
-from app.retrieval.service import KnowledgeRetrievalService
+from app.ask.answer import AnswerBuilder
+from app.ask.answer import AnswerContext
+from app.ask.intent import FlowSelectionService
+from app.ask.understanding import QuestionUnderstanding, QuestionUnderstandingService
+from app.models import AnswerResult, KnowledgeRecord
+from app.knowledge_graph.service import KnowledgeGraphService
 
 
 class AskState(TypedDict, total=False):
     question: str
     entities: list[str]
-    retrieved_context: list[KnowledgeRecord]
+    knowledge_candidates: list[KnowledgeRecord]
+    question_understanding: dict[str, Any]
     selected_flow: dict[str, Any]
     result: dict[str, Any]
     trace: NotRequired[Callable[[str, str], None] | None]
     selected_record: NotRequired[KnowledgeRecord | None]
-    flow_context: NotRequired[FlowAnswerContext | None]
-    result_model: NotRequired[IntentResult]
+    answer_context: NotRequired[AnswerContext | None]
+    result_model: NotRequired[AnswerResult]
 
 
-class IntentClassificationService:
-    def __init__(self, provider: SemanticReasoningProvider):
-        self.provider = provider
-
-    def classify(self, question: str, records):
-        return self.provider.classify_intent(question, records)
-
-
-class IntentResolutionService:
+class AskService:
     def __init__(
         self,
-        retrieval_service: KnowledgeRetrievalService,
-        classification_service: IntentClassificationService,
+        knowledge_graph_service: KnowledgeGraphService,
+        question_understanding_service: QuestionUnderstandingService,
+        flow_selection_service: FlowSelectionService,
         capability_service: CapabilityService,
-        flow_context_service: FlowAnswerContextService,
+        answer_builder: AnswerBuilder,
         approval_service: ApprovalService,
         audit_service: AuditService,
         trace_directory: Path | None = None,
         use_langgraph_orchestration: bool = True,
     ):
-        self.retrieval_service = retrieval_service
-        self.classification_service = classification_service
+        self.knowledge_graph_service = knowledge_graph_service
+        self.question_understanding_service = question_understanding_service
+        self.flow_selection_service = flow_selection_service
         self.capability_service = capability_service
-        self.flow_context_service = flow_context_service
+        self.answer_builder = answer_builder
         self.approval_service = approval_service
         self.audit_service = audit_service
         self.trace_directory = trace_directory
         self.use_langgraph_orchestration = use_langgraph_orchestration
 
-    def resolve(self, question: str, trace: Callable[[str, str], None] | None = None) -> IntentResult:
+    def resolve(self, question: str, trace: Callable[[str, str], None] | None = None) -> AnswerResult:
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=resolve input="
+            "class=AskService method=resolve input="
             + self._json({"question": question, "use_langgraph_orchestration": self.use_langgraph_orchestration}),
         )
         if self.use_langgraph_orchestration:
             return self._resolve_with_langgraph(question, trace)
         return self._resolve_linear(question, trace)
 
-    def _resolve_with_langgraph(self, question: str, trace: Callable[[str, str], None] | None) -> IntentResult:
+    def _resolve_with_langgraph(self, question: str, trace: Callable[[str, str], None] | None) -> AnswerResult:
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=_resolve_with_langgraph input="
+            "class=AskService method=_resolve_with_langgraph input="
             + self._json({"question": question}),
         )
         graph_module = self._optional_import("langgraph.graph", "langgraph")
@@ -82,60 +78,67 @@ class IntentResolutionService:
         END = graph_module.END
 
         workflow = StateGraph(AskState)
-        workflow.add_node("retrieve_context", self._ask_node_retrieve_context)
-        workflow.add_node("classify_intent", self._ask_node_classify_intent)
-        workflow.add_node("project_flow_context", self._ask_node_project_flow_context)
+        workflow.add_node("understand_question", self._ask_node_understand_question)
+        workflow.add_node("search_knowledge", self._ask_node_search_knowledge)
+        workflow.add_node("select_intent", self._ask_node_select_intent)
+        workflow.add_node("build_answer", self._ask_node_build_answer)
         workflow.add_node("unknown_result", self._ask_node_unknown_result)
-        workflow.add_edge(START, "retrieve_context")
-        workflow.add_edge("retrieve_context", "classify_intent")
+        workflow.add_edge(START, "understand_question")
+        workflow.add_edge("understand_question", "search_knowledge")
+        workflow.add_edge("search_knowledge", "select_intent")
         workflow.add_conditional_edges(
-            "classify_intent",
-            self._ask_route_after_classification,
+            "select_intent",
+            self._ask_route_after_selection,
             {
-                "project": "project_flow_context",
+                "project": "build_answer",
                 "unknown": "unknown_result",
             },
         )
-        workflow.add_edge("project_flow_context", END)
+        workflow.add_edge("build_answer", END)
         workflow.add_edge("unknown_result", END)
         self._trace(trace, "orchestration", "workflow=langgraph_ask")
         self._trace(
             trace,
             "orchestration",
             "workflow=langgraph_ask nodes="
-            + self._json(["retrieve_context", "classify_intent", "project_flow_context", "unknown_result"]),
+            + self._json(["understand_question", "search_knowledge", "select_intent", "build_answer", "unknown_result"]),
         )
 
         app = workflow.compile()
         final_state = app.invoke({"question": question, "trace": trace})
         result = final_state.get("result_model")
         if result is None:
-            raise RuntimeError("LangGraph ask workflow finished without an IntentResult.")
+            raise RuntimeError("LangGraph ask workflow finished without an AnswerResult.")
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=_resolve_with_langgraph output="
+            "class=AskService method=_resolve_with_langgraph output="
             + self._json({"flow_id": result.flow_id, "intent": result.intent, "confidence": result.confidence}),
         )
         return result
 
-    def _resolve_linear(self, question: str, trace: Callable[[str, str], None] | None = None) -> IntentResult:
+    def _resolve_linear(self, question: str, trace: Callable[[str, str], None] | None = None) -> AnswerResult:
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=_resolve_linear input=" + self._json({"question": question}),
+            "class=AskService method=_resolve_linear input=" + self._json({"question": question}),
         )
         self._trace(trace, "input", f"question={question}")
-        self._trace(trace, "retrieval", "loading flow/user-task knowledge")
-        records = self.retrieval_service.retrieve(question)
-        self._trace(trace, "retrieval", f"matched_records={len(records)}")
-        self._trace_retrieval_metadata(trace, records)
+        understanding = self.question_understanding_service.understand(question)
+        self._trace_question_understanding(trace, understanding)
+        self._trace(trace, "knowledge_graph", "searching approved knowledge")
+        records = self._attach_understanding(
+            self.knowledge_graph_service.search(understanding.search_terms),
+            understanding,
+        )
+        self._trace(trace, "knowledge_graph", f"matched_records={len(records)}")
+        self._trace_knowledge_metadata(trace, records)
 
         registered_actions = self.capability_service.list_registered_actions()
         self._trace(trace, "capability", f"registered_actions={len(registered_actions)}")
 
         self._trace(trace, "intent", "classifying intent from retrieved records")
-        record = self.classification_service.classify(question, records)
+        record = self.flow_selection_service.select(question, records)
         if record is None:
             self._trace_llm_classifier_decision(trace)
 
@@ -144,56 +147,63 @@ class IntentResolutionService:
 
         return self._build_projected_result(question, records, record, trace)
 
-    def _ask_node_retrieve_context(self, state: AskState) -> AskState:
+    def _ask_node_understand_question(self, state: AskState) -> AskState:
+        understanding = self.question_understanding_service.understand(state["question"])
+        self._trace_question_understanding(state.get("trace"), understanding)
+        return {
+            "question_understanding": understanding.__dict__,
+            "entities": list(understanding.entities),
+        }
+
+    def _ask_node_search_knowledge(self, state: AskState) -> AskState:
         question = state["question"]
         trace = state.get("trace")
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=_ask_node_retrieve_context input="
+            "class=AskService method=_ask_node_search_knowledge input="
             + self._json({"question": question}),
         )
         self._trace(trace, "input", f"question={question}")
-        self._trace(trace, "retrieval", "loading flow/user-task knowledge")
-        records = self.retrieval_service.retrieve(question)
-        self._trace(trace, "retrieval", f"matched_records={len(records)}")
-        self._trace_retrieval_metadata(trace, records)
+        self._trace(trace, "knowledge_graph", "searching approved knowledge")
+        understanding = QuestionUnderstanding(**state["question_understanding"])
+        records = self._attach_understanding(
+            self.knowledge_graph_service.search(understanding.search_terms),
+            understanding,
+        )
+        self._trace(trace, "knowledge_graph", f"matched_records={len(records)}")
+        self._trace_knowledge_metadata(trace, records)
         registered_actions = self.capability_service.list_registered_actions()
         self._trace(trace, "capability", f"registered_actions={len(registered_actions)}")
-        entities = []
-        if records:
-            query_understanding = records[0].metadata.get("query_understanding") or {}
-            entities = list(query_understanding.get("entities") or [])
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=_ask_node_retrieve_context output="
-            + self._json({"records": len(records), "entities": entities}),
+            "class=AskService method=_ask_node_search_knowledge output="
+            + self._json({"records": len(records), "entities": understanding.entities}),
         )
         return {
-            "retrieved_context": records,
-            "entities": entities,
+            "knowledge_candidates": records,
         }
 
-    def _ask_node_classify_intent(self, state: AskState) -> AskState:
+    def _ask_node_select_intent(self, state: AskState) -> AskState:
         question = state["question"]
         trace = state.get("trace")
-        records = state.get("retrieved_context", [])
+        records = state.get("knowledge_candidates", [])
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=_ask_node_classify_intent input="
+            "class=AskService method=_ask_node_select_intent input="
             + self._json({"question": question, "candidate_flows": [record.flow_id for record in records]}),
         )
         self._trace(trace, "intent", "classifying intent from retrieved records")
-        record = self.classification_service.classify(question, records)
+        record = self.flow_selection_service.select(question, records)
         if record is None:
             self._trace_llm_classifier_decision(trace)
             self._trace(trace, "intent", "no matching flow found")
             self._trace(
                 trace,
                 "call",
-                "class=IntentResolutionService method=_ask_node_classify_intent output="
+                "class=AskService method=_ask_node_select_intent output="
                 + self._json({"selected_record": None}),
             )
             return {
@@ -203,7 +213,7 @@ class IntentResolutionService:
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=_ask_node_classify_intent output="
+            "class=AskService method=_ask_node_select_intent output="
             + self._json({"flow_id": record.flow_id, "intent": record.intent, "confidence": record.confidence}),
         )
         return {
@@ -216,27 +226,27 @@ class IntentResolutionService:
             },
         }
 
-    def _ask_route_after_classification(self, state: AskState) -> str:
+    def _ask_route_after_selection(self, state: AskState) -> str:
         route = "project" if state.get("selected_record") is not None else "unknown"
         trace = state.get("trace")
         self._trace(
             trace,
             "orchestration",
-            "class=IntentResolutionService method=_ask_route_after_classification output="
+            "class=AskService method=_ask_route_after_selection output="
             + self._json({"route": route}),
         )
         return route
 
-    def _ask_node_project_flow_context(self, state: AskState) -> AskState:
+    def _ask_node_build_answer(self, state: AskState) -> AskState:
         self._trace(
             state.get("trace"),
             "call",
-            "class=IntentResolutionService method=_ask_node_project_flow_context input="
+            "class=AskService method=_ask_node_build_answer input="
             + self._json({"selected_flow": state.get("selected_flow")}),
         )
         result = self._build_projected_result(
             state["question"],
-            state.get("retrieved_context", []),
+            state.get("knowledge_candidates", []),
             state["selected_record"],
             state.get("trace"),
         )
@@ -248,7 +258,7 @@ class IntentResolutionService:
     def _ask_node_unknown_result(self, state: AskState) -> AskState:
         result = self._build_unknown_result(
             state["question"],
-            state.get("retrieved_context", []),
+            state.get("knowledge_candidates", []),
             state.get("trace"),
         )
         return {
@@ -261,11 +271,11 @@ class IntentResolutionService:
         question: str,
         records: list[KnowledgeRecord],
         trace: Callable[[str, str], None] | None,
-    ) -> IntentResult:
+    ) -> AnswerResult:
         self._trace(trace, "resolution", "cannot_resolve=true reason=no flow knowledge matched")
         explanation = "No flow knowledge matched the question."
-        query_understanding = records[0].metadata.get("query_understanding") if records else None
-        ambiguity = query_understanding.get("ambiguity") if isinstance(query_understanding, dict) else None
+        question_understanding = records[0].metadata.get("question_understanding") if records else None
+        ambiguity = question_understanding.get("ambiguity") if isinstance(question_understanding, dict) else None
         if ambiguity:
             option_text = ", ".join(self._format_ambiguity_option(option) for option in ambiguity.get("options", []))
             explanation = (
@@ -275,7 +285,7 @@ class IntentResolutionService:
             self._trace(trace, "intent", f"reason={ambiguity.get('reason')}")
         clarification_options = self._build_clarification_options(records)
         plan, tasks = self.approval_service.enforce(["clarify_customer_request"], [])
-        result = IntentResult(
+        result = AnswerResult(
             flow_id="unknown",
             flow_name="Unknown flow",
             intent="unknown",
@@ -285,7 +295,7 @@ class IntentResolutionService:
             plan=plan,
             tasks=tasks,
             related_capabilities=[],
-            related_ontology_nodes=[],
+            related_concepts=[],
             explanation=explanation,
             clarification_options=clarification_options,
         )
@@ -297,7 +307,7 @@ class IntentResolutionService:
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=_build_unknown_result output="
+            "class=AskService method=_build_unknown_result output="
             + self._json(result.to_dict()),
         )
         return result
@@ -308,26 +318,26 @@ class IntentResolutionService:
         records: list[KnowledgeRecord],
         record: KnowledgeRecord,
         trace: Callable[[str, str], None] | None,
-    ) -> IntentResult:
+    ) -> AnswerResult:
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=_build_projected_result input="
+            "class=AskService method=_build_projected_result input="
             + self._json({"question": question, "selected_flow": record.flow_id, "candidate_count": len(records)}),
         )
         self._trace_selected_record(trace, record)
-        self._trace(trace, "flow_context", "projecting ingested event/plan/tasks/actions/ontology")
-        context = self.flow_context_service.build(question, record)
-        self._trace(trace, "flow_context", f"business_event={context.business_event}")
-        self._trace(trace, "flow_context", f"plan_steps={len(context.plan)}")
-        self._trace(trace, "flow_context", f"user_tasks={len(context.tasks)}")
-        self._trace(trace, "flow_context", f"related_actions={len(context.related_capabilities)}")
-        self._trace(trace, "flow_context", f"related_nodes={len(context.related_ontology_nodes)}")
+        self._trace(trace, "answer", "projecting ingested event/plan/tasks/actions/concepts")
+        context = self.answer_builder.build(question, record)
+        self._trace(trace, "answer", f"business_event={context.business_event}")
+        self._trace(trace, "answer", f"plan_steps={len(context.plan)}")
+        self._trace(trace, "answer", f"user_tasks={len(context.tasks)}")
+        self._trace(trace, "answer", f"related_actions={len(context.related_capabilities)}")
+        self._trace(trace, "answer", f"related_concepts={len(context.related_concepts)}")
 
         plan, tasks = self.approval_service.enforce(context.plan, context.tasks)
         self._trace(trace, "approval", f"requires_human_approval={self.approval_service.requires_approval()}")
 
-        result = IntentResult(
+        result = AnswerResult(
             flow_id=record.flow_id,
             flow_name=record.flow_name,
             intent=record.intent,
@@ -337,7 +347,7 @@ class IntentResolutionService:
             plan=plan,
             tasks=tasks,
             related_capabilities=context.related_capabilities,
-            related_ontology_nodes=context.related_ontology_nodes,
+            related_concepts=context.related_concepts,
             explanation=record.explanation,
         )
         self.audit_service.record_intent_result(question, result)
@@ -349,50 +359,27 @@ class IntentResolutionService:
         self._trace(
             trace,
             "call",
-            "class=IntentResolutionService method=_build_projected_result output="
+            "class=AskService method=_build_projected_result output="
             + self._json(result.to_dict()),
         )
         return result
 
-    def _trace_retrieval_metadata(
+    def _trace_knowledge_metadata(
         self,
         trace: Callable[[str, str], None] | None,
         records: list[KnowledgeRecord],
     ) -> None:
         if not records:
             return
-        provider_name = records[0].metadata.get("retrieval_provider")
+        provider_name = records[0].metadata.get("knowledge_provider")
         if provider_name:
-            self._trace(trace, "retrieval", f"provider={provider_name}")
-        retrieval_input = records[0].metadata.get("retrieval_input")
-        if retrieval_input:
-            self._trace(trace, "retrieval", "input=" + self._json(retrieval_input))
-        retrieval_filter = records[0].metadata.get("retrieval_filter")
-        if retrieval_filter:
-            self._trace(trace, "retrieval", "filters=" + self._json(retrieval_filter))
-        query_understanding = records[0].metadata.get("query_understanding")
-        if query_understanding:
-            self._trace(
-                trace,
-                "query_understanding",
-                f"provider={query_understanding.get('provider')} terms={query_understanding.get('search_terms')} entities={query_understanding.get('entities')}",
-            )
-            self._trace(
-                trace,
-                "query_understanding",
-                "output="
-                + self._json(
-                    {
-                        "search_terms": query_understanding.get("search_terms"),
-                        "corrected_question": query_understanding.get("corrected_question"),
-                        "corrections": query_understanding.get("corrections"),
-                        "entities": query_understanding.get("entities"),
-                        "possible_intents": query_understanding.get("possible_intents"),
-                        "ambiguity": query_understanding.get("ambiguity"),
-                        "explanation": query_understanding.get("explanation"),
-                    }
-                ),
-            )
+            self._trace(trace, "knowledge_graph", f"provider={provider_name}")
+        knowledge_input = records[0].metadata.get("knowledge_input")
+        if knowledge_input:
+            self._trace(trace, "knowledge_graph", "input=" + self._json(knowledge_input))
+        knowledge_filter = records[0].metadata.get("knowledge_filter")
+        if knowledge_filter:
+            self._trace(trace, "knowledge_graph", "filters=" + self._json(knowledge_filter))
         graph_summary = records[0].metadata.get("graph_query_summary")
         if graph_summary:
             self._trace(
@@ -411,7 +398,31 @@ class IntentResolutionService:
             self._trace(trace, "graph", "rows_preview=" + self._json(graph_rows_preview))
         flow_ids = ", ".join(record.flow_id for record in records[:10])
         if flow_ids:
-            self._trace(trace, "retrieval", f"candidate_flows={flow_ids}")
+            self._trace(trace, "knowledge_graph", f"candidate_flows={flow_ids}")
+
+    def _trace_question_understanding(
+        self,
+        trace: Callable[[str, str], None] | None,
+        understanding: QuestionUnderstanding,
+    ) -> None:
+        self._trace(
+            trace,
+            "question_understanding",
+            f"provider={understanding.provider} terms={understanding.search_terms} entities={understanding.entities}",
+        )
+        self._trace(trace, "question_understanding", "output=" + self._json(understanding.__dict__))
+
+    def _attach_understanding(
+        self,
+        records: list[KnowledgeRecord],
+        understanding: QuestionUnderstanding,
+    ) -> list[KnowledgeRecord]:
+        return [
+            record.model_copy(
+                update={"metadata": {**record.metadata, "question_understanding": understanding.__dict__}}
+            )
+            for record in records
+        ]
 
     def _trace_selected_record(
         self,
@@ -444,7 +455,7 @@ class IntentResolutionService:
             self._trace(trace, "llm", f"reason={llm_reason}")
 
     def _trace_llm_classifier_decision(self, trace: Callable[[str, str], None] | None) -> None:
-        recorder = getattr(self.classification_service.provider, "decision_recorder", None)
+        recorder = getattr(self.flow_selection_service.provider, "decision_recorder", None)
         if recorder is None:
             return
         prompt = getattr(recorder, "prompt", "")
@@ -464,7 +475,7 @@ class IntentResolutionService:
                 self._trace(trace, "llm", f"reason={answer.get('reason')}")
 
     def _llm_classifier_trace_payload(self) -> dict[str, Any]:
-        recorder = getattr(self.classification_service.provider, "decision_recorder", None)
+        recorder = getattr(self.flow_selection_service.provider, "decision_recorder", None)
         if recorder is None:
             return {
                 "provider": None,
@@ -501,13 +512,13 @@ class IntentResolutionService:
         options: list[dict[str, Any]] = []
         seen: set[str] = set()
         first_metadata = records[0].metadata if records else {}
-        query_understanding = first_metadata.get("query_understanding") or {}
-        if isinstance(query_understanding, dict):
-            ambiguity = query_understanding.get("ambiguity")
+        question_understanding = first_metadata.get("question_understanding") or {}
+        if isinstance(question_understanding, dict):
+            ambiguity = question_understanding.get("ambiguity")
             if isinstance(ambiguity, dict):
                 for option in ambiguity.get("options", []):
                     self._append_clarification_option(options, seen, option, "llm_ambiguity")
-            for option in query_understanding.get("possible_intents", []):
+            for option in question_understanding.get("possible_intents", []):
                 self._append_clarification_option(options, seen, option, "llm_possible_intent")
         for record in records[:6]:
             self._append_clarification_option(
@@ -573,7 +584,7 @@ class IntentResolutionService:
         records,
         selected_record,
         context,
-        result: IntentResult,
+        result: AnswerResult,
     ) -> Path | None:
         if self.trace_directory is None:
             return None
@@ -586,14 +597,14 @@ class IntentResolutionService:
         payload = {
             "timestamp": timestamp.isoformat(),
             "question": question,
-            "retrieval": {
+            "knowledge_search": {
                 "matched_records": len(records),
                 "candidate_flows": [record.flow_id for record in records],
-                "provider": first_metadata.get("retrieval_provider"),
-                "input": first_metadata.get("retrieval_input"),
-                "filters": first_metadata.get("retrieval_filter"),
+                "provider": first_metadata.get("knowledge_provider"),
+                "input": first_metadata.get("knowledge_input"),
+                "filters": first_metadata.get("knowledge_filter"),
             },
-            "query_understanding": first_metadata.get("query_understanding"),
+            "question_understanding": first_metadata.get("question_understanding"),
             "graph": {
                 "query_summary": first_metadata.get("graph_query_summary"),
                 "rows_preview": first_metadata.get("graph_rows_preview"),
@@ -615,14 +626,14 @@ class IntentResolutionService:
                 "business_event": selected_record.business_event,
                 "source": selected_record.source,
             },
-            "flow_context": None
+            "answer": None
             if context is None
             else {
                 "business_event": context.business_event,
                 "plan": context.plan,
                 "tasks": [task.to_dict() for task in context.tasks],
                 "related_capabilities": context.related_capabilities,
-                "related_ontology_nodes": context.related_ontology_nodes,
+                "related_concepts": context.related_concepts,
             },
             "result": result.to_dict(),
         }

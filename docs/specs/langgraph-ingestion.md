@@ -30,7 +30,7 @@ It does not replace the deterministic ingestion components. It coordinates them.
 | JSON validation | `CorpusFlowLoader.normalize_and_validate` and `_normalize_*`. |
 | File writing | `CorpusFlowLoader.write_result`. |
 | Neo4j loading | `tools/push_flows_to_neo4j.py`. |
-| Runtime question answering | `IntentResolutionService` and retrieval/intent providers. |
+| Runtime question answering | `AskService` and retrieval/intent providers. |
 
 ## Graph Shape
 ```text

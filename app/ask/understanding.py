@@ -9,7 +9,7 @@ from typing import Any, Protocol
 
 
 @dataclass(frozen=True)
-class QueryUnderstanding:
+class QuestionUnderstanding:
     original_question: str
     search_terms: list[str]
     corrected_question: str | None = None
@@ -21,20 +21,20 @@ class QueryUnderstanding:
     explanation: str = ""
 
 
-class QueryUnderstandingProvider(Protocol):
-    def understand(self, question: str) -> QueryUnderstanding:
+class QuestionUnderstandingProvider(Protocol):
+    def understand(self, question: str) -> QuestionUnderstanding:
         """Return graph search terms and domain hints for a natural-language question."""
 
 
-class QueryUnderstandingService:
-    def __init__(self, provider: QueryUnderstandingProvider):
+class QuestionUnderstandingService:
+    def __init__(self, provider: QuestionUnderstandingProvider):
         self.provider = provider
 
-    def understand(self, question: str) -> QueryUnderstanding:
+    def understand(self, question: str) -> QuestionUnderstanding:
         return self.provider.understand(question)
 
 
-class LLMQueryUnderstandingProvider:
+class LLMQuestionUnderstandingProvider:
     def __init__(
         self,
         api_key: str | None = None,
@@ -49,7 +49,7 @@ class LLMQueryUnderstandingProvider:
         if not self.api_key:
             raise RuntimeError("OPENAI_API_KEY is required for LLM query understanding.")
 
-    def understand(self, question: str) -> QueryUnderstanding:
+    def understand(self, question: str) -> QuestionUnderstanding:
         answer = self._complete_json(question)
         terms = self._merge_unique([str(value).lower() for value in answer.get("search_terms", [])])
         entities = self._merge_unique([str(value) for value in answer.get("entities", [])])
@@ -60,7 +60,7 @@ class LLMQueryUnderstandingProvider:
             if isinstance(value, dict) and value.get("from") and value.get("to")
         ]
         ambiguity = answer.get("ambiguity") if isinstance(answer.get("ambiguity"), dict) else None
-        return QueryUnderstanding(
+        return QuestionUnderstanding(
             original_question=question,
             corrected_question=str(answer.get("corrected_question") or ""),
             corrections=corrections,
@@ -68,7 +68,7 @@ class LLMQueryUnderstandingProvider:
             entities=entities[:12],
             possible_intents=possible_intents,
             ambiguity=ambiguity,
-            provider="llm_query_understanding",
+            provider="llm_question_understanding",
             explanation=str(answer.get("explanation") or "LLM query correction and expansion."),
         )
 
@@ -81,7 +81,7 @@ class LLMQueryUnderstandingProvider:
                 {
                     "role": "system",
                     "content": (
-                        "You expand Spanish banking customer questions for graph retrieval. "
+                        "You expand Spanish banking customer questions for knowledge graph search. "
                         "Return only JSON. Do not execute banking actions. "
                         "Correct obvious typos, detect ambiguity, and suggest possible existing intent hints. "
                         "Do not select the final flow."

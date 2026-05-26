@@ -17,7 +17,7 @@ from typing import Any, Protocol
 
 from app.ingestion.reasoning import IngestionReasoningService
 from app.models import Action, UserTask
-from app.ontology.service import OntologyTermNormalizer
+from app.knowledge_graph.vocabulary import ConceptVocabulary
 
 
 SUPPORTED_CORPUS_SUFFIXES = {
@@ -155,12 +155,12 @@ class CorpusFlowLoader:
         llm_client: LLMClient,
         max_pdf_image_pages: int = 3,
         reasoning_service: IngestionReasoningService | None = None,
-        ontology_normalizer: OntologyTermNormalizer | None = None,
+        concept_vocabulary: ConceptVocabulary | None = None,
     ):
         self.llm_client = llm_client
         self.max_pdf_image_pages = max_pdf_image_pages
         self.reasoning_service = reasoning_service
-        self.ontology_normalizer = ontology_normalizer or OntologyTermNormalizer()
+        self.concept_vocabulary = concept_vocabulary or ConceptVocabulary()
 
     def extract(self, raw_directory: Path) -> dict[str, Any]:
         documents = self.load_corpus(raw_directory)
@@ -456,7 +456,7 @@ class CorpusFlowLoader:
             "plan",
             "user_task_refs",
             "capabilities",
-            "ontology_nodes",
+            "concepts",
             "explanation",
         }
         missing = required - set(item)
@@ -467,8 +467,8 @@ class CorpusFlowLoader:
         if not refs:
             raise FlowExtractionError(f"Flow {item['flow_id']} must include user_task_refs.")
 
-        ontology_nodes = [str(value) for value in item["ontology_nodes"]]
-        ontology_aliases = self.ontology_normalizer.build_aliases_for_ontology_nodes(ontology_nodes)
+        concepts = [str(value) for value in item["concepts"]]
+        concept_aliases = self.concept_vocabulary.build_aliases_for_concepts(concepts)
 
         return {
             "flow_id": self._flow_id(item["flow_id"]),
@@ -480,8 +480,8 @@ class CorpusFlowLoader:
             "plan": [self._slug(value) for value in item["plan"]],
             "user_task_refs": refs,
             "capabilities": [self._operation_name(value) for value in item["capabilities"]],
-            "ontology_nodes": ontology_nodes,
-            "ontology_aliases": ontology_aliases,
+            "concepts": concepts,
+            "concept_aliases": concept_aliases,
             "explanation": str(item["explanation"]),
             "source": ";".join(source_paths),
             "metadata": {"generated_by": "llm_corpus_flow_loader", "source_files": source_paths},
@@ -512,9 +512,9 @@ class CorpusFlowLoader:
             "Technical CRUD, API, validation, notification, calculation, synchronization, "
             "or persistence operations must be back_actions, "
             "never user_tasks. Front actions are UI events that trigger backend actions. "
-            "Infer all flow names, user tasks, resources, actions, ontology nodes, "
+            "Infer all flow names, user tasks, resources, actions, concepts, "
             "utterances, and business events only from the provided corpus. "
-            "The application deterministically adds ontology_aliases/synonyms after extraction. "
+            "The application deterministically adds concept_aliases/synonyms after extraction. "
             "The action registry is derived from front_actions and back_actions. "
             "Prefer reusable user_tasks across flows."
         )
@@ -570,7 +570,7 @@ class CorpusFlowLoader:
             '      "plan": ["user_task_id"],\n'
             '      "user_task_refs": ["user_task_id"],\n'
             '      "capabilities": ["resource.operation"],\n'
-            '      "ontology_nodes": ["EntityOrConcept"],\n'
+            '      "concepts": ["EntityOrConcept"],\n'
             '      "explanation": "Why this flow exists"\n'
             "    }\n"
             "  ]\n"
@@ -581,7 +581,7 @@ class CorpusFlowLoader:
             "- Put CRUD/calculation/API/checking operations under back_actions.\n"
             "- Put clicks/submits/views under front_actions.\n"
             "- Treat capabilities as action names; the final action registry will be built from every front_action and back_action.\n"
-            "- Put formal concepts in ontology_nodes; do not manually add ontology_aliases because they are normalized by ingestion.\n"
+            "- Put formal concepts in concepts; do not manually add concept_aliases because they are normalized by ingestion.\n"
             "- Include approval user tasks when the corpus says or implies approval/review/control is required.\n"
             "- If images are provided, first read their visible text and diagrams, then use that information together with the text files.\n"
             "- Do not invent fixed domain examples. Derive names and content from the corpus.\n\n"

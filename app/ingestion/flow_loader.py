@@ -5,8 +5,9 @@ from pathlib import Path
 
 from app.capability.registry import RegistryCapabilityProvider
 from app.ingestion.providers import KnowledgeIngestionProvider
+from app.knowledge_graph.service import KnowledgeGraphService
 from app.models import Action, KnowledgeRecord, Task, UserTask
-from app.ontology.service import OntologyTermNormalizer
+from app.knowledge_graph.vocabulary import ConceptVocabulary
 
 
 SUPPORTED_SUFFIXES = {
@@ -23,8 +24,8 @@ SUPPORTED_SUFFIXES = {
 
 
 class FlowKnowledgeLoader:
-    def __init__(self, ontology_normalizer: OntologyTermNormalizer | None = None):
-        self.ontology_normalizer = ontology_normalizer or OntologyTermNormalizer()
+    def __init__(self, concept_vocabulary: ConceptVocabulary | None = None):
+        self.concept_vocabulary = concept_vocabulary or ConceptVocabulary()
 
     def load_directory(self, directory: Path) -> list[KnowledgeRecord]:
         if not directory.exists():
@@ -54,10 +55,10 @@ class FlowKnowledgeLoader:
         if not tasks:
             tasks = [Task(task=item["task"], type=item["type"]) for item in data.get("tasks", [])]
 
-        ontology_nodes = list(data.get("ontology_nodes", []))
-        ontology_aliases = dict(data.get("ontology_aliases", {}))
-        if not ontology_aliases:
-            ontology_aliases = self.ontology_normalizer.build_aliases_for_ontology_nodes(ontology_nodes)
+        concepts = list(data.get("concepts", []))
+        concept_aliases = dict(data.get("concept_aliases", {}))
+        if not concept_aliases:
+            concept_aliases = self.concept_vocabulary.build_aliases_for_concepts(concepts)
 
         return KnowledgeRecord(
             flow_id=data.get("flow_id", data["intent"]),
@@ -70,8 +71,8 @@ class FlowKnowledgeLoader:
             tasks=tasks,
             user_tasks=user_tasks,
             capabilities=list(data.get("capabilities", [])),
-            ontology_nodes=ontology_nodes,
-            ontology_aliases=ontology_aliases,
+            concepts=concepts,
+            concept_aliases=concept_aliases,
             explanation=data.get("explanation", "Matched from flow knowledge."),
             source=str(path),
             metadata=dict(data.get("metadata", {})),
@@ -159,14 +160,22 @@ class FlowKnowledgeLoader:
 
 
 class FileKnowledgeIngestionProvider(KnowledgeIngestionProvider):
-    def __init__(self, flow_directory: Path, processed_directory: Path):
+    def __init__(
+        self,
+        flow_directory: Path,
+        processed_directory: Path,
+        knowledge_graph_service: KnowledgeGraphService | None = None,
+    ):
         self.flow_directory = flow_directory
         self.processed_directory = processed_directory
         self.loader = FlowKnowledgeLoader()
+        self.knowledge_graph_service = knowledge_graph_service
 
     def ingest(self, source: Path) -> list[KnowledgeRecord]:
         source_files = self._discover_source_files(source)
         records = self.loader.load_directory(self.flow_directory)
+        if self.knowledge_graph_service is not None:
+            self.knowledge_graph_service.ingest(records)
         action_registry = RegistryCapabilityProvider().build_action_registry(records)
         self.processed_directory.mkdir(parents=True, exist_ok=True)
         index_path = self.processed_directory / "knowledge_index.json"
@@ -206,8 +215,8 @@ class FileKnowledgeIngestionProvider(KnowledgeIngestionProvider):
             ],
             "user_tasks": [task.to_dict() for task in record.user_tasks],
             "capabilities": record.capabilities,
-            "ontology_nodes": record.ontology_nodes,
-            "ontology_aliases": record.ontology_aliases,
+            "concepts": record.concepts,
+            "concept_aliases": record.concept_aliases,
             "explanation": record.explanation,
             "source": record.source,
             "metadata": record.metadata,

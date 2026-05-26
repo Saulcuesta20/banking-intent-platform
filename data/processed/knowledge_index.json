@@ -1243,7 +1243,7 @@
         "api.transaction.post",
         "integration.sync"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "API",
         "Executor",
         "Integration"
@@ -1421,7 +1421,7 @@
         "account.read",
         "credit_note.create"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Customer",
         "SavingsAccount",
         "CreditNote",
@@ -1640,7 +1640,7 @@
         "kyc.screen",
         "customer.conditions.validate"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Customer",
         "CustomerConditions"
       ],
@@ -1817,7 +1817,7 @@
         "account.read",
         "debit_note.create"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Customer",
         "SavingsAccount",
         "DebitNote",
@@ -2005,7 +2005,7 @@
         "transaction.reconcile",
         "claim.create"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Fee",
         "Claim",
         "Reconciliation"
@@ -2089,7 +2089,7 @@
       "capabilities": [
         "glossary.read"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Glossary",
         "Term"
       ],
@@ -2332,7 +2332,7 @@
         "disbursement.conditions.validate",
         "disbursement.create"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Customer",
         "Loan",
         "LoanConditions",
@@ -2597,7 +2597,7 @@
         "loan.eligibility.calculate",
         "loan.conditions.calculate"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Loan",
         "CreditHistory",
         "Collateral",
@@ -2795,7 +2795,7 @@
         "credit_history.read",
         "scoring.evaluate"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "LoanApplication",
         "DTI",
         "CreditScore"
@@ -2934,7 +2934,7 @@
         "loan.read",
         "loan.status.summarize"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Customer",
         "Loan",
         "LoanConditions"
@@ -3131,7 +3131,7 @@
         "payment.create",
         "notification.send"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Customer",
         "Loan",
         "Payment",
@@ -3409,7 +3409,7 @@
         "loan_refinance.compare",
         "loan_refinance.create"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Customer",
         "Loan",
         "LoanRefinance",
@@ -3706,7 +3706,7 @@
         "loan.eligibility.calculate",
         "loan.calculate"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Customer",
         "Loan",
         "LoanApplication",
@@ -3906,7 +3906,7 @@
         "transfer.create",
         "notification.send"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Customer",
         "SavingsAccount",
         "CBU",
@@ -4106,7 +4106,7 @@
         "account_operation.create",
         "transfer.create"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "SavingsAccount",
         "AccountOpening",
         "CBU",
@@ -4434,7 +4434,7 @@
         "account.cbu.assign",
         "transaction.create"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Customer",
         "SavingsAccount",
         "AccountOpening",
@@ -4614,7 +4614,7 @@
         "account.read",
         "account_operation.create"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Glossary",
         "Process",
         "AccountOperation"
@@ -4714,7 +4714,7 @@
         "intent.match",
         "response.generate"
       ],
-      "ontology_nodes": [
+      "concepts": [
         "Intent",
         "Utterance",
         "Template"

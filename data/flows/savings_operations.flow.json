@@ -24,7 +24,7 @@
     "account.read",
     "account_operation.create"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Glossary",
     "Process",
     "AccountOperation"

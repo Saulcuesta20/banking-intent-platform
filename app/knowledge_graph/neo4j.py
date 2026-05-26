@@ -4,9 +4,8 @@ from pathlib import Path
 from typing import Any
 
 from app.ingestion.flow_loader import FlowKnowledgeLoader
+from app.knowledge_graph.providers import KnowledgeGraphRepository
 from app.models import KnowledgeRecord
-from app.query_understanding.service import QueryUnderstandingService
-from app.retrieval.providers import KnowledgeRetrievalProvider
 
 
 def _optional_import(module_name: str, friendly_name: str | None = None):
@@ -18,14 +17,14 @@ def _optional_import(module_name: str, friendly_name: str | None = None):
         ) from exc
 
 
-class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
-    """Retrieve candidate flows from Neo4j and attach graph context for LLM reasoning."""
+class Neo4jKnowledgeGraphRepository(KnowledgeGraphRepository):
+    """Store and search approved banking knowledge in Neo4j."""
 
     GRAPH_CONTEXT_QUERY = """
         MATCH (f:Flow)
         OPTIONAL MATCH (f)-[:EXEMPLIFIES]->(u:Utterance)
-        OPTIONAL MATCH (f)-[:HAS_ONTOLOGY]->(o:Ontology)
-        OPTIONAL MATCH (o)-[:HAS_SYNONYM]->(s:Synonym)
+        OPTIONAL MATCH (f)-[:RELATES_TO]->(c:Concept)
+        OPTIONAL MATCH (c)-[:HAS_SYNONYM]->(s:Synonym)
         OPTIONAL MATCH (f)-[task_rel:HAS_USER_TASK]->(t:UserTask)
         OPTIONAL MATCH (t)-[:HAS_FRONT_ACTION]->(front:Action)
         OPTIONAL MATCH (t)-[:HAS_BACK_ACTION]->(back:Action)
@@ -36,8 +35,8 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
           f.business_event AS business_event,
           f.explanation AS explanation,
           collect(DISTINCT u.text) AS utterances,
-          collect(DISTINCT o.name) AS ontology_nodes,
-          collect(DISTINCT s.term) AS ontology_aliases,
+          collect(DISTINCT c.name) AS concepts,
+          collect(DISTINCT s.term) AS concept_aliases,
           collect(DISTINCT t.task) AS user_tasks,
           collect(DISTINCT front.action) AS front_actions,
           collect(DISTINCT back.action) AS back_actions
@@ -47,12 +46,12 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
     FILTERED_GRAPH_CONTEXT_QUERY = """
         MATCH (f:Flow)
         OPTIONAL MATCH (f)-[:EXEMPLIFIES]->(u_match:Utterance)
-        OPTIONAL MATCH (f)-[:HAS_ONTOLOGY]->(o_match:Ontology)
-        OPTIONAL MATCH (o_match)-[:HAS_SYNONYM]->(s_match:Synonym)
+        OPTIONAL MATCH (f)-[:RELATES_TO]->(c_match:Concept)
+        OPTIONAL MATCH (c_match)-[:HAS_SYNONYM]->(s_match:Synonym)
         WITH f,
              collect(DISTINCT u_match.text) AS all_utterances,
-             collect(DISTINCT o_match.name) AS all_ontology_nodes,
-             collect(DISTINCT s_match.term) AS all_ontology_aliases,
+             collect(DISTINCT c_match.name) AS all_concepts,
+             collect(DISTINCT s_match.term) AS all_concept_aliases,
              toLower(
                coalesce(f.flow_id, '') + ' ' +
                coalesce(f.flow_name, '') + ' ' +
@@ -60,10 +59,10 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                coalesce(f.business_event, '') + ' ' +
                coalesce(f.explanation, '') + ' ' +
                reduce(text = '', value IN collect(DISTINCT u_match.text) | text + ' ' + coalesce(value, '')) + ' ' +
-               reduce(text = '', value IN collect(DISTINCT o_match.name) | text + ' ' + coalesce(value, '')) + ' ' +
+               reduce(text = '', value IN collect(DISTINCT c_match.name) | text + ' ' + coalesce(value, '')) + ' ' +
                reduce(text = '', value IN collect(DISTINCT s_match.term) | text + ' ' + coalesce(value, ''))
              ) AS haystack
-        WITH f, all_utterances, all_ontology_nodes, all_ontology_aliases,
+        WITH f, all_utterances, all_concepts, all_concept_aliases,
              [token IN $tokens WHERE haystack CONTAINS token] AS matched_tokens
         WHERE size(matched_tokens) > 0
         OPTIONAL MATCH (f)-[task_rel:HAS_USER_TASK]->(t:UserTask)
@@ -76,8 +75,8 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
           f.business_event AS business_event,
           f.explanation AS explanation,
           all_utterances AS utterances,
-          all_ontology_nodes AS ontology_nodes,
-          all_ontology_aliases AS ontology_aliases,
+          all_concepts AS concepts,
+          all_concept_aliases AS concept_aliases,
           collect(DISTINCT t.task) AS user_tasks,
           collect(DISTINCT front.action) AS front_actions,
           collect(DISTINCT back.action) AS back_actions,
@@ -93,7 +92,6 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
         neo4j_uri: str,
         neo4j_user: str,
         neo4j_password: str,
-        query_understanding_service: QueryUnderstandingService | None = None,
         limit: int = 50,
     ):
         neo4j = _optional_import("neo4j")
@@ -102,14 +100,10 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
         self.neo4j_uri = neo4j_uri
         self.records = FlowKnowledgeLoader().load_directory(flow_directory)
         self.records_by_flow_id = {record.flow_id: record for record in self.records}
-        if query_understanding_service is None:
-            raise RuntimeError("LLM QueryUnderstandingService is required for GraphRAG retrieval.")
-        self.query_understanding_service = query_understanding_service
         self.limit = limit
 
-    def retrieve(self, question: str) -> list[KnowledgeRecord]:
-        understanding = self.query_understanding_service.understand(question)
-        tokens = understanding.search_terms
+    def search(self, search_terms: list[str]) -> list[KnowledgeRecord]:
+        tokens = search_terms
         graph_rows = self._query_graph_context(tokens)
         if not graph_rows:
             broad_rows = self._query_all_graph_context()
@@ -122,7 +116,7 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                     update={
                         "metadata": {
                             **record.metadata,
-                            "retrieval_provider": "graph_rag_neo4j_broad_context",
+                            "knowledge_provider": "neo4j_broad_context",
                             "graph_query_summary": self._query_summary(
                                 query=self.GRAPH_CONTEXT_QUERY,
                                 row_count=len(broad_rows),
@@ -131,7 +125,6 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                             ),
                             "graph_rows_preview": self._rows_preview(broad_rows),
                             "graph_context": self._context_text(row),
-                            "query_understanding": understanding.__dict__,
                         }
                     }
                 ))
@@ -148,7 +141,7 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                     update={
                         "metadata": {
                             **record.metadata,
-                            "retrieval_provider": "graph_rag_neo4j",
+                            "knowledge_provider": "neo4j",
                             "graph_query_summary": self._query_summary(
                                 query=self.FILTERED_GRAPH_CONTEXT_QUERY,
                                 row_count=len(graph_rows),
@@ -157,12 +150,98 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                             ),
                             "graph_rows_preview": self._rows_preview(graph_rows),
                             "graph_context": self._context_text(row),
-                            "query_understanding": understanding.__dict__,
                         }
                     }
                 )
             )
         return candidates[: self.limit]
+
+    def initialize(self) -> None:
+        with self.driver.session() as session:
+            session.execute_write(self._create_constraints)
+
+    def clear(self) -> None:
+        with self.driver.session() as session:
+            session.execute_write(self._clear_graph)
+
+    def upsert_record(self, record: KnowledgeRecord) -> None:
+        with self.driver.session() as session:
+            session.execute_write(self._upsert_record, record)
+
+    @staticmethod
+    def _create_constraints(tx: Any) -> None:
+        tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (f:Flow) REQUIRE f.flow_id IS UNIQUE")
+        tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (a:Action) REQUIRE a.action IS UNIQUE")
+        tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (c:Concept) REQUIRE c.name IS UNIQUE")
+        tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (s:Synonym) REQUIRE s.term IS UNIQUE")
+        tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (t:UserTask) REQUIRE t.task IS UNIQUE")
+        tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (u:Utterance) REQUIRE u.text IS UNIQUE")
+
+    @staticmethod
+    def _clear_graph(tx: Any) -> None:
+        tx.run(
+            "MATCH (n) WHERE n:Flow OR n:Action OR n:Concept OR n:Synonym "
+            "OR n:UserTask OR n:Utterance OR n:Ontology DETACH DELETE n"
+        )
+
+    @staticmethod
+    def _upsert_record(tx: Any, record: KnowledgeRecord) -> None:
+        tx.run(
+            "MERGE (f:Flow {flow_id: $flow_id}) "
+            "SET f.flow_name = $flow_name, f.source = $source, f.intent = $intent, "
+            "f.business_event = $business_event, f.explanation = $explanation, f.confidence = $confidence",
+            {
+                "flow_id": record.flow_id,
+                "flow_name": record.flow_name,
+                "source": record.source,
+                "intent": record.intent,
+                "business_event": record.business_event,
+                "explanation": record.explanation,
+                "confidence": record.confidence,
+            },
+        )
+        for action in record.capabilities:
+            tx.run("MERGE (a:Action {action: $action}) SET a.type = coalesce(a.type, 'declared_action')", {"action": action})
+            tx.run("MATCH (f:Flow {flow_id: $flow_id}), (a:Action {action: $action}) MERGE (f)-[:DECLARES_ACTION]->(a)", {"flow_id": record.flow_id, "action": action})
+        for concept in record.concepts:
+            tx.run("MERGE (c:Concept {name: $concept})", {"concept": concept})
+            tx.run("MATCH (f:Flow {flow_id: $flow_id}), (c:Concept {name: $concept}) MERGE (f)-[:RELATES_TO]->(c)", {"flow_id": record.flow_id, "concept": concept})
+            for alias in record.concept_aliases.get(concept, []):
+                tx.run("MERGE (s:Synonym {term: $alias}) SET s.normalized = true", {"alias": alias})
+                tx.run(
+                    "MATCH (c:Concept {name: $concept}), (s:Synonym {term: $alias}) "
+                    "MERGE (c)-[:HAS_SYNONYM]->(s) MERGE (s)-[:NORMALIZES_TO]->(c)",
+                    {"concept": concept, "alias": alias},
+                )
+        for index, task in enumerate(record.user_tasks, start=1):
+            sequence = task.sequence or index
+            tx.run("MERGE (t:UserTask {task: $task}) SET t.type = $type", {"task": task.task, "type": task.type})
+            tx.run(
+                "MATCH (f:Flow {flow_id: $flow_id}), (t:UserTask {task: $task}) "
+                "MERGE (f)-[rel:HAS_USER_TASK]->(t) SET rel.sequence = $sequence",
+                {"flow_id": record.flow_id, "task": task.task, "sequence": sequence},
+            )
+            for action in task.front_actions:
+                Neo4jKnowledgeGraphRepository._upsert_task_action(tx, record.flow_id, task.task, action.to_dict(), "HAS_FRONT_ACTION")
+            for action in task.back_actions:
+                Neo4jKnowledgeGraphRepository._upsert_task_action(tx, record.flow_id, task.task, action.to_dict(), "HAS_BACK_ACTION")
+        for utterance in record.utterances[:20]:
+            tx.run("MERGE (u:Utterance {text: $text})", {"text": utterance})
+            tx.run("MATCH (f:Flow {flow_id: $flow_id}), (u:Utterance {text: $text}) MERGE (f)-[:EXEMPLIFIES]->(u)", {"flow_id": record.flow_id, "text": utterance})
+
+    @staticmethod
+    def _upsert_task_action(tx: Any, flow_id: str, task: str, action: dict[str, Any], relationship: str) -> None:
+        tx.run(
+            "MERGE (a:Action {action: $action}) "
+            "SET a.type = $type, a.operation = $operation, a.resource = $resource, "
+            "a.label = $label, a.triggers = $triggers, a.description = $description",
+            action,
+        )
+        tx.run(
+            f"MATCH (t:UserTask {{task: $task}}), (a:Action {{action: $action}}) MERGE (t)-[:{relationship}]->(a)",
+            {"task": task, "action": action["action"]},
+        )
+        tx.run("MATCH (f:Flow {flow_id: $flow_id}), (a:Action {action: $action}) MERGE (f)-[:USES_ACTION]->(a)", {"flow_id": flow_id, "action": action["action"]})
 
     def _query_graph_context(self, tokens: list[str]) -> list[dict[str, Any]]:
         if not tokens:
@@ -205,8 +284,8 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                     "intent": row.get("intent"),
                     "business_event": row.get("business_event"),
                     "utterances": (row.get("utterances") or [])[:5],
-                    "ontology_nodes": (row.get("ontology_nodes") or [])[:8],
-                    "ontology_aliases": (row.get("ontology_aliases") or [])[:8],
+                    "concepts": (row.get("concepts") or [])[:8],
+                    "concept_aliases": (row.get("concept_aliases") or [])[:8],
                     "user_tasks": (row.get("user_tasks") or [])[:8],
                     "front_actions": (row.get("front_actions") or [])[:8],
                     "back_actions": (row.get("back_actions") or [])[:8],
@@ -225,8 +304,8 @@ class GraphRAGKnowledgeRetrievalProvider(KnowledgeRetrievalProvider):
                 f"intent: {row.get('intent')}",
                 f"business_event: {row.get('business_event')}",
                 f"utterances: {', '.join(row.get('utterances') or [])}",
-                f"ontology_nodes: {', '.join(row.get('ontology_nodes') or [])}",
-                f"ontology_aliases: {', '.join(row.get('ontology_aliases') or [])}",
+                f"concepts: {', '.join(row.get('concepts') or [])}",
+                f"concept_aliases: {', '.join(row.get('concept_aliases') or [])}",
                 f"user_tasks: {', '.join(row.get('user_tasks') or [])}",
                 f"front_actions: {', '.join(row.get('front_actions') or [])}",
                 f"back_actions: {', '.join(row.get('back_actions') or [])}",

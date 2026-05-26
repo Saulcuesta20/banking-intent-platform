@@ -28,7 +28,7 @@
     "loan.eligibility.calculate",
     "loan.conditions.calculate"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Loan",
     "CreditHistory",
     "Collateral",

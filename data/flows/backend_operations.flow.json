@@ -21,7 +21,7 @@
     "api.transaction.post",
     "integration.sync"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "API",
     "Executor",
     "Integration"

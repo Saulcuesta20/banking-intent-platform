@@ -103,8 +103,8 @@ class KnowledgeRecord(BaseModel):
     tasks: list[Task]
     user_tasks: list[UserTask] = Field(default_factory=list)
     capabilities: list[str]
-    ontology_nodes: list[str]
-    ontology_aliases: dict[str, list[str]] = Field(default_factory=dict)
+    concepts: list[str]
+    concept_aliases: dict[str, list[str]] = Field(default_factory=dict)
     explanation: str
     source: str
     metadata: dict[str, Any] = {}
@@ -112,7 +112,7 @@ class KnowledgeRecord(BaseModel):
     model_config = {"frozen": True}
 
 
-class IntentResult(BaseModel):
+class AnswerResult(BaseModel):
     flow_id: str = "unknown"
     flow_name: str = "Unknown flow"
     intent: str
@@ -122,7 +122,7 @@ class IntentResult(BaseModel):
     plan: list[str]
     tasks: list[Task]
     related_capabilities: list[str]
-    related_ontology_nodes: list[str]
+    related_concepts: list[str]
     explanation: str
     clarification_options: list[dict[str, Any]] = Field(default_factory=list)
 
@@ -140,7 +140,7 @@ class IntentResult(BaseModel):
             "plan": self.plan,
             "tasks": [task.to_dict() for task in self.tasks],
             "related_capabilities": self.related_capabilities,
-            "related_ontology_nodes": self.related_ontology_nodes,
+            "related_concepts": self.related_concepts,
             "explanation": self.explanation,
             "clarification_options": self.clarification_options,
         }

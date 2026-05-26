@@ -26,7 +26,7 @@
     "disbursement.conditions.validate",
     "disbursement.create"
   ],
-  "ontology_nodes": [
+  "concepts": [
     "Customer",
     "Loan",
     "LoanConditions",

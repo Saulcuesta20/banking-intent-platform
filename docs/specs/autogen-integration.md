@@ -17,17 +17,17 @@ Use AutoGen for bounded multi-agent recommendations during ingestion, where raw 
 - `FlowDesignerAgent`
 - `TaskDecomposerAgent`
 - `ActionExtractorAgent`
-- `OntologyAgent`
+- `ConceptAgent`
 - `ValidatorAgent`
 - `app.ingestion.llm_flow_loader.CorpusFlowLoader`
 
 ## Data Flow
-Raw corpus files are loaded and summarized by deterministic code. AutoGen agents analyze the corpus, propose candidate flows, decompose them into reusable user tasks, extract front/back actions, attach ontology concepts, and flag ambiguity or validation risks. The final extraction still passes through schema normalization and deterministic validation before writing `data/flows`, `data/user_tasks`, and `data/action_registry`. After review, those artifacts are loaded into Neo4j by the custom graph loader.
+Raw corpus files are loaded and summarized by deterministic code. AutoGen agents analyze the corpus, propose candidate flows, decompose them into reusable user tasks, extract front/back actions, attach concepts, and flag ambiguity or validation risks. The final extraction still passes through schema normalization and deterministic validation before writing `data/flows`, `data/user_tasks`, and `data/action_registry`. After review, those artifacts are loaded into Neo4j by the custom graph loader.
 
 ## Example Input/Output
 Input: raw corpus notes describing loan refinance operations, customer utterances, UI actions, backend validations, and approval rules.
 
-Output: `loan_refinance.flow.json`, reusable user task JSON files, action registry entries, ontology nodes, and utterance examples.
+Output: `loan_refinance.flow.json`, reusable user task JSON files, action registry entries, concepts, and utterance examples.
 
 ## Interfaces
 - `app/ingestion/reasoning.py::IngestionReasoningProvider`
