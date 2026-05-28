@@ -1,0 +1,596 @@
+{
+  "process_id": "loan.application",
+  "process_name": "Loan Application",
+  "version": "1.0.0",
+  "status": "draft",
+  "domain": "banking.loans",
+  "owner": "Credit Operations",
+  "description": "Structured process for capturing, evaluating, approving, and preparing a loan application.",
+  "related_flow_ids": [
+    "loan_application_process",
+    "loan.request"
+  ],
+  "triggers": [
+    "quiero solicitar un prestamo",
+    "aplicar para un prestamo",
+    "necesito una linea de credito"
+  ],
+  "inputs": [
+    "loan_amount",
+    "loan_term",
+    "income_evidence",
+    "customer_documents"
+  ],
+  "outputs": [
+    "loan_application",
+    "eligibility_result",
+    "approval_decision"
+  ],
+  "actors": [
+    {
+      "actor_id": "customer",
+      "name": "Customer",
+      "role": "Requests the loan and provides financial information.",
+      "type": "customer"
+    },
+    {
+      "actor_id": "credit_analyst",
+      "name": "Credit Analyst",
+      "role": "Evaluates eligibility and risk.",
+      "type": "employee"
+    },
+    {
+      "actor_id": "approval_committee",
+      "name": "Approval Committee",
+      "role": "Approves borderline or high-risk applications.",
+      "type": "team"
+    }
+  ],
+  "systems": [
+    {
+      "system_id": "loan_origination",
+      "name": "Loan Origination",
+      "type": "internal",
+      "owner": "Credit Operations"
+    },
+    {
+      "system_id": "credit_bureau",
+      "name": "Credit Bureau",
+      "type": "external",
+      "owner": "Risk"
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "income_evidence",
+      "name": "Income Evidence",
+      "required": true,
+      "source": "customer"
+    },
+    {
+      "document_id": "identity_document",
+      "name": "Identity Document",
+      "required": true,
+      "source": "customer"
+    },
+    {
+      "document_id": "credit_report",
+      "name": "Credit Report",
+      "required": true,
+      "source": "credit_bureau"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "income_required",
+      "description": "Income evidence is required before evaluating loan affordability.",
+      "severity": "high",
+      "source": "data/raw/process_qa_seed.md"
+    },
+    {
+      "rule_id": "borderline_requires_approval",
+      "description": "Borderline or high-risk loan applications require human approval.",
+      "severity": "critical",
+      "source": "data/raw/process_qa_seed.md"
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "eligibility_decision",
+      "question": "Is the customer eligible under credit policy?",
+      "outcomes": [
+        "eligible",
+        "manual_approval",
+        "not_eligible"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "exception_id": "missing_income_evidence",
+      "condition": "Income evidence is missing or invalid.",
+      "resolution": "Request updated income evidence before evaluation.",
+      "escalation": "credit_analyst"
+    },
+    {
+      "exception_id": "manual_credit_approval",
+      "condition": "Loan evaluation result is borderline or high risk.",
+      "resolution": "Route the application to the approval committee.",
+      "escalation": "approval_committee"
+    }
+  ],
+  "integrations": [
+    {
+      "integration_id": "loan_origination_create",
+      "name": "Create Loan Application",
+      "type": "legacy_service",
+      "protocol": "api",
+      "operation": "create",
+      "endpoint": "loan.application.create",
+      "timeout_seconds": 30,
+      "requires_approval": false
+    },
+    {
+      "integration_id": "credit_bureau_read",
+      "name": "Read Credit Bureau",
+      "type": "external_service",
+      "protocol": "api",
+      "operation": "read",
+      "endpoint": "credit_history.read",
+      "timeout_seconds": 45,
+      "requires_approval": false
+    },
+    {
+      "integration_id": "loan_scoring_grpc",
+      "name": "Evaluate Loan Scoring",
+      "type": "legacy_service",
+      "protocol": "grpc",
+      "operation": "calculate",
+      "endpoint": "LoanScoringService/Evaluate",
+      "timeout_seconds": 60,
+      "requires_approval": false
+    },
+    {
+      "integration_id": "policy_context_mcp",
+      "name": "Retrieve Policy Context",
+      "type": "mcp_tool",
+      "protocol": "mcp",
+      "operation": "read",
+      "endpoint": "banking_policy.search",
+      "timeout_seconds": 30,
+      "requires_approval": false
+    },
+    {
+      "integration_id": "approval_update",
+      "name": "Record Approval Decision",
+      "type": "internal_service",
+      "protocol": "api",
+      "operation": "approve",
+      "endpoint": "approval.update",
+      "timeout_seconds": 30,
+      "requires_approval": true
+    }
+  ],
+  "activities": [
+    {
+      "activity_id": "capture_loan_use_case",
+      "name": "Capture Loan Use Case",
+      "type": "use_case",
+      "description": "Collect required customer and loan request data.",
+      "owner": "Credit Operations",
+      "step_ids": [
+        "capture_loan_application"
+      ],
+      "execution_node_ids": [
+        "start_loan_application",
+        "wait_for_loan_application_data",
+        "create_loan_application"
+      ]
+    },
+    {
+      "activity_id": "evaluate_credit_activity",
+      "name": "Evaluate Credit Activity",
+      "type": "service_call",
+      "description": "Call credit bureau, policy context, and scoring systems.",
+      "owner": "Credit Operations",
+      "step_ids": [
+        "evaluate_loan_application"
+      ],
+      "execution_node_ids": [
+        "read_credit_bureau",
+        "retrieve_policy_context",
+        "calculate_loan_scoring"
+      ]
+    },
+    {
+      "activity_id": "approval_activity",
+      "name": "Approval Activity",
+      "type": "approval",
+      "description": "Pause for human approval when required and record the decision.",
+      "owner": "Approval Committee",
+      "step_ids": [
+        "approve_loan_application"
+      ],
+      "execution_node_ids": [
+        "wait_for_loan_approval",
+        "record_loan_approval"
+      ]
+    }
+  ],
+  "execution_nodes": [
+    {
+      "node_id": "start_loan_application",
+      "step_id": "capture_loan_application",
+      "name": "Start Loan Application",
+      "type": "start",
+      "implementation": "builtin.start",
+      "description": "Start the loan application runtime state."
+    },
+    {
+      "node_id": "wait_for_loan_application_data",
+      "step_id": "capture_loan_application",
+      "name": "Wait For Loan Application Data",
+      "type": "wait_for_user_input",
+      "implementation": "builtin.wait_for_user_input",
+      "description": "Pause until the user provides the required loan application data.",
+      "required_inputs": [
+        "customer_id",
+        "loan_amount",
+        "loan_term",
+        "income_evidence"
+      ],
+      "produced_outputs": [
+        "customer_id",
+        "loan_amount",
+        "loan_term",
+        "income_evidence"
+      ]
+    },
+    {
+      "node_id": "create_loan_application",
+      "step_id": "capture_loan_application",
+      "name": "Create Loan Application",
+      "type": "service_call",
+      "implementation": "integration.api",
+      "description": "Create the loan application in the origination system.",
+      "integration_id": "loan_origination_create",
+      "produced_outputs": [
+        "loan_application_id"
+      ]
+    },
+    {
+      "node_id": "read_credit_bureau",
+      "step_id": "evaluate_loan_application",
+      "name": "Read Credit Bureau",
+      "type": "service_call",
+      "implementation": "integration.api",
+      "description": "Retrieve credit history for the customer.",
+      "integration_id": "credit_bureau_read",
+      "required_inputs": [
+        "customer_id"
+      ]
+    },
+    {
+      "node_id": "retrieve_policy_context",
+      "step_id": "evaluate_loan_application",
+      "name": "Retrieve Policy Context",
+      "type": "service_call",
+      "implementation": "integration.mcp",
+      "description": "Use MCP to retrieve policy context for loan evaluation.",
+      "integration_id": "policy_context_mcp",
+      "required_inputs": [
+        "loan_amount",
+        "loan_term"
+      ]
+    },
+    {
+      "node_id": "calculate_loan_scoring",
+      "step_id": "evaluate_loan_application",
+      "name": "Calculate Loan Scoring",
+      "type": "service_call",
+      "implementation": "integration.grpc",
+      "description": "Call scoring service through gRPC.",
+      "integration_id": "loan_scoring_grpc",
+      "required_inputs": [
+        "customer_id",
+        "loan_amount",
+        "loan_term"
+      ],
+      "produced_outputs": [
+        "eligibility_result"
+      ]
+    },
+    {
+      "node_id": "wait_for_loan_approval",
+      "step_id": "approve_loan_application",
+      "name": "Wait For Loan Approval",
+      "type": "wait_for_user_input",
+      "implementation": "builtin.wait_for_user_input",
+      "description": "Pause until a human approval decision is provided.",
+      "required_inputs": [
+        "approval_update_approved",
+        "approval_decision"
+      ],
+      "produced_outputs": [
+        "approval_decision"
+      ]
+    },
+    {
+      "node_id": "record_loan_approval",
+      "step_id": "approve_loan_application",
+      "name": "Record Loan Approval",
+      "type": "service_call",
+      "implementation": "integration.api",
+      "description": "Record the approval decision.",
+      "integration_id": "approval_update",
+      "required_inputs": [
+        "approval_decision"
+      ]
+    },
+    {
+      "node_id": "prepare_loan_proposal_node",
+      "step_id": "prepare_loan_proposal",
+      "name": "Prepare Loan Proposal",
+      "type": "state_update",
+      "implementation": "builtin.state_update",
+      "description": "Update state to mark the loan proposal as ready for the next user-facing flow step.",
+      "produced_outputs": [
+        "proposal_status"
+      ]
+    },
+    {
+      "node_id": "finish_loan_application",
+      "step_id": "prepare_loan_proposal",
+      "name": "Finish Loan Application",
+      "type": "end",
+      "implementation": "builtin.end",
+      "description": "Finish the loan application process execution."
+    }
+  ],
+  "transitions": [
+    {
+      "from_node": "start_loan_application",
+      "to_node": "wait_for_loan_application_data",
+      "condition": "always",
+      "description": "Start by collecting required user data."
+    },
+    {
+      "from_node": "wait_for_loan_application_data",
+      "to_node": "create_loan_application",
+      "condition": "required_inputs_present",
+      "description": "Continue when required loan application inputs are available."
+    },
+    {
+      "from_node": "create_loan_application",
+      "to_node": "read_credit_bureau",
+      "condition": "always"
+    },
+    {
+      "from_node": "read_credit_bureau",
+      "to_node": "retrieve_policy_context",
+      "condition": "always"
+    },
+    {
+      "from_node": "retrieve_policy_context",
+      "to_node": "calculate_loan_scoring",
+      "condition": "always"
+    },
+    {
+      "from_node": "calculate_loan_scoring",
+      "to_node": "wait_for_loan_approval",
+      "condition": "always"
+    },
+    {
+      "from_node": "wait_for_loan_approval",
+      "to_node": "record_loan_approval",
+      "condition": "required_inputs_present"
+    },
+    {
+      "from_node": "record_loan_approval",
+      "to_node": "prepare_loan_proposal_node",
+      "condition": "always"
+    },
+    {
+      "from_node": "prepare_loan_proposal_node",
+      "to_node": "finish_loan_application",
+      "condition": "always"
+    }
+
+  ],
+  "timers": [
+    {
+      "timer_id": "loan_approval_sla_timer",
+      "node_id": "wait_for_loan_approval",
+      "delay_seconds": 86400,
+      "action": "escalate",
+      "metadata": {
+        "sla": "24h"
+      }
+    }
+  ],
+  "async_continuations": [
+    {
+      "continuation_id": "continue_after_scoring",
+      "node_id": "calculate_loan_scoring",
+      "trigger": "job",
+      "resume_node_id": "wait_for_loan_approval"
+    }
+  ],
+  "event_listeners": [
+    {
+      "listener_id": "audit_node_completed",
+      "event": "node_completed",
+      "implementation": "audit.record"
+    },
+    {
+      "listener_id": "notify_process_waiting",
+      "event": "process_waiting",
+      "implementation": "notification.prepare"
+    }
+  ],
+  "compensations": [
+    {
+      "compensation_id": "cancel_loan_application",
+      "node_id": "create_loan_application",
+      "trigger": "cancel",
+      "integration_id": "loan_origination_create",
+      "description": "Cancel or mark the loan application as abandoned if the process is cancelled before approval."
+    }
+  ],
+  "subprocesses": [
+    {
+      "subprocess_id": "customer_onboarding_if_needed",
+      "process_id": "customer.onboarding",
+      "parent_node_id": "capture_loan_application",
+      "mode": "call_activity",
+      "input_mapping": {
+        "customer_id": "customer_id"
+      },
+      "output_mapping": {
+        "kyc_status": "kyc_status"
+      }
+    }
+  ],
+  "message_correlations": [
+    {
+      "correlation_id": "approval_decision_message",
+      "message_name": "LoanApprovalDecisionReceived",
+      "key": "loan_application_id",
+      "target_node_id": "wait_for_loan_approval",
+      "description": "Resume the process when the approval committee sends a decision."
+    }
+  ],
+  "jobs": [
+    {
+      "job_id": "score_application_async_job",
+      "node_id": "calculate_loan_scoring",
+      "type": "async_continuation",
+      "status": "pending",
+      "max_attempts": 3
+    },
+    {
+      "job_id": "approval_sla_timer_job",
+      "node_id": "wait_for_loan_approval",
+      "type": "timer",
+      "status": "pending",
+      "max_attempts": 1
+    }
+  ],
+  "steps": [
+    {
+      "step_id": "capture_loan_application",
+      "sequence": 1,
+      "name": "Capture Loan Application",
+      "type": "user_task",
+      "actor_id": "customer",
+      "system_id": "loan_origination",
+      "description": "Capture loan amount, term, purpose, customer data, and documents.",
+      "required_documents": [
+        "income_evidence",
+        "identity_document"
+      ],
+      "rules": [
+        "income_required"
+      ],
+      "exceptions": [
+        "missing_income_evidence"
+      ],
+      "related_user_task_id": "apply_for_loan",
+      "executable": true,
+      "actions": [
+        "loan.application.create",
+        "customer.documents.collect"
+      ],
+      "integrations": [
+        "loan_origination_create"
+      ],
+      "execution_node_ids": [
+        "start_loan_application",
+        "wait_for_loan_application_data",
+        "create_loan_application"
+      ]
+    },
+    {
+      "step_id": "evaluate_loan_application",
+      "sequence": 2,
+      "name": "Evaluate Loan Application",
+      "type": "service_task",
+      "actor_id": "credit_analyst",
+      "system_id": "loan_origination",
+      "description": "Evaluate credit history, DTI, scoring, and policy limits.",
+      "required_documents": [
+        "credit_report"
+      ],
+      "decisions": [
+        "eligibility_decision"
+      ],
+      "related_user_task_id": "evaluate_loan_application",
+      "executable": true,
+      "actions": [
+        "credit_history.read",
+        "financial_ratios.dti.calculate",
+        "loan.eligibility.calculate",
+        "scoring.evaluate"
+      ],
+      "integrations": [
+        "credit_bureau_read",
+        "policy_context_mcp",
+        "loan_scoring_grpc"
+      ],
+      "execution_node_ids": [
+        "read_credit_bureau",
+        "retrieve_policy_context",
+        "calculate_loan_scoring"
+      ]
+    },
+    {
+      "step_id": "approve_loan_application",
+      "sequence": 3,
+      "name": "Approve Loan Application",
+      "type": "approval",
+      "actor_id": "approval_committee",
+      "system_id": "loan_origination",
+      "description": "Record approval when policy requires manual review.",
+      "rules": [
+        "borderline_requires_approval"
+      ],
+      "exceptions": [
+        "manual_credit_approval"
+      ],
+      "related_user_task_id": "approve_business_case",
+      "executable": false,
+      "actions": [
+        "approval.update"
+      ],
+      "integrations": [
+        "approval_update"
+      ],
+      "execution_node_ids": [
+        "wait_for_loan_approval",
+        "record_loan_approval"
+      ]
+    },
+    {
+      "step_id": "prepare_loan_proposal",
+      "sequence": 4,
+      "name": "Prepare Loan Proposal",
+      "type": "user_task",
+      "actor_id": "credit_analyst",
+      "system_id": "loan_origination",
+      "description": "Prepare the final loan proposal for the customer after eligibility and approval.",
+      "related_user_task_id": "prepare_loan_proposal",
+      "executable": false,
+      "execution_node_ids": [
+        "prepare_loan_proposal_node",
+        "finish_loan_application"
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_from_flow": "data/flows/loan_application_process.flow.json",
+    "source_files": [
+      "data/raw/process_qa_seed.md"
+    ],
+    "schema": "process_definition.v1"
+  }
+}

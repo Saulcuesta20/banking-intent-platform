@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from app.capability.registry import RegistryCapabilityProvider
+from app.ingestion.process_loader import ProcessDefinitionLoader
 from app.ingestion.providers import KnowledgeIngestionProvider
 from app.knowledge_graph.service import KnowledgeGraphService
 from app.models import Action, KnowledgeRecord, Task, UserTask
@@ -164,16 +165,20 @@ class FileKnowledgeIngestionProvider(KnowledgeIngestionProvider):
         self,
         flow_directory: Path,
         processed_directory: Path,
+        process_directory: Path | None = None,
         knowledge_graph_service: KnowledgeGraphService | None = None,
     ):
         self.flow_directory = flow_directory
         self.processed_directory = processed_directory
+        self.process_directory = process_directory
         self.loader = FlowKnowledgeLoader()
+        self.process_loader = ProcessDefinitionLoader()
         self.knowledge_graph_service = knowledge_graph_service
 
     def ingest(self, source: Path) -> list[KnowledgeRecord]:
         source_files = self._discover_source_files(source)
         records = self.loader.load_directory(self.flow_directory)
+        processes = self.process_loader.load_directory(self.process_directory) if self.process_directory else []
         if self.knowledge_graph_service is not None:
             self.knowledge_graph_service.ingest(records)
         action_registry = RegistryCapabilityProvider().build_action_registry(records)
@@ -183,6 +188,7 @@ class FileKnowledgeIngestionProvider(KnowledgeIngestionProvider):
             "source": str(source),
             "source_files": [str(path) for path in source_files],
             "action_registry": [entry.to_dict() for entry in action_registry],
+            "processes": [process.model_dump() for process in processes],
             "records": [self._record_to_json(record) for record in records],
         }
         index_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")

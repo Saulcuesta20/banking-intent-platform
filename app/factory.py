@@ -15,12 +15,15 @@ from app.ask.understanding import LLMQuestionUnderstandingProvider, QuestionUnde
 from app.ingestion.flow_loader import FileKnowledgeIngestionProvider, FlowKnowledgeLoader
 from app.knowledge_graph.neo4j import Neo4jKnowledgeGraphRepository
 from app.knowledge_graph.service import KnowledgeGraphService
+from app.orchestrator.service import OrchestratorService
+from app.orchestrator.process_execution import ProcessExecutionService
 
 
 def build_ingestion_provider() -> FileKnowledgeIngestionProvider:
     settings = load_settings()
     return FileKnowledgeIngestionProvider(
         flow_directory=settings.flow_directory,
+        process_directory=settings.process_directory,
         processed_directory=settings.processed_directory,
         knowledge_graph_service=KnowledgeGraphService(
             Neo4jKnowledgeGraphRepository(
@@ -31,6 +34,18 @@ def build_ingestion_provider() -> FileKnowledgeIngestionProvider:
             )
         ),
     )
+
+
+def build_process_execution_service() -> ProcessExecutionService:
+    settings = load_settings()
+    return ProcessExecutionService(
+        flow_directory=settings.flow_directory,
+        process_directory=settings.process_directory,
+    )
+
+
+def build_orchestrator_service() -> OrchestratorService:
+    return OrchestratorService()
 
 
 def build_ask_service() -> AskService:

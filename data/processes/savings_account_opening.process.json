@@ -1,0 +1,197 @@
+{
+  "process_id": "savings.account.opening",
+  "process_name": "Savings Account Opening",
+  "version": "1.0.0",
+  "status": "draft",
+  "domain": "banking.savings",
+  "owner": "Retail Banking",
+  "description": "Structured process for opening a savings account after identifying the customer, collecting required documents, and creating the account.",
+  "related_flow_ids": [
+    "savings_account_opening",
+    "savings.account.open"
+  ],
+  "triggers": [
+    "quiero abrir una cuenta de ahorro",
+    "crear cuenta para ahorrar",
+    "apertura de cuenta de ahorro"
+  ],
+  "inputs": [
+    "customer_identity_data",
+    "address_evidence",
+    "tax_information"
+  ],
+  "outputs": [
+    "savings_account",
+    "account_opening_confirmation"
+  ],
+  "actors": [
+    {
+      "actor_id": "customer",
+      "name": "Customer",
+      "role": "Requests the account and provides required information.",
+      "type": "customer"
+    },
+    {
+      "actor_id": "bank_executive",
+      "name": "Bank Executive",
+      "role": "Guides the customer and reviews onboarding evidence.",
+      "type": "employee"
+    }
+  ],
+  "systems": [
+    {
+      "system_id": "onboarding",
+      "name": "Customer Onboarding",
+      "type": "internal",
+      "owner": "Retail Banking"
+    },
+    {
+      "system_id": "core_banking",
+      "name": "Core Banking",
+      "type": "internal",
+      "owner": "Core Banking"
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "identity_document",
+      "name": "Identity Document",
+      "required": true,
+      "source": "customer"
+    },
+    {
+      "document_id": "address_proof",
+      "name": "Address Proof",
+      "required": true,
+      "source": "customer"
+    },
+    {
+      "document_id": "tax_information",
+      "name": "Tax Information",
+      "required": false,
+      "source": "customer"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "identity_must_be_valid",
+      "description": "The customer identity must be valid before an account is created.",
+      "severity": "critical",
+      "source": "data/raw/process_qa_seed.md"
+    },
+    {
+      "rule_id": "documents_must_be_complete",
+      "description": "Required account opening documents must be complete and verified.",
+      "severity": "high",
+      "source": "data/raw/process_qa_seed.md"
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "document_validation_decision",
+      "question": "Are all required documents complete and valid?",
+      "outcomes": [
+        "continue",
+        "request_missing_documents",
+        "reject"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "exception_id": "missing_account_documents",
+      "condition": "Required account opening documents are missing.",
+      "resolution": "Ask the customer to upload or provide the missing documents.",
+      "escalation": "bank_executive"
+    },
+    {
+      "exception_id": "identity_validation_failed",
+      "condition": "Customer identity cannot be validated.",
+      "resolution": "Stop account creation and request manual review.",
+      "escalation": "bank_executive"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": "identify_customer",
+      "sequence": 1,
+      "name": "Identify Customer",
+      "type": "user_task",
+      "actor_id": "bank_executive",
+      "system_id": "onboarding",
+      "description": "Find or validate the customer before opening the account.",
+      "rules": [
+        "identity_must_be_valid"
+      ],
+      "related_user_task_id": "identify_customer",
+      "executable": true,
+      "actions": [
+        "customer.read",
+        "customer.identity.validate"
+      ]
+    },
+    {
+      "step_id": "collect_account_documents",
+      "sequence": 2,
+      "name": "Collect Account Documents",
+      "type": "user_task",
+      "actor_id": "customer",
+      "system_id": "onboarding",
+      "description": "Collect identity, address, and tax documents when required.",
+      "required_documents": [
+        "identity_document",
+        "address_proof",
+        "tax_information"
+      ],
+      "rules": [
+        "documents_must_be_complete"
+      ],
+      "decisions": [
+        "document_validation_decision"
+      ],
+      "exceptions": [
+        "missing_account_documents"
+      ],
+      "related_user_task_id": "collect_customer_documents",
+      "executable": false,
+      "actions": [
+        "document.create",
+        "document.verify"
+      ]
+    },
+    {
+      "step_id": "create_savings_account",
+      "sequence": 3,
+      "name": "Create Savings Account",
+      "type": "service_task",
+      "actor_id": "bank_executive",
+      "system_id": "core_banking",
+      "description": "Create the savings account after validations are complete.",
+      "related_user_task_id": "open_savings_account",
+      "executable": true,
+      "actions": [
+        "account.create",
+        "savings_account.create"
+      ]
+    },
+    {
+      "step_id": "finish_account_opening",
+      "sequence": 4,
+      "name": "Finish Account Opening",
+      "type": "end",
+      "system_id": "core_banking",
+      "description": "Send account opening confirmation to the customer.",
+      "executable": true,
+      "actions": [
+        "notification.send"
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_from_flow": "data/flows/savings_account_opening.flow.json",
+    "source_files": [
+      "data/raw/process_qa_seed.md"
+    ],
+    "schema": "process_definition.v1"
+  }
+}

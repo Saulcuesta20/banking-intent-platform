@@ -1,0 +1,201 @@
+{
+  "process_id": "customer.onboarding",
+  "process_name": "Customer Onboarding",
+  "version": "1.0.0",
+  "status": "draft",
+  "domain": "banking.customer",
+  "owner": "Customer Operations",
+  "description": "Structured process for creating a customer profile, collecting documents, running KYC, and approving the business case.",
+  "related_flow_ids": [
+    "customer.onboarding"
+  ],
+  "triggers": [
+    "quiero ser cliente",
+    "registrar nuevo cliente",
+    "alta de cliente"
+  ],
+  "inputs": [
+    "customer_identity_data",
+    "customer_documents"
+  ],
+  "outputs": [
+    "customer_profile",
+    "kyc_screening_result",
+    "business_case_approval"
+  ],
+  "actors": [
+    {
+      "actor_id": "customer",
+      "name": "Customer",
+      "role": "Provides identity data and documents.",
+      "type": "customer"
+    },
+    {
+      "actor_id": "bank_executive",
+      "name": "Bank Executive",
+      "role": "Captures onboarding information and follows up with the customer.",
+      "type": "employee"
+    },
+    {
+      "actor_id": "compliance_team",
+      "name": "Compliance Team",
+      "role": "Reviews KYC and risk findings.",
+      "type": "team"
+    }
+  ],
+  "systems": [
+    {
+      "system_id": "onboarding",
+      "name": "Customer Onboarding",
+      "type": "internal",
+      "owner": "Customer Operations"
+    },
+    {
+      "system_id": "kyc",
+      "name": "KYC Screening",
+      "type": "api",
+      "owner": "Compliance"
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "identity_document",
+      "name": "Identity Document",
+      "required": true,
+      "source": "customer"
+    },
+    {
+      "document_id": "customer_conditions",
+      "name": "Customer Conditions Evidence",
+      "required": true,
+      "source": "onboarding"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "customer_documents_required",
+      "description": "Customer onboarding requires identity and condition evidence before KYC can be completed.",
+      "severity": "high",
+      "source": "data/flows/customer_onboarding.flow.json"
+    },
+    {
+      "rule_id": "kyc_must_pass",
+      "description": "KYC screening must be completed before final approval.",
+      "severity": "critical",
+      "source": "data/flows/customer_onboarding.flow.json"
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "kyc_result_decision",
+      "question": "Did the customer pass KYC screening?",
+      "outcomes": [
+        "approved",
+        "manual_review",
+        "rejected"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "exception_id": "missing_customer_documents",
+      "condition": "Required customer documents are incomplete or invalid.",
+      "resolution": "Ask the customer to provide corrected documents.",
+      "escalation": "bank_executive"
+    },
+    {
+      "exception_id": "kyc_manual_review",
+      "condition": "KYC screening returns a manual review result.",
+      "resolution": "Route the case to compliance before approval.",
+      "escalation": "compliance_team"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": "start_customer_onboarding",
+      "sequence": 1,
+      "name": "Start Customer Onboarding",
+      "type": "start",
+      "actor_id": "bank_executive",
+      "system_id": "onboarding",
+      "description": "Open or create the customer onboarding case.",
+      "related_user_task_id": "handle_customer_onboarding",
+      "executable": true,
+      "actions": [
+        "customer.create",
+        "customer.conditions.validate"
+      ]
+    },
+    {
+      "step_id": "collect_customer_documents",
+      "sequence": 2,
+      "name": "Collect Customer Documents",
+      "type": "user_task",
+      "actor_id": "customer",
+      "system_id": "onboarding",
+      "description": "Collect and verify required onboarding documents.",
+      "required_documents": [
+        "identity_document",
+        "customer_conditions"
+      ],
+      "rules": [
+        "customer_documents_required"
+      ],
+      "exceptions": [
+        "missing_customer_documents"
+      ],
+      "related_user_task_id": "collect_customer_documents",
+      "executable": false,
+      "actions": [
+        "document.verify"
+      ]
+    },
+    {
+      "step_id": "run_kyc_screening",
+      "sequence": 3,
+      "name": "Run KYC Screening",
+      "type": "service_task",
+      "actor_id": "compliance_team",
+      "system_id": "kyc",
+      "description": "Run KYC screening and capture the result.",
+      "rules": [
+        "kyc_must_pass"
+      ],
+      "decisions": [
+        "kyc_result_decision"
+      ],
+      "exceptions": [
+        "kyc_manual_review"
+      ],
+      "related_user_task_id": "run_kyc_screening",
+      "executable": true,
+      "actions": [
+        "kyc.screen"
+      ]
+    },
+    {
+      "step_id": "approve_business_case",
+      "sequence": 4,
+      "name": "Approve Business Case",
+      "type": "approval",
+      "actor_id": "compliance_team",
+      "system_id": "onboarding",
+      "description": "Approve or reject the customer onboarding case.",
+      "related_user_task_id": "approve_business_case",
+      "executable": false
+    },
+    {
+      "step_id": "finish_customer_onboarding",
+      "sequence": 5,
+      "name": "Finish Customer Onboarding",
+      "type": "end",
+      "system_id": "onboarding",
+      "description": "Close the onboarding process after approval decision.",
+      "executable": false
+    }
+  ],
+  "metadata": {
+    "generated_from_flow": "data/flows/customer_onboarding.flow.json",
+    "schema": "process_definition.v1"
+  }
+}

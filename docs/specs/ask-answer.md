@@ -12,7 +12,7 @@ Project already-ingested flow knowledge into the runtime answer after an intent 
 ## Main Components
 - `app.ask.answer.AnswerBuilder`
 - `app.ask.answer.AnswerContext`
-- `app.models.KnowledgeRecord`
+- `app.models.FlowDefinition` (`KnowledgeRecord` remains as a compatibility alias)
 
 ## Data Flow
 `AskService` selects a `KnowledgeRecord` through knowledge graph search and flow selection. `AnswerBuilder` then projects fields from that record into an answer context. Approval enforcement may add approval steps after projection, and the final `AnswerResult` is returned.

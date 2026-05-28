@@ -9,6 +9,11 @@ from pathlib import Path
 from typing import Any, Literal, TypedDict
 
 from app.ingestion.llm_flow_loader import CorpusDocument, CorpusFlowLoader, FlowExtractionError
+from app.ingestion.semantic_analyzer import (
+    HeuristicSemanticAnalyzerProvider,
+    SemanticAnalysisResult,
+    SemanticAnalyzerService,
+)
 
 
 @dataclass(frozen=True)
@@ -23,6 +28,7 @@ class IngestionPipelineConfig:
     reasoning_mode: str = "none"
     max_validation_retries: int = 0
     require_human_review: bool = False
+    semantic_analysis: bool = True
 
 
 @dataclass(frozen=True)
@@ -38,6 +44,7 @@ class IngestionPipelineResult:
     actions_written: int
     steps: list[dict[str, Any]] = field(default_factory=list)
     extraction_result: dict[str, Any] = field(default_factory=dict)
+    semantic_analysis_result: dict[str, Any] = field(default_factory=dict)
 
 
 class IngestionPipelineService:
@@ -49,6 +56,7 @@ class IngestionPipelineService:
 
     def __init__(self, loader: CorpusFlowLoader):
         self.loader = loader
+        self.semantic_analyzer = SemanticAnalyzerService(HeuristicSemanticAnalyzerProvider())
 
     def run(self, config: IngestionPipelineConfig) -> IngestionPipelineResult:
         started_at = self._now()
@@ -63,7 +71,12 @@ class IngestionPipelineService:
             {"documents": len(documents), "source_files": [str(doc.path) for doc in documents]},
         )
 
-        result = self.loader.extract_documents(documents)
+        semantic_analysis = self._analyze_semantics(config, documents, steps)
+        result = self.loader.extract_documents(
+            self._documents_with_semantic_context(documents, semantic_analysis)
+        )
+        if semantic_analysis.classifications:
+            result["semantic_analysis"] = semantic_analysis.to_dict()
         self._record_step(
             steps,
             "reason_extract_validate_json",
@@ -74,6 +87,7 @@ class IngestionPipelineService:
                 "flows": len(result["flows"]),
                 "user_tasks": len(result["user_tasks"]),
                 "actions": len(result["action_registry"]),
+                "semantic_review_required": semantic_analysis.review_required,
             },
         )
 
@@ -103,6 +117,7 @@ class IngestionPipelineService:
             result=result,
             steps=steps,
             started_at=started_at,
+            semantic_analysis=semantic_analysis,
         )
         self._record_step(
             steps,
@@ -125,7 +140,47 @@ class IngestionPipelineService:
             actions_written=len(result["action_registry"]),
             steps=steps,
             extraction_result=result,
+            semantic_analysis_result=semantic_analysis.to_dict(),
         )
+
+    def _analyze_semantics(
+        self,
+        config: IngestionPipelineConfig,
+        documents: list[CorpusDocument],
+        steps: list[dict[str, Any]],
+    ) -> SemanticAnalysisResult:
+        if not config.semantic_analysis:
+            return SemanticAnalysisResult()
+        result = self.semantic_analyzer.analyze(documents)
+        self._record_step(
+            steps,
+            "semantic_analyze_classify_corpus",
+            "llm_or_heuristic_plus_human_review",
+            "review_required" if result.review_required else "ok",
+            {
+                "classifications": len(result.classifications),
+                "review_required": result.review_required,
+                "summary": result.summary,
+            },
+        )
+        return result
+
+    def _documents_with_semantic_context(
+        self,
+        documents: list[CorpusDocument],
+        semantic_analysis: SemanticAnalysisResult,
+    ) -> list[CorpusDocument]:
+        context = semantic_analysis.to_prompt_context()
+        if not context:
+            return documents
+        return [
+            *documents,
+            CorpusDocument(
+                path=Path("semantic_analysis_review_context.md"),
+                text=context,
+                kind="semantic_analysis",
+            ),
+        ]
 
     def _write_audit(
         self,
@@ -134,14 +189,28 @@ class IngestionPipelineService:
         result: dict[str, Any],
         steps: list[dict[str, Any]],
         started_at: str,
+        semantic_analysis: SemanticAnalysisResult,
     ) -> Path:
         config.audit_directory.mkdir(parents=True, exist_ok=True)
         audit_path = config.audit_directory / f"ingestion_run_{self._file_timestamp()}.json"
+        review_required = config.require_human_review or semantic_analysis.review_required
+        review_path = self._write_human_review_artifact(
+            config=config,
+            semantic_analysis=semantic_analysis,
+            result=result,
+        ) if review_required else None
         payload = {
             "started_at": started_at,
             "finished_at": self._now(),
             "mode": "apply" if config.apply else "preview",
             "reasoning_mode": config.reasoning_mode,
+            "semantic_analysis": semantic_analysis.to_dict(),
+            "human_review": {
+                "required": review_required,
+                "reason": "semantic analysis requires review" if semantic_analysis.review_required else "",
+                "status": "pending" if review_required else "not_required",
+                "review_path": str(review_path) if review_path else None,
+            },
             "raw_path": str(config.raw_path),
             "source_files": [
                 {
@@ -163,6 +232,33 @@ class IngestionPipelineService:
         }
         audit_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         return audit_path
+
+    def _write_human_review_artifact(
+        self,
+        config: IngestionPipelineConfig,
+        semantic_analysis: SemanticAnalysisResult,
+        result: dict[str, Any],
+    ) -> Path:
+        review_directory = config.audit_directory.parent / "human_review"
+        review_directory.mkdir(parents=True, exist_ok=True)
+        review_path = review_directory / f"ingestion_review_{self._file_timestamp()}.json"
+        payload = {
+            "status": "pending",
+            "instructions": [
+                "Review semantic classifications and extracted artifacts before graph loading.",
+                "Change status to approved when the artifacts can be loaded.",
+                "Use reviewer_notes to document corrections, rejected flows, or missing process definitions.",
+            ],
+            "reviewer_notes": "",
+            "semantic_analysis": semantic_analysis.to_dict(),
+            "candidate_outputs": {
+                "flows": [flow.get("flow_id") for flow in result.get("flows", [])],
+                "user_tasks": [task.get("user_task_id") for task in result.get("user_tasks", [])],
+                "actions": [action.get("action") for action in result.get("action_registry", [])],
+            },
+        }
+        review_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        return review_path
 
     def _rewrite_audit_with_final_steps(self, audit_path: Path, steps: list[dict[str, Any]]) -> None:
         payload = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -216,6 +312,7 @@ class IngestionGraphState(TypedDict, total=False):
     config: IngestionPipelineConfig
     documents: list[CorpusDocument]
     extraction_result: dict[str, Any]
+    semantic_analysis_result: SemanticAnalysisResult
     steps: list[dict[str, Any]]
     started_at: str
     audit_path: Path
@@ -286,14 +383,18 @@ class LangGraphIngestionPipelineService(IngestionPipelineService):
             "ok",
             {"documents": len(documents), "source_files": [str(doc.path) for doc in documents]},
         )
-        return {"documents": documents, "steps": steps}
+        semantic_analysis = self._analyze_semantics(config, documents, steps)
+        return {"documents": documents, "semantic_analysis_result": semantic_analysis, "steps": steps}
 
     def _extract_and_validate_node(self, state: IngestionGraphState) -> dict[str, Any]:
         config = state["config"]
         steps = list(state.get("steps", []))
         attempts = int(state.get("attempts", 0)) + 1
+        semantic_analysis = state.get("semantic_analysis_result") or SemanticAnalysisResult()
         try:
-            result = self.loader.extract_documents(state.get("documents", []))
+            result = self.loader.extract_documents(
+                self._documents_with_semantic_context(state.get("documents", []), semantic_analysis)
+            )
         except FlowExtractionError as exc:
             self._record_step(
                 steps,
@@ -323,8 +424,11 @@ class LangGraphIngestionPipelineService(IngestionPipelineService):
                 "flows": len(result["flows"]),
                 "user_tasks": len(result["user_tasks"]),
                 "actions": len(result["action_registry"]),
+                "semantic_review_required": semantic_analysis.review_required,
             },
         )
+        if semantic_analysis.classifications:
+            result["semantic_analysis"] = semantic_analysis.to_dict()
         return {
             "attempts": attempts,
             "steps": steps,
@@ -376,6 +480,7 @@ class LangGraphIngestionPipelineService(IngestionPipelineService):
             result=result,
             steps=steps,
             started_at=state["started_at"],
+            semantic_analysis=state.get("semantic_analysis_result") or SemanticAnalysisResult(),
         )
         self._record_step(
             steps,
@@ -397,6 +502,7 @@ class LangGraphIngestionPipelineService(IngestionPipelineService):
             actions_written=len(result["action_registry"]),
             steps=steps,
             extraction_result=result,
+            semantic_analysis_result=(state.get("semantic_analysis_result") or SemanticAnalysisResult()).to_dict(),
         )
         return {"steps": steps, "audit_path": audit_path, "final_result": final_result}
 

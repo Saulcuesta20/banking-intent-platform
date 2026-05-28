@@ -1,0 +1,206 @@
+{
+  "process_id": "money.transfer",
+  "process_name": "Money Transfer",
+  "version": "1.0.0",
+  "status": "draft",
+  "domain": "banking.payments",
+  "owner": "Payments Operations",
+  "description": "Structured process for validating, creating, approving when needed, and notifying a money transfer.",
+  "related_flow_ids": [
+    "money.transfer"
+  ],
+  "triggers": [
+    "quiero transferir dinero",
+    "hacer transferencia con cbu",
+    "transferir desde mi cuenta"
+  ],
+  "inputs": [
+    "source_account",
+    "beneficiary_account",
+    "amount",
+    "transfer_concept"
+  ],
+  "outputs": [
+    "transfer_order",
+    "transfer_confirmation"
+  ],
+  "actors": [
+    {
+      "actor_id": "customer",
+      "name": "Customer",
+      "role": "Requests the transfer and confirms the details.",
+      "type": "customer"
+    },
+    {
+      "actor_id": "payments_system",
+      "name": "Payments System",
+      "role": "Validates and creates the transfer.",
+      "type": "system"
+    },
+    {
+      "actor_id": "operations_team",
+      "name": "Operations Team",
+      "role": "Approves transfers that exceed policy limits.",
+      "type": "team"
+    }
+  ],
+  "systems": [
+    {
+      "system_id": "core_banking",
+      "name": "Core Banking",
+      "type": "internal",
+      "owner": "Core Banking"
+    },
+    {
+      "system_id": "payments",
+      "name": "Payments",
+      "type": "internal",
+      "owner": "Payments Operations"
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "beneficiary_reference",
+      "name": "Beneficiary Reference",
+      "required": true,
+      "source": "customer"
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "balance_must_be_available",
+      "description": "The source account must have enough available balance before transfer creation.",
+      "severity": "critical",
+      "source": "data/raw/process_qa_seed.md"
+    },
+    {
+      "rule_id": "high_amount_requires_approval",
+      "description": "Transfers above operational limits require approval before execution.",
+      "severity": "high",
+      "source": "data/raw/process_qa_seed.md"
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "transfer_execution_decision",
+      "question": "Can the transfer be executed automatically?",
+      "outcomes": [
+        "execute",
+        "request_approval",
+        "reject"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "exception_id": "insufficient_balance",
+      "condition": "The source account does not have enough available balance.",
+      "resolution": "Stop transfer creation and inform the customer.",
+      "escalation": "customer"
+    },
+    {
+      "exception_id": "approval_required",
+      "condition": "The transfer amount exceeds an operational threshold.",
+      "resolution": "Route the transfer to operations approval.",
+      "escalation": "operations_team"
+    }
+  ],
+  "steps": [
+    {
+      "step_id": "identify_customer",
+      "sequence": 1,
+      "name": "Identify Customer",
+      "type": "user_task",
+      "actor_id": "customer",
+      "system_id": "core_banking",
+      "description": "Validate customer identity and status before starting the transfer.",
+      "related_user_task_id": "identify_customer",
+      "executable": true,
+      "actions": [
+        "customer.read",
+        "customer.identity.validate"
+      ]
+    },
+    {
+      "step_id": "validate_transfer_inputs",
+      "sequence": 2,
+      "name": "Validate Transfer Inputs",
+      "type": "decision",
+      "actor_id": "payments_system",
+      "system_id": "payments",
+      "description": "Validate source account, beneficiary, amount, and balance.",
+      "required_documents": [
+        "beneficiary_reference"
+      ],
+      "rules": [
+        "balance_must_be_available"
+      ],
+      "decisions": [
+        "transfer_execution_decision"
+      ],
+      "exceptions": [
+        "insufficient_balance"
+      ],
+      "related_user_task_id": "transfer_money",
+      "executable": true,
+      "actions": [
+        "customer.validate",
+        "account.balance.validate"
+      ]
+    },
+    {
+      "step_id": "approve_high_amount_transfer",
+      "sequence": 3,
+      "name": "Approve High Amount Transfer",
+      "type": "approval",
+      "actor_id": "operations_team",
+      "system_id": "payments",
+      "description": "Approve transfers that exceed operational limits.",
+      "rules": [
+        "high_amount_requires_approval"
+      ],
+      "exceptions": [
+        "approval_required"
+      ],
+      "related_user_task_id": "approve_business_case",
+      "executable": false,
+      "actions": [
+        "approval.update"
+      ]
+    },
+    {
+      "step_id": "create_transfer",
+      "sequence": 4,
+      "name": "Create Transfer",
+      "type": "service_task",
+      "actor_id": "payments_system",
+      "system_id": "payments",
+      "description": "Create the transfer order after validations and approvals.",
+      "related_user_task_id": "transfer_money",
+      "executable": true,
+      "actions": [
+        "transfer.create"
+      ]
+    },
+    {
+      "step_id": "notify_transfer_result",
+      "sequence": 5,
+      "name": "Notify Transfer Result",
+      "type": "notification",
+      "actor_id": "payments_system",
+      "system_id": "payments",
+      "description": "Notify the customer about the transfer result.",
+      "executable": true,
+      "actions": [
+        "notification.send"
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_from_flow": "data/flows/money_transfer.flow.json",
+    "source_files": [
+      "data/raw/process_qa_seed.md"
+    ],
+    "schema": "process_definition.v1"
+  }
+}

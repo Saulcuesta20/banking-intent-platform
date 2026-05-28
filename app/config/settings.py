@@ -18,6 +18,7 @@ if BaseSettings is not None:
     class Settings(BaseSettings):
         project_root: Path = Field(default_factory=lambda: Path(__file__).resolve().parents[2])
         flow_directory: Path = Field(default_factory=lambda: Path(__file__).resolve().parents[2] / "data" / "flows")
+        process_directory: Path = Field(default_factory=lambda: Path(__file__).resolve().parents[2] / "data" / "processes")
         raw_directory: Path = Field(default_factory=lambda: Path(__file__).resolve().parents[2] / "data" / "raw")
         processed_directory: Path = Field(default_factory=lambda: Path(__file__).resolve().parents[2] / "data" / "processed")
         neo4j_uri: str = Field("bolt://localhost:7687")
@@ -37,6 +38,7 @@ else:
     class Settings:
         project_root: Path
         flow_directory: Path
+        process_directory: Path
         raw_directory: Path
         processed_directory: Path
         neo4j_uri: str = "bolt://localhost:7687"
@@ -57,6 +59,7 @@ def load_settings() -> Settings:
     return Settings(
         project_root=project_root,
         flow_directory=project_root / "data" / "flows",
+        process_directory=project_root / "data" / "processes",
         raw_directory=project_root / "data" / "raw",
         processed_directory=project_root / "data" / "processed",
         use_ai_providers=(os.getenv("USE_AI_PROVIDERS", "false").lower() == "true"),

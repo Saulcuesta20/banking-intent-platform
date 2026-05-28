@@ -27,6 +27,8 @@ For the runtime `ask` flow diagrams, including invoked classes and methods, see
 - Ask question trace
 - Ask answer building
 - Ingestion-time business event, planning, and task decomposition
+- Fixed process definition artifacts
+- Process execution orchestration
 - Capability service
 - Approval service
 - Audit service
@@ -53,6 +55,8 @@ Output:
 - `app/ingestion/pipeline.py::IngestionPipelineService`
 - `app/ingestion/pipeline.py::LangGraphIngestionPipelineService`
 - `app/ingestion/reasoning.py::IngestionReasoningProvider`
+- `app/ingestion/process_loader.py::ProcessDefinitionLoader`
+- `app/orchestrator/process_execution.py::ProcessExecutionService`
 - `app/knowledge_graph/providers.py::KnowledgeGraphRepository`
 - `app/ask/providers.py::FlowSelectionProvider`
 - `app/ask/answer.py::AnswerBuilder`

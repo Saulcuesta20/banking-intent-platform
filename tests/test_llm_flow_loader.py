@@ -203,6 +203,7 @@ def test_ingestion_pipeline_writes_artifacts_and_audit(tmp_path: Path):
     assert result.audit_path.exists()
     audit_text = result.audit_path.read_text(encoding="utf-8")
     assert "scan_and_parse_corpus" in audit_text
+    assert "semantic_analyze_classify_corpus" in audit_text
     assert "write_audit" in audit_text
 
 
