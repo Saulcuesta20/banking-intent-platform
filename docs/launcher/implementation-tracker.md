@@ -210,6 +210,21 @@ AssetSet YAML files
 
 ## Verification Commands
 
+## Latest Verification
+
+- `[DONE]` `npm run generate:lowdefy`
+- `[DONE]` `npm run lint`
+- `[DONE]` `npm run build`
+- `[DONE]` `.venv/bin/pytest -q tests/test_asset_set_lifecycle.py tests/test_asset_registry.py tests/test_knowledge_graph.py`
+- `[DONE]` HTTP smoke:
+  `GET http://127.0.0.1:8030/catalog/metadata?environment=dev`,
+  `GET http://127.0.0.1:3000/`,
+  `GET http://127.0.0.1:3002/asset-flow-editor?asset_id=flow.loan.refinance&version=1.0.0`
+- `[DONE]` Playwright smoke:
+  domain `Asset Management` opens in the launcher, selecting a flow opens one
+  `iframe.asset-editor-frame`, right panel remains `Asset Governance`, and no
+  browser console errors were reported.
+
 Run backend tests:
 
 ```bash
