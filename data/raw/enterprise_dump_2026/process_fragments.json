@@ -1,0 +1,21 @@
+{
+  "source": "operations-sharepoint-export",
+  "fragments": [
+    {
+      "title": "Savings account opening",
+      "text": "Identify customer, collect documents, run KYC, create account, ask for initial deposit when applicable, confirm account status."
+    },
+    {
+      "title": "International transfer review",
+      "text": "Capture details, validate source account, screen beneficiary, request purpose document if needed, route to manager review, release or reject."
+    },
+    {
+      "title": "Loan refinance handling",
+      "text": "Identify customer, read loan status, calculate conditions, compare options, prepare request, obtain approval."
+    },
+    {
+      "title": "Complaint intake",
+      "text": "Create claim, collect evidence, classify claim type, assign owner, notify customer."
+    }
+  ]
+}

@@ -1,0 +1,1210 @@
+{
+  "generatedAt": "2026-06-06T20:39:01.116Z",
+  "domains": [
+    {
+      "domainId": "master-data",
+      "label": "Catalogos y Datos Maestros",
+      "description": "Clientes, tasas, productos, servicios y parametros maestros.",
+      "order": 10
+    },
+    {
+      "domainId": "deposits",
+      "label": "Captacion",
+      "description": "Productos pasivos, cuentas, depositos y relacion de fondeo.",
+      "order": 20
+    },
+    {
+      "domainId": "lending",
+      "label": "Colocacion",
+      "description": "Prestamos, creditos, originacion, pagos y desembolsos.",
+      "order": 30
+    }
+  ],
+  "modules": [
+    {
+      "moduleId": "customer",
+      "label": "Clientes",
+      "description": "Datos maestros de clientes.",
+      "icon": "customer",
+      "aliases": [
+        "customer",
+        "cliente",
+        "clientes"
+      ],
+      "menus": [
+        {
+          "id": "customer-create",
+          "label": "Alta de cliente",
+          "path": "/master-data/customer/customer-create"
+        }
+      ],
+      "topMenus": [
+        {
+          "id": "queries",
+          "label": "Consultas"
+        },
+        {
+          "id": "operations",
+          "label": "Operaciones"
+        },
+        {
+          "id": "configuration",
+          "label": "Configuracion"
+        },
+        {
+          "id": "reports",
+          "label": "Reportes"
+        },
+        {
+          "id": "monitoring",
+          "label": "Monitoreo"
+        }
+      ],
+      "domainId": "master-data",
+      "domainLabel": "Catalogos y Datos Maestros",
+      "moduleFolder": "customer",
+      "processes": [
+        {
+          "processId": "customer.create",
+          "name": "Alta de cliente",
+          "intent": "quiero crear un cliente nuevo",
+          "businessEvent": "customer.create.requested",
+          "sourcePath": "config/definitions/flows/customer_create.flow.yaml",
+          "processIds": [
+            "customer_create"
+          ],
+          "userTasks": [
+            "capture customer"
+          ],
+          "lowdefyPage": "customer-create",
+          "currentFormVersion": "v1",
+          "formId": "customer-create",
+          "processFolder": "customer-create",
+          "form": {
+            "formId": "customer-create-form",
+            "version": "v1",
+            "pageId": "customer-create",
+            "title": "Datos Maestros - Alta de cliente",
+            "submitTitle": "Crear cliente",
+            "fields": [
+              {
+                "id": "full_name",
+                "label": "Nombre completo",
+                "type": "text",
+                "required": true,
+                "placeholder": "Nombre del cliente"
+              },
+              {
+                "id": "email",
+                "label": "Email",
+                "type": "email",
+                "required": true,
+                "placeholder": "cliente@empresa.com"
+              },
+              {
+                "id": "phone",
+                "label": "Telefono",
+                "type": "text",
+                "required": false,
+                "placeholder": "+52 ..."
+              },
+              {
+                "id": "segment",
+                "label": "Segmento",
+                "type": "text",
+                "required": true,
+                "placeholder": "Personal, PyME o Empresarial"
+              }
+            ]
+          },
+          "formVersions": [
+            "v1"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "product-service-config",
+      "label": "Productos y Servicios",
+      "description": "Configuracion de comportamiento de productos y servicios.",
+      "icon": "product",
+      "aliases": [
+        "productos",
+        "servicios",
+        "products",
+        "services"
+      ],
+      "menus": [
+        {
+          "id": "product-config",
+          "label": "Configurar producto",
+          "path": "/master-data/product-service-config/product-config"
+        }
+      ],
+      "topMenus": [
+        {
+          "id": "queries",
+          "label": "Consultas"
+        },
+        {
+          "id": "operations",
+          "label": "Operaciones"
+        },
+        {
+          "id": "configuration",
+          "label": "Configuracion"
+        },
+        {
+          "id": "reports",
+          "label": "Reportes"
+        },
+        {
+          "id": "monitoring",
+          "label": "Monitoreo"
+        }
+      ],
+      "domainId": "master-data",
+      "domainLabel": "Catalogos y Datos Maestros",
+      "moduleFolder": "product-service-config",
+      "processes": [
+        {
+          "processId": "product.config",
+          "name": "Configurar producto",
+          "intent": "quiero configurar un producto o servicio",
+          "businessEvent": "product.config.requested",
+          "sourcePath": "app/launcher/modules/master-data/product-service-config/processes/product-config",
+          "processIds": [
+            "product_config"
+          ],
+          "userTasks": [
+            "capture product configuration"
+          ],
+          "lowdefyPage": "product-config",
+          "currentFormVersion": "v1",
+          "formId": "product-config",
+          "processFolder": "product-config",
+          "form": {
+            "formId": "product-config-form",
+            "version": "v1",
+            "pageId": "product-config",
+            "title": "Datos Maestros - Configuracion de producto",
+            "submitTitle": "Guardar producto",
+            "fields": [
+              {
+                "id": "product_code",
+                "label": "Codigo de producto",
+                "type": "text",
+                "required": true,
+                "placeholder": "LOAN_CONSUMO"
+              },
+              {
+                "id": "product_family",
+                "label": "Familia",
+                "type": "text",
+                "required": true,
+                "placeholder": "Prestamo, cuenta, tarjeta"
+              },
+              {
+                "id": "rate_code",
+                "label": "Tasa asociada",
+                "type": "text",
+                "required": false,
+                "placeholder": "TASA_CONSUMO_12M"
+              },
+              {
+                "id": "enabled",
+                "label": "Estado",
+                "type": "text",
+                "required": true,
+                "placeholder": "Activo/Inactivo"
+              }
+            ]
+          },
+          "formVersions": [
+            "v1"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "rates",
+      "label": "Tasas",
+      "description": "Catalogo de tasas y parametros financieros.",
+      "icon": "rates",
+      "aliases": [
+        "tasas",
+        "rates",
+        "interes"
+      ],
+      "menus": [
+        {
+          "id": "rate-config",
+          "label": "Configurar tasa",
+          "path": "/master-data/rates/rate-config"
+        }
+      ],
+      "topMenus": [
+        {
+          "id": "queries",
+          "label": "Consultas"
+        },
+        {
+          "id": "operations",
+          "label": "Operaciones"
+        },
+        {
+          "id": "configuration",
+          "label": "Configuracion"
+        },
+        {
+          "id": "reports",
+          "label": "Reportes"
+        },
+        {
+          "id": "monitoring",
+          "label": "Monitoreo"
+        }
+      ],
+      "domainId": "master-data",
+      "domainLabel": "Catalogos y Datos Maestros",
+      "moduleFolder": "rates",
+      "processes": [
+        {
+          "processId": "rates.config",
+          "name": "Configurar tasa",
+          "intent": "quiero configurar una tasa",
+          "businessEvent": "rates.config.requested",
+          "sourcePath": "app/launcher/modules/master-data/rates/processes/rate-config",
+          "processIds": [
+            "rates_config"
+          ],
+          "userTasks": [
+            "capture rate configuration"
+          ],
+          "lowdefyPage": "rate-config",
+          "currentFormVersion": "v1",
+          "formId": "rate-config",
+          "processFolder": "rate-config",
+          "form": {
+            "formId": "rate-config-form",
+            "version": "v1",
+            "pageId": "rate-config",
+            "title": "Datos Maestros - Configuracion de tasa",
+            "submitTitle": "Guardar tasa",
+            "fields": [
+              {
+                "id": "rate_code",
+                "label": "Codigo de tasa",
+                "type": "text",
+                "required": true,
+                "placeholder": "TASA_CONSUMO_12M"
+              },
+              {
+                "id": "rate_type",
+                "label": "Tipo de tasa",
+                "type": "text",
+                "required": true,
+                "placeholder": "Fija, variable, promocional"
+              },
+              {
+                "id": "annual_rate",
+                "label": "Tasa anual",
+                "type": "number",
+                "required": true,
+                "placeholder": "18.5"
+              }
+            ]
+          },
+          "formVersions": [
+            "v1"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "deposit-account",
+      "label": "Cuentas de Captacion",
+      "description": "Captacion: apertura y configuracion operativa de cuentas.",
+      "icon": "deposit",
+      "aliases": [
+        "deposits",
+        "cuenta",
+        "deposito",
+        "savings"
+      ],
+      "menus": [
+        {
+          "id": "account-opening",
+          "label": "Apertura de cuenta",
+          "path": "/deposits/deposit-account/account-opening"
+        }
+      ],
+      "topMenus": [
+        {
+          "id": "queries",
+          "label": "Consultas"
+        },
+        {
+          "id": "operations",
+          "label": "Operaciones"
+        },
+        {
+          "id": "configuration",
+          "label": "Configuracion"
+        },
+        {
+          "id": "reports",
+          "label": "Reportes"
+        },
+        {
+          "id": "monitoring",
+          "label": "Monitoreo"
+        }
+      ],
+      "domainId": "deposits",
+      "domainLabel": "Captacion",
+      "moduleFolder": "deposit-account",
+      "processes": [
+        {
+          "processId": "deposit-account.opening",
+          "name": "Apertura de cuenta",
+          "intent": "quiero abrir una cuenta de deposits",
+          "businessEvent": "deposit_account.opening.requested",
+          "sourcePath": "app/launcher/modules/deposits/deposit-account/processes/account-opening",
+          "processIds": [
+            "deposit_account_opening"
+          ],
+          "userTasks": [
+            "capture account opening"
+          ],
+          "lowdefyPage": "account-opening",
+          "currentFormVersion": "v1",
+          "formId": "account-opening",
+          "processFolder": "account-opening",
+          "form": {
+            "formId": "account-opening-form",
+            "version": "v1",
+            "pageId": "account-opening",
+            "title": "Captacion - Apertura de cuenta",
+            "submitTitle": "Abrir cuenta",
+            "fields": [
+              {
+                "id": "customer_id",
+                "label": "Cliente",
+                "type": "text",
+                "required": true,
+                "placeholder": "ID o nombre del cliente"
+              },
+              {
+                "id": "account_type",
+                "label": "Tipo de cuenta",
+                "type": "text",
+                "required": true,
+                "placeholder": "Ahorro, corriente, nomina"
+              },
+              {
+                "id": "initial_deposit",
+                "label": "Deposito inicial",
+                "type": "number",
+                "required": false,
+                "placeholder": "1000"
+              }
+            ]
+          },
+          "formVersions": [
+            "v1"
+          ]
+        }
+      ]
+    },
+    {
+      "moduleId": "loan",
+      "label": "Prestamos",
+      "description": "Colocacion: originacion, pagos y desembolsos de prestamos.",
+      "icon": "loan",
+      "aliases": [
+        "loan",
+        "prestamo",
+        "prestamos",
+        "credito"
+      ],
+      "menus": [
+        {
+          "id": "loan-create",
+          "label": "Crear prestamo",
+          "path": "/lending/loan/loan-create"
+        },
+        {
+          "id": "loan-payment",
+          "label": "Pago de prestamo",
+          "path": "/lending/loan/loan-payment"
+        },
+        {
+          "id": "loan-disbursement",
+          "label": "Desembolso",
+          "path": "/lending/loan/loan-disbursement"
+        },
+        {
+          "id": "loan-refinance",
+          "label": "Refinanciamiento",
+          "path": "/lending/loan/loan-refinance"
+        }
+      ],
+      "topMenus": [
+        {
+          "id": "queries",
+          "label": "Consultas"
+        },
+        {
+          "id": "operations",
+          "label": "Operaciones"
+        },
+        {
+          "id": "configuration",
+          "label": "Configuracion"
+        },
+        {
+          "id": "reports",
+          "label": "Reportes"
+        },
+        {
+          "id": "monitoring",
+          "label": "Monitoreo"
+        }
+      ],
+      "domainId": "lending",
+      "domainLabel": "Colocacion",
+      "moduleFolder": "loan",
+      "processes": [
+        {
+          "processId": "loan.create",
+          "name": "Crear prestamo",
+          "intent": "quiero crear un prestamo para un cliente existente",
+          "businessEvent": "loan.create.requested",
+          "sourcePath": "config/definitions/flows/loan_create.flow.yaml",
+          "processIds": [
+            "loan_create"
+          ],
+          "userTasks": [
+            "capture loan request"
+          ],
+          "lowdefyPage": "loan-create",
+          "currentFormVersion": "v1",
+          "formId": "loan-create",
+          "processFolder": "loan-create",
+          "form": {
+            "formId": "loan-create-form",
+            "version": "v1",
+            "pageId": "loan-create",
+            "title": "Colocacion - Crear prestamo",
+            "submitTitle": "Enviar a workflow",
+            "fields": [
+              {
+                "id": "customer_id",
+                "label": "Cliente",
+                "type": "text",
+                "required": true,
+                "placeholder": "ID o nombre del cliente"
+              },
+              {
+                "id": "amount",
+                "label": "Monto",
+                "type": "number",
+                "required": true,
+                "placeholder": "10000"
+              },
+              {
+                "id": "term",
+                "label": "Plazo",
+                "type": "text",
+                "required": true,
+                "placeholder": "12, 24, 36 o 48 meses"
+              },
+              {
+                "id": "purpose",
+                "label": "Proposito",
+                "type": "textarea",
+                "required": false,
+                "placeholder": "Describe el motivo del prestamo"
+              }
+            ]
+          },
+          "formVersions": [
+            "v1"
+          ]
+        },
+        {
+          "processId": "loan.disbursement",
+          "name": "Desembolso de prestamo",
+          "intent": "quiero realizar el desembolso del prestamo aprobado",
+          "businessEvent": "loan.disbursement.requested",
+          "sourcePath": "config/definitions/flows/loan_disbursement.flow.yaml",
+          "processIds": [
+            "loan_disbursement"
+          ],
+          "userTasks": [
+            "capture disbursement"
+          ],
+          "lowdefyPage": "loan-disbursement",
+          "currentFormVersion": "v1",
+          "formId": "loan-disbursement",
+          "processFolder": "loan-disbursement",
+          "form": {
+            "formId": "loan-disbursement-form",
+            "version": "v1",
+            "pageId": "loan-disbursement",
+            "title": "Colocacion - Desembolso",
+            "submitTitle": "Solicitar desembolso",
+            "fields": [
+              {
+                "id": "loan_id",
+                "label": "Prestamo aprobado",
+                "type": "text",
+                "required": true,
+                "placeholder": "Numero de prestamo"
+              },
+              {
+                "id": "destination_account",
+                "label": "Cuenta destino",
+                "type": "text",
+                "required": true,
+                "placeholder": "Cuenta destino"
+              },
+              {
+                "id": "amount",
+                "label": "Monto a desembolsar",
+                "type": "number",
+                "required": true,
+                "placeholder": "10000"
+              }
+            ]
+          },
+          "formVersions": [
+            "v1"
+          ]
+        },
+        {
+          "processId": "loan.payment",
+          "name": "Pago de prestamo",
+          "intent": "quiero pagar mi prestamo hoy",
+          "businessEvent": "loan.payment.requested",
+          "sourcePath": "config/definitions/flows/loan_payment.flow.yaml",
+          "processIds": [
+            "loan_payment"
+          ],
+          "userTasks": [
+            "capture payment"
+          ],
+          "lowdefyPage": "loan-payment",
+          "currentFormVersion": "v1",
+          "formId": "loan-payment",
+          "processFolder": "loan-payment",
+          "form": {
+            "formId": "loan-payment-form",
+            "version": "v1",
+            "pageId": "loan-payment",
+            "title": "Colocacion - Pago de prestamo",
+            "submitTitle": "Enviar pago al workflow",
+            "fields": [
+              {
+                "id": "loan_id",
+                "label": "Prestamo",
+                "type": "text",
+                "required": true,
+                "placeholder": "Numero de prestamo"
+              },
+              {
+                "id": "source_account",
+                "label": "Cuenta origen",
+                "type": "text",
+                "required": true,
+                "placeholder": "Cuenta de cargo"
+              },
+              {
+                "id": "payment_amount",
+                "label": "Monto de pago",
+                "type": "number",
+                "required": true,
+                "placeholder": "1500"
+              },
+              {
+                "id": "payment_date",
+                "label": "Fecha de pago",
+                "type": "text",
+                "required": true,
+                "placeholder": "YYYY-MM-DD"
+              }
+            ]
+          },
+          "formVersions": [
+            "v1"
+          ]
+        },
+        {
+          "processId": "loan.refinance",
+          "name": "Refinanciamiento de prestamo",
+          "intent": "quiero refinanciar mi prestamo",
+          "businessEvent": "loan.refinance.requested",
+          "sourcePath": "config/definitions/flows/loan_refinance.flow.yaml",
+          "processIds": [
+            "loan_refinance"
+          ],
+          "userTasks": [
+            "review refinance options"
+          ],
+          "lowdefyPage": "loan-refinance",
+          "currentFormVersion": "v1",
+          "formId": "loan-refinance",
+          "processFolder": "loan-refinance",
+          "form": {
+            "formId": "loan-refinance-form",
+            "version": "v1",
+            "pageId": "loan-refinance",
+            "title": "Colocacion - Refinanciamiento de prestamo",
+            "submitTitle": "Revisar opciones",
+            "fields": [
+              {
+                "id": "customer_id",
+                "label": "Cliente",
+                "type": "text",
+                "required": true,
+                "placeholder": "ID o nombre del cliente"
+              },
+              {
+                "id": "loan_id",
+                "label": "Prestamo actual",
+                "type": "text",
+                "required": true,
+                "placeholder": "Numero de prestamo"
+              },
+              {
+                "id": "requested_term",
+                "label": "Nuevo plazo solicitado",
+                "type": "text",
+                "required": false,
+                "placeholder": "12, 24, 36 o 48 meses"
+              },
+              {
+                "id": "reason",
+                "label": "Motivo",
+                "type": "textarea",
+                "required": false,
+                "placeholder": "Describe por que solicita refinanciamiento"
+              }
+            ]
+          },
+          "formVersions": [
+            "v1"
+          ]
+        }
+      ]
+    }
+  ],
+  "home": {
+    "modules": [
+      {
+        "module_id": "home",
+        "label": "Home",
+        "description": "Workspace principal del launcher.",
+        "icon": "home",
+        "aliases": [
+          "inicio"
+        ],
+        "flow_prefixes": [],
+        "menus": [],
+        "flow_count": 0,
+        "domain_id": "all",
+        "domain_label": "Todos"
+      },
+      {
+        "module_id": "customer",
+        "label": "Clientes",
+        "description": "Datos maestros de clientes.",
+        "icon": "customer",
+        "aliases": [
+          "customer",
+          "cliente",
+          "clientes"
+        ],
+        "flow_prefixes": [
+          "customer"
+        ],
+        "menus": [
+          {
+            "id": "customer-create",
+            "label": "Alta de cliente",
+            "path": "/master-data/customer/customer-create"
+          }
+        ],
+        "top_menus": [
+          {
+            "id": "queries",
+            "label": "Consultas"
+          },
+          {
+            "id": "operations",
+            "label": "Operaciones"
+          },
+          {
+            "id": "configuration",
+            "label": "Configuracion"
+          },
+          {
+            "id": "reports",
+            "label": "Reportes"
+          },
+          {
+            "id": "monitoring",
+            "label": "Monitoreo"
+          }
+        ],
+        "flow_count": 1,
+        "domain_id": "master-data",
+        "domain_label": "Catalogos y Datos Maestros"
+      },
+      {
+        "module_id": "product-service-config",
+        "label": "Productos y Servicios",
+        "description": "Configuracion de comportamiento de productos y servicios.",
+        "icon": "product",
+        "aliases": [
+          "productos",
+          "servicios",
+          "products",
+          "services"
+        ],
+        "flow_prefixes": [
+          "product-service-config"
+        ],
+        "menus": [
+          {
+            "id": "product-config",
+            "label": "Configurar producto",
+            "path": "/master-data/product-service-config/product-config"
+          }
+        ],
+        "top_menus": [
+          {
+            "id": "queries",
+            "label": "Consultas"
+          },
+          {
+            "id": "operations",
+            "label": "Operaciones"
+          },
+          {
+            "id": "configuration",
+            "label": "Configuracion"
+          },
+          {
+            "id": "reports",
+            "label": "Reportes"
+          },
+          {
+            "id": "monitoring",
+            "label": "Monitoreo"
+          }
+        ],
+        "flow_count": 1,
+        "domain_id": "master-data",
+        "domain_label": "Catalogos y Datos Maestros"
+      },
+      {
+        "module_id": "rates",
+        "label": "Tasas",
+        "description": "Catalogo de tasas y parametros financieros.",
+        "icon": "rates",
+        "aliases": [
+          "tasas",
+          "rates",
+          "interes"
+        ],
+        "flow_prefixes": [
+          "rates"
+        ],
+        "menus": [
+          {
+            "id": "rate-config",
+            "label": "Configurar tasa",
+            "path": "/master-data/rates/rate-config"
+          }
+        ],
+        "top_menus": [
+          {
+            "id": "queries",
+            "label": "Consultas"
+          },
+          {
+            "id": "operations",
+            "label": "Operaciones"
+          },
+          {
+            "id": "configuration",
+            "label": "Configuracion"
+          },
+          {
+            "id": "reports",
+            "label": "Reportes"
+          },
+          {
+            "id": "monitoring",
+            "label": "Monitoreo"
+          }
+        ],
+        "flow_count": 1,
+        "domain_id": "master-data",
+        "domain_label": "Catalogos y Datos Maestros"
+      },
+      {
+        "module_id": "deposit-account",
+        "label": "Cuentas de Captacion",
+        "description": "Captacion: apertura y configuracion operativa de cuentas.",
+        "icon": "deposit",
+        "aliases": [
+          "deposits",
+          "cuenta",
+          "deposito",
+          "savings"
+        ],
+        "flow_prefixes": [
+          "deposit-account"
+        ],
+        "menus": [
+          {
+            "id": "account-opening",
+            "label": "Apertura de cuenta",
+            "path": "/deposits/deposit-account/account-opening"
+          }
+        ],
+        "top_menus": [
+          {
+            "id": "queries",
+            "label": "Consultas"
+          },
+          {
+            "id": "operations",
+            "label": "Operaciones"
+          },
+          {
+            "id": "configuration",
+            "label": "Configuracion"
+          },
+          {
+            "id": "reports",
+            "label": "Reportes"
+          },
+          {
+            "id": "monitoring",
+            "label": "Monitoreo"
+          }
+        ],
+        "flow_count": 1,
+        "domain_id": "deposits",
+        "domain_label": "Captacion"
+      },
+      {
+        "module_id": "loan",
+        "label": "Prestamos",
+        "description": "Colocacion: originacion, pagos y desembolsos de prestamos.",
+        "icon": "loan",
+        "aliases": [
+          "loan",
+          "prestamo",
+          "prestamos",
+          "credito"
+        ],
+        "flow_prefixes": [
+          "loan"
+        ],
+        "menus": [
+          {
+            "id": "loan-create",
+            "label": "Crear prestamo",
+            "path": "/lending/loan/loan-create"
+          },
+          {
+            "id": "loan-payment",
+            "label": "Pago de prestamo",
+            "path": "/lending/loan/loan-payment"
+          },
+          {
+            "id": "loan-disbursement",
+            "label": "Desembolso",
+            "path": "/lending/loan/loan-disbursement"
+          },
+          {
+            "id": "loan-refinance",
+            "label": "Refinanciamiento",
+            "path": "/lending/loan/loan-refinance"
+          }
+        ],
+        "top_menus": [
+          {
+            "id": "queries",
+            "label": "Consultas"
+          },
+          {
+            "id": "operations",
+            "label": "Operaciones"
+          },
+          {
+            "id": "configuration",
+            "label": "Configuracion"
+          },
+          {
+            "id": "reports",
+            "label": "Reportes"
+          },
+          {
+            "id": "monitoring",
+            "label": "Monitoreo"
+          }
+        ],
+        "flow_count": 4,
+        "domain_id": "lending",
+        "domain_label": "Colocacion"
+      },
+      {
+        "module_id": "admin",
+        "label": "Admin",
+        "description": "Registro de modulos, permisos y configuracion.",
+        "icon": "settings",
+        "aliases": [
+          "administracion"
+        ],
+        "flow_prefixes": [],
+        "menus": [],
+        "flow_count": 0,
+        "domain_id": "all",
+        "domain_label": "Todos"
+      }
+    ],
+    "featured_flows": [
+      {
+        "module_id": "customer",
+        "flow_id": "customer.create",
+        "flow_name": "Alta de cliente",
+        "intent": "quiero crear un cliente nuevo",
+        "business_event": "customer.create.requested",
+        "source_path": "config/definitions/flows/customer_create.flow.yaml",
+        "source_type": "module",
+        "plan_steps": 1,
+        "user_tasks": [
+          "capture customer"
+        ],
+        "related_process_ids": [
+          "customer_create"
+        ],
+        "confidence": 1,
+        "explanation": "quiero crear un cliente nuevo",
+        "renderer": "lowdefy",
+        "lowdefy_page": "customer-create",
+        "module_config_id": "customer",
+        "form_id": "customer-create-form",
+        "form_version": "v1",
+        "domain_id": "master-data",
+        "domain_label": "Catalogos y Datos Maestros"
+      },
+      {
+        "module_id": "product-service-config",
+        "flow_id": "product.config",
+        "flow_name": "Configurar producto",
+        "intent": "quiero configurar un producto o servicio",
+        "business_event": "product.config.requested",
+        "source_path": "app/launcher/modules/master-data/product-service-config/processes/product-config",
+        "source_type": "module",
+        "plan_steps": 1,
+        "user_tasks": [
+          "capture product configuration"
+        ],
+        "related_process_ids": [
+          "product_config"
+        ],
+        "confidence": 1,
+        "explanation": "quiero configurar un producto o servicio",
+        "renderer": "lowdefy",
+        "lowdefy_page": "product-config",
+        "module_config_id": "product-service-config",
+        "form_id": "product-config-form",
+        "form_version": "v1",
+        "domain_id": "master-data",
+        "domain_label": "Catalogos y Datos Maestros"
+      },
+      {
+        "module_id": "rates",
+        "flow_id": "rates.config",
+        "flow_name": "Configurar tasa",
+        "intent": "quiero configurar una tasa",
+        "business_event": "rates.config.requested",
+        "source_path": "app/launcher/modules/master-data/rates/processes/rate-config",
+        "source_type": "module",
+        "plan_steps": 1,
+        "user_tasks": [
+          "capture rate configuration"
+        ],
+        "related_process_ids": [
+          "rates_config"
+        ],
+        "confidence": 1,
+        "explanation": "quiero configurar una tasa",
+        "renderer": "lowdefy",
+        "lowdefy_page": "rate-config",
+        "module_config_id": "rates",
+        "form_id": "rate-config-form",
+        "form_version": "v1",
+        "domain_id": "master-data",
+        "domain_label": "Catalogos y Datos Maestros"
+      },
+      {
+        "module_id": "deposit-account",
+        "flow_id": "deposit-account.opening",
+        "flow_name": "Apertura de cuenta",
+        "intent": "quiero abrir una cuenta de deposits",
+        "business_event": "deposit_account.opening.requested",
+        "source_path": "app/launcher/modules/deposits/deposit-account/processes/account-opening",
+        "source_type": "module",
+        "plan_steps": 1,
+        "user_tasks": [
+          "capture account opening"
+        ],
+        "related_process_ids": [
+          "deposit_account_opening"
+        ],
+        "confidence": 1,
+        "explanation": "quiero abrir una cuenta de deposits",
+        "renderer": "lowdefy",
+        "lowdefy_page": "account-opening",
+        "module_config_id": "deposit-account",
+        "form_id": "account-opening-form",
+        "form_version": "v1",
+        "domain_id": "deposits",
+        "domain_label": "Captacion"
+      },
+      {
+        "module_id": "loan",
+        "flow_id": "loan.create",
+        "flow_name": "Crear prestamo",
+        "intent": "quiero crear un prestamo para un cliente existente",
+        "business_event": "loan.create.requested",
+        "source_path": "config/definitions/flows/loan_create.flow.yaml",
+        "source_type": "module",
+        "plan_steps": 1,
+        "user_tasks": [
+          "capture loan request"
+        ],
+        "related_process_ids": [
+          "loan_create"
+        ],
+        "confidence": 1,
+        "explanation": "quiero crear un prestamo para un cliente existente",
+        "renderer": "lowdefy",
+        "lowdefy_page": "loan-create",
+        "module_config_id": "loan",
+        "form_id": "loan-create-form",
+        "form_version": "v1",
+        "domain_id": "lending",
+        "domain_label": "Colocacion"
+      },
+      {
+        "module_id": "loan",
+        "flow_id": "loan.disbursement",
+        "flow_name": "Desembolso de prestamo",
+        "intent": "quiero realizar el desembolso del prestamo aprobado",
+        "business_event": "loan.disbursement.requested",
+        "source_path": "config/definitions/flows/loan_disbursement.flow.yaml",
+        "source_type": "module",
+        "plan_steps": 1,
+        "user_tasks": [
+          "capture disbursement"
+        ],
+        "related_process_ids": [
+          "loan_disbursement"
+        ],
+        "confidence": 1,
+        "explanation": "quiero realizar el desembolso del prestamo aprobado",
+        "renderer": "lowdefy",
+        "lowdefy_page": "loan-disbursement",
+        "module_config_id": "loan",
+        "form_id": "loan-disbursement-form",
+        "form_version": "v1",
+        "domain_id": "lending",
+        "domain_label": "Colocacion"
+      },
+      {
+        "module_id": "loan",
+        "flow_id": "loan.payment",
+        "flow_name": "Pago de prestamo",
+        "intent": "quiero pagar mi prestamo hoy",
+        "business_event": "loan.payment.requested",
+        "source_path": "config/definitions/flows/loan_payment.flow.yaml",
+        "source_type": "module",
+        "plan_steps": 1,
+        "user_tasks": [
+          "capture payment"
+        ],
+        "related_process_ids": [
+          "loan_payment"
+        ],
+        "confidence": 1,
+        "explanation": "quiero pagar mi prestamo hoy",
+        "renderer": "lowdefy",
+        "lowdefy_page": "loan-payment",
+        "module_config_id": "loan",
+        "form_id": "loan-payment-form",
+        "form_version": "v1",
+        "domain_id": "lending",
+        "domain_label": "Colocacion"
+      },
+      {
+        "module_id": "loan",
+        "flow_id": "loan.refinance",
+        "flow_name": "Refinanciamiento de prestamo",
+        "intent": "quiero refinanciar mi prestamo",
+        "business_event": "loan.refinance.requested",
+        "source_path": "config/definitions/flows/loan_refinance.flow.yaml",
+        "source_type": "module",
+        "plan_steps": 1,
+        "user_tasks": [
+          "review refinance options"
+        ],
+        "related_process_ids": [
+          "loan_refinance"
+        ],
+        "confidence": 1,
+        "explanation": "quiero refinanciar mi prestamo",
+        "renderer": "lowdefy",
+        "lowdefy_page": "loan-refinance",
+        "module_config_id": "loan",
+        "form_id": "loan-refinance-form",
+        "form_version": "v1",
+        "domain_id": "lending",
+        "domain_label": "Colocacion"
+      }
+    ],
+    "recent_flows": [],
+    "navigation": {
+      "source": "module-registry",
+      "domains": [
+        {
+          "domainId": "master-data",
+          "label": "Catalogos y Datos Maestros",
+          "description": "Clientes, tasas, productos, servicios y parametros maestros.",
+          "order": 10
+        },
+        {
+          "domainId": "deposits",
+          "label": "Captacion",
+          "description": "Productos pasivos, cuentas, depositos y relacion de fondeo.",
+          "order": 20
+        },
+        {
+          "domainId": "lending",
+          "label": "Colocacion",
+          "description": "Prestamos, creditos, originacion, pagos y desembolsos.",
+          "order": 30
+        }
+      ],
+      "module_count": 5
+    }
+  }
+}

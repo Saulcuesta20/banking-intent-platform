@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: rates-menu-set
+  name: Tasas Menu Set
+  version: 1.0.0
+  domain: master-data
+  module: rates
+  description: Versioned menu deployment set for rates.
+  tags:
+  - master-data
+  - rates
+  - menu
+spec:
+  assetType: menu
+  assets:
+  - assets/menu-rates-rate-config.yaml

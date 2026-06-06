@@ -1,0 +1,10 @@
+id: asset-form-editor
+type: Box
+blocks:
+  - id: asset_editor_host
+    type: AssetEditorHost
+    properties:
+      apiBaseUrl: http://127.0.0.1:8030
+      environment: dev
+      actor: saul
+      editorType: form

@@ -1,0 +1,36 @@
+asset_id: module.rates
+asset_type: module
+name: Tasas
+description: Catalogo de tasas y parametros financieros.
+tags:
+- master-data
+- rates
+- launcher
+relations:
+- type: belongs_to_domain
+  target_asset_id: domain.master-data
+payload:
+  moduleId: rates
+  label: Tasas
+  description: Catalogo de tasas y parametros financieros.
+  icon: rates
+  aliases:
+  - tasas
+  - rates
+  - interes
+  menus:
+  - id: rate-config
+    label: Configurar tasa
+    path: /master-data/rates/rate-config
+  topMenus:
+  - id: queries
+    label: Consultas
+  - id: operations
+    label: Operaciones
+  - id: configuration
+    label: Configuracion
+  - id: reports
+    label: Reportes
+  - id: monitoring
+    label: Monitoreo
+  domainId: master-data

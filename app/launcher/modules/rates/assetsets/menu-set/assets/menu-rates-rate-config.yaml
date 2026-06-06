@@ -1,0 +1,17 @@
+asset_id: menu.rates.rate-config
+asset_type: menu
+name: Configurar tasa
+description: Tasas launcher menu.
+tags:
+- master-data
+- rates
+- menu
+relations:
+- type: belongs_to_module
+  target_asset_id: module.rates
+payload:
+  id: rate-config
+  label: Configurar tasa
+  path: /master-data/rates/rate-config
+  module_id: rates
+  domain_id: master-data

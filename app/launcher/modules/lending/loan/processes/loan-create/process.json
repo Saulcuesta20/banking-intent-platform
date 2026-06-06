@@ -1,0 +1,16 @@
+{
+  "processId": "loan.create",
+  "name": "Crear prestamo",
+  "intent": "quiero crear un prestamo para un cliente existente",
+  "businessEvent": "loan.create.requested",
+  "sourcePath": "config/definitions/flows/loan_create.flow.yaml",
+  "processIds": [
+    "loan_create"
+  ],
+  "userTasks": [
+    "capture loan request"
+  ],
+  "lowdefyPage": "loan-create",
+  "currentFormVersion": "v1",
+  "formId": "loan-create"
+}

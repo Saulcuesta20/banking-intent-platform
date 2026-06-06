@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: deposit-account-flow-set
+  name: Cuentas de Captacion Flow Set
+  version: 1.0.0
+  domain: deposits
+  module: deposit-account
+  description: Versioned flow deployment set for deposit-account.
+  tags:
+  - deposits
+  - deposit-account
+  - flow
+spec:
+  assetType: flow
+  assets:
+  - assets/flow-deposit-account-opening.yaml

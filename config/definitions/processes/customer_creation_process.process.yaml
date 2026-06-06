@@ -1,0 +1,43 @@
+process_id: customer.creation.process
+process_name: Customer Creation Process Process
+version: 1.0.0
+status: approved
+domain: customer.creation
+owner: Generated Operations
+description: This flow exists to facilitate the process of creating a new customer
+  record based on user input.
+related_flow_ids:
+- customer.creation.process
+triggers:
+- quiero crear un cliente nuevo
+inputs:
+- customer_name
+- identity_document
+outputs:
+- customer_record
+user_flow:
+- name: start
+  type: start
+  implementation: builtin.start
+  description: Start flow execution.
+- name: capture_customer_data
+  type: user_task
+  implementation: task.capture_customer_data
+  description: Open a form to collect customer information and create a new customer
+    record.
+  required_inputs:
+  - customer_name
+  - identity_document
+  user_actions:
+  - action: action.customer.open_form
+    type: front
+    implementation_type: show_form
+    label: Open Customer Creation Form
+  - action: tool.customer.create
+    type: back
+    implementation_type: tool_call
+    tool: tool.customer.create
+- name: end
+  type: end
+  implementation: builtin.end
+  description: Finish flow execution.

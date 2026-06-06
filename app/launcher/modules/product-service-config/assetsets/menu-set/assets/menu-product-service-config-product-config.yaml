@@ -1,0 +1,17 @@
+asset_id: menu.product-service-config.product-config
+asset_type: menu
+name: Configurar producto
+description: Productos y Servicios launcher menu.
+tags:
+- master-data
+- product-service-config
+- menu
+relations:
+- type: belongs_to_module
+  target_asset_id: module.product-service-config
+payload:
+  id: product-config
+  label: Configurar producto
+  path: /master-data/product-service-config/product-config
+  module_id: product-service-config
+  domain_id: master-data

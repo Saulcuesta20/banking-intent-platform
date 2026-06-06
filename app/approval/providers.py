@@ -6,6 +6,8 @@ from app.models import Task
 
 
 class ApprovalProvider(Protocol):
+    """Port for policies that gate executable plans with approval rules."""
+
     def requires_approval(self) -> bool:
         """Return whether the response requires human approval."""
 

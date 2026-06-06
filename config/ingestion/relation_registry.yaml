@@ -1,0 +1,124 @@
+version: "1.0.0"
+description: "Canonical relation registry for asset normalization and federated graph routing."
+
+relations:
+  causes:
+    family: causality
+    aliases: ["causa", "causes", "provoca", "genera", "generate", "generates", "detona", "triggers"]
+    source_asset_types: ["entity", "business_rule", "process", "flow", "causality"]
+    target_asset_types: ["entity", "business_rule", "process", "flow", "plan", "qa", "causality"]
+  prevents:
+    family: causality
+    aliases: ["bloquea", "impide", "prevents", "blocks", "stops"]
+    source_asset_types: ["entity", "business_rule", "process", "flow", "causality"]
+    target_asset_types: ["entity", "business_rule", "process", "flow", "plan"]
+  enables:
+    family: causality
+    aliases: ["habilita", "enables", "permite", "allows"]
+    source_asset_types: ["entity", "business_rule", "process", "flow", "causality"]
+    target_asset_types: ["entity", "business_rule", "process", "flow", "plan"]
+  results_in:
+    family: causality
+    aliases: ["resulta en", "results in", "deriva en", "leads to", "produce"]
+    source_asset_types: ["entity", "business_rule", "process", "flow", "causality"]
+    target_asset_types: ["entity", "business_rule", "process", "flow", "plan", "qa"]
+  increases_risk_of:
+    family: causality
+    aliases: ["incrementa riesgo de", "increases risk of", "elevates risk of", "raises risk of"]
+    source_asset_types: ["entity", "business_rule", "process", "flow", "causality"]
+    target_asset_types: ["entity", "process", "flow", "plan"]
+  reduces_risk_of:
+    family: causality
+    aliases: ["reduce riesgo de", "reduces risk of", "mitigates risk of"]
+    source_asset_types: ["entity", "business_rule", "process", "flow", "causality"]
+    target_asset_types: ["entity", "process", "flow", "plan"]
+  has_step:
+    family: structural
+    aliases: ["has step", "step", "paso", "includes step", "contains step"]
+    source_asset_types: ["plan", "process"]
+    target_asset_types: ["user_task", "process", "tool"]
+  transitions_to:
+    family: structural
+    aliases: ["transitions to", "luego", "despues", "siguiente", "continua con", "pasa a"]
+    source_asset_types: ["process", "flow"]
+    target_asset_types: ["process", "user_task", "tool", "flow"]
+  uses_entity:
+    family: semantic
+    aliases: ["uses entity", "references entity", "usa", "usa entidad", "references"]
+    source_asset_types: ["process", "flow", "plan", "qa", "business_rule", "causality", "user_task"]
+    target_asset_types: ["entity"]
+  governed_by_rule:
+    family: governance
+    aliases: ["governed by rule", "requires rule", "subject to rule", "debe cumplir", "segun politica"]
+    source_asset_types: ["process", "flow", "plan", "entity", "qa"]
+    target_asset_types: ["business_rule"]
+  invokes_tool:
+    family: structural
+    aliases: ["invokes tool", "calls tool", "usa herramienta", "calls service"]
+    source_asset_types: ["user_task", "process", "flow"]
+    target_asset_types: ["tool"]
+  applies_to_flow:
+    family: semantic
+    aliases: ["applies to flow", "aplica a flujo"]
+    source_asset_types: ["business_rule", "plan", "process", "causality", "qa"]
+    target_asset_types: ["flow"]
+  has_cause:
+    family: causality
+    aliases: ["has cause"]
+    source_asset_types: ["causality"]
+    target_asset_types: ["entity", "business_rule", "process", "flow", "plan"]
+  has_effect:
+    family: causality
+    aliases: ["has effect"]
+    source_asset_types: ["causality"]
+    target_asset_types: ["entity", "business_rule", "process", "flow", "plan", "qa"]
+  groups_rule:
+    family: grouping
+    aliases: ["groups rule", "contains rule", "bundles rule"]
+    source_asset_types: ["ruleset", "asset_set"]
+    target_asset_types: ["business_rule"]
+  groups_flow:
+    family: grouping
+    aliases: ["groups flow", "contains flow", "bundles flow"]
+    source_asset_types: ["asset_set"]
+    target_asset_types: ["flow"]
+  groups_process:
+    family: grouping
+    aliases: ["groups process", "contains process", "bundles process"]
+    source_asset_types: ["asset_set"]
+    target_asset_types: ["process"]
+  groups_plan:
+    family: grouping
+    aliases: ["groups plan", "contains plan", "bundles plan"]
+    source_asset_types: ["asset_set"]
+    target_asset_types: ["plan"]
+  groups_ruleset:
+    family: grouping
+    aliases: ["groups ruleset", "contains ruleset", "bundles ruleset"]
+    source_asset_types: ["asset_set"]
+    target_asset_types: ["ruleset"]
+  groups_entity:
+    family: grouping
+    aliases: ["groups entity", "contains entity", "bundles entity"]
+    source_asset_types: ["asset_set"]
+    target_asset_types: ["entity"]
+  groups_tool:
+    family: grouping
+    aliases: ["groups tool", "contains tool", "bundles tool"]
+    source_asset_types: ["asset_set"]
+    target_asset_types: ["tool"]
+  groups_qa:
+    family: grouping
+    aliases: ["groups qa", "contains qa", "bundles qa"]
+    source_asset_types: ["asset_set"]
+    target_asset_types: ["qa"]
+  groups_causality:
+    family: grouping
+    aliases: ["groups causality", "contains causality", "bundles causality"]
+    source_asset_types: ["asset_set"]
+    target_asset_types: ["causality"]
+  groups_user_task:
+    family: grouping
+    aliases: ["groups user task", "contains user task", "bundles user task"]
+    source_asset_types: ["asset_set"]
+    target_asset_types: ["user_task"]

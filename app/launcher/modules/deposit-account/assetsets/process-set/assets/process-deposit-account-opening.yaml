@@ -1,0 +1,19 @@
+asset_id: process.deposit-account.opening
+asset_type: process
+name: Apertura de cuenta
+description: quiero abrir una cuenta de deposits
+tags:
+- deposits
+- deposit-account
+- process
+relations:
+- type: implements_flow
+  target_asset_id: flow.deposit-account.opening
+payload:
+  process_id: deposit-account.opening
+  process_name: Apertura de cuenta
+  domain: deposits
+  module_id: deposit-account
+  business_event: deposit_account.opening.requested
+  user_tasks:
+  - capture account opening

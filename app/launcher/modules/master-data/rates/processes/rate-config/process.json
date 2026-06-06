@@ -1,0 +1,16 @@
+{
+  "processId": "rates.config",
+  "name": "Configurar tasa",
+  "intent": "quiero configurar una tasa",
+  "businessEvent": "rates.config.requested",
+  "sourcePath": "app/launcher/modules/master-data/rates/processes/rate-config",
+  "processIds": [
+    "rates_config"
+  ],
+  "userTasks": [
+    "capture rate configuration"
+  ],
+  "lowdefyPage": "rate-config",
+  "currentFormVersion": "v1",
+  "formId": "rate-config"
+}

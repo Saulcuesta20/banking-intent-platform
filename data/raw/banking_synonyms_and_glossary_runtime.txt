@@ -2,9 +2,9 @@ Banking Intent Platform - Synonyms, Glossary, and Concept Mapping Guidance
 
 Purpose:
 This raw corpus file teaches ingestion which informal banking words should map
-to formal concepts, flow names, utterances, user tasks, and actions.
+to formal concepts, flow names, utterances, user tasks, and tools.
 The runtime ask process must not invent terms. It should retrieve validated
-concepts, synonyms, flows, user tasks, and actions from the graph.
+concepts, synonyms, flows, user tasks, and tools from the graph.
 
 Canonical concepts and aliases:
 
@@ -44,7 +44,7 @@ Canonical concepts and aliases:
    - "Como pago el credito?"
    - "Puedo programar un debito automatico?"
    Mapping rule: payment registration is a flow; debit posting and balance
-   updates are back_actions, not user_tasks.
+   updates are backend_tools, not user_tasks.
 
 5. LoanApplication
    Informal terms: solicitar prestamo, pedir credito, aplicar a prestamo,
@@ -54,7 +54,7 @@ Canonical concepts and aliases:
    - "Necesito pedir un credito"
    - "Que documentos necesito para aplicar?"
    Mapping rule: application capture is a user/business task; scoring, bureau
-   checks, and eligibility calculation are back_actions.
+   checks, and eligibility calculation are backend_tools.
 
 6. SavingsAccount
    Informal terms: cuenta de ahorro, cuenta, ahorro, savings account, cuenta
@@ -74,7 +74,7 @@ Canonical concepts and aliases:
    - "Necesito enviar plata a un CBU"
    - "Como agrego un beneficiario?"
    Mapping rule: beneficiary registration can be a user_task; posting the
-   transfer is a back_action.
+   transfer is a backend_tool.
 
 8. Customer
    Informal terms: cliente, titular, usuario, customer, persona natural.
@@ -93,7 +93,7 @@ Canonical concepts and aliases:
    - "Tengo que subir recibos?"
    - "Me falta comprobante de domicilio"
    Mapping rule: collecting documents is a user_task; OCR, validation, and
-   storage are back_actions.
+   storage are backend_tools.
 
 10. Claim
     Informal terms: reclamo, queja, disputa, cargo no reconocido, incidencia,
@@ -103,7 +103,7 @@ Canonical concepts and aliases:
     - "No reconozco este debito"
     - "Necesito disputar un cargo"
     Mapping rule: claim intake and evidence collection are user_tasks; movement
-    matching and case status updates are back_actions.
+    matching and case status updates are backend_tools.
 
 11. CreditNote
     Informal terms: nota de credito, ajuste a favor, reversion positiva,
@@ -125,9 +125,9 @@ User task modeling rules:
   collect_customer_documents, review_loan_status, review_refinance_options,
   prepare_refinance_request, approve_business_case.
 - A backend API operation is never a UserTask. Backend operations belong in
-  back_actions, for example loan.conditions.calculate, customer.profile.read,
+  backend_tools, for example loan.conditions.calculate, customer.profile.read,
   account.balance.check, transfer.post, notification.send.
-- A frontend click, submit, screen, or UI command belongs in front_actions, for
+- A frontend click, submit, screen, or UI command belongs in frontend_tools, for
   example ui.loan_refinance.calculate or ui.transfer.submit.
 
 Graph retrieval expectations:
@@ -139,5 +139,5 @@ Graph retrieval expectations:
   "credito" can retrieve flows that mention "prestamo", and a question using
   "bajar cuota" can retrieve loan refinance flows.
 - The LLM classifier may choose only an existing flow_id from retrieved graph
-  context. It must not create new plans, tasks, actions, events, or concepts at
+  context. It must not create new plans, tasks, tools, events, or concepts at
   ask time.

@@ -1,0 +1,46 @@
+asset_id: module.loan
+asset_type: module
+name: Prestamos
+description: 'Colocacion: originacion, pagos y desembolsos de prestamos.'
+tags:
+- lending
+- loan
+- launcher
+relations:
+- type: belongs_to_domain
+  target_asset_id: domain.lending
+payload:
+  moduleId: loan
+  label: Prestamos
+  description: 'Colocacion: originacion, pagos y desembolsos de prestamos.'
+  icon: loan
+  aliases:
+  - loan
+  - prestamo
+  - prestamos
+  - credito
+  menus:
+  - id: loan-create
+    label: Crear prestamo
+    path: /lending/loan/loan-create
+  - id: loan-payment
+    label: Pago de prestamo
+    path: /lending/loan/loan-payment
+  - id: loan-disbursement
+    label: Desembolso
+    path: /lending/loan/loan-disbursement
+  - id: loan-refinance
+    label: Refinanciamiento
+    path: /lending/loan/loan-refinance
+  topMenus:
+  - id: queries
+    label: Consultas
+  - id: operations
+    label: Operaciones
+  - id: configuration
+    label: Configuracion
+  - id: reports
+    label: Reportes
+  - id: monitoring
+    label: Monitoreo
+  domainId: lending

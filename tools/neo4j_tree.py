@@ -3,7 +3,7 @@
 
 Usage:
   ./.venv/bin/python tools/neo4j_tree.py            # print all flows
-  ./.venv/bin/python tools/neo4j_tree.py --source data/flows/loan.flow.json
+  ./.venv/bin/python tools/neo4j_tree.py --source loan.refinance
 
 Set env: NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD if different from defaults.
 """

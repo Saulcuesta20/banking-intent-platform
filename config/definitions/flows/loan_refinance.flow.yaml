@@ -1,0 +1,43 @@
+flow_id: loan.refinance
+flow_name: Loan Refinance
+version: 1.0.0
+status: approved
+domain: banking.loans
+owner: Loan Operations
+description: Executable flow definition for refinance handling.
+related_flow_ids:
+  - loan.refinance
+triggers:
+  - quiero refinanciar mi prestamo
+inputs:
+  - customer_id
+  - loan_id
+outputs:
+  - refinance_offer_id
+user_flow:
+  - name: start
+    type: start
+    implementation: builtin.start
+    description: Start execution.
+  - name: review_refinance_options
+    type: user_task
+    implementation: task.review_refinance_options
+    description: Gather data and review refinance options.
+    required_inputs:
+      - customer_id
+      - loan_id
+    user_actions:
+      - action: action.loan.open_refinance_form
+        type: front
+        implementation_type: show_form
+        label: Open refinance form
+        description: Show the refinance panel and capture user-entered values.
+      - action: tool.loan.calculate_conditions
+        type: back
+        implementation_type: tool_call
+        tool: tool.loan.calculate_conditions
+        description: Calculate refinance conditions after the user submits data.
+  - name: end
+    type: end
+    implementation: builtin.end
+    description: Finish flow execution.

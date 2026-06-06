@@ -1,0 +1,27 @@
+{
+  "exported_from": "legacy-service-catalog",
+  "generated_at": "2026-05-01T12:00:00Z",
+  "services": [
+    {
+      "name": "Customer Profile Service",
+      "operations": ["customer.read", "customer.identity.validate"],
+      "notes": "Used by onboarding, loan servicing, transfers, and account maintenance."
+    },
+    {
+      "name": "Loan Pricing Service",
+      "operations": ["loan.conditions.calculate", "loan_refinance.compare"],
+      "notes": "Calculates refinance conditions and compares installment scenarios."
+    },
+    {
+      "name": "Transfer Service",
+      "operations": ["transfer.details.read", "transfer.create", "notification.send"],
+      "notes": "Creates domestic and international transfers after validation gates pass."
+    },
+    {
+      "name": "Compliance Screening Gateway",
+      "operations": ["api.sanctions.screen", "risk.case.create"],
+      "notes": "External screening service. Results are evidence for compliance review."
+    }
+  ]
+}
+

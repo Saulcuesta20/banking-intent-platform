@@ -1,0 +1,43 @@
+process_id: loan.transfer_to_loan
+process_name: Transfer To Loan
+version: 1.0.0
+status: approved
+domain: banking.loans
+owner: Payments Operations
+description: Executable process definition for transferring funds to a loan.
+related_flow_ids:
+  - loan.transfer_to_loan
+triggers:
+  - quiero transferir dinero a mi prestamo
+inputs:
+  - source_account_id
+  - loan_id
+  - transfer_amount
+outputs:
+  - transfer_id
+user_flow:
+  - name: start
+    type: start
+    implementation: builtin.start
+    description: Start transfer-to-loan process.
+  - name: capture_transfer_to_loan
+    type: user_task
+    implementation: task.capture_transfer_to_loan
+    description: Capture source, destination loan, and amount.
+    required_inputs:
+      - source_account_id
+      - loan_id
+      - transfer_amount
+    user_actions:
+      - action: action.loan.open_transfer_form
+        type: front
+        implementation_type: show_form
+        label: Open transfer to loan form
+      - action: tool.loan.transfer.apply
+        type: back
+        implementation_type: tool_call
+        tool: tool.loan.transfer.apply
+  - name: end
+    type: end
+    implementation: builtin.end
+    description: Finish transfer-to-loan process.

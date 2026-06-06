@@ -1,0 +1,41 @@
+{
+  "moduleId": "deposit-account",
+  "label": "Cuentas de Captacion",
+  "description": "Captacion: apertura y configuracion operativa de cuentas.",
+  "icon": "deposit",
+  "aliases": [
+    "deposits",
+    "cuenta",
+    "deposito",
+    "savings"
+  ],
+  "menus": [
+    {
+      "id": "account-opening",
+      "label": "Apertura de cuenta",
+      "path": "/deposits/deposit-account/account-opening"
+    }
+  ],
+  "topMenus": [
+    {
+      "id": "queries",
+      "label": "Consultas"
+    },
+    {
+      "id": "operations",
+      "label": "Operaciones"
+    },
+    {
+      "id": "configuration",
+      "label": "Configuracion"
+    },
+    {
+      "id": "reports",
+      "label": "Reportes"
+    },
+    {
+      "id": "monitoring",
+      "label": "Monitoreo"
+    }
+  ]
+}

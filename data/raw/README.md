@@ -11,11 +11,14 @@ Fuentes empresariales nuevas:
 - `enterprise_policy_and_controls.md`: politicas, controles, aprobaciones y excepciones.
 - `enterprise_support_wiki.md`: wiki de soporte con preguntas y guias.
 - `enterprise_systems_catalog.md`: sistemas, servicios legados y protocolos.
+- `enterprise_dump_2026/enterprise_asset_corpus_expanded.md`: corpus ampliado
+  con al menos 12 registros por familia principal de activo para probar
+  alineacion canonica, aliases, planes y causalidad.
 
-Los procesos estructurados viven en `data/processes/*.process.json`. Los flows
-runtime viven en `data/flows/*.flow.json`. La ingestion genera o refresca
-flows/user_tasks/action_registry desde textos empresariales y deja evidencia
-para revision humana antes de cargar el grafo.
+La ingestion ya no debe asumir solo flows. El corpus mezcla entidades, reglas,
+procesos, flows, planes, causalidad, Q&A, herramientas y documentos. La ruta
+de KB ingestion genera o refresca esos activos desde texto empresarial y deja
+evidencia para revision humana antes de cargar el grafo.
 
 Comandos utiles:
 

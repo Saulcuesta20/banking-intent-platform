@@ -1,0 +1,19 @@
+asset_id: process.loan.refinance
+asset_type: process
+name: Refinanciamiento de prestamo
+description: quiero refinanciar mi prestamo
+tags:
+- lending
+- loan
+- process
+relations:
+- type: implements_flow
+  target_asset_id: flow.loan.refinance
+payload:
+  process_id: loan.refinance
+  process_name: Refinanciamiento de prestamo
+  domain: lending
+  module_id: loan
+  business_event: loan.refinance.requested
+  user_tasks:
+  - review refinance options

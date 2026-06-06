@@ -2,3 +2,6 @@
 __pycache__/
 .pytest_cache/
 .venv/
+.tools/
+data/processed/ask_trace/
+data/processed/orchestrator_state.json

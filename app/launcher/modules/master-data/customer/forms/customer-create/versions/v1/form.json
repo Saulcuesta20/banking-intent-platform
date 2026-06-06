@@ -1,0 +1,13 @@
+{
+  "formId": "customer-create-form",
+  "version": "v1",
+  "pageId": "customer-create",
+  "title": "Datos Maestros - Alta de cliente",
+  "submitTitle": "Crear cliente",
+  "fields": [
+    { "id": "full_name", "label": "Nombre completo", "type": "text", "required": true, "placeholder": "Nombre del cliente" },
+    { "id": "email", "label": "Email", "type": "email", "required": true, "placeholder": "cliente@empresa.com" },
+    { "id": "phone", "label": "Telefono", "type": "text", "required": false, "placeholder": "+52 ..." },
+    { "id": "segment", "label": "Segmento", "type": "text", "required": true, "placeholder": "Personal, PyME o Empresarial" }
+  ]
+}

@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import pytest
 
 from app.approval.policy import AlwaysHumanApprovalPolicy
@@ -13,15 +11,12 @@ from app.ask.understanding import QuestionUnderstanding
 from app.capability.registry import RegistryCapabilityProvider
 from app.capability.service import CapabilityService
 from app.factory import build_ask_service
-from app.ingestion.flow_loader import FlowKnowledgeLoader
-from app.knowledge_graph.service import KnowledgeGraphService
+from app.knowledge_base.service import KnowledgeBaseService
 from app.models import KnowledgeRecord
+from conftest import sample_records
 
 
-FLOW_DIR = Path(__file__).resolve().parents[1] / "data" / "flows"
-
-
-class FakeKnowledgeGraphRepository:
+class FakeKnowledgeBaseRepository:
     def __init__(self, records: list[KnowledgeRecord]):
         self.records = records
 
@@ -64,12 +59,11 @@ class FakeQuestionUnderstandingService:
 
 
 def build_test_service(records: list[KnowledgeRecord], selected_flow_id: str | None):
-    startup_records = FlowKnowledgeLoader().load_directory(FLOW_DIR)
     return AskService(
-        knowledge_graph_service=KnowledgeGraphService(FakeKnowledgeGraphRepository(records)),
+        knowledge_base_service=KnowledgeBaseService(FakeKnowledgeBaseRepository(records)),
         question_understanding_service=FakeQuestionUnderstandingService(),
         flow_selection_service=FlowSelectionService(FakeLLMReasoningProvider(selected_flow_id)),
-        capability_service=CapabilityService(RegistryCapabilityProvider(startup_records)),
+        capability_service=CapabilityService(RegistryCapabilityProvider(records)),
         answer_builder=AnswerBuilder(),
         approval_service=ApprovalService(AlwaysHumanApprovalPolicy()),
         audit_service=AuditService(NoopAuditSink()),
@@ -78,11 +72,7 @@ def build_test_service(records: list[KnowledgeRecord], selected_flow_id: str | N
 
 
 def load_record(flow_id: str) -> KnowledgeRecord:
-    records = FlowKnowledgeLoader().load_directory(FLOW_DIR)
-    for record in records:
-        if record.flow_id == flow_id:
-            return record
-    raise AssertionError(f"Missing flow fixture {flow_id}")
+    return sample_records(flow_id)[0]
 
 
 def test_refinance_question_projects_llm_selected_graph_flow():
@@ -101,6 +91,11 @@ def test_refinance_question_projects_llm_selected_graph_flow():
         "prepare_refinance_request",
         "approve_business_case",
     ]
+    assert result.requires_execution_confirmation is True
+    assert result.execution_selection_policy["path"] == "flow_route"
+    assert result.execution_selection_policy["selection_mode"] == "single"
+    assert result.execution_options
+    assert all(option["executes_tools_now"] is False for option in result.execution_options)
 
 
 def test_ambiguous_question_returns_unknown_when_llm_declines_flow():
@@ -110,6 +105,20 @@ def test_ambiguous_question_returns_unknown_when_llm_declines_flow():
     assert result.to_dict()["can_resolve"] is False
     assert result.intent == "unknown"
     assert result.confidence == 0.0
+
+
+def test_direct_qa_question_resolves_without_flow_clarification():
+    records = [load_record("savings_account_opening"), load_record("loan.payment")]
+    result = build_test_service(records, None).resolve("Necesito una cuenta para pago automatico?")
+
+    assert result.to_dict()["can_resolve"] is True
+    assert result.intent == "qa.answer"
+    assert result.requires_human_approval is False
+    assert result.requires_execution_confirmation is False
+    assert result.execution_selection_policy["path"] == "qa_route"
+    assert result.execution_selection_policy["selection_mode"] == "none"
+    assert result.route["mode"] == "known_route"
+    assert result.plan == []
 
 
 def test_factory_rejects_non_ai_ask_flow(monkeypatch):

@@ -1,0 +1,55 @@
+process_id: loan.application
+process_name: Loan Application
+version: 1.0.0
+status: approved
+domain: banking.loans
+owner: Credit Operations
+description: Executable process definition for loan applications.
+related_flow_ids:
+  - loan_application_process
+triggers:
+  - quiero solicitar un prestamo
+inputs:
+  - customer_id
+  - loan_amount
+outputs:
+  - loan_application_id
+integrations:
+  - integration_id: loan_origination_create
+    name: Create Loan Application
+    type: legacy_service
+    protocol: api
+    operation: create
+    endpoint: loan.application.create
+user_flow:
+  - name: start
+    type: start
+    implementation: builtin.start
+    description: Start process execution.
+  - name: capture_loan_application
+    type: user_task
+    implementation: task.capture_loan_application
+    description: Capture required loan application fields.
+    required_inputs:
+      - customer_id
+      - loan_amount
+    user_actions:
+      - action: action.loan.open_application_form
+        type: front
+        implementation_type: show_form
+        label: Open loan application form
+        description: Display the application form to the user.
+      - action: tool.loan.capture_application
+        type: back
+        implementation_type: tool_call
+        tool: tool.loan.capture_application
+        description: Persist the user-provided application data.
+  - name: create_loan_application
+    type: service_call
+    implementation: integration.api
+    description: Persist loan application in origination system.
+    integration_id: loan_origination_create
+  - name: end
+    type: end
+    implementation: builtin.end
+    description: Finish process execution.

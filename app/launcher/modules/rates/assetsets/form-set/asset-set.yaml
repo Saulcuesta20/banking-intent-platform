@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: rates-form-set
+  name: Tasas Form Set
+  version: 1.0.0
+  domain: master-data
+  module: rates
+  description: Versioned form deployment set for rates.
+  tags:
+  - master-data
+  - rates
+  - form
+spec:
+  assetType: form
+  assets:
+  - assets/form-rate-config-form.yaml

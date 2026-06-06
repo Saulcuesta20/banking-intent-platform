@@ -1,0 +1,104 @@
+version: 1.0.0
+description: Relation families and phrase patterns used by the asset-oriented ingestion pipeline.
+
+relation_types:
+  causes:
+    family: causality
+    phrases:
+      - causa
+      - provoca
+      - genera
+      - deriva en
+      - resulta en
+      - leads to
+      - results in
+    source_asset_types: [entity, rule, process, flow, plan, causality]
+    target_asset_types: [entity, rule, process, flow, plan, causality]
+
+  prevents:
+    family: causality
+    phrases:
+      - previene
+      - evita
+      - bloquea
+      - impide
+      - prevents
+      - blocks
+    source_asset_types: [rule, process, flow, plan, causality]
+    target_asset_types: [entity, rule, process, flow, plan, causality]
+
+  enables:
+    family: causality
+    phrases:
+      - habilita
+      - permite
+      - enables
+      - allows
+    source_asset_types: [rule, process, flow, plan, causality]
+    target_asset_types: [entity, process, flow, plan, causality]
+
+  governed_by_rule:
+    family: governance
+    phrases:
+      - debe cumplir
+      - segun la politica
+      - sujeto a
+      - according to policy
+      - must comply
+    source_asset_types: [entity, user_task, flow, process, plan, tool, causality]
+    target_asset_types: [business_rule]
+
+  has_step:
+    family: structural
+    phrases:
+      - paso
+      - etapa
+      - step
+      - includes the following steps
+    source_asset_types: [process, plan]
+    target_asset_types: [user_task, process]
+
+  transitions_to:
+    family: structural
+    phrases:
+      - luego
+      - despues
+      - continua con
+      - pasa a
+      - next
+      - then
+    source_asset_types: [process, flow]
+    target_asset_types: [process, user_task, tool]
+
+  uses_entity:
+    family: semantic
+    phrases:
+      - cliente
+      - cuenta
+      - prestamo
+      - pago
+      - documento
+    source_asset_types: [flow, process, plan, qa, rule]
+    target_asset_types: [entity]
+
+  invokes_tool:
+    family: capability
+    phrases:
+      - usa la api
+      - consulta el sistema
+      - invoca
+      - llama al servicio
+      - calls
+      - invokes
+    source_asset_types: [user_task, process, plan]
+    target_asset_types: [tool]
+
+  supports_flow:
+    family: planning
+    phrases:
+      - soporta el flujo
+      - para lograr
+      - with the objective
+      - supports flow
+    source_asset_types: [plan]
+    target_asset_types: [flow]

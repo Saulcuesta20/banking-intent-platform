@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: customer-menu-set
+  name: Clientes Menu Set
+  version: 1.0.0
+  domain: master-data
+  module: customer
+  description: Versioned menu deployment set for customer.
+  tags:
+  - master-data
+  - customer
+  - menu
+spec:
+  assetType: menu
+  assets:
+  - assets/menu-customer-customer-create.yaml

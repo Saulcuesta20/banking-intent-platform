@@ -1,7 +1,7 @@
 # Human Approval
 
 ## Purpose
-Ensure every proposed banking action requires human approval.
+Ensure every proposed banking tool requires human approval.
 
 ## Responsibilities
 - Mark all outputs with `requires_human_approval: true`.

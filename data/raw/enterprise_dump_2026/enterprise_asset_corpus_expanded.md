@@ -1,0 +1,190 @@
+# Expanded Enterprise Asset Corpus
+
+Este corpus amplia la mezcla de lenguaje empresarial no estructurado para que
+la ingestion pueda proponer y alinear activos canonicos. Cada familia incluye
+al menos doce registros expresados como notas operativas, frases de negocio,
+causa-efecto, pasos, preguntas y referencias cruzadas.
+
+## Entities
+
+1. El cliente titular solicita refinanciar su prestamo de vehiculo.
+2. La cuenta de ahorro base recibe el deposito inicial del onboarding.
+3. El pago automatico se registra contra la cuenta operativa del cliente.
+4. El documento de identidad vigente se valida antes del alta.
+5. La solicitud de prestamo contiene plazo, monto y destino.
+6. La mora acumulada impacta la elegibilidad de refinanciamiento.
+7. La transferencia internacional exige cuenta destino verificada.
+8. El comprobante de domicilio respalda la apertura de cuenta.
+9. La garantia hipotecaria soporta el analisis de riesgo.
+10. El buro de credito aporta score y alertas regulatorias.
+11. La oferta de refinanciamiento incluye tasa, plazo y comision.
+12. El evento de incumplimiento actualiza el estado del prestamo.
+
+## Rules
+
+1. Si el cliente tiene mora mayor a treinta dias, no puede refinanciar.
+2. Si falta documento oficial, la apertura de cuenta debe detenerse.
+3. Toda transferencia superior al limite diario requiere aprobacion humana.
+4. El pago automatico solo puede usar cuentas activas y con saldo suficiente.
+5. El onboarding debe cumplir KYC antes de crear la cuenta.
+6. Si el score de riesgo es alto, la oferta pasa a revision manual.
+7. Toda garantia hipotecaria debe registrarse antes del desembolso.
+8. La transferencia internacional requiere validacion reforzada del beneficiario.
+9. Si el buro reporta fraude, el proceso se bloquea y se escala.
+10. La refinanciacion solo se ofrece a prestamos con seis meses de antiguedad.
+11. Toda actualizacion de datos sensibles requiere doble confirmacion.
+12. La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+
+## Flows
+
+1. El cliente dice: quiero refinanciar mi prestamo actual.
+2. El cliente pregunta: quiero abrir una cuenta de ahorro nueva.
+3. El cliente expresa: necesito transferir dinero a otra cuenta.
+4. El cliente indica: quiero pagar mi prestamo desde mi cuenta.
+5. El cliente comenta: quiero revisar el estado de mi solicitud.
+6. El cliente pide: necesito actualizar mis datos personales.
+7. El cliente solicita: quiero cancelar el pago automatico.
+8. El cliente pregunta: quiero activar una cuenta inactiva.
+9. El cliente expresa: quiero reportar un cargo no reconocido.
+10. El cliente comenta: quiero conocer los documentos para onboarding.
+11. El cliente pide: quiero reestructurar una deuda en atraso.
+12. El cliente solicita: quiero consultar mi limite de transferencia.
+13. El operador solicita: quiero crear un cliente nuevo.
+14. El analista indica: quiero crear un prestamo para un cliente existente.
+15. El tesorero comenta: quiero realizar el desembolso del prestamo aprobado.
+16. El cliente dice: quiero pagar mi prestamo hoy.
+17. El cliente expresa: quiero transferir dinero a mi prestamo.
+
+## Processes
+
+1. El proceso de refinanciamiento identifica al cliente, revisa mora, calcula terminos y emite oferta.
+2. El proceso de apertura de cuenta recoge documentos, valida identidad y crea la cuenta.
+3. El proceso de transferencia valida origen, valida destino y ejecuta el movimiento.
+4. El proceso de pago de prestamo consulta saldo, aplica pago y actualiza calendario.
+5. El proceso de actualizacion de datos revisa titularidad, valida cambios y registra auditoria.
+6. El proceso de cargo no reconocido abre caso, congela tarjeta y notifica investigaciones.
+7. El proceso de reestructuracion analiza capacidad de pago y propone escenarios.
+8. El proceso de activacion de cuenta revisa bloqueos, valida identidad y restituye acceso.
+9. El proceso de aprobacion reforzada revisa score alto y emite decision humana.
+10. El proceso de validacion de beneficiario compara alias, cuenta y riesgo de fraude.
+11. El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+12. El proceso de alta de pago automatico valida cuenta cargo y confirma consentimiento.
+13. El proceso de alta de cliente captura datos, valida identidad y crea el cliente.
+14. El proceso de originacion de prestamo captura solicitud, valida condiciones y registra el prestamo.
+15. El proceso de desembolso verifica aprobacion, confirma cuenta destino y acredita fondos.
+16. El proceso de pago de prestamo recibe fondos, aplica el abono y actualiza saldo.
+17. El proceso de transferencia a prestamo valida referencia, ejecuta traslado y confirma aplicacion.
+
+## Plans
+
+1. Plan para reducir mora temprana: identificar cuentas vencidas, contactar cliente, ofrecer arreglo y monitorear respuesta.
+2. Plan para onboarding digital: capturar identidad, validar domicilio, ejecutar KYC y crear cuenta.
+3. Plan para refinanciar con riesgo medio: revisar buro, calcular terminos, validar politica y someter a aprobacion.
+4. Plan para resolver transferencias fallidas: revisar logs, validar destino, reprocesar y notificar cliente.
+5. Plan para activar cuentas inactivas: confirmar identidad, revisar bloqueos, validar riesgo y restituir acceso.
+6. Plan para disputas de cargo: registrar caso, congelar instrumento, recolectar evidencia y escalar.
+7. Plan para cumplimiento de politicas documentales: identificar faltantes, solicitar evidencia, validar vigencia y aprobar.
+8. Plan para cobranza preventiva: detectar senales, priorizar cartera, contactar y documentar acuerdo.
+9. Plan para alta de pago automatico: verificar cuenta, capturar autorizacion, registrar mandato y confirmar.
+10. Plan para cancelacion anticipada: calcular saldo, evaluar penalidad, emitir propuesta y cerrar contrato.
+11. Plan para actualizacion de datos sensibles: autenticar, validar cambio, aplicar control y auditar.
+12. Plan para beneficiarios internacionales: validar alias, analizar riesgo, confirmar banco destino y autorizar.
+13. Plan para crear cliente: abrir formulario, capturar datos, validar identidad y registrar cliente.
+14. Plan para crear prestamo: mostrar solicitud, capturar campos, validar politica y registrar contrato.
+15. Plan para desembolso: verificar aprobacion, confirmar cuenta y ejecutar acreditacion.
+16. Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.
+17. Plan para transferir dinero al prestamo: capturar referencia, validar cuenta origen y mover fondos.
+
+## Causality
+
+1. No pagar un prestamo causa incumplimiento contractual.
+2. El incumplimiento contractual genera aumento del riesgo crediticio.
+3. El aumento del riesgo crediticio provoca revision manual de la refinanciacion.
+4. La falta de documento vigente causa retraso en el onboarding.
+5. El retraso en el onboarding genera abandono del proceso por parte del cliente.
+6. El alias incorrecto del beneficiario provoca rechazo de la transferencia.
+7. El rechazo reiterado de transferencias causa escalamiento al equipo de fraude.
+8. La mora superior a treinta dias bloquea la oferta de refinanciamiento.
+9. La validacion reforzada aprobada habilita la transferencia internacional.
+10. El score alto de fraude causa congelamiento preventivo de la cuenta.
+11. La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+12. La falta de consentimiento firmado bloquea el alta de pago automatico.
+
+## User Tasks
+
+1. Identificar al cliente antes de cualquier operacion financiera.
+2. Recopilar documentos del onboarding.
+3. Validar beneficiario para transferencia internacional.
+4. Calcular terminos de refinanciamiento.
+5. Revisar estado de mora del prestamo.
+6. Registrar disputa por cargo no reconocido.
+7. Verificar consentimiento de pago automatico.
+8. Confirmar datos sensibles antes de la actualizacion.
+9. Revisar score de riesgo del cliente.
+10. Solicitar aprobacion humana para operaciones fuera de umbral.
+11. Ejecutar activacion de cuenta previamente bloqueada.
+12. Emitir propuesta de cancelacion anticipada.
+13. Capturar datos del cliente para crear el registro.
+14. Registrar la solicitud del prestamo.
+15. Ejecutar el desembolso sobre la cuenta destino.
+16. Aplicar el pago recibido al prestamo.
+17. Transferir fondos desde la cuenta origen al prestamo.
+
+## Tools
+
+1. El sistema customer.read consulta el perfil del cliente en core banking.
+2. El servicio loan.status.read obtiene el estado operativo del prestamo.
+3. El motor loan.terms.calculate calcula tasa y plazo de refinanciacion.
+4. La API transfer.submit ejecuta la transferencia bancaria.
+5. El conector document.upload recibe archivos del onboarding.
+6. El servicio document.validate confirma formato y vigencia.
+7. El motor risk.score.read consulta score y alertas.
+8. La API autopay.register crea el mandato de pago automatico.
+9. El servicio autopay.cancel anula el mandato vigente.
+10. La API dispute.case.create abre el caso por cargo no reconocido.
+11. El servicio account.reactivate actualiza el estado de la cuenta.
+12. La API approval.request.submit envia casos a revision humana.
+13. La interfaz ui.customer.create.open_form muestra el formulario de alta de cliente.
+14. El servicio customer.create registra un cliente nuevo.
+15. La interfaz ui.loan.create.open_form presenta la solicitud de prestamo.
+16. El servicio loan.create registra el nuevo prestamo.
+17. El servicio loan.disbursement.execute acredita los fondos del prestamo.
+18. La interfaz ui.loan.payment.open_form muestra el formulario de pago del prestamo.
+19. El servicio loan.payment.apply registra el abono al prestamo.
+20. La interfaz ui.loan.transfer.open_form muestra la transferencia al prestamo.
+21. El servicio loan.transfer.apply mueve fondos hacia la deuda del prestamo.
+
+## QA
+
+1. Que necesito para refinanciar mi prestamo?
+2. Que documentos necesito para abrir una cuenta de ahorro?
+3. Como funciona el pago automatico?
+4. Que pasa si tengo mora y quiero refinanciar?
+5. Cual es el limite diario de transferencias?
+6. Como reporto un cargo no reconocido?
+7. Que valida el proceso de onboarding?
+8. Cuando se requiere aprobacion humana?
+9. Como cancelo una domiciliacion de pago?
+10. Que pasa si el beneficiario de la transferencia no coincide?
+11. Como se reactiva una cuenta bloqueada?
+12. Que implica la cancelacion anticipada de un prestamo?
+13. Como creo un cliente nuevo?
+14. Como se crea un prestamo?
+15. Como se realiza el desembolso de un prestamo aprobado?
+16. Como pago mi prestamo?
+17. Como transfiero dinero a mi prestamo?
+
+## Documents
+
+1. Memo de politicas de refinanciamiento actualizado por riesgos.
+2. Manual operativo de onboarding digital para cuentas de ahorro.
+3. Catalogo de sistemas legados con APIs de pagos y transferencias.
+4. Guia de soporte para disputas por cargos no reconocidos.
+5. Instructivo de validacion documental para clientes nuevos.
+6. Nota interna sobre controles de fraude en transferencias internacionales.
+7. Politica de autorizacion para operaciones fuera de umbral.
+8. Fragmentos de procesos de cobranza preventiva y reestructuracion.
+9. Guia de consentimiento para alta de pago automatico.
+10. Documento de reactivacion de cuentas suspendidas.
+11. FAQ de limites y tiempos de transferencia.
+12. Nota de auditoria sobre cambios de datos sensibles.

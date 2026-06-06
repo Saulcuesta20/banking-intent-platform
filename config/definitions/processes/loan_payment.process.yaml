@@ -1,0 +1,41 @@
+process_id: loan.payment
+process_name: Loan Payment
+version: 1.0.0
+status: approved
+domain: banking.loans
+owner: Payments Operations
+description: Executable process definition for loan payment.
+related_flow_ids:
+  - loan.payment
+triggers:
+  - quiero pagar mi prestamo hoy
+inputs:
+  - loan_id
+  - payment_amount
+outputs:
+  - payment_id
+user_flow:
+  - name: start
+    type: start
+    implementation: builtin.start
+    description: Start loan payment process.
+  - name: capture_payment
+    type: user_task
+    implementation: task.capture_payment
+    description: Capture the payment request from the user.
+    required_inputs:
+      - loan_id
+      - payment_amount
+    user_actions:
+      - action: action.loan.open_payment_form
+        type: front
+        implementation_type: show_form
+        label: Open payment form
+      - action: tool.loan.payment.apply
+        type: back
+        implementation_type: tool_call
+        tool: tool.loan.payment.apply
+  - name: end
+    type: end
+    implementation: builtin.end
+    description: Finish loan payment process.

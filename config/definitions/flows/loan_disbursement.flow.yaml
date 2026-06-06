@@ -1,0 +1,43 @@
+flow_id: loan.disbursement
+flow_name: Loan Disbursement
+version: 1.0.0
+status: approved
+domain: banking.loans
+owner: Treasury Operations
+description: Executable flow definition for loan disbursement.
+related_flow_ids:
+  - loan.disbursement
+triggers:
+  - quiero realizar el desembolso del prestamo aprobado
+inputs:
+  - loan_id
+  - destination_account_id
+outputs:
+  - disbursement_id
+user_flow:
+  - name: start
+    type: start
+    implementation: builtin.start
+    description: Start loan disbursement.
+  - name: confirm_disbursement
+    type: user_task
+    implementation: task.confirm_disbursement
+    description: Confirm loan and destination details before disbursement.
+    required_inputs:
+      - loan_id
+      - destination_account_id
+    user_actions:
+      - action: action.loan.open_disbursement_panel
+        type: front
+        implementation_type: open_panel
+        label: Open disbursement panel
+        description: Display the disbursement confirmation panel.
+      - action: tool.loan.disbursement.execute
+        type: back
+        implementation_type: tool_call
+        tool: tool.loan.disbursement.execute
+        description: Execute the loan disbursement.
+  - name: end
+    type: end
+    implementation: builtin.end
+    description: Finish loan disbursement.

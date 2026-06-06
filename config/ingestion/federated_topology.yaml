@@ -1,0 +1,50 @@
+version: "1.0.0"
+description: "Federated logical knowledge-base topology for ingestion, vector memory, and graph projection."
+
+memory_collections:
+  global_asset_index: "knowledge_assets"
+  asset_alias_memory: "asset_alias_memory"
+  relation_alias_memory: "relation_alias_memory"
+  evidence_memory: "evidence_memory"
+
+knowledge_bases:
+  business_model_kb:
+    vector_collection: "kb_business_model_assets"
+    document_collection: "kb_business_model_documents"
+    graph_namespace: "BusinessModel"
+    asset_types: ["entity", "user_task", "tool", "business_event"]
+  rules_kb:
+    vector_collection: "kb_rules_assets"
+    document_collection: "kb_rules_documents"
+    graph_namespace: "Rules"
+    asset_types: ["business_rule", "ruleset"]
+  process_kb:
+    vector_collection: "kb_process_assets"
+    document_collection: "kb_process_documents"
+    graph_namespace: "Processes"
+    asset_types: ["flow", "process", "asset_set"]
+  planning_kb:
+    vector_collection: "kb_planning_assets"
+    document_collection: "kb_planning_documents"
+    graph_namespace: "Planning"
+    asset_types: ["plan"]
+  qa_kb:
+    vector_collection: "kb_qa_assets"
+    document_collection: "kb_qa_documents"
+    graph_namespace: "QA"
+    asset_types: ["qa"]
+  document_kb:
+    vector_collection: "kb_document_assets"
+    document_collection: "kb_document_documents"
+    graph_namespace: "Documents"
+    asset_types: ["document"]
+  causality_kb:
+    vector_collection: "kb_causality_assets"
+    document_collection: "kb_causality_documents"
+    graph_namespace: "Causality"
+    asset_types: ["causality"]
+  config_kb:
+    vector_collection: "kb_config_assets"
+    document_collection: "kb_config_documents"
+    graph_namespace: "Configuration"
+    asset_types: ["configuration"]

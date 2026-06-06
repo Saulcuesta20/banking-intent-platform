@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: loan-rule-set
+  name: Loan Rule Set
+  version: 1.0.0
+  domain: lending
+  module: loan
+  description: Versioned business rules for loan operations.
+  tags:
+    - lending
+    - loan
+    - business-rule
+spec:
+  assetType: business_rule
+  assets:
+    - assets/business-rule-loan-refinance-eligibility.yaml

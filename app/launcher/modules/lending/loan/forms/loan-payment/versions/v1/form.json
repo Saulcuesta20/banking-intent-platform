@@ -1,0 +1,13 @@
+{
+  "formId": "loan-payment-form",
+  "version": "v1",
+  "pageId": "loan-payment",
+  "title": "Colocacion - Pago de prestamo",
+  "submitTitle": "Enviar pago al workflow",
+  "fields": [
+    { "id": "loan_id", "label": "Prestamo", "type": "text", "required": true, "placeholder": "Numero de prestamo" },
+    { "id": "source_account", "label": "Cuenta origen", "type": "text", "required": true, "placeholder": "Cuenta de cargo" },
+    { "id": "payment_amount", "label": "Monto de pago", "type": "number", "required": true, "placeholder": "1500" },
+    { "id": "payment_date", "label": "Fecha de pago", "type": "text", "required": true, "placeholder": "YYYY-MM-DD" }
+  ]
+}

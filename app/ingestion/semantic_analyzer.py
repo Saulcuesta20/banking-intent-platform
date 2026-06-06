@@ -73,9 +73,9 @@ class SemanticAnalyzerProvider(Protocol):
         """Classify mixed enterprise corpus into reviewable intent/process evidence."""
 
 
+@dataclass(frozen=True)
 class SemanticAnalyzerService:
-    def __init__(self, provider: SemanticAnalyzerProvider):
-        self.provider = provider
+    provider: SemanticAnalyzerProvider
 
     def analyze(self, documents: list[CorpusDocument]) -> SemanticAnalysisResult:
         return self.provider.analyze(documents)

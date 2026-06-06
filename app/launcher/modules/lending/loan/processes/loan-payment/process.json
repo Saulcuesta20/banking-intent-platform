@@ -1,0 +1,16 @@
+{
+  "processId": "loan.payment",
+  "name": "Pago de prestamo",
+  "intent": "quiero pagar mi prestamo hoy",
+  "businessEvent": "loan.payment.requested",
+  "sourcePath": "config/definitions/flows/loan_payment.flow.yaml",
+  "processIds": [
+    "loan_payment"
+  ],
+  "userTasks": [
+    "capture payment"
+  ],
+  "lowdefyPage": "loan-payment",
+  "currentFormVersion": "v1",
+  "formId": "loan-payment"
+}

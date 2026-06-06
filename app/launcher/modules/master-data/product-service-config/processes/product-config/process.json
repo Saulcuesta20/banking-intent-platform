@@ -1,0 +1,16 @@
+{
+  "processId": "product.config",
+  "name": "Configurar producto",
+  "intent": "quiero configurar un producto o servicio",
+  "businessEvent": "product.config.requested",
+  "sourcePath": "app/launcher/modules/master-data/product-service-config/processes/product-config",
+  "processIds": [
+    "product_config"
+  ],
+  "userTasks": [
+    "capture product configuration"
+  ],
+  "lowdefyPage": "product-config",
+  "currentFormVersion": "v1",
+  "formId": "product-config"
+}

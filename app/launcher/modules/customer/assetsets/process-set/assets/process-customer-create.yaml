@@ -1,0 +1,19 @@
+asset_id: process.customer.create
+asset_type: process
+name: Alta de cliente
+description: quiero crear un cliente nuevo
+tags:
+- master-data
+- customer
+- process
+relations:
+- type: implements_flow
+  target_asset_id: flow.customer.create
+payload:
+  process_id: customer.create
+  process_name: Alta de cliente
+  domain: master-data
+  module_id: customer
+  business_event: customer.create.requested
+  user_tasks:
+  - capture customer

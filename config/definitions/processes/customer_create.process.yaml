@@ -1,0 +1,41 @@
+process_id: customer.create
+process_name: Customer Create
+version: 1.0.0
+status: approved
+domain: banking.customer
+owner: Customer Operations
+description: Executable process definition for customer creation.
+related_flow_ids:
+  - customer.create
+triggers:
+  - quiero crear un cliente nuevo
+inputs:
+  - customer_name
+  - identity_document
+outputs:
+  - customer_id
+user_flow:
+  - name: start
+    type: start
+    implementation: builtin.start
+    description: Start customer creation process.
+  - name: capture_customer_data
+    type: user_task
+    implementation: task.capture_customer_data
+    description: Capture user-provided customer data.
+    required_inputs:
+      - customer_name
+      - identity_document
+    user_actions:
+      - action: action.customer.open_create_form
+        type: front
+        implementation_type: show_form
+        label: Open customer form
+      - action: tool.customer.create
+        type: back
+        implementation_type: tool_call
+        tool: tool.customer.create
+  - name: end
+    type: end
+    implementation: builtin.end
+    description: Finish customer creation process.

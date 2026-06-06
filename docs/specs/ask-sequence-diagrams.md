@@ -7,7 +7,7 @@ The diagrams use Mermaid sequence syntax so they can be rendered by GitHub and m
 
 ## Diagram 1: CLI `ask` To Final Intent Result
 
-This diagram shows the main successful path when `python -m app.cli ask "..."` or `make ask` is used. The service runs LangGraph ask orchestration, and the graph nodes call retrieval, classification, projection, approval, audit, and trace-writing methods.
+This diagram shows the main successful path when `ask "..."` or `python -m app.cli ask "..."` is used. The service runs LangGraph ask orchestration, and the graph nodes call question understanding, retrieval, source routing, goal routing, classification, answer building, approval, audit, and trace-writing methods.
 
 ```mermaid
 sequenceDiagram
@@ -15,15 +15,19 @@ sequenceDiagram
     actor User as User / Agent
     participant CLI as app.cli.ask()
     participant Factory as app.factory.build_ask_service()
-    participant Loader as FlowKnowledgeLoader.load_directory()
+    participant Loader as Neo4jKnowledgeBaseGraphAdapter.search()
     participant IRS as AskService.resolve()
     participant LG as LangGraph StateGraph
     participant UnderstandNode as _ask_node_understand_question()
     participant SearchNode as _ask_node_search_knowledge()
+    participant GoalNode as _ask_node_analyze_goal()
     participant ClsNode as _ask_node_select_intent()
-    participant ProjNode as _ask_node_build_answer()
-    participant Knowledge as KnowledgeGraphService.search()
-    participant Capability as CapabilityService.list_registered_actions()
+    participant BuildNode as _ask_node_build_answer()
+    participant Knowledge as KnowledgeBaseService.search()
+    participant SourceRouter as KnowledgeBaseService.build_evidence_bundle()
+    participant AssetSearch as AssetSearchService.search(owner KB assets)
+    participant Capability as CapabilityService.list_registered_tools()
+    participant Planning as PlanningService.analyze()
     participant Classifier as FlowSelectionService.select()
     participant FlowCtx as AnswerBuilder.build()
     participant Approval as ApprovalService.enforce()
@@ -44,9 +48,18 @@ sequenceDiagram
     LG->>SearchNode: search_knowledge
     SearchNode->>Knowledge: search(search_terms)
     Knowledge-->>SearchNode: list[KnowledgeRecord]
-    SearchNode->>Capability: list_registered_actions()
-    Capability-->>SearchNode: list[ActionRegistryEntry]
-    SearchNode-->>LG: knowledge_candidates
+    SearchNode->>AssetSearch: search(question)
+    AssetSearch-->>SearchNode: AssetSearchResult grouped by route role and owner KB
+    SearchNode->>SourceRouter: build_evidence_bundle(question, terms, records, asset_search)
+    SourceRouter-->>SearchNode: EvidenceBundle(routes, evidence)
+    SearchNode->>Capability: list_registered_tools()
+    Capability-->>SearchNode: list[ToolRegistryEntry]
+    SearchNode-->>LG: knowledge_candidates, asset_search, evidence_bundle
+
+    LG->>GoalNode: analyze_goal
+    GoalNode->>Planning: analyze(question, records, tools, understanding, asset_search)
+    Planning-->>GoalNode: PlanningTrace(goal, user_needs, route, plan)
+    GoalNode-->>LG: planning_trace
 
     LG->>ClsNode: select_intent node
     ClsNode->>Classifier: select(question, records)
@@ -54,8 +67,8 @@ sequenceDiagram
 
     alt selected_record exists
         ClsNode-->>LG: selected_record, selected_flow
-        LG->>ProjNode: build_answer node
-        ProjNode->>IRS: _build_projected_result(question, records, record, trace)
+        LG->>BuildNode: build_answer node
+        BuildNode->>IRS: _build_projected_result(question, records, record, trace)
         IRS->>FlowCtx: build(question, record)
         FlowCtx-->>IRS: AnswerContext
         IRS->>Approval: enforce(context.plan, context.tasks)
@@ -66,8 +79,8 @@ sequenceDiagram
         Audit-->>IRS: recorded
         IRS->>Trace: _write_ask_trace(question, records, record, context, result)
         Trace-->>IRS: ask_trace path
-        IRS-->>ProjNode: AnswerResult
-        ProjNode-->>LG: result_model
+        IRS-->>BuildNode: AnswerResult
+        BuildNode-->>LG: result_model
     else no selected_record
         ClsNode-->>LG: selected_record=None
         LG->>IRS: _build_unknown_result(question, records, trace)
@@ -92,8 +105,8 @@ This diagram zooms into the AI provider path used when `USE_AI_PROVIDERS=true`. 
 sequenceDiagram
     autonumber
     participant IRS as AskService
-    participant KnowledgeSvc as KnowledgeGraphService.search()
-    participant Repository as Neo4jKnowledgeGraphRepository.search()
+    participant KnowledgeSvc as KnowledgeBaseService.search()
+    participant Repository as Neo4jKnowledgeBaseGraphAdapter.search()
     participant QUSvc as QuestionUnderstandingService.understand()
     participant QUProvider as LLMQuestionUnderstandingProvider.understand()
     participant QUModel as OpenAI-compatible LLM /chat/completions
@@ -163,17 +176,20 @@ sequenceDiagram
 | Resolution | `AskService` | `resolve()` | Starts LangGraph ask orchestration. |
 | Orchestration | `AskService` | `_resolve_with_langgraph()` | Builds and runs the ask workflow nodes. |
 | Understanding node | `AskService` | `_ask_node_understand_question()` | Interprets the customer question before graph search. |
-| Search node | `AskService` | `_ask_node_search_knowledge()` | Calls knowledge graph search and action registry lookup. |
+| Search node | `AskService` | `_ask_node_search_knowledge()` | Calls knowledge-base search, asset search, and tool registry lookup. |
+| Asset search | `AssetSearchService` | `search()` | Searches approved owner-KB assets and groups direct, consultable, and supporting assets. |
+| Goal analysis node | `AskService` | `_ask_node_analyze_goal()` | Calls planning with retrieved graph records, tools, understanding, and asset search. |
+| Planning | `PlanningService` | `analyze()` | Produces goal, user needs, route mode, execution options, and multiple-intentions plan. |
 | Classification node | `AskService` | `_ask_node_select_intent()` | Calls the intent classifier and stores selected flow state. |
 | Projection node | `AskService` | `_ask_node_build_answer()` | Builds the resolved answer from selected answer. |
-| Knowledge graph service | `KnowledgeGraphService` | `search()` | Delegates search terms to the configured repository. |
-| Graph repository | `Neo4jKnowledgeGraphRepository` | `search()` | Uses search terms and Neo4j graph rows to create candidates. |
+| Knowledge base service | `KnowledgeBaseService` | `search()` | Delegates search terms to the configured repository/adapter. |
+| Graph adapter | `Neo4jKnowledgeBaseGraphAdapter` | `search()` | Uses search terms and Neo4j graph rows to create candidates. |
 | Query understanding | `QuestionUnderstandingService` | `understand()` | Delegates query expansion to the LLM provider. |
 | LLM query expansion | `LLMQuestionUnderstandingProvider` | `understand()` | Corrects typos, expands search terms, proposes possible intent hints, and detects ambiguity using an LLM. |
 | Flow selection | `FlowSelectionService` | `select()` | Delegates selection to the configured reasoning provider. |
 | LLM reasoning | `LLMFlowSelectionProvider` | `select_intent()` | Builds constrained prompt and selects an existing flow or unknown. |
 | Model client | `OpenAIJSONClient` | `complete_json()` | Calls OpenAI-compatible `/chat/completions` and parses JSON. |
-| Flow context | `AnswerBuilder` | `build()` | Projects ingested event, plan, tasks, actions, and concept. |
+| Flow context | `AnswerBuilder` | `build()` | Projects ingested event, plan, tasks, tools, and entities. |
 | Approval | `ApprovalService` | `enforce()` / `requires_approval()` | Applies human approval policy. |
 | Audit | `AuditService` | `record_intent_result()` | Records the final intent event. |
 | Trace | `AskService` | `_write_ask_trace()` | Writes debug trace JSON for the ask operation. |

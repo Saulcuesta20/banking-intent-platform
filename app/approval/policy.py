@@ -5,10 +5,14 @@ from app.models import Task
 
 
 class AlwaysHumanApprovalPolicy(ApprovalProvider):
+    """Approval policy that always adds an approval step before execution."""
+
     def requires_approval(self) -> bool:
+        """Report that executable answers need human approval."""
         return True
 
     def enforce(self, plan: list[str], tasks: list[Task]) -> tuple[list[str], list[Task]]:
+        """Ensure the plan and tasks include the business approval marker."""
         guarded_plan = list(plan)
         if "approve_business_case" not in guarded_plan:
             guarded_plan.append("approve_business_case")

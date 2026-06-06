@@ -8,6 +8,7 @@ import re
 import shutil
 import subprocess
 import tempfile
+import unicodedata
 import urllib.error
 import urllib.request
 import zipfile
@@ -15,9 +16,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-from app.ingestion.reasoning import IngestionReasoningService
-from app.models import Action, UserTask
-from app.knowledge_graph.vocabulary import ConceptVocabulary
+from app.models import KnowledgeRecord, UserTask
+from app.knowledge_base.vocabulary import ConceptVocabulary
+from app.tools.models import ToolDefinition
 
 
 SUPPORTED_CORPUS_SUFFIXES = {
@@ -36,10 +37,20 @@ SUPPORTED_CORPUS_SUFFIXES = {
     ".md",
     ".markdown",
     ".json",
+    ".html",
+    ".htm",
     ".yaml",
     ".yml",
     ".bpmn",
 }
+
+
+def _normalize_free_text(value: str) -> str:
+    text = unicodedata.normalize("NFKD", value)
+    text = "".join(char for char in text if not unicodedata.combining(char))
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return " ".join(text.split())
 
 TEXT_CORPUS_SUFFIXES = SUPPORTED_CORPUS_SUFFIXES - {
     ".pdf",
@@ -91,6 +102,11 @@ class LLMClient(Protocol):
         pass
 
 
+class ExtractionInstructionBuilder(Protocol):
+    def build(self, corpus_summary: str) -> Any:
+        """Build an object that can render prompt context."""
+
+
 @dataclass(frozen=True)
 class CorpusDocument:
     path: Path
@@ -113,6 +129,18 @@ class OpenAICompatibleLLMClient:
         self.model = model or os.getenv("FLOW_EXTRACTOR_MODEL", "gpt-4o-mini")
         self.base_url = (base_url or os.getenv("OPENAI_BASE_URL") or "https://api.openai.com/v1").rstrip("/")
         self.timeout_seconds = timeout_seconds
+        self.tool_definition = ToolDefinition(
+            tool_id="llm.corpus_flow_extraction.complete_json",
+            tool_type="llm_tool",
+            operation="extract_assets",
+            resource="ingestion.corpus",
+            label="Corpus flow extraction LLM",
+            description="Extracts flows, user tasks, entities, and tools from raw enterprise corpus.",
+            llm_operation="json_completion",
+            llm_model=self.model,
+            llm_provider="openai_compatible",
+            endpoint=f"{self.base_url}/chat/completions",
+        )
         if not self.api_key:
             raise FlowExtractionError("OPENAI_API_KEY is required for LLM flow extraction.")
 
@@ -154,31 +182,34 @@ class CorpusFlowLoader:
         self,
         llm_client: LLMClient,
         max_pdf_image_pages: int = 3,
-        reasoning_service: IngestionReasoningService | None = None,
+        instruction_builder: ExtractionInstructionBuilder | None = None,
         concept_vocabulary: ConceptVocabulary | None = None,
     ):
         self.llm_client = llm_client
         self.max_pdf_image_pages = max_pdf_image_pages
-        self.reasoning_service = reasoning_service
+        self.instruction_builder = instruction_builder
         self.concept_vocabulary = concept_vocabulary or ConceptVocabulary()
 
     def extract(self, raw_directory: Path) -> dict[str, Any]:
         documents = self.load_corpus(raw_directory)
         return self.extract_documents(documents)
 
-    def extract_documents(self, documents: list[CorpusDocument]) -> dict[str, Any]:
+    def extract_documents(
+        self,
+        documents: list[CorpusDocument],
+        extraction_instructions_context: str = "",
+    ) -> dict[str, Any]:
         if not documents:
             raise FlowExtractionError("No supported corpus files found.")
 
-        reasoning_context = ""
-        if self.reasoning_service is not None:
-            reasoning_context = self.reasoning_service.analyze(
-                self._corpus_summary(documents)
+        if not extraction_instructions_context and self.instruction_builder is not None:
+            extraction_instructions_context = self.instruction_builder.build(
+                self.corpus_summary(documents)
             ).to_prompt_context()
 
         result = self.llm_client.complete_json(
             self._system_prompt(),
-            self._user_content(documents, reasoning_context=reasoning_context),
+            self._user_content(documents, extraction_instructions_context=extraction_instructions_context),
         )
         return self.normalize_and_validate(result, source_paths=[str(doc.path) for doc in documents])
 
@@ -291,41 +322,45 @@ class CorpusFlowLoader:
         )
         return re.sub(r"\n\s*\n+", "\n", text).strip()
 
-    def write_result(
-        self,
-        result: dict[str, Any],
-        flow_directory: Path,
-        user_task_directory: Path,
-        action_registry_directory: Path | None = None,
-        clean: bool = False,
-    ) -> None:
-        flow_directory.mkdir(parents=True, exist_ok=True)
-        user_task_directory.mkdir(parents=True, exist_ok=True)
-        if action_registry_directory is not None:
-            action_registry_directory.mkdir(parents=True, exist_ok=True)
-        if clean:
-            for path in flow_directory.glob("*.flow.json"):
-                path.unlink()
-            for path in user_task_directory.glob("*.user_task.json"):
-                path.unlink()
-            if action_registry_directory is not None:
-                for path in action_registry_directory.glob("*.registry.json"):
-                    path.unlink()
-
-        for user_task in result["user_tasks"]:
-            target = user_task_directory / f"{user_task['user_task_id']}.user_task.json"
-            target.write_text(json.dumps(user_task, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-        for flow in result["flows"]:
-            target = flow_directory / f"{flow['flow_id'].replace('.', '_')}.flow.json"
-            target.write_text(json.dumps(flow, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-        if action_registry_directory is not None:
-            target = action_registry_directory / "actions.registry.json"
-            target.write_text(
-                json.dumps(result["action_registry"], ensure_ascii=False, indent=2) + "\n",
-                encoding="utf-8",
+    def records_from_result(self, result: dict[str, Any], source: str = "ingestion_orchestrator") -> list[KnowledgeRecord]:
+        user_tasks_by_id = {
+            item["user_task_id"]: UserTask(
+                user_task_id=item["user_task_id"],
+                task=item["task"],
+                type=item["type"],
+                name=item.get("name"),
+                description=item.get("description"),
+                tools=[ToolDefinition(**tool) for tool in item.get("tools", [])],
             )
+            for item in result.get("user_tasks", [])
+        }
+        records = []
+        for flow in result.get("flows", []):
+            user_tasks = [
+                user_tasks_by_id[ref].model_copy(update={"sequence": index})
+                for index, ref in enumerate(flow.get("user_task_refs", []), start=1)
+                if ref in user_tasks_by_id
+            ]
+            records.append(
+                KnowledgeRecord(
+                    flow_id=flow["flow_id"],
+                    flow_name=flow["flow_name"],
+                    intent=flow["intent"],
+                    confidence=flow.get("confidence", 0.75),
+                    business_event=flow["business_event"],
+                    utterances=flow.get("utterances", []),
+                    plan=flow.get("plan", []),
+                    tasks=[task.to_task() for task in user_tasks],
+                    user_tasks=user_tasks,
+                    capabilities=flow.get("capabilities", []),
+                    concepts=flow.get("concepts", []),
+                    concept_aliases=flow.get("concept_aliases", {}),
+                    explanation=flow["explanation"],
+                    source=flow.get("source", source),
+                    metadata=flow.get("metadata", {}),
+                )
+            )
+        return records
 
     def normalize_and_validate(self, result: dict[str, Any], source_paths: list[str]) -> dict[str, Any]:
         if not isinstance(result, dict):
@@ -344,18 +379,18 @@ class CorpusFlowLoader:
             flow = self._normalize_flow(item, source_paths)
             missing_refs = [ref for ref in flow["user_task_refs"] if ref not in task_ids]
             if missing_refs:
-                raise FlowExtractionError(
-                    f"Flow {flow['flow_id']} references missing user tasks: {', '.join(missing_refs)}"
-                )
+                for ref in missing_refs:
+                    user_tasks.append(self._placeholder_user_task(ref, flow["flow_name"]))
+                    task_ids.add(ref)
             flows.append(flow)
 
         return {
             "user_tasks": sorted(user_tasks, key=lambda item: item["user_task_id"]),
             "flows": sorted(flows, key=lambda item: item["flow_id"]),
-            "action_registry": self._build_action_registry(user_tasks, flows),
+            "tool_registry": self._build_tool_registry(user_tasks, flows),
         }
 
-    def _build_action_registry(
+    def _build_tool_registry(
         self,
         user_tasks: list[dict[str, Any]],
         flows: list[dict[str, Any]],
@@ -368,22 +403,9 @@ class CorpusFlowLoader:
         entries: dict[tuple[str, str], dict[str, Any]] = {}
         for user_task in user_tasks:
             task_id = user_task["user_task_id"]
-            for action in [*user_task["front_actions"], *user_task["back_actions"]]:
-                key = (action["type"], action["action"])
-                entry = entries.setdefault(
-                    key,
-                    {
-                        "action": action["action"],
-                        "type": action["type"],
-                        "operation": action.get("operation"),
-                        "resource": action.get("resource"),
-                        "label": action.get("label"),
-                        "triggers": action.get("triggers"),
-                        "description": action.get("description"),
-                        "user_tasks": set(),
-                        "flows": set(),
-                    },
-                )
+            for tool in user_task["tools"]:
+                key = (tool["tool_type"], tool["tool_id"])
+                entry = entries.setdefault(key, {**tool, "user_tasks": set(), "flows": set()})
                 entry["user_tasks"].add(task_id)
                 entry["flows"].update(flows_by_task.get(task_id, set()))
 
@@ -391,40 +413,39 @@ class CorpusFlowLoader:
         for entry in entries.values():
             registry.append(
                 {
-                    **{
-                        key: value
-                        for key, value in entry.items()
-                        if key not in {"user_tasks", "flows"}
-                    },
+                    **{key: value for key, value in entry.items() if key not in {"user_tasks", "flows"}},
                     "user_tasks": sorted(entry["user_tasks"]),
                     "flows": sorted(entry["flows"]),
                 }
             )
-        return sorted(registry, key=lambda item: (item["type"], item["action"]))
+        return sorted(registry, key=lambda item: (item["tool_type"], item["tool_id"]))
+
+    def _placeholder_user_task(self, task_id: str, flow_name: str) -> dict[str, Any]:
+        """Create a reviewable task when the LLM references a step but omits its definition."""
+        name = str(task_id).replace("_", " ").title()
+        return {
+            "user_task_id": task_id,
+            "task": task_id,
+            "type": "user_task",
+            "name": name,
+            "description": f"Candidate user task inferred from flow {flow_name}.",
+            "tools": [],
+        }
 
     def _normalize_user_task(self, item: dict[str, Any]) -> dict[str, Any]:
-        required = {"user_task_id", "task", "type", "name", "description", "front_actions", "back_actions"}
+        required = {"user_task_id", "task", "type", "name", "description"}
         missing = required - set(item)
         if missing:
             raise FlowExtractionError(f"User task is missing required fields: {', '.join(sorted(missing))}")
 
         if self._looks_like_backend_operation(str(item["task"])) or self._looks_like_backend_operation(str(item["user_task_id"])):
             raise FlowExtractionError(
-                f"'{item['task']}' looks like a backend operation. Put it under back_actions, not user_tasks."
+                f"'{item['task']}' looks like a backend operation. Put it under tools as backend_tool, not user_tasks."
             )
         user_task_id = self._slug(item["user_task_id"])
         task = self._slug(item["task"])
 
-        front_actions = [
-            self._normalize_action(action, expected_type="front_action")
-            for action in item["front_actions"]
-        ]
-        back_actions = [
-            self._normalize_action(action, expected_type="back_action")
-            for action in item["back_actions"]
-        ]
-        if not back_actions:
-            raise FlowExtractionError(f"User task {user_task_id} must include at least one back_action.")
+        tools = self._normalize_tools(item)
 
         UserTask(
             user_task_id=user_task_id,
@@ -432,8 +453,9 @@ class CorpusFlowLoader:
             type=item.get("type", "user_task"),
             name=str(item["name"]),
             description=str(item["description"]),
-            front_actions=[Action(**action) for action in front_actions],
-            back_actions=[Action(**action) for action in back_actions],
+            user_actions=self._normalize_user_actions(item),
+            interaction_steps=item.get("interaction_steps") or [],
+            tools=[ToolDefinition(**tool) for tool in tools],
         )
 
         return {
@@ -442,9 +464,77 @@ class CorpusFlowLoader:
             "type": item.get("type", "user_task"),
             "name": str(item["name"]),
             "description": str(item["description"]),
-            "front_actions": front_actions,
-            "back_actions": back_actions,
+            "user_actions": self._normalize_user_actions(item),
+            "interaction_steps": item.get("interaction_steps") or [],
+            "tools": tools,
         }
+
+    def _normalize_tools(self, item: dict[str, Any]) -> list[dict[str, Any]]:
+        if isinstance(item.get("tools"), list):
+            return [self._normalize_tool(tool) for tool in item["tools"]]
+        tools = []
+        tools.extend(
+            self._normalize_legacy_action(action, expected_type="front_action")
+            for action in item.get("front_actions", [])
+        )
+        tools.extend(
+            self._normalize_legacy_action(action, expected_type="back_action")
+            for action in item.get("back_actions", [])
+        )
+        return tools
+
+    def _normalize_user_actions(self, item: dict[str, Any]) -> list[dict[str, Any]]:
+        raw_actions = item.get("user_actions")
+        if isinstance(raw_actions, list):
+            values = []
+            for action in raw_actions:
+                if not isinstance(action, dict):
+                    continue
+                action_id = self._operation_name(action.get("action_id") or action.get("action") or "")
+                if not action_id:
+                    continue
+                action_type = str(action.get("type") or "").strip().lower()
+                if action_type in {"front_action", "front"}:
+                    normalized_type = "front"
+                else:
+                    normalized_type = "back"
+                implementation_type = str(action.get("implementation_type") or "").strip() or (
+                    "show_form" if normalized_type == "front" else ("llm_tool" if "llm" in action_id else "tool_call")
+                )
+                values.append(
+                    {
+                        "action_id": action_id,
+                        "type": normalized_type,
+                        "implementation_type": implementation_type,
+                        "tool_id": self._operation_name(action.get("tool_id")) if action.get("tool_id") else None,
+                        "operation": self._slug(action["operation"]) if action.get("operation") else None,
+                        "resource": self._slug(action["resource"]) if action.get("resource") else None,
+                        "label": action.get("label"),
+                        "triggers": self._operation_name(action["triggers"]) if action.get("triggers") else None,
+                        "description": action.get("description"),
+                    }
+                )
+            return values
+        values: list[dict[str, Any]] = []
+        for tool in self._normalize_tools(item):
+            tool_id = str(tool.get("tool_id") or "")
+            if not tool_id:
+                continue
+            tool_type = str(tool.get("tool_type") or "")
+            values.append(
+                {
+                    "action_id": tool_id,
+                    "type": "front" if tool_type == "frontend_tool" else "back",
+                    "implementation_type": "show_form" if tool_type == "frontend_tool" else ("llm_tool" if tool_type == "llm_tool" else "tool_call"),
+                    "tool_id": tool_id if tool_type != "frontend_tool" else None,
+                    "operation": tool.get("operation"),
+                    "resource": tool.get("resource"),
+                    "label": tool.get("label"),
+                    "triggers": tool.get("triggers") or tool.get("frontend_event"),
+                    "description": tool.get("description"),
+                }
+            )
+        return values
 
     def _normalize_flow(self, item: dict[str, Any], source_paths: list[str]) -> dict[str, Any]:
         required = {
@@ -477,6 +567,8 @@ class CorpusFlowLoader:
             "business_event": str(item["business_event"]),
             "confidence": float(item.get("confidence", 0.75)),
             "utterances": [str(value) for value in item["utterances"]],
+            "inputs": [self._slug(value) for value in item.get("inputs", []) if str(value).strip()],
+            "outputs": [self._slug(value) for value in item.get("outputs", []) if str(value).strip()],
             "plan": [self._slug(value) for value in item["plan"]],
             "user_task_refs": refs,
             "capabilities": [self._operation_name(value) for value in item["capabilities"]],
@@ -487,20 +579,52 @@ class CorpusFlowLoader:
             "metadata": {"generated_by": "llm_corpus_flow_loader", "source_files": source_paths},
         }
 
-    def _normalize_action(self, item: dict[str, Any], expected_type: str) -> dict[str, Any]:
+    def _normalize_tool(self, item: dict[str, Any]) -> dict[str, Any]:
+        required = {"tool_id", "tool_type", "operation", "resource"}
+        missing = required - set(item)
+        if missing:
+            raise FlowExtractionError(f"Tool is missing required fields: {', '.join(sorted(missing))}")
+        tool_type = str(item["tool_type"])
+        if tool_type not in {"frontend_tool", "backend_tool", "llm_tool"}:
+            raise FlowExtractionError(f"Unsupported tool_type: {tool_type}")
+        raw = {
+            "tool_id": self._operation_name(item["tool_id"]),
+            "tool_type": tool_type,
+            "operation": self._slug(item["operation"]),
+            "resource": self._slug(item["resource"]),
+            "label": item.get("label"),
+            "description": item.get("description"),
+            "triggers": self._operation_name(item["triggers"]) if item.get("triggers") else None,
+            "frontend_event": self._operation_name(item["frontend_event"]) if item.get("frontend_event") else None,
+            "backend_protocol": item.get("backend_protocol"),
+            "endpoint": item.get("endpoint"),
+            "llm_operation": item.get("llm_operation"),
+            "llm_model": item.get("llm_model"),
+            "llm_provider": item.get("llm_provider"),
+            "requires_approval": bool(item.get("requires_approval", False)),
+            "metadata": item.get("metadata", {}),
+        }
+        return {
+            key: value
+            for key, value in ToolDefinition(**{key: value for key, value in raw.items() if value is not None}).to_dict().items()
+            if value not in (None, {}, [])
+        }
+
+    def _normalize_legacy_action(self, item: dict[str, Any], expected_type: str) -> dict[str, Any]:
         required = {"action", "operation", "resource"}
         missing = required - set(item)
         if missing:
-            raise FlowExtractionError(f"Action is missing required fields: {', '.join(sorted(missing))}")
+            raise FlowExtractionError(f"Legacy tool is missing required fields: {', '.join(sorted(missing))}")
 
         action = self._operation_name(item["action"])
         return {
-            "action": action,
-            "type": expected_type,
+            "tool_id": action,
+            "tool_type": "frontend_tool" if expected_type == "front_action" else "backend_tool",
             "operation": self._slug(item["operation"]),
             "resource": self._slug(item["resource"]),
             "label": item.get("label"),
             "triggers": self._operation_name(item["triggers"]) if item.get("triggers") else None,
+            "frontend_event": self._operation_name(item["triggers"]) if expected_type == "front_action" and item.get("triggers") else None,
             "description": item.get("description"),
         }
 
@@ -510,16 +634,16 @@ class CorpusFlowLoader:
             "Return only valid JSON. Do not include markdown. "
             "A Flow is a business process. A UserTask is a human/business step. "
             "Technical CRUD, API, validation, notification, calculation, synchronization, "
-            "or persistence operations must be back_actions, "
-            "never user_tasks. Front actions are UI events that trigger backend actions. "
-            "Infer all flow names, user tasks, resources, actions, concepts, "
+            "or persistence operations must be backend tools, "
+            "never user_tasks. Frontend tools are UI events that trigger backend tools. "
+            "Infer all flow names, user tasks, resources, tools, concepts, "
             "utterances, and business events only from the provided corpus. "
             "The application deterministically adds concept_aliases/synonyms after extraction. "
-            "The action registry is derived from front_actions and back_actions. "
+            "The tool registry is derived from user task tools. "
             "Prefer reusable user_tasks across flows."
         )
 
-    def _corpus_summary(self, documents: list[CorpusDocument]) -> str:
+    def corpus_summary(self, documents: list[CorpusDocument]) -> str:
         lines = []
         for doc in documents:
             if doc.text:
@@ -531,11 +655,11 @@ class CorpusFlowLoader:
     def _user_content(
         self,
         documents: list[CorpusDocument],
-        reasoning_context: str = "",
+        extraction_instructions_context: str = "",
     ) -> list[dict[str, Any]]:
         content: list[dict[str, Any]] = [{"type": "text", "text": self._schema_prompt()}]
-        if reasoning_context:
-            content.append({"type": "text", "text": reasoning_context})
+        if extraction_instructions_context:
+            content.append({"type": "text", "text": extraction_instructions_context})
         for doc in documents:
             if doc.kind == "image" and doc.data_url:
                 content.append({"type": "text", "text": f"--- SOURCE IMAGE: {doc.path} ---"})
@@ -555,8 +679,19 @@ class CorpusFlowLoader:
             '      "type": "user_task or approval",\n'
             '      "name": "Human readable name",\n'
             '      "description": "Business meaning",\n'
-            '      "front_actions": [{"action": "ui.resource.event", "operation": "read|create|update|delete|calculate|validate|approve|notify", "resource": "resource", "label": "Button or screen action", "triggers": "resource.operation"}],\n'
-            '      "back_actions": [{"action": "resource.operation", "operation": "read|create|update|delete|calculate|validate|approve|notify", "resource": "resource", "description": "Backend operation"}]\n'
+            '      "user_actions": [\n'
+            '        {"action_id": "action.resource.open_form", "type": "front", "implementation_type": "show_form", "label": "Open form"},\n'
+            '        {"action_id": "tool.resource.create", "type": "back", "implementation_type": "tool_call", "tool_id": "tool.resource.create"}\n'
+            '      ],\n'
+            '      "interaction_steps": [\n'
+            '        {"step_id": "task.front", "type": "user_action"},\n'
+            '        {"step_id": "task.input", "type": "user_input", "wait_state": true},\n'
+            '        {"step_id": "task.back.1", "type": "user_action"}\n'
+            '      ],\n'
+            '      "tools": [\n'
+            '        {"tool_id": "ui.resource.event", "tool_type": "frontend_tool", "operation": "read|create|update|delete|calculate|validate|approve|notify", "resource": "resource", "label": "Button or screen action", "frontend_event": "resource.operation"},\n'
+            '        {"tool_id": "resource.operation", "tool_type": "backend_tool", "operation": "read|create|update|delete|calculate|validate|approve|notify", "resource": "resource", "description": "Backend operation", "backend_protocol": "http|grpc|mcp|database"}\n'
+            "      ]\n"
             "    }\n"
             "  ],\n"
             '  "flows": [\n'
@@ -567,6 +702,8 @@ class CorpusFlowLoader:
             '      "business_event": "BusinessEventName",\n'
             '      "confidence": 0.75,\n'
             '      "utterances": ["customer phrase"],\n'
+            '      "inputs": ["input_name"],\n'
+            '      "outputs": ["output_name"],\n'
             '      "plan": ["user_task_id"],\n'
             '      "user_task_refs": ["user_task_id"],\n'
             '      "capabilities": ["resource.operation"],\n'
@@ -578,9 +715,11 @@ class CorpusFlowLoader:
             "Extraction criteria:\n"
             "- Create flows for complete business processes or customer journeys.\n"
             "- Create user_tasks for business/user steps, not backend operations.\n"
-            "- Put CRUD/calculation/API/checking operations under back_actions.\n"
-            "- Put clicks/submits/views under front_actions.\n"
-            "- Treat capabilities as action names; the final action registry will be built from every front_action and back_action.\n"
+            "- Model each user_task as an interaction with user_actions and interaction_steps.\n"
+            "- Typical interaction pattern is front user_action, then user_input wait_state, then back user_action.\n"
+            "- Put CRUD/calculation/API/checking operations under backend_tool.\n"
+            "- Put clicks/submits/views under frontend_tool.\n"
+            "- Treat capabilities as tool ids; the final tool registry will be built from every tool.\n"
             "- Put formal concepts in concepts; do not manually add concept_aliases because they are normalized by ingestion.\n"
             "- Include approval user tasks when the corpus says or implies approval/review/control is required.\n"
             "- If images are provided, first read their visible text and diagrams, then use that information together with the text files.\n"
@@ -603,9 +742,34 @@ class CorpusFlowLoader:
 
     def _flow_id(self, value: Any) -> str:
         text = str(value).strip().lower()
-        text = re.sub(r"[^a-z0-9_.]+", ".", text)
+        if not text:
+            return "unknown.flow"
+        normalized = _normalize_free_text(text)
+        phrase = f" {normalized} "
+        patterns = [
+            ("customer.create", ("crear cliente", "crear un cliente", "create customer", "alta de cliente", "nuevo cliente")),
+            ("loan.create", ("crear prestamo", "crear un prestamo", "create loan", "originacion de prestamo", "solicitud de prestamo")),
+            ("loan.disbursement", ("desembolso del prestamo", "realizar el desembolso", "disbursement", "acredita fondos")),
+            ("loan.payment", ("pagar mi prestamo", "pago de prestamo", "pay loan", "abono al prestamo")),
+            ("loan.transfer_to_loan", ("transferir dinero a mi prestamo", "transferencia a prestamo", "transferir al prestamo", "transfer to loan")),
+            ("loan.refinance", ("refinanc",)),
+            ("savings_account.open", ("abrir una cuenta de ahorro", "open savings account")),
+            ("money.transfer", ("transferir dinero a otra cuenta", "transfer money", "transferencia bancaria")),
+            ("account.reactivate", ("activar una cuenta", "reactivar cuenta")),
+            ("autopay.cancel", ("cancelar el pago automatico", "cancel automatic payment")),
+            ("customer.update_profile", ("actualizar mis datos", "update personal data")),
+            ("dispute.charge_report", ("cargo no reconocido", "reportar un cargo")),
+            ("loan_application.status_review", ("revisar el estado de mi solicitud", "status of my application")),
+            ("customer_onboarding.documents", ("documentos para onboarding", "documents for onboarding")),
+            ("debt.restructure", ("reestructurar una deuda", "restructure debt")),
+            ("transfer.limit_inquiry", ("limite de transferencia", "transfer limit")),
+        ]
+        for canonical, needles in patterns:
+            if any(needle in phrase for needle in needles):
+                return canonical
+        text = re.sub(r"[^a-z0-9_.]+", ".", normalized)
         text = re.sub(r"\.+", ".", text).strip(".")
-        return text
+        return text or "unknown.flow"
 
     def _operation_name(self, value: Any) -> str:
         text = str(value).strip().lower()

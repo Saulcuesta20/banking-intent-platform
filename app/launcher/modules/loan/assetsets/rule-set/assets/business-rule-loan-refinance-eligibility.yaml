@@ -1,0 +1,22 @@
+asset_id: business_rule.loan.refinance.eligibility
+asset_type: business_rule
+name: Loan refinance eligibility
+version: 1.0.0
+description: A refinance request requires an active loan and an eligible payment status.
+text: The loan must be active and its payment status must satisfy the approved refinance policy.
+tags:
+  - lending
+  - loan
+  - refinance
+  - eligibility
+relations:
+  - type: applies_to_flow
+    target_asset_id: flow.loan.refinance
+  - type: applies_to_process
+    target_asset_id: process.loan.refinance
+payload:
+  domain_id: lending
+  module_id: loan
+  rule_code: LOAN_REFINANCE_ELIGIBILITY
+  condition: loan.status == active and loan.payment_status in eligible_statuses
+  outcome: refinance_request_allowed

@@ -1,0 +1,50 @@
+{
+  "name": "launcher",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "generate:lowdefy": "node scripts/generate-lowdefy.mjs",
+    "watch:modules": "node scripts/watch-modules.mjs",
+    "dev": "npm run generate:lowdefy && concurrently -k -n modules,shell,lowdefy -c yellow,blue,green \"npm run watch:modules\" \"npm run dev:shell\" \"npm run dev:lowdefy\"",
+    "dev:shell": "vite --host 0.0.0.0 --port 3000",
+    "dev:lowdefy": "lowdefy dev --config-directory lowdefy-runtime --dev-directory lowdefy-runtime/.lowdefy/dev --port 3002 --no-open",
+    "build": "npm run generate:lowdefy && tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-scroll-area": "^1.2.10",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "@tanstack/react-query": "^5.101.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.17.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "chokidar": "^5.0.0",
+    "concurrently": "^10.0.3",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "lowdefy": "^5.3.0",
+    "playwright": "^1.60.0",
+    "pnpm": "^9.15.9",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^8.0.12"
+  }
+}

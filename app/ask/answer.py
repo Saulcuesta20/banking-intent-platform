@@ -18,7 +18,7 @@ class AnswerContext:
 class AnswerBuilder:
     """Project already-ingested knowledge for an ask response.
 
-    This service does not create plans, tasks, events, actions, or concepts.
+    This service does not create plans, tasks, events, tools, or concepts.
     Ingestion creates those artifacts. Runtime only selects a flow and projects
     the relevant fields into the answer.
     """
@@ -38,10 +38,8 @@ class AnswerBuilder:
         for value in record.capabilities:
             self._append_unique(values, seen, value)
         for user_task in record.user_tasks:
-            for action in user_task.front_actions:
-                self._append_unique(values, seen, action.action)
-            for action in user_task.back_actions:
-                self._append_unique(values, seen, action.action)
+            for tool in user_task.tools:
+                self._append_unique(values, seen, tool.tool_id)
         return values
 
     def _related_concepts(self, question: str, record: KnowledgeRecord) -> list[str]:

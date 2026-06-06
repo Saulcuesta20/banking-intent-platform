@@ -1,0 +1,13 @@
+{
+  "formId": "product-config-form",
+  "version": "v1",
+  "pageId": "product-config",
+  "title": "Datos Maestros - Configuracion de producto",
+  "submitTitle": "Guardar producto",
+  "fields": [
+    { "id": "product_code", "label": "Codigo de producto", "type": "text", "required": true, "placeholder": "LOAN_CONSUMO" },
+    { "id": "product_family", "label": "Familia", "type": "text", "required": true, "placeholder": "Prestamo, cuenta, tarjeta" },
+    { "id": "rate_code", "label": "Tasa asociada", "type": "text", "required": false, "placeholder": "TASA_CONSUMO_12M" },
+    { "id": "enabled", "label": "Estado", "type": "text", "required": true, "placeholder": "Activo/Inactivo" }
+  ]
+}

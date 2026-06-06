@@ -12,8 +12,8 @@ Sequence MVP delivery while preserving replaceable architecture.
 ## Main Components
 - Phase 1: specs, structure, flows, user tasks, GraphRAG CLI ask path
 - Phase 2: Neo4j adapter and graph loading
-- Phase 3: action registry and flow/user-task JSON generation from corpus
-- Phase 4: AutoGen ingestion reasoning for corpus review, flow design, task decomposition, action extraction, concept linking, and validation
+- Phase 3: tool registry and flow/user-task JSON generation from corpus
+- Phase 4: role-based extraction instructions for corpus review, flow design, task decomposition, tool extraction, entity/synonym linking, and validation
 - Phase 5: GraphRAG retrieval over Neo4j
 - Phase 6: LangChain constrained LLM reasoning with OpenAI-compatible providers
 - Phase 7: FastAPI and enterprise security

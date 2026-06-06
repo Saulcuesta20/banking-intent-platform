@@ -1,0 +1,6 @@
+[console_scripts]
+ask = app.cli.ask:main
+database = app.database_cli:main
+ingest = app.cli.ingest:main
+kb = app.platform_cli:main
+launcher = app.launcher_cli:main

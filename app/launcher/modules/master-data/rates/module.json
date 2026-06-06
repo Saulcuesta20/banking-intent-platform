@@ -1,0 +1,40 @@
+{
+  "moduleId": "rates",
+  "label": "Tasas",
+  "description": "Catalogo de tasas y parametros financieros.",
+  "icon": "rates",
+  "aliases": [
+    "tasas",
+    "rates",
+    "interes"
+  ],
+  "menus": [
+    {
+      "id": "rate-config",
+      "label": "Configurar tasa",
+      "path": "/master-data/rates/rate-config"
+    }
+  ],
+  "topMenus": [
+    {
+      "id": "queries",
+      "label": "Consultas"
+    },
+    {
+      "id": "operations",
+      "label": "Operaciones"
+    },
+    {
+      "id": "configuration",
+      "label": "Configuracion"
+    },
+    {
+      "id": "reports",
+      "label": "Reportes"
+    },
+    {
+      "id": "monitoring",
+      "label": "Monitoreo"
+    }
+  ]
+}

@@ -1,13 +1,24 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any, Literal
 from pydantic import BaseModel, Field, model_validator
 
+from app.tools.models import ToolDefinition
+
+
+def _normalize_identifier(value: str) -> str:
+    normalized = "".join(char.lower() if char.isalnum() else "_" for char in value.strip())
+    while "__" in normalized:
+        normalized = normalized.replace("__", "_")
+    return normalized.strip("_")
+
 
 class Action(BaseModel):
-    action: str
-    type: Literal["front_action", "back_action"]
+    action_id: str
+    type: Literal["front", "back"]
+    implementation_type: Literal["show_form", "open_panel", "submit_search", "tool_call", "llm_tool", "service_call", "custom"] = "custom"
+    tool_id: str | None = None
     operation: str | None = None
     resource: str | None = None
     label: str | None = None
@@ -16,10 +27,46 @@ class Action(BaseModel):
 
     model_config = {"frozen": True}
 
+    @model_validator(mode="before")
+    @classmethod
+    def _migrate_legacy_action_shape(cls, data: Any) -> Any:
+        if not isinstance(data, dict):
+            return data
+        data = dict(data)
+        if "tool_id" not in data and "tool" in data:
+            data["tool_id"] = data["tool"]
+        if "action_id" not in data and "action" in data:
+            data["action_id"] = data["action"]
+        if "action_id" not in data and data.get("tool_id"):
+            data["action_id"] = data["tool_id"]
+        action_type = str(data.get("type") or "").strip()
+        if action_type == "front_action":
+            data["type"] = "front"
+        elif action_type == "back_action":
+            data["type"] = "back"
+        if not data.get("tool_id") and str(data.get("type") or "") == "back":
+            data["tool_id"] = data.get("action_id")
+        if "implementation_type" not in data or not data.get("implementation_type"):
+            inferred = "custom"
+            if str(data.get("type") or "") == "front":
+                inferred = "show_form" if data.get("triggers") else "custom"
+            elif str(data.get("type") or "") == "back":
+                tool_id = str(data.get("tool_id") or data.get("action_id") or "")
+                inferred = "llm_tool" if "llm" in tool_id else "tool_call"
+            data["implementation_type"] = inferred
+        return data
+
+    @property
+    def action(self) -> str:
+        """Legacy compatibility alias."""
+        return self.action_id
+
     def to_dict(self) -> dict[str, str | None]:
         return {
-            "action": self.action,
+            "action": self.action_id,
             "type": self.type,
+            "implementation_type": self.implementation_type,
+            "tool": self.tool_id,
             "operation": self.operation,
             "resource": self.resource,
             "label": self.label,
@@ -29,8 +76,10 @@ class Action(BaseModel):
 
 
 class ActionRegistryEntry(BaseModel):
-    action: str
-    type: Literal["front_action", "back_action"]
+    action_id: str
+    type: Literal["front", "back"]
+    implementation_type: Literal["show_form", "open_panel", "submit_search", "tool_call", "llm_tool", "service_call", "custom"] = "custom"
+    tool_id: str | None = None
     operation: str | None = None
     resource: str | None = None
     label: str | None = None
@@ -41,10 +90,46 @@ class ActionRegistryEntry(BaseModel):
 
     model_config = {"frozen": True}
 
+    @model_validator(mode="before")
+    @classmethod
+    def _migrate_legacy_action_registry_shape(cls, data: Any) -> Any:
+        if not isinstance(data, dict):
+            return data
+        data = dict(data)
+        if "tool_id" not in data and "tool" in data:
+            data["tool_id"] = data["tool"]
+        if "action_id" not in data and "action" in data:
+            data["action_id"] = data["action"]
+        if "action_id" not in data and data.get("tool_id"):
+            data["action_id"] = data["tool_id"]
+        action_type = str(data.get("type") or "").strip()
+        if action_type == "front_action":
+            data["type"] = "front"
+        elif action_type == "back_action":
+            data["type"] = "back"
+        if not data.get("tool_id") and str(data.get("type") or "") == "back":
+            data["tool_id"] = data.get("action_id")
+        if "implementation_type" not in data or not data.get("implementation_type"):
+            inferred = "custom"
+            if str(data.get("type") or "") == "front":
+                inferred = "show_form" if data.get("triggers") else "custom"
+            elif str(data.get("type") or "") == "back":
+                tool_id = str(data.get("tool_id") or data.get("action_id") or "")
+                inferred = "llm_tool" if "llm" in tool_id else "tool_call"
+            data["implementation_type"] = inferred
+        return data
+
+    @property
+    def action(self) -> str:
+        """Legacy compatibility alias."""
+        return self.action_id
+
     def to_dict(self) -> dict[str, Any]:
         return {
-            "action": self.action,
+            "action": self.action_id,
             "type": self.type,
+            "implementation_type": self.implementation_type,
+            "tool": self.tool_id,
             "operation": self.operation,
             "resource": self.resource,
             "label": self.label,
@@ -65,6 +150,28 @@ class Task(BaseModel):
         return {"task": self.task, "type": self.type}
 
 
+class UserTaskStep(BaseModel):
+    step_id: str
+    type: Literal["user_action", "user_input"]
+    action: Action | None = None
+    wait_state: bool = False
+    required_inputs: list[str] = Field(default_factory=list)
+    produced_outputs: list[str] = Field(default_factory=list)
+    description: str | None = None
+
+    model_config = {"frozen": True}
+
+    @model_validator(mode="before")
+    @classmethod
+    def _migrate_wait_state(cls, data: Any) -> Any:
+        if not isinstance(data, dict):
+            return data
+        data = dict(data)
+        if data.get("type") == "user_input" and "wait_state" not in data:
+            data["wait_state"] = True
+        return data
+
+
 class UserTask(BaseModel):
     user_task_id: str | None = None
     task: str
@@ -72,10 +179,41 @@ class UserTask(BaseModel):
     sequence: int | None = None
     name: str | None = None
     description: str | None = None
-    front_actions: list[Action] = Field(default_factory=list)
-    back_actions: list[Action] = Field(default_factory=list)
+    tools: list[ToolDefinition] = Field(default_factory=list)
+    user_actions: list[Action] = Field(default_factory=list)
+    interaction_steps: list[UserTaskStep] = Field(default_factory=list)
 
     model_config = {"frozen": True}
+
+    @model_validator(mode="before")
+    @classmethod
+    def _migrate_legacy_actions_to_tools(cls, data: Any) -> Any:
+        if not isinstance(data, dict):
+            return data
+        data = dict(data)
+        tools = list(data.get("tools") or [])
+        if not tools:
+            tools.extend(cls._tools_from_legacy_actions(data.get("front_actions") or [], "frontend_tool"))
+            tools.extend(cls._tools_from_legacy_actions(data.get("back_actions") or [], "backend_tool"))
+            data["tools"] = tools
+        if not data.get("front_actions") or not data.get("back_actions"):
+            front_actions, back_actions = cls._legacy_actions_from_tools(tools)
+            if not data.get("front_actions"):
+                data["front_actions"] = front_actions
+            if not data.get("back_actions"):
+                data["back_actions"] = back_actions
+        if not data.get("user_actions"):
+            data["user_actions"] = cls._user_actions_from_legacy_shapes(
+                data.get("front_actions") or [],
+                data.get("back_actions") or [],
+                tools,
+            )
+        if not data.get("interaction_steps"):
+            data["interaction_steps"] = cls._interaction_steps_from_user_actions(
+                data.get("user_task_id") or data.get("task") or "user_task",
+                data.get("user_actions") or [],
+            )
+        return data
 
     def to_task(self) -> Task:
         return Task(task=self.task, type=self.type)
@@ -88,9 +226,170 @@ class UserTask(BaseModel):
             "sequence": self.sequence,
             "name": self.name,
             "description": self.description,
-            "front_actions": [action.to_dict() for action in self.front_actions],
-            "back_actions": [action.to_dict() for action in self.back_actions],
+            "user_actions": [action.to_dict() for action in self.user_actions],
+            "interaction_steps": [step.model_dump(mode="json") for step in self.interaction_steps],
+            "tools": [tool.to_dict() for tool in self.tools],
         }
+
+    @staticmethod
+    def _tools_from_legacy_actions(actions: list[Any], tool_type: str) -> list[dict[str, Any]]:
+        tools = []
+        for action in actions:
+            if isinstance(action, dict):
+                action_data = action
+            else:
+                action_data = action.model_dump(mode="json") if hasattr(action, "model_dump") else {}
+            if not action_data:
+                continue
+            tool = {
+                "tool_id": action_data.get("action") or action_data.get("tool_id"),
+                "tool_type": tool_type,
+                "operation": action_data.get("operation"),
+                "resource": action_data.get("resource"),
+                "label": action_data.get("label"),
+                "description": action_data.get("description"),
+                "triggers": action_data.get("triggers"),
+            }
+            if tool_type == "frontend_tool":
+                tool["frontend_event"] = action_data.get("triggers")
+            tools.append({key: value for key, value in tool.items() if value is not None})
+        return tools
+
+    @staticmethod
+    def _legacy_actions_from_tools(tools: list[Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+        front_actions = []
+        back_actions = []
+        for raw_tool in tools:
+            tool = raw_tool if isinstance(raw_tool, dict) else raw_tool.model_dump(mode="json")
+            tool_type = tool.get("tool_type")
+            if tool_type not in {"frontend_tool", "backend_tool"}:
+                continue
+            legacy = {
+                "action": tool.get("tool_id"),
+                "type": "front" if tool_type == "frontend_tool" else "back",
+                "tool_id": tool.get("tool_id"),
+                "implementation_type": "show_form" if tool_type == "frontend_tool" else ("llm_tool" if "llm" in str(tool.get("tool_id") or "") else "tool_call"),
+                "operation": tool.get("operation"),
+                "resource": tool.get("resource"),
+                "label": tool.get("label"),
+                "triggers": tool.get("triggers") or tool.get("frontend_event"),
+                "description": tool.get("description"),
+            }
+            legacy = {key: value for key, value in legacy.items() if value is not None}
+            if tool_type == "frontend_tool":
+                front_actions.append(legacy)
+            else:
+                back_actions.append(legacy)
+        return front_actions, back_actions
+
+    @staticmethod
+    def _user_actions_from_legacy_shapes(
+        front_actions: list[Any],
+        back_actions: list[Any],
+        tools: list[Any],
+    ) -> list[dict[str, Any]]:
+        user_actions: list[dict[str, Any]] = []
+        for action in front_actions:
+            payload = action if isinstance(action, dict) else action.model_dump(mode="json")
+            if not payload:
+                continue
+            user_actions.append(
+                {
+                    "action_id": payload.get("action_id") or payload.get("action"),
+                    "type": "front",
+                    "implementation_type": payload.get("implementation_type") or ("show_form" if payload.get("triggers") else "custom"),
+                    "tool_id": payload.get("tool_id"),
+                    "operation": payload.get("operation"),
+                    "resource": payload.get("resource"),
+                    "label": payload.get("label"),
+                    "triggers": payload.get("triggers"),
+                    "description": payload.get("description"),
+                }
+            )
+        if back_actions:
+            for action in back_actions:
+                payload = action if isinstance(action, dict) else action.model_dump(mode="json")
+                if not payload:
+                    continue
+                tool_id = payload.get("tool_id") or payload.get("action_id") or payload.get("action")
+                user_actions.append(
+                    {
+                        "action_id": payload.get("action_id") or payload.get("action"),
+                        "type": "back",
+                        "implementation_type": payload.get("implementation_type") or ("llm_tool" if "llm" in str(tool_id or "") else "tool_call"),
+                        "tool_id": tool_id,
+                        "operation": payload.get("operation"),
+                        "resource": payload.get("resource"),
+                        "label": payload.get("label"),
+                        "triggers": payload.get("triggers"),
+                        "description": payload.get("description"),
+                    }
+                )
+        elif tools:
+            for raw_tool in tools:
+                tool = raw_tool if isinstance(raw_tool, dict) else raw_tool.model_dump(mode="json")
+                tool_id = tool.get("tool_id")
+                if not tool_id:
+                    continue
+                tool_type = str(tool.get("tool_type") or "")
+                user_actions.append(
+                    {
+                        "action_id": tool_id,
+                        "type": "front" if tool_type == "frontend_tool" else "back",
+                        "implementation_type": "show_form" if tool_type == "frontend_tool" else ("llm_tool" if "llm" in str(tool_id) else "tool_call"),
+                        "tool_id": tool_id,
+                        "operation": tool.get("operation"),
+                        "resource": tool.get("resource"),
+                        "label": tool.get("label"),
+                        "triggers": tool.get("triggers") or tool.get("frontend_event"),
+                        "description": tool.get("description"),
+                    }
+                )
+        return user_actions
+
+    @staticmethod
+    def _interaction_steps_from_user_actions(task_id: Any, user_actions: list[Any]) -> list[dict[str, Any]]:
+        task_key = str(task_id or "user_task")
+        front_actions: list[dict[str, Any]] = []
+        back_actions: list[dict[str, Any]] = []
+        for raw_action in user_actions:
+            action = raw_action if isinstance(raw_action, dict) else raw_action.model_dump(mode="json")
+            if not action:
+                continue
+            if str(action.get("type") or "") == "front":
+                front_actions.append(action)
+            else:
+                back_actions.append(action)
+        steps: list[dict[str, Any]] = []
+        if front_actions:
+            steps.append(
+                {
+                    "step_id": f"{task_key}.front",
+                    "type": "user_action",
+                    "action": front_actions[0],
+                    "description": front_actions[0].get("description") or "Render the user-facing action.",
+                }
+            )
+        if front_actions or back_actions:
+            steps.append(
+                {
+                    "step_id": f"{task_key}.input",
+                    "type": "user_input",
+                    "wait_state": True,
+                    "description": "Wait for user input required by the task.",
+                }
+            )
+        if back_actions:
+            for index, action in enumerate(back_actions, start=1):
+                steps.append(
+                    {
+                        "step_id": f"{task_key}.back.{index}",
+                        "type": "user_action",
+                        "action": action,
+                        "description": action.get("description") or "Execute the backend user action.",
+                    }
+                )
+        return steps
 
 
 class ProcessActor(BaseModel):
@@ -148,6 +447,7 @@ class ProcessException(BaseModel):
 
 class ProcessIntegration(BaseModel):
     integration_id: str
+    tool_id: str | None = None
     name: str
     type: Literal["legacy_service", "internal_service", "external_service", "mcp_tool", "manual"]
     protocol: Literal["api", "grpc", "mcp", "event", "database", "manual"]
@@ -158,6 +458,14 @@ class ProcessIntegration(BaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
 
     model_config = {"frozen": True}
+
+    @model_validator(mode="before")
+    @classmethod
+    def _default_tool_id(cls, data: Any) -> Any:
+        if isinstance(data, dict) and "tool_id" not in data:
+            data = dict(data)
+            data["tool_id"] = data.get("endpoint") or data.get("integration_id")
+        return data
 
 
 class ProcessActivity(BaseModel):
@@ -186,18 +494,28 @@ class ProcessExecutionNode(BaseModel):
     name: str
     type: Literal[
         "start",
+        "user_task",
+        "agent",
         "wait_for_user_input",
         "state_update",
         "service_call",
+        "tool_call",
+        "subprocess_call",
         "decision",
         "approval",
         "notification",
         "end",
     ]
+    node_kind: Literal["system", "user_task", "agent", "custom"] = "system"
+    wait_state: bool = False
     implementation: str
     description: str
     required_inputs: list[str] = Field(default_factory=list)
     produced_outputs: list[str] = Field(default_factory=list)
+    related_user_task_id: str | None = None
+    user_actions: list[Action] = Field(default_factory=list)
+    actions: list[str] = Field(default_factory=list)
+    tools: list[str] = Field(default_factory=list)
     integration_id: str | None = None
     next_nodes: list[str] = Field(default_factory=list)
     on_success: str | None = None
@@ -205,6 +523,60 @@ class ProcessExecutionNode(BaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
 
     model_config = {"frozen": True}
+
+    @model_validator(mode="before")
+    @classmethod
+    def _migrate_node_action_fields(cls, data: Any) -> Any:
+        if not isinstance(data, dict):
+            return data
+        data = dict(data)
+        node_name = str(data.get("name") or "").strip()
+        node_type = str(data.get("type") or "").strip()
+        if "node_id" not in data or not data.get("node_id"):
+            if node_type in {"start", "end"}:
+                data["node_id"] = node_type
+            elif node_name:
+                data["node_id"] = _normalize_identifier(node_name)
+        if "action_ids" in data and "actions" not in data:
+            data["actions"] = data.pop("action_ids")
+        if "capabilities" in data and "tools" not in data:
+            data["tools"] = data.pop("capabilities")
+        if "step_id" in data and "related_user_task_id" not in data:
+            # Maintain backward compatibility while moving to user-task-oriented nodes.
+            data["related_user_task_id"] = data["step_id"]
+        if "node_kind" not in data or not data.get("node_kind"):
+            if node_type == "user_task":
+                data["node_kind"] = "user_task"
+            elif node_type == "agent":
+                data["node_kind"] = "agent"
+            else:
+                data["node_kind"] = "system"
+        if data.get("type") == "user_task" and "wait_state" not in data:
+            data["wait_state"] = True
+        if data.get("type") == "user_task" and "related_user_task_id" not in data and node_name:
+            data["related_user_task_id"] = _normalize_identifier(node_name)
+        if "user_actions" not in data or not data.get("user_actions"):
+            user_actions: list[dict[str, Any]] = []
+            for action_id in data.get("actions") or []:
+                user_actions.append(
+                    {
+                        "action_id": action_id,
+                        "type": "front",
+                        "implementation_type": "custom",
+                    }
+                )
+            for tool_id in data.get("tools") or []:
+                user_actions.append(
+                    {
+                        "action_id": tool_id,
+                        "type": "back",
+                        "tool_id": tool_id,
+                        "implementation_type": "llm_tool" if "llm" in str(tool_id) else "tool_call",
+                    }
+                )
+            if user_actions:
+                data["user_actions"] = user_actions
+        return data
 
 
 ProcessNode = ProcessExecutionNode
@@ -324,7 +696,7 @@ class ProcessStep(BaseModel):
     exceptions: list[str] = Field(default_factory=list)
     related_user_task_id: str | None = None
     executable: bool = False
-    actions: list[str] = Field(default_factory=list)
+    tools: list[str] = Field(default_factory=list)
     integrations: list[str] = Field(default_factory=list)
     execution_node_ids: list[str] = Field(default_factory=list)
 
@@ -336,6 +708,9 @@ class ProcessStep(BaseModel):
         if isinstance(data, dict) and "node_ids" in data and "execution_node_ids" not in data:
             data = dict(data)
             data["execution_node_ids"] = data.pop("node_ids")
+        if isinstance(data, dict) and "actions" in data and "tools" not in data:
+            data = dict(data)
+            data["tools"] = data["actions"]
         return data
 
 
@@ -368,6 +743,7 @@ class ProcessDefinition(BaseModel):
     subprocesses: list[OrchestratorSubprocess] = Field(default_factory=list)
     message_correlations: list[OrchestratorMessageCorrelation] = Field(default_factory=list)
     jobs: list[OrchestratorJobDefinition] = Field(default_factory=list)
+    # Legacy only: execution_nodes is the canonical execution graph.
     steps: list[ProcessStep] = Field(default_factory=list)
     metadata: dict[str, Any] = Field(default_factory=dict)
 
@@ -376,9 +752,31 @@ class ProcessDefinition(BaseModel):
     @model_validator(mode="before")
     @classmethod
     def _migrate_nodes(cls, data: Any) -> Any:
-        if isinstance(data, dict) and "nodes" in data and "execution_nodes" not in data:
+        if isinstance(data, dict):
             data = dict(data)
-            data["execution_nodes"] = data.pop("nodes")
+            if "nodes" in data and "execution_nodes" not in data and "user_flow" not in data:
+                data["execution_nodes"] = data.pop("nodes")
+            if "user_flow" in data and "execution_nodes" not in data:
+                data["execution_nodes"] = data.pop("user_flow")
+            if not data.get("transitions") and data.get("execution_nodes"):
+                node_refs: list[str] = []
+                for raw_node in data.get("execution_nodes") or []:
+                    if not isinstance(raw_node, dict):
+                        continue
+                    node_type = str(raw_node.get("type") or "").strip()
+                    node_id = str(raw_node.get("node_id") or "").strip()
+                    node_name = str(raw_node.get("name") or "").strip()
+                    if node_id:
+                        node_refs.append(node_id)
+                    elif node_type in {"start", "end"}:
+                        node_refs.append(node_type)
+                    elif node_name:
+                        node_refs.append(_normalize_identifier(node_name))
+                if len(node_refs) > 1:
+                    data["transitions"] = [
+                        {"from_node": node_refs[index], "to_node": node_refs[index + 1]}
+                        for index in range(len(node_refs) - 1)
+                    ]
         return data
 
 
@@ -417,8 +815,8 @@ class OrchestratorInstance(BaseModel):
     data: dict[str, Any] = Field(default_factory=dict)
     pending_jobs: list[OrchestratorJob] = Field(default_factory=list)
     events: list[ProcessExecutionEvent] = Field(default_factory=list)
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
     model_config = {"frozen": True}
 
@@ -431,6 +829,7 @@ class ProcessExecutionResult(BaseModel):
     waiting_for: list[str] = Field(default_factory=list)
     data: dict[str, Any] = Field(default_factory=dict)
     events: list[ProcessExecutionEvent] = Field(default_factory=list)
+    workflow_trace: list[dict[str, Any]] = Field(default_factory=list)
 
     model_config = {"frozen": True}
 
@@ -471,6 +870,13 @@ class AnswerResult(BaseModel):
     related_concepts: list[str]
     explanation: str
     clarification_options: list[dict[str, Any]] = Field(default_factory=list)
+    goal: dict[str, Any] | None = None
+    user_needs: list[dict[str, Any]] = Field(default_factory=list)
+    route: dict[str, Any] | None = None
+    multiple_intentions_plan: dict[str, Any] | None = None
+    requires_execution_confirmation: bool = True
+    execution_selection_policy: dict[str, Any] | None = None
+    execution_options: list[dict[str, Any]] = Field(default_factory=list)
 
     model_config = {"frozen": True}
 
@@ -489,4 +895,11 @@ class AnswerResult(BaseModel):
             "related_concepts": self.related_concepts,
             "explanation": self.explanation,
             "clarification_options": self.clarification_options,
+            "goal": self.goal,
+            "user_needs": self.user_needs,
+            "route": self.route,
+            "multiple_intentions_plan": self.multiple_intentions_plan,
+            "requires_execution_confirmation": self.requires_execution_confirmation,
+            "execution_selection_policy": self.execution_selection_policy,
+            "execution_options": self.execution_options,
         }

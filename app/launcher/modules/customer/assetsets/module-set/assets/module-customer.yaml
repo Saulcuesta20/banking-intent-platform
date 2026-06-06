@@ -1,0 +1,36 @@
+asset_id: module.customer
+asset_type: module
+name: Clientes
+description: Datos maestros de clientes.
+tags:
+- master-data
+- customer
+- launcher
+relations:
+- type: belongs_to_domain
+  target_asset_id: domain.master-data
+payload:
+  moduleId: customer
+  label: Clientes
+  description: Datos maestros de clientes.
+  icon: customer
+  aliases:
+  - customer
+  - cliente
+  - clientes
+  menus:
+  - id: customer-create
+    label: Alta de cliente
+    path: /master-data/customer/customer-create
+  topMenus:
+  - id: queries
+    label: Consultas
+  - id: operations
+    label: Operaciones
+  - id: configuration
+    label: Configuracion
+  - id: reports
+    label: Reportes
+  - id: monitoring
+    label: Monitoreo
+  domainId: master-data

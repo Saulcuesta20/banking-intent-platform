@@ -1,0 +1,40 @@
+{
+  "moduleId": "customer",
+  "label": "Clientes",
+  "description": "Datos maestros de clientes.",
+  "icon": "customer",
+  "aliases": [
+    "customer",
+    "cliente",
+    "clientes"
+  ],
+  "menus": [
+    {
+      "id": "customer-create",
+      "label": "Alta de cliente",
+      "path": "/master-data/customer/customer-create"
+    }
+  ],
+  "topMenus": [
+    {
+      "id": "queries",
+      "label": "Consultas"
+    },
+    {
+      "id": "operations",
+      "label": "Operaciones"
+    },
+    {
+      "id": "configuration",
+      "label": "Configuracion"
+    },
+    {
+      "id": "reports",
+      "label": "Reportes"
+    },
+    {
+      "id": "monitoring",
+      "label": "Monitoreo"
+    }
+  ]
+}

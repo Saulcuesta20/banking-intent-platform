@@ -1,0 +1,43 @@
+flow_id: customer.create
+flow_name: Customer Create
+version: 1.0.0
+status: approved
+domain: banking.customer
+owner: Customer Operations
+description: Executable flow definition for creating a new customer.
+related_flow_ids:
+  - customer.create
+triggers:
+  - quiero crear un cliente nuevo
+inputs:
+  - customer_name
+  - identity_document
+outputs:
+  - customer_id
+user_flow:
+  - name: start
+    type: start
+    implementation: builtin.start
+    description: Start customer creation.
+  - name: capture_customer_data
+    type: user_task
+    implementation: task.capture_customer_data
+    description: Capture the new customer data and documents.
+    required_inputs:
+      - customer_name
+      - identity_document
+    user_actions:
+      - action: action.customer.open_create_form
+        type: front
+        implementation_type: show_form
+        label: Open customer form
+        description: Display the customer onboarding form.
+      - action: tool.customer.create
+        type: back
+        implementation_type: tool_call
+        tool: tool.customer.create
+        description: Create the new customer record.
+  - name: end
+    type: end
+    implementation: builtin.end
+    description: Finish customer creation.

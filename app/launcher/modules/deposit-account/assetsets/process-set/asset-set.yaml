@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: deposit-account-process-set
+  name: Cuentas de Captacion Process Set
+  version: 1.0.0
+  domain: deposits
+  module: deposit-account
+  description: Versioned process deployment set for deposit-account.
+  tags:
+  - deposits
+  - deposit-account
+  - process
+spec:
+  assetType: process
+  assets:
+  - assets/process-deposit-account-opening.yaml

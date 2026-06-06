@@ -1,15 +1,17 @@
+import json
 from pathlib import Path
 
 from app.approval.policy import AlwaysHumanApprovalPolicy
 from app.approval.service import ApprovalService
 from app.audit.noop import NoopAuditSink
 from app.audit.service import AuditService
+from app.knowledge_base.models import AssetSearchResult, EnterpriseAsset
 from app.ask.answer import AnswerBuilder
 from app.ask.intent import FlowSelectionService
 from app.ask.service import AskService
 from app.ask.understanding import QuestionUnderstanding
 from app.capability.service import CapabilityService
-from app.knowledge_graph.service import KnowledgeGraphService
+from app.knowledge_base.service import KnowledgeBaseService
 from app.models import KnowledgeRecord, Task
 
 
@@ -61,7 +63,7 @@ class FakeGraphModule:
     END = "__end__"
 
 
-class FakeKnowledgeGraphRepository:
+class FakeKnowledgeBaseRepository:
     def __init__(self, record):
         self.record = record
 
@@ -93,6 +95,31 @@ class FakeCapabilityProvider:
         return []
 
 
+class FakeAssetSearchService:
+    def search(self, query: str):
+        return AssetSearchResult(
+            query=query,
+            primary_assets=[
+                EnterpriseAsset(
+                    asset_id="qa.automatic_payment_account_required",
+                    asset_type="qa",
+                )
+            ],
+            supporting_assets=[
+                EnterpriseAsset(
+                    asset_id="business_rule.automatic_payment_account_required",
+                    asset_type="business_rule",
+                )
+            ],
+            evidence_assets=[
+                EnterpriseAsset(
+                    asset_id="plan.savings_account_opening",
+                    asset_type="plan",
+                )
+            ],
+        )
+
+
 def test_ask_service_uses_langgraph_orchestration(monkeypatch, tmp_path: Path):
     record = KnowledgeRecord(
         flow_id="loan.refinance",
@@ -110,13 +137,14 @@ def test_ask_service_uses_langgraph_orchestration(monkeypatch, tmp_path: Path):
         source="test",
     )
     service = AskService(
-        knowledge_graph_service=KnowledgeGraphService(FakeKnowledgeGraphRepository(record)),
+        knowledge_base_service=KnowledgeBaseService(FakeKnowledgeBaseRepository(record)),
         question_understanding_service=FakeQuestionUnderstandingService(),
         flow_selection_service=FlowSelectionService(FakeReasoningProvider()),
         capability_service=CapabilityService(FakeCapabilityProvider()),
         answer_builder=AnswerBuilder(),
         approval_service=ApprovalService(AlwaysHumanApprovalPolicy()),
         audit_service=AuditService(NoopAuditSink()),
+        asset_search_service=FakeAssetSearchService(),
         trace_directory=tmp_path,
         use_langgraph_orchestration=True,
     )
@@ -137,3 +165,12 @@ def test_ask_service_uses_langgraph_orchestration(monkeypatch, tmp_path: Path):
     assert result.to_dict()["related_concepts"] == ["Loan"]
     assert ("orchestration", "workflow=langgraph_ask") in trace_events
     assert any(component == "question_understanding" for component, _ in trace_events)
+    assert any(component == "asset_search" for component, _ in trace_events)
+    assert any(component == "knowledge_source_router" for component, _ in trace_events)
+    assert any(component == "evidence_bundle" for component, _ in trace_events)
+    trace_file = next(tmp_path.glob("ask_trace_*.json"))
+    payload = json.loads(trace_file.read_text(encoding="utf-8"))
+    assert payload["asset_search"]["primary_assets"] == ["qa.automatic_payment_account_required"]
+    assert "process_flows" in [route["source"] for route in payload["evidence_bundle"]["routes"]]
+    assert "entities" in [route["source"] for route in payload["evidence_bundle"]["routes"]]
+    assert payload["evidence_bundle"]["evidence"][0]["asset_id"] == "loan.refinance"

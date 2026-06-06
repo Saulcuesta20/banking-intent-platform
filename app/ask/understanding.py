@@ -7,6 +7,8 @@ import urllib.request
 from dataclasses import dataclass, field
 from typing import Any, Protocol
 
+from app.tools.models import ToolDefinition
+
 
 @dataclass(frozen=True)
 class QuestionUnderstanding:
@@ -16,6 +18,9 @@ class QuestionUnderstanding:
     corrections: list[dict[str, str]] = field(default_factory=list)
     entities: list[str] = field(default_factory=list)
     possible_intents: list[str] = field(default_factory=list)
+    ask_posture: str = "unknown"
+    inferred_needs: list[dict[str, Any]] = field(default_factory=list)
+    routing_hints: dict[str, Any] = field(default_factory=dict)
     ambiguity: dict[str, Any] | None = None
     provider: str = "llm_required"
     explanation: str = ""
@@ -26,9 +31,9 @@ class QuestionUnderstandingProvider(Protocol):
         """Return graph search terms and domain hints for a natural-language question."""
 
 
+@dataclass(frozen=True)
 class QuestionUnderstandingService:
-    def __init__(self, provider: QuestionUnderstandingProvider):
-        self.provider = provider
+    provider: QuestionUnderstandingProvider
 
     def understand(self, question: str) -> QuestionUnderstanding:
         return self.provider.understand(question)
@@ -46,6 +51,18 @@ class LLMQuestionUnderstandingProvider:
         self.base_url = (base_url or os.getenv("OPENAI_BASE_URL") or "https://api.openai.com/v1").rstrip("/")
         self.model = model or os.getenv("QUERY_UNDERSTANDING_MODEL") or os.getenv("INTENT_LLM_MODEL") or "gpt-4o-mini"
         self.timeout_seconds = timeout_seconds
+        self.tool_definition = ToolDefinition(
+            tool_id="llm.question_understanding.complete_json",
+            tool_type="llm_tool",
+            operation="understand_question",
+            resource="ask.question_understanding",
+            label="Question understanding LLM",
+            description="Corrects, classifies, and expands a user question for routing.",
+            llm_operation="json_completion",
+            llm_model=self.model,
+            llm_provider="openai_compatible",
+            endpoint=f"{self.base_url}/chat/completions",
+        )
         if not self.api_key:
             raise RuntimeError("OPENAI_API_KEY is required for LLM query understanding.")
 
@@ -54,6 +71,12 @@ class LLMQuestionUnderstandingProvider:
         terms = self._merge_unique([str(value).lower() for value in answer.get("search_terms", [])])
         entities = self._merge_unique([str(value) for value in answer.get("entities", [])])
         possible_intents = [str(value) for value in answer.get("possible_intents", [])][:8]
+        inferred_needs = [
+            value
+            for value in answer.get("inferred_needs", [])
+            if isinstance(value, dict)
+        ][:8]
+        routing_hints = answer.get("routing_hints") if isinstance(answer.get("routing_hints"), dict) else {}
         corrections = [
             {"from": str(value.get("from", "")), "to": str(value.get("to", ""))}
             for value in answer.get("corrections", [])
@@ -67,6 +90,9 @@ class LLMQuestionUnderstandingProvider:
             search_terms=terms[:24],
             entities=entities[:12],
             possible_intents=possible_intents,
+            ask_posture=str(answer.get("ask_posture") or "unknown"),
+            inferred_needs=inferred_needs,
+            routing_hints=routing_hints,
             ambiguity=ambiguity,
             provider="llm_question_understanding",
             explanation=str(answer.get("explanation") or "LLM query correction and expansion."),
@@ -82,8 +108,9 @@ class LLMQuestionUnderstandingProvider:
                     "role": "system",
                     "content": (
                         "You expand Spanish banking customer questions for knowledge graph search. "
-                        "Return only JSON. Do not execute banking actions. "
-                        "Correct obvious typos, detect ambiguity, and suggest possible existing intent hints. "
+                        "Return only JSON. Do not execute banking tools. "
+                        "Correct obvious typos, detect ambiguity, infer the user's ask posture, "
+                        "and suggest possible existing intent hints. "
                         "Do not select the final flow."
                     ),
                 },
@@ -99,6 +126,18 @@ class LLMQuestionUnderstandingProvider:
                         '  "search_terms": ["short lowercase terms and synonyms"],\n'
                         '  "entities": ["DomainConcept"],\n'
                         '  "possible_intents": ["optional.flow.hints"],\n'
+                        '  "ask_posture": "doubt|consultation|problem|execution_request|tool_explanation|mixed|unsupported",\n'
+                        '  "inferred_needs": [\n'
+                        '    {"kind": "question|execution|explanation|clarification|unsupported", "text": "fragment", "confidence": 0.0, "reason": "why"}\n'
+                        "  ],\n"
+                        '  "routing_hints": {\n'
+                        '    "needs_answer": true|false,\n'
+                        '    "needs_flow": true|false,\n'
+                        '    "needs_process": true|false,\n'
+                        '    "needs_tool_explanation": true|false,\n'
+                        '    "needs_clarification": true|false,\n'
+                        '    "intention_relation": "single|complementary|competing|unknown"\n'
+                        "  },\n"
                         '  "ambiguity": {"is_ambiguous": true|false, "reason": "why", "options": ["possible intents"]},\n'
                         '  "explanation": "short reason"\n'
                         "}"

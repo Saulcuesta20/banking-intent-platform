@@ -1,0 +1,41 @@
+process_id: loan.create
+process_name: Loan Create
+version: 1.0.0
+status: approved
+domain: banking.loans
+owner: Credit Operations
+description: Executable process definition for loan creation.
+related_flow_ids:
+  - loan.create
+triggers:
+  - quiero crear un prestamo para un cliente existente
+inputs:
+  - customer_id
+  - loan_amount
+outputs:
+  - loan_id
+user_flow:
+  - name: start
+    type: start
+    implementation: builtin.start
+    description: Start loan creation process.
+  - name: capture_loan_request
+    type: user_task
+    implementation: task.capture_loan_request
+    description: Capture loan request details.
+    required_inputs:
+      - customer_id
+      - loan_amount
+    user_actions:
+      - action: action.loan.open_create_form
+        type: front
+        implementation_type: show_form
+        label: Open loan request form
+      - action: tool.loan.create
+        type: back
+        implementation_type: tool_call
+        tool: tool.loan.create
+  - name: end
+    type: end
+    implementation: builtin.end
+    description: Finish loan creation process.

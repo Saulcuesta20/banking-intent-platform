@@ -1,0 +1,419 @@
+{
+  "status": "pending",
+  "instructions": [
+    "Review semantic classifications and extracted artifacts before graph loading.",
+    "Change status to approved when the artifacts can be loaded.",
+    "Use reviewer_notes to document corrections, rejected flows, or missing process definitions."
+  ],
+  "reviewer_notes": "",
+  "semantic_analysis": {
+    "summary": "Mixed enterprise corpus classified with deterministic heuristics. Use LLM semantic analysis or human review before applying artifacts.",
+    "review_required": true,
+    "classifications": [
+      {
+        "source": "data/raw/README.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "rule",
+          "exception",
+          "document",
+          "system",
+          "integration",
+          "approval"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Raw Ingestion Corpus\n\nEsta carpeta simula fuentes reales de una empresa. Los documentos no estan\npreclasificados por intencion. La ingestion debe analizar el corpus, detectar\npatrones escondidos y proponer si cada fragmento sirve para Q&A, caso guiado,\nejecucion de proceso, reglas, excepciones, sistemas o aprobaciones.\n\nFuentes empresariales nuevas:\n\n- `enterprise_operations_manual.md`: manual operativo mezclado.\n- `enterprise_policy_and_controls.md`: politicas, controles, aprobaciones y excep",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/banking_synonyms_and_glossary_runtime.txt",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Banking Intent Platform - Synonyms, Glossary, and Concept Mapping Guidance\n\nPurpose:\nThis raw corpus file teaches ingestion which informal banking words should map\nto formal concepts, flow names, utterances, user tasks, and tools.\nThe runtime ask process must not invent terms. It should retrieve validated\nconcepts, synonyms, flows, user tasks, and tools from the graph.\n\nCanonical concepts and aliases:\n\n1. Loan\n   Informal terms: prestamo, credito, financiamiento, loan, prestamo personal,\n   line",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/00_readme.txt",
+        "intent_class": "unknown",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Enterprise document dump received during discovery.\n\nThese files are intentionally unclassified. Treat them like a real company handoff:\npolicies, operational notes, HTML intranet pages, service catalog exports, support\nticket examples, process fragments, and glossary fragments are mixed together.\n\nThe ingestion process must scan, classify, infer candidate assets, find repeated\npatterns, and propose flows, processes, rules, entities, tools, Q&A, plans, and\nconfiguration candidates for review.",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/customer_support_tickets.csv",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer"
+        ],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "ticket_id,channel,customer_phrase,agent_resolution,notes\nT-1001,branch,\"quiero transferir 75000 dolares a otro pais\",\"captured transfer details and requested purpose document\",\"possible high value transfer review\"\nT-1002,mobile,\"como calculan las condiciones de refinanciacion\",\"explained loan condition calculation and offered refinance review\",\"tool explanation pattern\"\nT-1003,call_center,\"necesito abrir cuenta para pago automatico\",\"checked eligible account and explained automatic debit require",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/glossary_fragment.md",
+        "intent_class": "approval",
+        "knowledge_types": [],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Glossary Fragment From Shared Drive\n\nCBU: local account identifier used for transfers.\nAutomatic debit: recurring payment from an eligible account.\nHigh value transfer: transfer above internal review threshold.\nEnhanced due diligence: additional review for risk or compliance reasons.\nBeneficiary screening: check performed before releasing certain transactions.\nRefinance option: alternative loan conditions proposed to the customer.\nManager review: manual approval queue used when policy gates re",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/intranet_transfer_help.html",
+        "intent_class": "unknown",
+        "knowledge_types": [],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "<!doctype html>\n<html>\n  <head>\n    <title>Operations Intranet - Transfers and Beneficiary Review</title>\n  </head>\n  <body>\n    <h1>Transfers and Beneficiary Review</h1>\n    <p>Customers can request transfers from savings accounts through branch,\n    mobile, or assisted channels. The agent must identify the customer, capture\n    source account, beneficiary, amount, currency, and transfer reason.</p>\n\n    <h2>Operational reminders</h2>\n    <ul>\n      <li>Amounts above the current high-value thre",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Call center notes - loan refinance.\n\nAgents say customers usually ask to lower the monthly installment, extend the\nterm, compare new conditions, or understand why a refinance offer was declined.\nThe current manual tells agents to identify the customer, review current loan\nstatus, calculate available conditions, compare refinance options, collect\nmissing documents, and submit a refinance request for approval when required.\n\nKnown phrases:\n- quiero bajar la cuota\n- necesito mejores condiciones\n- c",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/policy_controls_memo.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "# Internal Policy And Controls Memo\n\nDocument owner: Risk and Operations\nRevision note: migrated from the legacy policy wiki.\n\nFor large outbound transactions, the platform should check customer identity,\ntransfer amount, beneficiary details, destination country, sanctions status,\nand proof of purpose. A manager review is required when the amount is above the\nconfigured threshold or the customer risk segment requires enhanced review.\n\nThe policy text uses several names for similar concepts:\n\n- c",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/process_fragments.yaml",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "source: \"operations-sharepoint-export\"\nfragments:\n  - title: \"Savings account opening\"\n    text: \"Identify customer, collect documents, run KYC, create account, ask for initial deposit when applicable, confirm account status.\"\n  - title: \"International transfer review\"\n    text: \"Capture details, validate source account, screen beneficiary, request purpose document if needed, route to manager review, release or reject.\"\n  - title: \"Loan refinance handling\"\n    text: \"Identify customer, read loan",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/systems_catalog_export.json",
+        "intent_class": "unknown",
+        "knowledge_types": [],
+        "processes": [
+          "customer.onboarding"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "{\n  \"exported_from\": \"legacy-service-catalog\",\n  \"generated_at\": \"2026-05-01T12:00:00Z\",\n  \"services\": [\n    {\n      \"name\": \"Customer Profile Service\",\n      \"operations\": [\"customer.read\", \"customer.identity.validate\"],\n      \"notes\": \"Used by onboarding, loan servicing, transfers, and account maintenance.\"\n    },\n    {\n      \"name\": \"Loan Pricing Service\",\n      \"operations\": [\"loan.conditions.calculate\", \"loan_refinance.compare\"],\n      \"notes\": \"Calculates refinance conditions and compares ",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_operations_manual.md",
+        "intent_class": "process_execution",
+        "knowledge_types": [
+          "rule",
+          "document",
+          "system",
+          "approval"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing",
+          "customer.onboarding"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Manual Operativo Empresarial\n\n## Vision general\n\nEl area de banca minorista administra apertura de cuentas, solicitudes de\nprestamo, transferencias, reclamos y alta de clientes. Los documentos internos\nmezclan preguntas frecuentes, reglas de negocio, pasos manuales, integraciones\ntecnicas y controles de aprobacion. Durante la carga, el sistema debe descubrir\nsi un fragmento es informativo, guiado o ejecutable sin depender de etiquetas\nprevias.\n\n## Alta de cliente y apertura de cuenta\n\nCuando u",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_policy_and_controls.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "rule",
+          "exception",
+          "document",
+          "system",
+          "integration",
+          "approval"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Politicas, Controles y Excepciones\n\n## Politicas comunes\n\nTodo proceso ejecutable debe validar permisos, trazabilidad y fuente de datos.\nLas respuestas informativas no ejecutan acciones. Los casos guiados pueden\nrecolectar datos, pero no deben invocar servicios finales sin confirmacion y\nvalidaciones completas. La ejecucion de proceso puede invocar servicios legados\nsi el usuario confirma la operacion y los datos requeridos estan presentes.\n\n## Apertura de cuenta\n\nRegla: identity_must_be_valid",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_support_wiki.md",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "rule",
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Wiki de Soporte Interno\n\n## Preguntas frecuentes de clientes\n\nPregunta: Que documentos necesito para abrir una cuenta de ahorro?\nRespuesta esperada: identificacion oficial, comprobante de domicilio y datos\nfiscales si aplican. No iniciar proceso si el usuario solo pregunta requisitos.\n\nPregunta: Como solicito un prestamo personal?\nRespuesta esperada: explicar que se requieren monto, plazo, finalidad,\nevidencia de ingresos y documentos. Si el usuario pide guia, iniciar caso\nguiado. Si pide ejec",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_systems_catalog.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "rule",
+          "document",
+          "system",
+          "integration"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing",
+          "customer.onboarding"
+        ],
+        "systems": [
+          "core_banking",
+          "loan_origination",
+          "credit_bureau",
+          "banking_policy_context",
+          "loan_scoring_service",
+          "payments",
+          "claims"
+        ],
+        "confidence": 0.65,
+        "evidence": "# Catalogo de Sistemas e Integraciones\n\n## Sistemas internos\n\nSistema: Customer Onboarding\nUso: alta de cliente, validacion de documentos y condiciones.\nProtocolos: API interna.\nOperaciones: customer.create, customer.conditions.validate, document.verify.\n\nSistema: Core Banking\nUso: creacion de cuenta, consulta de cuenta, validacion de saldo.\nProtocolos: API interna, base de datos controlada.\nOperaciones: account.create, account.balance.validate, customer.read.\n\nSistema: Loan Origination\nUso: cre",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/process_qa_seed.md",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "rule",
+          "document",
+          "system",
+          "approval"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Banking Process QA Seed\n\n## Apertura de cuenta de ahorro\n\nLa apertura de una cuenta de ahorro inicia cuando el cliente solicita crear una\ncuenta nueva. El banco debe identificar al cliente, recolectar documentos,\nvalidar identidad, revisar condiciones de elegibilidad y crear la cuenta en el\nsistema core. Los documentos habituales son identificacion oficial,\ncomprobante de domicilio y datos fiscales cuando aplican.\n\nEl proceso puede continuar de forma guiada si el cliente pide ayuda paso a paso",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_glossary.csv",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "rule",
+          "document",
+          "approval"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing",
+          "customer.onboarding"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "term,synonyms,description\nahorro,\"cuenta de ahorros;cuenta de ahorro\",\"Saldo y propósito para reservar fondos a futuro\"\nCBU,\"clave bancaria uniforme\",\"Identificador único de cuenta para transferencias\"\ninteres,\"tasa de interes;porcentaje\",\"Costo del dinero prestado o remuneración de ahorros\"\nprestamo,\"credito;loan;financiamiento;prestamo personal\",\"Producto crediticio donde el banco entrega capital y el cliente devuelve capital e intereses en cuotas\"\ncredito,\"prestamo;loan;financiamiento;linea d",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_loans_domain_extra1.txt",
+        "intent_class": "unknown",
+        "knowledge_types": [
+          "rule"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "money.transfer"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Glosario Extendido - Ahorros y Préstamos (Parte 1)\n\nTérminos clave:\n- Apertura de cuenta: proceso para crear una nueva cuenta bancaria para un cliente.\n- Beneficiario: persona autorizada a recibir fondos.\n- Chequera: talonario de cheques asociado a una cuenta corriente.\n- Comisión por mantenimiento: cargo recurrente por mantener la cuenta activa.\n- Conciliación: proceso de verificación de transacciones entre registros.\n- Cuenta inactiva: cuenta sin movimientos por un periodo definido.\n- Domicili",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_loans_domain_extra2.txt",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "rule",
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Glosario Extendido - Ahorros y Préstamos (Parte 2)\n\nTérminos operativos:\n- Anticipo de haberes: adelanto de parte del salario.\n- Aval: garantía personal que respalda una obligación crediticia.\n- Beneficio por paquete bancario: descuentos o bonificaciones por producto combinado.\n- Capitalización: proceso de sumar intereses al capital.\n- Clave de seguridad: credenciales para operar canales digitales.\n\nProcesos detallados:\n1) Evaluación de elegibilidad de préstamo:\n   - Recopilar ingresos y documen",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_loans_domain_extra3.txt",
+        "intent_class": "process_execution",
+        "knowledge_types": [
+          "rule",
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Glosario Extendido - Ahorros y Préstamos (Parte 3)\n\nReglas de tarifas y comisiones:\n- Comisión por manejo de cuenta: aplicable mensualmente si el saldo promedio cae bajo umbral.\n- Comisión por transferencia urgente: tarifa fija por transferencias con prioridad.\n- Comisión por descubierto: porcentaje sobre el monto sobregirado.\n\nProcesos de atención:\n1) Gestión de reclamos:\n   - Recepción del reclamo en canales (phone, mail, sucursal).\n   - Revisión documental y conciliación de movimientos.\n   - ",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_loans_domain_extra4.txt",
+        "intent_class": "unknown",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Glosario Extendido - Ahorros y Préstamos (Parte 4)\n\nEscenarios de negocio:\n- Cliente nuevo quiere abrir cuenta y contratar débito automático.\n- Cliente solicita préstamo y ofrece vehículo como garantía.\n- Cliente solicita refinanciación por pérdida de ingresos.\n\nCasos de excepción y manejo:\n- Documentos incompletos: solicitar envío digital y marcar caso pendiente.\n- Duplicidad de cuentas: verificar identidad y consolidar registros.\n- Pagos rechazados por fondos insuficientes: notificar y ofrecer",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_loans_domain_extra5.txt",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "document",
+          "system"
+        ],
+        "processes": [
+          "savings.account.opening"
+        ],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "Glosario Extendido - Ahorros y Préstamos (Parte 5)\n\nTemplates y ejemplos de utterances (amplio set):\n- \"Quiero abrir una cuenta de ahorro con CBU\"\n- \"Cómo puedo solicitar un préstamo por 20000 a 24 meses\"\n- \"Qué documentos necesito para refinanciar mi préstamo\"\n- \"Cuál es la tasa de interés efectiva anual para cuentas de ahorro\"\n- \"Puedo pagar mi cuota con tarjeta de débito?\"\n- \"Cómo programo un débito automático para el préstamo\"\n- \"Qué pasa si me atraso un mes en el pago\"\n- \"Cómo solicito la b",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/savings_loans_domain_raw.txt",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Savings Accounts and Loans - Domain Documentation\n\nOverview:\nThis document provides a synthesized domain description for retail banking focused on savings accounts and consumer loans. It consolidates glossary terms, common processes, business rules, compliance notes, and example utterances for NLP intent creation.\n\nGlossary (sample):\n- Savings Account: A deposit account that earns interest, used for saving money.\n- Term Deposit: A time-bound deposit with fixed interest rate.\n- CBU: Clave Bancari",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      }
+    ]
+  },
+  "candidate_outputs": {
+    "flows": [
+      "claim.filing",
+      "loan.application",
+      "money.transfer",
+      "savings.account.opening"
+    ],
+    "user_tasks": [
+      "collect_customer_documents",
+      "create_account",
+      "file_claim",
+      "identify_customer",
+      "request_transfer",
+      "review_loan_status"
+    ],
+    "tools": [
+      "account.create",
+      "claim.create",
+      "customer.documents.collect",
+      "customer.identity.validate",
+      "loan.read",
+      "transfer.create",
+      "ui.account.create",
+      "ui.claim.file",
+      "ui.customer.documents.collect",
+      "ui.customer.identify",
+      "ui.loan.status.review",
+      "ui.transfer.request"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+asset_id: domain.master-data
+asset_type: domain
+name: Catalogos y Datos Maestros
+description: Clientes, tasas, productos, servicios y parametros maestros.
+tags:
+- master-data
+- launcher
+payload:
+  domainId: master-data
+  label: Catalogos y Datos Maestros
+  description: Clientes, tasas, productos, servicios y parametros maestros.
+  order: 10

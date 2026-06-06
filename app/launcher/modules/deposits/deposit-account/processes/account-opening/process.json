@@ -1,0 +1,16 @@
+{
+  "processId": "deposit-account.opening",
+  "name": "Apertura de cuenta",
+  "intent": "quiero abrir una cuenta de deposits",
+  "businessEvent": "deposit_account.opening.requested",
+  "sourcePath": "app/launcher/modules/deposits/deposit-account/processes/account-opening",
+  "processIds": [
+    "deposit_account_opening"
+  ],
+  "userTasks": [
+    "capture account opening"
+  ],
+  "lowdefyPage": "account-opening",
+  "currentFormVersion": "v1",
+  "formId": "account-opening"
+}

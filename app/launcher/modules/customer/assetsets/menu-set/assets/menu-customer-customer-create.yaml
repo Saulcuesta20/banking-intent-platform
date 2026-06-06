@@ -1,0 +1,17 @@
+asset_id: menu.customer.customer-create
+asset_type: menu
+name: Alta de cliente
+description: Clientes launcher menu.
+tags:
+- master-data
+- customer
+- menu
+relations:
+- type: belongs_to_module
+  target_asset_id: module.customer
+payload:
+  id: customer-create
+  label: Alta de cliente
+  path: /master-data/customer/customer-create
+  module_id: customer
+  domain_id: master-data

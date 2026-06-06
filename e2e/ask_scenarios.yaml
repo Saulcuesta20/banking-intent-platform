@@ -1,0 +1,92 @@
+version: 1.0.0
+description: End-to-end ask routing scenarios for QA, flows, processes, tools, execution proposals, multiple intentions, clarification, and unsupported requests.
+
+scenarios:
+  - id: qa_automatic_payment_account
+    type: qa
+    question: Necesito una cuenta para pago automatico?
+    expected:
+      route_mode: known_route
+      resolution_actions:
+        - answer_question
+      knowledge_sources:
+        - qa
+        - rules_policies
+
+  - id: flow_loan_refinance
+    type: flow
+    question: Quiero refinanciar mi prestamo
+    expected:
+      route_mode: known_route
+      resolution_actions:
+        - invoke_known_flow
+      selected_flow_id: loan.refinance
+      knowledge_sources:
+        - process_flows
+        - entities
+
+  - id: process_savings_account_opening
+    type: process
+    question: Quiero abrir una cuenta de ahorro
+    expected:
+      route_mode: known_route
+      resolution_actions:
+        - invoke_known_flow
+      selected_flow_id: savings_account.open
+      knowledge_sources:
+        - process_flows
+        - entities
+
+  - id: tool_loan_conditions_explanation
+    type: tool_explanation
+    question: Como calculan las nuevas condiciones de mi prestamo?
+    expected:
+      route_mode: known_route
+      resolution_actions:
+        - explain_tool
+      known_targets:
+        - tool:loan.conditions.calculate
+      knowledge_sources:
+        - tools_apis
+
+  - id: execution_money_transfer_proposal
+    type: execution_proposal
+    question: Quiero hacer una transferencia desde mi cuenta de ahorro
+    expected:
+      route_mode: known_route
+      resolution_actions:
+        - invoke_known_flow
+      selected_flow_id: money.transfer
+      knowledge_sources:
+        - process_flows
+        - entities
+
+  - id: multiple_intentions_refinance_tool_qa
+    type: multiple_intentions
+    question: Quiero refinanciar mi prestamo para bajar la cuota, explicame como calculan las condiciones y dime si necesito abrir una cuenta para pago automatico
+    expected:
+      route_mode: multiple_intentions
+      resolution_actions:
+        - invoke_known_flow
+        - explain_tool
+        - answer_question
+      knowledge_sources:
+        - qa
+        - process_flows
+        - rules_policies
+        - tools_apis
+        - entities
+
+  - id: clarification_account_operation
+    type: clarification
+    question: Quiero hacer una operacion con mi cuenta
+    expected:
+      route_mode: clarification
+
+  - id: unsupported_concert_tickets
+    type: unsupported
+    question: Quiero comprar entradas para un concierto
+    expected:
+      route_mode: unsupported
+      resolution_actions:
+        - reject_unsupported

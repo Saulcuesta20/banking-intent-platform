@@ -1,28 +1,8 @@
-import json
-from pathlib import Path
-
-from app.orchestrator.process_execution import ProcessExecutionRequest, ProcessExecutionService
-
-
-def write_flow(flow_dir: Path) -> None:
-    flow_dir.mkdir()
-    (flow_dir / "loan_application_process.flow.json").write_text(
-        json.dumps(
-            {
-                "flow_id": "loan_application_process",
-                "flow_name": "Loan Application Process",
-                "intent": "loan.application.submit",
-                "business_event": "LoanApplied",
-                "utterances": ["quiero solicitar un prestamo"],
-                "plan": ["apply_for_loan"],
-                "user_task_refs": ["apply_for_loan"],
-                "capabilities": ["loan.application.create"],
-                "concepts": ["Loan"],
-                "explanation": "Loan application flow.",
-            }
-        ),
-        encoding="utf-8",
-    )
+from app.knowledge_base.models import AssetRelation, EnterpriseAsset
+from app.knowledge_base.repository import EnterpriseAssetRepository
+from app.orchestrator.orchestration_executor import OrchestrationExecutionRequest, OrchestrationExecutorService
+from app.orchestrator.node_policy import ExecutionNodePolicy, NodePolicyError
+from app.orchestrator.node_definition import NodeDefinitionModel
 
 
 def process_payload():
@@ -125,42 +105,43 @@ def process_payload():
         ],
     }
 
-
-def write_process(process_dir: Path) -> None:
-    process_dir.mkdir()
-    (process_dir / "loan_application.process.json").write_text(
-        json.dumps(process_payload()),
-        encoding="utf-8",
+def process_repository(*extra_assets: EnterpriseAsset) -> EnterpriseAssetRepository:
+    return EnterpriseAssetRepository(
+        [
+            EnterpriseAsset(
+                asset_id="process.loan.application",
+                asset_type="process",
+                name="Loan Application",
+                status="approved",
+                payload=process_payload(),
+                relations=[
+                    AssetRelation(type="implements_flow", target_asset_id="flow.loan_application_process")
+                ],
+            ),
+            *extra_assets,
+        ]
     )
 
 
-def test_process_execution_waits_for_user_input(tmp_path: Path):
-    flow_dir = tmp_path / "flows"
-    process_dir = tmp_path / "processes"
-    write_flow(flow_dir)
-    write_process(process_dir)
-
-    service = ProcessExecutionService(flow_directory=flow_dir, process_directory=process_dir)
+def test_process_execution_waits_for_user_input():
+    service = OrchestrationExecutorService(asset_repository=process_repository())
 
     result = service.execute(
-        ProcessExecutionRequest(flow_id="loan_application_process", use_langgraph=False)
+        OrchestrationExecutionRequest(flow_id="loan_application_process", use_langgraph=False)
     )
 
     assert result.status == "waiting_for_user_input"
     assert result.current_node_id == "wait_for_data"
     assert result.waiting_for == ["customer_id", "loan_amount"]
+    assert result.workflow_trace[0]["event"] == "workflow_compile"
+    assert any(item["event"] == "node_waiting" for item in result.workflow_trace)
 
 
-def test_process_execution_resumes_and_invokes_protocol_integrations(tmp_path: Path):
-    flow_dir = tmp_path / "flows"
-    process_dir = tmp_path / "processes"
-    write_flow(flow_dir)
-    write_process(process_dir)
-
-    service = ProcessExecutionService(flow_directory=flow_dir, process_directory=process_dir)
+def test_process_execution_resumes_and_invokes_protocol_integrations():
+    service = OrchestrationExecutorService(asset_repository=process_repository())
 
     result = service.execute(
-        ProcessExecutionRequest(
+        OrchestrationExecutionRequest(
             flow_id="loan_application_process",
             resume_from_node_id="wait_for_data",
             data={"customer_id": "C-123", "loan_amount": 10000},
@@ -177,3 +158,151 @@ def test_process_execution_resumes_and_invokes_protocol_integrations(tmp_path: P
         "score_application",
         "finish",
     ]
+    assert any(item["event"] == "route_decision" for item in result.workflow_trace)
+
+
+def test_process_execution_applies_business_rule_gate():
+    repository = process_repository(
+        EnterpriseAsset(
+            asset_id="business_rule.loan_application_gate",
+            asset_type="business_rule",
+            name="Loan Application Gate",
+            relations=[
+                AssetRelation(type="applies_to_flow", target_asset_id="flow.loan_application_process")
+            ],
+            payload={
+                "gate": {
+                    "applies_before_execution": True,
+                    "required_data": ["customer_id"],
+                }
+            },
+        )
+    )
+
+    service = OrchestrationExecutorService(asset_repository=repository)
+
+    result = service.execute(
+        OrchestrationExecutionRequest(flow_id="loan_application_process", use_langgraph=False)
+    )
+
+    assert result.status == "waiting_for_user_input"
+    assert result.current_node_id == "start"
+    assert result.waiting_for == ["customer_id"]
+    assert result.events[0].node_id == "rule_gate"
+    assert result.workflow_trace[0]["event"] == "rule_gate_check"
+
+
+def test_process_execution_loads_flow_definition_from_graph_asset():
+    payload = {
+        "process_id": "loan_refinance",
+        "process_name": "Loan Refinance",
+        "status": "approved",
+        "domain": "banking.loans",
+        "owner": "Credit Operations",
+        "description": "Refinance a loan.",
+        "related_flow_ids": ["loan_refinance"],
+        "execution_nodes": [
+            {
+                "node_id": "start",
+                "name": "Start",
+                "type": "start",
+                "implementation": "builtin.start",
+                "description": "Start.",
+            },
+            {
+                "node_id": "collect_data",
+                "name": "Collect Data",
+                "type": "user_task",
+                "node_kind": "user_task",
+                "implementation": "task.collect",
+                "description": "Collect user data.",
+                "related_user_task_id": "review_refinance_options",
+                "required_inputs": ["customer_id"],
+            },
+            {
+                "node_id": "finish",
+                "name": "Finish",
+                "type": "end",
+                "implementation": "builtin.end",
+                "description": "End.",
+            },
+        ],
+        "transitions": [
+            {"from_node": "start", "to_node": "collect_data"},
+            {"from_node": "collect_data", "to_node": "finish"},
+        ],
+    }
+    service = OrchestrationExecutorService(
+        asset_repository=EnterpriseAssetRepository(
+            [
+                EnterpriseAsset(
+                    asset_id="process.loan_refinance",
+                    asset_type="process",
+                    status="approved",
+                    payload=payload,
+                )
+            ]
+        )
+    )
+    result = service.execute(
+        OrchestrationExecutionRequest(
+            flow_id="loan_refinance",
+            data={"customer_id": "C-1"},
+            use_langgraph=False,
+        )
+    )
+    assert result.status == "completed"
+    assert result.instance_id is not None
+
+
+def test_process_execution_rejects_graph_flow_with_disallowed_node_type():
+    payload = {
+        "process_id": "loan_refinance",
+        "process_name": "Loan Refinance",
+        "status": "approved",
+        "domain": "banking.loans",
+        "owner": "Credit Operations",
+        "description": "Refinance a loan.",
+        "related_flow_ids": ["loan_refinance"],
+        "execution_nodes": [
+            {
+                "node_id": "start",
+                "name": "Start",
+                "type": "start",
+                "implementation": "builtin.start",
+                "description": "Start.",
+            },
+            {
+                "node_id": "custom_script",
+                "name": "Custom Script",
+                "type": "service_call",
+                "implementation": "custom.script",
+                "description": "Disallowed node by policy.",
+            },
+        ],
+    }
+    service = OrchestrationExecutorService(
+        asset_repository=EnterpriseAssetRepository(
+            [
+                EnterpriseAsset(
+                    asset_id="process.loan_refinance",
+                    asset_type="process",
+                    status="approved",
+                    payload=payload,
+                )
+            ]
+        ),
+        node_definition_model=NodeDefinitionModel(
+            policy=ExecutionNodePolicy(
+                allowed_types={
+                    "flow": {"start", "end"},
+                    "process": {"start", "end"},
+                }
+            )
+        ),
+    )
+    try:
+        service.execute(OrchestrationExecutionRequest(flow_id="loan_refinance", use_langgraph=False))
+        assert False, "Expected NodePolicyError"
+    except NodePolicyError as exc:
+        assert "unsupported node types" in str(exc)

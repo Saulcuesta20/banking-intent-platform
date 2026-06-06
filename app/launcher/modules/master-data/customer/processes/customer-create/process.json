@@ -1,0 +1,16 @@
+{
+  "processId": "customer.create",
+  "name": "Alta de cliente",
+  "intent": "quiero crear un cliente nuevo",
+  "businessEvent": "customer.create.requested",
+  "sourcePath": "config/definitions/flows/customer_create.flow.yaml",
+  "processIds": [
+    "customer_create"
+  ],
+  "userTasks": [
+    "capture customer"
+  ],
+  "lowdefyPage": "customer-create",
+  "currentFormVersion": "v1",
+  "formId": "customer-create"
+}

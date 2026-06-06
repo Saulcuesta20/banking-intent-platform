@@ -1,1 +1,1 @@
-"""Action capability registry component."""
+"""Tool-backed capability registry component."""

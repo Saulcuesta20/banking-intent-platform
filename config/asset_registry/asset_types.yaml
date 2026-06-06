@@ -1,0 +1,351 @@
+version: 1.0.0
+description: Enterprise asset type registry for knowledge, planning, and runtime routing.
+
+stores:
+  repository:
+    role: source_of_truth
+    description: Versioned YAML asset definitions reviewed by humans.
+  graph:
+    role: relationship_index
+    description: Asset relationships, dependencies, ownership, lineage, and impact.
+  vector:
+    role: semantic_index
+    description: Text evidence, procedures, policies, manuals, Q&A, and semantic chunks.
+  document:
+    role: document_index
+    description: Document-oriented KB for policies, business rules, QA, manuals, and source evidence.
+  relational:
+    role: runtime_state
+    description: Executions, approvals, monitoring, user selections, and audit trails.
+
+asset_types:
+  domain:
+    description: Business classification used by the launcher and Unified Catalog.
+    owner_kb: config_kb
+    direct_route: false
+    route_kind: supporting_configuration
+    executable: false
+    stores: [repository, relational]
+    valid_relations: []
+    runtime_usage: [launcher_navigation, catalog_classification]
+
+  module:
+    description: Configurable launcher module classified by domain metadata.
+    owner_kb: config_kb
+    direct_route: false
+    route_kind: supporting_configuration
+    executable: false
+    stores: [repository, relational]
+    valid_relations: [belongs_to_domain]
+    runtime_usage: [launcher_navigation, module_registry]
+
+  menu:
+    description: Launcher menu or submenu definition.
+    owner_kb: config_kb
+    direct_route: false
+    route_kind: supporting_configuration
+    executable: false
+    stores: [repository, relational]
+    valid_relations: [belongs_to_module]
+    runtime_usage: [launcher_navigation]
+
+  form:
+    description: Renderer-neutral versioned form definition.
+    owner_kb: config_kb
+    direct_route: false
+    route_kind: supporting_configuration
+    executable: false
+    stores: [repository, relational]
+    valid_relations: [belongs_to_module, has_current_version]
+    runtime_usage: [dynamic_rendering]
+
+  form_version:
+    description: Immutable version of a renderer-neutral form definition.
+    owner_kb: config_kb
+    direct_route: false
+    route_kind: supporting_configuration
+    executable: false
+    stores: [repository, relational]
+    valid_relations: [version_of]
+    runtime_usage: [dynamic_rendering, audit_history]
+
+  flow:
+    description: User-facing intent or use case that can be selected from ask.
+    owner_kb: process_kb
+    direct_route: true
+    route_kind: flow_route
+    executable: false
+    execution_target: process_or_plan
+    stores: [repository, graph, vector]
+    valid_relations:
+      - realizes_plan
+      - implemented_by_process
+      - governed_by_rule
+      - decomposes_to_user_task
+      - uses_concept
+      - answers_intent
+    runtime_usage:
+      - route_target
+      - explain_selection
+      - resolve_execution_options
+
+  process:
+    description: Canonical executable business workflow with nodes, decisions, systems, rules, and exceptions.
+    owner_kb: process_kb
+    direct_route: true
+    route_kind: process_route
+    executable: true
+    execution_target: orchestrator.langgraph
+    stores: [repository, graph]
+    valid_relations:
+      - implements_flow
+      - realizes_plan
+      - has_node
+      - governed_by_rule
+      - invokes_tool
+      - requires_document
+      - uses_concept
+    runtime_usage:
+      - route_target
+      - workflow_execution
+      - monitoring
+
+  qa:
+    description: Approved answerable knowledge item.
+    owner_kb: qa_kb
+    direct_route: true
+    route_kind: qa_route
+    executable: false
+    stores: [repository, document, graph, vector]
+    valid_relations:
+      - references_rule
+      - explains_concept
+      - suggests_flow
+      - cites_document
+    runtime_usage:
+      - direct_answer
+      - explain_decision
+
+  plan:
+    description: Approved sequence of business steps and tool references used to compose or execute work.
+    owner_kb: planning_kb
+    direct_route: false
+    route_kind: supporting_plan
+    executable: false
+    execution_target: flow_or_process
+    stores: [repository, graph]
+    valid_relations:
+      - decomposes_to_user_task
+      - implemented_by_process
+      - supports_flow
+      - governed_by_rule
+      - invokes_tool
+    runtime_usage:
+      - compose_multiple_intentions_plan
+      - execution_option_preview
+      - orchestration_blueprint
+
+  user_task:
+    description: Business/user step that composes a flow or process and invokes tools.
+    owner_kb: business_model_kb
+    direct_route: false
+    route_kind: supporting_task
+    executable: false
+    execution_target: tool_or_process_node
+    stores: [repository, graph]
+    valid_relations:
+      - invokes_tool
+      - used_by_flow
+      - used_by_process
+      - governed_by_rule
+      - uses_concept
+    runtime_usage:
+      - decompose_flow
+      - execution_planning
+      - explain_process_step
+
+  business_rule:
+    description: Constraint, eligibility condition, policy, or decision rule.
+    owner_kb: rules_kb
+    direct_route: consult_only
+    route_kind: qa_route
+    executable: false
+    stores: [repository, document, graph, vector]
+    valid_relations:
+      - applies_to_flow
+      - applies_to_process
+      - applies_to_plan
+      - depends_on_data_attribute
+      - explains_concept
+      - cited_by_qa
+      - uses_entity
+    runtime_usage:
+      - answer_rule_question
+      - constrain_plan
+      - validate_execution
+      - explain_decision
+
+  ruleset:
+    description: Transaction-scoped group of business rules, validations, and related entities for one business operation.
+    owner_kb: rules_kb
+    direct_route: consult_only
+    route_kind: qa_route
+    executable: false
+    stores: [repository, document, graph, vector]
+    valid_relations:
+      - groups_rule
+      - uses_entity
+      - applies_to_flow
+      - applies_to_process
+      - applies_to_plan
+    runtime_usage:
+      - grouped_rule_explanation
+      - transaction_policy_bundle
+      - validation_context
+
+  concept:
+    description: Legacy compatibility name for entity. Domain entity/concept used for vocabulary, synonyms, retrieval, and explainability.
+    owner_kb: business_model_kb
+    direct_route: false
+    route_kind: supporting_knowledge
+    executable: false
+    stores: [repository, graph, vector]
+    valid_relations:
+      - synonym_of
+      - related_to
+      - used_by_flow
+      - used_by_process
+      - explained_by_qa
+    runtime_usage:
+      - retrieval_expansion
+      - explain_selection
+      - ontology_linking
+
+  entity:
+    description: Canonical business entity/concept used for vocabulary, synonyms, retrieval, relationships, and explainability.
+    owner_kb: business_model_kb
+    direct_route: false
+    route_kind: supporting_knowledge
+    executable: false
+    stores: [repository, graph, vector]
+    valid_relations:
+      - has_synonym
+      - synonym_of
+      - related_to
+      - used_by_flow
+      - used_by_process
+      - explained_by_qa
+    runtime_usage:
+      - retrieval_expansion
+      - explain_selection
+      - ontology_linking
+
+  ontology:
+    description: Formal domain relationship model for entities/concepts and process semantics.
+    owner_kb: business_model_kb
+    direct_route: false
+    route_kind: supporting_knowledge
+    executable: false
+    stores: [repository, graph]
+    valid_relations:
+      - defines_concept
+      - constrains_relation
+      - maps_entity
+    runtime_usage:
+      - semantic_reasoning
+      - relationship_validation
+      - impact_analysis
+
+  tool:
+    description: Registered frontend, backend, or LLM tool. Backend protocol is only a backend-tool property.
+    owner_kb: business_model_kb
+    direct_route: consult_only
+    route_kind: tool_explanation_route
+    executable: true
+    execution_target: orchestrator_node
+    stores: [repository, graph]
+    valid_relations:
+      - invoked_by_process
+      - invoked_by_plan
+      - invoked_by_user_task
+      - provides_capability
+      - requires_approval
+      - governed_by_rule
+    runtime_usage:
+      - explain_tool
+      - execute_with_confirmation
+      - validate_capability
+
+  document:
+    description: Source artifact, policy, wiki page, manual, BPMN file, API spec, or corpus chunk.
+    owner_kb: document_kb
+    direct_route: false
+    route_kind: supporting_evidence
+    executable: false
+    stores: [repository, document, vector]
+    valid_relations:
+      - evidence_for_asset
+      - cites_policy
+      - describes_process
+    runtime_usage:
+      - rag_context
+      - source_citation
+      - ingestion_evidence
+
+  configuration:
+    description: Runtime and governance configuration for routing, retrieval, policies, thresholds, and source selection.
+    owner_kb: config_kb
+    direct_route: false
+    route_kind: supporting_configuration
+    executable: false
+    stores: [repository, relational]
+    valid_relations:
+      - configures_route
+      - configures_source
+      - governs_asset_type
+    runtime_usage:
+      - route_policy
+      - source_selection
+      - runtime_governance
+
+  asset_set:
+    description: Versioned and atomic deployment unit containing assets of one primary type.
+    owner_kb: config_kb
+    direct_route: false
+    route_kind: supporting_knowledge
+    executable: false
+    stores: [repository, relational]
+    valid_relations:
+      - groups_flow
+      - groups_process
+      - groups_plan
+      - groups_ruleset
+      - groups_rule
+      - groups_entity
+      - groups_tool
+      - groups_qa
+      - groups_causality
+      - groups_user_task
+    runtime_usage:
+      - atomic_deployment_unit
+      - grouped_navigation
+      - lifecycle_governance
+
+  causality:
+    description: Governed cause-effect assertion linking business conditions, rules, entities, plans, flows, and processes.
+    owner_kb: causality_kb
+    direct_route: false
+    route_kind: supporting_knowledge
+    executable: false
+    stores: [repository, graph, document, vector]
+    valid_relations:
+      - has_cause
+      - has_effect
+      - supported_by_rule
+      - applies_to_process
+      - applies_to_flow
+      - affects_entity
+    runtime_usage:
+      - causal_explanation
+      - impact_analysis
+      - risk_reasoning

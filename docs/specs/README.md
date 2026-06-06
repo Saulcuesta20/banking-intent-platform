@@ -1,7 +1,7 @@
 # Banking Intent Platform Specifications
 
 ## Purpose
-Define the MVP specifications for an Enterprise Banking Intent Engine and Knowledge Graph Platform.
+Define the MVP specifications for an Enterprise Banking Intent Engine and Knowledge Base Platform.
 
 For the product vision, full feature catalog, banking flow coverage, and user
 stories with acceptance criteria, see
@@ -10,6 +10,19 @@ stories with acceptance criteria, see
 For the runtime `ask` flow diagrams, including invoked classes and methods, see
 `docs/specs/ask-sequence-diagrams.md`.
 
+For the enterprise asset model, owner knowledge bases, asset routing, task/tool
+boundaries, and YAML registry, see `docs/specs/enterprise-asset-registry.md`.
+
+For the proposed agent abstraction over LangGraph, ingestion coordinator,
+ask coordinator, and specialist asset agents, see
+`docs/specs/agent-langgraph-architecture.md`.
+
+For the Enterprise AI Launcher design, Lowdefy integration, component
+breakdown, and tech stack, see `docs/launcher/README.md`.
+
+For Python readability standards, dataclass usage, Pydantic boundaries, and
+component style rules, see `docs/specs/python-code-standards.md`.
+
 ## Responsibilities
 - Establish the target architecture and development order.
 - Keep business logic independent from provider frameworks.
@@ -17,24 +30,29 @@ For the runtime `ask` flow diagrams, including invoked classes and methods, see
 
 ## Main Components
 - Knowledge ingestion
-- Deterministic ingestion pipeline
+- Knowledge base
+- Deterministic ingestion orchestrator
 - LangGraph ingestion orchestration
-- Ingestion reasoning
-- Knowledge graph search
-- Concept vocabulary
-- Knowledge graph
+- Agent and LangGraph architecture
+- Python code standards
+- Extraction instructions
+- Knowledge base search
+- Entity vocabulary
+- Knowledge-base graph adapter
 - Ask flow selection
 - Ask question trace
 - Ask answer building
 - Ingestion-time business event, planning, and task decomposition
 - Fixed process definition artifacts
+- Configurable enterprise asset registry
+- Owner knowledge bases for processes, planning, rules, Q&A, business model, documents, and configuration
 - Process execution orchestration
 - Capability service
 - Approval service
 - Audit service
 
 ## Data Flow
-Natural Language -> AskService -> Question Understanding -> KnowledgeGraphService Search -> Flow Selection -> AnswerBuilder -> Approval -> Audit -> Output JSON
+Natural Language -> AskService -> Question Understanding -> KB/Index Search -> PlanningService -> Flow Selection -> AnswerBuilder -> Approval -> Audit -> Output JSON
 
 ## Example Input/Output
 Input: `Quiero refinanciar mi prestamo`
@@ -51,13 +69,13 @@ Output:
 ```
 
 ## Interfaces
-- `app/ingestion/providers.py::KnowledgeIngestionProvider`
-- `app/ingestion/pipeline.py::IngestionPipelineService`
-- `app/ingestion/pipeline.py::LangGraphIngestionPipelineService`
-- `app/ingestion/reasoning.py::IngestionReasoningProvider`
-- `app/ingestion/process_loader.py::ProcessDefinitionLoader`
-- `app/orchestrator/process_execution.py::ProcessExecutionService`
-- `app/knowledge_graph/providers.py::KnowledgeGraphRepository`
+- `app/ingestion/orchestrator.py::IngestionOrchestratorService`
+- `app/ingestion/orchestrator.py::IngestionOrchestratorService`
+- `app/ingestion/orchestrator.py::LangGraphIngestionOrchestratorService`
+- `app/ingestion/orchestrator.py::ExtractionInstructionBuilder`
+- `app/knowledge_base/repository.py::EnterpriseAssetRepository`
+- `app/orchestrator/process_execution.py::OrchestrationExecutorService`
+- `app/knowledge_base/ports.py::KnowledgeBaseRepository`
 - `app/ask/providers.py::FlowSelectionProvider`
 - `app/ask/answer.py::AnswerBuilder`
 - `app/capability/providers.py::CapabilityProvider`
@@ -69,11 +87,13 @@ The operational path uses LangGraph ask orchestration, GraphRAG over Neo4j,
 LangChain prompt orchestration, and an OpenAI-compatible LLM. The runtime ask
 path requires those providers and does not resolve intent through a local
 non-LLM path. Ingestion uses a
-custom deterministic pipeline for scan, parse, validation, concept synonym
-normalization, artifact writing, audit, and graph loading. AutoGen may provide
-ingestion recommendations, but it does not own final JSON or Neo4j loading.
-Runtime does not create plans, tasks, events, or concepts; it projects ingested
-knowledge through `AnswerBuilder`. Each component keeps its own
+custom deterministic pipeline for scan, parse, validation, entity synonym
+normalization, artifact writing, audit, and graph loading. Role-based ingestion
+extraction instructions may provide recommendations, but it does not own final JSON or Neo4j
+loading.
+Runtime does not create plans, tasks, events, or entities; it projects ingested
+knowledge through `AnswerBuilder`. Tasks are composed of tools, and
+tools are the lowest approved capability level. Each component keeps its own
 service, provider protocol, and adapter under `app/<component>`.
 `app/factory.py` wires runtime services together but does not own component
 business logic.

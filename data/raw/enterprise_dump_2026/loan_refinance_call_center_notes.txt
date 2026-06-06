@@ -1,0 +1,21 @@
+Call center notes - loan refinance.
+
+Agents say customers usually ask to lower the monthly installment, extend the
+term, compare new conditions, or understand why a refinance offer was declined.
+The current manual tells agents to identify the customer, review current loan
+status, calculate available conditions, compare refinance options, collect
+missing documents, and submit a refinance request for approval when required.
+
+Known phrases:
+- quiero bajar la cuota
+- necesito mejores condiciones
+- como calculan las condiciones
+- por que no califico para refinanciar
+- tengo atraso, puedo refinanciar?
+
+System names seen in old documentation:
+- loan.conditions.calculate
+- loan_refinance.compare
+- loan_refinance.create
+- approval.update
+

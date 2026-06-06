@@ -1,0 +1,12 @@
+{
+  "formId": "account-opening-form",
+  "version": "v1",
+  "pageId": "account-opening",
+  "title": "Captacion - Apertura de cuenta",
+  "submitTitle": "Abrir cuenta",
+  "fields": [
+    { "id": "customer_id", "label": "Cliente", "type": "text", "required": true, "placeholder": "ID o nombre del cliente" },
+    { "id": "account_type", "label": "Tipo de cuenta", "type": "text", "required": true, "placeholder": "Ahorro, corriente, nomina" },
+    { "id": "initial_deposit", "label": "Deposito inicial", "type": "number", "required": false, "placeholder": "1000" }
+  ]
+}

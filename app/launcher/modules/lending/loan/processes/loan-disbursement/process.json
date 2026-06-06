@@ -1,0 +1,16 @@
+{
+  "processId": "loan.disbursement",
+  "name": "Desembolso de prestamo",
+  "intent": "quiero realizar el desembolso del prestamo aprobado",
+  "businessEvent": "loan.disbursement.requested",
+  "sourcePath": "config/definitions/flows/loan_disbursement.flow.yaml",
+  "processIds": [
+    "loan_disbursement"
+  ],
+  "userTasks": [
+    "capture disbursement"
+  ],
+  "lowdefyPage": "loan-disbursement",
+  "currentFormVersion": "v1",
+  "formId": "loan-disbursement"
+}

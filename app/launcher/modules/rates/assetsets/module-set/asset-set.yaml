@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: rates-module-set
+  name: Tasas Module Set
+  version: 1.0.0
+  domain: master-data
+  module: rates
+  description: Versioned module deployment set for rates.
+  tags:
+  - master-data
+  - rates
+  - module
+spec:
+  assetType: module
+  assets:
+  - assets/module-rates.yaml

@@ -1,0 +1,20 @@
+[
+  {
+    "domainId": "master-data",
+    "label": "Catalogos y Datos Maestros",
+    "description": "Clientes, tasas, productos, servicios y parametros maestros.",
+    "order": 10
+  },
+  {
+    "domainId": "deposits",
+    "label": "Captacion",
+    "description": "Productos pasivos, cuentas, depositos y relacion de fondeo.",
+    "order": 20
+  },
+  {
+    "domainId": "lending",
+    "label": "Colocacion",
+    "description": "Prestamos, creditos, originacion, pagos y desembolsos.",
+    "order": 30
+  }
+]

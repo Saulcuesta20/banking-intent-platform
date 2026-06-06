@@ -1,0 +1,20 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: loan-form-set
+  name: Prestamos Form Set
+  version: 1.0.0
+  domain: lending
+  module: loan
+  description: Versioned form deployment set for loan.
+  tags:
+  - lending
+  - loan
+  - form
+spec:
+  assetType: form
+  assets:
+  - assets/form-loan-create-form.yaml
+  - assets/form-loan-disbursement-form.yaml
+  - assets/form-loan-payment-form.yaml
+  - assets/form-loan-refinance-form.yaml

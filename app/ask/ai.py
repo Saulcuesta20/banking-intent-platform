@@ -4,11 +4,13 @@ import json
 import os
 import urllib.error
 import urllib.request
+from dataclasses import dataclass, field
 from importlib import import_module
 from typing import Any, Protocol
 
 from app.ask.providers import FlowSelectionProvider
 from app.models import KnowledgeRecord
+from app.tools.models import ToolDefinition
 
 
 def _optional_import(module_name: str, friendly_name: str | None = None):
@@ -37,6 +39,18 @@ class OpenAIJSONClient:
         self.model = model or os.getenv("INTENT_LLM_MODEL", "gpt-4o-mini")
         self.base_url = (base_url or os.getenv("OPENAI_BASE_URL") or "https://api.openai.com/v1").rstrip("/")
         self.timeout_seconds = timeout_seconds
+        self.tool_definition = ToolDefinition(
+            tool_id="llm.flow_selection.complete_json",
+            tool_type="llm_tool",
+            operation="select_flow",
+            resource="ask.flow_selection",
+            label="Flow selection LLM",
+            description="Selects a known flow from grounded graph context and returns JSON.",
+            llm_operation="json_completion",
+            llm_model=self.model,
+            llm_provider="openai_compatible",
+            endpoint=f"{self.base_url}/chat/completions",
+        )
         if not self.api_key:
             raise RuntimeError("OPENAI_API_KEY is required when USE_AI_PROVIDERS=true.")
 
@@ -51,7 +65,7 @@ class OpenAIJSONClient:
                     "content": (
                         "You are a constrained banking GraphRAG intent classifier. "
                         "Use only the graph context provided by the application. "
-                        "Do not invent intents, user tasks, or actions."
+                        "Do not invent intents, user tasks, or tools."
                     ),
                 },
                 {"role": "user", "content": prompt},
@@ -80,10 +94,10 @@ class OpenAIJSONClient:
         return json.loads(content)
 
 
+@dataclass
 class LLMDecisionRecorder:
-    def __init__(self):
-        self.prompt: str = ""
-        self.answer: dict[str, Any] = {}
+    prompt: str = ""
+    answer: dict[str, Any] = field(default_factory=dict)
 
     def record(self, prompt: str, answer: dict[str, Any]) -> None:
         self.prompt = prompt
@@ -123,7 +137,7 @@ class LLMFlowSelectionProvider(FlowSelectionProvider):
                 "LLM query understanding context:\n"
                 "{question_understanding}\n\n"
                 "Valid banking graph context follows. These are the only allowed flows, "
-                "user tasks, front actions, and back actions:\n"
+                "user tasks, frontend tools, and backend tools:\n"
                 "{graph_context}\n\n"
                 "Return only JSON with this exact shape:\n"
                 "{{\n"
@@ -138,7 +152,7 @@ class LLMFlowSelectionProvider(FlowSelectionProvider):
                 "- If query understanding says the request is ambiguous and the user did not explicitly ask for one candidate flow, return can_resolve=false.\n"
                 "- Do not choose a broad domain-support flow just because it is loosely related to the words in the question.\n"
                 "- If the customer needs a clarification question before choosing between multiple possible intents, return can_resolve=false.\n"
-                "- Do not propose tasks or actions that are not in the graph context.\n"
+                "- Do not propose tasks or tools that are not in the graph context.\n"
             ),
         ).format(
             question=question,

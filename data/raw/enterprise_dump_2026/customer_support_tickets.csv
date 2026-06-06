@@ -1,0 +1,7 @@
+ticket_id,channel,customer_phrase,agent_resolution,notes
+T-1001,branch,"quiero transferir 75000 dolares a otro pais","captured transfer details and requested purpose document","possible high value transfer review"
+T-1002,mobile,"como calculan las condiciones de refinanciacion","explained loan condition calculation and offered refinance review","tool explanation pattern"
+T-1003,call_center,"necesito abrir cuenta para pago automatico","checked eligible account and explained automatic debit requirements","qa plus rule pattern"
+T-1004,call_center,"mi transferencia quedo retenida","explained compliance review and manager approval","policy and process pattern"
+T-1005,branch,"quiero bajar la cuota de mi prestamo","started refinance review","flow execution intent"
+

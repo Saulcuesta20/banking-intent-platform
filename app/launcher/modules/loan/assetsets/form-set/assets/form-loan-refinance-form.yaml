@@ -1,0 +1,41 @@
+asset_id: form.loan-refinance-form
+asset_type: form
+name: Colocacion - Refinanciamiento de prestamo
+version: v1
+description: Versioned form definition for loan.
+tags:
+- lending
+- loan
+- form
+- lowdefy
+payload:
+  formId: loan-refinance-form
+  version: v1
+  pageId: loan-refinance
+  title: Colocacion - Refinanciamiento de prestamo
+  submitTitle: Revisar opciones
+  fields:
+  - id: customer_id
+    label: Cliente
+    type: text
+    required: true
+    placeholder: ID o nombre del cliente
+  - id: loan_id
+    label: Prestamo actual
+    type: text
+    required: true
+    placeholder: Numero de prestamo
+  - id: requested_term
+    label: Nuevo plazo solicitado
+    type: text
+    required: false
+    placeholder: 12, 24, 36 o 48 meses
+  - id: reason
+    label: Motivo
+    type: textarea
+    required: false
+    placeholder: Describe por que solicita refinanciamiento
+  domain_id: lending
+  module_id: loan
+  renderer: lowdefy
+  binding_status: phase_two

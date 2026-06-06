@@ -1,0 +1,12 @@
+{
+  "formId": "loan-disbursement-form",
+  "version": "v1",
+  "pageId": "loan-disbursement",
+  "title": "Colocacion - Desembolso",
+  "submitTitle": "Solicitar desembolso",
+  "fields": [
+    { "id": "loan_id", "label": "Prestamo aprobado", "type": "text", "required": true, "placeholder": "Numero de prestamo" },
+    { "id": "destination_account", "label": "Cuenta destino", "type": "text", "required": true, "placeholder": "Cuenta destino" },
+    { "id": "amount", "label": "Monto a desembolsar", "type": "number", "required": true, "placeholder": "10000" }
+  ]
+}

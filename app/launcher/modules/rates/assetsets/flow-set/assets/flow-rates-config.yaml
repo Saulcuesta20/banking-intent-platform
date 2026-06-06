@@ -1,0 +1,23 @@
+asset_id: flow.rates.config
+asset_type: flow
+name: Configurar tasa
+description: quiero configurar una tasa
+tags:
+- master-data
+- rates
+- flow
+relations:
+- type: implemented_by_process
+  target_asset_id: process.rates.config
+payload:
+  flow_id: rates.config
+  flow_name: Configurar tasa
+  intent: quiero configurar una tasa
+  business_event: rates.config.requested
+  domain_id: master-data
+  module_id: rates
+  renderer: external
+  user_tasks:
+  - capture rate configuration
+  related_process_ids:
+  - rates_config
