@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "command": {
+    "kb-stats": {
+      "description": "Show asset counts per Knowledge Base and Engine (catalog, graph, vector, document)",
+      "template": "Run `source .venv/bin/activate && kb stats` and show me the results",
+      "prompt": "Run `source .venv/bin/activate && kb stats` and show me the results"
+    },
+    "kb-query": {
+      "description": "Query the knowledge base with a natural language question",
+      "template": "Run `source .venv/bin/activate && kb query` and show me the results",
+      "prompt": "Run `source .venv/bin/activate && kb query` and show me the results"
+    }
+  }
+}
