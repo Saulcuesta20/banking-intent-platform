@@ -1,0 +1,25 @@
+asset_id: user_task.present_offer_to_client
+asset_type: user_task
+name: Present Offer to Client
+version: 1.0.0
+owner: business_model_kb
+description: Show the refinancing offer to the client and obtain acceptance.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_present_offer_to_client
+  task: present_offer_to_client
+  type: manual
+  name: Present Offer to Client
+  description: Show the refinancing offer to the client and obtain acceptance.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Present Offer to Client
+  normalized_name: present offer to client
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

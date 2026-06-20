@@ -8,6 +8,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+from app.events import emit_asset_status_change
 from app.knowledge_base.models import EnterpriseAsset
 from app.knowledge_base.registry import EnterpriseAssetRegistry
 
@@ -175,6 +176,10 @@ class AssetCatalogStore:
             self._ensure_column(connection, "assets", "canonical_name", "TEXT")
             self._ensure_column(connection, "assets", "normalized_name", "TEXT")
             self._ensure_column(connection, "assets", "aliases_json", "TEXT NOT NULL DEFAULT '[]'")
+            self._ensure_column(connection, "assets", "structural_layer", "TEXT")
+            self._ensure_column(connection, "assets", "business_layer", "TEXT")
+            connection.execute("CREATE INDEX IF NOT EXISTS idx_assets_structural_layer ON assets(structural_layer)")
+            connection.execute("CREATE INDEX IF NOT EXISTS idx_assets_business_layer ON assets(business_layer)")
             if clear:
                 connection.execute("DELETE FROM lifecycle_events")
                 connection.execute("DELETE FROM active_asset_sets")
@@ -194,14 +199,22 @@ class AssetCatalogStore:
         canonical_name = self._canonical_name_for(asset)
         normalized_name = self._normalized_name(canonical_name or asset.asset_id)
         aliases = self._aliases_for(asset)
+        payload = asset.payload or {}
+        structural_layer = (
+            getattr(asset, "structural_layer", None)
+            or (payload.get("structural_layer") if isinstance(payload, dict) else None)
+            or getattr(asset, "business_layer", None)
+            or (payload.get("business_layer") if isinstance(payload, dict) else None)
+        )
+        business_layer = getattr(asset, "business_layer", None) or structural_layer
         with self._connect() as connection:
             connection.execute(
                 """
                 INSERT INTO assets (
                     asset_id, asset_type, name, version, status, primary_kb, stores_json, payload_json,
-                    canonical_name, normalized_name, aliases_json, updated_at
+                    canonical_name, normalized_name, aliases_json, structural_layer, business_layer, updated_at
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
                 ON CONFLICT(asset_id) DO UPDATE SET
                     asset_type = excluded.asset_type,
                     name = excluded.name,
@@ -213,6 +226,8 @@ class AssetCatalogStore:
                     canonical_name = excluded.canonical_name,
                     normalized_name = excluded.normalized_name,
                     aliases_json = excluded.aliases_json,
+                    structural_layer = excluded.structural_layer,
+                    business_layer = excluded.business_layer,
                     updated_at = CURRENT_TIMESTAMP
                 """,
                 (
@@ -227,6 +242,8 @@ class AssetCatalogStore:
                     canonical_name,
                     normalized_name,
                     json.dumps(aliases, ensure_ascii=False),
+                    structural_layer,
+                    business_layer,
                 ),
             )
             connection.execute("DELETE FROM relationships WHERE source_asset_id = ?", (asset.asset_id,))
@@ -329,6 +346,7 @@ class AssetCatalogStore:
             "retired": set(),
         }
         now = self._now()
+        member_asset_ids: list[str] = []
         with self._connect() as connection:
             row = connection.execute(
                 "SELECT status FROM asset_set_versions WHERE asset_set_id = ? AND version = ?",
@@ -356,6 +374,11 @@ class AssetCatalogStore:
                 """,
                 (to_status, now, asset_set_id, version),
             )
+            member_rows = connection.execute(
+                "SELECT asset_id FROM asset_set_members WHERE asset_set_id = ? AND asset_set_version = ?",
+                (asset_set_id, version),
+            ).fetchall()
+            member_asset_ids = [str(r["asset_id"]) for r in member_rows]
             connection.execute(
                 """
                 INSERT INTO lifecycle_events (
@@ -375,6 +398,15 @@ class AssetCatalogStore:
                     """,
                     (str(uuid.uuid4()), asset_set_id, version, to_status, actor, comment, now, now),
                 )
+        emit_asset_status_change(
+            asset_set_id, "asset_set", from_status, to_status,
+            version=version, actor=actor,
+        )
+        for asset_id in member_asset_ids:
+            emit_asset_status_change(
+                asset_id, "asset", from_status, to_status,
+                version=version, asset_set_id=asset_set_id,
+            )
         return self.get_asset_set(asset_set_id, version) or {}
 
     def deploy_asset_set(
@@ -389,6 +421,8 @@ class AssetCatalogStore:
         """Atomically activate a validated AssetSet version for one environment."""
         now = self._now()
         deployment_id = str(uuid.uuid4())
+        deprecated_asset_ids: list[str] = []
+        activated_asset_ids: list[str] = []
         with self._connect() as connection:
             row = connection.execute(
                 "SELECT status FROM asset_set_versions WHERE asset_set_id = ? AND version = ?",
@@ -424,6 +458,11 @@ class AssetCatalogStore:
                     """,
                     (now, asset_set_id, previous_version),
                 )
+                deprecated_rows = connection.execute(
+                    "SELECT asset_id FROM asset_set_members WHERE asset_set_id = ? AND asset_set_version = ?",
+                    (asset_set_id, previous_version),
+                ).fetchall()
+                deprecated_asset_ids = [str(r["asset_id"]) for r in deprecated_rows]
             connection.execute(
                 """
                 UPDATE asset_set_versions SET status = 'active', updated_at = ?
@@ -441,6 +480,11 @@ class AssetCatalogStore:
                 """,
                 (now, asset_set_id, version),
             )
+            activated_rows = connection.execute(
+                "SELECT asset_id FROM asset_set_members WHERE asset_set_id = ? AND asset_set_version = ?",
+                (asset_set_id, version),
+            ).fetchall()
+            activated_asset_ids = [str(r["asset_id"]) for r in activated_rows]
             connection.execute(
                 """
                 INSERT INTO active_asset_sets (
@@ -487,6 +531,20 @@ class AssetCatalogStore:
                     f"Deployed to {environment}",
                     now,
                 ),
+            )
+        emit_asset_status_change(
+            asset_set_id, "asset_set", row["status"], "active",
+            version=version, environment=environment, actor=actor,
+        )
+        for aid in deprecated_asset_ids:
+            emit_asset_status_change(
+                aid, "asset", "active", "deprecated",
+                version=previous_version, asset_set_id=asset_set_id,
+            )
+        for aid in activated_asset_ids:
+            emit_asset_status_change(
+                aid, "asset", "active", "active",
+                version=version, asset_set_id=asset_set_id, environment=environment,
             )
         return self.get_deployment(deployment_id) or {}
 
@@ -706,12 +764,17 @@ class AssetCatalogStore:
         with self._connect() as connection:
             row = connection.execute(
                 """
-                SELECT v.*, m.asset_set_id, m.asset_set_version
+                SELECT v.*, m.asset_set_id, m.asset_set_version, active.environment AS active_environment
                 FROM asset_versions v
                 LEFT JOIN asset_set_members m
                   ON m.asset_id = v.asset_id AND m.asset_version = v.version
+                LEFT JOIN active_asset_sets active
+                  ON active.asset_set_id = m.asset_set_id AND active.asset_set_version = m.asset_set_version
                 WHERE v.asset_id = ? AND (? IS NULL OR v.version = ?)
-                ORDER BY v.updated_at DESC LIMIT 1
+                ORDER BY
+                  CASE WHEN active.environment IS NOT NULL THEN 0 ELSE 1 END,
+                  v.updated_at DESC
+                LIMIT 1
                 """,
                 (asset_id, version, version),
             ).fetchone()
@@ -777,6 +840,8 @@ class AssetCatalogStore:
         owner_kb: str | None = None,
         query: str | None = None,
         relation_type: str | None = None,
+        structural_layer: str | None = None,
+        business_layer: str | None = None,
         status: str = "approved",
         limit: int = 50,
     ) -> list[dict[str, Any]]:
@@ -797,6 +862,10 @@ class AssetCatalogStore:
             join = "JOIN relationships r ON r.source_asset_id = assets.asset_id"
             where.append("r.relation_type = ?")
             params.append(relation_type)
+        layer_filter = structural_layer or business_layer
+        if layer_filter:
+            where.append("(structural_layer = ? OR business_layer = ?)")
+            params.extend([layer_filter, layer_filter])
         if status != "all":
             where.append("status = ?")
             params.append(status)
@@ -813,7 +882,8 @@ class AssetCatalogStore:
                 SELECT DISTINCT
                     assets.asset_id, assets.asset_type, assets.name, assets.version, assets.status,
                     assets.primary_kb, assets.stores_json, assets.payload_json, assets.updated_at,
-                    assets.canonical_name, assets.normalized_name, assets.aliases_json
+                    assets.canonical_name, assets.normalized_name, assets.aliases_json,
+                    assets.structural_layer, assets.business_layer
                 FROM assets
                 {join}
                 {clause}
@@ -857,17 +927,141 @@ class AssetCatalogStore:
                 "relation_type": row["relation_type"],
                 "target_asset_id": row["target_asset_id"],
                 "metadata": json.loads(row["metadata_json"] or "{}"),
-                "target": {
-                    "asset_id": row["target_asset_id"],
-                    "asset_type": row["asset_type"],
-                    "name": row["name"],
-                    "status": row["status"],
-                    "primary_kb": row["primary_kb"],
-                    "stores": json.loads(row["stores_json"]) if row["stores_json"] else [],
-                },
+                "target": self._resolve_relationship_target(
+                    row["target_asset_id"],
+                    asset_type=row["asset_type"] or self._asset_type_from_asset_id(row["target_asset_id"]),
+                    name=row["name"],
+                    status=row["status"],
+                    primary_kb=row["primary_kb"],
+                    stores_json=row["stores_json"],
+                ),
             }
             for row in rows
         ]
+
+    def find_referencers(
+        self,
+        target_asset_id: str,
+        relation_type: str | None = None,
+    ) -> list[dict[str, Any]]:
+        """Find all assets that reference the given target asset (inbound relationships).
+
+        Returns a list of dicts with keys: source_asset_id, relation_type, target_asset_id, metadata_json
+        """
+        with self._connect() as connection:
+            if relation_type is not None:
+                rows = connection.execute(
+                    """
+                    SELECT source_asset_id, relation_type, target_asset_id, metadata_json
+                    FROM relationships
+                    WHERE target_asset_id = ? AND relation_type = ?
+                    ORDER BY source_asset_id, relation_type
+                    """,
+                    (target_asset_id, relation_type),
+                ).fetchall()
+            else:
+                rows = connection.execute(
+                    """
+                    SELECT source_asset_id, relation_type, target_asset_id, metadata_json
+                    FROM relationships
+                    WHERE target_asset_id = ?
+                    ORDER BY source_asset_id, relation_type
+                    """,
+                    (target_asset_id,),
+                ).fetchall()
+        return [dict(row) for row in rows]
+
+    def _resolve_relationship_target(
+        self,
+        target_asset_id: str,
+        *,
+        asset_type: str | None,
+        name: str | None,
+        status: str | None,
+        primary_kb: str | None,
+        stores_json: str | None,
+    ) -> dict[str, Any]:
+        """Resolve a relationship target using exact ids first, then catalog aliases and payload hints."""
+        target = self.resolve_asset_reference(target_asset_id, asset_type=asset_type)
+        if target:
+            return {
+                "asset_id": target.get("asset_id"),
+                "asset_type": target.get("asset_type"),
+                "name": target.get("name"),
+                "status": target.get("status"),
+                "primary_kb": target.get("primary_kb"),
+                "stores": target.get("stores") or [],
+            }
+        return {
+            "asset_id": target_asset_id,
+            "asset_type": asset_type,
+            "name": name,
+            "status": status,
+            "primary_kb": primary_kb,
+            "stores": json.loads(stores_json) if stores_json else [],
+        }
+
+    def resolve_asset_reference(self, reference: str, *, asset_type: str | None = None) -> dict[str, Any] | None:
+        """Return the best matching asset for a reference id, alias, or payload hint."""
+        candidate = str(reference or "").strip()
+        if not candidate:
+            return None
+        exact = self.get_asset(candidate)
+        if exact:
+            return exact
+        suffix = candidate.split(".", 1)[1] if "." in candidate else candidate
+        normalized_suffix = self._normalized_name(suffix)
+        normalized_exact = self._normalized_name(candidate)
+        terms = [term for term in [candidate, suffix, normalized_suffix, normalized_exact] if term]
+        if not terms:
+            return None
+        like_clauses = []
+        params: list[Any] = []
+        for term in terms:
+            like_clauses.append(
+                "(asset_id = ? OR asset_id LIKE ? OR name = ? OR canonical_name = ? OR normalized_name = ? OR aliases_json LIKE ? OR payload_json LIKE ?)"
+            )
+            params.extend([term, f"%{term}%", term, term, term, f"%{term}%", f"%{term}%"])
+        clause = " OR ".join(like_clauses)
+        type_clause = "asset_type = ?" if asset_type else "1=1"
+        if asset_type:
+            params = [asset_type, *params]
+        with self._connect() as connection:
+            rows = connection.execute(
+                f"""
+                SELECT asset_id, asset_type, name, version, status, primary_kb, stores_json, payload_json,
+                       updated_at, canonical_name, normalized_name, aliases_json
+                FROM assets
+                WHERE {type_clause} AND ({clause})
+                """,
+                params,
+            ).fetchall()
+        if not rows:
+            return None
+
+        def score(row: sqlite3.Row) -> tuple[int, str]:
+            asset_id = str(row["asset_id"] or "")
+            canonical_name = str(row["canonical_name"] or "")
+            normalized_name = str(row["normalized_name"] or "")
+            name = str(row["name"] or "")
+            payload_json = str(row["payload_json"] or "")
+            score = 0
+            if asset_id == candidate:
+                score = 100
+            elif asset_id == suffix or asset_id.endswith(f".{suffix}"):
+                score = 95
+            elif canonical_name == candidate or canonical_name == suffix:
+                score = 90
+            elif normalized_name == normalized_suffix:
+                score = 85
+            elif name.casefold() == suffix.casefold() or name.casefold() == candidate.casefold():
+                score = 80
+            elif suffix in payload_json or normalized_suffix in payload_json:
+                score = 70
+            return score, asset_id
+
+        row = sorted(rows, key=score, reverse=True)[0]
+        return self._row_to_asset(row)
 
     def totals(self) -> dict[str, int]:
         """Return asset counts by type from the catalog database."""
@@ -945,7 +1139,22 @@ class AssetCatalogStore:
             (asset_set_id, version),
         ).fetchall()
         stores = sorted({store for row in rows for store in json.loads(row["stores_json"] or "[]")})
-        return {store: {"status": "scheduled", "asset_count": len(rows)} for store in stores}
+        prev_deploy = connection.execute(
+            """
+            SELECT projection_results_json FROM deployments
+            WHERE asset_set_id = ? AND asset_set_version = ?
+            ORDER BY created_at DESC LIMIT 1
+            """,
+            (asset_set_id, version),
+        ).fetchone()
+        prev_results = json.loads(prev_deploy["projection_results_json"] or "{}") if prev_deploy else {}
+        results: dict[str, Any] = {}
+        for store in stores:
+            prev = prev_results.get(store, {})
+            status = prev.get("status", "scheduled")
+            count = prev.get("asset_count", len(rows))
+            results[store] = {"status": status, "asset_count": count}
+        return results
 
     @staticmethod
     def _upsert_asset_version(
@@ -1018,6 +1227,12 @@ class AssetCatalogStore:
             "canonical_name": row["canonical_name"] if "canonical_name" in row.keys() else None,
             "normalized_name": row["normalized_name"] if "normalized_name" in row.keys() else None,
             "aliases": json.loads(row["aliases_json"]) if "aliases_json" in row.keys() and row["aliases_json"] else [],
+            "structural_layer": (
+                row["structural_layer"]
+                if "structural_layer" in row.keys() and row["structural_layer"]
+                else (row["business_layer"] if "business_layer" in row.keys() else None)
+            ),
+            "business_layer": row["business_layer"] if "business_layer" in row.keys() else None,
             "payload": payload,
         }
 
@@ -1062,3 +1277,11 @@ class AssetCatalogStore:
     @staticmethod
     def _normalized_name(value: str) -> str:
         return " ".join(str(value).lower().replace("_", " ").split())
+
+    @staticmethod
+    def _asset_type_from_asset_id(asset_id: str) -> str | None:
+        value = str(asset_id or "")
+        if "." not in value:
+            return None
+        asset_type, _ = value.split(".", 1)
+        return asset_type or None

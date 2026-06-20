@@ -1,0 +1,51 @@
+asset_id: asset_set.entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio
+asset_type: asset_set
+name: Entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio.
+text: 'entity.el_incumplimiento_contractual causes entity.aumento_del_riesgo_crediticio
+
+  aumento del riesgo crediticio
+
+  El incumplimiento contractual'
+tags:
+- asset_set
+- entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio
+relations:
+- type: groups_causality
+  target_asset_id: causality.entity_el_incumplimiento_contractual_causes_entity_aumento_del_riesgo_crediticio
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.aumento_del_riesgo_crediticio
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.el_incumplimiento_contractual
+  metadata: {}
+payload:
+  transaction_id: entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio
+  asset_ids:
+  - causality.entity_el_incumplimiento_contractual_causes_entity_aumento_del_riesgo_crediticio
+  - entity.aumento_del_riesgo_crediticio
+  - entity.el_incumplimiento_contractual
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.entity_el_incumplimiento_contractual_causes_entity_aumento_del_riesgo_crediticio
+    asset_type: causality
+  - asset_id: entity.aumento_del_riesgo_crediticio
+    asset_type: entity
+  - asset_id: entity.el_incumplimiento_contractual
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: Entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio
+    Asset Set
+  normalized_name: entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

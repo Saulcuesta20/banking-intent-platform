@@ -1,0 +1,22 @@
+asset_id: entity.la_oferta_de_refinanciamiento
+asset_type: entity
+name: La oferta de refinanciamiento
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: La oferta de refinanciamiento
+  incluye tasa, plazo y comision.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: section_entities
+  business_layer: capability
+  entity_role: capability
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: La oferta de refinanciamiento
+  normalized_name: la oferta de refinanciamiento
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

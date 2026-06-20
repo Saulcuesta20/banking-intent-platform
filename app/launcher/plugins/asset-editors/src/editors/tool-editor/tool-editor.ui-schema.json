@@ -1,0 +1,53 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Tool Definition",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/tool_id"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/tool_type"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/operation"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/resource"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/label"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/description"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+asset_id: user_task.provide_kyc_documents
+asset_type: user_task
+name: Provide KYC Documents
+version: 1.0.0
+owner: business_model_kb
+description: Customer uploads identification and proof of address documents.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_provide_kyc_docs
+  task: provide_kyc_documents
+  type: document_upload
+  name: Provide KYC Documents
+  description: Customer uploads identification and proof of address documents.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Provide KYC Documents
+  normalized_name: provide kyc documents
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

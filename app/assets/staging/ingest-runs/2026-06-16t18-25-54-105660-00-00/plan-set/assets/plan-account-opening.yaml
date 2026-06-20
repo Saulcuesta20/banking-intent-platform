@@ -1,0 +1,115 @@
+asset_id: plan.account.opening
+asset_type: plan
+name: Automatic payment setup
+version: 1.0.0
+owner: planning_kb
+description: 'Goal: configure recurring payment for an existing loan.'
+text: 'Goal: configure recurring payment for an existing loan.
+
+
+  Steps:
+
+  1. Identify the customer.
+
+  2. Verify the loan is active.
+
+  3. Check eligible savings account.
+
+  4. Explain account requirement when no eligible account exists.
+
+  5. Offer account opening journey.
+
+  6. Capture payment day and customer acceptance.
+
+  7. Enable automatic debit and send confirmation.
+
+
+  Expected tools: customer.identity.validate, loan.status.read,
+
+  account.eligibility.check, ui.account.open, automatic_debit.create,
+
+  notification.send.'
+tags:
+- orchestration_plan
+- customer.wants.to.open.a.checking.account.and.get.a.debit.card
+- open.account
+relations:
+- type: has_step
+  target_asset_id: user_task.identify_the_customer
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.verify_the_loan_is_active
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.check_eligible_savings_account
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.explain_account_requirement_when_no_eligible_account_exists
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.offer_account_opening_journey
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.capture_payment_day_and_customer_acceptance
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.enable_automatic_debit_and_send_confirmation
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.account.opening
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.automatic.payment.setup
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.explain_account_requirement
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.offer_account_opening
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.flow.account.opening
+  metadata: {}
+payload:
+  steps:
+  - Identify the customer
+  - Verify the loan is active
+  - Check eligible savings account
+  - Explain account requirement when no eligible account exists
+  - Offer account opening journey
+  - Capture payment day and customer acceptance
+  - Enable automatic debit and send confirmation
+  plan_text: 'Goal: configure recurring payment for an existing loan.
+
+
+    Steps:
+
+    1. Identify the customer.
+
+    2. Verify the loan is active.
+
+    3. Check eligible savings account.
+
+    4. Explain account requirement when no eligible account exists.
+
+    5. Offer account opening journey.
+
+    6. Capture payment day and customer acceptance.
+
+    7. Enable automatic debit and send confirmation.
+
+
+    Expected tools: customer.identity.validate, loan.status.read,
+
+    account.eligibility.check, ui.account.open, automatic_debit.create,
+
+    notification.send.'
+  transaction_id: account.opening
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Automatic payment setup
+  normalized_name: automatic payment setup
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

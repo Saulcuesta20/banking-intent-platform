@@ -1,0 +1,26 @@
+asset_id: plan.plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+asset_type: plan
+name: Plan cobranza preventiva
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para cobranza preventiva: detectar senales, priorizar cartera,
+  contactar y documentar acuerdo.'
+text: 'Plan para cobranza preventiva: detectar senales, priorizar cartera, contactar
+  y documentar acuerdo.'
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: 'Plan para cobranza preventiva: detectar senales, priorizar cartera,
+    contactar y documentar acuerdo.'
+  source_section: Plans
+  transaction_id: plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Plan cobranza preventiva
+  normalized_name: plan cobranza preventiva
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,114 @@
+asset_id: flow.fl016
+asset_type: flow
+name: Pagar Prestamo Hoy
+version: 1.0.0
+owner: process_kb
+description: Verificación de consentimiento y aplicación del pago.
+text: Verificación de consentimiento y aplicación del pago.
+tags:
+- fl016
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verificar_consentimiento_de_pago_automatico
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.aplicar_el_pago_recibido_al_prestamo
+  metadata: {}
+payload:
+  flow_id: fl016
+  flow_name: Pagar Prestamo Hoy
+  intent: fl016
+  confidence: 0.75
+  business_event: cliente_paga_hoy
+  utterances: []
+  plan: []
+  tasks:
+  - task: identificar_al_cliente
+    type: human
+  - task: verificar_consentimiento_pago_automatico
+    type: human
+  - task: aplicar_pago_recibido
+    type: human
+  user_tasks:
+  - user_task_id: ut001
+    task: identificar_al_cliente
+    type: human
+    name: Identificar al cliente antes de cualquier operacion financiera
+    description: El agente verifica la identidad del cliente y confirma que la relación
+      está activa antes de iniciar cualquier proceso.
+    tools: []
+    user_actions: []
+  - user_task_id: ut007
+    task: verificar_consentimiento_pago_automatico
+    type: human
+    name: Verificar consentimiento de pago automatico
+    description: Confirmar que el cliente ha aceptado los términos del débito automático
+      y que la cuenta es elegible.
+    tools: []
+    user_actions: []
+  - user_task_id: ut016
+    task: aplicar_pago_recibido
+    type: human
+    name: Aplicar el pago recibido al prestamo
+    description: Registrar el abono, actualizar el calendario de amortización y notificar
+      al cliente.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Verificación de consentimiento y aplicación del pago.
+  source: data/raw/README.md;data/raw/banking_flows_additional.txt;data/raw/banking_synonyms_and_glossary_runtime.txt;data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt;data/raw/enterprise_dump_2026/customer_support_tickets.csv;data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md;data/raw/enterprise_dump_2026/glossary_fragment.md;data/raw/enterprise_dump_2026/intranet_transfer_help.html;data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt;data/raw/enterprise_dump_2026/operations_controls_policy.md;data/raw/enterprise_dump_2026/orchestration_planning_notes.md;data/raw/enterprise_dump_2026/policy_controls_memo.md;data/raw/enterprise_dump_2026/process_fragments.json;data/raw/enterprise_dump_2026/service_configuration_notes.md;data/raw/enterprise_dump_2026/systems_catalog_export.json;data/raw/enterprise_operations_manual.md;data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md;data/raw/enterprise_systems_catalog.md;data/raw/manual_operativo_credito.md;data/raw/notes_operativas_cobranza.md;data/raw/policy_controls_addendum.md;data/raw/process_examples_refinance.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/README.md
+    - data/raw/banking_flows_additional.txt
+    - data/raw/banking_synonyms_and_glossary_runtime.txt
+    - data/raw/customer_support_tickets_mini.csv
+    - data/raw/enterprise_dump_2026/00_readme.txt
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md
+    - data/raw/enterprise_dump_2026/glossary_fragment.md
+    - data/raw/enterprise_dump_2026/intranet_transfer_help.html
+    - data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt
+    - data/raw/enterprise_dump_2026/operations_controls_policy.md
+    - data/raw/enterprise_dump_2026/orchestration_planning_notes.md
+    - data/raw/enterprise_dump_2026/policy_controls_memo.md
+    - data/raw/enterprise_dump_2026/process_fragments.json
+    - data/raw/enterprise_dump_2026/service_configuration_notes.md
+    - data/raw/enterprise_dump_2026/systems_catalog_export.json
+    - data/raw/enterprise_operations_manual.md
+    - data/raw/enterprise_policy_and_controls.md
+    - data/raw/enterprise_support_wiki.md
+    - data/raw/enterprise_systems_catalog.md
+    - data/raw/manual_operativo_credito.md
+    - data/raw/notes_operativas_cobranza.md
+    - data/raw/policy_controls_addendum.md
+    - data/raw/process_examples_refinance.md
+    purpose: Permitir al cliente efectuar un pago inmediato del préstamo.
+  purpose: Permitir al cliente efectuar un pago inmediato del préstamo.
+  transaction_id: fl016
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Pagar Prestamo Hoy
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Verificación de consentimiento y aplicación del pago.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Verificación de consentimiento y aplicación del pago.
+  match_strategy: generated
+  canonical_name: Pagar Prestamo Hoy
+  normalized_name: pagar prestamo hoy
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

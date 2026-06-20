@@ -1,0 +1,42 @@
+asset_id: process.loan.create
+asset_type: process
+name: Process originacion de prestamo captura solicitud,
+version: 1.0.0
+owner: process_kb
+description: El proceso de originacion de prestamo captura solicitud, valida condiciones
+  y registra el prestamo.
+text: El proceso de originacion de prestamo captura solicitud, valida condiciones
+  y registra el prestamo.
+tags:
+- process_fragment
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  steps_text: El proceso de originacion de prestamo captura solicitud, valida condiciones
+    y registra el prestamo.
+  source_section: Processes
+  transaction_id: loan.create
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Process originacion de prestamo captura solicitud,
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de originacion de prestamo captura solicitud, valida condiciones
+      y registra el prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de originacion de prestamo captura solicitud, valida condiciones
+      y registra el prestamo.
+  match_strategy: generated
+  canonical_name: Process originacion de prestamo captura solicitud,
+  normalized_name: process originacion de prestamo captura solicitud,
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

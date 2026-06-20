@@ -1,0 +1,25 @@
+asset_id: user_task.execute_transfer
+asset_type: user_task
+name: Execute Transfer
+version: 1.0.0
+owner: business_model_kb
+description: Process the international transfer through the payment system.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_execute_transfer
+  task: execute_transfer
+  type: automated
+  name: Execute Transfer
+  description: Process the international transfer through the payment system.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Execute Transfer
+  normalized_name: execute transfer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

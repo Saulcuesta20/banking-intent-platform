@@ -1,0 +1,61 @@
+{
+  "type": "object",
+  "properties": {
+    "flow_id": {
+      "type": "string",
+      "title": "Asset ID"
+    },
+    "flow_name": {
+      "type": "string",
+      "title": "Name"
+    },
+    "purpose": {
+      "type": "string",
+      "title": "Purpose"
+    },
+    "business_event": {
+      "type": "string",
+      "title": "Business Event"
+    },
+    "user_task_refs": {
+      "type": "array",
+      "title": "User Task Refs",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_process_ids": {
+      "type": "array",
+      "title": "Related Process IDs",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "title": "Inputs",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "title": "Outputs",
+      "items": {
+        "type": "string"
+      }
+    },
+    "explanation": {
+      "type": "string",
+      "title": "Explanation"
+    }
+  },
+  "required": [
+    "flow_id",
+    "flow_name",
+    "purpose",
+    "business_event",
+    "user_task_refs",
+    "explanation"
+  ]
+}

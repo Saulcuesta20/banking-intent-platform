@@ -1,0 +1,64 @@
+asset_id: asset_set.collection.case.management
+asset_type: asset_set
+name: Collection.case.management Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for collection.case.management.
+text: 'Collection Case Management Process
+
+  Action Definition
+
+  Balance and Payment Confirmation
+
+  Contact Reason Recording
+
+  Reminder Sending'
+tags:
+- asset_set
+- collection.case.management
+relations:
+- type: groups_flow
+  target_asset_id: flow.collection.case.management
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.action_definition
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.balance_and_payment_confirmation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.contact_reason_recording
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.reminder_sending
+  metadata: {}
+payload:
+  transaction_id: collection.case.management
+  asset_ids:
+  - flow.collection.case.management
+  - user_task.action_definition
+  - user_task.balance_and_payment_confirmation
+  - user_task.contact_reason_recording
+  - user_task.reminder_sending
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.collection.case.management
+    asset_type: flow
+  - asset_id: user_task.action_definition
+    asset_type: user_task
+  - asset_id: user_task.balance_and_payment_confirmation
+    asset_type: user_task
+  - asset_id: user_task.contact_reason_recording
+    asset_type: user_task
+  - asset_id: user_task.reminder_sending
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Collection.case.management Asset Set
+  normalized_name: collection.case.management asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

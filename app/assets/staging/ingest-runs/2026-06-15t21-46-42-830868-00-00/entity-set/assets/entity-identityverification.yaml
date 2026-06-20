@@ -1,0 +1,20 @@
+asset_id: entity.identityverification
+asset_type: entity
+name: IdentityVerification
+version: 1.0.0
+owner: business_model_kb
+description: Proceso obligatorio para confirmar identidad y perfil de riesgo.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Proceso obligatorio para confirmar identidad y perfil de riesgo.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: IdentityVerification
+  normalized_name: identityverification
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

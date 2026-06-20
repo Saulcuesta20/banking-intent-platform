@@ -15,12 +15,17 @@ from app.ingestion.llm_flow_loader import (
     FlowExtractionError,
     OpenAICompatibleLLMClient,
 )
+from app.ingestion.asset_pipeline import CanonicalAssetPipeline
 from app.ingestion.orchestrator import (
     IngestionOrchestratorConfig,
     IngestionOrchestratorService,
     RoleBasedExtractionInstructionBuilder,
 )
+from app.config.settings import load_settings
 from app.knowledge_base.adapters.graph.neo4j import Neo4jKnowledgeBaseGraphAdapter
+from app.knowledge_base.catalog_store import AssetCatalogStore
+from app.knowledge_base.loader import AssetRegistryLoader
+from app.knowledge_base.registry import EnterpriseAssetRegistry
 from app.knowledge_base.service import KnowledgeBaseService
 
 
@@ -45,12 +50,18 @@ def main() -> None:
         instruction_builder = RoleBasedExtractionInstructionBuilder()
 
     loader = CorpusFlowLoader(
-        OpenAICompatibleLLMClient(model=args.model),
+        OpenAICompatibleLLMClient(
+            model=args.model,
+            timeout_seconds=settings.intent_llm_timeout_seconds,
+        ),
         max_pdf_image_pages=args.max_pdf_image_pages,
         instruction_builder=instruction_builder,
     )
 
     knowledge_base_service = None
+    settings = load_settings()
+    registry = EnterpriseAssetRegistry(AssetRegistryLoader().load_file(settings.asset_registry_path))
+    asset_catalog_store = AssetCatalogStore(settings.asset_catalog_path) if args.apply else None
     if args.apply:
         knowledge_base_service = KnowledgeBaseService(
             Neo4jKnowledgeBaseGraphAdapter(
@@ -60,13 +71,22 @@ def main() -> None:
             )
         )
 
-    orchestrator = IngestionOrchestratorService(loader)
+    orchestrator = IngestionOrchestratorService(
+        loader,
+        canonical_asset_pipeline=CanonicalAssetPipeline(
+            registry=registry,
+            relation_pattern_path=settings.relation_pattern_path,
+            ontology_path=settings.ontology_layers_path,
+        ),
+    )
     try:
         result = orchestrator.run(
             IngestionOrchestratorConfig(
                 raw_path=Path(args.raw_dir),
                 audit_directory=Path(args.audit_dir),
                 knowledge_base_service=knowledge_base_service,
+                asset_catalog_store=asset_catalog_store,
+                asset_registry=registry,
                 clean=args.clean,
                 apply=args.apply,
                 extraction_instruction_mode=extraction_instruction_mode,
@@ -82,7 +102,9 @@ def main() -> None:
 
     print(
         f"Extraction {result.mode}: persisted {result.flows_persisted} flows, "
-        f"extracted {result.user_tasks_extracted} user tasks and {result.tools_extracted} tools. "
+        f"extracted {result.user_tasks_extracted} user tasks and {result.tools_extracted} tools, "
+        f"generated {result.canonical_assets_generated} canonical assets, "
+        f"persisted {result.catalog_assets_persisted} catalog assets. "
         f"Audit: {result.audit_path}"
     )
 

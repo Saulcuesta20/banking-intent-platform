@@ -1,0 +1,54 @@
+asset_id: flow.transfer.execution
+asset_type: flow
+name: Transfer Execution Process
+version: 1.0.0
+owner: process_kb
+description: Checks balance and processes money transfer between accounts.
+text: Checks balance and processes money transfer between accounts.
+tags:
+- execute.money.transfer
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transfer_data_entry
+  metadata: {}
+payload:
+  flow_id: transfer.execution
+  flow_name: Transfer Execution Process
+  intent: execute.money.transfer
+  confidence: 0.75
+  business_event: customer_requests_transfer
+  utterances: []
+  plan: []
+  tasks:
+  - task: enter_transfer_details
+    type: execution
+  user_tasks:
+  - user_task_id: enter_transfer_details
+    task: enter_transfer_details
+    type: execution
+    name: Transfer Data Entry
+    description: Customer specifies origin account, beneficiary, amount, and concept
+      for transfer.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Checks balance and processes money transfer between accounts.
+  source: data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_policy_and_controls.md
+    - data/raw/enterprise_support_wiki.md
+    purpose: Facilitate fund transfer as per customer instruction.
+  purpose: Facilitate fund transfer as per customer instruction.
+  transaction_id: transfer.execution
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfer Execution Process
+  normalized_name: transfer execution process
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

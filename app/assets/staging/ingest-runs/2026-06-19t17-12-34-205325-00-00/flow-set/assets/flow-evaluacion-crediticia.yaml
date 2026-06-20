@@ -1,0 +1,45 @@
+asset_id: flow.evaluacion.crediticia
+asset_type: flow
+name: Evaluacion Crediticia
+version: 1.0.0
+owner: process_kb
+description: Proceso de verificar riesgo, historial, ingresos y reglas para decidir
+  elegibilidad.
+text: Proceso de verificar riesgo, historial, ingresos y reglas para decidir elegibilidad.
+tags:
+- to.ensure.responsible.lending.and.risk.management
+relations:
+- type: uses_entity
+  target_asset_id: entity.evaluacion_crediticia
+  metadata: {}
+payload:
+  flow_id: evaluacion.crediticia
+  flow_name: Evaluacion Crediticia
+  intent: to.ensure.responsible.lending.and.risk.management
+  confidence: 0.75
+  business_event: Credit Evaluation
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de verificar riesgo, historial, ingresos y reglas para decidir
+    elegibilidad.
+  source: data/raw/savings_glossary.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_glossary.csv
+    purpose: To assess creditworthiness and determine loan eligibility.
+  purpose: To assess creditworthiness and determine loan eligibility.
+  transaction_id: evaluacion.crediticia
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Evaluacion Crediticia
+  normalized_name: evaluacion crediticia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

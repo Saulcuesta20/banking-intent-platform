@@ -1,0 +1,53 @@
+asset_id: flow.high.value.transfer.review
+asset_type: flow
+name: High Value Transfer Review
+version: 1.0.0
+owner: process_kb
+description: Routes to manager_review first, then compliance review when screening
+  is inconclusive.
+text: Routes to manager_review first, then compliance review when screening is inconclusive.
+tags:
+- ensure.regulatory.compliance.for.transfers.exceeding.thresholds
+relations: []
+payload:
+  flow_id: high.value.transfer.review
+  flow_name: High Value Transfer Review
+  intent: ensure.regulatory.compliance.for.transfers.exceeding.thresholds
+  confidence: 0.75
+  business_event: high_value_transfer_initiated
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Routes to manager_review first, then compliance review when screening
+    is inconclusive.
+  source: data/raw/enterprise_dump_2026/service_configuration_notes.md;data/raw/enterprise_dump_2026/systems_catalog_export.json
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/service_configuration_notes.md
+    - data/raw/enterprise_dump_2026/systems_catalog_export.json
+    purpose: Review high value transfers for compliance and risk management.
+  purpose: Review high value transfers for compliance and risk management.
+  transaction_id: high.value.transfer.review
+  relation_hints:
+  - type: transitions_to
+    family: structural
+    phrase: then
+    sentence: Routes to manager_review first, then compliance review when screening
+      is inconclusive.
+  - type: transitions_to
+    family: structural
+    phrase: then
+    sentence: Routes to manager_review first, then compliance review when screening
+      is inconclusive.
+  match_strategy: generated
+  canonical_name: High Value Transfer Review
+  normalized_name: high value transfer review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

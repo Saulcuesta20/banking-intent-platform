@@ -1,0 +1,25 @@
+asset_id: user_task.offer_account_opening
+asset_type: user_task
+name: Offer account opening
+version: 1.0.0
+owner: business_model_kb
+description: Offer account opening journey.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: automatic_payment_setup_step_5
+  task: offer_account_opening_journey
+  type: manual
+  name: Offer account opening
+  description: Offer account opening journey.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Offer account opening
+  normalized_name: offer account opening
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

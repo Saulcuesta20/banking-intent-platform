@@ -1,0 +1,27 @@
+asset_id: user_task.payment_reminder_handling
+asset_type: user_task
+name: Payment Reminder Handling
+version: 1.0.0
+owner: business_model_kb
+description: System creates a reminder task for the collections team to follow up
+  on missed payment. Team contacts customer and may apply grace period.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: handle_reminder
+  task: handle_payment_reminder
+  type: notification
+  name: Payment Reminder Handling
+  description: System creates a reminder task for the collections team to follow up
+    on missed payment. Team contacts customer and may apply grace period.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Payment Reminder Handling
+  normalized_name: payment reminder handling
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

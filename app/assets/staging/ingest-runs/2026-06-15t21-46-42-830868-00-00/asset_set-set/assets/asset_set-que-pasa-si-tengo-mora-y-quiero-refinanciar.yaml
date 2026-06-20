@@ -1,0 +1,31 @@
+asset_id: asset_set.que.pasa.si.tengo.mora.y.quiero.refinanciar
+asset_type: asset_set
+name: Que.pasa.si.tengo.mora.y.quiero.refinanciar Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for que.pasa.si.tengo.mora.y.quiero.refinanciar.
+text: Que pasa si tengo mora y quiero refinanciar?
+tags:
+- asset_set
+- que.pasa.si.tengo.mora.y.quiero.refinanciar
+relations:
+- type: groups_qa
+  target_asset_id: qa.que_pasa_si_tengo_mora_y_quiero_refinanciar
+  metadata: {}
+payload:
+  transaction_id: que.pasa.si.tengo.mora.y.quiero.refinanciar
+  asset_ids:
+  - qa.que_pasa_si_tengo_mora_y_quiero_refinanciar
+  asset_types:
+  - qa
+  primary_asset_type: qa
+  members:
+  - asset_id: qa.que_pasa_si_tengo_mora_y_quiero_refinanciar
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Que.pasa.si.tengo.mora.y.quiero.refinanciar Asset Set
+  normalized_name: que.pasa.si.tengo.mora.y.quiero.refinanciar asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.identity_validation
+asset_type: user_task
+name: Identity Validation
+version: 1.0.0
+owner: business_model_kb
+description: Check if documents are valid and identity is verified.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: validate_identity_task
+  task: validate_client_identity_and_documents
+  type: automated
+  name: Identity Validation
+  description: Check if documents are valid and identity is verified.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Identity Validation
+  normalized_name: identity validation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

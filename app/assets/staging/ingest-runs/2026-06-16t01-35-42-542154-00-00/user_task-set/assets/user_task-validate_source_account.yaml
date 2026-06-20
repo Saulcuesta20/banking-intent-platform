@@ -1,0 +1,25 @@
+asset_id: user_task.validate_source_account
+asset_type: user_task
+name: Validate Source Account
+version: 1.0.0
+owner: business_model_kb
+description: Check that the source account exists and is active.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut302
+  task: validate_source_account
+  type: backend
+  name: Validate Source Account
+  description: Check that the source account exists and is active.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Validate Source Account
+  normalized_name: validate source account
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

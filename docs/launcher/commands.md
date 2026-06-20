@@ -34,9 +34,9 @@ Start the shadcn launcher shell from `app/launcher/`:
 npm run dev
 ```
 
-This starts the React shell on `http://localhost:3000` and the embedded Lowdefy runtime on `http://localhost:3002`.
+This starts the React shell on `http://localhost:3000` and mounts the dynamic editor routes under the launcher origin.
 
-The `launcher` command is the backend engine and launcher helper. The React + TypeScript shell now lives in `app/launcher/`, and its Lowdefy runtime lives in `app/launcher/lowdefy-runtime/`.
+The `launcher` command is the backend engine and launcher helper. The React + TypeScript shell now lives in `app/launcher/`, and its dynamic editor config lives in `app/launcher/pages/`.
 
 You can also use:
 

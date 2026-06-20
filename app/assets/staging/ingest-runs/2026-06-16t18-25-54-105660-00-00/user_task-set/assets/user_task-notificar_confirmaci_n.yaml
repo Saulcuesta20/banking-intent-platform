@@ -1,0 +1,33 @@
+asset_id: user_task.notificar_confirmaci_n
+asset_type: user_task
+name: Notificar confirmación
+version: 1.0.0
+owner: business_model_kb
+description: Notificar al cliente que la cuenta fue creada.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_notificar_confirmacion
+  task: notificar_confirmacion
+  type: system
+  name: Notificar confirmación
+  description: Notificar al cliente que la cuenta fue creada.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Notificar al cliente que la cuenta fue creada.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Notificar al cliente que la cuenta fue creada.
+  match_strategy: generated
+  canonical_name: Notificar confirmación
+  normalized_name: notificar confirmación
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

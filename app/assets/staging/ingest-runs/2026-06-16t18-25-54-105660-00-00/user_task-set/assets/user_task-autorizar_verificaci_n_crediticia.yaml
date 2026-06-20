@@ -1,0 +1,25 @@
+asset_id: user_task.autorizar_verificaci_n_crediticia
+asset_type: user_task
+name: Autorizar verificación crediticia
+version: 1.0.0
+owner: business_model_kb
+description: El usuario autoriza al banco a verificar su historial crediticio.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_authorize_credit_check
+  task: autorizar_verificaci_n_crediticia
+  type: authorization
+  name: Autorizar verificación crediticia
+  description: El usuario autoriza al banco a verificar su historial crediticio.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Autorizar verificación crediticia
+  normalized_name: autorizar verificación crediticia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,27 @@
+asset_id: user_task.contact_reason_recording
+asset_type: user_task
+name: Contact Reason Recording
+version: 1.0.0
+owner: business_model_kb
+description: Analyst documents why the customer was contacted, such as late payment,
+  promise to pay, etc.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: record_contact_reason
+  task: record_the_reason_for_contact_with_the_customer
+  type: manual
+  name: Contact Reason Recording
+  description: Analyst documents why the customer was contacted, such as late payment,
+    promise to pay, etc.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Contact Reason Recording
+  normalized_name: contact reason recording
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

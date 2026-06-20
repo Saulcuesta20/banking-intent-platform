@@ -1,0 +1,91 @@
+asset_id: flow.account.opening.flow
+asset_type: flow
+name: Customer Onboarding and Account Opening
+version: 1.0.0
+owner: process_kb
+description: Process to onboard a client, validate KYC documents, and open a bank
+  account with the core system.
+text: Process to onboard a client, validate KYC documents, and open a bank account
+  with the core system.
+tags:
+- depending.on.client.request.inform.about.requirements.guide.step.by.step.or.execute.account.creation
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.client_identification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.kyc_document_request
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identity_validation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.core_banking_call
+  metadata: {}
+payload:
+  flow_id: account.opening.flow
+  flow_name: Customer Onboarding and Account Opening
+  intent: depending.on.client.request.inform.about.requirements.guide.step.by.step.or.execute.account.creation
+  confidence: 0.75
+  business_event: Client wants to become a customer and open an account
+  utterances: []
+  plan: []
+  tasks:
+  - task: identify_the_client
+    type: manual
+  - task: request_kyc_documents_from_client
+    type: guided
+  - task: validate_client_identity_and_documents
+    type: automated
+  - task: call_core_banking_system_to_create_account
+    type: automated
+  user_tasks:
+  - user_task_id: identify_client_task
+    task: identify_the_client
+    type: manual
+    name: Client Identification
+    description: Verify the client's identity through provided information.
+    tools: []
+    user_actions: []
+  - user_task_id: request_kyc_documents_task
+    task: request_kyc_documents_from_client
+    type: guided
+    name: KYC Document Request
+    description: Ask for identification, proof of address, and tax data as required.
+    tools: []
+    user_actions: []
+  - user_task_id: validate_identity_task
+    task: validate_client_identity_and_documents
+    type: automated
+    name: Identity Validation
+    description: Check if documents are valid and identity is verified.
+    tools: []
+    user_actions: []
+  - user_task_id: call_core_banking_task
+    task: call_core_banking_system_to_create_account
+    type: automated
+    name: Core Banking Call
+    description: Interact with core banking system to open the account.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to onboard a client, validate KYC documents, and open a bank
+    account with the core system.
+  source: data/raw/enterprise_operations_manual.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_operations_manual.md
+    purpose: To onboard new clients and establish banking relationships.
+  purpose: To onboard new clients and establish banking relationships.
+  transaction_id: account.opening.flow
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Onboarding and Account Opening
+  normalized_name: customer onboarding and account opening
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

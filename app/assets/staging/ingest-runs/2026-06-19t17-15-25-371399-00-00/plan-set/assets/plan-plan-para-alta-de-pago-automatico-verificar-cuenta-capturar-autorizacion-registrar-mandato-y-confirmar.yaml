@@ -1,0 +1,50 @@
+asset_id: plan.plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+asset_type: plan
+name: Plan alta de pago automatico
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para alta de pago automatico: verificar cuenta, capturar autorizacion,
+  registrar mandato y confirmar.'
+text: 'Plan para alta de pago automatico: verificar cuenta, capturar autorizacion,
+  registrar mandato y confirmar.'
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: 'Plan para alta de pago automatico: verificar cuenta, capturar autorizacion,
+    registrar mandato y confirmar.'
+  source_section: Plans
+  transaction_id: plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Plan alta de pago automatico
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para alta de pago automatico: verificar cuenta, capturar autorizacion,
+      registrar mandato y confirmar.'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Plan para alta de pago automatico: verificar cuenta, capturar autorizacion,
+      registrar mandato y confirmar.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para alta de pago automatico: verificar cuenta, capturar autorizacion,
+      registrar mandato y confirmar.'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Plan para alta de pago automatico: verificar cuenta, capturar autorizacion,
+      registrar mandato y confirmar.'
+  match_strategy: generated
+  canonical_name: Plan alta de pago automatico
+  normalized_name: plan alta de pago automatico
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.verify_documents
+asset_type: user_task
+name: Verify Documents
+version: 1.0.0
+owner: business_model_kb
+description: Support verifies the customer's account history and required documents.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verify_documents
+  task: verify_supporting_documents
+  type: agent
+  name: Verify Documents
+  description: Agent checks documents for completeness and validity.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Verify Documents
+  normalized_name: verify documents
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

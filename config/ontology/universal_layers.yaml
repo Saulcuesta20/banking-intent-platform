@@ -1,0 +1,190 @@
+version: "2.0.0"
+description: >
+  Enterprise structure ontology used to classify every governed entity.
+  Layers represent business sub-types: org chart, offerings, programs,
+  workforce, metrics, agreements, channels, etc. Apply across industries.
+
+construction_contract:
+  semantic_space:
+    asset_type: semantic_space
+    description: "Search/navigation context for Ask and ontology canvas. It groups relevant structural layers, entity neighborhoods, allowed asset types, and retrieval policy."
+    required_fields: [semantic_space_id, name]
+    optional_fields: [route_hints, structural_layers, allowed_asset_types, retrieval_policy, entities, description]
+    relation_authority:
+      - "semantic_space -> contains_context -> entity/business_rule/flow/process/document/causality"
+  structural_layer:
+    description: "Classification axis for entities. Layers are not separate business facts; they classify entities and constrain search."
+    authority: "config/ontology/universal_layers.yaml layers"
+    relation_authority:
+      - "structural_layer -> classifies -> entity"
+  entity:
+    asset_type: entity
+    description: "Canonical ontology element. Every entity should carry structural_layer; subtype is used for sublevels such as party.customer or organization.department."
+    required_fields: [name, structural_layer]
+    optional_fields: [subtype, aliases, attributes, relations, evidence, technical_type]
+    compatibility_fields: [business_layer, entity_role, concept]
+    relation_authority:
+      - "Entity-to-entity and entity-to-asset business facts live in asset relations, not inside layer definitions."
+      - "Examples: entity.payment -> increases -> entity.cash_asset; entity.cash_asset -> owned_by -> entity.organization."
+      - "Business entities can be connected to technical resources with represented_by / represents."
+      - "materializes / materialized_in are legacy aliases and should normalize to represents / represented_by."
+    field_semantics:
+      subtype: "Business or structural stereotype inside a layer, e.g. party.customer, organization.department, business_resource.table."
+      technical_type: "Technical implementation form for a business_resource, e.g. table, api, dataset, service. It is not a synonym for subtype."
+  aliases:
+    description: "Aliases and synonyms are governed entity metadata and graph alias nodes/properties, not a standalone synonym YAML catalog."
+  evidence:
+    description: "Evidence is JSON on assets, ask traces, and answer payloads; it is not a separate governed asset type in this phase."
+
+relation_contract:
+  search_context: [contains_context, routes_to_asset]
+  classification: [classifies]
+  business_facts: [related_to, governed_by, affects, increases, decreases, represented_by, represents, owned_by, uses, supports, enables]
+  compatibility: [has_synonym, synonym_of, used_by_flow, used_by_process, explained_by_qa, materializes, materialized_in]
+
+layers:
+  party:
+    description: "Personas o entidades externas/internas que participan en la relación"
+    generic_subtypes: [customer, prospect, vendor, regulator, partner]
+    aliases: [party, data_master, datamaster, catalog]
+    examples:
+      banking: [Retail Customer, Corporate Treasurer, Regulator]
+      retail: [Shopper, Supplier, Marketplace Partner]
+    key_relations: [belongs_to_segment, managed_by, interacts_via]
+
+  organization:
+    description: "Divisiones, direcciones, departamentos y equipos formales"
+    generic_subtypes: [division, department, team, committee, region]
+    examples:
+      banking: [Retail & Digital Banking Division, Customer Experience Department]
+      retail: [Store Operations, Merchandising Team]
+      manufacturing: [Plant Operations, Quality Assurance]
+    key_relations: [belongs_to, manages, reports_to, partners_with]
+
+  capability:
+    description: "Funciones o centros de competencia que habilitan al negocio"
+    generic_subtypes: [center_of_excellence, shared_service, practice, competency]
+    examples:
+      banking: [Operations Control Capability, Technology Enablement]
+      healthcare: [Care Coordination COE]
+      retail: [Omnichannel Experience Practice]
+    key_relations: [provides, enables, supports, governed_by]
+
+  portfolio:
+    description: "Conjuntos estructurados de productos/servicios"
+    generic_subtypes: [suite, bundle, family, package]
+    examples:
+      banking: [Everyday Banking Suite, Business Banking Starter Suite]
+      telco: [Family Connectivity Bundle]
+      retail: [Seasonal Collection]
+    key_relations: [contains_offering, targets_segment, owned_by]
+
+  offering:
+    description: "Producto o servicio individual comercializable"
+    generic_subtypes: [product, service, subscription, insurance]
+    examples:
+      banking: [SmartBalance Checking, FlexPay Personal Loan, ShieldGuard Insurance]
+      healthcare: [Telemedicine Visit, Chronic Care Plan]
+      manufacturing: [Premium Equipment Lease]
+    key_relations: [offered_by, priced_by, bundled_in, governed_by]
+
+  program:
+    description: "Iniciativas, campañas o planes coordinados"
+    generic_subtypes: [initiative, roadmap, campaign, transformation]
+    examples:
+      banking: [RapidRefi Program, Sustainability Scoring Initiative]
+      retail: [Holiday Readiness Program]
+      manufacturing: [Lean Adoption Program]
+    key_relations: [sponsored_by, delivers, depends_on, measures]
+
+  channel:
+    description: "Medios y plataformas por donde interactúa el cliente"
+    generic_subtypes: [branch, contact_center, digital, partner]
+    examples:
+      banking: [Digital Onboarding Portal, Branch Network, Call Center]
+      retail: [Ecommerce, Mobile App, In-store Kiosk]
+    key_relations: [serves_segment, operated_by, supports_offering]
+
+  transaction:
+    description: "Movimientos operativos o financieros"
+    generic_subtypes: [application, payment, transfer, claim, order]
+    directionality: [inbound, outbound, bidirectional]
+    examples:
+      banking: [FlexPay Disbursement, International Transfer, Insurance Enrollment]
+      healthcare: [Claim Submission, Reimbursement]
+    key_relations: [initiated_by, targets_account, references_agreement]
+
+  agreement:
+    description: "Contratos, políticas y consentimientos"
+    generic_subtypes: [contract, policy, terms, consent]
+    examples:
+      banking: [Retail Banking Service Agreement, ShieldGuard Protection Terms]
+      retail: [Return Policy, Membership Terms]
+    key_relations: [governs, constrains, requires_signature]
+
+  event:
+    description: "Hitos, SLA y cambios de estado"
+    generic_subtypes: [milestone, deadline, incident, notification]
+    examples:
+      banking: [Debit Activation Event, Onboarding SLA Breach]
+      manufacturing: [Quality Gate Passed, Shipment Released]
+    key_relations: [triggers, blocks, recorded_in]
+
+  metric:
+    description: "Indicadores y KPIs"
+    generic_subtypes: [rate, score, KPI, target]
+    examples:
+      banking: [ShieldGuard Attachment Rate, FlexPay Approval Rate]
+      retail: [Net Promoter Score]
+    key_relations: [measures, tied_to_program, owned_by]
+
+  workforce:
+    description: "Personas/puestos concretos dentro de la empresa"
+    generic_subtypes: [employee, contractor, advisor, specialist, analyst]
+    examples:
+      banking: [Customer Experience Specialist, Personal Lending Underwriter, Operations Control Analyst]
+    key_relations: [belongs_to_org, fulfills_role, assigned_to_program]
+
+  workforce_role:
+    description: "Roles o perfiles reutilizables que describen responsabilidades"
+    generic_subtypes: [advisor_role, supervisor_role, investigator_role]
+    examples:
+      banking: [Onboarding Advisor, Fraud Investigator, Portfolio Manager]
+    key_relations: [realized_by_workforce, required_by_org]
+
+  business_resource:
+    description: "Recursos del negocio: plataformas, sistemas, documentos, datasets y herramientas utilizados"
+    generic_subtypes: [system, platform, document, dataset, collateral, instrument]
+    examples:
+      banking: [OmniChannel Orchestrator, Insight360 Analytics Platform, Customer Experience Playbook]
+      retail: [Store Blueprint, Inventory Dataset]
+    key_relations: [owned_by, used_by, documents, references]
+
+# VALID ENTITY ROLES
+entity_roles:
+  org_unit: "Unidad organizacional o jerárquica"
+  capability: "Función transversal o competencia"
+  offering: "Producto/servicio ofrecido"
+  workforce_member: "Persona/puesto que ejecuta trabajo"
+  workforce_role: "Rol o perfil que describe responsabilidades"
+  asset: "Legacy role for business_resource while entity_role is migrated away"
+  transaction: "Movimiento operativo o financiero"
+  agreement: "Contrato/política que gobierna"
+  metric: "Indicador/KPI que mide desempeño"
+  event: "Hito o estado temporal"
+  party: "Cliente, prospecto, proveedor u otra contraparte"
+
+# VALID CARDINALITIES
+cardinalities:
+  - "1"      # exactly one
+  - "N"      # many (unspecified)
+  - "*"      # many (zero or more)
+  - "1:1"    # one to one
+  - "1:N"    # one to many
+  - "N:M"    # many to many
+
+# VALID DIRECTIONS (for transactions)
+directions:
+  inbound: "Value flows into the business (e.g., customer payment)"
+  outbound: "Value flows out of the business (e.g., refund, disbursement)"
+  bidirectional: "Value flows both ways (e.g., transfer between accounts)"

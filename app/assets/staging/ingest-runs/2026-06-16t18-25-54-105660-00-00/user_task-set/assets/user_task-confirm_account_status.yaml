@@ -1,0 +1,25 @@
+asset_id: user_task.confirm_account_status
+asset_type: user_task
+name: Confirm Account Status
+version: 1.0.0
+owner: business_model_kb
+description: Confirm the account is active and provide status
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_savings_confirm_account_status
+  task: confirm_account_status
+  type: manual
+  name: Confirm Account Status
+  description: Confirm the account is active and provide status
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Confirm Account Status
+  normalized_name: confirm account status
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

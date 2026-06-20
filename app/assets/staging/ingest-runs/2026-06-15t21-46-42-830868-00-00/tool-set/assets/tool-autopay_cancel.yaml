@@ -1,0 +1,20 @@
+asset_id: tool.autopay_cancel
+asset_type: tool
+name: autopay.cancel
+version: 1.0.0
+owner: business_model_kb
+description: El servicio autopay.cancel anula el mandato vigente.
+text: El servicio autopay.cancel anula el mandato vigente.
+tags: []
+relations: []
+payload:
+  description: El servicio autopay.cancel anula el mandato vigente.
+  tool_id: autopay.cancel
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: autopay.cancel
+  normalized_name: autopay.cancel
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

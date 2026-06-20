@@ -6,13 +6,15 @@ import {
   Database,
   GitCommitHorizontal,
   History,
+  Network,
+  Pencil,
   PlayCircle,
   RotateCcw,
   ShieldCheck,
   Tags,
 } from 'lucide-react'
 import { useState } from 'react'
-import type { AssetSetDetail, CatalogAssetDetail } from '../types'
+import type { AssetSetDetail, CatalogAssetDetail, OntologySelection } from '../types'
 import { Button } from './ui/button'
 import { StatusBadge } from './AssetExplorer'
 
@@ -23,6 +25,9 @@ type AssetDetailPanelProps = {
   onAction: (action: string, comment?: string) => void
   onDeploy: () => void
   onRollback: () => void
+  onEdit?: () => void
+  ontologySelection?: OntologySelection | null
+  onOpenOntologyForm?: (context?: { entityId?: string; entityName?: string }) => void
 }
 
 export function AssetDetailPanel({
@@ -32,14 +37,83 @@ export function AssetDetailPanel({
   onAction,
   onDeploy,
   onRollback,
+  onEdit,
+  ontologySelection,
+  onOpenOntologyForm,
 }: AssetDetailPanelProps) {
   const [comment, setComment] = useState('')
   if (!asset) {
     return <p className="asset-detail-empty">Selecciona un activo del árbol para revisar sus propiedades.</p>
   }
   const status = assetSet?.status ?? asset.status
+  const ontologyEntity = asset.asset_type === 'entity' ? ontologySelection?.entity : null
+  const ontologyRelations = asset.asset_type === 'entity' ? ontologySelection?.relations ?? [] : []
   return (
     <div className="asset-detail-content">
+      {ontologyEntity ? (
+        <section className="context-section">
+          <div className="context-section-title">
+            <Network size={18} />
+            <span>Ontology selection</span>
+          </div>
+          <h3>{ontologyEntity.name || ontologyEntity.asset_id}</h3>
+          <p className="asset-id">
+            {ontologyEntity.layer || '—'}
+            {ontologyEntity.subtype ? ` / ${ontologyEntity.subtype}` : ''}
+            {ontologyEntity.technical_type ? ` · técnico: ${ontologyEntity.technical_type}` : ''}
+          </p>
+          <p className="muted">{ontologyEntity.description || 'Sin descripción.'}</p>
+          {ontologyEntity.aliases?.length ? (
+            <div className="asset-tags">
+              <Tags size={15} />
+              {ontologyEntity.aliases.map((alias) => (
+                <span key={alias}>{alias}</span>
+              ))}
+            </div>
+          ) : null}
+          {ontologyRelations.length ? (
+            <ul className="ontology-relations">
+              {ontologyRelations.slice(0, 6).map((relation) => (
+                <li key={relation.id}>
+                  {relation.direction === 'incoming' ? (
+                    <>
+                      {relation.source_name || relation.source_entity_id} → <strong>{relation.relation_type}</strong>
+                      {relation.relation_family ? <span> · {relation.relation_family}</span> : null}
+                    </>
+                  ) : (
+                    <>
+                      <strong>{relation.relation_type}</strong>
+                      {relation.relation_family ? <span> · {relation.relation_family}</span> : null}
+                      {' '}→ {relation.target_name || relation.target_entity_id}
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="muted">Sin relaciones visibles.</p>
+          )}
+          {onOpenOntologyForm ? (
+            <Button
+              size="sm"
+              onClick={() =>
+                onOpenOntologyForm({ entityId: ontologyEntity.asset_id, entityName: ontologyEntity.name })
+              }
+            >
+              <Pencil size={15} /> Editar en formulario
+            </Button>
+          ) : null}
+        </section>
+      ) : asset.asset_type === 'entity' ? (
+        <section className="context-section">
+          <div className="context-section-title">
+            <Network size={18} />
+            <span>Ontology selection</span>
+          </div>
+          <p className="muted">Selecciona un nodo en el canvas para ver sus atributos aquí.</p>
+        </section>
+      ) : null}
+
       <section className="context-section">
         <div className="context-section-title">
           <Database size={18} />
@@ -47,6 +121,11 @@ export function AssetDetailPanel({
         </div>
         <h3>{asset.name || asset.asset_id}</h3>
         <p className="asset-id">{asset.asset_id}</p>
+        {onEdit ? (
+          <Button size="sm" onClick={onEdit}>
+            <Pencil size={15} /> Editar
+          </Button>
+        ) : null}
         <div className="asset-property-grid">
           <span>Asset Type</span><strong>{asset.asset_type}</strong>
           <span>Version</span><strong>{asset.version}</strong>

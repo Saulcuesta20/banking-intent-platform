@@ -1,0 +1,21 @@
+asset_id: entity.interes
+asset_type: entity
+name: interes
+version: 1.0.0
+owner: business_model_kb
+description: Costo del dinero prestado o remuneración de ahorros
+text: Costo del dinero prestado o remuneración de ahorros
+tags: []
+relations: []
+payload:
+  aliases: []
+  structural_layer: channel
+  business_layer: channel
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: interes
+  normalized_name: interes
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

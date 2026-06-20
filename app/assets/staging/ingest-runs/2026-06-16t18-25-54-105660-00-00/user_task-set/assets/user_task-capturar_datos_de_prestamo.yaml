@@ -1,0 +1,33 @@
+asset_id: user_task.capturar_datos_de_prestamo
+asset_type: user_task
+name: Capturar datos de prestamo
+version: 1.0.0
+owner: business_model_kb
+description: Capturar datos del cliente, monto, plazo, ingresos, documentos y finalidad
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_capture_data
+  task: capturar_datos_de_solicitud
+  type: data_collection
+  name: Capturar datos de prestamo
+  description: Capturar datos del cliente, monto, plazo, ingresos, documentos y finalidad
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Capturar datos de prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Capturar datos del cliente, monto, plazo, ingresos, documentos y finalidad
+  match_strategy: generated
+  canonical_name: Capturar datos de prestamo
+  normalized_name: capturar datos de prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

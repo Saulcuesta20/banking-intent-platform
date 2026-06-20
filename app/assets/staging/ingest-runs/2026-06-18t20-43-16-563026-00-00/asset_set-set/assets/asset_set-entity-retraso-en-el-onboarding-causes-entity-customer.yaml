@@ -1,0 +1,48 @@
+asset_id: asset_set.entity.retraso.en.el.onboarding.causes.entity.customer
+asset_type: asset_set
+name: Entity.retraso.en.el.onboarding.causes.entity.customer Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for entity.retraso.en.el.onboarding.causes.entity.customer.
+text: 'entity.retraso_en_el_onboarding causes entity.customer
+
+  cliente
+
+  retraso en el onboarding'
+tags:
+- asset_set
+- entity.retraso.en.el.onboarding.causes.entity.customer
+relations:
+- type: groups_causality
+  target_asset_id: causality.entity_retraso_en_el_onboarding_causes_entity_customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.retraso_en_el_onboarding
+  metadata: {}
+payload:
+  transaction_id: entity.retraso.en.el.onboarding.causes.entity.customer
+  asset_ids:
+  - causality.entity_retraso_en_el_onboarding_causes_entity_customer
+  - entity.customer
+  - entity.retraso_en_el_onboarding
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.entity_retraso_en_el_onboarding_causes_entity_customer
+    asset_type: causality
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.retraso_en_el_onboarding
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: Entity.retraso.en.el.onboarding.causes.entity.customer Asset Set
+  normalized_name: entity.retraso.en.el.onboarding.causes.entity.customer asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

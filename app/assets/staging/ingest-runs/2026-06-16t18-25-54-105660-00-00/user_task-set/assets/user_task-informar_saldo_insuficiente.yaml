@@ -1,0 +1,29 @@
+asset_id: user_task.informar_saldo_insuficiente
+asset_type: user_task
+name: Informar saldo insuficiente
+version: 1.0.0
+owner: business_model_kb
+description: Informar al cliente que no hay saldo suficiente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_informar_saldo_insuficiente
+  task: informar_saldo_insuficiente
+  type: system
+  name: Informar saldo insuficiente
+  description: Informar al cliente que no hay saldo suficiente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Informar al cliente que no hay saldo suficiente.
+  match_strategy: generated
+  canonical_name: Informar saldo insuficiente
+  normalized_name: informar saldo insuficiente
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

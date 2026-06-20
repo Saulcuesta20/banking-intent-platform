@@ -1,0 +1,27 @@
+asset_id: user_task.submit_refinance_request
+asset_type: user_task
+name: Submit Refinance Request
+version: 1.0.0
+owner: business_model_kb
+description: Customer submits a request to refinance an existing loan with proposed
+  new terms.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_submit_refinance_request
+  task: submit_refinancing_request
+  type: form_filling
+  name: Submit Refinance Request
+  description: Customer submits a request to refinance an existing loan with proposed
+    new terms.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Submit Refinance Request
+  normalized_name: submit refinance request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

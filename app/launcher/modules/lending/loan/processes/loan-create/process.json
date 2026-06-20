@@ -10,7 +10,7 @@
   "userTasks": [
     "capture loan request"
   ],
-  "lowdefyPage": "loan-create",
+  "editorRoute": "loan-create",
   "currentFormVersion": "v1",
   "formId": "loan-create"
 }

@@ -1,0 +1,27 @@
+asset_id: user_task.check_eligibility
+asset_type: user_task
+name: Check Eligibility
+version: 1.0.0
+owner: business_model_kb
+description: Agent verifies if the customer's account is eligible for automatic debit
+  setup
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_account_eligibility_task
+  task: check_account_eligibility_for_automatic_payment
+  type: manual
+  name: Check Eligibility
+  description: Agent verifies if the customer's account is eligible for automatic
+    debit setup
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Eligibility
+  normalized_name: check eligibility
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

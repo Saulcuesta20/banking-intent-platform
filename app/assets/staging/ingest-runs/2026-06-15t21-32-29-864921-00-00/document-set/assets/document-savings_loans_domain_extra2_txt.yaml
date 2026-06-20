@@ -1,0 +1,46 @@
+asset_id: document.savings_loans_domain_extra2_txt
+asset_type: document
+name: savings_loans_domain_extra2.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/savings_loans_domain_extra2.txt
+text: "Glosario Extendido - Ahorros y Préstamos (Parte 2)\n\nTérminos operativos:\n\
+  - Anticipo de haberes: adelanto de parte del salario.\n- Aval: garantía personal\
+  \ que respalda una obligación crediticia.\n- Beneficio por paquete bancario: descuentos\
+  \ o bonificaciones por producto combinado.\n- Capitalización: proceso de sumar intereses\
+  \ al capital.\n- Clave de seguridad: credenciales para operar canales digitales.\n\
+  \nProcesos detallados:\n1) Evaluación de elegibilidad de préstamo:\n   - Recopilar\
+  \ ingresos y documentos.\n   - Calcular DTI (debt-to-income ratio).\n   - Consultar\
+  \ buró de crédito.\n   - Aplicar reglas de scoring y límites.\n2) Refinanciación\
+  \ de un préstamo:\n   - Obtener condiciones actuales del cliente.\n   - Calcular\
+  \ nuevo cronograma y costos asociados.\n   - Comparar ahorro neto vs. costos de\
+  \ reestructuración.\n\nReglas de negocio específicas:\n- Las cuotas pueden pagarse\
+  \ por débito automático o transferencia.\n- Penalidades por mora se aplican desde\
+  \ el primer día hábil de atraso.\n- Los préstamos con colateral requieren tasación\
+  \ previa.\n\nAcciones de usuarios (ejemplos):\n- Solicitar cambio de titularidad\
+  \ de la cuenta.\n- Solicitar aumento de límite de crédito.\n- Iniciar reclamo por\
+  \ débito no reconocido."
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: data/raw/savings_loans_domain_extra2.txt
+  kind: text
+  sequence: 28
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- Obtener condiciones actuales del cliente.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Solicitar cambio de titularidad de la cuenta.'
+  match_strategy: generated
+  canonical_name: savings_loans_domain_extra2.txt
+  normalized_name: savings loans domain extra2.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,26 @@
+asset_id: entity.debitnote
+asset_type: entity
+name: DebitNote
+version: 1.0.0
+owner: business_model_kb
+description: Documento que registra un cargo adicional o ajuste negativo.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Documento que registra un cargo adicional o ajuste negativo.
+  inferred_from: llm_asset_extraction
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: Documento que registra un cargo adicional o ajuste negativo.
+  match_strategy: generated
+  canonical_name: DebitNote
+  normalized_name: debitnote
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

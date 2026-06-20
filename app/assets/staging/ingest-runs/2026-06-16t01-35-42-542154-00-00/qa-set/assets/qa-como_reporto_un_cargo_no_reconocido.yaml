@@ -1,0 +1,21 @@
+asset_id: qa.como_reporto_un_cargo_no_reconocido
+asset_type: qa
+name: Como reporto un cargo no reconocido?
+version: 1.0.0
+owner: qa_kb
+description: Como reporto un cargo no reconocido?
+text: Como reporto un cargo no reconocido?
+tags:
+- qa
+relations: []
+payload:
+  question: Como reporto un cargo no reconocido?
+  transaction_id: como.reporto.un.cargo.no.reconocido
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Como reporto un cargo no reconocido?
+  normalized_name: como reporto un cargo no reconocido?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: process.el.proceso.de.actualizacion.de.datos.revisa.titularidad.valida.cambios.y.registra.auditoria
+asset_type: process
+name: Process actualizacion de datos revisa titularidad,
+version: 1.0.0
+owner: process_kb
+description: El proceso de actualizacion de datos revisa titularidad, valida cambios
+  y registra auditoria.
+text: El proceso de actualizacion de datos revisa titularidad, valida cambios y registra
+  auditoria.
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: El proceso de actualizacion de datos revisa titularidad, valida cambios
+    y registra auditoria.
+  source_section: Processes
+  transaction_id: el.proceso.de.actualizacion.de.datos.revisa.titularidad.valida.cambios.y.registra.auditoria
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Process actualizacion de datos revisa titularidad,
+  normalized_name: process actualizacion de datos revisa titularidad,
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

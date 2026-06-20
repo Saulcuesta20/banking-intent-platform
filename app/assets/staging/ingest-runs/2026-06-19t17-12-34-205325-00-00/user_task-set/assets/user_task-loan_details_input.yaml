@@ -1,0 +1,25 @@
+asset_id: user_task.loan_details_input
+asset_type: user_task
+name: Loan Details Input
+version: 1.0.0
+owner: business_model_kb
+description: Customer enters loan amount, term, purpose, and uploads income proof.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: provide_loan_details
+  task: provide_loan_application_details
+  type: execution
+  name: Loan Details Input
+  description: Customer enters loan amount, term, purpose, and uploads income proof.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Details Input
+  normalized_name: loan details input
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

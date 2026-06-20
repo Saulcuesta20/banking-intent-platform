@@ -1,0 +1,49 @@
+asset_id: asset_set.minimum.initial.deposit.for.savings.account
+asset_type: asset_set
+name: Minimum.initial.deposit.for.savings.account Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for minimum.initial.deposit.for.savings.account.
+text: 'Minimum initial deposit for savings account
+
+  Account
+
+  Minimum.initial.deposit.for.savings.account Ruleset'
+tags:
+- asset_set
+- minimum.initial.deposit.for.savings.account
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.minimum_initial_deposit_for_savings_account
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.minimum.initial.deposit.for.savings.account
+  metadata: {}
+payload:
+  transaction_id: minimum.initial.deposit.for.savings.account
+  asset_ids:
+  - business_rule.minimum_initial_deposit_for_savings_account
+  - entity.savings_account
+  - ruleset.minimum.initial.deposit.for.savings.account
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.minimum_initial_deposit_for_savings_account
+    asset_type: business_rule
+  - asset_id: entity.savings_account
+    asset_type: entity
+  - asset_id: ruleset.minimum.initial.deposit.for.savings.account
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Minimum.initial.deposit.for.savings.account Asset Set
+  normalized_name: minimum.initial.deposit.for.savings.account asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,43 @@
+asset_id: asset_set.la.mora.superior.a.treinta.dias.prevents.la.oferta.de.refinanciamiento
+asset_type: asset_set
+name: La.mora.superior.a.treinta.dias.prevents.la.oferta.de.refinanciamiento Asset
+  Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for la.mora.superior.a.treinta.dias.prevents.la.oferta.de.refinanciamiento.
+text: 'La mora superior a treinta dias prevents la oferta de refinanciamiento
+
+  la oferta de refinanciamiento'
+tags:
+- asset_set
+- la.mora.superior.a.treinta.dias.prevents.la.oferta.de.refinanciamiento
+relations:
+- type: groups_causality
+  target_asset_id: causality.la_mora_superior_a_treinta_dias_prevents_la_oferta_de_refinanciamiento
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.la_oferta_de_refinanciamiento
+  metadata: {}
+payload:
+  transaction_id: la.mora.superior.a.treinta.dias.prevents.la.oferta.de.refinanciamiento
+  asset_ids:
+  - causality.la_mora_superior_a_treinta_dias_prevents_la_oferta_de_refinanciamiento
+  - entity.la_oferta_de_refinanciamiento
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.la_mora_superior_a_treinta_dias_prevents_la_oferta_de_refinanciamiento
+    asset_type: causality
+  - asset_id: entity.la_oferta_de_refinanciamiento
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: La.mora.superior.a.treinta.dias.prevents.la.oferta.de.refinanciamiento
+    Asset Set
+  normalized_name: la.mora.superior.a.treinta.dias.prevents.la.oferta.de.refinanciamiento
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

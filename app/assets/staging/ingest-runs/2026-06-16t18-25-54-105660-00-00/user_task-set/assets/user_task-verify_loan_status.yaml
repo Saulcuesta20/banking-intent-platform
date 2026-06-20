@@ -1,0 +1,25 @@
+asset_id: user_task.verify_loan_status
+asset_type: user_task
+name: Verify Loan Status
+version: 1.0.0
+owner: business_model_kb
+description: Check current loan status
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verify_loan_status
+  task: verify_loan_status
+  type: verification
+  name: Verify Loan Status
+  description: Check current loan status
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Verify Loan Status
+  normalized_name: verify loan status
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

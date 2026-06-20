@@ -1,0 +1,49 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Form Definition",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/form_id"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/module_id"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 1,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/fields"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/layout"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/validation"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

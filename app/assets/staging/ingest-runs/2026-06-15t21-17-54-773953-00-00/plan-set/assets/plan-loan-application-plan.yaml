@@ -1,0 +1,60 @@
+asset_id: plan.loan.application.plan
+asset_type: plan
+name: Loan Application Plan
+version: 1.0.0
+owner: planning_kb
+description: UT101 UT002 UT102 UT103 UT104 UT105 UT106
+text: 'UT101
+
+  UT002
+
+  UT102
+
+  UT103
+
+  UT104
+
+  UT105
+
+  UT106'
+tags:
+- orchestration_plan
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  steps:
+  - UT101
+  - UT002
+  - UT102
+  - UT103
+  - UT104
+  - UT105
+  - UT106
+  plan_text: 'UT101
+
+    UT002
+
+    UT102
+
+    UT103
+
+    UT104
+
+    UT105
+
+    UT106'
+  source_section: LLMAssetExtraction
+  transaction_id: loan.application.plan
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Application Plan
+  normalized_name: loan application plan
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

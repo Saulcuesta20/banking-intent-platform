@@ -1,0 +1,46 @@
+asset_id: causality.entity_mora_prevents_entity_la_oferta_de_refinanciamiento
+asset_type: causality
+name: entity.mora prevents entity.la_oferta_de_refinanciamiento
+version: 1.0.0
+owner: causality_kb
+description: La mora superior a treinta dias bloquea la oferta de refinanciamiento.
+text: La mora superior a treinta dias bloquea la oferta de refinanciamiento.
+tags:
+- causality
+- prevents
+relations:
+- type: has_cause
+  target_asset_id: entity.mora
+  metadata: {}
+- type: has_effect
+  target_asset_id: entity.la_oferta_de_refinanciamiento
+  metadata: {}
+payload:
+  cause_text: La mora superior a treinta dias
+  effect_text: la oferta de refinanciamiento
+  relation_kind: prevents
+  statement: La mora superior a treinta dias bloquea la oferta de refinanciamiento.
+  sentence: La mora superior a treinta dias bloquea la oferta de refinanciamiento.
+  transaction_id: entity.mora.prevents.entity.la.oferta.de.refinanciamiento
+  relation_hints:
+  - type: prevents
+    family: causality
+    phrase: prevents
+    sentence: La mora superior a treinta dias prevents la oferta de refinanciamiento
+  - type: prevents
+    family: causality
+    phrase: bloquea
+    sentence: La mora superior a treinta dias bloquea la oferta de refinanciamiento.
+  - type: prevents
+    family: causality
+    phrase: bloquea
+    sentence: La mora superior a treinta dias bloquea la oferta de refinanciamiento.
+  canonical_name: entity.mora prevents entity.la_oferta_de_refinanciamiento
+  resolved_cause_asset_id: entity.mora
+  resolved_effect_asset_id: entity.la_oferta_de_refinanciamiento
+  match_strategy: generated
+  normalized_name: entity.mora prevents entity.la oferta de refinanciamiento
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

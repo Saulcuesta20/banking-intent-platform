@@ -1,0 +1,25 @@
+asset_id: user_task.collect_application
+asset_type: user_task
+name: Collect Application
+version: 1.0.0
+owner: business_model_kb
+description: Gather loan amount, term, purpose
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: collect_application
+  task: collect_loan_application_details
+  type: form
+  name: Collect Application
+  description: Gather loan amount, term, purpose
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collect Application
+  normalized_name: collect application
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

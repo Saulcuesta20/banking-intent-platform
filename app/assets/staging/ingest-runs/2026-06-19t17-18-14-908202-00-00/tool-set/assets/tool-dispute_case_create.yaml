@@ -1,0 +1,20 @@
+asset_id: tool.dispute_case_create
+asset_type: tool
+name: dispute.case.create
+version: 1.0.0
+owner: business_model_kb
+description: La API dispute.case.create abre el caso por cargo no reconocido.
+text: La API dispute.case.create abre el caso por cargo no reconocido.
+tags: []
+relations: []
+payload:
+  description: La API dispute.case.create abre el caso por cargo no reconocido.
+  tool_id: dispute.case.create
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: dispute.case.create
+  normalized_name: dispute.case.create
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

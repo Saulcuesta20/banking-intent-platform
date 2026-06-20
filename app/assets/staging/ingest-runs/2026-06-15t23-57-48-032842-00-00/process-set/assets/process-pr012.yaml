@@ -1,0 +1,38 @@
+asset_id: process.pr012
+asset_type: process
+name: PR012
+version: 1.0.0
+owner: process_kb
+description: 'Proceso de alta de pago automático: valida cuenta cargo y confirma consentimiento.'
+text: ''
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pr012
+  business_event: ''
+  triggers: []
+  execution_nodes: []
+  transitions: []
+  rules: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Proceso de alta de pago automático: valida cuenta cargo y confirma
+      consentimiento.'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Proceso de alta de pago automático: valida cuenta cargo y confirma
+      consentimiento.'
+  match_strategy: generated
+  canonical_name: PR012
+  normalized_name: pr012
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

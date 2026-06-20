@@ -1,0 +1,32 @@
+asset_id: user_task.verificaci_n_de_vencimiento
+asset_type: user_task
+name: Verificación de vencimiento
+version: 1.0.0
+owner: business_model_kb
+description: Revisar la fecha de vencimiento del plazo fijo y las instrucciones del
+  cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verificar_vencimiento
+  task: verificar_vencimiento
+  type: check
+  name: Verificación de vencimiento
+  description: Revisar la fecha de vencimiento del plazo fijo y las instrucciones
+    del cliente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Revisar la fecha de vencimiento del plazo fijo y las instrucciones del
+      cliente.
+  match_strategy: generated
+  canonical_name: Verificación de vencimiento
+  normalized_name: verificación de vencimiento
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.capture_payment_day_and_acceptance
+asset_type: user_task
+name: Capture payment day and acceptance
+version: 1.0.0
+owner: business_model_kb
+description: Capture payment day and customer acceptance.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: automatic_payment_setup_step_6
+  task: capture_payment_day_and_customer_acceptance
+  type: manual
+  name: Capture payment day and acceptance
+  description: Capture payment day and customer acceptance.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Capture payment day and acceptance
+  normalized_name: capture payment day and acceptance
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

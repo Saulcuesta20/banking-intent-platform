@@ -1,0 +1,25 @@
+asset_id: user_task.manager_approval
+asset_type: user_task
+name: Manager Approval
+version: 1.0.0
+owner: business_model_kb
+description: Agent escalates to manager for final approval on the flagged transfer
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: manager_approval_task
+  task: obtain_manager_approval_for_transfer
+  type: manual
+  name: Manager Approval
+  description: Agent escalates to manager for final approval on the flagged transfer
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Manager Approval
+  normalized_name: manager approval
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

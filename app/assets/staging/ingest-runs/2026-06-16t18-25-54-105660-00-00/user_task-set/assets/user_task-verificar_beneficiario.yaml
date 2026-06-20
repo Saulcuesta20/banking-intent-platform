@@ -1,0 +1,25 @@
+asset_id: user_task.verificar_beneficiario
+asset_type: user_task
+name: Verificar beneficiario
+version: 1.0.0
+owner: business_model_kb
+description: Verificar que el beneficiario o CBU es valido
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_verify_beneficiary
+  task: verificar_beneficiario
+  type: verification
+  name: Verificar beneficiario
+  description: Verificar que el beneficiario o CBU es valido
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Verificar beneficiario
+  normalized_name: verificar beneficiario
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

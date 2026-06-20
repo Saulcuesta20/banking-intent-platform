@@ -1,0 +1,24 @@
+asset_id: entity.plazo_y_comision
+asset_type: entity
+name: plazo y comision.
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: La oferta de refinanciamiento
+  incluye tasa, plazo y comision.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases:
+  - plazo y comision
+  inferred_from: section_entities
+  structural_layer: business_resource
+  business_layer: business_resource
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: plazo y comision.
+  normalized_name: plazo y comision.
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

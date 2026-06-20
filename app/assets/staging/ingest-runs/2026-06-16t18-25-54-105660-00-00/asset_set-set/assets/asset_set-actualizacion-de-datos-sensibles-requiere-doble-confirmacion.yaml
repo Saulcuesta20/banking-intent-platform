@@ -1,0 +1,42 @@
+asset_id: asset_set.actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+asset_type: asset_set
+name: Actualizacion.de.datos.sensibles.requiere.doble.confirmacion Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for actualizacion.de.datos.sensibles.requiere.doble.confirmacion.
+text: 'actualizacion de datos sensibles requiere doble confirmacion
+
+  Actualizacion.de.datos.sensibles.requiere.doble.confirmacion Ruleset'
+tags:
+- asset_set
+- actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.actualizacion_de_datos_sensibles_requiere_doble_confirmacion
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+  metadata: {}
+payload:
+  transaction_id: actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+  asset_ids:
+  - business_rule.actualizacion_de_datos_sensibles_requiere_doble_confirmacion
+  - ruleset.actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+  asset_types:
+  - business_rule
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.actualizacion_de_datos_sensibles_requiere_doble_confirmacion
+    asset_type: business_rule
+  - asset_id: ruleset.actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Actualizacion.de.datos.sensibles.requiere.doble.confirmacion Asset
+    Set
+  normalized_name: actualizacion.de.datos.sensibles.requiere.doble.confirmacion asset
+    set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

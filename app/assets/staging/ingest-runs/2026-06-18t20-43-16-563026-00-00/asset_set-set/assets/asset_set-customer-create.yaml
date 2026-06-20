@@ -1,0 +1,58 @@
+asset_id: asset_set.customer.create
+asset_type: asset_set
+name: Customer.create Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for customer.create.
+text: 'cliente
+
+  El operador solicita: quiero crear un cliente nuevo
+
+  Plan crear cliente
+
+  Process alta de cliente captura datos,'
+tags:
+- asset_set
+- customer.create
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.customer.create
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.customer.create
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.customer.create
+  metadata: {}
+payload:
+  transaction_id: customer.create
+  asset_ids:
+  - entity.customer
+  - flow.customer.create
+  - plan.customer.create
+  - process.customer.create
+  asset_types:
+  - entity
+  - flow
+  - plan
+  - process
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.customer.create
+    asset_type: flow
+  - asset_id: plan.customer.create
+    asset_type: plan
+  - asset_id: process.customer.create
+    asset_type: process
+  match_strategy: generated
+  canonical_name: Customer.create Asset Set
+  normalized_name: customer.create asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

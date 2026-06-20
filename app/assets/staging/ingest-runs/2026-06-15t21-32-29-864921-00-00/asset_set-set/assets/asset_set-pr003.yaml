@@ -1,0 +1,40 @@
+asset_id: asset_set.pr003
+asset_type: asset_set
+name: Pr003 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for pr003.
+text: 'Transfer
+
+  PR003'
+tags:
+- asset_set
+- pr003
+relations:
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.pr003
+  metadata: {}
+payload:
+  transaction_id: pr003
+  asset_ids:
+  - entity.transfer
+  - process.pr003
+  asset_types:
+  - entity
+  - process
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: process.pr003
+    asset_type: process
+  match_strategy: generated
+  canonical_name: Pr003 Asset Set
+  normalized_name: pr003 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

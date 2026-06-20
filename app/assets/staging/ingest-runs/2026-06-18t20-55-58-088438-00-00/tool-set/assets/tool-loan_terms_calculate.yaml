@@ -1,0 +1,20 @@
+asset_id: tool.loan_terms_calculate
+asset_type: tool
+name: loan.terms.calculate
+version: 1.0.0
+owner: business_model_kb
+description: El motor loan.terms.calculate calcula tasa y plazo de refinanciacion.
+text: El motor loan.terms.calculate calcula tasa y plazo de refinanciacion.
+tags: []
+relations: []
+payload:
+  description: El motor loan.terms.calculate calcula tasa y plazo de refinanciacion.
+  tool_id: loan.terms.calculate
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: loan.terms.calculate
+  normalized_name: loan.terms.calculate
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

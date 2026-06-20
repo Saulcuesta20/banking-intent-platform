@@ -164,9 +164,10 @@ def test_process_execution_resumes_and_invokes_protocol_integrations():
 def test_process_execution_applies_business_rule_gate():
     repository = process_repository(
         EnterpriseAsset(
-            asset_id="business_rule.loan_application_gate",
-            asset_type="business_rule",
-            name="Loan Application Gate",
+                asset_id="business_rule.loan_application_gate",
+                asset_type="business_rule",
+                name="Loan Application Gate",
+                status="approved",
             relations=[
                 AssetRelation(type="applies_to_flow", target_asset_id="flow.loan_application_process")
             ],

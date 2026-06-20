@@ -1,0 +1,17 @@
+asset_id: menu.deposit-account.account-opening
+asset_type: menu
+name: Apertura de cuenta
+description: Cuentas de Captacion launcher menu.
+tags:
+- deposits
+- deposit-account
+- menu
+relations:
+- type: belongs_to_module
+  target_asset_id: module.deposit-account
+payload:
+  id: account-opening
+  label: Apertura de cuenta
+  path: /deposits/deposit-account/account-opening
+  module_id: deposit-account
+  domain_id: deposits

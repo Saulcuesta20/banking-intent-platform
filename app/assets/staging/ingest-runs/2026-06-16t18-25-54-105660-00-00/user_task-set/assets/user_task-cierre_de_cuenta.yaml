@@ -1,0 +1,33 @@
+asset_id: user_task.cierre_de_cuenta
+asset_type: user_task
+name: Cierre de cuenta
+version: 1.0.0
+owner: business_model_kb
+description: Realizar el cierre formal de la cuenta en el sistema bancario.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: cerrar_cuenta_definitivamente
+  task: cerrar_cuenta_definitivamente
+  type: action
+  name: Cierre de cuenta
+  description: Realizar el cierre formal de la cuenta en el sistema bancario.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Cierre de cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Realizar el cierre formal de la cuenta en el sistema bancario.
+  match_strategy: generated
+  canonical_name: Cierre de cuenta
+  normalized_name: cierre de cuenta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

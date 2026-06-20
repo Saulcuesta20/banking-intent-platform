@@ -1,0 +1,82 @@
+asset_id: flow.automatic.payment.account.requirement
+asset_type: flow
+name: Automatic Payment Account Requirement
+version: 1.0.0
+owner: process_kb
+description: Check for eligible savings account; if absent, explain requirement and
+  offer account opening journey before configuring payment
+text: Check for eligible savings account; if absent, explain requirement and offer
+  account opening journey before configuring payment
+tags:
+- automate.loan.payments.securely
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.account_eligibility_check
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.requirement_explanation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.payment_configuration
+  metadata: {}
+payload:
+  flow_id: automatic.payment.account.requirement
+  flow_name: Automatic Payment Account Requirement
+  intent: automate.loan.payments.securely
+  confidence: 0.75
+  business_event: Customer requests setup of recurring loan payment
+  utterances: []
+  plan: []
+  tasks:
+  - task: check_if_customer_has_eligible_savings_account_for_automatic_payment
+    type: validation
+  - task: explain_account_requirement_and_offer_account_opening_journey
+    type: communication
+  - task: configure_automatic_loan_payment_with_terms_and_payment_day
+    type: setup
+  user_tasks:
+  - user_task_id: account_eligibility_check
+    task: check_if_customer_has_eligible_savings_account_for_automatic_payment
+    type: validation
+    name: Account Eligibility Check
+    description: Verify customer's account eligibility for setting up recurring loan
+      payments.
+    tools: []
+    user_actions: []
+  - user_task_id: requirement_explanation
+    task: explain_account_requirement_and_offer_account_opening_journey
+    type: communication
+    name: Requirement Explanation
+    description: Inform customer about the need for an eligible savings account and
+      guide them through the account opening process if required.
+    tools: []
+    user_actions: []
+  - user_task_id: payment_configuration
+    task: configure_automatic_loan_payment_with_terms_and_payment_day
+    type: setup
+    name: Payment Configuration
+    description: Set up recurring loan payment after customer acceptance, including
+      terms and chosen payment day.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Check for eligible savings account; if absent, explain requirement
+    and offer account opening journey before configuring payment
+  source: data/raw/enterprise_dump_2026/operations_controls_policy.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/operations_controls_policy.md
+    purpose: Ensure loan payments are made from eligible savings accounts
+  purpose: Ensure loan payments are made from eligible savings accounts
+  transaction_id: automatic.payment.account.requirement
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Automatic Payment Account Requirement
+  normalized_name: automatic payment account requirement
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

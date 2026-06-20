@@ -1,0 +1,27 @@
+asset_id: user_task.request_document
+asset_type: user_task
+name: Request Document
+version: 1.0.0
+owner: business_model_kb
+description: Agent requests customer to provide a document explaining the purpose
+  of the transfer
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: request_document_task
+  task: request_purpose_document_for_transfer
+  type: manual
+  name: Request Document
+  description: Agent requests customer to provide a document explaining the purpose
+    of the transfer
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Request Document
+  normalized_name: request document
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.beneficiary_confirmation
+asset_type: user_task
+name: Beneficiary Confirmation
+version: 1.0.0
+owner: business_model_kb
+description: Customer provides and confirms beneficiary information for the insurance.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_beneficiary
+  task: confirm_beneficiary_details
+  type: confirmation
+  name: Beneficiary Confirmation
+  description: Customer provides and confirms beneficiary information for the insurance.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Beneficiary Confirmation
+  normalized_name: beneficiary confirmation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

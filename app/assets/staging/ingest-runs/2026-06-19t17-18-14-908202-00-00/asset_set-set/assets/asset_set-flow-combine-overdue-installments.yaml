@@ -1,0 +1,64 @@
+asset_id: asset_set.flow.combine.overdue.installments
+asset_type: asset_set
+name: Flow.combine.overdue.installments Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.combine.overdue.installments.
+text: 'Combine Overdue Installments Refinance
+
+  Approval Task
+
+  Collections Exception Check
+
+  Customer Installment Combination Request
+
+  Support Account Verification'
+tags:
+- asset_set
+- flow.combine.overdue.installments
+relations:
+- type: groups_flow
+  target_asset_id: flow.flow.combine.overdue.installments
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.approval_task
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.collections_exception_check
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.customer_installment_combination_request
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.support_account_verification
+  metadata: {}
+payload:
+  transaction_id: flow.combine.overdue.installments
+  asset_ids:
+  - flow.flow.combine.overdue.installments
+  - user_task.approval_task
+  - user_task.collections_exception_check
+  - user_task.customer_installment_combination_request
+  - user_task.support_account_verification
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.flow.combine.overdue.installments
+    asset_type: flow
+  - asset_id: user_task.approval_task
+    asset_type: user_task
+  - asset_id: user_task.collections_exception_check
+    asset_type: user_task
+  - asset_id: user_task.customer_installment_combination_request
+    asset_type: user_task
+  - asset_id: user_task.support_account_verification
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Flow.combine.overdue.installments Asset Set
+  normalized_name: flow.combine.overdue.installments asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

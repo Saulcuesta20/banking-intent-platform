@@ -1,0 +1,46 @@
+asset_id: causality.de_kb_ingestion_causes_o_refresca_esos_activos_desde_texto_empresarial_y_deja
+asset_type: causality
+name: de KB ingestion causes o refresca esos activos desde texto empresarial y deja
+version: 1.0.0
+owner: causality_kb
+description: de KB ingestion genera o refresca esos activos desde texto empresarial
+  y deja
+text: de KB ingestion genera o refresca esos activos desde texto empresarial y deja
+tags:
+- causality
+- causes
+relations:
+- type: has_cause
+  target_asset_id: entity.de_kb_ingestion
+  metadata: {}
+payload:
+  cause_text: de KB ingestion
+  effect_text: o refresca esos activos desde texto empresarial y deja
+  relation_kind: causes
+  statement: de KB ingestion genera o refresca esos activos desde texto empresarial
+    y deja
+  sentence: de KB ingestion genera o refresca esos activos desde texto empresarial
+    y deja
+  transaction_id: de.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: de KB ingestion genera o refresca esos activos desde texto empresarial
+      y deja
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: de KB ingestion genera o refresca esos activos desde texto empresarial
+      y deja
+  resolved_cause_asset_id: entity.de_kb_ingestion
+  resolved_effect_asset_id: null
+  match_strategy: generated
+  canonical_name: de KB ingestion causes o refresca esos activos desde texto empresarial
+    y deja
+  normalized_name: de kb ingestion causes o refresca esos activos desde texto empresarial
+    y deja
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

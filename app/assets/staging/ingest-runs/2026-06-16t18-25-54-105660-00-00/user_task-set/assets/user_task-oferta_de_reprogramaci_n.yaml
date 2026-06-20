@@ -1,0 +1,37 @@
+asset_id: user_task.oferta_de_reprogramaci_n
+asset_type: user_task
+name: Oferta de reprogramación
+version: 1.0.0
+owner: business_model_kb
+description: Se presenta al cliente un plan de reprogramación del pago (nueva fecha,
+  posible cargo) y se solicita su aceptación.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ofrecer_plan_reprogramacion
+  task: ofrecer_plan_de_reprogramaci_n_de_pago
+  type: form
+  name: Oferta de reprogramación
+  description: Se presenta al cliente un plan de reprogramación del pago (nueva fecha,
+    posible cargo) y se solicita su aceptación.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Se presenta al cliente un plan de reprogramación del pago (nueva fecha,
+      posible cargo) y se solicita su aceptación.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Se presenta al cliente un plan de reprogramación del pago (nueva fecha,
+      posible cargo) y se solicita su aceptación.
+  match_strategy: generated
+  canonical_name: Oferta de reprogramación
+  normalized_name: oferta de reprogramación
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

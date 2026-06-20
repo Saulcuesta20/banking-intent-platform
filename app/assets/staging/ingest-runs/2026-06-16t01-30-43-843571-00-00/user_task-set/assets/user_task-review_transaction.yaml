@@ -1,0 +1,25 @@
+asset_id: user_task.review_transaction
+asset_type: user_task
+name: Review Transaction
+version: 1.0.0
+owner: business_model_kb
+description: Analyze transaction history for discrepancies.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut203
+  task: review_transaction
+  type: backend
+  name: Review Transaction
+  description: Analyze transaction history for discrepancies.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Review Transaction
+  normalized_name: review transaction
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

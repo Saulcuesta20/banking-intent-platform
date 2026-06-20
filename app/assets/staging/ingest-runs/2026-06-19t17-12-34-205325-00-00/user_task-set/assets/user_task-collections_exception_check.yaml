@@ -1,0 +1,25 @@
+asset_id: user_task.collections_exception_check
+asset_type: user_task
+name: Collections Exception Check
+version: 1.0.0
+owner: business_model_kb
+description: Collections confirms whether a special exception applies
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_6
+  task: confirm_special_exception
+  type: verification
+  name: Collections Exception Check
+  description: Collections confirms whether a special exception applies
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collections Exception Check
+  normalized_name: collections exception check
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

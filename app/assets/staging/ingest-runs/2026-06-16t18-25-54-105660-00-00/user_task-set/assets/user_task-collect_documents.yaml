@@ -1,0 +1,25 @@
+asset_id: user_task.collect_documents
+asset_type: user_task
+name: Collect Documents
+version: 1.0.0
+owner: business_model_kb
+description: Collect required documents from customer
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_savings_collect_documents
+  task: collect_documents
+  type: manual
+  name: Collect Documents
+  description: Collect required documents from customer
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collect Documents
+  normalized_name: collect documents
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

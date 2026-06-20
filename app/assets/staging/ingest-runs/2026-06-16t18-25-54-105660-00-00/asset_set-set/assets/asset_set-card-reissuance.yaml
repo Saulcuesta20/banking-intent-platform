@@ -1,0 +1,56 @@
+asset_id: asset_set.card.reissuance
+asset_type: asset_set
+name: Card.reissuance Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for card.reissuance.
+text: 'Reexpedición de tarjeta
+
+  Bloqueo de tarjeta
+
+  Emisión de tarjeta
+
+  Verificación de identidad'
+tags:
+- asset_set
+- card.reissuance
+relations:
+- type: groups_flow
+  target_asset_id: flow.card.reissuance
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.bloqueo_de_tarjeta
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.emisi_n_de_tarjeta
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verificaci_n_de_identidad
+  metadata: {}
+payload:
+  transaction_id: card.reissuance
+  asset_ids:
+  - flow.card.reissuance
+  - user_task.bloqueo_de_tarjeta
+  - user_task.emisi_n_de_tarjeta
+  - user_task.verificaci_n_de_identidad
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.card.reissuance
+    asset_type: flow
+  - asset_id: user_task.bloqueo_de_tarjeta
+    asset_type: user_task
+  - asset_id: user_task.emisi_n_de_tarjeta
+    asset_type: user_task
+  - asset_id: user_task.verificaci_n_de_identidad
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Card.reissuance Asset Set
+  normalized_name: card.reissuance asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,34 @@
+asset_id: asset_set.plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+asset_type: asset_set
+name: Plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo.
+text: Plan cobranza preventiva
+tags:
+- asset_set
+- plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+relations:
+- type: groups_plan
+  target_asset_id: plan.plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+  metadata: {}
+payload:
+  transaction_id: plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+  asset_ids:
+  - plan.plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+  asset_types:
+  - plan
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+    Asset Set
+  normalized_name: plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

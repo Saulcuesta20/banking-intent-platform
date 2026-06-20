@@ -1,0 +1,40 @@
+asset_id: plan.pl017
+asset_type: plan
+name: PL017
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para transferir dinero al prestamo: capturar referencia, validar
+  cuenta origen y mover fondos.'
+text: ''
+tags:
+- orchestration_plan
+relations:
+- type: uses_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+payload:
+  steps: []
+  plan_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pl017
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para transferir dinero al prestamo: capturar referencia, validar
+      cuenta origen y mover fondos.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Plan para transferir dinero al prestamo: capturar referencia, validar
+      cuenta origen y mover fondos.'
+  match_strategy: generated
+  canonical_name: PL017
+  normalized_name: pl017
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

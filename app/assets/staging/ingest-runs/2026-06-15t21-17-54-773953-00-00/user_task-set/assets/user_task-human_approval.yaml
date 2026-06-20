@@ -1,0 +1,25 @@
+asset_id: user_task.human_approval
+asset_type: user_task
+name: Human Approval
+version: 1.0.0
+owner: business_model_kb
+description: Underwriter reviews borderline or high‑risk loan applications.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut105
+  task: human_approval
+  type: backend
+  name: Human Approval
+  description: Underwriter reviews borderline or high‑risk loan applications.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Human Approval
+  normalized_name: human approval
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

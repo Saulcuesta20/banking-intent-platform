@@ -1,0 +1,25 @@
+asset_id: user_task.create_account
+asset_type: user_task
+name: Create Account
+version: 1.0.0
+owner: business_model_kb
+description: Open the new account in the core banking system after KYC approval.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_savings_create_account
+  task: create_account
+  type: manual
+  name: Create Account
+  description: Create the savings account in the system
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Create Account
+  normalized_name: create account
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

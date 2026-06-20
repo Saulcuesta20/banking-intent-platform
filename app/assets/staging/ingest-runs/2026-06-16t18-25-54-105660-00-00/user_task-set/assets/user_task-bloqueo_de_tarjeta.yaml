@@ -1,0 +1,25 @@
+asset_id: user_task.bloqueo_de_tarjeta
+asset_type: user_task
+name: Bloqueo de tarjeta
+version: 1.0.0
+owner: business_model_kb
+description: Bloquear la tarjeta anterior para evitar uso no autorizado.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: card_blocking
+  task: bloquear_tarjeta_anterior
+  type: manual
+  name: Bloqueo de tarjeta
+  description: Bloquear la tarjeta anterior para evitar uso no autorizado.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Bloqueo de tarjeta
+  normalized_name: bloqueo de tarjeta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

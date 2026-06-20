@@ -1,0 +1,25 @@
+asset_id: user_task.calculate_loan_eligibility
+asset_type: user_task
+name: Calculate Loan Eligibility
+version: 1.0.0
+owner: business_model_kb
+description: Compute DTI, evaluate collateral, and apply scoring rules.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut104
+  task: calculate_eligibility
+  type: backend
+  name: Calculate Loan Eligibility
+  description: Compute DTI, evaluate collateral, and apply scoring rules.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Calculate Loan Eligibility
+  normalized_name: calculate loan eligibility
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,48 @@
+asset_id: causality.el_score_alto_de_fraude_causes_congelamiento_preventivo_de_la_cuenta
+asset_type: causality
+name: El score alto de fraude causes congelamiento preventivo de la cuenta
+version: 1.0.0
+owner: causality_kb
+description: El score alto de fraude causa congelamiento preventivo de la cuenta.
+text: El score alto de fraude causa congelamiento preventivo de la cuenta.
+tags:
+- causality
+- causes
+relations: []
+payload:
+  cause_text: El score alto de fraude
+  effect_text: congelamiento preventivo de la cuenta
+  relation_kind: causes
+  statement: El score alto de fraude causa congelamiento preventivo de la cuenta.
+  sentence: El score alto de fraude causa congelamiento preventivo de la cuenta.
+  transaction_id: el.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El score alto de fraude causes congelamiento preventivo de la cuenta
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: El score alto de fraude causa congelamiento preventivo de la cuenta.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El score alto de fraude causa congelamiento preventivo de la cuenta.
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: El score alto de fraude causa congelamiento preventivo de la cuenta.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El score alto de fraude causa congelamiento preventivo de la cuenta.
+  resolved_cause_asset_id: null
+  resolved_effect_asset_id: null
+  match_strategy: generated
+  canonical_name: El score alto de fraude causes congelamiento preventivo de la cuenta
+  normalized_name: el score alto de fraude causes congelamiento preventivo de la cuenta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

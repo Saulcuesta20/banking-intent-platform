@@ -1,0 +1,25 @@
+asset_id: user_task.transfer_approval_request
+asset_type: user_task
+name: Transfer Approval Request
+version: 1.0.0
+owner: business_model_kb
+description: Escalate transfers exceeding operational limits for approval.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: request_transfer_approval_task
+  task: request_approval_for_large_transfers
+  type: manual
+  name: Transfer Approval Request
+  description: Escalate transfers exceeding operational limits for approval.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfer Approval Request
+  normalized_name: transfer approval request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

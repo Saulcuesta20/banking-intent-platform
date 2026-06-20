@@ -1,0 +1,48 @@
+asset_id: asset_set.fl015
+asset_type: asset_set
+name: Fl015 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl015.
+text: 'Desembolsar Prestamo Aprobado
+
+  Ejecutar el desembolso sobre la cuenta destino
+
+  Identificar al cliente antes de cualquier operacion financiera'
+tags:
+- asset_set
+- fl015
+relations:
+- type: groups_flow
+  target_asset_id: flow.fl015
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.ejecutar_el_desembolso_sobre_la_cuenta_destino
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  metadata: {}
+payload:
+  transaction_id: fl015
+  asset_ids:
+  - flow.fl015
+  - user_task.ejecutar_el_desembolso_sobre_la_cuenta_destino
+  - user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.fl015
+    asset_type: flow
+  - asset_id: user_task.ejecutar_el_desembolso_sobre_la_cuenta_destino
+    asset_type: user_task
+  - asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Fl015 Asset Set
+  normalized_name: fl015 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

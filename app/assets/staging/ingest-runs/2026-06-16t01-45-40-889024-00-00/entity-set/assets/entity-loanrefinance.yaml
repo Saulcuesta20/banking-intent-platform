@@ -1,0 +1,22 @@
+asset_id: entity.loanrefinance
+asset_type: entity
+name: LoanRefinance
+version: 1.0.0
+owner: business_model_kb
+description: Proceso de modificar condiciones de un préstamo existente.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Proceso de modificar condiciones de un préstamo existente.
+  inferred_from: llm_asset_extraction
+  business_layer: offering
+  entity_role: offering
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: LoanRefinance
+  normalized_name: loanrefinance
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

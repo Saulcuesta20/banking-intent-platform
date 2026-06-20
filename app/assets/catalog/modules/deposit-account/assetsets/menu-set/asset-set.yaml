@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: deposit-account-menu-set
+  name: Cuentas de Captacion Menu Set
+  version: 1.0.0
+  domain: deposits
+  module: deposit-account
+  description: Versioned menu deployment set for deposit-account.
+  tags:
+  - deposits
+  - deposit-account
+  - menu
+spec:
+  assetType: menu
+  assets:
+  - assets/menu-deposit-account-account-opening.yaml

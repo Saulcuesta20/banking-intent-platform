@@ -1,0 +1,25 @@
+asset_id: user_task.screen_beneficiary
+asset_type: user_task
+name: Screen beneficiary
+version: 1.0.0
+owner: business_model_kb
+description: Screen the beneficiary through the compliance screening gateway.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_intl_screen_beneficiary
+  task: screen_beneficiary
+  type: manual
+  name: Screen Beneficiary
+  description: Screen the beneficiary for compliance
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Screen beneficiary
+  normalized_name: screen beneficiary
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

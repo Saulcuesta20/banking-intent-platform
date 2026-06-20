@@ -1,0 +1,31 @@
+asset_id: flow.dispute.charge.report
+asset_type: flow
+name: quiero reportar un cargo no reconocido
+version: 1.0.0
+owner: process_kb
+description: 'El cliente expresa: quiero reportar un cargo no reconocido.'
+text: 'El cliente expresa: quiero reportar un cargo no reconocido.'
+tags:
+- utterance_flow
+relations: []
+payload:
+  utterances:
+  - 'El cliente expresa: quiero reportar un cargo no reconocido.'
+  purpose: 'El cliente expresa: quiero reportar un cargo no reconocido.'
+  transaction_id: dispute.charge.report
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente expresa: quiero reportar un cargo no reconocido.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente expresa: quiero reportar un cargo no reconocido.'
+  match_strategy: generated
+  canonical_name: quiero reportar un cargo no reconocido
+  normalized_name: quiero reportar un cargo no reconocido
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

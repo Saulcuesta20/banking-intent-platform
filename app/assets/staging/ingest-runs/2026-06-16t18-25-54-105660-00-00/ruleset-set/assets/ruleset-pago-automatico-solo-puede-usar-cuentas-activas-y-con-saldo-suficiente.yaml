@@ -1,0 +1,33 @@
+asset_id: ruleset.pago.automatico.solo.puede.usar.cuentas.activas.y.con.saldo.suficiente
+asset_type: ruleset
+name: Pago.automatico.solo.puede.usar.cuentas.activas.y.con.saldo.suficiente Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction pago.automatico.solo.puede.usar.cuentas.activas.y.con.saldo.suficiente
+  with 1 business rules.
+text: El pago automatico solo puede usar cuentas activas y con saldo suficiente.
+tags:
+- ruleset
+- pago.automatico.solo.puede.usar.cuentas.activas.y.con.saldo.suficiente
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.pago_automatico_solo_puede_usar_cuentas_activas_y_con_saldo_suficiente
+  metadata: {}
+payload:
+  transaction_id: pago.automatico.solo.puede.usar.cuentas.activas.y.con.saldo.suficiente
+  ruleset_name: Pago.automatico.solo.puede.usar.cuentas.activas.y.con.saldo.suficiente
+    Ruleset
+  rule_ids:
+  - business_rule.pago_automatico_solo_puede_usar_cuentas_activas_y_con_saldo_suficiente
+  conditions: []
+  consequences:
+  - El pago automatico solo puede usar cuentas activas y con saldo suficiente.
+  match_strategy: generated
+  canonical_name: Pago.automatico.solo.puede.usar.cuentas.activas.y.con.saldo.suficiente
+    Ruleset
+  normalized_name: pago.automatico.solo.puede.usar.cuentas.activas.y.con.saldo.suficiente
+    ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

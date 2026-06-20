@@ -1,0 +1,38 @@
+asset_id: user_task.verificar_consentimiento_de_pago_automatico
+asset_type: user_task
+name: Verificar consentimiento de pago automatico
+version: 1.0.0
+owner: business_model_kb
+description: Confirmar que el cliente ha aceptado los términos del débito automático
+  y que la cuenta es elegible.
+text: Verificar consentimiento de pago automatico.
+tags: []
+relations: []
+payload:
+  user_task_id: ut007
+  task: verificar_consentimiento_pago_automatico
+  type: human
+  name: Verificar consentimiento de pago automatico
+  description: Verificar consentimiento de pago automatico.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Verificar consentimiento de pago automatico
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Verificar consentimiento de pago automatico.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Verificar consentimiento de pago automatico.
+  match_strategy: generated
+  canonical_name: Verificar consentimiento de pago automatico
+  normalized_name: verificar consentimiento de pago automatico
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

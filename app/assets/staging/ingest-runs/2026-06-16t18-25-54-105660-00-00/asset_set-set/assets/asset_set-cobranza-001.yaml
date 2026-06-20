@@ -1,0 +1,64 @@
+asset_id: asset_set.cobranza.001
+asset_type: asset_set
+name: Cobranza.001 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for cobranza.001.
+text: 'proceso_de_cobranza
+
+  Consultar sistema
+
+  Documentar siguiente paso
+
+  Enviar recordatorio
+
+  Validar situacion'
+tags:
+- asset_set
+- cobranza.001
+relations:
+- type: groups_flow
+  target_asset_id: flow.cobranza.001
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.consultar_sistema
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.documentar_siguiente_paso
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.enviar_recordatorio
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_situacion
+  metadata: {}
+payload:
+  transaction_id: cobranza.001
+  asset_ids:
+  - flow.cobranza.001
+  - user_task.consultar_sistema
+  - user_task.documentar_siguiente_paso
+  - user_task.enviar_recordatorio
+  - user_task.validar_situacion
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.cobranza.001
+    asset_type: flow
+  - asset_id: user_task.consultar_sistema
+    asset_type: user_task
+  - asset_id: user_task.documentar_siguiente_paso
+    asset_type: user_task
+  - asset_id: user_task.enviar_recordatorio
+    asset_type: user_task
+  - asset_id: user_task.validar_situacion
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Cobranza.001 Asset Set
+  normalized_name: cobranza.001 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.claim_intake
+asset_type: user_task
+name: Claim Intake
+version: 1.0.0
+owner: business_model_kb
+description: Collecting information for a claim
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: claim_intake
+  task: intake_claim_details
+  type: user_task
+  name: Claim Intake
+  description: Collecting information for a claim
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Claim Intake
+  normalized_name: claim intake
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

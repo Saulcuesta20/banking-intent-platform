@@ -1,0 +1,25 @@
+asset_id: user_task.claim_creation
+asset_type: user_task
+name: Claim Creation
+version: 1.0.0
+owner: business_model_kb
+description: Create a claim for the customer complaint.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: create_claim
+  task: create_claim
+  type: case_initiation
+  name: Claim Creation
+  description: Create a claim for the customer complaint.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Claim Creation
+  normalized_name: claim creation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

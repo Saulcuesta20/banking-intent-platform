@@ -1,0 +1,20 @@
+asset_id: entity.shieldguardinsurancebundle
+asset_type: entity
+name: ShieldGuardInsuranceBundle
+version: 1.0.0
+owner: business_model_kb
+description: Paquete de vida + incapacidad atado a originaciones FlexPay.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Paquete de vida + incapacidad atado a originaciones FlexPay.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: ShieldGuardInsuranceBundle
+  normalized_name: shieldguardinsurancebundle
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

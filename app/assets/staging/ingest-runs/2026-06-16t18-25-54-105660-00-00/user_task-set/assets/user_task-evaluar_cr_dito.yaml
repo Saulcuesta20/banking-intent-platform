@@ -1,0 +1,29 @@
+asset_id: user_task.evaluar_cr_dito
+asset_type: user_task
+name: Evaluar crédito
+version: 1.0.0
+owner: business_model_kb
+description: El sistema evalúa la capacidad crediticia del cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: evaluate_credit
+  task: evaluar_cr_dito_del_cliente
+  type: análisis
+  name: Evaluar crédito
+  description: El sistema evalúa la capacidad crediticia del cliente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El sistema evalúa la capacidad crediticia del cliente.
+  match_strategy: generated
+  canonical_name: Evaluar crédito
+  normalized_name: evaluar crédito
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

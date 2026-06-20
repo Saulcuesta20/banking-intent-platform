@@ -1,0 +1,39 @@
+asset_id: entity.credit_note
+asset_type: entity
+name: nota de credito
+version: 1.0.0
+owner: business_model_kb
+description: Documento o registro que reconoce un ajuste a favor del cliente
+text: Documento o registro que reconoce un ajuste a favor del cliente
+tags: []
+relations: []
+payload:
+  aliases:
+  - credit note
+  - nota credito
+  structural_layer: business_resource
+  business_layer: business_resource
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Documento o registro que reconoce un ajuste a favor del cliente
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: Documento o registro que reconoce un ajuste a favor del cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Documento o registro que reconoce un ajuste a favor del cliente
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: Documento o registro que reconoce un ajuste a favor del cliente
+  match_strategy: generated
+  canonical_name: nota de credito
+  normalized_name: nota de credito
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

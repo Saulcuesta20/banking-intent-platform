@@ -1,0 +1,28 @@
+asset_id: entity.inicial_del_onboarding
+asset_type: entity
+name: inicial del onboarding.
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: La cuenta de ahorro base recibe
+  el deposito inicial del onboarding.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases:
+  - inicial del onboarding
+  inferred_from: section_entities
+  business_layer: channel
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Business entity listed in corpus section: La cuenta de ahorro base
+      recibe el deposito inicial del onboarding.'
+  match_strategy: generated
+  canonical_name: inicial del onboarding.
+  normalized_name: inicial del onboarding.
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,51 @@
+asset_id: asset_set.entity.la.validacion.reforzada.aprobada.enables.entity.la.transferencia.internacional
+asset_type: asset_set
+name: Entity.la.validacion.reforzada.aprobada.enables.entity.la.transferencia.internacional
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for entity.la.validacion.reforzada.aprobada.enables.entity.la.transferencia.internacional.
+text: 'entity.la_validacion_reforzada_aprobada enables entity.la_transferencia_internacional
+
+  la transferencia internacional
+
+  La validacion reforzada aprobada'
+tags:
+- asset_set
+- entity.la.validacion.reforzada.aprobada.enables.entity.la.transferencia.internacional
+relations:
+- type: groups_causality
+  target_asset_id: causality.entity_la_validacion_reforzada_aprobada_enables_entity_la_transferencia_internacional
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.la_transferencia_internacional
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.la_validacion_reforzada_aprobada
+  metadata: {}
+payload:
+  transaction_id: entity.la.validacion.reforzada.aprobada.enables.entity.la.transferencia.internacional
+  asset_ids:
+  - causality.entity_la_validacion_reforzada_aprobada_enables_entity_la_transferencia_internacional
+  - entity.la_transferencia_internacional
+  - entity.la_validacion_reforzada_aprobada
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.entity_la_validacion_reforzada_aprobada_enables_entity_la_transferencia_internacional
+    asset_type: causality
+  - asset_id: entity.la_transferencia_internacional
+    asset_type: entity
+  - asset_id: entity.la_validacion_reforzada_aprobada
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: Entity.la.validacion.reforzada.aprobada.enables.entity.la.transferencia.internacional
+    Asset Set
+  normalized_name: entity.la.validacion.reforzada.aprobada.enables.entity.la.transferencia.internacional
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

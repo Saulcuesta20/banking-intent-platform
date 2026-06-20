@@ -1,0 +1,25 @@
+asset_id: user_task.scoring_calculation
+asset_type: user_task
+name: Scoring Calculation
+version: 1.0.0
+owner: business_model_kb
+description: Compute risk score based on client data and policies.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: calculate_scoring_task
+  task: calculate_loan_risk_score
+  type: automated
+  name: Scoring Calculation
+  description: Compute risk score based on client data and policies.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Scoring Calculation
+  normalized_name: scoring calculation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

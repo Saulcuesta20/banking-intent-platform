@@ -1,0 +1,25 @@
+asset_id: user_task.receive_request
+asset_type: user_task
+name: Receive Request
+version: 1.0.0
+owner: business_model_kb
+description: Contact center receives a cancellation request for automatic payment.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: contact_center_receive
+  task: receive_cancellation_request
+  type: manual
+  name: Receive Request
+  description: Contact center receives a cancellation request for automatic payment.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Receive Request
+  normalized_name: receive request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

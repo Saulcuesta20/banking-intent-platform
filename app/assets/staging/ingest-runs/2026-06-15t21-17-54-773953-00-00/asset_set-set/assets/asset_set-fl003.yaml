@@ -1,0 +1,40 @@
+asset_id: asset_set.fl003
+asset_type: asset_set
+name: Fl003 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl003.
+text: 'Transfer
+
+  Transferir Dinero'
+tags:
+- asset_set
+- fl003
+relations:
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.fl003
+  metadata: {}
+payload:
+  transaction_id: fl003
+  asset_ids:
+  - entity.transfer
+  - flow.fl003
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: flow.fl003
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Fl003 Asset Set
+  normalized_name: fl003 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

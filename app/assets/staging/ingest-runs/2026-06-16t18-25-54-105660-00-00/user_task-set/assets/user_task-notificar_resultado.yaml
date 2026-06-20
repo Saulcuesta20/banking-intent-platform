@@ -1,0 +1,29 @@
+asset_id: user_task.notificar_resultado
+asset_type: user_task
+name: Notificar resultado
+version: 1.0.0
+owner: business_model_kb
+description: Notificar al cliente el resultado de la transferencia
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_notify
+  task: notificar_resultado
+  type: communication
+  name: Notificar resultado
+  description: Notificar al cliente el resultado de la transferencia
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Notificar al cliente el resultado de la transferencia
+  match_strategy: generated
+  canonical_name: Notificar resultado
+  normalized_name: notificar resultado
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,48 @@
+asset_id: causality.entity_beneficiario_causes_entity_rechazo_de_la_transferencia
+asset_type: causality
+name: entity.beneficiario causes entity.rechazo_de_la_transferencia
+version: 1.0.0
+owner: causality_kb
+description: El alias incorrecto del beneficiario provoca rechazo de la transferencia.
+text: El alias incorrecto del beneficiario provoca rechazo de la transferencia.
+tags:
+- causality
+- causes
+relations:
+- type: applies_to_flow
+  target_asset_id: flow.transfer
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.transferencia
+  metadata: {}
+- type: has_cause
+  target_asset_id: entity.beneficiario
+  metadata: {}
+- type: has_effect
+  target_asset_id: entity.rechazo_de_la_transferencia
+  metadata: {}
+payload:
+  cause_text: El alias incorrecto del beneficiario
+  effect_text: rechazo de la transferencia
+  relation_kind: causes
+  statement: El alias incorrecto del beneficiario provoca rechazo de la transferencia.
+  sentence: El alias incorrecto del beneficiario provoca rechazo de la transferencia.
+  transaction_id: transfer
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: provoca
+    sentence: El alias incorrecto del beneficiario provoca rechazo de la transferencia.
+  - type: causes
+    family: causality
+    phrase: provoca
+    sentence: El alias incorrecto del beneficiario provoca rechazo de la transferencia.
+  canonical_name: entity.beneficiario causes entity.rechazo_de_la_transferencia
+  resolved_cause_asset_id: entity.beneficiario
+  resolved_effect_asset_id: entity.rechazo_de_la_transferencia
+  match_strategy: generated
+  normalized_name: entity.beneficiario causes entity.rechazo de la transferencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

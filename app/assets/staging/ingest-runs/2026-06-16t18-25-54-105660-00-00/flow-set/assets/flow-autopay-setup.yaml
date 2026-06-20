@@ -1,0 +1,64 @@
+asset_id: flow.autopay.setup
+asset_type: flow
+name: Autopay Setup
+version: 1.0.0
+owner: process_kb
+description: Process to verify consent and confirm sensitive data for autopay.
+text: Process to verify consent and confirm sensitive data for autopay.
+tags:
+- enable.recurring.payments
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verify_autopay_consent
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirm_sensitive_data
+  metadata: {}
+payload:
+  flow_id: autopay.setup
+  flow_name: Autopay Setup
+  intent: enable.recurring.payments
+  confidence: 0.75
+  business_event: automatic_payment_setup
+  utterances: []
+  plan: []
+  tasks:
+  - task: verificar_consentimiento_de_pago_automatico
+    type: manual
+  - task: confirmar_datos_sensibles_antes_de_la_actualizacion
+    type: manual
+  user_tasks:
+  - user_task_id: verify_autopay_consent
+    task: verificar_consentimiento_de_pago_automatico
+    type: manual
+    name: Verify Autopay Consent
+    description: Verificar consentimiento de pago automatico.
+    tools: []
+    user_actions: []
+  - user_task_id: confirm_sensitive_data
+    task: confirmar_datos_sensibles_antes_de_la_actualizacion
+    type: manual
+    name: Confirm Sensitive Data
+    description: Confirmar datos sensibles antes de la actualizacion.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to verify consent and confirm sensitive data for autopay.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-4
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-4
+    purpose: To set up automatic payments for a loan or account.
+  purpose: To set up automatic payments for a loan or account.
+  transaction_id: autopay.setup
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Autopay Setup
+  normalized_name: autopay setup
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

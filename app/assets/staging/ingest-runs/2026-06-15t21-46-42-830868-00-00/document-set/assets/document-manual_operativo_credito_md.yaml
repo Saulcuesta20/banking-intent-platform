@@ -1,0 +1,94 @@
+asset_id: document.manual_operativo_credito_md
+asset_type: document
+name: manual_operativo_credito.md
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/manual_operativo_credito.md
+text: '# Manual operativo de credito
+
+
+  El objetivo de este manual es describir tareas operativas de prestamos, pagos,
+
+  refinanciamiento y atencion al cliente.
+
+
+  ## Capitulo 1: Analisis inicial
+
+
+  1. Revisar el saldo actual del prestamo.
+
+  2. Confirmar si el cliente tiene un pago automatico activo.
+
+  3. Consultar si hay mora o pagos atrasados.
+
+  4. Identificar si el caso corresponde a refinanciamiento o reestructuracion.
+
+
+  ## Capitulo 2: Flujo de atencion
+
+
+  Cuando el cliente desea cambiar la cuota:
+
+  - abrir expediente
+
+  - validar identidad
+
+  - explicar opciones de refinanciamiento
+
+  - registrar el resultado de la interaccion
+
+
+  ## Capitulo 3: Reglas del equipo
+
+
+  - No prometer aprobacion antes de la validacion de credito.
+
+  - No crear una instruccion de backend como tarea humana.
+
+  - Toda consulta a sistemas debe quedar registrada.
+
+  - Toda decision extraordinaria debe referenciar aprobacion.
+
+
+  ## Capitulo 4: Observaciones
+
+
+  En algunas sucursales se usa el termino "renegociacion", pero el proceso
+
+  interno lo trata como refinanciamiento cuando el saldo se mantiene activo.'
+tags:
+- text
+- md
+relations: []
+payload:
+  path: data/raw/manual_operativo_credito.md
+  kind: text
+  sequence: 21
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: refinanciamiento y atencion al cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Revisar el saldo actual del prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Confirmar si el cliente tiene un pago automatico activo.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Confirmar si el cliente tiene un pago automatico activo.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Cuando el cliente desea cambiar la cuota:'
+  match_strategy: generated
+  canonical_name: manual_operativo_credito.md
+  normalized_name: manual operativo credito.md
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

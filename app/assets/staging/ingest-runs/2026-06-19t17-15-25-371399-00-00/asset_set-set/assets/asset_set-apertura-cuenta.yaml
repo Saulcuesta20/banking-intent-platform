@@ -1,0 +1,75 @@
+asset_id: asset_set.apertura.cuenta
+asset_type: asset_set
+name: Apertura.cuenta Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for apertura.cuenta.
+text: 'falta documento oficial, la apertura de cuenta debe detenerse
+
+  apertura de cuenta
+
+  cliente
+
+  Apertura de Cuenta
+
+  Process apertura de cuenta
+
+  Apertura.cuenta Ruleset'
+tags:
+- asset_set
+- apertura.cuenta
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.apertura.cuenta
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.apertura.cuenta
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.apertura.cuenta
+  metadata: {}
+payload:
+  transaction_id: apertura.cuenta
+  asset_ids:
+  - business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+  - entity.apertura_de_cuenta
+  - entity.customer
+  - flow.apertura.cuenta
+  - process.apertura.cuenta
+  - ruleset.apertura.cuenta
+  asset_types:
+  - business_rule
+  - entity
+  - flow
+  - process
+  - ruleset
+  primary_asset_type: flow
+  members:
+  - asset_id: business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+    asset_type: business_rule
+  - asset_id: entity.apertura_de_cuenta
+    asset_type: entity
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.apertura.cuenta
+    asset_type: flow
+  - asset_id: process.apertura.cuenta
+    asset_type: process
+  - asset_id: ruleset.apertura.cuenta
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Apertura.cuenta Asset Set
+  normalized_name: apertura.cuenta asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

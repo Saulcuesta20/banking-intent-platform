@@ -1,0 +1,22 @@
+asset_id: entity.loanconditions
+asset_type: entity
+name: LoanConditions
+version: 1.0.0
+owner: business_model_kb
+description: Tasa, plazo, cuota y demás parámetros de un préstamo.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Tasa, plazo, cuota y demás parámetros de un préstamo.
+  inferred_from: llm_asset_extraction
+  business_layer: offering
+  entity_role: offering
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: LoanConditions
+  normalized_name: loanconditions
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

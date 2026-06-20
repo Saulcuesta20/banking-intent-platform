@@ -1,0 +1,53 @@
+asset_id: flow.savings.account.opening
+asset_type: flow
+name: Savings Account Opening
+version: 1.0.0
+owner: process_kb
+description: Should include Customer, SavingsAccount, CustomerDocuments, and KYC concepts.
+text: Should include Customer, SavingsAccount, CustomerDocuments, and KYC concepts.
+tags:
+- user.wants.to.open.an.account
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.document_collection
+  metadata: {}
+payload:
+  flow_id: savings.account.opening
+  flow_name: Savings Account Opening
+  intent: user.wants.to.open.an.account
+  confidence: 0.75
+  business_event: Opening a savings account
+  utterances: []
+  plan: []
+  tasks:
+  - task: collect_required_documents
+    type: user_task
+  user_tasks:
+  - user_task_id: customer_document_collection
+    task: collect_required_documents
+    type: user_task
+    name: Document Collection
+    description: Collecting documents for KYC or other purposes
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Should include Customer, SavingsAccount, CustomerDocuments, and KYC
+    concepts.
+  source: data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1
+    purpose: To open a new savings account
+  purpose: To open a new savings account
+  transaction_id: savings.account.opening
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Savings Account Opening
+  normalized_name: savings account opening
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -49,8 +49,10 @@ type LeftNavProps = {
   collapsed: boolean
   onToggle: () => void
   onSelectModule: (module: LauncherModule) => void
-  activeView: 'workspace' | 'assets'
+  activeView: 'workspace' | 'assets' | 'skills'
   onSelectAssets: () => void
+  onSelectSkills: () => void
+  onOpenAgentDraft: () => void
 }
 
 export function LeftNav({
@@ -61,6 +63,8 @@ export function LeftNav({
   onSelectModule,
   activeView,
   onSelectAssets,
+  onSelectSkills,
+  onOpenAgentDraft,
 }: LeftNavProps) {
   const homeModule = modules.find((module) => module.module_id === 'home')
   const adminModule = modules.find((module) => module.module_id === 'admin')
@@ -70,6 +74,8 @@ export function LeftNav({
     { id: 'dashboard', label: 'Dashboard', icon: Grid2X2, module: homeModule },
     { id: 'tasks', label: 'Tasks', icon: SquareCheckBig, module: homeModule },
     { id: 'apps', label: 'Apps', icon: Puzzle, module: homeModule },
+    { id: 'skills', label: 'Skill', icon: Sparkles, module: undefined },
+    { id: 'agents', label: 'Agents', icon: Bot, module: undefined },
     { id: 'chats', label: 'Chats', icon: MessageSquare, module: homeModule, badge: '3' },
     { id: 'users', label: 'Users', icon: Users, module: adminModule },
     { id: 'assets', label: 'Assets', icon: Boxes, module: undefined },
@@ -102,6 +108,8 @@ export function LeftNav({
           const active =
             item.id === 'assets'
               ? activeView === 'assets'
+              : item.id === 'skills' || item.id === 'agents'
+                ? activeView === 'skills'
               : activeView === 'workspace' && item.module?.module_id === activeModuleId && item.id === 'dashboard'
           return (
             <button
@@ -109,6 +117,8 @@ export function LeftNav({
               key={item.id}
               onClick={() => {
                 if (item.id === 'assets') onSelectAssets()
+                else if (item.id === 'skills') onSelectSkills()
+                else if (item.id === 'agents') onOpenAgentDraft()
                 else if (item.module) onSelectModule(item.module)
               }}
               type="button"

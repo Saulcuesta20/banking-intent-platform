@@ -1,0 +1,24 @@
+asset_id: entity.el_incumplimiento_contractual
+asset_type: entity
+name: El incumplimiento contractual
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality cause_text: El incumplimiento contractual'
+text: El incumplimiento contractual genera aumento del riesgo crediticio.
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: cause_text
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: El incumplimiento contractual genera aumento del riesgo crediticio.
+  match_strategy: generated
+  canonical_name: El incumplimiento contractual
+  normalized_name: el incumplimiento contractual
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

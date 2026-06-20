@@ -1,0 +1,25 @@
+asset_id: user_task.proporcionar_informaci_n_adicional
+asset_type: user_task
+name: Proporcionar información adicional
+version: 1.0.0
+owner: business_model_kb
+description: Customer provides additional information when evidence is missing.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_provide_additional_info
+  task: provide_additional_info
+  type: form
+  name: Proporcionar información adicional
+  description: Customer provides additional information when evidence is missing.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Proporcionar información adicional
+  normalized_name: proporcionar información adicional
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

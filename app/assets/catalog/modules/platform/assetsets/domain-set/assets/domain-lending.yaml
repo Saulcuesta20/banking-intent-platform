@@ -1,0 +1,12 @@
+asset_id: domain.lending
+asset_type: domain
+name: Colocacion
+description: Prestamos, creditos, originacion, pagos y desembolsos.
+tags:
+- lending
+- launcher
+payload:
+  domainId: lending
+  label: Colocacion
+  description: Prestamos, creditos, originacion, pagos y desembolsos.
+  order: 30

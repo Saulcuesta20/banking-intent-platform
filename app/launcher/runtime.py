@@ -69,16 +69,11 @@ class LauncherRuntimeService:
         return {
             "flow": summary,
             "module": self._find_active("module", str(summary.get("module_id") or "")),
-            "process": self._related_asset(detail, "executes_process"),
+            "process": self._related_asset(detail, "implemented_by_process"),
             "form": None,
             "form_version": None,
             "renderer": summary.get("renderer"),
-            "lowdefy_page": summary.get("lowdefy_page"),
-            "lowdefy_url": (
-                f"http://localhost:3002/{summary['lowdefy_page']}"
-                if summary.get("lowdefy_page")
-                else None
-            ),
+            "editor_route": summary.get("editor_route"),
         }
 
     def _find_active(self, asset_type: str, identifier: str) -> dict[str, Any] | None:
@@ -159,9 +154,10 @@ class LauncherRuntimeService:
             "user_tasks": body.get("user_tasks") or [],
             "related_process_ids": body.get("related_process_ids") or [],
             "confidence": 1,
-            "explanation": body.get("description") or body.get("intent") or "",
-            "renderer": body.get("renderer") or "external",
-            "lowdefy_page": body.get("lowdefy_page"),
+            "purpose": body.get("purpose") or body.get("description") or "",
+            "explanation": body.get("description") or body.get("purpose") or body.get("intent") or "",
+            "renderer": body.get("renderer") or "react",
+            "editor_route": body.get("editor_route") or body.get("pageId"),
             "module_config_id": asset.get("module_id"),
             "form_id": None,
             "form_version": None,

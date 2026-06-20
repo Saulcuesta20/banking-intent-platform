@@ -1,0 +1,105 @@
+asset_id: flow.analisis.inicial
+asset_type: flow
+name: Análisis inicial de crédito
+version: 1.0.0
+owner: process_kb
+description: Revisión del saldo actual, confirmación de pago automático, consulta
+  de mora e identificación de tipo de caso.
+text: Revisión del saldo actual, confirmación de pago automático, consulta de mora
+  e identificación de tipo de caso.
+tags:
+- loan.refinance
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.revisi_n_de_saldo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirmaci_n_de_pago_autom_tico
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.consulta_de_mora
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identificaci_n_de_caso
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.mora
+  metadata: {}
+payload:
+  flow_id: analisis.inicial
+  flow_name: Análisis inicial de crédito
+  intent: loan.refinance
+  confidence: 0.75
+  business_event: Inicio de análisis de crédito
+  utterances: []
+  plan: []
+  tasks:
+  - task: revisar_saldo_actual_del_pr_stamo
+    type: consulta
+  - task: confirmar_pago_autom_tico_activo
+    type: consulta
+  - task: consultar_mora_o_pagos_atrasados
+    type: consulta
+  - task: identificar_tipo_de_caso
+    type: decisión
+  user_tasks:
+  - user_task_id: ut_revisar_saldo
+    task: revisar_saldo_actual_del_pr_stamo
+    type: consulta
+    name: Revisión de saldo
+    description: Consultar el saldo pendiente del préstamo.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_confirmar_pago_automatico
+    task: confirmar_pago_autom_tico_activo
+    type: consulta
+    name: Confirmación de pago automático
+    description: Verificar si el cliente tiene un pago automático activo.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_consultar_mora
+    task: consultar_mora_o_pagos_atrasados
+    type: consulta
+    name: Consulta de mora
+    description: Revisar si hay pagos atrasados o mora en el préstamo.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_identificar_caso
+    task: identificar_tipo_de_caso
+    type: decisión
+    name: Identificación de caso
+    description: Determinar si el caso corresponde a refinanciamiento o reestructuración
+      basado en la información recopilada.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Revisión del saldo actual, confirmación de pago automático, consulta
+    de mora e identificación de tipo de caso.
+  source: data/raw/manual_operativo_credito.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/manual_operativo_credito.md
+    purpose: Evaluar la situación actual del préstamo del cliente.
+  purpose: Evaluar la situación actual del préstamo del cliente.
+  transaction_id: analisis.inicial
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Revisión del saldo actual, confirmación de pago automático, consulta
+      de mora e identificación de tipo de caso.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Revisión del saldo actual, confirmación de pago automático, consulta
+      de mora e identificación de tipo de caso.
+  match_strategy: generated
+  canonical_name: Análisis inicial de crédito
+  normalized_name: análisis inicial de crédito
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

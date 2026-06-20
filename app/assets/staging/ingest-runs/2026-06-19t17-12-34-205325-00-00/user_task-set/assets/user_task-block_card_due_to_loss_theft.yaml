@@ -1,0 +1,25 @@
+asset_id: user_task.block_card_due_to_loss_theft
+asset_type: user_task
+name: Block card due to loss/theft
+version: 1.0.0
+owner: business_model_kb
+description: Report card lost or stolen and block it
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: bloquear_tarjeta
+  task: bloquear_tarjeta_por_p_rdida_robo
+  type: action
+  name: Block card due to loss/theft
+  description: Report card lost or stolen and block it
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Block card due to loss/theft
+  normalized_name: block card due to loss/theft
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

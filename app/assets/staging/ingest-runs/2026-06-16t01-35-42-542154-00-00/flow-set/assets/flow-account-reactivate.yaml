@@ -1,0 +1,43 @@
+asset_id: flow.account.reactivate
+asset_type: flow
+name: quiero activar una cuenta inactiva
+version: 1.0.0
+owner: process_kb
+description: 'El cliente pregunta: quiero activar una cuenta inactiva.'
+text: 'El cliente pregunta: quiero activar una cuenta inactiva.'
+tags:
+- utterance_flow
+relations: []
+payload:
+  utterances:
+  - 'El cliente pregunta: quiero activar una cuenta inactiva.'
+  purpose: 'El cliente pregunta: quiero activar una cuenta inactiva.'
+  transaction_id: account.reactivate
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: quiero activar una cuenta inactiva
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente pregunta: quiero activar una cuenta inactiva.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'El cliente pregunta: quiero activar una cuenta inactiva.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente pregunta: quiero activar una cuenta inactiva.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'El cliente pregunta: quiero activar una cuenta inactiva.'
+  match_strategy: generated
+  canonical_name: quiero activar una cuenta inactiva
+  normalized_name: quiero activar una cuenta inactiva
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

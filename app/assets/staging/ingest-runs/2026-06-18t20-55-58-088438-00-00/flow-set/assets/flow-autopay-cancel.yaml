@@ -1,0 +1,52 @@
+asset_id: flow.autopay.cancel
+asset_type: flow
+name: Cancellation of Automatic Payment
+version: 1.0.0
+owner: process_kb
+description: Request received, system updates setting, and case logged for audit.
+text: Request received, system updates setting, and case logged for audit.
+tags:
+- autopay.cancel
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.contact_center_request_handling
+  metadata: {}
+payload:
+  flow_id: autopay.cancel
+  flow_name: Cancellation of Automatic Payment
+  intent: autopay.cancel
+  confidence: 0.75
+  business_event: Contact center receives cancellation request
+  utterances: []
+  plan: []
+  tasks:
+  - task: receive_cancellation_request
+    type: request
+  user_tasks:
+  - user_task_id: ut_9
+    task: receive_cancellation_request
+    type: request
+    name: Contact Center Request Handling
+    description: Contact center receives a cancellation request for automatic payment
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Request received, system updates setting, and case logged for audit.
+  source: data/raw/process_examples_refinance.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/process_examples_refinance.md
+    purpose: To cancel automatic payment setting.
+  purpose: To cancel automatic payment setting.
+  transaction_id: autopay.cancel
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Cancellation of Automatic Payment
+  normalized_name: cancellation of automatic payment
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

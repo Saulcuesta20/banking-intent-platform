@@ -1,0 +1,12 @@
+asset_id: domain.deposits
+asset_type: domain
+name: Captacion
+description: Productos pasivos, cuentas, depositos y relacion de fondeo.
+tags:
+- deposits
+- launcher
+payload:
+  domainId: deposits
+  label: Captacion
+  description: Productos pasivos, cuentas, depositos y relacion de fondeo.
+  order: 20

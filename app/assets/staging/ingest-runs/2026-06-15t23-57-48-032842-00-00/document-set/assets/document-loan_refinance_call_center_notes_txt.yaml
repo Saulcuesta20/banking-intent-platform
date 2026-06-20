@@ -1,0 +1,58 @@
+asset_id: document.loan_refinance_call_center_notes_txt
+asset_type: document
+name: loan_refinance_call_center_notes.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt
+text: 'Call center notes - loan refinance.
+
+
+  Agents say customers usually ask to lower the monthly installment, extend the
+
+  term, compare new conditions, or understand why a refinance offer was declined.
+
+  The current manual tells agents to identify the customer, review current loan
+
+  status, calculate available conditions, compare refinance options, collect
+
+  missing documents, and submit a refinance request for approval when required.
+
+
+  Known phrases:
+
+  - quiero bajar la cuota
+
+  - necesito mejores condiciones
+
+  - como calculan las condiciones
+
+  - por que no califico para refinanciar
+
+  - tengo atraso, puedo refinanciar?
+
+
+  System names seen in old documentation:
+
+  - loan.conditions.calculate
+
+  - loan_refinance.compare
+
+  - loan_refinance.create
+
+  - approval.update'
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt
+  kind: text
+  sequence: 11
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: loan_refinance_call_center_notes.txt
+  normalized_name: loan refinance call center notes.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

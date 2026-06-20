@@ -1,0 +1,45 @@
+asset_id: flow.loan.disbursement
+asset_type: flow
+name: Loan Disbursement Process
+version: 1.0.0
+owner: process_kb
+description: Process for funding a FlexPay Personal Loan, generating disbursement
+  event, confirming repayment schedule, and verifying collateral for secured loans.
+text: Process for funding a FlexPay Personal Loan, generating disbursement event,
+  confirming repayment schedule, and verifying collateral for secured loans.
+tags:
+- provide.financing.with.fixed.rate.terms.and.repayment.conditions
+relations: []
+payload:
+  flow_id: loan.disbursement
+  flow_name: Loan Disbursement Process
+  intent: provide.financing.with.fixed.rate.terms.and.repayment.conditions
+  confidence: 0.75
+  business_event: loan_disbursement
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process for funding a FlexPay Personal Loan, generating disbursement
+    event, confirming repayment schedule, and verifying collateral for secured loans.
+  source: data/raw/corporate_structure_and_offerings.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/corporate_structure_and_offerings.md
+    purpose: To disburse loan funds to the borrower under the FlexPay Personal Loan
+      product.
+  purpose: To disburse loan funds to the borrower under the FlexPay Personal Loan
+    product.
+  transaction_id: loan.disbursement
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Disbursement Process
+  normalized_name: loan disbursement process
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

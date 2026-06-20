@@ -1,0 +1,97 @@
+asset_id: flow.change.installment.flow
+asset_type: flow
+name: Change Installment Process
+version: 1.0.0
+owner: process_kb
+description: When a client wants to change their installment, the process involves
+  opening a case, validating identity, explaining refinancing options, and recording
+  the interaction.
+text: When a client wants to change their installment, the process involves opening
+  a case, validating identity, explaining refinancing options, and recording the interaction.
+tags:
+- assist.the.client.through.a.structured.process.to.modify.loan.terms
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.open_case
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identity_validation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.explain_refinancing_options
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.record_interaction
+  metadata: {}
+payload:
+  flow_id: change.installment.flow
+  flow_name: Change Installment Process
+  intent: assist.the.client.through.a.structured.process.to.modify.loan.terms
+  confidence: 0.75
+  business_event: Client requests change in loan installment
+  utterances: []
+  plan: []
+  tasks:
+  - task: abrir_expediente
+    type: administrative
+  - task: validate_client_identity_and_documents
+    type: automated
+  - task: explicar_opciones_de_refinanciamiento
+    type: advisory
+  - task: registrar_el_resultado_de_la_interaccion
+    type: documentation
+  user_tasks:
+  - user_task_id: open_case_task
+    task: abrir_expediente
+    type: administrative
+    name: Open Case
+    description: Initiate a new case for the client's installment change request.
+    tools: []
+    user_actions: []
+  - user_task_id: validate_identity_task
+    task: validate_client_identity_and_documents
+    type: automated
+    name: Identity Validation
+    description: Check if documents are valid and identity is verified.
+    tools: []
+    user_actions: []
+  - user_task_id: explain_options_task
+    task: explicar_opciones_de_refinanciamiento
+    type: advisory
+    name: Explain Refinancing Options
+    description: Explain available refinancing options based on client profile and
+      banking policies.
+    tools: []
+    user_actions: []
+  - user_task_id: record_interaction_task
+    task: registrar_el_resultado_de_la_interaccion
+    type: documentation
+    name: Record Interaction
+    description: Record the details and outcome of the interaction with the client.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: When a client wants to change their installment, the process involves
+    opening a case, validating identity, explaining refinancing options, and recording
+    the interaction.
+  source: data/raw/enterprise_systems_catalog.md;data/raw/manual_operativo_credito.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_systems_catalog.md
+    - data/raw/manual_operativo_credito.md
+    purpose: To handle client requests for changing loan installments by verifying
+      identity and providing refinancing options.
+  purpose: To handle client requests for changing loan installments by verifying identity
+    and providing refinancing options.
+  transaction_id: change.installment.flow
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Change Installment Process
+  normalized_name: change installment process
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

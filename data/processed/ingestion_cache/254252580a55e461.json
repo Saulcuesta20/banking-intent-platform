@@ -1,0 +1,375 @@
+{
+  "user_tasks": [
+    {
+      "user_task_id": "review_parallel_case_0",
+      "task": "review_parallel_case_0",
+      "type": "user_task",
+      "name": "Review Refinance Options",
+      "description": "Review refinance choices with the customer.",
+      "user_actions": [
+        {
+          "action_id": "ui.refinance.calculate",
+          "type": "front",
+          "implementation_type": "show_form",
+          "lifecycle_state": "not_started",
+          "tool_id": null,
+          "tool_ids": [
+            "ui.refinance.calculate"
+          ],
+          "label": "Calculate refinance",
+          "triggers": "loan_refinance.calculate",
+          "description": null
+        },
+        {
+          "action_id": "loan.conditions.calculate",
+          "type": "back",
+          "implementation_type": "tool_call",
+          "lifecycle_state": "not_started",
+          "tool_id": "loan.conditions.calculate",
+          "tool_ids": [
+            "loan.conditions.calculate"
+          ],
+          "label": null,
+          "triggers": null,
+          "description": "Calculate new loan conditions."
+        }
+      ],
+      "tools": [
+        {
+          "tool_id": "ui.refinance.calculate",
+          "tool_type": "frontend_tool",
+          "operation": "calculate",
+          "resource": "loan_refinance",
+          "label": "Calculate refinance",
+          "frontend_event": "loan_refinance.calculate",
+          "requires_approval": false
+        },
+        {
+          "tool_id": "loan.conditions.calculate",
+          "tool_type": "backend_tool",
+          "operation": "calculate",
+          "resource": "loan",
+          "description": "Calculate new loan conditions.",
+          "requires_approval": false
+        }
+      ]
+    },
+    {
+      "user_task_id": "review_parallel_case_1",
+      "task": "review_parallel_case_1",
+      "type": "user_task",
+      "name": "Review Refinance Options",
+      "description": "Review refinance choices with the customer.",
+      "user_actions": [
+        {
+          "action_id": "ui.refinance.calculate",
+          "type": "front",
+          "implementation_type": "show_form",
+          "lifecycle_state": "not_started",
+          "tool_id": null,
+          "tool_ids": [
+            "ui.refinance.calculate"
+          ],
+          "label": "Calculate refinance",
+          "triggers": "loan_refinance.calculate",
+          "description": null
+        },
+        {
+          "action_id": "loan.conditions.calculate",
+          "type": "back",
+          "implementation_type": "tool_call",
+          "lifecycle_state": "not_started",
+          "tool_id": "loan.conditions.calculate",
+          "tool_ids": [
+            "loan.conditions.calculate"
+          ],
+          "label": null,
+          "triggers": null,
+          "description": "Calculate new loan conditions."
+        }
+      ],
+      "tools": [
+        {
+          "tool_id": "ui.refinance.calculate",
+          "tool_type": "frontend_tool",
+          "operation": "calculate",
+          "resource": "loan_refinance",
+          "label": "Calculate refinance",
+          "frontend_event": "loan_refinance.calculate",
+          "requires_approval": false
+        },
+        {
+          "tool_id": "loan.conditions.calculate",
+          "tool_type": "backend_tool",
+          "operation": "calculate",
+          "resource": "loan",
+          "description": "Calculate new loan conditions.",
+          "requires_approval": false
+        }
+      ]
+    },
+    {
+      "user_task_id": "review_parallel_case_2",
+      "task": "review_parallel_case_2",
+      "type": "user_task",
+      "name": "Review Refinance Options",
+      "description": "Review refinance choices with the customer.",
+      "user_actions": [
+        {
+          "action_id": "ui.refinance.calculate",
+          "type": "front",
+          "implementation_type": "show_form",
+          "lifecycle_state": "not_started",
+          "tool_id": null,
+          "tool_ids": [
+            "ui.refinance.calculate"
+          ],
+          "label": "Calculate refinance",
+          "triggers": "loan_refinance.calculate",
+          "description": null
+        },
+        {
+          "action_id": "loan.conditions.calculate",
+          "type": "back",
+          "implementation_type": "tool_call",
+          "lifecycle_state": "not_started",
+          "tool_id": "loan.conditions.calculate",
+          "tool_ids": [
+            "loan.conditions.calculate"
+          ],
+          "label": null,
+          "triggers": null,
+          "description": "Calculate new loan conditions."
+        }
+      ],
+      "tools": [
+        {
+          "tool_id": "ui.refinance.calculate",
+          "tool_type": "frontend_tool",
+          "operation": "calculate",
+          "resource": "loan_refinance",
+          "label": "Calculate refinance",
+          "frontend_event": "loan_refinance.calculate",
+          "requires_approval": false
+        },
+        {
+          "tool_id": "loan.conditions.calculate",
+          "tool_type": "backend_tool",
+          "operation": "calculate",
+          "resource": "loan",
+          "description": "Calculate new loan conditions.",
+          "requires_approval": false
+        }
+      ]
+    },
+    {
+      "user_task_id": "review_parallel_case_3",
+      "task": "review_parallel_case_3",
+      "type": "user_task",
+      "name": "Review Refinance Options",
+      "description": "Review refinance choices with the customer.",
+      "user_actions": [
+        {
+          "action_id": "ui.refinance.calculate",
+          "type": "front",
+          "implementation_type": "show_form",
+          "lifecycle_state": "not_started",
+          "tool_id": null,
+          "tool_ids": [
+            "ui.refinance.calculate"
+          ],
+          "label": "Calculate refinance",
+          "triggers": "loan_refinance.calculate",
+          "description": null
+        },
+        {
+          "action_id": "loan.conditions.calculate",
+          "type": "back",
+          "implementation_type": "tool_call",
+          "lifecycle_state": "not_started",
+          "tool_id": "loan.conditions.calculate",
+          "tool_ids": [
+            "loan.conditions.calculate"
+          ],
+          "label": null,
+          "triggers": null,
+          "description": "Calculate new loan conditions."
+        }
+      ],
+      "tools": [
+        {
+          "tool_id": "ui.refinance.calculate",
+          "tool_type": "frontend_tool",
+          "operation": "calculate",
+          "resource": "loan_refinance",
+          "label": "Calculate refinance",
+          "frontend_event": "loan_refinance.calculate",
+          "requires_approval": false
+        },
+        {
+          "tool_id": "loan.conditions.calculate",
+          "tool_type": "backend_tool",
+          "operation": "calculate",
+          "resource": "loan",
+          "description": "Calculate new loan conditions.",
+          "requires_approval": false
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "flow_id": "parallel.case.0",
+      "flow_name": "Parallel Case 0",
+      "purpose": "Help a customer request refinancing for an existing loan.",
+      "intent": "parallel.case.0",
+      "business_event": "LoanRefinancingRequested",
+      "inputs": [
+        "loan_id"
+      ],
+      "outputs": [
+        "refinance_result"
+      ],
+      "user_task_refs": [
+        "review_parallel_case_0"
+      ],
+      "explanation": "The corpus describes refinance options.",
+      "source": "/tmp/pytest-of-saul/pytest-37/test_corpus_flow_loader_can_ru0/raw/doc-0.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "/tmp/pytest-of-saul/pytest-37/test_corpus_flow_loader_can_ru0/raw/doc-0.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "parallel.case.1",
+      "flow_name": "Parallel Case 1",
+      "purpose": "Help a customer request refinancing for an existing loan.",
+      "intent": "parallel.case.1",
+      "business_event": "LoanRefinancingRequested",
+      "inputs": [
+        "loan_id"
+      ],
+      "outputs": [
+        "refinance_result"
+      ],
+      "user_task_refs": [
+        "review_parallel_case_1"
+      ],
+      "explanation": "The corpus describes refinance options.",
+      "source": "/tmp/pytest-of-saul/pytest-37/test_corpus_flow_loader_can_ru0/raw/doc-1.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "/tmp/pytest-of-saul/pytest-37/test_corpus_flow_loader_can_ru0/raw/doc-1.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "parallel.case.2",
+      "flow_name": "Parallel Case 2",
+      "purpose": "Help a customer request refinancing for an existing loan.",
+      "intent": "parallel.case.2",
+      "business_event": "LoanRefinancingRequested",
+      "inputs": [
+        "loan_id"
+      ],
+      "outputs": [
+        "refinance_result"
+      ],
+      "user_task_refs": [
+        "review_parallel_case_2"
+      ],
+      "explanation": "The corpus describes refinance options.",
+      "source": "/tmp/pytest-of-saul/pytest-37/test_corpus_flow_loader_can_ru0/raw/doc-2.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "/tmp/pytest-of-saul/pytest-37/test_corpus_flow_loader_can_ru0/raw/doc-2.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "parallel.case.3",
+      "flow_name": "Parallel Case 3",
+      "purpose": "Help a customer request refinancing for an existing loan.",
+      "intent": "parallel.case.3",
+      "business_event": "LoanRefinancingRequested",
+      "inputs": [
+        "loan_id"
+      ],
+      "outputs": [
+        "refinance_result"
+      ],
+      "user_task_refs": [
+        "review_parallel_case_3"
+      ],
+      "explanation": "The corpus describes refinance options.",
+      "source": "/tmp/pytest-of-saul/pytest-37/test_corpus_flow_loader_can_ru0/raw/doc-3.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "/tmp/pytest-of-saul/pytest-37/test_corpus_flow_loader_can_ru0/raw/doc-3.txt"
+        ]
+      }
+    }
+  ],
+  "tool_registry": [
+    {
+      "tool_id": "loan.conditions.calculate",
+      "tool_type": "backend_tool",
+      "operation": "calculate",
+      "resource": "loan",
+      "description": "Calculate new loan conditions.",
+      "requires_approval": false,
+      "user_tasks": [
+        "review_parallel_case_0",
+        "review_parallel_case_1",
+        "review_parallel_case_2",
+        "review_parallel_case_3"
+      ],
+      "flows": [
+        "parallel.case.0",
+        "parallel.case.1",
+        "parallel.case.2",
+        "parallel.case.3"
+      ]
+    },
+    {
+      "tool_id": "ui.refinance.calculate",
+      "tool_type": "frontend_tool",
+      "operation": "calculate",
+      "resource": "loan_refinance",
+      "label": "Calculate refinance",
+      "frontend_event": "loan_refinance.calculate",
+      "requires_approval": false,
+      "user_tasks": [
+        "review_parallel_case_0",
+        "review_parallel_case_1",
+        "review_parallel_case_2",
+        "review_parallel_case_3"
+      ],
+      "flows": [
+        "parallel.case.0",
+        "parallel.case.1",
+        "parallel.case.2",
+        "parallel.case.3"
+      ]
+    }
+  ],
+  "semantic_space": [],
+  "domain": [],
+  "module": [],
+  "menu": [],
+  "form": [],
+  "form_version": [],
+  "asset_set": [],
+  "concept": [],
+  "entity": [],
+  "business_rule": [],
+  "process": [],
+  "plan": [],
+  "qa": [],
+  "causality": []
+}

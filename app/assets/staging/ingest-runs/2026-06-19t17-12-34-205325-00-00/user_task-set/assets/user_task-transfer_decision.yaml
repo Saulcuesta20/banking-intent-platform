@@ -1,0 +1,25 @@
+asset_id: user_task.transfer_decision
+asset_type: user_task
+name: Transfer Decision
+version: 1.0.0
+owner: business_model_kb
+description: Release or reject the transfer based on review.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: release_or_reject_transfer
+  task: release_or_reject_transfer
+  type: decision_making
+  name: Transfer Decision
+  description: Release or reject the transfer based on review.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfer Decision
+  normalized_name: transfer decision
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

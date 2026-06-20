@@ -1,0 +1,37 @@
+asset_id: plan.pl009
+asset_type: plan
+name: PL009
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para alta de pago automatico: verificar cuenta, capturar autorizacion,
+  registrar mandato y confirmar.'
+text: ''
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pl009
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para alta de pago automatico: verificar cuenta, capturar autorizacion,
+      registrar mandato y confirmar.'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Plan para alta de pago automatico: verificar cuenta, capturar autorizacion,
+      registrar mandato y confirmar.'
+  match_strategy: generated
+  canonical_name: PL009
+  normalized_name: pl009
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

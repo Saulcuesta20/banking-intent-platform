@@ -1,0 +1,25 @@
+asset_id: user_task.proporcionar_cuit_cuil
+asset_type: user_task
+name: Proporcionar CUIT/CUIL
+version: 1.0.0
+owner: business_model_kb
+description: El usuario proporciona su número de CUIT o CUIL.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_provide_cuit
+  task: proporcionar_cuit_cuil
+  type: document_submission
+  name: Proporcionar CUIT/CUIL
+  description: El usuario proporciona su número de CUIT o CUIL.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Proporcionar CUIT/CUIL
+  normalized_name: proporcionar cuit/cuil
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

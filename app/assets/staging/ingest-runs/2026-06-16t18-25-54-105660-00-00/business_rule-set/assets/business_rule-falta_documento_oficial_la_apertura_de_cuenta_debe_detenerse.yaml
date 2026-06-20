@@ -1,0 +1,53 @@
+asset_id: business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+asset_type: business_rule
+name: falta documento oficial, la apertura de cuenta debe detenerse
+version: 1.0.0
+owner: rules_kb
+description: Si falta documento oficial, la apertura de cuenta debe detenerse.
+text: Si falta documento oficial, la apertura de cuenta debe detenerse.
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+payload:
+  rule_text: Si falta documento oficial, la apertura de cuenta debe detenerse.
+  source_section: Rules
+  conditions:
+  - Si falta documento oficial, la apertura de cuenta
+  consequences:
+  - detenerse
+  transaction_id: falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: falta documento oficial, la apertura de cuenta debe detenerse
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: falta documento oficial, la apertura de cuenta debe detenerse
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Si falta documento oficial, la apertura de cuenta debe detenerse.
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: Si falta documento oficial, la apertura de cuenta debe detenerse.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Si falta documento oficial, la apertura de cuenta debe detenerse.
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: Si falta documento oficial, la apertura de cuenta debe detenerse.
+  match_strategy: generated
+  canonical_name: falta documento oficial, la apertura de cuenta debe detenerse
+  normalized_name: falta documento oficial, la apertura de cuenta debe detenerse
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

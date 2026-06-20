@@ -4,13 +4,13 @@ description: Enterprise asset type registry for knowledge, planning, and runtime
 stores:
   repository:
     role: source_of_truth
-    description: Versioned YAML asset definitions reviewed by humans.
+    description: Catalog source of truth for versioned YAML asset definitions reviewed by humans.
   graph:
     role: relationship_index
     description: Asset relationships, dependencies, ownership, lineage, and impact.
   vector:
     role: semantic_index
-    description: Text evidence, procedures, policies, manuals, Q&A, and semantic chunks.
+    description: Semantic search index used for approved QA and source documents.
   document:
     role: document_index
     description: Document-oriented KB for policies, business rules, QA, manuals, and source evidence.
@@ -20,7 +20,7 @@ stores:
 
 asset_types:
   domain:
-    description: Business classification used by the launcher and Unified Catalog.
+    description: Legacy launcher/configuration classification. Use semantic_space for ontology search context.
     owner_kb: config_kb
     direct_route: false
     route_kind: supporting_configuration
@@ -28,6 +28,23 @@ asset_types:
     stores: [repository, relational]
     valid_relations: []
     runtime_usage: [launcher_navigation, catalog_classification]
+
+  semantic_space:
+    description: Governed ontology search context that groups structural layers, entities, and allowed retrieval scope.
+    owner_kb: business_model_kb
+    direct_route: false
+    route_kind: supporting_knowledge
+    executable: false
+    stores: [repository, graph, vector]
+    valid_relations:
+      - contains_context
+      - classifies
+      - routes_to_asset
+      - governed_by_rule
+    runtime_usage:
+      - ask_routing
+      - ontology_navigation
+      - retrieval_scoping
 
   module:
     description: Configurable launcher module classified by domain metadata.
@@ -76,13 +93,14 @@ asset_types:
     route_kind: flow_route
     executable: false
     execution_target: process_or_plan
-    stores: [repository, graph, vector]
+    stores: [repository, graph]
     valid_relations:
       - realizes_plan
       - implemented_by_process
       - governed_by_rule
       - decomposes_to_user_task
       - uses_concept
+      - uses_entity
       - answers_intent
     runtime_usage:
       - route_target
@@ -116,7 +134,7 @@ asset_types:
     direct_route: true
     route_kind: qa_route
     executable: false
-    stores: [repository, document, graph, vector]
+    stores: [repository, vector]
     valid_relations:
       - references_rule
       - explains_concept
@@ -152,13 +170,14 @@ asset_types:
     route_kind: supporting_task
     executable: false
     execution_target: tool_or_process_node
-    stores: [repository, graph]
+    stores: [repository, graph, vector]
     valid_relations:
       - invokes_tool
       - used_by_flow
       - used_by_process
       - governed_by_rule
       - uses_concept
+      - uses_entity
     runtime_usage:
       - decompose_flow
       - execution_planning
@@ -204,7 +223,7 @@ asset_types:
       - validation_context
 
   concept:
-    description: Legacy compatibility name for entity. Domain entity/concept used for vocabulary, synonyms, retrieval, and explainability.
+    description: Legacy compatibility alias for entity. New extraction must emit entity.
     owner_kb: business_model_kb
     direct_route: false
     route_kind: supporting_knowledge
@@ -219,10 +238,10 @@ asset_types:
     runtime_usage:
       - retrieval_expansion
       - explain_selection
-      - ontology_linking
+      - entity_linking
 
   entity:
-    description: Canonical business entity/concept used for vocabulary, synonyms, retrieval, relationships, and explainability.
+    description: Canonical ontology element classified by structural_layer and connected through graph relationships.
     owner_kb: business_model_kb
     direct_route: false
     route_kind: supporting_knowledge
@@ -232,29 +251,23 @@ asset_types:
       - has_synonym
       - synonym_of
       - related_to
+      - classifies
+      - contains_context
+      - governed_by
+      - affects
+      - increases
+      - decreases
+      - represents
+      - represented_by
+      - materializes
+      - materialized_in
       - used_by_flow
       - used_by_process
       - explained_by_qa
     runtime_usage:
       - retrieval_expansion
       - explain_selection
-      - ontology_linking
-
-  ontology:
-    description: Formal domain relationship model for entities/concepts and process semantics.
-    owner_kb: business_model_kb
-    direct_route: false
-    route_kind: supporting_knowledge
-    executable: false
-    stores: [repository, graph]
-    valid_relations:
-      - defines_concept
-      - constrains_relation
-      - maps_entity
-    runtime_usage:
-      - semantic_reasoning
-      - relationship_validation
-      - impact_analysis
+      - entity_linking
 
   tool:
     description: Registered frontend, backend, or LLM tool. Backend protocol is only a backend-tool property.
@@ -263,7 +276,7 @@ asset_types:
     route_kind: tool_explanation_route
     executable: true
     execution_target: orchestrator_node
-    stores: [repository, graph]
+    stores: [repository, graph, vector]
     valid_relations:
       - invoked_by_process
       - invoked_by_plan

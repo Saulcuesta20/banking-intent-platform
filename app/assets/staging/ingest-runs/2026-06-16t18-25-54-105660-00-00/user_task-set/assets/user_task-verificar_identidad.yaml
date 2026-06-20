@@ -1,0 +1,29 @@
+asset_id: user_task.verificar_identidad
+asset_type: user_task
+name: Verificar identidad
+version: 1.0.0
+owner: business_model_kb
+description: El cliente se identifica para iniciar el proceso de reactivación.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verify_identity_reactivation
+  task: verificar_identidad_para_reactivaci_n
+  type: validación
+  name: Verificar identidad
+  description: El cliente se identifica para iniciar el proceso de reactivación.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente se identifica para iniciar el proceso de reactivación.
+  match_strategy: generated
+  canonical_name: Verificar identidad
+  normalized_name: verificar identidad
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

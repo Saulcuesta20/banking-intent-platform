@@ -1,0 +1,38 @@
+asset_id: business_rule.el_buro_reporta_fraude_el_proceso_se_bloquea_y_se_escala
+asset_type: business_rule
+name: el buro reporta fraude, el proceso se bloquea y se escala
+version: 1.0.0
+owner: rules_kb
+description: Si el buro reporta fraude, el proceso se bloquea y se escala.
+text: Si el buro reporta fraude, el proceso se bloquea y se escala.
+tags:
+- business_rule
+relations: []
+payload:
+  rule_text: Si el buro reporta fraude, el proceso se bloquea y se escala.
+  source_section: Rules
+  conditions:
+  - Si el buro reporta fraude, el proceso se
+  consequences:
+  - y se escala
+  transaction_id: el.buro.reporta.fraude.el.proceso.se.bloquea.y.se.escala
+  relation_hints:
+  - type: prevents
+    family: causality
+    phrase: bloquea
+    sentence: el buro reporta fraude, el proceso se bloquea y se escala
+  - type: prevents
+    family: causality
+    phrase: bloquea
+    sentence: Si el buro reporta fraude, el proceso se bloquea y se escala.
+  - type: prevents
+    family: causality
+    phrase: bloquea
+    sentence: Si el buro reporta fraude, el proceso se bloquea y se escala.
+  match_strategy: generated
+  canonical_name: el buro reporta fraude, el proceso se bloquea y se escala
+  normalized_name: el buro reporta fraude, el proceso se bloquea y se escala
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

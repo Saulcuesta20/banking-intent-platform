@@ -1,0 +1,64 @@
+asset_id: asset_set.apertura.cuenta.ahorro
+asset_type: asset_set
+name: Apertura.cuenta.ahorro Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for apertura.cuenta.ahorro.
+text: 'apertura de cuenta
+
+  cuenta de ahorro
+
+  cliente
+
+  ahorro
+
+  Apertura de cuenta de ahorro con validación de KYC'
+tags:
+- asset_set
+- apertura.cuenta.ahorro
+relations:
+- type: groups_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.cuenta_de_ahorro
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.apertura.cuenta.ahorro
+  metadata: {}
+payload:
+  transaction_id: apertura.cuenta.ahorro
+  asset_ids:
+  - entity.apertura_de_cuenta
+  - entity.cuenta_de_ahorro
+  - entity.customer
+  - entity.savings_account
+  - flow.apertura.cuenta.ahorro
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.apertura_de_cuenta
+    asset_type: entity
+  - asset_id: entity.cuenta_de_ahorro
+    asset_type: entity
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.savings_account
+    asset_type: entity
+  - asset_id: flow.apertura.cuenta.ahorro
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Apertura.cuenta.ahorro Asset Set
+  normalized_name: apertura.cuenta.ahorro asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

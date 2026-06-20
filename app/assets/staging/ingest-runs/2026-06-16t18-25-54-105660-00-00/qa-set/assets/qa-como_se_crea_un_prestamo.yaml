@@ -1,0 +1,36 @@
+asset_id: qa.como_se_crea_un_prestamo
+asset_type: qa
+name: Como se crea un prestamo?
+version: 1.0.0
+owner: qa_kb
+description: Como se crea un prestamo?
+text: Como se crea un prestamo?
+tags:
+- qa
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  question: Como se crea un prestamo?
+  transaction_id: como.se.crea.un.prestamo
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como se crea un prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como se crea un prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como se crea un prestamo?
+  match_strategy: generated
+  canonical_name: Como se crea un prestamo?
+  normalized_name: como se crea un prestamo?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,59 @@
+asset_id: flow.loan.payment
+asset_type: flow
+name: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta'
+version: 1.0.0
+owner: process_kb
+description: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta.'
+text: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta.'
+tags:
+- utterance_flow
+relations: []
+payload:
+  utterances:
+  - 'El cliente indica: quiero pagar mi prestamo desde mi cuenta.'
+  purpose: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta.'
+  transaction_id: loan.payment
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta.'
+  match_strategy: generated
+  canonical_name: 'El cliente indica: quiero pagar mi prestamo desde mi cuenta'
+  normalized_name: 'el cliente indica: quiero pagar mi prestamo desde mi cuenta'
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,27 @@
+asset_id: user_task.explain_requirements
+asset_type: user_task
+name: Explain Requirements
+version: 1.0.0
+owner: business_model_kb
+description: Agent explains the requirements and process for setting up automatic
+  payments
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: explain_requirements_task
+  task: explain_automatic_debit_requirements
+  type: manual
+  name: Explain Requirements
+  description: Agent explains the requirements and process for setting up automatic
+    payments
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Explain Requirements
+  normalized_name: explain requirements
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

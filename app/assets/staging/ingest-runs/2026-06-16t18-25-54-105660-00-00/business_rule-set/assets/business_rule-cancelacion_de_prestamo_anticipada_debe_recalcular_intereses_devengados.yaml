@@ -1,0 +1,44 @@
+asset_id: business_rule.cancelacion_de_prestamo_anticipada_debe_recalcular_intereses_devengados
+asset_type: business_rule
+name: cancelacion de prestamo anticipada debe recalcular intereses devengados
+version: 1.0.0
+owner: rules_kb
+description: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+text: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.interes
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  rule_text: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+  source_section: Rules
+  conditions:
+  - La cancelacion de prestamo anticipada
+  consequences:
+  - recalcular intereses devengados
+  transaction_id: cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: cancelacion de prestamo anticipada debe recalcular intereses devengados
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+  match_strategy: generated
+  canonical_name: cancelacion de prestamo anticipada debe recalcular intereses devengados
+  normalized_name: cancelacion de prestamo anticipada debe recalcular intereses devengados
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

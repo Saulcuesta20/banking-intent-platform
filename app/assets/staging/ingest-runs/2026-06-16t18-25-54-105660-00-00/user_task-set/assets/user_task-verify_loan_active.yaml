@@ -1,0 +1,25 @@
+asset_id: user_task.verify_loan_active
+asset_type: user_task
+name: Verify loan active
+version: 1.0.0
+owner: business_model_kb
+description: Verify the loan is active.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: automatic_payment_setup_step_2
+  task: verify_the_loan_is_active
+  type: manual
+  name: Verify loan active
+  description: Verify the loan is active.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Verify loan active
+  normalized_name: verify loan active
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,98 @@
+asset_id: flow.transferencia
+asset_type: flow
+name: Transferencia
+version: 1.0.0
+owner: process_kb
+description: Proceso para validar saldo y riesgo de una transferencia, informar si
+  saldo insuficiente, solicitar aprobación si excede límite y ejecutar la transferencia.
+text: Proceso para validar saldo y riesgo de una transferencia, informar si saldo
+  insuficiente, solicitar aprobación si excede límite y ejecutar la transferencia.
+tags:
+- money.transfer
+- realizar.transferencia
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirmar_transferencia
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.aprobar_monto_alto
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validar_saldo_y_riesgo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.informar_saldo_insuficiente
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.solicitar_aprobaci_n_de_operaciones
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.llamar_servicio_de_transferencias
+  metadata: {}
+payload:
+  flow_id: transferencia
+  flow_name: Transferencia
+  intent: realizar.transferencia
+  confidence: 0.75
+  business_event: transferencia
+  utterances: []
+  plan: []
+  tasks:
+  - task: validar_saldo_riesgo
+    type: system
+  - task: informar_saldo_insuficiente
+    type: system
+  - task: solicitar_aprobacion_operaciones
+    type: system
+  - task: llamar_servicio_transferencias
+    type: system
+  user_tasks:
+  - user_task_id: ut_validar_saldo_riesgo
+    task: validar_saldo_riesgo
+    type: system
+    name: Validar saldo y riesgo
+    description: Validar saldo suficiente y riesgo de la transferencia.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_informar_saldo_insuficiente
+    task: informar_saldo_insuficiente
+    type: system
+    name: Informar saldo insuficiente
+    description: Informar al cliente que no hay saldo suficiente.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_solicitar_aprobacion_operaciones
+    task: solicitar_aprobacion_operaciones
+    type: system
+    name: Solicitar aprobación de operaciones
+    description: Solicitar aprobación humana cuando el monto supera el límite operativo.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_llamar_servicio_transferencias
+    task: llamar_servicio_transferencias
+    type: system
+    name: Llamar servicio de transferencias
+    description: Ejecutar la transferencia llamando al servicio de transferencias.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para validar saldo y riesgo de una transferencia, informar
+    si saldo insuficiente, solicitar aprobación si excede límite y ejecutar la transferencia.
+  source: data/raw/enterprise_operations_manual.md#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_operations_manual.md#chunk-1
+    purpose: Ejecutar transferencia bancaria
+  purpose: Ejecutar transferencia bancaria
+  transaction_id: transferencia
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transferencia
+  normalized_name: transferencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

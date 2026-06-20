@@ -21,6 +21,7 @@ class KnowledgeRouterAgent(Agent):
             agent_id="agent.ask.knowledge_router",
             name="Knowledge Router Agent",
             role="Route an understood question to the right knowledge sources and storage views.",
+            agent_class="delegator",
             kind="delegator",
             domain="ask",
             goals=[
@@ -28,6 +29,7 @@ class KnowledgeRouterAgent(Agent):
                 "Allow complementary retrieval across QA, flows/processes, rules, tools, configuration, and entities.",
             ],
             skills=["knowledge_source_routing", "multi_source_retrieval", "asset_view_selection"],
+            tool_ids=[],
             graph_name="langgraph_ask",
             state_schema="AskAgentState",
             policy=AgentPolicy(),

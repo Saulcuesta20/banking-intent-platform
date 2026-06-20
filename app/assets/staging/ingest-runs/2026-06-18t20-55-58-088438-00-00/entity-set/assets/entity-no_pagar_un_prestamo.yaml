@@ -1,0 +1,39 @@
+asset_id: entity.no_pagar_un_prestamo
+asset_type: entity
+name: No pagar un prestamo
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality cause_text: No pagar un prestamo'
+text: No pagar un prestamo causa incumplimiento contractual.
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: cause_text
+  structural_layer: business_resource
+  business_layer: business_resource
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: No pagar un prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Entity inferred from causality cause_text: No pagar un prestamo'
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: No pagar un prestamo causa incumplimiento contractual.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: No pagar un prestamo causa incumplimiento contractual.
+  match_strategy: generated
+  canonical_name: No pagar un prestamo
+  normalized_name: no pagar un prestamo
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

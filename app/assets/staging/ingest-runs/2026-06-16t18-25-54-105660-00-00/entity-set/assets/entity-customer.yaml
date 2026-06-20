@@ -1,0 +1,27 @@
+asset_id: entity.customer
+asset_type: entity
+name: cliente
+version: 1.0.0
+owner: business_model_kb
+description: Persona o entidad que contrata productos bancarios
+text: Persona o entidad que contrata productos bancarios
+tags: []
+relations: []
+payload:
+  aliases:
+  - customer
+  - titular
+  - usuario
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: cliente
+  match_strategy: generated
+  canonical_name: cliente
+  normalized_name: cliente
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

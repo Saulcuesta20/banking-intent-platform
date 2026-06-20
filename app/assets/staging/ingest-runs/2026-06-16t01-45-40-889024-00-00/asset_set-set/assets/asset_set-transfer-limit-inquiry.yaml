@@ -1,0 +1,26 @@
+asset_id: asset_set.transfer.limit.inquiry
+asset_type: asset_set
+name: Transfer.limit.inquiry Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for transfer.limit.inquiry.
+text: ''
+tags:
+- asset_set
+- transfer.limit.inquiry
+relations: []
+payload:
+  transaction_id: transfer.limit.inquiry
+  asset_ids:
+  - flow.transfer.limit.inquiry
+  asset_types: []
+  primary_asset_type: asset
+  members:
+  - asset_id: flow.transfer.limit.inquiry
+  match_strategy: generated
+  canonical_name: Transfer.limit.inquiry Asset Set
+  normalized_name: transfer.limit.inquiry asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

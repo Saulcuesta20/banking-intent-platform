@@ -1,0 +1,34 @@
+asset_id: ruleset.minimum.initial.deposit.for.savings.account
+asset_type: ruleset
+name: Minimum.initial.deposit.for.savings.account Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction minimum.initial.deposit.for.savings.account with
+  1 business rules.
+text: Initial deposit must be at least 100 units of currency.
+tags:
+- ruleset
+- minimum.initial.deposit.for.savings.account
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.minimum_initial_deposit_for_savings_account
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+payload:
+  transaction_id: minimum.initial.deposit.for.savings.account
+  ruleset_name: Minimum.initial.deposit.for.savings.account Ruleset
+  rule_ids:
+  - business_rule.minimum_initial_deposit_for_savings_account
+  conditions:
+  - Opening a savings account
+  consequences:
+  - Require deposit >= 100
+  match_strategy: generated
+  canonical_name: Minimum.initial.deposit.for.savings.account Ruleset
+  normalized_name: minimum.initial.deposit.for.savings.account ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

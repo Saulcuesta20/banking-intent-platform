@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "properties": {
+    "plan_id": {
+      "type": "string",
+      "title": "Plan ID"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "steps": {
+      "type": "array",
+      "title": "Steps",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step_id": {
+            "type": "string",
+            "title": "Step ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          }
+        }
+      }
+    },
+    "tools": {
+      "type": "array",
+      "title": "Tools",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "title": "Dependencies",
+      "items": {
+        "type": "string"
+      }
+    },
+    "execution_options": {
+      "type": "object",
+      "title": "Execution Options"
+    }
+  },
+  "required": ["plan_id"]
+}

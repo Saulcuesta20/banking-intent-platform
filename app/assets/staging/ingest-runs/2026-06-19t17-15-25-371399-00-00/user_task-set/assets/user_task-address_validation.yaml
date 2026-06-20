@@ -1,0 +1,25 @@
+asset_id: user_task.address_validation
+asset_type: user_task
+name: Address Validation
+version: 1.0.0
+owner: business_model_kb
+description: Confirm the customer's proof of address.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: validate_address
+  task: validate_customer_address
+  type: validation
+  name: Address Validation
+  description: Confirm the customer's proof of address.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Address Validation
+  normalized_name: address validation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

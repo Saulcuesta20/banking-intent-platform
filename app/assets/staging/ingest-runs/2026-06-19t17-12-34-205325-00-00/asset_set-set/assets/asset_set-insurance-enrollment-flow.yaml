@@ -1,0 +1,31 @@
+asset_id: asset_set.insurance.enrollment.flow
+asset_type: asset_set
+name: Insurance.enrollment.flow Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for insurance.enrollment.flow.
+text: Insurance Enrollment Process
+tags:
+- asset_set
+- insurance.enrollment.flow
+relations:
+- type: groups_flow
+  target_asset_id: flow.insurance.enrollment.flow
+  metadata: {}
+payload:
+  transaction_id: insurance.enrollment.flow
+  asset_ids:
+  - flow.insurance.enrollment.flow
+  asset_types:
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.insurance.enrollment.flow
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Insurance.enrollment.flow Asset Set
+  normalized_name: insurance.enrollment.flow asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

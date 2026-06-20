@@ -1,0 +1,88 @@
+asset_id: flow.flow.combine.overdue.installments
+asset_type: flow
+name: Combine Overdue Installments Refinance
+version: 1.0.0
+owner: process_kb
+description: Involves support verification, collections exception check, and approval.
+text: Involves support verification, collections exception check, and approval.
+tags:
+- combine.overdue.installments
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.customer_installment_combination_request
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.support_account_verification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.collections_exception_check
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.approval_task
+  metadata: {}
+payload:
+  flow_id: flow.combine.overdue.installments
+  flow_name: Combine Overdue Installments Refinance
+  intent: combine.overdue.installments
+  confidence: 0.75
+  business_event: Customer wants to combine two overdue installments
+  utterances: []
+  plan: []
+  tasks:
+  - task: combine_overdue_installments
+    type: request
+  - task: verify_account_history
+    type: verification
+  - task: confirm_special_exception
+    type: verification
+  - task: approve_workflow
+    type: approval
+  user_tasks:
+  - user_task_id: ut_4
+    task: combine_overdue_installments
+    type: request
+    name: Customer Installment Combination Request
+    description: Customer wants to combine two overdue installments
+    tools: []
+    user_actions: []
+  - user_task_id: ut_5
+    task: verify_account_history
+    type: verification
+    name: Support Account Verification
+    description: Support verifies account history and required documents
+    tools: []
+    user_actions: []
+  - user_task_id: ut_6
+    task: confirm_special_exception
+    type: verification
+    name: Collections Exception Check
+    description: Collections confirms whether a special exception applies
+    tools: []
+    user_actions: []
+  - user_task_id: ut_7
+    task: approve_workflow
+    type: approval
+    name: Approval Task
+    description: Workflow continues only after approval
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Involves support verification, collections exception check, and approval.
+  source: data/raw/process_examples_refinance.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/process_examples_refinance.md
+    purpose: To refinance overdue installments by combining them.
+  purpose: To refinance overdue installments by combining them.
+  transaction_id: flow.combine.overdue.installments
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Combine Overdue Installments Refinance
+  normalized_name: combine overdue installments refinance
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

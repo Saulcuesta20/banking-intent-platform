@@ -1,0 +1,25 @@
+asset_id: user_task.statement_generation
+asset_type: user_task
+name: Statement Generation
+version: 1.0.0
+owner: business_model_kb
+description: Produce a statement of account transactions for a period.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: generate_statement
+  task: generate_account_statement
+  type: reporting
+  name: Statement Generation
+  description: Produce a statement of account transactions for a period.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Statement Generation
+  normalized_name: statement generation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

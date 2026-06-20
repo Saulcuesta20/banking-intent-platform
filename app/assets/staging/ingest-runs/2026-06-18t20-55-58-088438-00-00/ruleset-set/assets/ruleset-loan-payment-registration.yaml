@@ -1,0 +1,56 @@
+asset_id: ruleset.loan.payment.registration
+asset_type: ruleset
+name: Automatic payment account requirement Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction loan.payment.registration with 1 business rules.
+text: 'A recurring loan payment can only be configured from an eligible savings account.
+
+  If the customer does not have an eligible account, the agent must explain the
+
+  requirement and offer the account opening journey before enabling automatic
+
+  debit. The customer must accept terms and choose a payment day.
+
+
+  Control owner: Loan Servicing.
+
+  Systems mentioned: Account Eligibility Service, Loan Servicing Platform.
+
+  Related customer phrases: "necesito abrir cuenta para pago automatico", "quiero
+
+  pagar automaticamente mi prestamo".'
+tags:
+- ruleset
+- loan.payment.registration
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.automatic_payment_account_requirement
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.loan.payment.registration
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  transaction_id: loan.payment.registration
+  ruleset_name: Automatic payment account requirement Ruleset
+  rule_ids:
+  - business_rule.automatic_payment_account_requirement
+  conditions:
+  - A recurring loan payment can only be configured from an eligible savings account.
+    If the customer does not have an eligible account, the agent
+  consequences:
+  - 'explain the requirement and offer the account opening journey before enabling
+    automatic debit. The customer must accept terms and choose a payment day. Control
+    owner: Loan Servicing. Systems mentioned: Account Eligibility Service, Loan Servicing
+    Platform. Related customer phrases: "necesito abrir cuenta para pago automatico",
+    "quiero pagar automaticamente mi prestamo"'
+  match_strategy: generated
+  canonical_name: Automatic payment account requirement Ruleset
+  normalized_name: automatic payment account requirement ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,6 +1,4 @@
 from __future__ import annotations
-
-import json
 from dataclasses import dataclass, field
 from typing import Any, Literal, Protocol
 
@@ -57,15 +55,30 @@ class SemanticAnalysisResult:
             "classifications": [item.to_dict() for item in self.classifications],
         }
 
-    def to_prompt_context(self) -> str:
+    def to_prompt_context(self, max_items: int = 8) -> str:
         if not self.classifications:
             return ""
-        payload = self.to_dict()
-        return (
+        items = self.classifications[:max_items]
+        lines = [
             "Semantic analyzer candidate classifications. These are not final labels; "
-            "use them as reviewable evidence during extraction:\n"
-            f"{json.dumps(payload, ensure_ascii=False, indent=2)}"
-        )
+            "use them as reviewable evidence during extraction.",
+            f"review_required: {self.review_required}",
+            f"summary: {self.summary}",
+            "classifications:",
+        ]
+        for item in items:
+            processes = ", ".join(item.processes[:3]) if item.processes else "none"
+            systems = ", ".join(item.systems[:3]) if item.systems else "none"
+            evidence = item.evidence[:180].replace("\n", " ").strip()
+            lines.append(
+                f"- {item.source}: intent={item.intent_class}; confidence={item.confidence:.2f}; "
+                f"processes={processes}; systems={systems}; review={item.needs_human_review}; "
+                f"reason={item.review_reason or 'n/a'}; evidence={evidence}"
+            )
+        remaining = len(self.classifications) - len(items)
+        if remaining > 0:
+            lines.append(f"- ... {remaining} more classifications omitted for brevity")
+        return "\n".join(lines)
 
 
 class SemanticAnalyzerProvider(Protocol):

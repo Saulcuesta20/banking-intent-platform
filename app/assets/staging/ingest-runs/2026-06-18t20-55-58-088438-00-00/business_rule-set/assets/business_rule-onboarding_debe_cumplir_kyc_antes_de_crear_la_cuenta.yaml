@@ -1,0 +1,50 @@
+asset_id: business_rule.onboarding_debe_cumplir_kyc_antes_de_crear_la_cuenta
+asset_type: business_rule
+name: onboarding debe cumplir KYC antes de crear la cuenta
+version: 1.0.0
+owner: rules_kb
+description: El onboarding debe cumplir KYC antes de crear la cuenta.
+text: El onboarding debe cumplir KYC antes de crear la cuenta.
+tags:
+- business_rule
+relations: []
+payload:
+  rule_text: El onboarding debe cumplir KYC antes de crear la cuenta.
+  source_section: Rules
+  conditions:
+  - El onboarding
+  consequences:
+  - cumplir KYC antes de crear la cuenta
+  transaction_id: onboarding.debe.cumplir.kyc.antes.de.crear.la.cuenta
+  relation_hints:
+  - type: governed_by_rule
+    family: governance
+    phrase: debe cumplir
+    sentence: onboarding debe cumplir KYC antes de crear la cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: onboarding debe cumplir KYC antes de crear la cuenta
+  - type: governed_by_rule
+    family: governance
+    phrase: debe cumplir
+    sentence: El onboarding debe cumplir KYC antes de crear la cuenta.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El onboarding debe cumplir KYC antes de crear la cuenta.
+  - type: governed_by_rule
+    family: governance
+    phrase: debe cumplir
+    sentence: El onboarding debe cumplir KYC antes de crear la cuenta.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El onboarding debe cumplir KYC antes de crear la cuenta.
+  match_strategy: generated
+  canonical_name: onboarding debe cumplir KYC antes de crear la cuenta
+  normalized_name: onboarding debe cumplir kyc antes de crear la cuenta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

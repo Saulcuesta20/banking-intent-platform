@@ -1,0 +1,115 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Rule Definition",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 3,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/rule_id"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/rule_name"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/domain"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 3,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/rule_type"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/priority"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/description"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Conditions",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/conditions",
+          "options": {
+            "detail": {
+              "type": "GridLayout",
+              "columns": 4,
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/field"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/operator"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/value"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/description"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Actions",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/actions",
+          "options": {
+            "detail": {
+              "type": "GridLayout",
+              "columns": 4,
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/type"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/target"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/value"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/description"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+asset_id: asset_set.fl001
+asset_type: asset_set
+name: Fl001 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl001.
+text: 'Refinanciar Prestamo
+
+  Calcular terminos de refinanciamiento
+
+  Identificar al cliente antes de cualquier operacion financiera
+
+  Revisar score de riesgo del cliente
+
+  Solicitar aprobacion humana para operaciones fuera de umbral'
+tags:
+- asset_set
+- fl001
+relations:
+- type: groups_flow
+  target_asset_id: flow.fl001
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.calcular_terminos_de_refinanciamiento
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.revisar_score_de_riesgo_del_cliente
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral
+  metadata: {}
+payload:
+  transaction_id: fl001
+  asset_ids:
+  - flow.fl001
+  - user_task.calcular_terminos_de_refinanciamiento
+  - user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  - user_task.revisar_score_de_riesgo_del_cliente
+  - user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.fl001
+    asset_type: flow
+  - asset_id: user_task.calcular_terminos_de_refinanciamiento
+    asset_type: user_task
+  - asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+    asset_type: user_task
+  - asset_id: user_task.revisar_score_de_riesgo_del_cliente
+    asset_type: user_task
+  - asset_id: user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Fl001 Asset Set
+  normalized_name: fl001 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

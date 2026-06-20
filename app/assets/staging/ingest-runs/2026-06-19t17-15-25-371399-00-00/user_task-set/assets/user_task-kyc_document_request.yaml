@@ -1,0 +1,25 @@
+asset_id: user_task.kyc_document_request
+asset_type: user_task
+name: KYC Document Request
+version: 1.0.0
+owner: business_model_kb
+description: Ask for identification, proof of address, and tax data as required.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: request_kyc_documents_task
+  task: request_kyc_documents_from_client
+  type: guided
+  name: KYC Document Request
+  description: Ask for identification, proof of address, and tax data as required.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: KYC Document Request
+  normalized_name: kyc document request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

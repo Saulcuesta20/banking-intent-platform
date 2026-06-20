@@ -1,0 +1,268 @@
+asset_id: asset_set.flow.international.transfer
+asset_type: asset_set
+name: Flow.international.transfer Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.international.transfer.
+text: 'High value transfer control
+
+  International Transfer
+
+  International Transfer Review
+
+  Transferencia
+
+  Transferencia
+
+  International transfer review
+
+  International transfer review
+
+  High value transfer control Ruleset
+
+  Approve Transfer (if needed)
+
+  Aprobar monto alto
+
+  Capture Details
+
+  capture_transfer_details
+
+  Check Daily Limit
+
+  compliance_review
+
+  Confirmar transferencia
+
+  Document Request
+
+  Execute Transfer
+
+  Identify Customer
+
+  Informar saldo insuficiente
+
+  Llamar servicio de transferencias
+
+  Manager Review
+
+  Notify Customer
+
+  Release or Reject
+
+  Request Purpose Document
+
+  Route to Manager Review
+
+  Screen Beneficiary
+
+  Solicitar aprobación de operaciones
+
+  Validar saldo y riesgo
+
+  Validate Source Account
+
+  Verify Beneficiary'
+tags:
+- asset_set
+- flow.international.transfer
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.high_value_transfer_control
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.flow.international.transfer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.international.transfer.review
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.transfer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.transferencia
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.flow.international.transfer
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.flow.international.transfer
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.flow.international.transfer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.approve_transfer_if_needed
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.aprobar_monto_alto
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.capture_details
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.capture_transfer_details
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.check_daily_limit
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.compliance_review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirmar_transferencia
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.document_request
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.execute_transfer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identify_customer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.informar_saldo_insuficiente
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.llamar_servicio_de_transferencias
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.manager_review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.notify_customer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.release_or_reject
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.request_purpose_document
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.route_to_manager_review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.screen_beneficiary
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.solicitar_aprobaci_n_de_operaciones
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_saldo_y_riesgo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validate_source_account
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_beneficiary
+  metadata: {}
+payload:
+  transaction_id: flow.international.transfer
+  asset_ids:
+  - business_rule.high_value_transfer_control
+  - flow.flow.international.transfer
+  - flow.international.transfer.review
+  - flow.transfer
+  - flow.transferencia
+  - plan.flow.international.transfer
+  - process.flow.international.transfer
+  - ruleset.flow.international.transfer
+  - user_task.approve_transfer_if_needed
+  - user_task.aprobar_monto_alto
+  - user_task.capture_details
+  - user_task.capture_transfer_details
+  - user_task.check_daily_limit
+  - user_task.compliance_review
+  - user_task.confirmar_transferencia
+  - user_task.document_request
+  - user_task.execute_transfer
+  - user_task.identify_customer
+  - user_task.informar_saldo_insuficiente
+  - user_task.llamar_servicio_de_transferencias
+  - user_task.manager_review
+  - user_task.notify_customer
+  - user_task.release_or_reject
+  - user_task.request_purpose_document
+  - user_task.route_to_manager_review
+  - user_task.screen_beneficiary
+  - user_task.solicitar_aprobaci_n_de_operaciones
+  - user_task.validar_saldo_y_riesgo
+  - user_task.validate_source_account
+  - user_task.verify_beneficiary
+  asset_types:
+  - business_rule
+  - flow
+  - plan
+  - process
+  - ruleset
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: business_rule.high_value_transfer_control
+    asset_type: business_rule
+  - asset_id: flow.flow.international.transfer
+    asset_type: flow
+  - asset_id: flow.international.transfer.review
+    asset_type: flow
+  - asset_id: flow.transfer
+    asset_type: flow
+  - asset_id: flow.transferencia
+    asset_type: flow
+  - asset_id: plan.flow.international.transfer
+    asset_type: plan
+  - asset_id: process.flow.international.transfer
+    asset_type: process
+  - asset_id: ruleset.flow.international.transfer
+    asset_type: ruleset
+  - asset_id: user_task.approve_transfer_if_needed
+    asset_type: user_task
+  - asset_id: user_task.aprobar_monto_alto
+    asset_type: user_task
+  - asset_id: user_task.capture_details
+    asset_type: user_task
+  - asset_id: user_task.capture_transfer_details
+    asset_type: user_task
+  - asset_id: user_task.check_daily_limit
+    asset_type: user_task
+  - asset_id: user_task.compliance_review
+    asset_type: user_task
+  - asset_id: user_task.confirmar_transferencia
+    asset_type: user_task
+  - asset_id: user_task.document_request
+    asset_type: user_task
+  - asset_id: user_task.execute_transfer
+    asset_type: user_task
+  - asset_id: user_task.identify_customer
+    asset_type: user_task
+  - asset_id: user_task.informar_saldo_insuficiente
+    asset_type: user_task
+  - asset_id: user_task.llamar_servicio_de_transferencias
+    asset_type: user_task
+  - asset_id: user_task.manager_review
+    asset_type: user_task
+  - asset_id: user_task.notify_customer
+    asset_type: user_task
+  - asset_id: user_task.release_or_reject
+    asset_type: user_task
+  - asset_id: user_task.request_purpose_document
+    asset_type: user_task
+  - asset_id: user_task.route_to_manager_review
+    asset_type: user_task
+  - asset_id: user_task.screen_beneficiary
+    asset_type: user_task
+  - asset_id: user_task.solicitar_aprobaci_n_de_operaciones
+    asset_type: user_task
+  - asset_id: user_task.validar_saldo_y_riesgo
+    asset_type: user_task
+  - asset_id: user_task.validate_source_account
+    asset_type: user_task
+  - asset_id: user_task.verify_beneficiary
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Flow.international.transfer Asset Set
+  normalized_name: flow.international.transfer asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

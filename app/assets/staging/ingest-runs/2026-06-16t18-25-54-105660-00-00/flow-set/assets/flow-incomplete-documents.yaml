@@ -1,0 +1,94 @@
+asset_id: flow.incomplete.documents
+asset_type: flow
+name: Manejo de documentos incompletos
+version: 1.0.0
+owner: process_kb
+description: Proceso para solicitar al cliente el envío digital de los documentos
+  faltantes y marcar el caso como pendiente hasta recibirlos.
+text: Proceso para solicitar al cliente el envío digital de los documentos faltantes
+  y marcar el caso como pendiente hasta recibirlos.
+tags:
+- recolectar.la.informacion.faltante.de.manera.eficiente
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.notificaci_n_de_documentos_incompletos
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.recepci_n_de_documentos
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.marcar_caso_como_pendiente
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  flow_id: incomplete.documents
+  flow_name: Manejo de documentos incompletos
+  intent: recolectar.la.informacion.faltante.de.manera.eficiente
+  confidence: 0.75
+  business_event: Documentos incompletos en una solicitud
+  utterances: []
+  plan: []
+  tasks:
+  - task: notificar_al_cliente_sobre_documentos_faltantes
+    type: notification
+  - task: recibir_documentos_digitales_del_cliente
+    type: upload
+  - task: actualizar_estado_del_caso_a_pendiente
+    type: system
+  user_tasks:
+  - user_task_id: notificar_documentos_faltantes
+    task: notificar_al_cliente_sobre_documentos_faltantes
+    type: notification
+    name: Notificación de documentos incompletos
+    description: Se envía una notificación al cliente indicando qué documentos faltan
+      y solicitando su envío digital.
+    tools: []
+    user_actions: []
+  - user_task_id: recibir_documentos_digitales
+    task: recibir_documentos_digitales_del_cliente
+    type: upload
+    name: Recepción de documentos
+    description: El cliente sube los documentos faltantes a través de un portal digital.
+    tools: []
+    user_actions: []
+  - user_task_id: actualizar_estado_caso
+    task: actualizar_estado_del_caso_a_pendiente
+    type: system
+    name: Marcar caso como pendiente
+    description: El sistema marca el caso como pendiente hasta que se reciban los
+      documentos completos.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para solicitar al cliente el envío digital de los documentos
+    faltantes y marcar el caso como pendiente hasta recibirlos.
+  source: data/raw/savings_loans_domain_extra4.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra4.txt
+    purpose: Completar la documentación necesaria para continuar con el proceso.
+  purpose: Completar la documentación necesaria para continuar con el proceso.
+  transaction_id: incomplete.documents
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso para solicitar al cliente el envío digital de los documentos
+      faltantes y marcar el caso como pendiente hasta recibirlos.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso para solicitar al cliente el envío digital de los documentos
+      faltantes y marcar el caso como pendiente hasta recibirlos.
+  match_strategy: generated
+  canonical_name: Manejo de documentos incompletos
+  normalized_name: manejo de documentos incompletos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,41 @@
+asset_id: document.service_configuration_notes_md
+asset_type: document
+name: service_configuration_notes.md
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/enterprise_dump_2026/service_configuration_notes.md
+text: "# Service Configuration Notes\n\nThe following notes were copied from deployment\
+  \ and support tickets. They are\nwritten as operational configuration guidance rather\
+  \ than structured assets.\n\nRouting source preferences:\n- Flow and process lookup\
+  \ should prefer the graph knowledge base.\n- Rules, policy snippets, and Q&A evidence\
+  \ should prefer the document knowledge\n  base and vector search.\n- Entity synonyms\
+  \ and relationships should be available in graph and vector\n  search for retrieval\
+  \ expansion.\n- Runtime decisions and audit events should be stored in relational\
+  \ state.\n\nRetrieval thresholds:\n- Use GraphRAG when the question asks how a process,\
+  \ flow, or task is connected.\n- Use document RAG when the question asks what a\
+  \ policy, rule, or requirement\n  says.\n- Use hybrid retrieval when the question\
+  \ combines \"how does this process work\"\n  with \"which rule applies\".\n- Ask\
+  \ for clarification when intent is split across execution and explanation.\n\nApproval\
+  \ queue configuration:\n- high_value_transfer_review routes to manager_review first,\
+  \ then compliance\n  review when screening is inconclusive.\n- refinance_exception_review\
+  \ routes to credit_manager_review.\n- automatic_debit_exception routes to loan_servicing_review."
+tags:
+- text
+- md
+relations: []
+payload:
+  path: data/raw/enterprise_dump_2026/service_configuration_notes.md
+  kind: text
+  sequence: 16
+  relation_hints:
+  - type: transitions_to
+    family: structural
+    phrase: then
+    sentence: '- high_value_transfer_review routes to manager_review first, then compliance'
+  match_strategy: generated
+  canonical_name: service_configuration_notes.md
+  normalized_name: service configuration notes.md
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,19 @@
+asset_id: process.product.config
+asset_type: process
+name: Configurar producto
+description: quiero configurar un producto o servicio
+tags:
+- master-data
+- product-service-config
+- process
+relations:
+- type: implements_flow
+  target_asset_id: flow.product.config
+payload:
+  process_id: product.config
+  process_name: Configurar producto
+  domain: master-data
+  module_id: product-service-config
+  business_event: product.config.requested
+  user_tasks:
+  - capture product configuration

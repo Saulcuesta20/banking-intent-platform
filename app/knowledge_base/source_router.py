@@ -43,7 +43,7 @@ class KnowledgeSourceRouter:
             routes.append(
                 KnowledgeSourceRoute(
                     source="rules_policies",
-                    views=["repository", "graph", "vector"],
+                    views=["repository", "document", "graph"],
                     asset_types=["business_rule", "rule", "policy", "document"],
                     reason="The question or matched assets require rules, policies, or document evidence.",
                 )
@@ -70,7 +70,7 @@ class KnowledgeSourceRouter:
             routes.append(
                 KnowledgeSourceRoute(
                     source="entities",
-                    views=["graph", "repository", "vector"],
+                    views=["graph", "repository"],
                     asset_types=["entity", "concept"],
                     reason="Search terms and extracted entities expand retrieval through synonyms and relationships.",
                 )

@@ -1,0 +1,30 @@
+asset_id: business_rule.br011
+asset_type: business_rule
+name: BR011
+version: 1.0.0
+owner: rules_kb
+description: Toda actualizacion de datos sensibles requiere doble confirmacion.
+text: Toda actualizacion de datos sensibles requiere doble confirmacion.
+tags:
+- business_rule
+relations: []
+payload:
+  rule_text: Toda actualizacion de datos sensibles requiere doble confirmacion.
+  source_section: LLMAssetExtraction
+  conditions:
+  - Toda actualizacion de datos sensibles
+  consequences:
+  - doble confirmacion
+  when: ''
+  then: ''
+  transaction_id: br011
+  ruleset_name: ''
+  applies_to: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: BR011
+  normalized_name: br011
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

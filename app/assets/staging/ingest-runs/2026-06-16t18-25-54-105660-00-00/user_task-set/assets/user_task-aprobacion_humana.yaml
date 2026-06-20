@@ -1,0 +1,25 @@
+asset_id: user_task.aprobacion_humana
+asset_type: user_task
+name: Aprobacion humana
+version: 1.0.0
+owner: business_model_kb
+description: Aprobacion manual si el resultado es borderline o alto riesgo
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_human_approval
+  task: aprobacion_humana
+  type: approval
+  name: Aprobacion humana
+  description: Aprobacion manual si el resultado es borderline o alto riesgo
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Aprobacion humana
+  normalized_name: aprobacion humana
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

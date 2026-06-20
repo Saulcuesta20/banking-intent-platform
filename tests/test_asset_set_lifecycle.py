@@ -154,7 +154,7 @@ def test_asset_editor_creates_new_immutable_asset_set_version(tmp_path: Path):
             "asset_id": "module.loan",
             "asset_type": "module",
             "name": "Loan Operations",
-            "description": "Updated in the Lowdefy asset editor.",
+            "description": "Updated in the asset editor.",
             "tags": ["lending", "loan"],
             "relations": [],
             "payload": {
@@ -173,3 +173,130 @@ def test_asset_editor_creates_new_immutable_asset_set_version(tmp_path: Path):
     generated = tmp_path / "loan-module-set" / "versions" / "1.0.1"
     assert (generated / "asset-set.yaml").is_file()
     assert (generated / "assets" / "module.yaml").is_file()
+
+
+def test_asset_editor_preview_diff_and_projection_are_read_only(tmp_path: Path):
+    service, store = _service(tmp_path)
+    source = _write_asset_set(tmp_path / "loan-module-set", "1.0.0", "Loans")
+    service.load(source)
+
+    preview = service.preview_draft_version(
+        asset_id="module.loan",
+        base_version="1.0.0",
+        document={
+            "asset_id": "module.loan",
+            "asset_type": "module",
+            "name": "Loan Operations",
+            "description": "Updated before save.",
+            "tags": ["lending", "loan"],
+            "relations": [],
+            "payload": {
+                "moduleId": "loan",
+                "label": "Loan Operations",
+                "domain_id": "lending",
+                "module_id": "loan",
+            },
+        },
+    )
+
+    assert preview["draft_version"] == "1.0.1"
+    assert preview["validation"]["valid"] is True
+    assert preview["diff"]["changed"] is True
+    assert "repository" in preview["projection_preview"]["stores"]
+    assert store.get_catalog_asset("module.loan", "1.0.1") is None
+
+
+def test_asset_editor_diff_between_existing_versions(tmp_path: Path):
+    service, _store = _service(tmp_path)
+    source = _write_asset_set(tmp_path / "loan-module-set", "1.0.0", "Loans")
+    service.load(source)
+    service.create_draft_version(
+        asset_id="module.loan",
+        base_version="1.0.0",
+        actor="developer",
+        document={
+            "asset_id": "module.loan",
+            "asset_type": "module",
+            "name": "Loan Operations",
+            "description": "Updated in the asset editor.",
+            "tags": ["lending", "loan"],
+            "relations": [],
+            "payload": {
+                "moduleId": "loan",
+                "label": "Loan Operations",
+                "domain_id": "lending",
+                "module_id": "loan",
+            },
+        },
+    )
+
+    diff = service.diff_asset_versions(
+        asset_id="module.loan",
+        from_version="1.0.0",
+        to_version="1.0.1",
+    )
+
+    assert diff["diff"]["changed"] is True
+    assert any(change["field"] == "name" for change in diff["diff"]["fields"])
+
+
+def test_asset_contract_validation_rejects_missing_required_payload(tmp_path: Path):
+    service, _store = _service(tmp_path)
+    source = _write_asset_set(tmp_path / "loan-module-set", "1.0.0", "Loans")
+    asset_path = source.parent / "assets" / "module.yaml"
+    document = yaml.safe_load(asset_path.read_text(encoding="utf-8"))
+    document["payload"].pop("domain_id")
+    document["payload"].pop("module_id")
+    document["payload"].pop("label")
+    document.pop("description", None)
+    asset_path.write_text(yaml.safe_dump(document, sort_keys=False), encoding="utf-8")
+
+    try:
+        service.load(source)
+    except ValueError as exc:
+        assert "missing required fields" in str(exc)
+        assert "purpose" in str(exc)
+    else:
+        raise AssertionError("AssetSet load accepted a document that violates its contract")
+
+
+def test_asset_contract_validation_rejects_invalid_relation(tmp_path: Path):
+    service, _store = _service(tmp_path)
+    source = _write_asset_set(tmp_path / "loan-module-set", "1.0.0", "Loans")
+    asset_path = source.parent / "assets" / "module.yaml"
+    document = yaml.safe_load(asset_path.read_text(encoding="utf-8"))
+    document["relations"] = [{"type": "implemented_by_process", "target_asset_id": "process.loan"}]
+    asset_path.write_text(yaml.safe_dump(document, sort_keys=False), encoding="utf-8")
+
+    try:
+        service.load(source)
+    except ValueError as exc:
+        assert "invalid relations" in str(exc)
+        assert "implemented_by_process" in str(exc)
+    else:
+        raise AssertionError("AssetSet load accepted a relation outside the contract")
+
+
+def test_asset_validate_returns_contract_warnings_for_legacy_payload(tmp_path: Path):
+    service, _store = _service(tmp_path)
+
+    validation = service.validate_asset_document(
+        document={
+            "asset_id": "flow.loan.refinance",
+            "asset_type": "flow",
+            "name": "Loan Refinance",
+            "description": "Legacy flow description.",
+            "relations": [],
+            "payload": {
+                "flow_id": "loan.refinance",
+                "flow_name": "Loan Refinance",
+                "intent": "refinance my loan",
+                "business_event": "loan.refinance.requested",
+                "user_tasks": [{"user_task_id": "review_refinance_options"}],
+            },
+        },
+    )
+
+    assert validation["valid"] is True
+    assert validation["contract_validation"]["valid"] is True
+    assert any("purpose" in warning for warning in validation["warnings"])

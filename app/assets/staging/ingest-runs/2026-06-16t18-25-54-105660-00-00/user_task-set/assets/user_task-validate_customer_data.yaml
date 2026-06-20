@@ -1,0 +1,25 @@
+asset_id: user_task.validate_customer_data
+asset_type: user_task
+name: Validate Customer Data
+version: 1.0.0
+owner: business_model_kb
+description: Check customer details for completeness and correctness.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: validate_customer_data
+  task: validate_customer_data
+  type: automated
+  name: Validate Customer Data
+  description: Check customer details for completeness and correctness.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Validate Customer Data
+  normalized_name: validate customer data
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

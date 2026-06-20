@@ -1,0 +1,32 @@
+asset_id: process.transfer
+asset_type: process
+name: Process transferencia
+version: 1.0.0
+owner: process_kb
+description: El proceso de transferencia valida origen, valida destino y ejecuta el
+  movimiento.
+text: El proceso de transferencia valida origen, valida destino y ejecuta el movimiento.
+tags:
+- process_fragment
+- money.transfer
+- realizar.transferencia
+relations:
+- type: applies_to_flow
+  target_asset_id: flow.transfer
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.transferencia
+  metadata: {}
+payload:
+  steps_text: El proceso de transferencia valida origen, valida destino y ejecuta
+    el movimiento.
+  source_section: Processes
+  transaction_id: transfer
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Process transferencia
+  normalized_name: process transferencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

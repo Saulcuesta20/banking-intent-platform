@@ -1,0 +1,27 @@
+asset_id: user_task.payment_configuration
+asset_type: user_task
+name: Payment Configuration
+version: 1.0.0
+owner: business_model_kb
+description: Set up recurring loan payment after customer acceptance, including terms
+  and chosen payment day.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: payment_configuration
+  task: configure_automatic_loan_payment_with_terms_and_payment_day
+  type: setup
+  name: Payment Configuration
+  description: Set up recurring loan payment after customer acceptance, including
+    terms and chosen payment day.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Payment Configuration
+  normalized_name: payment configuration
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

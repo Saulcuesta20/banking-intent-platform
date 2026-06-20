@@ -1,0 +1,43 @@
+asset_id: asset_set.la.falta.de.consentimiento.firmado.prevents.el.alta.de.pago.automatico
+asset_type: asset_set
+name: La.falta.de.consentimiento.firmado.prevents.el.alta.de.pago.automatico Asset
+  Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for la.falta.de.consentimiento.firmado.prevents.el.alta.de.pago.automatico.
+text: 'La falta de consentimiento firmado prevents el alta de pago automatico
+
+  Process alta de pago automatico'
+tags:
+- asset_set
+- la.falta.de.consentimiento.firmado.prevents.el.alta.de.pago.automatico
+relations:
+- type: groups_causality
+  target_asset_id: causality.la_falta_de_consentimiento_firmado_prevents_el_alta_de_pago_automatico
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+  metadata: {}
+payload:
+  transaction_id: la.falta.de.consentimiento.firmado.prevents.el.alta.de.pago.automatico
+  asset_ids:
+  - causality.la_falta_de_consentimiento_firmado_prevents_el_alta_de_pago_automatico
+  - process.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+  asset_types:
+  - causality
+  - process
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.la_falta_de_consentimiento_firmado_prevents_el_alta_de_pago_automatico
+    asset_type: causality
+  - asset_id: process.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+    asset_type: process
+  match_strategy: generated
+  canonical_name: La.falta.de.consentimiento.firmado.prevents.el.alta.de.pago.automatico
+    Asset Set
+  normalized_name: la.falta.de.consentimiento.firmado.prevents.el.alta.de.pago.automatico
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

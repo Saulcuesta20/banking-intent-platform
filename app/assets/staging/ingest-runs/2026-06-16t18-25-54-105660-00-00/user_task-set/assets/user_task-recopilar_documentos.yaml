@@ -1,0 +1,32 @@
+asset_id: user_task.recopilar_documentos
+asset_type: user_task
+name: Recopilar documentos
+version: 1.0.0
+owner: business_model_kb
+description: Solicitar al cliente identificación oficial, comprobante de domicilio
+  y datos fiscales.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: recopilar_documentos_cuenta
+  task: recopilar_documentos_para_apertura_de_cuenta
+  type: form
+  name: Recopilar documentos
+  description: Solicitar al cliente identificación oficial, comprobante de domicilio
+    y datos fiscales.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Solicitar al cliente identificación oficial, comprobante de domicilio
+      y datos fiscales.
+  match_strategy: generated
+  canonical_name: Recopilar documentos
+  normalized_name: recopilar documentos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.customer_id_validation
+asset_type: user_task
+name: Customer ID Validation
+version: 1.0.0
+owner: business_model_kb
+description: Verify the customer's identity using provided identification documents.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: validate_customer_id
+  task: validate_customer_identification
+  type: validation
+  name: Customer ID Validation
+  description: Verify the customer's identity using provided identification documents.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer ID Validation
+  normalized_name: customer id validation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

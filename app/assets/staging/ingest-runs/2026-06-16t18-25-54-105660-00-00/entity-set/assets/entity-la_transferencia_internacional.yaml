@@ -1,0 +1,26 @@
+asset_id: entity.la_transferencia_internacional
+asset_type: entity
+name: la transferencia internacional
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality effect_text: la transferencia internacional'
+text: La validacion reforzada aprobada habilita la transferencia internacional.
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: effect_text
+  business_layer: channel
+  entity_role: asset
+  relation_hints:
+  - type: enables
+    family: causality
+    phrase: habilita
+    sentence: La validacion reforzada aprobada habilita la transferencia internacional.
+  match_strategy: generated
+  canonical_name: la transferencia internacional
+  normalized_name: la transferencia internacional
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

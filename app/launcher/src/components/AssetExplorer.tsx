@@ -1,21 +1,39 @@
 import {
+  ChevronLeft,
+  ChevronRight,
   Boxes,
   ChevronDown,
-  ChevronRight,
   Code2,
   Database,
   FileBox,
   Filter,
+  MoreHorizontal,
   Network,
+  Pencil,
   RefreshCw,
   Route,
   Search,
   Tags,
 } from 'lucide-react'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { useMemo, useState } from 'react'
-import type { CatalogAssetDetail, CatalogMetadata, CatalogTreeNode } from '../types'
+import type { ReactNode } from 'react'
+import type { CatalogAssetDetail, CatalogMetadata, CatalogTreeNode, OntologySelection } from '../types'
+import { AssetInlineEditor } from './AssetInlineEditor'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
+
+const STATUS_PRIORITY: Record<string, number> = {
+  ready_for_review: 0,
+  in_review: 1,
+  validated: 2,
+  active: 3,
+  draft: 4,
+  approved: 5,
+  rejected: 6,
+  deprecated: 7,
+  retired: 8,
+}
 
 type AssetExplorerProps = {
   assets: CatalogAssetDetail[]
@@ -23,6 +41,7 @@ type AssetExplorerProps = {
   metadata?: CatalogMetadata
   selectedAssetId?: string | null
   selectedAsset?: CatalogAssetDetail | null
+  editingAsset?: CatalogAssetDetail | null
   loading: boolean
   filters: {
     query: string
@@ -33,7 +52,14 @@ type AssetExplorerProps = {
   }
   onFilterChange: (key: string, value: string) => void
   onSelectAsset: (asset: CatalogAssetDetail) => void
+  onEditAsset: (asset: CatalogAssetDetail) => void
+  onCloseEditor: () => void
   onRefresh: () => void
+  onOpenKnowledgeBaseEditor?: (knowledgeBase: string) => void
+  onOntologySelectionChange?: (selection: OntologySelection | null) => void
+  onOntologyFormHandlerChange?: (
+    handler: ((context?: { entityId?: string; entityName?: string }) => void) | null,
+  ) => void
 }
 
 export function AssetExplorer({
@@ -42,17 +68,53 @@ export function AssetExplorer({
   metadata,
   selectedAssetId,
   selectedAsset,
+  editingAsset,
   loading,
   filters,
   onFilterChange,
   onSelectAsset,
+  onEditAsset,
+  onCloseEditor,
   onRefresh,
+  onOpenKnowledgeBaseEditor,
+  onOntologySelectionChange,
+  onOntologyFormHandlerChange,
 }: AssetExplorerProps) {
   const [view, setView] = useState<'tree' | 'routes'>('tree')
+  const [browserExpandedWhileEditing, setBrowserExpandedWhileEditing] = useState(false)
   const assetById = useMemo(
     () => new Map(assets.map((asset) => [`${asset.asset_id}:${asset.version}`, asset])),
     [assets],
   )
+  const sortedAssets = useMemo(
+    () =>
+      [...assets].sort(
+        (left, right) =>
+          (STATUS_PRIORITY[left.status] ?? 999) - (STATUS_PRIORITY[right.status] ?? 999) ||
+          (left.name || left.asset_id).localeCompare(right.name || right.asset_id),
+      ),
+    [assets],
+  )
+  const reviewCount = assets.filter((asset) => asset.status === 'ready_for_review' || asset.status === 'in_review').length
+  const activeCount = assets.filter((asset) => asset.status === 'active').length
+  const browserCollapsed = Boolean(editingAsset) && !browserExpandedWhileEditing
+
+  function selectAsset(asset: CatalogAssetDetail) {
+    onSelectAsset(asset)
+    if (editingAsset && editingAsset.asset_id !== asset.asset_id) {
+      handleCloseEditor()
+    }
+  }
+
+  function handleEditAsset(asset: CatalogAssetDetail) {
+    setBrowserExpandedWhileEditing(false)
+    onEditAsset(asset)
+  }
+
+  function handleCloseEditor() {
+    setBrowserExpandedWhileEditing(false)
+    onCloseEditor()
+  }
 
   return (
     <main className="workspace asset-workspace">
@@ -62,10 +124,13 @@ export function AssetExplorer({
             <p className="eyebrow">Unified Catalog</p>
             <Badge tone="info">Launcher Embedded Editors</Badge>
           </div>
-          <h1>{selectedAsset ? `Edit ${selectedAsset.name || selectedAsset.asset_id}` : 'Assets'}</h1>
-          <p>{selectedAsset ? 'Edita el activo con Lowdefy dentro del launcher.' : 'Explora relaciones, versiones, proyecciones y ciclo de vida.'}</p>
+          <h1>{editingAsset ? `Edit ${editingAsset.name || editingAsset.asset_id}` : 'Assets'}</h1>
+          <p>{editingAsset ? 'Edita el activo directamente dentro del launcher.' : 'Explora relaciones, versiones, proyecciones y ciclo de vida.'}</p>
         </div>
         <div className="asset-view-switch">
+          {selectedAsset ? (
+            <AssetActionMenu asset={selectedAsset} onEditAsset={handleEditAsset} />
+          ) : null}
           <Button variant={view === 'tree' ? 'default' : 'outline'} size="sm" onClick={() => setView('tree')}>
             <Network size={16} />
             Tree
@@ -121,106 +186,143 @@ export function AssetExplorer({
 
       <div className="asset-summary-row">
         <span>{assets.length} activos encontrados</span>
-        <span>{tree.length} knowledge bases</span>
+        <span>{reviewCount} en revisión</span>
+        <span>{activeCount} activos</span>
+        <span>{tree.length} catalogo{tree.length === 1 ? '' : 's'}</span>
         <span>Environment: DEV</span>
+        {filters.knowledgeBase ? (
+          <AssetActionMenu knowledgeBase={filters.knowledgeBase} onOpenKnowledgeBaseEditor={onOpenKnowledgeBaseEditor} />
+        ) : null}
       </div>
 
-      <div className="asset-editor-layout">
-        <section className="asset-browser-panel">
-          {view === 'routes' ? (
-            <RouteView assets={assets} selectedAssetId={selectedAssetId} onSelectAsset={onSelectAsset} />
-          ) : (
-            <section className="asset-tree-panel compact">
-              {loading ? (
-                <div className="asset-empty">Cargando catálogo unificado...</div>
-              ) : tree.length === 0 ? (
-                <div className="asset-empty">No hay activos para estos filtros.</div>
+      <div
+        className={[
+          'asset-editor-layout',
+          editingAsset ? 'editing' : 'browsing',
+          browserCollapsed ? 'browser-collapsed' : 'browser-expanded',
+        ].join(' ')}
+      >
+        <section className={`asset-browser-panel ${browserCollapsed ? 'collapsed' : ''}`}>
+          <div className="asset-browser-shell">
+            <div className="asset-browser-toolbar">
+              <div className={browserCollapsed ? 'asset-browser-toolbar-copy hidden' : 'asset-browser-toolbar-copy'}>
+                <strong>Navegador de activos</strong>
+                <span>{view === 'tree' ? 'Vista jerarquica del catalogo' : 'Vista por rutas funcionales'}</span>
+              </div>
+              {editingAsset ? (
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setBrowserExpandedWhileEditing((current) => !current)}
+                  aria-label={browserCollapsed ? 'Expandir navegador de activos' : 'Colapsar navegador de activos'}
+                >
+                  {browserCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+                </Button>
+              ) : null}
+            </div>
+            {!browserCollapsed ? (
+              view === 'routes' ? (
+                <RouteView
+                  assets={sortedAssets}
+                  selectedAssetId={selectedAssetId}
+                  onSelectAsset={selectAsset}
+                  onEditAsset={handleEditAsset}
+                />
               ) : (
-                tree.map((node) => (
-                  <AssetTreeNode
-                    key={node.id}
-                    node={node}
-                    depth={0}
-                    assetById={assetById}
-                    selectedAssetId={selectedAssetId}
-                    onSelectAsset={onSelectAsset}
-                  />
-                ))
-              )}
-            </section>
-          )}
+                <section className="asset-tree-panel compact">
+                  {loading ? (
+                    <div className="asset-empty">Cargando catálogo unificado...</div>
+                  ) : tree.length === 0 ? (
+                    <div className="asset-empty">No hay activos para estos filtros.</div>
+                  ) : (
+                    tree.map((node) => (
+                      <AssetTreeNode
+                        key={node.id}
+                        node={node}
+                        depth={0}
+                        assetById={assetById}
+                        selectedAssetId={selectedAssetId}
+                        onSelectAsset={selectAsset}
+                        onEditAsset={handleEditAsset}
+                        onOpenKnowledgeBaseEditor={onOpenKnowledgeBaseEditor}
+                      />
+                    ))
+                  )}
+                </section>
+              )
+            ) : (
+              <button
+                type="button"
+                className="asset-browser-collapsed-toggle"
+                onClick={() => setBrowserExpandedWhileEditing(true)}
+                aria-label="Expandir navegador de activos"
+              >
+                <ChevronRight size={18} />
+              </button>
+            )}
+          </div>
         </section>
-        <AssetEmbeddedEditor selectedAsset={selectedAsset} />
+        {editingAsset ? (
+          <AssetEmbeddedEditor
+            selectedAsset={selectedAsset}
+            editingAsset={editingAsset}
+            onClose={handleCloseEditor}
+            onVersionCreated={() => {
+              onRefresh()
+            }}
+            onOntologySelectionChange={onOntologySelectionChange}
+            onOntologyFormHandlerChange={onOntologyFormHandlerChange}
+          />
+        ) : null}
       </div>
     </main>
   )
 }
 
-function editorPageForAsset(asset?: CatalogAssetDetail | null) {
-  const type = String(asset?.asset_type || '').toLowerCase()
-  if (type === 'flow') return 'asset-flow-editor'
-  if (type === 'process') return 'asset-process-editor'
-  if (['business_rule', 'rule', 'ruleset'].includes(type)) return 'asset-business-rule-editor'
-  if (['ontology', 'relationship'].includes(type)) return 'asset-ontology-editor'
-  if (['qa', 'question_answer'].includes(type)) return 'asset-qa-editor'
-  if (['entity', 'concept'].includes(type)) return 'asset-entity-editor'
-  if (['tool', 'api', 'tool_api'].includes(type)) return 'asset-tool-api-editor'
-  if (type === 'form') return 'asset-form-editor'
-  if (['domain', 'module', 'menu', 'submenu', 'navigation'].includes(type)) return 'asset-module-menu-editor'
-  if (['document', 'configuration', 'config'].includes(type)) return 'asset-document-config-editor'
-  return 'asset-code-editor'
-}
-
-function AssetEmbeddedEditor({ selectedAsset }: { selectedAsset?: CatalogAssetDetail | null }) {
-  const lowdefyBaseUrl = import.meta.env.VITE_LOWDEFY_RUNTIME_URL || 'http://localhost:3002'
+function AssetEmbeddedEditor({
+  selectedAsset,
+  editingAsset,
+  onClose,
+  onVersionCreated,
+  onOntologySelectionChange,
+  onOntologyFormHandlerChange,
+}: {
+  selectedAsset?: CatalogAssetDetail | null
+  editingAsset?: CatalogAssetDetail | null
+  onClose: () => void
+  onVersionCreated: () => void
+  onOntologySelectionChange?: (selection: OntologySelection | null) => void
+  onOntologyFormHandlerChange?: (
+    handler: ((context?: { entityId?: string; entityName?: string }) => void) | null,
+  ) => void
+}) {
+  const activeAsset = editingAsset ?? null
   if (!selectedAsset) {
     return (
       <section className="asset-editor-empty">
         <Code2 size={28} />
         <h2>Selecciona un activo</h2>
-        <p>El editor Lowdefy aparece aqui con el contexto del activo, version, AssetSet y tipo.</p>
+        <p>El editor aparece aqui con el contexto del activo, version, AssetSet y tipo.</p>
       </section>
     )
   }
-  const page = editorPageForAsset(selectedAsset)
-  const params = new URLSearchParams({
-    asset_id: selectedAsset.asset_id,
-    version: selectedAsset.version,
-    environment: 'dev',
-  })
+  if (!activeAsset) {
+    return (
+      <section className="asset-editor-empty">
+        <Code2 size={28} />
+        <h2>Activo seleccionado</h2>
+        <p>Pulsa Editar para abrir el panel de edicion del tipo seleccionado.</p>
+      </section>
+    )
+  }
   return (
-    <section className="asset-editor-shell">
-      <div className="asset-editor-header">
-        <div>
-          <p className="asset-breadcrumb">
-            Assets / {selectedAsset.asset_type} / {selectedAsset.asset_id}
-          </p>
-          <div className="asset-editor-title">
-            <h2>{selectedAsset.name || selectedAsset.asset_id}</h2>
-            <Badge tone="info">Lowdefy Editor</Badge>
-          </div>
-        </div>
-        <div className="asset-editor-version">
-          <span>Current</span>
-          <strong>{selectedAsset.version}</strong>
-          <StatusBadge status={selectedAsset.status} />
-        </div>
-      </div>
-      <div className="asset-editor-draft-banner">
-        Editing creates a new immutable AssetSet version. Current KB projections continue using the active version until deployment.
-      </div>
-      <div className="asset-editor-tabs">
-        <span className="active">Structured Editor</span>
-        <span>Relationships</span>
-        <span>Raw YAML</span>
-        <span>Compare Versions</span>
-      </div>
-      <iframe
-        className="asset-editor-frame"
-        src={`${lowdefyBaseUrl}/${page}?${params.toString()}`}
-        title={`Lowdefy editor for ${selectedAsset.asset_id}`}
-      />
-    </section>
+    <AssetInlineEditor
+      asset={activeAsset}
+      onClose={onClose}
+      onVersionCreated={onVersionCreated}
+      onOntologySelectionChange={onOntologySelectionChange}
+      onOntologyFormHandlerChange={onOntologyFormHandlerChange}
+    />
   )
 }
 
@@ -231,7 +333,7 @@ function FilterSelect({
   values,
   onChange,
 }: {
-  icon: React.ReactNode
+  icon: ReactNode
   value: string
   emptyLabel: string
   values: string[]
@@ -244,7 +346,7 @@ function FilterSelect({
         <option value="">{emptyLabel}</option>
         {values.map((item) => (
           <option value={item} key={item}>
-            {item}
+            {item === 'repository' ? 'catalog' : item}
           </option>
         ))}
       </select>
@@ -258,12 +360,16 @@ function AssetTreeNode({
   assetById,
   selectedAssetId,
   onSelectAsset,
+  onEditAsset,
+  onOpenKnowledgeBaseEditor,
 }: {
   node: CatalogTreeNode
   depth: number
   assetById: Map<string, CatalogAssetDetail>
   selectedAssetId?: string | null
   onSelectAsset: (asset: CatalogAssetDetail) => void
+  onEditAsset: (asset: CatalogAssetDetail) => void
+  onOpenKnowledgeBaseEditor?: (knowledgeBase: string) => void
 }) {
   const [open, setOpen] = useState(depth < 2)
   const hasChildren = node.children.length > 0
@@ -271,25 +377,35 @@ function AssetTreeNode({
   const Icon = node.kind === 'knowledge_base' ? Database : node.kind === 'asset_set' ? Boxes : FileBox
   return (
     <div className="asset-tree-branch">
-      <button
-        type="button"
-        className={`asset-tree-row ${node.asset_id === selectedAssetId ? 'active' : ''}`}
-        style={{ paddingLeft: `${12 + depth * 24}px` }}
-        onClick={() => {
-          if (asset) onSelectAsset(asset)
-          else if (hasChildren) setOpen((value) => !value)
-        }}
-      >
-        <span className="tree-chevron">
-          {hasChildren ? open ? <ChevronDown size={15} /> : <ChevronRight size={15} /> : null}
-        </span>
-        <Icon size={17} />
-        <span className="tree-label">{node.label}</span>
-        {node.asset_type && <Badge>{node.asset_type}</Badge>}
-        {node.version && <span className="tree-version">v{node.version}</span>}
-        {node.status && <StatusBadge status={node.status} />}
-        {node.count != null && <span className="tree-count">{node.count}</span>}
-      </button>
+      <div className={`asset-tree-row-wrap ${node.asset_id === selectedAssetId ? 'active' : ''}`}>
+        <button
+          type="button"
+          className="asset-tree-row"
+          style={{ paddingLeft: `${12 + depth * 24}px` }}
+          onClick={() => {
+            if (asset) onSelectAsset(asset)
+            else if (hasChildren) setOpen((value) => !value)
+          }}
+        >
+          <span className="tree-chevron">
+            {hasChildren ? open ? <ChevronDown size={15} /> : <ChevronRight size={15} /> : null}
+          </span>
+          <Icon size={17} />
+          <span className="tree-label">{node.label}</span>
+          {node.asset_type && <Badge>{node.asset_type}</Badge>}
+          {node.version && <span className="tree-version">v{node.version}</span>}
+          {node.status && <StatusBadge status={node.status} />}
+          {node.count != null && <span className="tree-count">{node.count}</span>}
+        </button>
+        {asset || node.kind === 'knowledge_base' ? (
+          <AssetActionMenu
+            asset={asset}
+            knowledgeBase={node.kind === 'knowledge_base' ? node.label : undefined}
+            onEditAsset={onEditAsset}
+            onOpenKnowledgeBaseEditor={onOpenKnowledgeBaseEditor}
+          />
+        ) : null}
+      </div>
       {open &&
         node.children.map((child) => (
           <AssetTreeNode
@@ -299,6 +415,8 @@ function AssetTreeNode({
             assetById={assetById}
             selectedAssetId={selectedAssetId}
             onSelectAsset={onSelectAsset}
+            onEditAsset={onEditAsset}
+            onOpenKnowledgeBaseEditor={onOpenKnowledgeBaseEditor}
           />
         ))}
     </div>
@@ -309,31 +427,86 @@ function RouteView({
   assets,
   selectedAssetId,
   onSelectAsset,
+  onEditAsset,
 }: {
   assets: CatalogAssetDetail[]
   selectedAssetId?: string | null
   onSelectAsset: (asset: CatalogAssetDetail) => void
+  onEditAsset?: (asset: CatalogAssetDetail) => void
 }) {
   return (
     <section className="asset-route-list">
       {assets.map((asset) => (
-        <button
-          type="button"
+        <div
           key={`${asset.asset_id}:${asset.version}`}
-          className={`asset-route-row ${selectedAssetId === asset.asset_id ? 'active' : ''}`}
-          onClick={() => onSelectAsset(asset)}
+          className={`asset-route-row-wrap ${selectedAssetId === asset.asset_id ? 'active' : ''}`}
         >
-          <span>{asset.domain_id || 'platform'}</span>
-          <ChevronRight size={14} />
-          <span>{asset.module_id || 'shared'}</span>
-          <ChevronRight size={14} />
-          <span>{asset.asset_set_id || 'unassigned'}</span>
-          <ChevronRight size={14} />
-          <strong>{asset.name || asset.asset_id}</strong>
-          <StatusBadge status={asset.status} />
-        </button>
+          <button
+            type="button"
+            className="asset-route-row"
+            onClick={() => onSelectAsset(asset)}
+          >
+            <span>{asset.domain_id || 'platform'}</span>
+            <ChevronRight size={14} />
+            <span>{asset.module_id || 'shared'}</span>
+            <ChevronRight size={14} />
+            <span>{asset.asset_set_id || 'unassigned'}</span>
+            <ChevronRight size={14} />
+            <strong>{asset.name || asset.asset_id}</strong>
+            <StatusBadge status={asset.status} />
+          </button>
+          {onEditAsset ? <AssetActionMenu asset={asset} onEditAsset={onEditAsset} /> : null}
+        </div>
       ))}
     </section>
+  )
+}
+
+function AssetActionMenu({
+  asset,
+  knowledgeBase,
+  onEditAsset,
+  onOpenKnowledgeBaseEditor,
+}: {
+  asset?: CatalogAssetDetail
+  knowledgeBase?: string
+  onEditAsset?: (asset: CatalogAssetDetail) => void
+  onOpenKnowledgeBaseEditor?: (knowledgeBase: string) => void
+}) {
+  return (
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="asset-row-menu-button"
+          aria-label={knowledgeBase ? `Acciones de ${knowledgeBase}` : `Acciones de ${asset?.name || asset?.asset_id || 'activo'}`}
+          onClick={(event) => event.stopPropagation()}
+        >
+          <MoreHorizontal size={17} />
+        </Button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content className="dropdown-content" align="end" sideOffset={6}>
+          {asset && onEditAsset ? (
+            <DropdownMenu.Item
+              className="dropdown-item"
+              onSelect={() => onEditAsset(asset)}
+            >
+              <Pencil size={15} /> Editar activo
+            </DropdownMenu.Item>
+          ) : null}
+          {knowledgeBase && onOpenKnowledgeBaseEditor ? (
+            <DropdownMenu.Item
+              className="dropdown-item"
+              onSelect={() => onOpenKnowledgeBaseEditor(knowledgeBase)}
+            >
+              <Network size={15} /> Canvas de ontología
+            </DropdownMenu.Item>
+          ) : null}
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   )
 }
 

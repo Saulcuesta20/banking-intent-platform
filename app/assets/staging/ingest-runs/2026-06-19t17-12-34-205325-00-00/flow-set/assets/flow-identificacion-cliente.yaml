@@ -1,0 +1,50 @@
+asset_id: flow.identificacion.cliente
+asset_type: flow
+name: Identificacion de Cliente
+version: 1.0.0
+owner: process_kb
+description: Proceso obligatorio para confirmar identidad y perfil de riesgo.
+text: Proceso obligatorio para confirmar identidad y perfil de riesgo.
+tags:
+- to.prevent.fraud.and.meet.regulatory.requirements
+relations:
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.identificacion_de_cliente
+  metadata: {}
+payload:
+  flow_id: identificacion.cliente
+  flow_name: Identificacion de Cliente
+  intent: to.prevent.fraud.and.meet.regulatory.requirements
+  confidence: 0.75
+  business_event: KYC Verification
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso obligatorio para confirmar identidad y perfil de riesgo.
+  source: data/raw/savings_glossary.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_glossary.csv
+    purpose: To verify customer identity and assess risk for compliance.
+  purpose: To verify customer identity and assess risk for compliance.
+  transaction_id: identificacion.cliente
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Identificacion de Cliente
+  match_strategy: generated
+  canonical_name: Identificacion de Cliente
+  normalized_name: identificacion de cliente
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

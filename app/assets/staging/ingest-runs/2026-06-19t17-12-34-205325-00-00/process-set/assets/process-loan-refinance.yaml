@@ -1,0 +1,41 @@
+asset_id: process.loan.refinance
+asset_type: process
+name: Process refinanciamiento
+version: 1.0.0
+owner: process_kb
+description: El proceso de refinanciamiento identifica al cliente, revisa mora, calcula
+  terminos y emite oferta.
+text: El proceso de refinanciamiento identifica al cliente, revisa mora, calcula terminos
+  y emite oferta.
+tags:
+- process_fragment
+relations:
+- type: uses_entity
+  target_asset_id: entity.mora
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  steps_text: El proceso de refinanciamiento identifica al cliente, revisa mora, calcula
+    terminos y emite oferta.
+  source_section: Processes
+  transaction_id: loan.refinance
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El proceso de refinanciamiento identifica al cliente, revisa mora, calcula
+      terminos y emite oferta.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El proceso de refinanciamiento identifica al cliente, revisa mora, calcula
+      terminos y emite oferta.
+  match_strategy: generated
+  canonical_name: Process refinanciamiento
+  normalized_name: process refinanciamiento
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,57 @@
+asset_id: asset_set.insufficient.balance.stops.transfer
+asset_type: asset_set
+name: Insufficient.balance.stops.transfer Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for insufficient.balance.stops.transfer.
+text: 'Insufficient balance stops transfer
+
+  Account
+
+  Transfer
+
+  Insufficient.balance.stops.transfer Ruleset'
+tags:
+- asset_set
+- insufficient.balance.stops.transfer
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.insufficient_balance_stops_transfer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.insufficient.balance.stops.transfer
+  metadata: {}
+payload:
+  transaction_id: insufficient.balance.stops.transfer
+  asset_ids:
+  - business_rule.insufficient_balance_stops_transfer
+  - entity.savings_account
+  - entity.transfer
+  - ruleset.insufficient.balance.stops.transfer
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.insufficient_balance_stops_transfer
+    asset_type: business_rule
+  - asset_id: entity.savings_account
+    asset_type: entity
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: ruleset.insufficient.balance.stops.transfer
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Insufficient.balance.stops.transfer Asset Set
+  normalized_name: insufficient.balance.stops.transfer asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

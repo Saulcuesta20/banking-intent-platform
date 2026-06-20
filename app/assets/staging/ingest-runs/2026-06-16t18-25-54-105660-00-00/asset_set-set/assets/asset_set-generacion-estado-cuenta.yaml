@@ -1,0 +1,65 @@
+asset_id: asset_set.generacion.estado.cuenta
+asset_type: asset_set
+name: Generacion.estado.cuenta Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for generacion.estado.cuenta.
+text: 'cliente
+
+  estado de cuenta
+
+  Generación de estado de cuenta mensual
+
+  Envío de email
+
+  Generación de PDF'
+tags:
+- asset_set
+- generacion.estado.cuenta
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.estado_de_cuenta
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.generacion.estado.cuenta
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.env_o_de_email
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.generaci_n_de_pdf
+  metadata: {}
+payload:
+  transaction_id: generacion.estado.cuenta
+  asset_ids:
+  - entity.customer
+  - entity.estado_de_cuenta
+  - flow.generacion.estado.cuenta
+  - user_task.env_o_de_email
+  - user_task.generaci_n_de_pdf
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.estado_de_cuenta
+    asset_type: entity
+  - asset_id: flow.generacion.estado.cuenta
+    asset_type: flow
+  - asset_id: user_task.env_o_de_email
+    asset_type: user_task
+  - asset_id: user_task.generaci_n_de_pdf
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Generacion.estado.cuenta Asset Set
+  normalized_name: generacion.estado.cuenta asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

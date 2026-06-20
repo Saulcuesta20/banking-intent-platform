@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: customer-flow-set
+  name: Clientes Flow Set
+  version: 1.0.0
+  domain: master-data
+  module: customer
+  description: Versioned flow deployment set for customer.
+  tags:
+  - master-data
+  - customer
+  - flow
+spec:
+  assetType: flow
+  assets:
+  - assets/flow-customer-create.yaml

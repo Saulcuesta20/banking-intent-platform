@@ -1,0 +1,107 @@
+asset_id: flow.cierre.cuenta
+asset_type: flow
+name: Cierre de cuenta y liquidación de saldos
+version: 1.0.0
+owner: process_kb
+description: Proceso para cerrar una cuenta bancaria y liquidar los saldos pendientes,
+  incluyendo contacto con cobranzas si saldo negativo.
+text: Proceso para cerrar una cuenta bancaria y liquidar los saldos pendientes, incluyendo
+  contacto con cobranzas si saldo negativo.
+tags:
+- el.cliente.desea.cerrar.su.cuenta
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verificaci_n_de_saldo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.contacto_con_cobranzas
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transferencia_de_saldo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.cierre_de_cuenta
+  metadata: {}
+payload:
+  flow_id: cierre.cuenta
+  flow_name: Cierre de cuenta y liquidación de saldos
+  intent: el.cliente.desea.cerrar.su.cuenta
+  confidence: 0.75
+  business_event: Solicitud de cierre de cuenta
+  utterances: []
+  plan: []
+  tasks:
+  - task: verificar_saldo_de_cuenta
+    type: check
+  - task: contactar_cobranzas_si_saldo_negativo
+    type: communication
+  - task: transferir_saldo
+    type: transaction
+  - task: cerrar_cuenta_definitivamente
+    type: action
+  user_tasks:
+  - user_task_id: verificar_saldo_cuenta
+    task: verificar_saldo_de_cuenta
+    type: check
+    name: Verificación de saldo
+    description: Revisar el saldo actual de la cuenta para determinar si es positivo
+      o negativo.
+    tools: []
+    user_actions: []
+  - user_task_id: contactar_cobranzas_si_negativo
+    task: contactar_cobranzas_si_saldo_negativo
+    type: communication
+    name: Contacto con cobranzas
+    description: Si el saldo es negativo, contactar al departamento de cobranzas para
+      gestionar el cierre.
+    tools: []
+    user_actions: []
+  - user_task_id: transferir_saldo
+    task: transferir_saldo
+    type: transaction
+    name: Transferencia de saldo
+    description: Transferir el saldo restante a otra cuenta del cliente o liquidarlo.
+    tools: []
+    user_actions: []
+  - user_task_id: cerrar_cuenta_definitivamente
+    task: cerrar_cuenta_definitivamente
+    type: action
+    name: Cierre de cuenta
+    description: Realizar el cierre formal de la cuenta en el sistema bancario.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para cerrar una cuenta bancaria y liquidar los saldos pendientes,
+    incluyendo contacto con cobranzas si saldo negativo.
+  source: data/raw/savings_loans_domain_extra1.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra1.txt
+    purpose: Cerrar la cuenta y liquidar saldos
+  purpose: Cerrar la cuenta y liquidar saldos
+  transaction_id: cierre.cuenta
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Cierre de cuenta y liquidación de saldos
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso para cerrar una cuenta bancaria y liquidar los saldos pendientes,
+      incluyendo contacto con cobranzas si saldo negativo.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso para cerrar una cuenta bancaria y liquidar los saldos pendientes,
+      incluyendo contacto con cobranzas si saldo negativo.
+  match_strategy: generated
+  canonical_name: Cierre de cuenta y liquidación de saldos
+  normalized_name: cierre de cuenta y liquidación de saldos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.classify_claim_type
+asset_type: user_task
+name: Classify Claim Type
+version: 1.0.0
+owner: business_model_kb
+description: Classify the type of complaint claim
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_complaint_classify_claim_type
+  task: classify_claim_type
+  type: manual
+  name: Classify Claim Type
+  description: Classify the type of complaint claim
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Classify Claim Type
+  normalized_name: classify claim type
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,46 @@
+asset_id: ruleset.customer.notification.rules.ruleset
+asset_type: ruleset
+name: Customer notification rules Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction customer.notification.rules.ruleset with 1 business
+  rules.
+text: 'When a request is held for review, the agent must notify the customer with
+  the
+
+  reason, required evidence, and estimated review time. Notification can be sent
+
+  by mobile push, email, or branch receipt. Do not include internal risk scores in
+
+  customer-facing messages.
+
+
+  Control owner: Customer Communications.
+
+  Systems mentioned: Notification Service, Case Manager.'
+tags:
+- ruleset
+- customer.notification.rules.ruleset
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.customer_notification_rules
+  metadata: {}
+payload:
+  transaction_id: customer.notification.rules.ruleset
+  ruleset_name: Customer notification rules Ruleset
+  rule_ids:
+  - business_rule.customer_notification_rules
+  conditions:
+  - When a request is held for review, the agent
+  consequences:
+  - 'notify the customer with the reason, required evidence, and estimated review
+    time. Notification can be sent by mobile push, email, or branch receipt. Do not
+    include internal risk scores in customer-facing messages. Control owner: Customer
+    Communications. Systems mentioned: Notification Service, Case Manager'
+  match_strategy: generated
+  canonical_name: Customer notification rules Ruleset
+  normalized_name: customer notification rules ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

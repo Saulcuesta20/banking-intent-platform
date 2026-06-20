@@ -10,7 +10,7 @@
   "userTasks": [
     "capture disbursement"
   ],
-  "lowdefyPage": "loan-disbursement",
+  "editorRoute": "loan-disbursement",
   "currentFormVersion": "v1",
   "formId": "loan-disbursement"
 }

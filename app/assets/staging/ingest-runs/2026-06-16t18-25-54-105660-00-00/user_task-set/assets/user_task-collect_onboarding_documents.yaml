@@ -1,0 +1,25 @@
+asset_id: user_task.collect_onboarding_documents
+asset_type: user_task
+name: Collect Onboarding Documents
+version: 1.0.0
+owner: business_model_kb
+description: Recopilar documentos del onboarding.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: collect_onboarding_docs
+  task: recopilar_documentos_del_onboarding
+  type: manual
+  name: Collect Onboarding Documents
+  description: Recopilar documentos del onboarding.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collect Onboarding Documents
+  normalized_name: collect onboarding documents
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

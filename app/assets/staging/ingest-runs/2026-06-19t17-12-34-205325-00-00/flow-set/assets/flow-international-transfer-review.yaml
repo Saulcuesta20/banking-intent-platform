@@ -1,0 +1,116 @@
+asset_id: flow.international.transfer.review
+asset_type: flow
+name: International transfer review
+version: 1.0.0
+owner: process_kb
+description: Capture details, validate source account, screen beneficiary, request
+  purpose document if needed, route to manager review, release or reject.
+text: Capture details, validate source account, screen beneficiary, request purpose
+  document if needed, route to manager review, release or reject.
+tags:
+- to.ensure.compliance.and.security.for.outbound.transfers
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transfer_details_capture
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.source_account_validation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.beneficiary_screening
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.purpose_document_request
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.manager_review_routing
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transfer_decision
+  metadata: {}
+payload:
+  flow_id: international.transfer.review
+  flow_name: International transfer review
+  intent: to.ensure.compliance.and.security.for.outbound.transfers
+  confidence: 0.75
+  business_event: outbound_transfer_requested
+  utterances: []
+  plan: []
+  tasks:
+  - task: capture_transfer_details
+    type: data_entry
+  - task: validate_source_account
+    type: account_verification
+  - task: screen_beneficiary
+    type: sanctions_check
+  - task: request_purpose_document
+    type: document_request
+  - task: route_to_manager_review
+    type: approval_routing
+  - task: release_or_reject_transfer
+    type: decision_making
+  user_tasks:
+  - user_task_id: capture_transfer_details
+    task: capture_transfer_details
+    type: data_entry
+    name: Transfer Details Capture
+    description: Capture details for the international transfer.
+    tools: []
+    user_actions: []
+  - user_task_id: validate_source_account
+    task: validate_source_account
+    type: account_verification
+    name: Source Account Validation
+    description: Validate the source account for the transfer.
+    tools: []
+    user_actions: []
+  - user_task_id: screen_beneficiary
+    task: screen_beneficiary
+    type: sanctions_check
+    name: Beneficiary Screening
+    description: Screen the beneficiary against sanctions and risk lists.
+    tools: []
+    user_actions: []
+  - user_task_id: request_purpose_document
+    task: request_purpose_document
+    type: document_request
+    name: Purpose Document Request
+    description: Request purpose document if needed for the transfer.
+    tools: []
+    user_actions: []
+  - user_task_id: route_to_manager_review
+    task: route_to_manager_review
+    type: approval_routing
+    name: Manager Review Routing
+    description: Route the transfer to manager review when required.
+    tools: []
+    user_actions: []
+  - user_task_id: release_or_reject_transfer
+    task: release_or_reject_transfer
+    type: decision_making
+    name: Transfer Decision
+    description: Release or reject the transfer based on review.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Capture details, validate source account, screen beneficiary, request
+    purpose document if needed, route to manager review, release or reject.
+  source: data/raw/enterprise_dump_2026/policy_controls_memo.md;data/raw/enterprise_dump_2026/process_fragments.json
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/policy_controls_memo.md
+    - data/raw/enterprise_dump_2026/process_fragments.json
+    purpose: To review and process international transfer requests.
+  purpose: To review and process international transfer requests.
+  transaction_id: international.transfer.review
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: International transfer review
+  normalized_name: international transfer review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

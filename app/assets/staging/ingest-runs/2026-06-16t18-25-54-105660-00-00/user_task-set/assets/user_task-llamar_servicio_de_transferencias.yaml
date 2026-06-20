@@ -1,0 +1,25 @@
+asset_id: user_task.llamar_servicio_de_transferencias
+asset_type: user_task
+name: Llamar servicio de transferencias
+version: 1.0.0
+owner: business_model_kb
+description: Ejecutar la transferencia llamando al servicio de transferencias.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_llamar_servicio_transferencias
+  task: llamar_servicio_transferencias
+  type: system
+  name: Llamar servicio de transferencias
+  description: Ejecutar la transferencia llamando al servicio de transferencias.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Llamar servicio de transferencias
+  normalized_name: llamar servicio de transferencias
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

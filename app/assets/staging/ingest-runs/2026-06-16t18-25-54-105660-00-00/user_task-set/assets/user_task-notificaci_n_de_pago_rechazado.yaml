@@ -1,0 +1,41 @@
+asset_id: user_task.notificaci_n_de_pago_rechazado
+asset_type: user_task
+name: Notificación de pago rechazado
+version: 1.0.0
+owner: business_model_kb
+description: Se envía una notificación al cliente informando que su pago fue rechazado
+  por fondos insuficientes.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: notificar_pago_rechazado
+  task: notificar_al_cliente_sobre_pago_rechazado
+  type: notification
+  name: Notificación de pago rechazado
+  description: Se envía una notificación al cliente informando que su pago fue rechazado
+    por fondos insuficientes.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Notificación de pago rechazado
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Se envía una notificación al cliente informando que su pago fue rechazado
+      por fondos insuficientes.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Se envía una notificación al cliente informando que su pago fue rechazado
+      por fondos insuficientes.
+  match_strategy: generated
+  canonical_name: Notificación de pago rechazado
+  normalized_name: notificación de pago rechazado
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

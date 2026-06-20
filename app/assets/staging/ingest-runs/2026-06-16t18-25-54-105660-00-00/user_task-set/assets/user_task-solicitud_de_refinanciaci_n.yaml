@@ -1,0 +1,32 @@
+asset_id: user_task.solicitud_de_refinanciaci_n
+asset_type: user_task
+name: Solicitud de refinanciación
+version: 1.0.0
+owner: business_model_kb
+description: El cliente presenta una solicitud formal de refinanciación indicando
+  el motivo (pérdida de ingresos).
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: solicitar_refinanciacion
+  task: solicitar_refinanciaci_n
+  type: form
+  name: Solicitud de refinanciación
+  description: El cliente presenta una solicitud formal de refinanciación indicando
+    el motivo (pérdida de ingresos).
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente presenta una solicitud formal de refinanciación indicando
+      el motivo (pérdida de ingresos).
+  match_strategy: generated
+  canonical_name: Solicitud de refinanciación
+  normalized_name: solicitud de refinanciación
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

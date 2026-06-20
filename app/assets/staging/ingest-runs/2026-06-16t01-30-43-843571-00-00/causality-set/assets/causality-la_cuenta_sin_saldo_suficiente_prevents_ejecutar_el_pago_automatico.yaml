@@ -1,0 +1,67 @@
+asset_id: causality.la_cuenta_sin_saldo_suficiente_prevents_ejecutar_el_pago_automatico
+asset_type: causality
+name: La cuenta sin saldo suficiente prevents ejecutar el pago automatico
+version: 1.0.0
+owner: causality_kb
+description: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+text: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+tags:
+- causality
+- prevents
+relations:
+- type: has_effect
+  target_asset_id: entity.ejecutar_el_pago_automatico
+  metadata: {}
+payload:
+  cause_text: La cuenta sin saldo suficiente
+  effect_text: ejecutar el pago automatico
+  relation_kind: prevents
+  statement: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  sentence: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  transaction_id: la.cuenta.sin.saldo.suficiente.prevents.ejecutar.el.pago.automatico
+  relation_hints:
+  - type: prevents
+    family: causality
+    phrase: prevents
+    sentence: La cuenta sin saldo suficiente prevents ejecutar el pago automatico
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: La cuenta sin saldo suficiente prevents ejecutar el pago automatico
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: La cuenta sin saldo suficiente prevents ejecutar el pago automatico
+  - type: prevents
+    family: causality
+    phrase: impide
+    sentence: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  - type: prevents
+    family: causality
+    phrase: impide
+    sentence: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  resolved_cause_asset_id: null
+  resolved_effect_asset_id: entity.ejecutar_el_pago_automatico
+  match_strategy: generated
+  canonical_name: La cuenta sin saldo suficiente prevents ejecutar el pago automatico
+  normalized_name: la cuenta sin saldo suficiente prevents ejecutar el pago automatico
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

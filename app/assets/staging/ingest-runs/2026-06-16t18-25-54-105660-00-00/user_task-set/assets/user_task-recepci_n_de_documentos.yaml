@@ -1,0 +1,29 @@
+asset_id: user_task.recepci_n_de_documentos
+asset_type: user_task
+name: Recepción de documentos
+version: 1.0.0
+owner: business_model_kb
+description: El cliente sube los documentos faltantes a través de un portal digital.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: recibir_documentos_digitales
+  task: recibir_documentos_digitales_del_cliente
+  type: upload
+  name: Recepción de documentos
+  description: El cliente sube los documentos faltantes a través de un portal digital.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente sube los documentos faltantes a través de un portal digital.
+  match_strategy: generated
+  canonical_name: Recepción de documentos
+  normalized_name: recepción de documentos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

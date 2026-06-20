@@ -1,0 +1,49 @@
+asset_id: asset_set.savings.account.opening
+asset_type: asset_set
+name: Savings.account.opening Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for savings.account.opening.
+text: 'Savings Account Opening
+
+  Savings account opening
+
+  Document Collection'
+tags:
+- asset_set
+- savings.account.opening
+relations:
+- type: groups_flow
+  target_asset_id: flow.savings.account.opening
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.savings.account.opening
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.document_collection
+  metadata: {}
+payload:
+  transaction_id: savings.account.opening
+  asset_ids:
+  - flow.savings.account.opening
+  - process.savings.account.opening
+  - user_task.document_collection
+  asset_types:
+  - flow
+  - process
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.savings.account.opening
+    asset_type: flow
+  - asset_id: process.savings.account.opening
+    asset_type: process
+  - asset_id: user_task.document_collection
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Savings.account.opening Asset Set
+  normalized_name: savings.account.opening asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

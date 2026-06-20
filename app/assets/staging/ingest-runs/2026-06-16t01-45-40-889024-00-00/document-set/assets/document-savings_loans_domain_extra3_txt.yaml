@@ -1,0 +1,48 @@
+asset_id: document.savings_loans_domain_extra3_txt
+asset_type: document
+name: savings_loans_domain_extra3.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/savings_loans_domain_extra3.txt
+text: "Glosario Extendido - Ahorros y Préstamos (Parte 3)\n\nReglas de tarifas y comisiones:\n\
+  - Comisión por manejo de cuenta: aplicable mensualmente si el saldo promedio cae\
+  \ bajo umbral.\n- Comisión por transferencia urgente: tarifa fija por transferencias\
+  \ con prioridad.\n- Comisión por descubierto: porcentaje sobre el monto sobregirado.\n\
+  \nProcesos de atención:\n1) Gestión de reclamos:\n   - Recepción del reclamo en\
+  \ canales (phone, mail, sucursal).\n   - Revisión documental y conciliación de movimientos.\n\
+  \   - Resolución y comunicación al cliente en 7 días hábiles.\n2) Reexpedición de\
+  \ tarjeta:\n   - Verificar identidad.\n   - Bloquear tarjeta anterior.\n   - Emitir\
+  \ y enviar nueva tarjeta.\n\nPolíticas de riesgo:\n- Clientes con score bajo requieren\
+  \ co-deudor o colateral.\n- Límites de exposición por cliente por tipo de producto.\n\
+  \nTareas operativas (ejemplos nombrables como tasks para seeds):\n- customer.lookup\n\
+  - account.balance.check\n- transaction.list\n- loan.eligibility.calculate\n- loan.refinance.prepare\n\
+  - human.approval"
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: data/raw/savings_loans_domain_extra3.txt
+  kind: text
+  sequence: 30
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Comisión por manejo de cuenta: aplicable mensualmente si el saldo
+      promedio cae bajo umbral.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- Resolución y comunicación al cliente en 7 días hábiles.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- Límites de exposición por cliente por tipo de producto.'
+  match_strategy: generated
+  canonical_name: savings_loans_domain_extra3.txt
+  normalized_name: savings loans domain extra3.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,53 @@
+asset_id: flow.account.opening
+asset_type: flow
+name: Account Opening Process
+version: 1.0.0
+owner: process_kb
+description: Validates customer identity and documents to create a new bank account.
+text: Validates customer identity and documents to create a new bank account.
+tags:
+- savings_account.open
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identity_document_submission
+  metadata: {}
+payload:
+  flow_id: account.opening
+  flow_name: Account Opening Process
+  intent: savings_account.open
+  confidence: 0.75
+  business_event: customer_requests_account_opening
+  utterances: []
+  plan: []
+  tasks:
+  - task: provide_identity_documents
+    type: execution
+  user_tasks:
+  - user_task_id: provide_identity_documents
+    task: provide_identity_documents
+    type: execution
+    name: Identity Document Submission
+    description: Customer uploads official identification and address proof for verification.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Validates customer identity and documents to create a new bank account.
+  source: data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_policy_and_controls.md
+    - data/raw/enterprise_support_wiki.md
+    purpose: Onboard new customer and establish banking relationship.
+  purpose: Onboard new customer and establish banking relationship.
+  transaction_id: account.opening
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Account Opening Process
+  normalized_name: account opening process
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

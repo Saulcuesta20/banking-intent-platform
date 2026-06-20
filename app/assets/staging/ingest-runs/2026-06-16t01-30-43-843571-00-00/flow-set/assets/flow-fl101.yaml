@@ -1,0 +1,97 @@
+asset_id: flow.fl101
+asset_type: flow
+name: Diseñar Suite Everyday Banking
+version: 1.0.0
+owner: process_kb
+description: El nuevo documento describe cómo Customer Experience diseña la suite
+  Everyday Banking coordinando productos y departamentos.
+text: El nuevo documento describe cómo Customer Experience diseña la suite Everyday
+  Banking coordinando productos y departamentos.
+tags:
+- fl101
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.mapear_departamentos_de_customer_experience
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.dise_ar_la_suite_everyday_banking
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  flow_id: fl101
+  flow_name: Diseñar Suite Everyday Banking
+  intent: fl101
+  confidence: 0.75
+  business_event: portfolio_refresh_requested
+  utterances: []
+  plan: []
+  tasks:
+  - task: identificar_al_cliente
+    type: human
+  - task: mapear_departamentos_experiencia
+    type: human
+  - task: diseñar_suite_everyday_banking
+    type: human
+  user_tasks:
+  - user_task_id: ut001
+    task: identificar_al_cliente
+    type: human
+    name: Identificar al cliente antes de cualquier operacion financiera
+    description: El agente verifica la identidad del cliente y confirma que la relación
+      está activa antes de iniciar cualquier proceso.
+    tools: []
+    user_actions: []
+  - user_task_id: ut401
+    task: mapear_departamentos_experiencia
+    type: human
+    name: Mapear departamentos de Customer Experience
+    description: Identificar departamentos clave, líderes y responsabilidades descritas
+      en el nuevo playbook corporativo.
+    tools: []
+    user_actions: []
+  - user_task_id: ut402
+    task: diseñar_suite_everyday_banking
+    type: human
+    name: Diseñar la suite Everyday Banking
+    description: Definir combinaciones de productos SmartBalance Checking, Horizon
+      Savings y EverydayPlus Debit para cada segmento.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El nuevo documento describe cómo Customer Experience diseña la suite
+    Everyday Banking coordinando productos y departamentos.
+  source: data/raw/corporate_structure_and_offerings.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/corporate_structure_and_offerings.md
+    purpose: Orquestar la suite SmartBalance Checking + Horizon Savings + EverydayPlus
+      Debit para cada segmento.
+  purpose: Orquestar la suite SmartBalance Checking + Horizon Savings + EverydayPlus
+    Debit para cada segmento.
+  transaction_id: fl101
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: El nuevo documento describe cómo Customer Experience diseña la suite
+      Everyday Banking coordinando productos y departamentos.
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: El nuevo documento describe cómo Customer Experience diseña la suite
+      Everyday Banking coordinando productos y departamentos.
+  match_strategy: generated
+  canonical_name: Diseñar Suite Everyday Banking
+  normalized_name: diseñar suite everyday banking
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

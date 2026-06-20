@@ -1,0 +1,40 @@
+asset_id: asset_set.flow.15
+asset_type: asset_set
+name: Flow.15 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.15.
+text: 'desembolso
+
+  Desembolso de préstamo'
+tags:
+- asset_set
+- flow.15
+relations:
+- type: groups_entity
+  target_asset_id: entity.desembolso
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.flow.15
+  metadata: {}
+payload:
+  transaction_id: flow.15
+  asset_ids:
+  - entity.desembolso
+  - flow.flow.15
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.desembolso
+    asset_type: entity
+  - asset_id: flow.flow.15
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Flow.15 Asset Set
+  normalized_name: flow.15 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

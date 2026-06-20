@@ -13,7 +13,7 @@ class EnterpriseAssetRegistry:
 
     def list_asset_types(self) -> list[str]:
         """Return all configured asset types."""
-        return sorted(self.config.asset_types)
+        return sorted(asset_type for asset_type in self.config.asset_types if asset_type != "ontology")
 
     def list_knowledge_bases(self) -> list[str]:
         """Return all configured knowledge-base storage views."""
@@ -21,6 +21,8 @@ class EnterpriseAssetRegistry:
 
     def get_asset_type(self, asset_type: str) -> AssetTypeConfig:
         """Return configuration for one asset type or raise if unknown."""
+        if asset_type == "ontology" and "entity" in self.config.asset_types:
+            return self.config.asset_types["entity"]
         try:
             return self.config.asset_types[asset_type]
         except KeyError as exc:

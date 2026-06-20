@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: product-service-config-module-set
+  name: Productos y Servicios Module Set
+  version: 1.0.0
+  domain: master-data
+  module: product-service-config
+  description: Versioned module deployment set for product-service-config.
+  tags:
+  - master-data
+  - product-service-config
+  - module
+spec:
+  assetType: module
+  assets:
+  - assets/module-product-service-config.yaml

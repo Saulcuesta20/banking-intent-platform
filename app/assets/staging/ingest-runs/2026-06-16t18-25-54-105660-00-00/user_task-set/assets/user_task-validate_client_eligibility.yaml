@@ -1,0 +1,27 @@
+asset_id: user_task.validate_client_eligibility
+asset_type: user_task
+name: Validate Client Eligibility
+version: 1.0.0
+owner: business_model_kb
+description: Check if the client meets basic criteria for refinancing (e.g., no fraud
+  alerts).
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_validate_client_eligibility
+  task: validate_client_eligibility
+  type: manual
+  name: Validate Client Eligibility
+  description: Check if the client meets basic criteria for refinancing (e.g., no
+    fraud alerts).
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Validate Client Eligibility
+  normalized_name: validate client eligibility
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

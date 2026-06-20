@@ -23,7 +23,7 @@
 | Lifecycle | Generic asset status | Governed review and deployment state machine | Partial |
 | Human review | Ingestion review artifacts exist | Catalog-backed review decisions and audit | Partial |
 | KB publication | Ingestion writes projections | Staging and active projections governed by lifecycle | Partial |
-| Lowdefy generation | Reads repository JSON forms | Reads active form definitions from Unified Catalog | Pending |
+| Dynamic editor generation | Reads repository JSON forms | Reads active form definitions from Unified Catalog | Pending |
 | Flow/form binding | Provisional direct fields | Explicit user-task binding asset | Phase two |
 
 ## Phase One: Catalog And Launcher
@@ -95,8 +95,8 @@
 ### 7. Asset Governance Workspace
 
 - [x] Add an `Assets` option to the launcher sidebar.
-- [x] Build a Lowdefy declarative asset explorer and embed it in the center workspace.
-- [x] Support tree, route, and Lowdefy views grouped by knowledge-base projection.
+- [x] Build a declarative asset explorer and embed it in the center workspace.
+- [x] Support tree, route, and editor views grouped by knowledge-base projection.
 - [x] Filter by asset name, asset type, knowledge base, lifecycle status, and tags.
 - [x] Display expandable AssetSet and projection nodes.
 - [x] Display canonical version, AssetSet, checksum, lifecycle status, and projection status.
@@ -139,10 +139,10 @@
 - [ ] Define input mapping from process context to form state.
 - [ ] Define output mapping from submitted form data to process context.
 - [ ] Define validation, conditional selection, resume, and migration behavior.
-- [ ] Generate Lowdefy pages from active catalog form definitions.
+- [ ] Generate dynamic editor pages from active catalog form definitions.
 - [ ] Resolve the active user task through the orchestrator.
 - [ ] Resolve its binding through Unified Catalog.
-- [ ] Render and submit through Lowdefy without launcher hardcoding.
+- [ ] Render and submit through the editor runtime without launcher hardcoding.
 - [ ] Support multiple forms across a process lifecycle.
 
 ## Phase One Acceptance Result

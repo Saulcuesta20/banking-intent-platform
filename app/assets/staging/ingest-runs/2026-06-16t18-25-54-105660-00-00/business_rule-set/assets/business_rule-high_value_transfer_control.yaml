@@ -1,0 +1,85 @@
+asset_id: business_rule.high_value_transfer_control
+asset_type: business_rule
+name: High value transfer control
+version: 1.0.0
+owner: rules_kb
+description: International transfers above USD 50,000 must remain on hold until enhanced
+  due diligence is completed.
+text: 'International transfers above USD 50,000 must remain on hold until enhanced
+  due
+
+  diligence is completed. The transfer record must include source account,
+
+  beneficiary identity, destination country, amount, currency, and documented
+
+  purpose of payment. If beneficiary screening is inconclusive, the case must be
+
+  routed to Compliance Review before release.
+
+
+  Control owner: Payments Operations.
+
+  Systems mentioned: Transfer Service, Compliance Screening Gateway, Case Manager.
+
+  Related customer phrases: "mi transferencia quedo retenida", "por que necesitan
+
+  el motivo de la transferencia", "puedo transferir hoy al exterior".'
+tags:
+- business_rule
+- money.transfer
+- realizar.transferencia
+- send.international.transfer
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.compliance_review
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.flow.international.transfer
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.transfer
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.transferencia
+  metadata: {}
+payload:
+  source_section: High value transfer control
+  rule_text: 'International transfers above USD 50,000 must remain on hold until enhanced
+    due
+
+    diligence is completed. The transfer record must include source account,
+
+    beneficiary identity, destination country, amount, currency, and documented
+
+    purpose of payment. If beneficiary screening is inconclusive, the case must be
+
+    routed to Compliance Review before release.
+
+
+    Control owner: Payments Operations.
+
+    Systems mentioned: Transfer Service, Compliance Screening Gateway, Case Manager.
+
+    Related customer phrases: "mi transferencia quedo retenida", "por que necesitan
+
+    el motivo de la transferencia", "puedo transferir hoy al exterior".'
+  conditions:
+  - International transfers above USD 50,000
+  consequences:
+  - 'remain on hold until enhanced due diligence is completed. The transfer record
+    must include source account, beneficiary identity, destination country, amount,
+    currency, and documented purpose of payment. If beneficiary screening is inconclusive,
+    the case must be routed to Compliance Review before release. Control owner: Payments
+    Operations. Systems mentioned: Transfer Service, Compliance Screening Gateway,
+    Case Manager. Related customer phrases: "mi transferencia quedo retenida", "por
+    que necesitan el motivo de la transferencia", "puedo transferir hoy al exterior"'
+  transaction_id: flow.international.transfer
+  ruleset_name: High value transfer control Ruleset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: High value transfer control
+  normalized_name: high value transfer control
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

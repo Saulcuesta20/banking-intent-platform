@@ -1,0 +1,26 @@
+asset_id: plan.loan.refinance
+asset_type: plan
+name: Plan refinanciar con riesgo medio
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para refinanciar con riesgo medio: revisar buro, calcular terminos,
+  validar politica y someter a aprobacion.'
+text: 'Plan para refinanciar con riesgo medio: revisar buro, calcular terminos, validar
+  politica y someter a aprobacion.'
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: 'Plan para refinanciar con riesgo medio: revisar buro, calcular terminos,
+    validar politica y someter a aprobacion.'
+  source_section: Plans
+  transaction_id: loan.refinance
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Plan refinanciar con riesgo medio
+  normalized_name: plan refinanciar con riesgo medio
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

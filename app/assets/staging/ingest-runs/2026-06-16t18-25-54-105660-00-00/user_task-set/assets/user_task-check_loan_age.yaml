@@ -1,0 +1,25 @@
+asset_id: user_task.check_loan_age
+asset_type: user_task
+name: Check Loan Age
+version: 1.0.0
+owner: business_model_kb
+description: Ensure the existing loan is at least six months old.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_check_loan_age
+  task: check_loan_age
+  type: automated
+  name: Check Loan Age
+  description: Ensure the existing loan is at least six months old.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Loan Age
+  normalized_name: check loan age
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

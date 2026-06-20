@@ -1,0 +1,64 @@
+asset_id: asset_set.account.opening.flow
+asset_type: asset_set
+name: Account.opening.flow Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for account.opening.flow.
+text: 'Customer Onboarding and Account Opening
+
+  Client Identification
+
+  Core Banking Call
+
+  Identity Validation
+
+  KYC Document Request'
+tags:
+- asset_set
+- account.opening.flow
+relations:
+- type: groups_flow
+  target_asset_id: flow.account.opening.flow
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.client_identification
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.core_banking_call
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identity_validation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.kyc_document_request
+  metadata: {}
+payload:
+  transaction_id: account.opening.flow
+  asset_ids:
+  - flow.account.opening.flow
+  - user_task.client_identification
+  - user_task.core_banking_call
+  - user_task.identity_validation
+  - user_task.kyc_document_request
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.account.opening.flow
+    asset_type: flow
+  - asset_id: user_task.client_identification
+    asset_type: user_task
+  - asset_id: user_task.core_banking_call
+    asset_type: user_task
+  - asset_id: user_task.identity_validation
+    asset_type: user_task
+  - asset_id: user_task.kyc_document_request
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Account.opening.flow Asset Set
+  normalized_name: account.opening.flow asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

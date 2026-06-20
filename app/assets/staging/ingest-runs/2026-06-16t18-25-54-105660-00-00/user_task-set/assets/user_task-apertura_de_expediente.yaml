@@ -1,0 +1,29 @@
+asset_id: user_task.apertura_de_expediente
+asset_type: user_task
+name: Apertura de expediente
+version: 1.0.0
+owner: business_model_kb
+description: Abrir expediente del cliente para gestionar cambio de cuota.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_abrir_expediente
+  task: abrir_expediente
+  type: manual
+  name: Apertura de expediente
+  description: Abrir expediente del cliente para gestionar cambio de cuota.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Abrir expediente del cliente para gestionar cambio de cuota.
+  match_strategy: generated
+  canonical_name: Apertura de expediente
+  normalized_name: apertura de expediente
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

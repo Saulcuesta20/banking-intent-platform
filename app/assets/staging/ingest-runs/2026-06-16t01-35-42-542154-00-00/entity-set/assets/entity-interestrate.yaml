@@ -1,0 +1,22 @@
+asset_id: entity.interestrate
+asset_type: entity
+name: InterestRate
+version: 1.0.0
+owner: business_model_kb
+description: Porcentaje usado para calcular costo financiero o remuneración de depósitos.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Porcentaje usado para calcular costo financiero o remuneración de depósitos.
+  inferred_from: llm_asset_extraction
+  business_layer: metric
+  entity_role: metric
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: InterestRate
+  normalized_name: interestrate
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

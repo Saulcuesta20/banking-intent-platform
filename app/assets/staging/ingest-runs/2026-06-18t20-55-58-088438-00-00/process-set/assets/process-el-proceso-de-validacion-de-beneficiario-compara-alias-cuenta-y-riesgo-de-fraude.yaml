@@ -1,0 +1,41 @@
+asset_id: process.el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+asset_type: process
+name: Process validacion de beneficiario compara alias, cuenta
+version: 1.0.0
+owner: process_kb
+description: El proceso de validacion de beneficiario compara alias, cuenta y riesgo
+  de fraude.
+text: El proceso de validacion de beneficiario compara alias, cuenta y riesgo de fraude.
+tags:
+- process_fragment
+relations:
+- type: uses_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+payload:
+  steps_text: El proceso de validacion de beneficiario compara alias, cuenta y riesgo
+    de fraude.
+  source_section: Processes
+  transaction_id: el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Process validacion de beneficiario compara alias, cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de validacion de beneficiario compara alias, cuenta y riesgo
+      de fraude.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de validacion de beneficiario compara alias, cuenta y riesgo
+      de fraude.
+  match_strategy: generated
+  canonical_name: Process validacion de beneficiario compara alias, cuenta
+  normalized_name: process validacion de beneficiario compara alias, cuenta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

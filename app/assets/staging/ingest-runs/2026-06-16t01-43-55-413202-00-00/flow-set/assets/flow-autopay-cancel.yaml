@@ -1,0 +1,43 @@
+asset_id: flow.autopay.cancel
+asset_type: flow
+name: quiero cancelar el pago automatico
+version: 1.0.0
+owner: process_kb
+description: 'El cliente solicita: quiero cancelar el pago automatico.'
+text: 'El cliente solicita: quiero cancelar el pago automatico.'
+tags:
+- utterance_flow
+relations: []
+payload:
+  utterances:
+  - 'El cliente solicita: quiero cancelar el pago automatico.'
+  purpose: 'El cliente solicita: quiero cancelar el pago automatico.'
+  transaction_id: autopay.cancel
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: quiero cancelar el pago automatico
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente solicita: quiero cancelar el pago automatico.'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'El cliente solicita: quiero cancelar el pago automatico.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente solicita: quiero cancelar el pago automatico.'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'El cliente solicita: quiero cancelar el pago automatico.'
+  match_strategy: generated
+  canonical_name: quiero cancelar el pago automatico
+  normalized_name: quiero cancelar el pago automatico
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

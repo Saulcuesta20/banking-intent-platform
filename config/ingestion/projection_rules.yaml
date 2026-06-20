@@ -1,0 +1,11 @@
+graph_projected_asset_types:
+  - flow
+  - process
+  - plan
+  - user_task
+  - tool
+  - semantic_space
+  - entity
+  - business_rule
+  - ruleset
+  - causality

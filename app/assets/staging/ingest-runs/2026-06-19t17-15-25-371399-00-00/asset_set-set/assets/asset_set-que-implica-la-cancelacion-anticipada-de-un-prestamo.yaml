@@ -1,0 +1,40 @@
+asset_id: asset_set.que.implica.la.cancelacion.anticipada.de.un.prestamo
+asset_type: asset_set
+name: Que.implica.la.cancelacion.anticipada.de.un.prestamo Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for que.implica.la.cancelacion.anticipada.de.un.prestamo.
+text: 'prestamo
+
+  Que implica la cancelacion anticipada de un prestamo?'
+tags:
+- asset_set
+- que.implica.la.cancelacion.anticipada.de.un.prestamo
+relations:
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_qa
+  target_asset_id: qa.que_implica_la_cancelacion_anticipada_de_un_prestamo
+  metadata: {}
+payload:
+  transaction_id: que.implica.la.cancelacion.anticipada.de.un.prestamo
+  asset_ids:
+  - entity.loan
+  - qa.que_implica_la_cancelacion_anticipada_de_un_prestamo
+  asset_types:
+  - entity
+  - qa
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: qa.que_implica_la_cancelacion_anticipada_de_un_prestamo
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Que.implica.la.cancelacion.anticipada.de.un.prestamo Asset Set
+  normalized_name: que.implica.la.cancelacion.anticipada.de.un.prestamo asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

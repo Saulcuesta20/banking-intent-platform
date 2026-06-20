@@ -1,0 +1,108 @@
+asset_id: flow.loan.application.origination
+asset_type: flow
+name: Loan Application and Origination
+version: 1.0.0
+owner: process_kb
+description: Process from loan application submission to disbursement, including eligibility
+  checks, approval, and repayment setup.
+text: Process from loan application submission to disbursement, including eligibility
+  checks, approval, and repayment setup.
+tags:
+- apply.for.and.obtain.a.loan
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.application_collection
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.income_verification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.credit_history_check
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.human_approval_request
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.repayment_setup
+  metadata: {}
+payload:
+  flow_id: loan.application.origination
+  flow_name: Loan Application and Origination
+  intent: apply.for.and.obtain.a.loan
+  confidence: 0.75
+  business_event: Customer submits a loan application
+  utterances: []
+  plan: []
+  tasks:
+  - task: collect_loan_application_details
+    type: data_collection
+  - task: verify_customer_income
+    type: verification
+  - task: check_customer_credit_history
+    type: verification
+  - task: request_human_underwriter_approval
+    type: approval
+  - task: set_up_repayment_schedule
+    type: configuration
+  user_tasks:
+  - user_task_id: collect_application_details
+    task: collect_loan_application_details
+    type: data_collection
+    name: Application Collection
+    description: Gather information such as loan amount, term, and purpose from the
+      customer.
+    tools: []
+    user_actions: []
+  - user_task_id: verify_income
+    task: verify_customer_income
+    type: verification
+    name: Income Verification
+    description: Check the customer's income proof to assess repayment ability.
+    tools: []
+    user_actions: []
+  - user_task_id: check_credit_history
+    task: check_customer_credit_history
+    type: verification
+    name: Credit History Check
+    description: Access and evaluate the customer's credit score and history.
+    tools: []
+    user_actions: []
+  - user_task_id: request_human_approval
+    task: request_human_underwriter_approval
+    type: approval
+    name: Human Approval Request
+    description: For borderline cases, request manual approval from an underwriter.
+    tools: []
+    user_actions: []
+  - user_task_id: setup_repayment
+    task: set_up_repayment_schedule
+    type: configuration
+    name: Repayment Setup
+    description: Create the repayment schedule for the loan, including installments
+      and payment methods.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process from loan application submission to disbursement, including
+    eligibility checks, approval, and repayment setup.
+  source: data/raw/savings_loans_domain_extra5.txt;data/raw/savings_loans_domain_raw.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra5.txt
+    - data/raw/savings_loans_domain_raw.txt
+    purpose: To evaluate and process loan applications, ensuring responsible lending
+      and disbursement.
+  purpose: To evaluate and process loan applications, ensuring responsible lending
+    and disbursement.
+  transaction_id: loan.application.origination
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Application and Origination
+  normalized_name: loan application and origination
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,30 @@
+asset_id: business_rule.late_payment_penalty
+asset_type: business_rule
+name: Late payment penalty
+version: 1.0.0
+owner: rules_kb
+description: Penalty for late payment applies from the first day of delinquency.
+text: Penalty for late payment applies from the first day of delinquency.
+tags:
+- business_rule
+relations: []
+payload:
+  rule_text: Penalty for late payment applies from the first day of delinquency.
+  source_section: LLMAssetExtraction
+  conditions:
+  - Payment missed past due date
+  consequences:
+  - Apply penalty
+  when: Payment missed past due date
+  then: Apply penalty
+  transaction_id: late.payment.penalty
+  ruleset_name: ''
+  applies_to: Loan
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Late payment penalty
+  normalized_name: late payment penalty
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

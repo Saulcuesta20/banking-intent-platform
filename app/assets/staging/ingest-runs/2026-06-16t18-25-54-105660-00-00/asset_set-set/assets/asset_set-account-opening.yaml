@@ -1,0 +1,317 @@
+asset_id: asset_set.account.opening
+asset_type: asset_set
+name: Account.opening Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for account.opening.
+text: 'Automatic payment account requirement
+
+  apertura de cuenta
+
+  cliente
+
+  prestamo
+
+  Account Opening
+
+  Alta de cliente y apertura de cuenta
+
+  Automatic payment setup
+
+  Account Opening
+
+  Savings Account Opening
+
+  Automatic payment setup
+
+  Savings account opening
+
+  Automatic payment account requirement Ruleset
+
+  Ask for Initial Deposit
+
+  Capture payment day and acceptance
+
+  check_eligible_account
+
+  Collect Documents
+
+  Confirm Account Status
+
+  Create Account
+
+  Debit Card Activation
+
+  Deposit
+
+  Enable debit and send confirmation
+
+  Explain account requirement
+
+  Identificar cliente
+
+  Identify Customer
+
+  KYC Verification
+
+  Llamar al core bancario
+
+  Notificar confirmación
+
+  Offer account opening
+
+  Perform KYC
+
+  Revisión manual
+
+  Run KYC
+
+  Solicitar documentos KYC
+
+  Validar identidad y documentos
+
+  Verify Address
+
+  Verify Identity
+
+  Verify loan active'
+tags:
+- asset_set
+- account.opening
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.automatic_payment_account_requirement
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.account.opening
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.alta.cliente.apertura.cuenta
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.automatic.payment.setup
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.flow.account.opening
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.savings.account.opening
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.account.opening
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.account.opening
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.account.opening
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.ask_for_initial_deposit
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.capture_payment_day_and_acceptance
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.check_eligible_account
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.collect_documents
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirm_account_status
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.create_account
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.debit_card_activation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.deposit
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.enable_debit_and_send_confirmation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.explain_account_requirement
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_cliente
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identify_customer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.kyc_verification
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.llamar_al_core_bancario
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.notificar_confirmaci_n
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.offer_account_opening
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.perform_kyc
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.revisi_n_manual
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.run_kyc
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.solicitar_documentos_kyc
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_identidad_y_documentos
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_address
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_identity
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_loan_active
+  metadata: {}
+payload:
+  transaction_id: account.opening
+  asset_ids:
+  - business_rule.automatic_payment_account_requirement
+  - entity.apertura_de_cuenta
+  - entity.customer
+  - entity.loan
+  - flow.account.opening
+  - flow.alta.cliente.apertura.cuenta
+  - flow.automatic.payment.setup
+  - flow.flow.account.opening
+  - flow.savings.account.opening
+  - plan.account.opening
+  - process.account.opening
+  - ruleset.account.opening
+  - user_task.ask_for_initial_deposit
+  - user_task.capture_payment_day_and_acceptance
+  - user_task.check_eligible_account
+  - user_task.collect_documents
+  - user_task.confirm_account_status
+  - user_task.create_account
+  - user_task.debit_card_activation
+  - user_task.deposit
+  - user_task.enable_debit_and_send_confirmation
+  - user_task.explain_account_requirement
+  - user_task.identificar_cliente
+  - user_task.identify_customer
+  - user_task.kyc_verification
+  - user_task.llamar_al_core_bancario
+  - user_task.notificar_confirmaci_n
+  - user_task.offer_account_opening
+  - user_task.perform_kyc
+  - user_task.revisi_n_manual
+  - user_task.run_kyc
+  - user_task.solicitar_documentos_kyc
+  - user_task.validar_identidad_y_documentos
+  - user_task.verify_address
+  - user_task.verify_identity
+  - user_task.verify_loan_active
+  asset_types:
+  - business_rule
+  - entity
+  - flow
+  - plan
+  - process
+  - ruleset
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: business_rule.automatic_payment_account_requirement
+    asset_type: business_rule
+  - asset_id: entity.apertura_de_cuenta
+    asset_type: entity
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: flow.account.opening
+    asset_type: flow
+  - asset_id: flow.alta.cliente.apertura.cuenta
+    asset_type: flow
+  - asset_id: flow.automatic.payment.setup
+    asset_type: flow
+  - asset_id: flow.flow.account.opening
+    asset_type: flow
+  - asset_id: flow.savings.account.opening
+    asset_type: flow
+  - asset_id: plan.account.opening
+    asset_type: plan
+  - asset_id: process.account.opening
+    asset_type: process
+  - asset_id: ruleset.account.opening
+    asset_type: ruleset
+  - asset_id: user_task.ask_for_initial_deposit
+    asset_type: user_task
+  - asset_id: user_task.capture_payment_day_and_acceptance
+    asset_type: user_task
+  - asset_id: user_task.check_eligible_account
+    asset_type: user_task
+  - asset_id: user_task.collect_documents
+    asset_type: user_task
+  - asset_id: user_task.confirm_account_status
+    asset_type: user_task
+  - asset_id: user_task.create_account
+    asset_type: user_task
+  - asset_id: user_task.debit_card_activation
+    asset_type: user_task
+  - asset_id: user_task.deposit
+    asset_type: user_task
+  - asset_id: user_task.enable_debit_and_send_confirmation
+    asset_type: user_task
+  - asset_id: user_task.explain_account_requirement
+    asset_type: user_task
+  - asset_id: user_task.identificar_cliente
+    asset_type: user_task
+  - asset_id: user_task.identify_customer
+    asset_type: user_task
+  - asset_id: user_task.kyc_verification
+    asset_type: user_task
+  - asset_id: user_task.llamar_al_core_bancario
+    asset_type: user_task
+  - asset_id: user_task.notificar_confirmaci_n
+    asset_type: user_task
+  - asset_id: user_task.offer_account_opening
+    asset_type: user_task
+  - asset_id: user_task.perform_kyc
+    asset_type: user_task
+  - asset_id: user_task.revisi_n_manual
+    asset_type: user_task
+  - asset_id: user_task.run_kyc
+    asset_type: user_task
+  - asset_id: user_task.solicitar_documentos_kyc
+    asset_type: user_task
+  - asset_id: user_task.validar_identidad_y_documentos
+    asset_type: user_task
+  - asset_id: user_task.verify_address
+    asset_type: user_task
+  - asset_id: user_task.verify_identity
+    asset_type: user_task
+  - asset_id: user_task.verify_loan_active
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Account.opening Asset Set
+  normalized_name: account.opening asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

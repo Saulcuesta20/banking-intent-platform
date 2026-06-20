@@ -1,0 +1,29 @@
+asset_id: user_task.review_risk_score
+asset_type: user_task
+name: Review Risk Score
+version: 1.0.0
+owner: business_model_kb
+description: Revisar score de riesgo del cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: review_risk_score
+  task: revisar_score_de_riesgo_del_cliente
+  type: system
+  name: Review Risk Score
+  description: Revisar score de riesgo del cliente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Revisar score de riesgo del cliente.
+  match_strategy: generated
+  canonical_name: Review Risk Score
+  normalized_name: review risk score
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

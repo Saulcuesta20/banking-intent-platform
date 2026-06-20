@@ -1,0 +1,51 @@
+asset_id: causality.la_falta_de_documento_vigente_causes_retraso_en_el_onboarding
+asset_type: causality
+name: La falta de documento vigente causes retraso en el onboarding
+version: 1.0.0
+owner: causality_kb
+description: La falta de documento vigente causa retraso en el onboarding.
+text: La falta de documento vigente causa retraso en el onboarding.
+tags:
+- causality
+- causes
+relations:
+- type: has_effect
+  target_asset_id: entity.retraso_en_el_onboarding
+  metadata: {}
+payload:
+  cause_text: La falta de documento vigente
+  effect_text: retraso en el onboarding
+  relation_kind: causes
+  statement: La falta de documento vigente causa retraso en el onboarding.
+  sentence: La falta de documento vigente causa retraso en el onboarding.
+  transaction_id: la.falta.de.documento.vigente.causes.retraso.en.el.onboarding
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: La falta de documento vigente causes retraso en el onboarding
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: La falta de documento vigente causa retraso en el onboarding.
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: La falta de documento vigente causa retraso en el onboarding.
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: La falta de documento vigente causa retraso en el onboarding.
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: La falta de documento vigente causa retraso en el onboarding.
+  resolved_cause_asset_id: null
+  resolved_effect_asset_id: entity.retraso_en_el_onboarding
+  match_strategy: generated
+  canonical_name: La falta de documento vigente causes retraso en el onboarding
+  normalized_name: la falta de documento vigente causes retraso en el onboarding
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

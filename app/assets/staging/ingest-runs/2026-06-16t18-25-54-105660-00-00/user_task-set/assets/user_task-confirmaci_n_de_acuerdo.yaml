@@ -1,0 +1,37 @@
+asset_id: user_task.confirmaci_n_de_acuerdo
+asset_type: user_task
+name: Confirmación de acuerdo
+version: 1.0.0
+owner: business_model_kb
+description: El cliente confirma el nuevo acuerdo de pago reprogramado, y el sistema
+  actualiza el plan de pagos.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirmar_nuevo_acuerdo
+  task: confirmar_nuevo_acuerdo_de_pago
+  type: approval
+  name: Confirmación de acuerdo
+  description: El cliente confirma el nuevo acuerdo de pago reprogramado, y el sistema
+    actualiza el plan de pagos.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente confirma el nuevo acuerdo de pago reprogramado, y el sistema
+      actualiza el plan de pagos.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El cliente confirma el nuevo acuerdo de pago reprogramado, y el sistema
+      actualiza el plan de pagos.
+  match_strategy: generated
+  canonical_name: Confirmación de acuerdo
+  normalized_name: confirmación de acuerdo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

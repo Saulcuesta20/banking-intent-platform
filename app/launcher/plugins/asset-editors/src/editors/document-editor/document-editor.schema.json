@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "title": "Document ID"
+    },
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "source": {
+      "type": "string",
+      "title": "Source"
+    },
+    "content": {
+      "type": "string",
+      "title": "Content",
+      "format": "textarea"
+    },
+    "citations": {
+      "type": "array",
+      "title": "Citations",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["document_id", "title"]
+}

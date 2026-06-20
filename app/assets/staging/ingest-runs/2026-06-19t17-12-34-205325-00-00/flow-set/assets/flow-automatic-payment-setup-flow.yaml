@@ -1,0 +1,66 @@
+asset_id: flow.automatic.payment.setup.flow
+asset_type: flow
+name: Account Setup for Automatic Debit
+version: 1.0.0
+owner: process_kb
+description: Agent checks eligible account and explains automatic debit requirements
+text: Agent checks eligible account and explains automatic debit requirements
+tags:
+- configure.automatic.debit.facility
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.check_eligibility
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.explain_requirements
+  metadata: {}
+payload:
+  flow_id: automatic.payment.setup.flow
+  flow_name: Account Setup for Automatic Debit
+  intent: configure.automatic.debit.facility
+  confidence: 0.75
+  business_event: Customer wants to open account for automatic payment
+  utterances: []
+  plan: []
+  tasks:
+  - task: check_account_eligibility_for_automatic_payment
+    type: manual
+  - task: explain_automatic_debit_requirements
+    type: manual
+  user_tasks:
+  - user_task_id: check_account_eligibility_task
+    task: check_account_eligibility_for_automatic_payment
+    type: manual
+    name: Check Eligibility
+    description: Agent verifies if the customer's account is eligible for automatic
+      debit setup
+    tools: []
+    user_actions: []
+  - user_task_id: explain_requirements_task
+    task: explain_automatic_debit_requirements
+    type: manual
+    name: Explain Requirements
+    description: Agent explains the requirements and process for setting up automatic
+      payments
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Agent checks eligible account and explains automatic debit requirements
+  source: data/raw/enterprise_dump_2026/customer_support_tickets.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    purpose: Enable recurring automatic payments from customer account
+  purpose: Enable recurring automatic payments from customer account
+  transaction_id: automatic.payment.setup.flow
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Account Setup for Automatic Debit
+  normalized_name: account setup for automatic debit
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

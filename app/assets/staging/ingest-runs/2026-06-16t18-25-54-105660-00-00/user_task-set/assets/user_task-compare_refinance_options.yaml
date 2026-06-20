@@ -1,0 +1,25 @@
+asset_id: user_task.compare_refinance_options
+asset_type: user_task
+name: Compare Refinance Options
+version: 1.0.0
+owner: business_model_kb
+description: Agent compares different refinance options to find best fit for customer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_refinance_assistance_step_4
+  task: compare_refinance_options_and_show_payment_impact
+  type: manual
+  name: Compare refinance options
+  description: Compare refinance options and show payment impact.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Compare Refinance Options
+  normalized_name: compare refinance options
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

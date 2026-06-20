@@ -1,0 +1,19 @@
+asset_id: process.loan.create
+asset_type: process
+name: Crear prestamo
+description: quiero crear un prestamo para un cliente existente
+tags:
+- lending
+- loan
+- process
+relations:
+- type: implements_flow
+  target_asset_id: flow.loan.create
+payload:
+  process_id: loan.create
+  process_name: Crear prestamo
+  domain: lending
+  module_id: loan
+  business_event: loan.create.requested
+  user_tasks:
+  - capture loan request

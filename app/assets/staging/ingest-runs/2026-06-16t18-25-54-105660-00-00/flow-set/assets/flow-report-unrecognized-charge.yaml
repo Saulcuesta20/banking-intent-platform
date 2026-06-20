@@ -1,0 +1,102 @@
+asset_id: flow.report.unrecognized.charge
+asset_type: flow
+name: Reportar Cargo No Reconocido
+version: 1.0.0
+owner: process_kb
+description: Proceso para reportar un cargo no reconocido en la cuenta, iniciando
+  investigación y posible reverso.
+text: Proceso para reportar un cargo no reconocido en la cuenta, iniciando investigación
+  y posible reverso.
+tags:
+- el.cliente.desea.impugnar.un.cargo.que.no.reconoce
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identificar_cargo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.enviar_disputa
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.proporcionar_evidencia
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.revisar_resoluci_n
+  metadata: {}
+payload:
+  flow_id: report.unrecognized.charge
+  flow_name: Reportar Cargo No Reconocido
+  intent: el.cliente.desea.impugnar.un.cargo.que.no.reconoce
+  confidence: 0.75
+  business_event: Disputa de cargo
+  utterances: []
+  plan: []
+  tasks:
+  - task: identificar_cargo_no_reconocido
+    type: consulta
+  - task: enviar_disputa_de_cargo
+    type: formulario
+  - task: proporcionar_evidencia
+    type: carga
+  - task: revisar_resoluci_n_de_la_disputa
+    type: consulta
+  user_tasks:
+  - user_task_id: identify_charge
+    task: identificar_cargo_no_reconocido
+    type: consulta
+    name: Identificar cargo
+    description: El cliente localiza el cargo en su estado de cuenta.
+    tools: []
+    user_actions: []
+  - user_task_id: submit_dispute
+    task: enviar_disputa_de_cargo
+    type: formulario
+    name: Enviar disputa
+    description: El cliente completa un formulario de disputa con los detalles del
+      cargo.
+    tools: []
+    user_actions: []
+  - user_task_id: provide_evidence
+    task: proporcionar_evidencia
+    type: carga
+    name: Proporcionar evidencia
+    description: El cliente sube documentos o capturas que respalden su reclamo.
+    tools: []
+    user_actions: []
+  - user_task_id: review_resolution
+    task: revisar_resoluci_n_de_la_disputa
+    type: consulta
+    name: Revisar resolución
+    description: El cliente revisa la decisión final sobre su disputa.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para reportar un cargo no reconocido en la cuenta, iniciando
+    investigación y posible reverso.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-5
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-5
+    purpose: Proteger al cliente de fraudes y errores en transacciones.
+  purpose: Proteger al cliente de fraudes y errores en transacciones.
+  transaction_id: report.unrecognized.charge
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso para reportar un cargo no reconocido en la cuenta, iniciando
+      investigación y posible reverso.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso para reportar un cargo no reconocido en la cuenta, iniciando
+      investigación y posible reverso.
+  match_strategy: generated
+  canonical_name: Reportar Cargo No Reconocido
+  normalized_name: reportar cargo no reconocido
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

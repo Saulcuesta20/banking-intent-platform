@@ -730,6 +730,30 @@ class AskService:
             "primary_assets": [asset.asset_id for asset in result.primary_assets],
             "supporting_assets": [asset.asset_id for asset in result.supporting_assets],
             "evidence_assets": [asset.asset_id for asset in result.evidence_assets],
+            "structural_layers": sorted(
+                {
+                    layer
+                    for asset in result.all_assets()
+                    for layer in [
+                        asset.structural_layer
+                        or asset.payload.get("structural_layer")
+                        or asset.business_layer
+                        or asset.payload.get("business_layer")
+                    ]
+                    if layer
+                }
+            ),
+            "semantic_spaces": sorted(
+                {
+                    str(space)
+                    for asset in result.all_assets()
+                    for space in [
+                        asset.payload.get("semantic_space"),
+                        *(asset.payload.get("semantic_spaces") or [] if isinstance(asset.payload.get("semantic_spaces"), list) else []),
+                    ]
+                    if space
+                }
+            ),
         }
         self._trace(
             trace,

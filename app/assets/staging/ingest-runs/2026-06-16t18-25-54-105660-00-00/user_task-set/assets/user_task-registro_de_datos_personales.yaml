@@ -1,0 +1,32 @@
+asset_id: user_task.registro_de_datos_personales
+asset_type: user_task
+name: Registro de datos personales
+version: 1.0.0
+owner: business_model_kb
+description: El cliente completa un formulario con su información personal y sube
+  documentos de identidad.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: proporcionar_datos_personales
+  task: proporcionar_datos_personales_y_documentos_de_identidad
+  type: form
+  name: Registro de datos personales
+  description: El cliente completa un formulario con su información personal y sube
+    documentos de identidad.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente completa un formulario con su información personal y sube
+      documentos de identidad.
+  match_strategy: generated
+  canonical_name: Registro de datos personales
+  normalized_name: registro de datos personales
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,27 @@
+asset_id: user_task.refinance_review
+asset_type: user_task
+name: Refinance Review
+version: 1.0.0
+owner: business_model_kb
+description: Agent initiates the process to review and modify loan terms for installment
+  reduction
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: refinance_review_task
+  task: start_refinance_review_for_loan_modification
+  type: manual
+  name: Refinance Review
+  description: Agent initiates the process to review and modify loan terms for installment
+    reduction
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Refinance Review
+  normalized_name: refinance review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

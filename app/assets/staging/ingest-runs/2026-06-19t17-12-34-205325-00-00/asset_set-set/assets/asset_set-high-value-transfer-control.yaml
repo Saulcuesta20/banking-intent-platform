@@ -1,0 +1,89 @@
+asset_id: asset_set.high.value.transfer.control
+asset_type: asset_set
+name: High.value.transfer.control Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for high.value.transfer.control.
+text: 'High Value Transfer Control
+
+  High Value International Transfer
+
+  International transfer review
+
+  Capture Transfer Details
+
+  Compliance Review
+
+  Compliance Routing
+
+  Enhanced Due Diligence Review
+
+  Request Document'
+tags:
+- asset_set
+- high.value.transfer.control
+relations:
+- type: groups_flow
+  target_asset_id: flow.high.value.transfer.control
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.high.value.transfer.flow
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.high.value.transfer.control
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.capture_transfer_details
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.compliance_review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.compliance_routing
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.enhanced_due_diligence_review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.request_document
+  metadata: {}
+payload:
+  transaction_id: high.value.transfer.control
+  asset_ids:
+  - flow.high.value.transfer.control
+  - flow.high.value.transfer.flow
+  - plan.high.value.transfer.control
+  - user_task.capture_transfer_details
+  - user_task.compliance_review
+  - user_task.compliance_routing
+  - user_task.enhanced_due_diligence_review
+  - user_task.request_document
+  asset_types:
+  - flow
+  - plan
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.high.value.transfer.control
+    asset_type: flow
+  - asset_id: flow.high.value.transfer.flow
+    asset_type: flow
+  - asset_id: plan.high.value.transfer.control
+    asset_type: plan
+  - asset_id: user_task.capture_transfer_details
+    asset_type: user_task
+  - asset_id: user_task.compliance_review
+    asset_type: user_task
+  - asset_id: user_task.compliance_routing
+    asset_type: user_task
+  - asset_id: user_task.enhanced_due_diligence_review
+    asset_type: user_task
+  - asset_id: user_task.request_document
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: High.value.transfer.control Asset Set
+  normalized_name: high.value.transfer.control asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

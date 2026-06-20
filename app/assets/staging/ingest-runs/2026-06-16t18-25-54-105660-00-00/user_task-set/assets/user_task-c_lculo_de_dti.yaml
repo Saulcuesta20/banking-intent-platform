@@ -1,0 +1,25 @@
+asset_id: user_task.c_lculo_de_dti
+asset_type: user_task
+name: Cálculo de DTI
+version: 1.0.0
+owner: business_model_kb
+description: Calcular la relación deuda-ingreso
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_calculate_dti
+  task: calcular_dti
+  type: calculation
+  name: Cálculo de DTI
+  description: Calcular la relación deuda-ingreso
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Cálculo de DTI
+  normalized_name: cálculo de dti
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.confirm_exception
+asset_type: user_task
+name: Confirm Exception
+version: 1.0.0
+owner: business_model_kb
+description: Collections confirms whether a special exception applies.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: collections_confirm
+  task: confirm_special_exception
+  type: manual
+  name: Confirm Exception
+  description: Collections confirms whether a special exception applies.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Confirm Exception
+  normalized_name: confirm exception
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

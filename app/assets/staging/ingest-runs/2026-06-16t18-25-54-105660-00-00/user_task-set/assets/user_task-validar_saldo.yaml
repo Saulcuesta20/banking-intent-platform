@@ -1,0 +1,25 @@
+asset_id: user_task.validar_saldo
+asset_type: user_task
+name: Validar saldo
+version: 1.0.0
+owner: business_model_kb
+description: Verificar que hay saldo suficiente
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_validate_balance
+  task: validar_saldo
+  type: verification
+  name: Validar saldo
+  description: Verificar que hay saldo suficiente
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Validar saldo
+  normalized_name: validar saldo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

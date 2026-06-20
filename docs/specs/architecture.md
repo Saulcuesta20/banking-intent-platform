@@ -14,7 +14,7 @@ Describe the end-to-end architecture for converting banking questions into expla
 - Application use cases
 - Domain models and policies
 - Component-local provider ports
-- Launcher presentation shell powered by Lowdefy
+- Launcher presentation shell powered by React + shadcn/ui
 - Infrastructure adapters for Neo4j, GraphRAG, LangGraph, LangChain, and OpenAI-compatible LLM APIs
 - Governed owner knowledge bases for processes, planning, rules, Q&A, business model, documents, and configuration
 - Flow answer context projection
@@ -43,12 +43,12 @@ audited, and loaded into technical indexes such as Neo4j by custom loaders.
 This keeps expensive or exploratory reasoning on the knowledge-building side
 while runtime remains constrained to approved knowledge.
 
-The proposed launcher sits above the platform as a config-driven presentation
-layer. Lowdefy receives launcher page configuration, flow catalog data, and
-run-time trace data from API endpoints, then renders cards, forms, tables,
-logs, and master-detail views. The launcher does not own business workflow
-logic; it translates YAML-defined flow and process metadata into UI blocks and
-actions, and delegates execution back to the platform services.
+The proposed launcher sits above the platform as an API-driven presentation
+layer. React/shadcn owns navigation, workspace layout, and application state.
+Asset editors are now moving to JSON Forms plus local `Zod` validation on the
+frontend, with final validation enforced by backend asset contracts. The
+launcher does not own business workflow logic; it renders catalog data and
+delegates execution back to the platform services.
 
 ## Example Input/Output
 Input: `Quiero bajar la cuota de mi prestamo`
@@ -93,10 +93,13 @@ invocation through an approved adapter or protocol. Tools are the lowest
 capability level that may be invoked after confirmation.
 
 Launcher-specific UI rules:
-- Flow YAML is source-of-truth for flow browsing and launch screens.
-- Lowdefy pages map flow/process/user-task metadata to blocks, forms, and lists.
+- Unified Catalog APIs are the runtime source of truth for flow browsing and
+  asset editing.
+- JSON Schema defines editor form contracts and JSON Forms renders the current
+  flow editor surface.
 - Live trace and log panels are read-only projections of execution state.
-- When a richer canvas is needed, it should be a custom Lowdefy plugin or a companion block, not inline business logic.
+- When a richer canvas is needed, it should be implemented as a React editor
+  component without moving business logic into the browser.
 
 LangGraph is integrated in three places. Runtime ask uses `AskState` and a
 compiled `StateGraph` for the question-answering sequence. Process execution
@@ -111,4 +114,6 @@ and provider ports.
 ## Future Replacement Strategy
 Adapters may be swapped from GraphRAG to another retrieval strategy, LangChain to another prompt orchestration layer, OpenRouter/Groq/OpenAI to another OpenAI-compatible LLM provider, or Neo4j to another graph database by preserving input and output port contracts.
 
-The launcher shell may also be swapped from Lowdefy to another config-driven UI framework if the launcher keeps the same page-data contract and flow catalog APIs.
+The launcher editor layer may still keep a compatibility runtime for generated
+YAML pages, but new asset-editor work should target the React/JSON Forms
+surface as long as the same page-data contracts and catalog APIs are preserved.

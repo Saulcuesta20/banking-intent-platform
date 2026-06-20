@@ -1,0 +1,84 @@
+asset_id: document.corporate_structure_and_offerings_md
+asset_type: document
+name: corporate_structure_and_offerings.md
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/corporate_structure_and_offerings.md
+text: "## Corporate Structure and Offerings (June 2026 Refresh)\n\n### Enterprise\
+  \ Leadership & Departments\n- Global Banking Group (corporate parent) oversees four\
+  \ divisions:\n  - Retail & Digital Banking Division\n    - Customer Experience Department:\
+  \ owns onboarding journeys, teller-assisted services, branch support.\n    - Everyday\
+  \ Banking Department: manages checking, savings, debit services, overdraft policies.\n\
+  \  - Lending & Credit Division\n    - Personal Lending Department: personal loans,\
+  \ credit lines, refinancing programs.\n    - Commercial Lending Department: equipment\
+  \ finance, working capital loans.\n  - Wealth & Insurance Division\n    - Wealth\
+  \ Advisory Department: portfolio review, managed investment products.\n    - Protection\
+  \ Services Department: insurance bundles, premium waiver rules.\n  - Shared Services\
+  \ Division\n    - Operations Control Department: payments processing, investigations,\
+  \ escalations.\n    - Technology Enablement Department: API platforms, orchestration,\
+  \ monitoring.\n\n### Product & Service Catalog\n- Everyday Banking Suite (offering):\n\
+  \  - SmartBalance Checking (product) – transaction account with automated sweeps.\n\
+  \  - Horizon Savings (product) – tiered interest savings with loyalty boosters.\n\
+  \  - EverydayPlus Debit (service) – debit card program with fraud alerts.\n- Lending\
+  \ Portfolio:\n  - FlexPay Personal Loan (product) – unsecured, fixed rate, 24-60\
+  \ months.\n  - EquipLease Commercial Loan (product) – asset-backed equipment leasing.\n\
+  \  - RapidRefi Program (service) – refinance workflow for existing borrowers.\n\
+  - Wealth & Protection:\n  - GuidedWealth Portfolio (service) – managed accounts\
+  \ with quarterly reviews.\n  - ShieldGuard Insurance Bundle (product) – life + disability\
+  \ package tied to lending.\n\n### Transaction & Event Examples\n- Account opening\
+  \ transaction: SmartBalance Checking + EverydayPlus Debit issued together, triggers\
+  \ Know Your Customer event and debit activation event.\n- Loan disbursement transaction:\
+  \ FlexPay Personal Loan funding generates disbursement event, repayment schedule\
+  \ confirmation, collateral verification (for secured loans).\n- Insurance enrollment\
+  \ transaction: ShieldGuard Insurance linked to loan onboarding, requires agreement\
+  \ acceptance and beneficiary confirmation event.\n\n### Agreements & Policies\n\
+  - Retail Banking Service Agreement – governs checking/savings features, overdraft\
+  \ limits, digital consent.\n- FlexPay Lending Agreement – disbursement terms, repayment\
+  \ conditions, hardship options.\n- ShieldGuard Protection Terms – coverage limits,\
+  \ exclusions, premium waiver triggers.\n\n### Supporting Assets & Tools\n- Customer\
+  \ Experience Playbook (document): outlines onboarding personas, contact center scripts,\
+  \ escalation matrix.\n- Product Eligibility Matrix (document): CSV/JSON table mapping\
+  \ offerings to customer segments, credit tiers, required documents.\n- OmniChannel\
+  \ Orchestrator (system/tool): routes events between branches, digital channels,\
+  \ and workflow engines.\n- Insight360 Analytics Platform (system/tool): aggregates\
+  \ product performance, cross-sell opportunities, churn risk scores.\n\n### Departmental\
+  \ Responsibilities & Relations\n- Customer Experience Department **(organization\
+  \ layer)**\n  - Works with Everyday Banking Department to craft step-by-step onboarding\
+  \ flows.\n  - Consumes OmniChannel Orchestrator API for branch + digital step tracking.\n\
+  - Personal Lending Department **(organization layer)**\n  - Owns FlexPay Personal\
+  \ Loan, RapidRefi Program, ShieldGuard cross-sell triggers.\n  - Collaborates with\
+  \ Protection Services Department on insurance upsells.\n- Operations Control Department\
+  \ **(organization layer)**\n  - Monitors disbursement exceptions, handles dispute\
+  \ events, drives root-cause investigations tied to Insight360 dashboards.\n\n###\
+  \ Key Metrics & Signals\n- Account onboarding SLA target: 12 minutes for digital,\
+  \ 20 minutes assisted.\n- FlexPay approval rate: 67% average, with RapidRefi aiming\
+  \ for 4-hour decision window.\n- ShieldGuard attachment rate: 38% of FlexPay originations;\
+  \ target 45%.\n\n### Future Initiatives\n- Introduce Business Banking Starter Suite\
+  \ (party/offering) for micro-enterprises with bundled checking + working capital\
+  \ line.\n- Expand Insight360 to include sustainability scoring metrics for lending\
+  \ portfolios."
+tags:
+- text
+- md
+relations: []
+payload:
+  path: data/raw/corporate_structure_and_offerings.md
+  kind: text
+  sequence: 4
+  relation_hints:
+  - type: has_step
+    family: structural
+    phrase: step
+    sentence: '- Works with Everyday Banking Department to craft step-by-step onboarding
+      flows.'
+  - type: has_step
+    family: structural
+    phrase: step
+    sentence: '- Consumes OmniChannel Orchestrator API for branch + digital step tracking.'
+  match_strategy: generated
+  canonical_name: corporate_structure_and_offerings.md
+  normalized_name: corporate structure and offerings.md
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

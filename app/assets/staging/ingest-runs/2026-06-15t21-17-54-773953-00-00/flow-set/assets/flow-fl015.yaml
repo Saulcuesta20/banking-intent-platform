@@ -1,0 +1,93 @@
+asset_id: flow.fl015
+asset_type: flow
+name: Desembolsar Prestamo Aprobado
+version: 1.0.0
+owner: process_kb
+description: Se verifica la aprobación y se ejecuta el desembolso.
+text: Se verifica la aprobación y se ejecuta el desembolso.
+tags:
+- fl015
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.ejecutar_desembolso
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identificar_al_cliente
+  metadata: {}
+payload:
+  flow_id: fl015
+  flow_name: Desembolsar Prestamo Aprobado
+  intent: fl015
+  confidence: 0.75
+  business_event: tesorero_desembolsa_prestamo
+  utterances: []
+  plan: []
+  tasks:
+  - task: ejecutar_desembolso
+    type: human
+  - task: identificar_al_cliente
+    type: human
+  user_tasks:
+  - user_task_id: ut015
+    task: ejecutar_desembolso
+    type: human
+    name: Ejecutar el desembolso sobre la cuenta destino
+    description: Transferir los fondos aprobados al destino indicado y registrar la
+      operación.
+    tools: []
+    user_actions: []
+  - user_task_id: ut001
+    task: identificar_al_cliente
+    type: human
+    name: Identificar al cliente antes de cualquier operacion financiera
+    description: El agente verifica la identidad del cliente y confirma que la relación
+      está activa antes de iniciar cualquier proceso.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Se verifica la aprobación y se ejecuta el desembolso.
+  source: data/raw/README.md;data/raw/banking_flows_additional.txt;data/raw/banking_synonyms_and_glossary_runtime.txt;data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt;data/raw/enterprise_dump_2026/customer_support_tickets.csv;data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md;data/raw/enterprise_dump_2026/glossary_fragment.md;data/raw/enterprise_dump_2026/intranet_transfer_help.html;data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt;data/raw/enterprise_dump_2026/operations_controls_policy.md;data/raw/enterprise_dump_2026/orchestration_planning_notes.md;data/raw/enterprise_dump_2026/policy_controls_memo.md;data/raw/enterprise_dump_2026/process_fragments.json;data/raw/enterprise_dump_2026/service_configuration_notes.md;data/raw/enterprise_dump_2026/systems_catalog_export.json;data/raw/enterprise_operations_manual.md;data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md;data/raw/enterprise_systems_catalog.md;data/raw/manual_operativo_credito.md;data/raw/notes_operativas_cobranza.md;data/raw/policy_controls_addendum.md;data/raw/process_examples_refinance.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/README.md
+    - data/raw/banking_flows_additional.txt
+    - data/raw/banking_synonyms_and_glossary_runtime.txt
+    - data/raw/customer_support_tickets_mini.csv
+    - data/raw/enterprise_dump_2026/00_readme.txt
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md
+    - data/raw/enterprise_dump_2026/glossary_fragment.md
+    - data/raw/enterprise_dump_2026/intranet_transfer_help.html
+    - data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt
+    - data/raw/enterprise_dump_2026/operations_controls_policy.md
+    - data/raw/enterprise_dump_2026/orchestration_planning_notes.md
+    - data/raw/enterprise_dump_2026/policy_controls_memo.md
+    - data/raw/enterprise_dump_2026/process_fragments.json
+    - data/raw/enterprise_dump_2026/service_configuration_notes.md
+    - data/raw/enterprise_dump_2026/systems_catalog_export.json
+    - data/raw/enterprise_operations_manual.md
+    - data/raw/enterprise_policy_and_controls.md
+    - data/raw/enterprise_support_wiki.md
+    - data/raw/enterprise_systems_catalog.md
+    - data/raw/manual_operativo_credito.md
+    - data/raw/notes_operativas_cobranza.md
+    - data/raw/policy_controls_addendum.md
+    - data/raw/process_examples_refinance.md
+    purpose: Transferir los fondos del préstamo aprobado a la cuenta destino del cliente.
+  purpose: Transferir los fondos del préstamo aprobado a la cuenta destino del cliente.
+  transaction_id: fl015
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Desembolsar Prestamo Aprobado
+  match_strategy: generated
+  canonical_name: Desembolsar Prestamo Aprobado
+  normalized_name: desembolsar prestamo aprobado
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

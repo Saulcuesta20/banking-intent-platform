@@ -1,0 +1,48 @@
+asset_id: asset_set.automatic.payment.setup.flow
+asset_type: asset_set
+name: Automatic.payment.setup.flow Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for automatic.payment.setup.flow.
+text: 'Account Setup for Automatic Debit
+
+  Check Eligibility
+
+  Explain Requirements'
+tags:
+- asset_set
+- automatic.payment.setup.flow
+relations:
+- type: groups_flow
+  target_asset_id: flow.automatic.payment.setup.flow
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.check_eligibility
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.explain_requirements
+  metadata: {}
+payload:
+  transaction_id: automatic.payment.setup.flow
+  asset_ids:
+  - flow.automatic.payment.setup.flow
+  - user_task.check_eligibility
+  - user_task.explain_requirements
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.automatic.payment.setup.flow
+    asset_type: flow
+  - asset_id: user_task.check_eligibility
+    asset_type: user_task
+  - asset_id: user_task.explain_requirements
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Automatic.payment.setup.flow Asset Set
+  normalized_name: automatic.payment.setup.flow asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

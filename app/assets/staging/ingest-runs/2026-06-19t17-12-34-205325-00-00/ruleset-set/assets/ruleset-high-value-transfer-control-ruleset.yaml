@@ -1,0 +1,55 @@
+asset_id: ruleset.high.value.transfer.control.ruleset
+asset_type: ruleset
+name: High value transfer control Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction high.value.transfer.control.ruleset with 1 business
+  rules.
+text: 'International transfers above USD 50,000 must remain on hold until enhanced
+  due
+
+  diligence is completed. The transfer record must include source account,
+
+  beneficiary identity, destination country, amount, currency, and documented
+
+  purpose of payment. If beneficiary screening is inconclusive, the case must be
+
+  routed to Compliance Review before release.
+
+
+  Control owner: Payments Operations.
+
+  Systems mentioned: Transfer Service, Compliance Screening Gateway, Case Manager.
+
+  Related customer phrases: "mi transferencia quedo retenida", "por que necesitan
+
+  el motivo de la transferencia", "puedo transferir hoy al exterior".'
+tags:
+- ruleset
+- high.value.transfer.control.ruleset
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.high_value_transfer_control
+  metadata: {}
+payload:
+  transaction_id: high.value.transfer.control.ruleset
+  ruleset_name: High value transfer control Ruleset
+  rule_ids:
+  - business_rule.high_value_transfer_control
+  conditions:
+  - International transfers above USD 50,000
+  consequences:
+  - 'remain on hold until enhanced due diligence is completed. The transfer record
+    must include source account, beneficiary identity, destination country, amount,
+    currency, and documented purpose of payment. If beneficiary screening is inconclusive,
+    the case must be routed to Compliance Review before release. Control owner: Payments
+    Operations. Systems mentioned: Transfer Service, Compliance Screening Gateway,
+    Case Manager. Related customer phrases: "mi transferencia quedo retenida", "por
+    que necesitan el motivo de la transferencia", "puedo transferir hoy al exterior"'
+  match_strategy: generated
+  canonical_name: High value transfer control Ruleset
+  normalized_name: high value transfer control ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

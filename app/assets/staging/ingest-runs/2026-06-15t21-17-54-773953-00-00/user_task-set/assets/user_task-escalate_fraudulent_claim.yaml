@@ -1,0 +1,25 @@
+asset_id: user_task.escalate_fraudulent_claim
+asset_type: user_task
+name: Escalate Fraudulent Claim
+version: 1.0.0
+owner: business_model_kb
+description: Route claim to the fraud investigation team.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut204
+  task: escalate_fraud
+  type: backend
+  name: Escalate Fraudulent Claim
+  description: Route claim to the fraud investigation team.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Escalate Fraudulent Claim
+  normalized_name: escalate fraudulent claim
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

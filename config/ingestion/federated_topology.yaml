@@ -12,7 +12,7 @@ knowledge_bases:
     vector_collection: "kb_business_model_assets"
     document_collection: "kb_business_model_documents"
     graph_namespace: "BusinessModel"
-    asset_types: ["entity", "user_task", "tool", "business_event"]
+    asset_types: ["semantic_space", "entity", "user_task", "tool", "business_event"]
   rules_kb:
     vector_collection: "kb_rules_assets"
     document_collection: "kb_rules_documents"
@@ -47,4 +47,4 @@ knowledge_bases:
     vector_collection: "kb_config_assets"
     document_collection: "kb_config_documents"
     graph_namespace: "Configuration"
-    asset_types: ["configuration"]
+    asset_types: ["configuration", "domain", "module", "menu", "form", "form_version", "asset_set"]

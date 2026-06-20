@@ -1,0 +1,57 @@
+asset_id: flow.flow.tck.1002
+asset_type: flow
+name: loan_refinancing_request_flow
+version: 1.0.0
+owner: process_kb
+description: Client wants to lower installment by refinancing the loan due to high
+  monthly payment.
+text: Client wants to lower installment by refinancing the loan due to high monthly
+  payment.
+tags:
+- loan.refinance
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.provide_loan_refinancing_options
+  metadata: {}
+payload:
+  flow_id: flow.tck.1002
+  flow_name: loan_refinancing_request_flow
+  intent: loan.refinance
+  confidence: 0.75
+  business_event: client_requests_loan_refinancing
+  utterances: []
+  plan: []
+  tasks:
+  - task: provide_loan_refinancing_options
+    type: support
+  user_tasks:
+  - user_task_id: user_task_tck_1002
+    task: provide_loan_refinancing_options
+    type: support
+    name: Provide Loan Refinancing Options
+    description: Evaluate and present options for refinancing the loan to lower the
+      monthly installment.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Client wants to lower installment by refinancing the loan due to high
+    monthly payment.
+  source: data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    - data/raw/enterprise_dump_2026/00_readme.txt
+    purpose: To explore options for loan refinancing to reduce monthly installment.
+  purpose: To explore options for loan refinancing to reduce monthly installment.
+  transaction_id: flow.tck.1002
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: loan_refinancing_request_flow
+  normalized_name: loan refinancing request flow
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

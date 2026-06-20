@@ -1,0 +1,39 @@
+asset_id: causality.el_aumento_del_riesgo_crediticio_causes_revision_manual_de_la_refinanciacion
+asset_type: causality
+name: El aumento del riesgo crediticio causes revision manual de la refinanciacion
+version: 1.0.0
+owner: causality_kb
+description: El aumento del riesgo crediticio provoca revision manual de la refinanciacion.
+text: El aumento del riesgo crediticio provoca revision manual de la refinanciacion.
+tags:
+- causality
+- causes
+relations:
+- type: has_cause
+  target_asset_id: entity.aumento_del_riesgo_crediticio
+  metadata: {}
+payload:
+  cause_text: El aumento del riesgo crediticio
+  effect_text: revision manual de la refinanciacion
+  relation_kind: causes
+  statement: El aumento del riesgo crediticio provoca revision manual de la refinanciacion.
+  sentence: El aumento del riesgo crediticio provoca revision manual de la refinanciacion.
+  transaction_id: el.aumento.del.riesgo.crediticio.causes.revision.manual.de.la.refinanciacion
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: provoca
+    sentence: El aumento del riesgo crediticio provoca revision manual de la refinanciacion.
+  - type: causes
+    family: causality
+    phrase: provoca
+    sentence: El aumento del riesgo crediticio provoca revision manual de la refinanciacion.
+  resolved_cause_asset_id: entity.aumento_del_riesgo_crediticio
+  resolved_effect_asset_id: null
+  match_strategy: generated
+  canonical_name: El aumento del riesgo crediticio causes revision manual de la refinanciacion
+  normalized_name: el aumento del riesgo crediticio causes revision manual de la refinanciacion
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

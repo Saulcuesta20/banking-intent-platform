@@ -1,0 +1,43 @@
+asset_id: asset_set.el.alias.incorrecto.del.beneficiario.causes.rechazo.de.la.transferencia
+asset_type: asset_set
+name: El.alias.incorrecto.del.beneficiario.causes.rechazo.de.la.transferencia Asset
+  Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.alias.incorrecto.del.beneficiario.causes.rechazo.de.la.transferencia.
+text: 'El alias incorrecto del beneficiario causes rechazo de la transferencia
+
+  rechazo de la transferencia'
+tags:
+- asset_set
+- el.alias.incorrecto.del.beneficiario.causes.rechazo.de.la.transferencia
+relations:
+- type: groups_causality
+  target_asset_id: causality.el_alias_incorrecto_del_beneficiario_causes_rechazo_de_la_transferencia
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.rechazo_de_la_transferencia
+  metadata: {}
+payload:
+  transaction_id: el.alias.incorrecto.del.beneficiario.causes.rechazo.de.la.transferencia
+  asset_ids:
+  - causality.el_alias_incorrecto_del_beneficiario_causes_rechazo_de_la_transferencia
+  - entity.rechazo_de_la_transferencia
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.el_alias_incorrecto_del_beneficiario_causes_rechazo_de_la_transferencia
+    asset_type: causality
+  - asset_id: entity.rechazo_de_la_transferencia
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: El.alias.incorrecto.del.beneficiario.causes.rechazo.de.la.transferencia
+    Asset Set
+  normalized_name: el.alias.incorrecto.del.beneficiario.causes.rechazo.de.la.transferencia
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

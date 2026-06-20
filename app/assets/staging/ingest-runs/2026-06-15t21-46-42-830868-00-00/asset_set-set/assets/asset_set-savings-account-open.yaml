@@ -1,0 +1,26 @@
+asset_id: asset_set.savings.account.open
+asset_type: asset_set
+name: Savings.account.open Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for savings.account.open.
+text: ''
+tags:
+- asset_set
+- savings.account.open
+relations: []
+payload:
+  transaction_id: savings.account.open
+  asset_ids:
+  - flow.savings.account.open
+  asset_types: []
+  primary_asset_type: asset
+  members:
+  - asset_id: flow.savings.account.open
+  match_strategy: generated
+  canonical_name: Savings.account.open Asset Set
+  normalized_name: savings.account.open asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.withdrawal_processing
+asset_type: user_task
+name: Withdrawal Processing
+version: 1.0.0
+owner: business_model_kb
+description: Handle the withdrawal of funds from the savings account.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: process_withdrawal
+  task: process_a_withdrawal_transaction
+  type: transaction
+  name: Withdrawal Processing
+  description: Handle the withdrawal of funds from the savings account.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Withdrawal Processing
+  normalized_name: withdrawal processing
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

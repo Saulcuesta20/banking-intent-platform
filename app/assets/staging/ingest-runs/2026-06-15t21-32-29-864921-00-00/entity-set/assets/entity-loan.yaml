@@ -1,0 +1,21 @@
+asset_id: entity.loan
+asset_type: entity
+name: Loan
+version: 1.0.0
+owner: business_model_kb
+description: Producto crediticio donde el banco entrega capital y el cliente devuelve
+  capital e intereses.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Producto crediticio que otorga un monto a pagar en cuotas.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan
+  normalized_name: loan
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

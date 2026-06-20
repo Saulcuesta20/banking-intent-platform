@@ -1,0 +1,25 @@
+asset_id: user_task.route_to_review
+asset_type: user_task
+name: Route to review
+version: 1.0.0
+owner: business_model_kb
+description: Route to manager or compliance review when policy gates are triggered.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: international_transfer_review_step_6
+  task: route_to_manager_or_compliance_review_when_policy_gates_are_triggered
+  type: manual
+  name: Route to review
+  description: Route to manager or compliance review when policy gates are triggered.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Route to review
+  normalized_name: route to review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

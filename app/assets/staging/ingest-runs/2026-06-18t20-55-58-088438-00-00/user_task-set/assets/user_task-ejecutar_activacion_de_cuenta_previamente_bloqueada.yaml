@@ -1,0 +1,31 @@
+asset_id: user_task.ejecutar_activacion_de_cuenta_previamente_bloqueada
+asset_type: user_task
+name: Ejecutar activacion de cuenta previamente bloqueada
+version: 1.0.0
+owner: business_model_kb
+description: Ejecutar activacion de cuenta previamente bloqueada.
+text: Ejecutar activacion de cuenta previamente bloqueada.
+tags: []
+relations: []
+payload:
+  description: Ejecutar activacion de cuenta previamente bloqueada.
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Ejecutar activacion de cuenta previamente bloqueada
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Ejecutar activacion de cuenta previamente bloqueada.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Ejecutar activacion de cuenta previamente bloqueada.
+  match_strategy: generated
+  canonical_name: Ejecutar activacion de cuenta previamente bloqueada
+  normalized_name: ejecutar activacion de cuenta previamente bloqueada
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

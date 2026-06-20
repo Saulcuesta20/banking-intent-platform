@@ -1,0 +1,56 @@
+asset_id: plan.plan.para.transferir.dinero.al.prestamo.capturar.referencia.validar.cuenta.origen.y.mover.fondos
+asset_type: plan
+name: Plan transferir dinero al prestamo
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para transferir dinero al prestamo: capturar referencia, validar
+  cuenta origen y mover fondos.'
+text: 'Plan para transferir dinero al prestamo: capturar referencia, validar cuenta
+  origen y mover fondos.'
+tags:
+- orchestration_plan
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validar_cuenta_origen
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  steps: []
+  plan_text: 'Plan para transferir dinero al prestamo: capturar referencia, validar
+    cuenta origen y mover fondos.'
+  source_section: Plans
+  transaction_id: plan.para.transferir.dinero.al.prestamo.capturar.referencia.validar.cuenta.origen.y.mover.fondos
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Plan transferir dinero al prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para transferir dinero al prestamo: capturar referencia, validar
+      cuenta origen y mover fondos.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Plan para transferir dinero al prestamo: capturar referencia, validar
+      cuenta origen y mover fondos.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para transferir dinero al prestamo: capturar referencia, validar
+      cuenta origen y mover fondos.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Plan para transferir dinero al prestamo: capturar referencia, validar
+      cuenta origen y mover fondos.'
+  match_strategy: generated
+  canonical_name: Plan transferir dinero al prestamo
+  normalized_name: plan transferir dinero al prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

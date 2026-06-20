@@ -1,0 +1,25 @@
+asset_id: user_task.calculate_eligibility
+asset_type: user_task
+name: Calculate Eligibility
+version: 1.0.0
+owner: business_model_kb
+description: Compute DTI, eligibility, and propose interest rate and terms
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: calculate_eligibility
+  task: calculate_loan_eligibility_and_propose_terms
+  type: calculation
+  name: Calculate Eligibility
+  description: Compute DTI, eligibility, and propose interest rate and terms
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Calculate Eligibility
+  normalized_name: calculate eligibility
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

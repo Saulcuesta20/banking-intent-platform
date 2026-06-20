@@ -1,0 +1,37 @@
+asset_id: flow.loan.disbursement
+asset_type: flow
+name: 'El tesorero comenta: quiero realizar el desembolso del prestamo aprobado'
+version: 1.0.0
+owner: process_kb
+description: 'El tesorero comenta: quiero realizar el desembolso del prestamo aprobado.'
+text: 'El tesorero comenta: quiero realizar el desembolso del prestamo aprobado.'
+tags:
+- utterance_flow
+relations: []
+payload:
+  utterances:
+  - 'El tesorero comenta: quiero realizar el desembolso del prestamo aprobado.'
+  purpose: 'El tesorero comenta: quiero realizar el desembolso del prestamo aprobado.'
+  transaction_id: loan.disbursement
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El tesorero comenta: quiero realizar el desembolso del prestamo aprobado'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El tesorero comenta: quiero realizar el desembolso del prestamo aprobado.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El tesorero comenta: quiero realizar el desembolso del prestamo aprobado.'
+  match_strategy: generated
+  canonical_name: 'El tesorero comenta: quiero realizar el desembolso del prestamo
+    aprobado'
+  normalized_name: 'el tesorero comenta: quiero realizar el desembolso del prestamo
+    aprobado'
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

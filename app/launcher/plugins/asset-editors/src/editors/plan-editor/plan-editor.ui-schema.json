@@ -1,0 +1,59 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Plan Definition",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/plan_id"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/description"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 1,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/steps"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/tools"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/dependencies"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 1,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/execution_options"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

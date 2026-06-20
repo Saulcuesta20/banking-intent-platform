@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "module_id": {
+      "type": "string",
+      "title": "Module ID"
+    },
+    "domain_id": {
+      "type": "string",
+      "title": "Domain ID"
+    },
+    "label": {
+      "type": "string",
+      "title": "Label"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "menus": {
+      "type": "array",
+      "title": "Menus",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["module_id", "domain_id", "label"]
+}

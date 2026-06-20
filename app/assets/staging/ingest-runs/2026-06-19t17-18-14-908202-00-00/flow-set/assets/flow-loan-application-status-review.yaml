@@ -1,0 +1,34 @@
+asset_id: flow.loan.application.status.review
+asset_type: flow
+name: quiero revisar el estado de mi solicitud
+version: 1.0.0
+owner: process_kb
+description: 'El cliente comenta: quiero revisar el estado de mi solicitud.'
+text: 'El cliente comenta: quiero revisar el estado de mi solicitud.'
+tags:
+- utterance_flow
+relations:
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  utterances:
+  - 'El cliente comenta: quiero revisar el estado de mi solicitud.'
+  purpose: 'El cliente comenta: quiero revisar el estado de mi solicitud.'
+  transaction_id: loan.application.status.review
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente comenta: quiero revisar el estado de mi solicitud.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente comenta: quiero revisar el estado de mi solicitud.'
+  match_strategy: generated
+  canonical_name: quiero revisar el estado de mi solicitud
+  normalized_name: quiero revisar el estado de mi solicitud
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

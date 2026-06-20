@@ -1,0 +1,23 @@
+asset_id: entity.aporta_score_y_alertas
+asset_type: entity
+name: aporta score y alertas
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: El buro de credito aporta
+  score y alertas regulatorias.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: section_entities
+  structural_layer: metric
+  business_layer: metric
+  entity_role: metric
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: aporta score y alertas
+  normalized_name: aporta score y alertas
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

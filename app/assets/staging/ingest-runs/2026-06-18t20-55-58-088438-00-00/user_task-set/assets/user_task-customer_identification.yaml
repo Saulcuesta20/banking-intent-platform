@@ -1,0 +1,25 @@
+asset_id: user_task.customer_identification
+asset_type: user_task
+name: Customer Identification
+version: 1.0.0
+owner: business_model_kb
+description: Identify and verify the customer's identity.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: identify_customer
+  task: identify_customer
+  type: verification
+  name: Customer Identification
+  description: Identify and verify the customer's identity.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Identification
+  normalized_name: customer identification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

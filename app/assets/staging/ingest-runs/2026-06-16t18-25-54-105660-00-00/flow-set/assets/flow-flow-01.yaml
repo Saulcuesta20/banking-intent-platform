@@ -1,0 +1,59 @@
+asset_id: flow.flow.01
+asset_type: flow
+name: Refinanciamiento de préstamo
+version: 1.0.0
+owner: process_kb
+description: El proceso de refinanciamiento identifica al cliente, revisa mora, calcula
+  terminos y emite oferta.
+text: El proceso de refinanciamiento identifica al cliente, revisa mora, calcula terminos
+  y emite oferta.
+tags:
+- loan.refinance
+relations:
+- type: uses_entity
+  target_asset_id: entity.mora
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  flow_id: flow.01
+  flow_name: Refinanciamiento de préstamo
+  intent: loan.refinance
+  confidence: 0.75
+  business_event: Cliente solicita refinanciamiento
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de refinanciamiento identifica al cliente, revisa mora,
+    calcula terminos y emite oferta.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Refinanciar un préstamo existente
+  purpose: Refinanciar un préstamo existente
+  transaction_id: flow.01
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El proceso de refinanciamiento identifica al cliente, revisa mora, calcula
+      terminos y emite oferta.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El proceso de refinanciamiento identifica al cliente, revisa mora, calcula
+      terminos y emite oferta.
+  match_strategy: generated
+  canonical_name: Refinanciamiento de préstamo
+  normalized_name: refinanciamiento de préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

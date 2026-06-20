@@ -1,0 +1,37 @@
+asset_id: process.pr003
+asset_type: process
+name: PR003
+version: 1.0.0
+owner: process_kb
+description: 'Proceso de transferencia: valida cuenta origen, valida beneficiario
+  y ejecuta el movimiento.'
+text: ''
+tags:
+- process_fragment
+relations:
+- type: uses_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+payload:
+  steps_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pr003
+  business_event: ''
+  triggers: []
+  execution_nodes: []
+  transitions: []
+  rules: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Proceso de transferencia: valida cuenta origen, valida beneficiario
+      y ejecuta el movimiento.'
+  match_strategy: generated
+  canonical_name: PR003
+  normalized_name: pr003
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

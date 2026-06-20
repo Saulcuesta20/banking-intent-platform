@@ -66,3 +66,14 @@ Ingestion can be:
 
 ## Future Replacement Strategy
 Another agent framework can be added later by preserving the `ExtractionInstructionBuilder` interface. The runtime ask path stays unchanged.
+
+## Config-driven extraction schema
+
+Extraction schema and the exact JSON shape used by the LLM extractor have been moved to YAML under `config/model/extraction_schema.yaml`.
+The ingestion pipeline now renders prompts from that YAML; the exact rendered prompts are documented in `docs/specs/extraction-prompts.md`.
+
+See `app/config/model.py` for the rendering logic used at runtime.
+
+This change keeps prompt schema declarative and reviewable by code reviewers and non-developers.
+
+Flows are now modeled as a more focused asset shape in ingestion. The flow extractor should not request or retain confidence, plan, utterances, capabilities, or concepts on flow assets; those concerns belong to runtime projection, reusable task assets, entity assets, or other asset types.

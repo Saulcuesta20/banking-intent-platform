@@ -10,7 +10,7 @@
   "userTasks": [
     "capture account opening"
   ],
-  "lowdefyPage": "account-opening",
+  "editorRoute": "account-opening",
   "currentFormVersion": "v1",
   "formId": "account-opening"
 }

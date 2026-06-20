@@ -1,0 +1,41 @@
+asset_id: plan.plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+asset_type: plan
+name: Plan desembolso
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para desembolso: verificar aprobacion, confirmar cuenta y ejecutar
+  acreditacion.'
+text: 'Plan para desembolso: verificar aprobacion, confirmar cuenta y ejecutar acreditacion.'
+tags:
+- orchestration_plan
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirmar_cuenta
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.desembolso
+  metadata: {}
+payload:
+  steps: []
+  plan_text: 'Plan para desembolso: verificar aprobacion, confirmar cuenta y ejecutar
+    acreditacion.'
+  source_section: Plans
+  transaction_id: plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para desembolso: verificar aprobacion, confirmar cuenta y ejecutar
+      acreditacion.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para desembolso: verificar aprobacion, confirmar cuenta y ejecutar
+      acreditacion.'
+  match_strategy: generated
+  canonical_name: Plan desembolso
+  normalized_name: plan desembolso
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

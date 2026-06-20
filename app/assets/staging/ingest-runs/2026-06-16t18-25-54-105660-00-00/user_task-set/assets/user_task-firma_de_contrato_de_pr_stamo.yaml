@@ -1,0 +1,32 @@
+asset_id: user_task.firma_de_contrato_de_pr_stamo
+asset_type: user_task
+name: Firma de contrato de préstamo
+version: 1.0.0
+owner: business_model_kb
+description: El cliente revisa y firma el contrato de préstamo y el acuerdo de garantía
+  vehicular.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: firmar_contrato_prestamo
+  task: firmar_contrato_de_pr_stamo_y_garant_a
+  type: approval
+  name: Firma de contrato de préstamo
+  description: El cliente revisa y firma el contrato de préstamo y el acuerdo de garantía
+    vehicular.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente revisa y firma el contrato de préstamo y el acuerdo de garantía
+      vehicular.
+  match_strategy: generated
+  canonical_name: Firma de contrato de préstamo
+  normalized_name: firma de contrato de préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

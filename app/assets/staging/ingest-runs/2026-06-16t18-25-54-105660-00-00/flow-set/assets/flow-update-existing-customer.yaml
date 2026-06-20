@@ -1,0 +1,100 @@
+asset_id: flow.update.existing.customer
+asset_type: flow
+name: Update Existing Customer
+version: 1.0.0
+owner: process_kb
+description: Update an existing customer's information after verification.
+text: Update an existing customer's information after verification.
+tags:
+- modify.customer.data
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.search_customer
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identity_verification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirm_change
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.update_record
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.notify_customer
+  metadata: {}
+payload:
+  flow_id: update.existing.customer
+  flow_name: Update Existing Customer
+  intent: modify.customer.data
+  confidence: 0.75
+  business_event: Customer profile update
+  utterances: []
+  plan: []
+  tasks:
+  - task: search_customer
+    type: automated
+  - task: verify_customer_identity
+    type: verification
+  - task: confirm_change
+    type: manual
+  - task: update_record
+    type: automated
+  - task: notify_customer
+    type: automated
+  user_tasks:
+  - user_task_id: search_customer
+    task: search_customer
+    type: automated
+    name: Search Customer
+    description: Find customer record by search criteria.
+    tools: []
+    user_actions: []
+  - user_task_id: verify_identity
+    task: verify_customer_identity
+    type: verification
+    name: Identity Verification
+    description: Service desk verifies the customer's identity using provided documents.
+    tools: []
+    user_actions: []
+  - user_task_id: confirm_change
+    task: confirm_change
+    type: manual
+    name: Confirm Change
+    description: Get customer confirmation for the requested change.
+    tools: []
+    user_actions: []
+  - user_task_id: update_record
+    task: update_record
+    type: automated
+    name: Update Record
+    description: Apply the change to the customer record.
+    tools: []
+    user_actions: []
+  - user_task_id: notify_customer
+    task: notify_customer
+    type: automated
+    name: Notify Customer
+    description: Send notification to customer about the update.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Update an existing customer's information after verification.
+  source: data/raw/banking_flows_additional.txt#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_flows_additional.txt#chunk-2
+    purpose: Maintain accurate customer records.
+  purpose: Maintain accurate customer records.
+  transaction_id: update.existing.customer
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Update Existing Customer
+  normalized_name: update existing customer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.collect_customer_documents
+asset_type: user_task
+name: collect_customer_documents
+version: 1.0.0
+owner: business_model_kb
+description: ''
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: collect_customer_documents
+  task: collect_customer_documents
+  type: unspecified
+  name: collect_customer_documents
+  description: ''
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: collect_customer_documents
+  normalized_name: collect customer documents
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

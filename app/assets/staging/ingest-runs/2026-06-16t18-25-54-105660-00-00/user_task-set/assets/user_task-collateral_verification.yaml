@@ -1,0 +1,25 @@
+asset_id: user_task.collateral_verification
+asset_type: user_task
+name: Collateral Verification
+version: 1.0.0
+owner: business_model_kb
+description: Verify collateral documents and value for secured loans.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verify_collateral
+  task: verify_collateral_for_secured_loans
+  type: verification
+  name: Collateral Verification
+  description: Verify collateral documents and value for secured loans.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collateral Verification
+  normalized_name: collateral verification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

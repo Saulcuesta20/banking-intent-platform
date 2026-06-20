@@ -1,0 +1,33 @@
+asset_id: user_task.documentar_siguiente_paso
+asset_type: user_task
+name: Documentar siguiente paso
+version: 1.0.0
+owner: business_model_kb
+description: Documentar el siguiente paso en el sistema de cobranza.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: documentar_paso
+  task: documentar_paso
+  type: documentation
+  name: Documentar siguiente paso
+  description: Documentar el siguiente paso en el sistema de cobranza.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: has_step
+    family: structural
+    phrase: paso
+    sentence: Documentar siguiente paso
+  - type: has_step
+    family: structural
+    phrase: paso
+    sentence: Documentar el siguiente paso en el sistema de cobranza.
+  match_strategy: generated
+  canonical_name: Documentar siguiente paso
+  normalized_name: documentar siguiente paso
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

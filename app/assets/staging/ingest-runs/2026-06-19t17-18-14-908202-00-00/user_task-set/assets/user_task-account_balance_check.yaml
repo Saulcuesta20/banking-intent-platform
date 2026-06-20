@@ -1,0 +1,25 @@
+asset_id: user_task.account_balance_check
+asset_type: user_task
+name: Account Balance Check
+version: 1.0.0
+owner: business_model_kb
+description: Query the current balance of a customer account.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: account_balance_check
+  task: check_account_balance
+  type: automated
+  name: Account Balance Check
+  description: Query the current balance of a customer account.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Account Balance Check
+  normalized_name: account balance check
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,20 @@
+asset_id: entity.transfer
+asset_type: entity
+name: Transfer
+version: 1.0.0
+owner: business_model_kb
+description: Movimiento de fondos entre cuentas, nacional o internacional.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Movimiento de fondos entre cuentas, nacional o internacional.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfer
+  normalized_name: transfer
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

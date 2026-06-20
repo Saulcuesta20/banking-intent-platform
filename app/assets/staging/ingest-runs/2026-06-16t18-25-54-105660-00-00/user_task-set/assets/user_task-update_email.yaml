@@ -1,0 +1,25 @@
+asset_id: user_task.update_email
+asset_type: user_task
+name: Update Email
+version: 1.0.0
+owner: business_model_kb
+description: Agent updates email address in customer profile.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: update_email
+  task: update_email_address
+  type: agent
+  name: Update Email
+  description: Agent updates email address in customer profile.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Update Email
+  normalized_name: update email
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

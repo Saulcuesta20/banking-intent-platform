@@ -1,0 +1,33 @@
+asset_id: business_rule.minimum_initial_deposit_for_savings_account
+asset_type: business_rule
+name: Minimum initial deposit for savings account
+version: 1.0.0
+owner: rules_kb
+description: Initial deposit must be at least 100 units of currency.
+text: Initial deposit must be at least 100 units of currency.
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+payload:
+  rule_text: Initial deposit must be at least 100 units of currency.
+  source_section: LLMAssetExtraction
+  conditions:
+  - Opening a savings account
+  consequences:
+  - Require deposit >= 100
+  when: Opening a savings account
+  then: Require deposit >= 100
+  transaction_id: minimum.initial.deposit.for.savings.account
+  ruleset_name: ''
+  applies_to: SavingsAccount
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Minimum initial deposit for savings account
+  normalized_name: minimum initial deposit for savings account
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

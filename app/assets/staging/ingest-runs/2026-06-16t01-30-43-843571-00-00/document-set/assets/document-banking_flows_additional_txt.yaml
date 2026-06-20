@@ -1,0 +1,141 @@
+asset_id: document.banking_flows_additional_txt
+asset_type: document
+name: banking_flows_additional.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/banking_flows_additional.txt
+text: 'Internal operations notes for the lending and customer platform.
+
+
+  When a new customer arrives at the branch or opens a digital onboarding flow,
+
+  the service desk verifies identity, captures the customer profile, and checks
+
+  whether the person already exists in the customer master. If the customer is
+
+  new, the platform creates a customer record, links identification documents,
+
+  and records consent. If the customer is returning, the agent updates the
+
+  address, phone number, employment status, and preferred contact channel.
+
+
+  Loan origination begins when a customer asks for a new personal loan or a
+
+  refinance. The advisor captures the requested amount, purpose, term, income
+
+  information, and the expected monthly payment. The application is checked
+
+  against policy rules, affordability rules, and risk thresholds. If data is
+
+  missing, the user task requests additional documents such as payslips, bank
+
+  statements, proof of residence, or employer details. The underwriting team
+
+  reviews the case and either approves, rejects, or sends it back for more
+
+  information. Once approved, the platform creates the loan account and stores
+
+  the amortization schedule.
+
+
+  Loan disbursement happens after approval and after all conditions precedent are
+
+  confirmed. The back office confirms the destination account, validates the
+
+  beneficiary, and schedules the transfer. In some cases the money goes to the
+
+  customer''s own checking account; in other cases it pays a third party such as a
+
+  merchant, vehicle seller, or another financial institution. The system records
+
+  the disbursement date, the disbursed amount, and the funding source.
+
+
+  Loan payment operations happen every month or whenever the customer makes an
+
+  extra payment. The customer can pay through branch cash, debit from an account,
+
+  bank transfer, or a digital payment channel. The payment processor calculates
+
+  interest, principal, fees, and any late charges. If the payment is partial, the
+
+  balance remains open and the schedule is updated. If the payment is full, the
+
+  loan is marked as closed and the customer receives a confirmation.
+
+
+  Collections and delinquency management are also part of the lending lifecycle.
+
+  If a payment is missed, the system creates a reminder task, sends notifications,
+
+  and may apply a policy-driven grace period. Escalation rules describe when the
+
+  case moves from reminder to collections, to recovery, and finally to write-off.
+
+  Each step must be traceable by the operations team and visible in the audit
+
+  trail.
+
+
+  Customer service teams frequently need to open cases about the loan, correct
+
+  customer information, freeze a disbursement, reverse a payment, or explain why
+
+  a request was rejected. These support flows are not the same as the main
+
+  originations flow, but they reuse the same customer, account, loan, payment, and
+
+  document entities.
+
+
+  The branch supervisor wants the platform to support a clean "create customer"
+
+  flow, a "create loan" flow, a "disburse loan" flow, and a "pay loan" flow.
+
+  These flows should be reusable across consumer lending, small business lending,
+
+  and refinance products. The same raw notes mention that workflow steps often
+
+  invoke document checks, rules validation, and backend services for customer
+
+  search, loan calculation, payment posting, and transfer execution.
+
+
+  Operational staff also need a small flow for updating an existing customer:
+
+  search the customer, verify identity, confirm the requested change, update the
+
+  record, and notify the customer. Another flow handles statement requests and
+
+  payment history inquiries. A separate support flow is used when the customer
+
+  asks to cancel a pending disbursement before funds are released.
+
+
+  These notes are intentionally unstructured and overlap on purpose, because the
+
+  ingestion pipeline should discover the reusable business flows, user tasks, and
+
+  tools from the evidence instead of relying on a fixed schema.'
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: data/raw/banking_flows_additional.txt
+  kind: text
+  sequence: 2
+  relation_hints:
+  - type: has_step
+    family: structural
+    phrase: step
+    sentence: Each step must be traceable by the operations team and visible in the
+      audit
+  match_strategy: generated
+  canonical_name: banking_flows_additional.txt
+  normalized_name: banking flows additional.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

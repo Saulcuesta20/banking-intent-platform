@@ -1,0 +1,25 @@
+asset_id: user_task.submit_or_explain_decline
+asset_type: user_task
+name: Submit or explain decline
+version: 1.0.0
+owner: business_model_kb
+description: Submit request or explain decline reason.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_refinance_assistance_step_7
+  task: submit_request_or_explain_decline_reason
+  type: manual
+  name: Submit or explain decline
+  description: Submit request or explain decline reason.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Submit or explain decline
+  normalized_name: submit or explain decline
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

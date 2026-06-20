@@ -1,0 +1,94 @@
+asset_id: flow.savings.maintenance
+asset_type: flow
+name: Savings Account Maintenance
+version: 1.0.0
+owner: process_kb
+description: Ongoing maintenance of savings account including deposits, withdrawals,
+  interest accrual, statements, and closure.
+text: Ongoing maintenance of savings account including deposits, withdrawals, interest
+  accrual, statements, and closure.
+tags:
+- manage.savings.account
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.deposit
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.withdrawal
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.generate_statement
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.close_account
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.interes
+  metadata: {}
+payload:
+  flow_id: savings.maintenance
+  flow_name: Savings Account Maintenance
+  intent: manage.savings.account
+  confidence: 0.75
+  business_event: Customer performs deposit or withdrawal, or account statement generation
+  utterances: []
+  plan: []
+  tasks:
+  - task: process_deposit
+    type: transaction
+  - task: process_withdrawal
+    type: transaction
+  - task: generate_account_statement
+    type: report
+  - task: close_savings_account
+    type: closure
+  user_tasks:
+  - user_task_id: process_deposit
+    task: process_deposit
+    type: transaction
+    name: Deposit
+    description: Deposit funds into savings account
+    tools: []
+    user_actions: []
+  - user_task_id: process_withdrawal
+    task: process_withdrawal
+    type: transaction
+    name: Withdrawal
+    description: Withdraw funds from savings account
+    tools: []
+    user_actions: []
+  - user_task_id: generate_statement
+    task: generate_account_statement
+    type: report
+    name: Generate Statement
+    description: Generate monthly or periodic statement
+    tools: []
+    user_actions: []
+  - user_task_id: close_account
+    task: close_savings_account
+    type: closure
+    name: Close Account
+    description: Close savings account after verifying balance and compliance
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Ongoing maintenance of savings account including deposits, withdrawals,
+    interest accrual, statements, and closure.
+  source: data/raw/savings_loans_domain_raw.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_raw.txt
+    purpose: To manage existing savings account transactions and reporting
+  purpose: To manage existing savings account transactions and reporting
+  transaction_id: savings.maintenance
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Savings Account Maintenance
+  normalized_name: savings account maintenance
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

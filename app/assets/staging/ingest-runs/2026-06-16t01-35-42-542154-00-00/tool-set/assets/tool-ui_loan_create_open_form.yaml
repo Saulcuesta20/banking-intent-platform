@@ -1,0 +1,28 @@
+asset_id: tool.ui_loan_create_open_form
+asset_type: tool
+name: ui.loan.create.open_form
+version: 1.0.0
+owner: business_model_kb
+description: La interfaz ui.loan.create.open_form presenta la solicitud de prestamo.
+text: La interfaz ui.loan.create.open_form presenta la solicitud de prestamo.
+tags: []
+relations: []
+payload:
+  description: La interfaz ui.loan.create.open_form presenta la solicitud de prestamo.
+  tool_id: ui.loan.create.open.form
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La interfaz ui.loan.create.open_form presenta la solicitud de prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La interfaz ui.loan.create.open_form presenta la solicitud de prestamo.
+  match_strategy: generated
+  canonical_name: ui.loan.create.open_form
+  normalized_name: ui.loan.create.open form
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

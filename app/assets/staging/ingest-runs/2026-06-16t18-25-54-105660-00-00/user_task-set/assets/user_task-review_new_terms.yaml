@@ -1,0 +1,25 @@
+asset_id: user_task.review_new_terms
+asset_type: user_task
+name: Review New Terms
+version: 1.0.0
+owner: business_model_kb
+description: Customer reviews the proposed new terms for the refinanced loan.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_review_new_terms
+  task: review_new_loan_terms
+  type: review
+  name: Review New Terms
+  description: Customer reviews the proposed new terms for the refinanced loan.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Review New Terms
+  normalized_name: review new terms
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

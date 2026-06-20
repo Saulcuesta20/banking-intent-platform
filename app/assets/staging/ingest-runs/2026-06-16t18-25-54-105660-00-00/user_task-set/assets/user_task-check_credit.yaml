@@ -1,0 +1,25 @@
+asset_id: user_task.check_credit
+asset_type: user_task
+name: Check Credit
+version: 1.0.0
+owner: business_model_kb
+description: Retrieve credit report and score
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_credit
+  task: check_credit_history_and_score
+  type: inquiry
+  name: Check Credit
+  description: Retrieve credit report and score
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Credit
+  normalized_name: check credit
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

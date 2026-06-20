@@ -1,0 +1,64 @@
+asset_id: flow.statement.request.payment.history
+asset_type: flow
+name: Statement Request and Payment History Inquiry
+version: 1.0.0
+owner: process_kb
+description: Retrieve account statements or payment history for a customer.
+text: Retrieve account statements or payment history for a customer.
+tags:
+- fulfill.information.request
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.retrieve_statement
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.retrieve_payment_history
+  metadata: {}
+payload:
+  flow_id: statement.request.payment.history
+  flow_name: Statement Request and Payment History Inquiry
+  intent: fulfill.information.request
+  confidence: 0.75
+  business_event: Customer inquiry
+  utterances: []
+  plan: []
+  tasks:
+  - task: retrieve_statement
+    type: automated
+  - task: retrieve_payment_history
+    type: automated
+  user_tasks:
+  - user_task_id: retrieve_statement
+    task: retrieve_statement
+    type: automated
+    name: Retrieve Statement
+    description: Generate and retrieve account statement.
+    tools: []
+    user_actions: []
+  - user_task_id: retrieve_payment_history
+    task: retrieve_payment_history
+    type: automated
+    name: Retrieve Payment History
+    description: Get payment history for a customer.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Retrieve account statements or payment history for a customer.
+  source: data/raw/banking_flows_additional.txt#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_flows_additional.txt#chunk-2
+    purpose: Provide requested financial documents.
+  purpose: Provide requested financial documents.
+  transaction_id: statement.request.payment.history
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Statement Request and Payment History Inquiry
+  normalized_name: statement request and payment history inquiry
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

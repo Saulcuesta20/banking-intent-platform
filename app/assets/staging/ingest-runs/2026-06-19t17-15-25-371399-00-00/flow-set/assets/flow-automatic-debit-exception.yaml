@@ -1,0 +1,41 @@
+asset_id: flow.automatic.debit.exception
+asset_type: flow
+name: Automatic Debit Exception Review
+version: 1.0.0
+owner: process_kb
+description: Routes to loan_servicing_review.
+text: Routes to loan_servicing_review.
+tags:
+- handle.failures.in.automatic.debit.processes
+relations: []
+payload:
+  flow_id: automatic.debit.exception
+  flow_name: Automatic Debit Exception Review
+  intent: handle.failures.in.automatic.debit.processes
+  confidence: 0.75
+  business_event: automatic_debit_exception_occurred
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Routes to loan_servicing_review.
+  source: data/raw/enterprise_dump_2026/service_configuration_notes.md;data/raw/enterprise_dump_2026/systems_catalog_export.json
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/service_configuration_notes.md
+    - data/raw/enterprise_dump_2026/systems_catalog_export.json
+    purpose: Review exceptions in automatic debit transactions.
+  purpose: Review exceptions in automatic debit transactions.
+  transaction_id: automatic.debit.exception
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Automatic Debit Exception Review
+  normalized_name: automatic debit exception review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,65 @@
+asset_id: asset_set.claim.handling
+asset_type: asset_set
+name: Claim.handling Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for claim.handling.
+text: 'reclamo
+
+  Gestión de reclamos
+
+  Escalar fraude
+
+  Proporcionar evidencia de reclamo
+
+  Proporcionar información adicional'
+tags:
+- asset_set
+- claim.handling
+relations:
+- type: groups_entity
+  target_asset_id: entity.claim
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.claim.handling
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.escalar_fraude
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.proporcionar_evidencia_de_reclamo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.proporcionar_informaci_n_adicional
+  metadata: {}
+payload:
+  transaction_id: claim.handling
+  asset_ids:
+  - entity.claim
+  - flow.claim.handling
+  - user_task.escalar_fraude
+  - user_task.proporcionar_evidencia_de_reclamo
+  - user_task.proporcionar_informaci_n_adicional
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.claim
+    asset_type: entity
+  - asset_id: flow.claim.handling
+    asset_type: flow
+  - asset_id: user_task.escalar_fraude
+    asset_type: user_task
+  - asset_id: user_task.proporcionar_evidencia_de_reclamo
+    asset_type: user_task
+  - asset_id: user_task.proporcionar_informaci_n_adicional
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Claim.handling Asset Set
+  normalized_name: claim.handling asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

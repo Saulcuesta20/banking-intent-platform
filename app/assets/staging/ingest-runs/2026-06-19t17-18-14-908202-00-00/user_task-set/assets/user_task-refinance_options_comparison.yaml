@@ -1,0 +1,25 @@
+asset_id: user_task.refinance_options_comparison
+asset_type: user_task
+name: Refinance Options Comparison
+version: 1.0.0
+owner: business_model_kb
+description: Compare different refinance options using loan refinance comparator.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_compare_options
+  task: compare_refinance_options
+  type: automated
+  name: Refinance Options Comparison
+  description: Compare different refinance options using loan refinance comparator.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Refinance Options Comparison
+  normalized_name: refinance options comparison
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

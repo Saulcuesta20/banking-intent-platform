@@ -1,0 +1,38 @@
+asset_id: ruleset.el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+asset_type: ruleset
+name: El.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+  with 1 business rules.
+text: Si el cliente tiene mora mayor a treinta dias, no puede refinanciar.
+tags:
+- ruleset
+- el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.el_cliente_tiene_mora_mayor_a_treinta_dias_no_puede_refinanciar
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.mora
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  transaction_id: el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+  ruleset_name: El.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar Ruleset
+  rule_ids:
+  - business_rule.el_cliente_tiene_mora_mayor_a_treinta_dias_no_puede_refinanciar
+  conditions: []
+  consequences:
+  - Si el cliente tiene mora mayor a treinta dias, no puede refinanciar.
+  match_strategy: generated
+  canonical_name: El.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+    Ruleset
+  normalized_name: el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+    ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,24 @@
+asset_id: entity.regulatorias
+asset_type: entity
+name: regulatorias.
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: El buro de credito aporta
+  score y alertas regulatorias.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases:
+  - regulatorias
+  inferred_from: section_entities
+  structural_layer: party
+  business_layer: party
+  entity_role: party
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: regulatorias.
+  normalized_name: regulatorias.
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

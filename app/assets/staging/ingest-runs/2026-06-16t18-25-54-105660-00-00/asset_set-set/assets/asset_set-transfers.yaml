@@ -1,0 +1,105 @@
+asset_id: asset_set.transfers
+asset_type: asset_set
+name: Transfers Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for transfers.
+text: 'beneficiario
+
+  cliente
+
+  CBU
+
+  Transferencias
+
+  Crear transferencia
+
+  Identificar cliente
+
+  Notificar resultado
+
+  Validar cuenta origen
+
+  Validar saldo
+
+  Verificar beneficiario'
+tags:
+- asset_set
+- transfers
+relations:
+- type: groups_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.transfers
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.crear_transferencia
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_cliente
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.notificar_resultado
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_cuenta_origen
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_saldo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verificar_beneficiario
+  metadata: {}
+payload:
+  transaction_id: transfers
+  asset_ids:
+  - entity.beneficiario
+  - entity.customer
+  - entity.transfer
+  - flow.transfers
+  - user_task.crear_transferencia
+  - user_task.identificar_cliente
+  - user_task.notificar_resultado
+  - user_task.validar_cuenta_origen
+  - user_task.validar_saldo
+  - user_task.verificar_beneficiario
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.beneficiario
+    asset_type: entity
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: flow.transfers
+    asset_type: flow
+  - asset_id: user_task.crear_transferencia
+    asset_type: user_task
+  - asset_id: user_task.identificar_cliente
+    asset_type: user_task
+  - asset_id: user_task.notificar_resultado
+    asset_type: user_task
+  - asset_id: user_task.validar_cuenta_origen
+    asset_type: user_task
+  - asset_id: user_task.validar_saldo
+    asset_type: user_task
+  - asset_id: user_task.verificar_beneficiario
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Transfers Asset Set
+  normalized_name: transfers asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

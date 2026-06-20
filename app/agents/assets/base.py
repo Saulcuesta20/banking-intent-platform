@@ -24,10 +24,12 @@ class AssetSpecialistAgent(Agent):
             agent_id=self.agent_id,
             name=self.name,
             role=self.role,
+            agent_class="worker",
             kind="worker",
             domain="asset",
             goals=[f"Handle {self.asset_type} assets consistently and audibly."],
             skills=self.skills,
+            tool_ids=[],
             state_schema="AskAgentState|IngestionAgentState",
             policy=AgentPolicy(),
         )

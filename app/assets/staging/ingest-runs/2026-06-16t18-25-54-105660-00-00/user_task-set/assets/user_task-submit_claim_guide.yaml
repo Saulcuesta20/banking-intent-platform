@@ -1,0 +1,27 @@
+asset_id: user_task.submit_claim_guide
+asset_type: user_task
+name: Submit Claim Guide
+version: 1.0.0
+owner: business_model_kb
+description: 'Customer provides claim details: motivo, fecha, importe, referencia,
+  evidencia.'
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: submit_claim_guide
+  task: fill_claim_guide
+  type: form
+  name: Submit Claim Guide
+  description: 'Customer provides claim details: motivo, fecha, importe, referencia,
+    evidencia.'
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Submit Claim Guide
+  normalized_name: submit claim guide
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

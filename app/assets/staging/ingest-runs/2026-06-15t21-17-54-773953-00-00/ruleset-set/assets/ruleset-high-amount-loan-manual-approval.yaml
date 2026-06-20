@@ -1,0 +1,34 @@
+asset_id: ruleset.high.amount.loan.manual.approval
+asset_type: ruleset
+name: High.amount.loan.manual.approval Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction high.amount.loan.manual.approval with 1 business
+  rules.
+text: Loans above 50,000 require manual underwriting approval.
+tags:
+- ruleset
+- high.amount.loan.manual.approval
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.high_amount_loan_manual_approval
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  transaction_id: high.amount.loan.manual.approval
+  ruleset_name: High.amount.loan.manual.approval Ruleset
+  rule_ids:
+  - business_rule.high_amount_loan_manual_approval
+  conditions:
+  - Loan amount > 50000
+  consequences:
+  - Require human approval
+  match_strategy: generated
+  canonical_name: High.amount.loan.manual.approval Ruleset
+  normalized_name: high.amount.loan.manual.approval ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

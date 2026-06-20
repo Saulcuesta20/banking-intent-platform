@@ -32,6 +32,16 @@ relations:
     aliases: ["reduce riesgo de", "reduces risk of", "mitigates risk of"]
     source_asset_types: ["entity", "business_rule", "process", "flow", "causality"]
     target_asset_types: ["entity", "process", "flow", "plan"]
+  represents:
+    family: business_technical_mapping
+    aliases: ["represents", "representa", "technical representation of", "materializes", "materializa"]
+    source_asset_types: ["entity"]
+    target_asset_types: ["entity"]
+  represented_by:
+    family: business_technical_mapping
+    aliases: ["represented by", "representado por", "implemented as", "stored as", "mapped to", "materialized in", "materialized_in"]
+    source_asset_types: ["entity"]
+    target_asset_types: ["entity"]
   has_step:
     family: structural
     aliases: ["has step", "step", "paso", "includes step", "contains step"]

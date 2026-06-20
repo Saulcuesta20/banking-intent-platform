@@ -1,0 +1,25 @@
+asset_id: user_task.review_transfer_details
+asset_type: user_task
+name: Review Transfer Details
+version: 1.0.0
+owner: business_model_kb
+description: Review transfer details before submission.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: review_transfer_details
+  task: review_transfer_details
+  type: review
+  name: Review Transfer Details
+  description: Review transfer details before submission.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Review Transfer Details
+  normalized_name: review transfer details
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

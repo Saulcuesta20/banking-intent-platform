@@ -1,0 +1,25 @@
+asset_id: user_task.review_loan_details
+asset_type: user_task
+name: Review Loan Details
+version: 1.0.0
+owner: business_model_kb
+description: Agent reviews current loan terms and customer income information.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: review_loan_details
+  task: review_loan_details_and_customer_income
+  type: agent
+  name: Review Loan Details
+  description: Agent reviews current loan terms and customer income information.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Review Loan Details
+  normalized_name: review loan details
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

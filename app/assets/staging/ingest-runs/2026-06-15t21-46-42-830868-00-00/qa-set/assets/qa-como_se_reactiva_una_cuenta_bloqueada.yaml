@@ -1,0 +1,33 @@
+asset_id: qa.como_se_reactiva_una_cuenta_bloqueada
+asset_type: qa
+name: Como se reactiva una cuenta bloqueada?
+version: 1.0.0
+owner: qa_kb
+description: Como se reactiva una cuenta bloqueada?
+text: Como se reactiva una cuenta bloqueada?
+tags:
+- qa
+relations: []
+payload:
+  question: Como se reactiva una cuenta bloqueada?
+  transaction_id: como.se.reactiva.una.cuenta.bloqueada
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Como se reactiva una cuenta bloqueada?
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Como se reactiva una cuenta bloqueada?
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Como se reactiva una cuenta bloqueada?
+  match_strategy: generated
+  canonical_name: Como se reactiva una cuenta bloqueada?
+  normalized_name: como se reactiva una cuenta bloqueada?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

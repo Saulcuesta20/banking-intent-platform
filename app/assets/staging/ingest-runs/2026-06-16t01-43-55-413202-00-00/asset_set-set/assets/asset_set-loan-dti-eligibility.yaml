@@ -1,0 +1,57 @@
+asset_id: asset_set.loan.dti.eligibility
+asset_type: asset_set
+name: Loan.dti.eligibility Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.dti.eligibility.
+text: 'Loan DTI eligibility
+
+  Collateral
+
+  Loan
+
+  Loan.dti.eligibility Ruleset'
+tags:
+- asset_set
+- loan.dti.eligibility
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.loan_dti_eligibility
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.collateral
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.loan.dti.eligibility
+  metadata: {}
+payload:
+  transaction_id: loan.dti.eligibility
+  asset_ids:
+  - business_rule.loan_dti_eligibility
+  - entity.collateral
+  - entity.loan
+  - ruleset.loan.dti.eligibility
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.loan_dti_eligibility
+    asset_type: business_rule
+  - asset_id: entity.collateral
+    asset_type: entity
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: ruleset.loan.dti.eligibility
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Loan.dti.eligibility Asset Set
+  normalized_name: loan.dti.eligibility asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

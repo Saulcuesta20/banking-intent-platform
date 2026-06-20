@@ -1,0 +1,57 @@
+asset_id: asset_set.high.value.transfer.control.ruleset
+asset_type: asset_set
+name: High.value.transfer.control.ruleset Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for high.value.transfer.control.ruleset.
+text: 'High value transfer control
+
+  High value transfer control Ruleset
+
+  Beneficiary Screening
+
+  Compliance Review'
+tags:
+- asset_set
+- high.value.transfer.control.ruleset
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.high_value_transfer_control
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.high.value.transfer.control.ruleset
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.beneficiary_screening
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.compliance_review
+  metadata: {}
+payload:
+  transaction_id: high.value.transfer.control.ruleset
+  asset_ids:
+  - business_rule.high_value_transfer_control
+  - ruleset.high.value.transfer.control.ruleset
+  - user_task.beneficiary_screening
+  - user_task.compliance_review
+  asset_types:
+  - business_rule
+  - ruleset
+  - user_task
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.high_value_transfer_control
+    asset_type: business_rule
+  - asset_id: ruleset.high.value.transfer.control.ruleset
+    asset_type: ruleset
+  - asset_id: user_task.beneficiary_screening
+    asset_type: user_task
+  - asset_id: user_task.compliance_review
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: High.value.transfer.control.ruleset Asset Set
+  normalized_name: high.value.transfer.control.ruleset asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

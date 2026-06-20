@@ -1,0 +1,25 @@
+asset_id: user_task.disburse_loan
+asset_type: user_task
+name: Disburse Loan
+version: 1.0.0
+owner: business_model_kb
+description: Transfer approved funds to the borrower’s account.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut106
+  task: disburse_loan
+  type: backend
+  name: Disburse Loan
+  description: Transfer approved funds to the borrower’s account.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Disburse Loan
+  normalized_name: disburse loan
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

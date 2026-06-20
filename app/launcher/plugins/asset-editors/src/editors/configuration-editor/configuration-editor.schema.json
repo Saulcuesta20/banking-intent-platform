@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "config_id": {
+      "type": "string",
+      "title": "Config ID"
+    },
+    "scope": {
+      "type": "string",
+      "title": "Scope"
+    },
+    "settings": {
+      "type": "object",
+      "title": "Settings"
+    },
+    "environment": {
+      "type": "string",
+      "title": "Environment"
+    },
+    "owner": {
+      "type": "string",
+      "title": "Owner"
+    }
+  },
+  "required": ["config_id"]
+}

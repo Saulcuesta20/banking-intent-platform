@@ -1,0 +1,25 @@
+asset_id: user_task.validar_saldo_y_riesgo
+asset_type: user_task
+name: Validar saldo y riesgo
+version: 1.0.0
+owner: business_model_kb
+description: Validar saldo suficiente y riesgo de la transferencia.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_validar_saldo_riesgo
+  task: validar_saldo_riesgo
+  type: system
+  name: Validar saldo y riesgo
+  description: Validar saldo suficiente y riesgo de la transferencia.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Validar saldo y riesgo
+  normalized_name: validar saldo y riesgo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

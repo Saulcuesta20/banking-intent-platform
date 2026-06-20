@@ -1,0 +1,20 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: loan-menu-set
+  name: Prestamos Menu Set
+  version: 1.0.0
+  domain: lending
+  module: loan
+  description: Versioned menu deployment set for loan.
+  tags:
+  - lending
+  - loan
+  - menu
+spec:
+  assetType: menu
+  assets:
+  - assets/menu-loan-loan-create.yaml
+  - assets/menu-loan-loan-payment.yaml
+  - assets/menu-loan-loan-disbursement.yaml
+  - assets/menu-loan-loan-refinance.yaml

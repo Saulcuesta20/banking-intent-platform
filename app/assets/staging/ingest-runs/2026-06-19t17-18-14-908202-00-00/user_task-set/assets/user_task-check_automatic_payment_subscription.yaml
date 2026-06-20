@@ -1,0 +1,27 @@
+asset_id: user_task.check_automatic_payment_subscription
+asset_type: user_task
+name: Check Automatic Payment Subscription
+version: 1.0.0
+owner: business_model_kb
+description: Determine if the client's account is subscribed to automatic payments
+  and confirm the charge date.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_tck_1001
+  task: check_automatic_payment_subscription
+  type: inquiry
+  name: Check Automatic Payment Subscription
+  description: Determine if the client's account is subscribed to automatic payments
+    and confirm the charge date.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Automatic Payment Subscription
+  normalized_name: check automatic payment subscription
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

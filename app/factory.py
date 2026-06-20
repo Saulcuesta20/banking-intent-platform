@@ -21,9 +21,11 @@ from app.ask.answer import AnswerBuilder
 from app.ask.intent import FlowSelectionService
 from app.ask.service import AskService
 from app.ask.understanding import LLMQuestionUnderstandingProvider, QuestionUnderstandingService
-from app.agents.ask import AskCoordinatorAgent
+from app.agents.ask.coordinator import AskCoordinatorAgent
+from app.agents.ingestion.coordinator import IngestionCoordinatorAgent
 from app.agents.catalog import build_agent_registry as build_default_agent_registry
 from app.agents.registry import AgentRegistry
+from app.ingestion.asset_pipeline import CanonicalAssetPipeline
 from app.ingestion.llm_flow_loader import CorpusFlowLoader, OpenAICompatibleLLMClient
 from app.ingestion.orchestrator import IngestionOrchestratorService
 from app.knowledge_base.adapters.graph.neo4j import Neo4jKnowledgeBaseGraphAdapter
@@ -57,14 +59,21 @@ def build_graph_repository() -> Neo4jKnowledgeBaseGraphAdapter:
 
 def build_ingestion_orchestrator() -> IngestionOrchestratorService:
     settings = load_settings()
+    registry = build_enterprise_asset_registry()
     return IngestionOrchestratorService(
         CorpusFlowLoader(
             OpenAICompatibleLLMClient(
                 api_key=settings.openai_api_key,
                 base_url=settings.openai_base_url,
                 model=settings.intent_llm_model,
+                timeout_seconds=settings.intent_llm_timeout_seconds,
             )
-        )
+        ),
+        canonical_asset_pipeline=CanonicalAssetPipeline(
+            registry=registry,
+            relation_pattern_path=settings.relation_pattern_path,
+            ontology_path=settings.ontology_layers_path,
+        ),
     )
 
 
@@ -138,9 +147,19 @@ def build_launcher_runtime_service() -> LauncherRuntimeService:
 
 
 def build_asset_search_service() -> AssetSearchService:
+    settings = load_settings()
+    vector_adapter = None
+    try:
+        from app.knowledge_base.adapters.vector.qdrant import QdrantKnowledgeBaseVectorAdapter
+        vector_adapter = QdrantKnowledgeBaseVectorAdapter(
+            settings.qdrant_host, settings.qdrant_api_key,
+        )
+    except Exception:
+        pass
     return AssetSearchService(
         registry=build_enterprise_asset_registry(),
         repository=build_unified_catalog_repository(),
+        vector=vector_adapter,
     )
 
 

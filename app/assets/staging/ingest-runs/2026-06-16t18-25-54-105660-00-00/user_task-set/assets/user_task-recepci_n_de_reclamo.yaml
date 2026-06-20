@@ -1,0 +1,25 @@
+asset_id: user_task.recepci_n_de_reclamo
+asset_type: user_task
+name: Recepción de reclamo
+version: 1.0.0
+owner: business_model_kb
+description: Recibir el reclamo a través de canales como teléfono, correo o sucursal.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: claim_reception
+  task: recepci_n_del_reclamo_en_canales
+  type: manual
+  name: Recepción de reclamo
+  description: Recibir el reclamo a través de canales como teléfono, correo o sucursal.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Recepción de reclamo
+  normalized_name: recepción de reclamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -35,7 +35,7 @@ The launcher should include these capabilities:
 - notifications and event center
 - admin and settings areas
 - workflow launch and run tracking
-- low-code / config-driven form and plugin rendering through Lowdefy
+- low-code / config-driven form and plugin rendering inside the launcher shell
 - support for coded shadcn screens when a specialized canvas is needed
 
 ## What The Launcher Must Show
@@ -99,12 +99,12 @@ The platform already knows how to ingest, resolve, approve, and trace business k
 The launcher should use a hybrid UI model:
 
 - shadcn/ui owns the shell and primary application experience
-- Lowdefy owns dynamic forms, YAML-driven flow screens, and plugin-specific declarative pages
+- React-rendered dynamic forms and plugin-specific declarative pages live inside the launcher shell
 - FastAPI owns workflow execution, registry data, approvals, logs, and knowledge access
 
 This split is necessary because the launcher needs a highly controlled three-panel experience with collapsible and resizable sidebars, persistent chat, and a right context panel. That behavior is better handled by a custom React + TypeScript shell.
 
-Lowdefy can render:
+The dynamic form layer can render:
 
 - forms derived from user tasks
 - declarative plugin pages
@@ -113,7 +113,7 @@ Lowdefy can render:
 - workflow input screens
 - form bindings to backend endpoints
 
-Lowdefy should not own:
+The dynamic form layer should not own:
 
 - the launcher shell
 - global navigation
@@ -124,7 +124,7 @@ Lowdefy should not own:
 - ingestion
 - the knowledge base
 
-Python can help generate or validate Lowdefy schemas, but the visual shell belongs to the React + TypeScript launcher.
+Python can help generate or validate form schemas, but the visual shell belongs to the React + TypeScript launcher.
 
 ## Operational Experience
 

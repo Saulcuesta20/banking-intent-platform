@@ -1,0 +1,34 @@
+asset_id: flow.transfer.limit.inquiry
+asset_type: flow
+name: quiero consultar mi limite de transferencia
+version: 1.0.0
+owner: process_kb
+description: 'El cliente solicita: quiero consultar mi limite de transferencia.'
+text: 'El cliente solicita: quiero consultar mi limite de transferencia.'
+tags:
+- utterance_flow
+relations:
+- type: uses_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+payload:
+  utterances:
+  - 'El cliente solicita: quiero consultar mi limite de transferencia.'
+  purpose: 'El cliente solicita: quiero consultar mi limite de transferencia.'
+  transaction_id: transfer.limit.inquiry
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente solicita: quiero consultar mi limite de transferencia.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente solicita: quiero consultar mi limite de transferencia.'
+  match_strategy: generated
+  canonical_name: quiero consultar mi limite de transferencia
+  normalized_name: quiero consultar mi limite de transferencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.check_payment_regularity
+asset_type: user_task
+name: Check Payment Regularity
+version: 1.0.0
+owner: business_model_kb
+description: Review payment regularity
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_payment_regularity
+  task: check_payment_regularity
+  type: verification
+  name: Check Payment Regularity
+  description: Review payment regularity
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Payment Regularity
+  normalized_name: check payment regularity
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: product-service-config-process-set
+  name: Productos y Servicios Process Set
+  version: 1.0.0
+  domain: master-data
+  module: product-service-config
+  description: Versioned process deployment set for product-service-config.
+  tags:
+  - master-data
+  - product-service-config
+  - process
+spec:
+  assetType: process
+  assets:
+  - assets/process-product-config.yaml

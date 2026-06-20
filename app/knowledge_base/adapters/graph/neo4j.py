@@ -44,7 +44,7 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
           collect(DISTINCT u.text) AS utterances,
           collect(DISTINCT c.name) AS concepts,
           collect(DISTINCT s.term) AS concept_aliases,
-          collect(DISTINCT {task: t.task, type: t.type, sequence: task_rel.sequence}) AS user_tasks,
+          collect(DISTINCT {task: t.task, type: t.type, order_index: task_rel.sequence}) AS user_tasks,
           collect(DISTINCT tool.tool_id) AS tools
         ORDER BY flow_id
         """
@@ -88,7 +88,7 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
           all_utterances AS utterances,
           all_concepts AS concepts,
           all_concept_aliases AS concept_aliases,
-          collect(DISTINCT {task: t.task, type: t.type, sequence: task_rel.sequence}) AS user_tasks,
+          collect(DISTINCT {task: t.task, type: t.type, order_index: task_rel.sequence}) AS user_tasks,
           collect(DISTINCT tool.tool_id) AS tools,
           matched_tokens AS matched_tokens,
           size(matched_tokens) AS match_score
@@ -179,6 +179,7 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
     def initialize(self) -> None:
         with self.driver.session() as session:
             session.execute_write(self._create_constraints)
+            session.execute_write(self._create_dimension_nodes)
 
     def clear(self) -> None:
         with self.driver.session() as session:
@@ -264,14 +265,81 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
         tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (t:UserTask) REQUIRE t.task IS UNIQUE")
         tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (u:Utterance) REQUIRE u.text IS UNIQUE")
         tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (a:Asset) REQUIRE a.asset_id IS UNIQUE")
+        # Dimension node constraints
+        tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (kb:KnowledgeBase) REQUIRE kb.name IS UNIQUE")
+        tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (eng:Engine) REQUIRE eng.name IS UNIQUE")
+        tx.run("CREATE CONSTRAINT IF NOT EXISTS FOR (sl:StructuralLayer) REQUIRE sl.name IS UNIQUE")
+        # Indexes for dimension-based filtering
+        tx.run("CREATE INDEX IF NOT EXISTS FOR (a:Asset) ON (a.primary_kb)")
+        tx.run("CREATE INDEX IF NOT EXISTS FOR (a:Asset) ON (a.structural_layer)")
+        tx.run("CREATE INDEX IF NOT EXISTS FOR (a:Asset) ON (a.asset_type)")
+        tx.run("CREATE INDEX IF NOT EXISTS FOR (a:Asset) ON (a.engine)")
+        tx.run("CREATE INDEX IF NOT EXISTS FOR (a:Asset) ON (a.status)")
+
+    # Dimension node definitions
+    KNOWLEDGE_BASES = [
+        {"name": "business_model_kb", "description": "Business model entities, tools, user tasks, and semantic spaces"},
+        {"name": "process_kb", "description": "Business processes, flows, and asset sets"},
+        {"name": "rules_kb", "description": "Business rules and rulesets"},
+        {"name": "planning_kb", "description": "Planning and roadmap assets"},
+        {"name": "causality_kb", "description": "Cause-effect relationships"},
+        {"name": "document_kb", "description": "Source documents and corpus chunks"},
+        {"name": "qa_kb", "description": "Question and answer pairs"},
+        {"name": "config_kb", "description": "Configuration, domains, modules, and forms"},
+    ]
+
+    ENGINES = [
+        {"name": "neo4j", "kind": "graph", "description": "Graph relationships, flows, processes, tasks, tools, concepts"},
+        {"name": "qdrant", "kind": "vector", "description": "Semantic/vector search for text evidence"},
+        {"name": "sqlite", "kind": "document", "description": "Document storage for long manuals and corpus chunks"},
+        {"name": "catalog", "kind": "repository", "description": "Unified Catalog of approved YAML/JSON assets"},
+    ]
+
+    STRUCTURAL_LAYERS = [
+        {"name": "party", "description": "Personas o entidades externas/internas que participan"},
+        {"name": "organization", "description": "Divisiones, direcciones, departamentos y estructura"},
+        {"name": "capability", "description": "Funciones o centros de competencia"},
+        {"name": "portfolio", "description": "Conjuntos estructurados de productos/servicios"},
+        {"name": "offering", "description": "Producto o servicio individual comercializable"},
+        {"name": "program", "description": "Iniciativas, campañas o planes coordinados"},
+        {"name": "channel", "description": "Medios y plataformas por donde interactúa"},
+        {"name": "transaction", "description": "Movimientos operativos o financieros"},
+        {"name": "agreement", "description": "Contratos, políticas y consentimientos"},
+        {"name": "event", "description": "Hitos, SLA y cambios de estado"},
+        {"name": "metric", "description": "Indicadores y KPIs"},
+        {"name": "workforce", "description": "Personas/puestos concretos dentro de la empresa"},
+        {"name": "workforce_role", "description": "Roles o perfiles reutilizables"},
+        {"name": "business_resource", "description": "Recursos del negocio: plataformas, sistemas, documentos"},
+    ]
+
+    @staticmethod
+    def _create_dimension_nodes(tx: Any) -> None:
+        """Create KnowledgeBase, Engine, and StructuralLayer dimension nodes."""
+        for kb in Neo4jKnowledgeBaseGraphAdapter.KNOWLEDGE_BASES:
+            tx.run(
+                "MERGE (kb:KnowledgeBase {name: $name}) "
+                "SET kb.description = $description, kb.kind = 'knowledge_base'",
+                kb,
+            )
+        for eng in Neo4jKnowledgeBaseGraphAdapter.ENGINES:
+            tx.run(
+                "MERGE (eng:Engine {name: $name}) "
+                "SET eng.kind = $kind, eng.description = $description, eng.dimension = 'engine'",
+                eng,
+            )
+        for layer in Neo4jKnowledgeBaseGraphAdapter.STRUCTURAL_LAYERS:
+            tx.run(
+                "MERGE (sl:StructuralLayer {name: $name}) "
+                "SET sl.description = $description, sl.dimension = 'structural_layer'",
+                layer,
+            )
 
     @staticmethod
     def _clear_graph(tx: Any) -> None:
+        # Delete ALL nodes EXCEPT dimension nodes (KnowledgeBase, Engine, StructuralLayer)
         tx.run(
-            "MATCH (n) WHERE n:Flow OR n:Action OR n:UserAction OR n:Tool OR n:Concept OR n:Synonym "
-            "OR n:UserTask OR n:Utterance OR n:Ontology OR n:Asset OR n:Entity "
-            "OR n:BusinessRule OR n:Plan OR n:ProcessAsset OR n:QA OR n:Causality "
-            "OR n:DocumentAsset OR n:ConfigurationAsset DETACH DELETE n"
+            "MATCH (n) WHERE NOT n:KnowledgeBase AND NOT n:Engine AND NOT n:StructuralLayer "
+            "DETACH DELETE n"
         )
 
     @staticmethod
@@ -307,12 +375,11 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
                     {"concept": concept, "alias": alias},
                 )
         for index, task in enumerate(record.user_tasks, start=1):
-            sequence = task.sequence or index
             tx.run("MERGE (t:UserTask {task: $task}) SET t.type = $type", {"task": task.task, "type": task.type})
             tx.run(
                 "MATCH (f:Flow {flow_id: $flow_id}), (t:UserTask {task: $task}) "
                 "MERGE (f)-[rel:HAS_USER_TASK]->(t) SET rel.sequence = $sequence",
-                {"flow_id": record.flow_id, "task": task.task, "sequence": sequence},
+                {"flow_id": record.flow_id, "task": task.task, "sequence": index},
             )
             for action in task.user_actions:
                 Neo4jKnowledgeBaseGraphAdapter._upsert_task_user_action(tx, record.flow_id, task.task, action.to_dict())
@@ -341,15 +408,15 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
         tx.run(
             "MERGE (ua:UserAction {action_id: $action_id}) "
             "SET ua.type = $type, ua.implementation_type = $implementation_type, ua.tool_id = $tool_id, "
-            "ua.operation = $operation, ua.resource = $resource, ua.label = $label, "
+            "ua.tool_ids = $tool_ids, ua.label = $label, ua.lifecycle_state = $lifecycle_state, "
             "ua.triggers = $triggers, ua.description = $description",
             {
                 "action_id": action.get("action_id") or action.get("action"),
                 "type": action.get("type"),
                 "implementation_type": action.get("implementation_type"),
+                "lifecycle_state": action.get("lifecycle_state") or "not_started",
                 "tool_id": action.get("tool_id"),
-                "operation": action.get("operation"),
-                "resource": action.get("resource"),
+                "tool_ids": action.get("tool_ids") or ([action.get("tool_id")] if action.get("tool_id") else []),
                 "label": action.get("label"),
                 "triggers": action.get("triggers"),
                 "description": action.get("description"),
@@ -406,13 +473,27 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
         labels = Neo4jKnowledgeBaseGraphAdapter._labels_for_asset(asset)
         id_key, id_value = Neo4jKnowledgeBaseGraphAdapter._identity_for_asset(asset)
         label_string = ":".join(labels)
+
+        # Determine primary_kb from owner or payload
+        primary_kb = (
+            getattr(asset, "owner", None)
+            or asset.payload.get("primary_kb")
+            or asset.payload.get("owner")
+            or asset.payload.get("knowledge_base")
+            or ""
+        )
+
+        # Determine engine(s) based on asset_type and projection rules
+        engines = Neo4jKnowledgeBaseGraphAdapter._engines_for_asset(asset)
+
         tx.run(
             f"MERGE (n:{label_string} {{{id_key}: $identity_value}}) "
-            "SET n.asset_id = $asset_id, n.asset_type = $asset_type, n.name = $name, "
+            "SET n.placeholder = false, n.asset_id = $asset_id, n.asset_type = $asset_type, n.name = $name, "
             "n.version = $version, n.status = $status, n.owner = $owner, "
-                "n.description = $description, n.text = $text, n.tags = $tags, "
+            "n.description = $description, n.text = $text, n.tags = $tags, "
             "n.source_refs = $source_refs, n.payload_json = $payload_json, "
-            "n.launcher_enabled = $launcher_enabled",
+            "n.structural_layer = $structural_layer, n.business_layer = $business_layer, n.subtype = $subtype, "
+            "n.launcher_enabled = $launcher_enabled, n.primary_kb = $primary_kb, n.engine = $engine",
             {
                 "identity_value": id_value,
                 "asset_id": asset.asset_id,
@@ -426,37 +507,76 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
                 "tags": asset.tags,
                 "source_refs": asset.source_refs,
                 "payload_json": json.dumps(asset.payload, ensure_ascii=False),
+                "structural_layer": (
+                    getattr(asset, "structural_layer", None)
+                    or asset.payload.get("structural_layer")
+                    or getattr(asset, "business_layer", None)
+                    or asset.payload.get("business_layer")
+                ),
+                "business_layer": getattr(asset, "business_layer", None) or asset.payload.get("business_layer"),
+                "subtype": asset.payload.get("subtype"),
                 "launcher_enabled": asset.payload.get("launcher_enabled") is True,
+                "primary_kb": primary_kb,
+                "engine": ",".join(sorted(engines)) if engines else "",
             },
         )
+
+        # Create OWNED_BY relationship to KnowledgeBase node
+        if primary_kb:
+            tx.run(
+                "MERGE (kb:KnowledgeBase {name: $kb_name}) "
+                "SET kb.kind = 'knowledge_base' "
+                "WITH kb "
+                "MATCH (a:Asset {asset_id: $asset_id}) "
+                "MERGE (a)-[:OWNED_BY]->(kb)",
+                {"kb_name": primary_kb, "asset_id": asset.asset_id},
+            )
+
+        # Create STORED_IN relationships to Engine nodes
+        for engine_name in engines:
+            tx.run(
+                "MERGE (eng:Engine {name: $engine_name}) "
+                "SET eng.dimension = 'engine' "
+                "WITH eng "
+                "MATCH (a:Asset {asset_id: $asset_id}) "
+                "MERGE (a)-[:STORED_IN]->(eng)",
+                {"engine_name": engine_name, "asset_id": asset.asset_id},
+            )
+
+        structural_layer = (
+            getattr(asset, "structural_layer", None)
+            or asset.payload.get("structural_layer")
+            or getattr(asset, "business_layer", None)
+            or asset.payload.get("business_layer")
+        )
+        if asset.asset_type == "entity" and structural_layer:
+            tx.run(
+                "MERGE (layer:StructuralLayer {name: $structural_layer}) "
+                "SET layer.description = $description, layer.dimension = 'structural_layer' "
+                "WITH layer "
+                "MATCH (entity:Asset {asset_id: $asset_id}) "
+                "MERGE (layer)-[:CLASSIFIES {relation_type: 'classifies'}]->(entity)",
+                {
+                    "structural_layer": structural_layer,
+                    "asset_id": asset.asset_id,
+                    "description": Neo4jKnowledgeBaseGraphAdapter._layer_description(structural_layer),
+                },
+            )
         tx.run(
             "MATCH (n:Asset {asset_id: $asset_id})-[r]->() "
             "WHERE r.relation_type IS NOT NULL OR type(r) = 'RELATES_TO_ASSET' "
             "DELETE r",
             {"asset_id": asset.asset_id},
         )
-        for alias in Neo4jKnowledgeBaseGraphAdapter._aliases_for_asset(asset):
-            tx.run(
-                "MERGE (s:Synonym {term: $alias}) "
-                "SET s:Alias, s.name = $alias, s.display_name = $alias, s.normalized = true",
-                {"alias": alias},
-            )
-            tx.run(
-                "MATCH (n:Asset {asset_id: $asset_id}), (s:Synonym {term: $alias}) "
-                "MERGE (n)-[:HAS_ALIAS]->(s) "
-                "MERGE (s)-[:NORMALIZES_TO]->(n)",
-                {"asset_id": asset.asset_id, "alias": alias},
-            )
         for relation in asset.relations:
             target_labels, target_id_key, target_id_value = Neo4jKnowledgeBaseGraphAdapter._target_identity(relation.target_asset_id)
             tx.run(
                 f"MERGE (target:{':'.join(target_labels)} {{{target_id_key}: $target_identity_value}}) "
-                "SET target.asset_id = coalesce(target.asset_id, $target_asset_id), "
-                "    target.asset_type = coalesce(target.asset_type, $target_asset_type)",
+                "ON CREATE SET target.asset_id = $target_asset_id, target.placeholder = true "
+                "ON MATCH SET target.asset_id = coalesce(target.asset_id, $target_asset_id)",
                 {
                     "target_identity_value": target_id_value,
                     "target_asset_id": relation.target_asset_id,
-                    "target_asset_type": relation.target_asset_id.split('.', 1)[0],
                 },
             )
             rel_type = Neo4jKnowledgeBaseGraphAdapter._relationship_type(relation.type)
@@ -506,6 +626,8 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
             source_refs=[str(value) for value in raw_asset.get("source_refs") or []],
             relations=relations,
             payload=payload,
+            structural_layer=raw_asset.get("structural_layer") or payload.get("structural_layer") or raw_asset.get("business_layer") or payload.get("business_layer"),
+            business_layer=raw_asset.get("business_layer") or payload.get("business_layer"),
         )
 
     @staticmethod
@@ -515,7 +637,10 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
             "user_task": "UserTaskAsset",
             "tool": "ToolAsset",
             "entity": "Entity",
+            "concept": "Entity",
+            "semantic_space": "SemanticSpace",
             "business_rule": "BusinessRule",
+            "ruleset": "BusinessRule",
             "plan": "Plan",
             "process": "ProcessAsset",
             "qa": "QA",
@@ -541,7 +666,10 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
             "user_task": "UserTaskAsset",
             "tool": "ToolAsset",
             "entity": "Entity",
+            "concept": "Entity",
+            "semantic_space": "SemanticSpace",
             "business_rule": "BusinessRule",
+            "ruleset": "BusinessRule",
             "plan": "Plan",
             "process": "ProcessAsset",
             "qa": "QA",
@@ -585,10 +713,60 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
         return aliases
 
     @staticmethod
+    def _engines_for_asset(asset: EnterpriseAsset) -> list[str]:
+        """Determine which storage engines an asset is projected to."""
+        asset_type = asset.asset_type
+        # Engine mapping based on asset type and projection rules
+        engine_map = {
+            "flow": ["neo4j", "catalog"],
+            "process": ["neo4j", "catalog"],
+            "user_task": ["neo4j", "qdrant", "catalog"],
+            "tool": ["neo4j", "qdrant", "catalog"],
+            "entity": ["neo4j", "qdrant", "catalog"],
+            "concept": ["neo4j", "catalog"],
+            "semantic_space": ["catalog"],
+            "business_rule": ["neo4j", "qdrant", "sqlite", "catalog"],
+            "ruleset": ["neo4j", "qdrant", "sqlite", "catalog"],
+            "plan": ["neo4j", "catalog"],
+            "qa": ["qdrant", "catalog"],
+            "causality": ["neo4j", "qdrant", "sqlite", "catalog"],
+            "document": ["qdrant", "sqlite", "catalog"],
+            "configuration": ["catalog"],
+            "domain": ["catalog"],
+            "module": ["catalog"],
+            "asset_set": ["catalog"],
+        }
+        return engine_map.get(asset_type, ["catalog"])
+
+    @staticmethod
+    def _layer_description(layer_name: str) -> str:
+        """Return description for a structural layer."""
+        descriptions = {
+            "party": "Personas o entidades externas/internas que participan",
+            "organization": "Divisiones, direcciones, departamentos y estructura",
+            "capability": "Funciones o centros de competencia",
+            "portfolio": "Conjuntos estructurados de productos/servicios",
+            "offering": "Producto o servicio individual comercializable",
+            "program": "Iniciativas, campañas o planes coordinados",
+            "channel": "Medios y plataformas por donde interactúa",
+            "transaction": "Movimientos operativos o financieros",
+            "agreement": "Contratos, políticas y consentimientos",
+            "event": "Hitos, SLA y cambios de estado",
+            "metric": "Indicadores y KPIs",
+            "workforce": "Personas/puestos concretos dentro de la empresa",
+            "workforce_role": "Roles o perfiles reutilizables",
+            "business_resource": "Recursos del negocio: plataformas, sistemas, documentos",
+        }
+        return descriptions.get(layer_name, "")
+
+    @staticmethod
     def _should_project_asset(asset: EnterpriseAsset) -> bool:
+        # asset_set is not projected to graph (catalog/relational only)
+        if asset.asset_type == "asset_set":
+            return False
         if asset.asset_type == "causality":
             relation_types = {relation.type for relation in asset.relations}
-            return "has_cause" in relation_types and "has_effect" in relation_types
+            return "has_cause" in relation_types or "has_effect" in relation_types
         if asset.asset_type == "entity":
             name = (asset.name or "").casefold()
             if not name:
@@ -679,7 +857,6 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
                 user_task_id=str(item["task"]),
                 task=str(item["task"]),
                 type=str(item.get("type") or "user_task"),
-                sequence=item.get("sequence"),
                 tools=[
                     ToolDefinition(
                         tool_id=str(tool_id),
@@ -691,7 +868,7 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
                     if tool_id
                 ],
             )
-            for item in sorted(raw_tasks, key=lambda value: value.get("sequence") or 0)
+            for item in sorted(raw_tasks, key=lambda value: value.get("order_index") or 0)
         ]
         concepts = [str(value) for value in row.get("concepts", []) if value]
         aliases = [str(value) for value in row.get("concept_aliases", []) if value]
@@ -751,8 +928,6 @@ class Neo4jKnowledgeBaseGraphAdapter(GraphKnowledgeBaseAdapter):
                 parts = [str(value["task"])]
                 if value.get("type"):
                     parts.append(f"type={value['type']}")
-                if value.get("sequence") is not None:
-                    parts.append(f"sequence={value['sequence']}")
                 return " ".join(parts)
             return json.dumps(value, ensure_ascii=False, sort_keys=True)
         return str(value)

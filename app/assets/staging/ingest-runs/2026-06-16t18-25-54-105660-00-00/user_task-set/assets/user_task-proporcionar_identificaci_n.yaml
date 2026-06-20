@@ -1,0 +1,29 @@
+asset_id: user_task.proporcionar_identificaci_n
+asset_type: user_task
+name: Proporcionar identificación
+version: 1.0.0
+owner: business_model_kb
+description: El usuario presenta su documento de identidad para validación.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_provide_id
+  task: proporcionar_identificaci_n
+  type: document_submission
+  name: Proporcionar identificación
+  description: El usuario presenta su documento de identidad para validación.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: El usuario presenta su documento de identidad para validación.
+  match_strategy: generated
+  canonical_name: Proporcionar identificación
+  normalized_name: proporcionar identificación
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -25,13 +25,18 @@ class AgentDefinition(BaseModel):
     agent_id: str
     name: str
     role: str
+    agent_class: Literal["planning", "coordinator", "delegator", "worker", "monitoring"] = "worker"
     kind: AgentKind
     domain: AgentDomain
     goals: list[str] = Field(default_factory=list)
     skills: list[str] = Field(default_factory=list)
+    skill_ids: list[str] = Field(default_factory=list)
+    tool_ids: list[str] = Field(default_factory=list)
     graph_name: str | None = None
     state_schema: str | None = None
     policy: AgentPolicy = Field(default_factory=AgentPolicy)
+    enabled: bool = True
+    description: str | None = None
 
     model_config = {"frozen": True}
 
@@ -46,4 +51,3 @@ class AgentRunResult(BaseModel):
     error: str | None = None
 
     model_config = {"arbitrary_types_allowed": True}
-

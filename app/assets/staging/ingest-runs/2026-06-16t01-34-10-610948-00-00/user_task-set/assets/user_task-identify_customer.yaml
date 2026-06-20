@@ -1,0 +1,25 @@
+asset_id: user_task.identify_customer
+asset_type: user_task
+name: Identify Customer
+version: 1.0.0
+owner: business_model_kb
+description: Confirm client identity for the transfer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut301
+  task: identify_customer
+  type: backend
+  name: Identify Customer
+  description: Confirm client identity for the transfer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Identify Customer
+  normalized_name: identify customer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

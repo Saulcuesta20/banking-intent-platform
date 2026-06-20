@@ -1,0 +1,147 @@
+asset_id: asset_set.loan.refinance
+asset_type: asset_set
+name: Loan.refinance Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.refinance.
+text: 'cliente
+
+  prestamo
+
+  mora
+
+  Análisis inicial de crédito
+
+  Refinanciamiento de préstamo
+
+  quiero refinanciar mi prestamo actual
+
+  Loan refinance assistance
+
+  Loan refinance handling
+
+  Calculate refinance conditions
+
+  Confirmación de pago automático
+
+  Consulta de mora
+
+  Identificación de caso
+
+  Identify Customer
+
+  manager_approval
+
+  Revisión de saldo'
+tags:
+- asset_set
+- loan.refinance
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.mora
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.analisis.inicial
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.flow.01
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.loan.refinance
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.loan.refinance
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.loan.refinance
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.calculate_refinance_conditions
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirmaci_n_de_pago_autom_tico
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.consulta_de_mora
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificaci_n_de_caso
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identify_customer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.manager_approval
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.revisi_n_de_saldo
+  metadata: {}
+payload:
+  transaction_id: loan.refinance
+  asset_ids:
+  - entity.customer
+  - entity.loan
+  - entity.mora
+  - flow.analisis.inicial
+  - flow.flow.01
+  - flow.loan.refinance
+  - plan.loan.refinance
+  - process.loan.refinance
+  - user_task.calculate_refinance_conditions
+  - user_task.confirmaci_n_de_pago_autom_tico
+  - user_task.consulta_de_mora
+  - user_task.identificaci_n_de_caso
+  - user_task.identify_customer
+  - user_task.manager_approval
+  - user_task.revisi_n_de_saldo
+  asset_types:
+  - entity
+  - flow
+  - plan
+  - process
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: entity.mora
+    asset_type: entity
+  - asset_id: flow.analisis.inicial
+    asset_type: flow
+  - asset_id: flow.flow.01
+    asset_type: flow
+  - asset_id: flow.loan.refinance
+    asset_type: flow
+  - asset_id: plan.loan.refinance
+    asset_type: plan
+  - asset_id: process.loan.refinance
+    asset_type: process
+  - asset_id: user_task.calculate_refinance_conditions
+    asset_type: user_task
+  - asset_id: user_task.confirmaci_n_de_pago_autom_tico
+    asset_type: user_task
+  - asset_id: user_task.consulta_de_mora
+    asset_type: user_task
+  - asset_id: user_task.identificaci_n_de_caso
+    asset_type: user_task
+  - asset_id: user_task.identify_customer
+    asset_type: user_task
+  - asset_id: user_task.manager_approval
+    asset_type: user_task
+  - asset_id: user_task.revisi_n_de_saldo
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Loan.refinance Asset Set
+  normalized_name: loan.refinance asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

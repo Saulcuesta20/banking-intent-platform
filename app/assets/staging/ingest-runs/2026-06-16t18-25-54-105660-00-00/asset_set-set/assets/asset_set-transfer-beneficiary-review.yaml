@@ -1,0 +1,80 @@
+asset_id: asset_set.transfer.beneficiary.review
+asset_type: asset_set
+name: Transfer.beneficiary.review Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for transfer.beneficiary.review.
+text: 'Transfers and Beneficiary Review
+
+  capture_transfer_details
+
+  Check High-Value Threshold
+
+  Identify Customer
+
+  Perform Beneficiary Screening
+
+  Record Evidence
+
+  Request Clarification'
+tags:
+- asset_set
+- transfer.beneficiary.review
+relations:
+- type: groups_flow
+  target_asset_id: flow.transfer.beneficiary.review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.capture_transfer_details
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.check_high_value_threshold
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identify_customer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.perform_beneficiary_screening
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.record_evidence
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.request_clarification
+  metadata: {}
+payload:
+  transaction_id: transfer.beneficiary.review
+  asset_ids:
+  - flow.transfer.beneficiary.review
+  - user_task.capture_transfer_details
+  - user_task.check_high_value_threshold
+  - user_task.identify_customer
+  - user_task.perform_beneficiary_screening
+  - user_task.record_evidence
+  - user_task.request_clarification
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.transfer.beneficiary.review
+    asset_type: flow
+  - asset_id: user_task.capture_transfer_details
+    asset_type: user_task
+  - asset_id: user_task.check_high_value_threshold
+    asset_type: user_task
+  - asset_id: user_task.identify_customer
+    asset_type: user_task
+  - asset_id: user_task.perform_beneficiary_screening
+    asset_type: user_task
+  - asset_id: user_task.record_evidence
+    asset_type: user_task
+  - asset_id: user_task.request_clarification
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Transfer.beneficiary.review Asset Set
+  normalized_name: transfer.beneficiary.review asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

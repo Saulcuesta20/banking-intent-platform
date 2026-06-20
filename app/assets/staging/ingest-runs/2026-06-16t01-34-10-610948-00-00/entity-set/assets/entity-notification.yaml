@@ -1,0 +1,30 @@
+asset_id: entity.notification
+asset_type: entity
+name: Notification
+version: 1.0.0
+owner: business_model_kb
+description: Mensaje enviado al cliente sobre eventos de cuenta o transacción.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Mensaje enviado al cliente sobre eventos de cuenta o transacción.
+  inferred_from: llm_asset_extraction
+  business_layer: event
+  entity_role: event
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Mensaje enviado al cliente sobre eventos de cuenta o transacción.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Mensaje enviado al cliente sobre eventos de cuenta o transacción.
+  match_strategy: generated
+  canonical_name: Notification
+  normalized_name: notification
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

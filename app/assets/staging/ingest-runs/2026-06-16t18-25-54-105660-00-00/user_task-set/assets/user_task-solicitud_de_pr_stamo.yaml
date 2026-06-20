@@ -1,0 +1,32 @@
+asset_id: user_task.solicitud_de_pr_stamo
+asset_type: user_task
+name: Solicitud de préstamo
+version: 1.0.0
+owner: business_model_kb
+description: El cliente completa el formulario de solicitud de préstamo indicando
+  monto, plazo y propósito.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: presentar_solicitud_prestamo
+  task: presentar_solicitud_de_pr_stamo
+  type: form
+  name: Solicitud de préstamo
+  description: El cliente completa el formulario de solicitud de préstamo indicando
+    monto, plazo y propósito.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente completa el formulario de solicitud de préstamo indicando
+      monto, plazo y propósito.
+  match_strategy: generated
+  canonical_name: Solicitud de préstamo
+  normalized_name: solicitud de préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

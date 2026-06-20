@@ -1,0 +1,72 @@
+asset_id: asset_set.loan.application.origination
+asset_type: asset_set
+name: Loan.application.origination Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.application.origination.
+text: 'Loan Application and Origination
+
+  Application Collection
+
+  Credit History Check
+
+  Human Approval Request
+
+  Income Verification
+
+  Repayment Setup'
+tags:
+- asset_set
+- loan.application.origination
+relations:
+- type: groups_flow
+  target_asset_id: flow.loan.application.origination
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.application_collection
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.credit_history_check
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.human_approval_request
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.income_verification
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.repayment_setup
+  metadata: {}
+payload:
+  transaction_id: loan.application.origination
+  asset_ids:
+  - flow.loan.application.origination
+  - user_task.application_collection
+  - user_task.credit_history_check
+  - user_task.human_approval_request
+  - user_task.income_verification
+  - user_task.repayment_setup
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.loan.application.origination
+    asset_type: flow
+  - asset_id: user_task.application_collection
+    asset_type: user_task
+  - asset_id: user_task.credit_history_check
+    asset_type: user_task
+  - asset_id: user_task.human_approval_request
+    asset_type: user_task
+  - asset_id: user_task.income_verification
+    asset_type: user_task
+  - asset_id: user_task.repayment_setup
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Loan.application.origination Asset Set
+  normalized_name: loan.application.origination asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

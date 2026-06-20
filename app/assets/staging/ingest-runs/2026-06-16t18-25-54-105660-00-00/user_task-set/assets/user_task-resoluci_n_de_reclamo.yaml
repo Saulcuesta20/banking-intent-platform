@@ -1,0 +1,29 @@
+asset_id: user_task.resoluci_n_de_reclamo
+asset_type: user_task
+name: Resolución de reclamo
+version: 1.0.0
+owner: business_model_kb
+description: Resolver el reclamo y comunicar la decisión al cliente en 7 días hábiles.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: claim_resolution
+  task: resoluci_n_y_comunicaci_n_al_cliente
+  type: manual
+  name: Resolución de reclamo
+  description: Resolver el reclamo y comunicar la decisión al cliente en 7 días hábiles.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Resolver el reclamo y comunicar la decisión al cliente en 7 días hábiles.
+  match_strategy: generated
+  canonical_name: Resolución de reclamo
+  normalized_name: resolución de reclamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

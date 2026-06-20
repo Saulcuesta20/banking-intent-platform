@@ -1,0 +1,42 @@
+asset_id: asset_set.que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide
+asset_type: asset_set
+name: Que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide.
+text: 'Transfer
+
+  Que pasa si el beneficiario de la transferencia no coincide?'
+tags:
+- asset_set
+- que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide
+relations:
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_qa
+  target_asset_id: qa.que_pasa_si_el_beneficiario_de_la_transferencia_no_coincide
+  metadata: {}
+payload:
+  transaction_id: que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide
+  asset_ids:
+  - entity.transfer
+  - qa.que_pasa_si_el_beneficiario_de_la_transferencia_no_coincide
+  asset_types:
+  - entity
+  - qa
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: qa.que_pasa_si_el_beneficiario_de_la_transferencia_no_coincide
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide Asset
+    Set
+  normalized_name: que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide asset
+    set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

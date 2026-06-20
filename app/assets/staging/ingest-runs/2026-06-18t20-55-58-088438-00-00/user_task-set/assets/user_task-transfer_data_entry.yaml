@@ -1,0 +1,27 @@
+asset_id: user_task.transfer_data_entry
+asset_type: user_task
+name: Transfer Data Entry
+version: 1.0.0
+owner: business_model_kb
+description: Customer specifies origin account, beneficiary, amount, and concept for
+  transfer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: enter_transfer_details
+  task: enter_transfer_details
+  type: execution
+  name: Transfer Data Entry
+  description: Customer specifies origin account, beneficiary, amount, and concept
+    for transfer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfer Data Entry
+  normalized_name: transfer data entry
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

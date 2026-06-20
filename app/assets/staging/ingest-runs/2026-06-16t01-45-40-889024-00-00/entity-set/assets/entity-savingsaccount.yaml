@@ -1,0 +1,30 @@
+asset_id: entity.savingsaccount
+asset_type: entity
+name: SavingsAccount
+version: 1.0.0
+owner: business_model_kb
+description: Cuenta bancaria para recibir depósitos, transferencias y generar intereses.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Cuenta de depósito que genera intereses y sirve como origen de pagos.
+  inferred_from: llm_asset_extraction
+  business_layer: channel
+  entity_role: asset
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: Cuenta de depósito que genera intereses y sirve como origen de pagos.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Cuenta de depósito que genera intereses y sirve como origen de pagos.
+  match_strategy: generated
+  canonical_name: SavingsAccount
+  normalized_name: savingsaccount
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

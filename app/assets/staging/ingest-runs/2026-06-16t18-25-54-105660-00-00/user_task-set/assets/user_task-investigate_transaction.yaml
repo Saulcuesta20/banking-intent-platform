@@ -1,0 +1,25 @@
+asset_id: user_task.investigate_transaction
+asset_type: user_task
+name: Investigate Transaction
+version: 1.0.0
+owner: business_model_kb
+description: Agent reviews transaction history to confirm duplicate.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: investigate_transaction
+  task: investigate_duplicate_charge
+  type: agent
+  name: Investigate Transaction
+  description: Agent reviews transaction history to confirm duplicate.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Investigate Transaction
+  normalized_name: investigate transaction
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

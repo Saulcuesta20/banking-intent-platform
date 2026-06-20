@@ -1,0 +1,22 @@
+asset_id: entity.everydaybankingsuite
+asset_type: entity
+name: EverydayBankingSuite
+version: 1.0.0
+owner: business_model_kb
+description: Paquete compuesto por SmartBalance Checking, Horizon Savings y EverydayPlus
+  Debit.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Paquete compuesto por SmartBalance Checking, Horizon Savings y EverydayPlus
+    Debit.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: EverydayBankingSuite
+  normalized_name: everydaybankingsuite
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

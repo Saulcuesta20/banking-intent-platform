@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: customer-process-set
+  name: Clientes Process Set
+  version: 1.0.0
+  domain: master-data
+  module: customer
+  description: Versioned process deployment set for customer.
+  tags:
+  - master-data
+  - customer
+  - process
+spec:
+  assetType: process
+  assets:
+  - assets/process-customer-create.yaml

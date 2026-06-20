@@ -1,0 +1,25 @@
+asset_id: user_task.account_status_confirmation
+asset_type: user_task
+name: Account Status Confirmation
+version: 1.0.0
+owner: business_model_kb
+description: Confirm the status of the newly created account.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_account_status
+  task: confirm_account_status
+  type: status_verification
+  name: Account Status Confirmation
+  description: Confirm the status of the newly created account.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Account Status Confirmation
+  normalized_name: account status confirmation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

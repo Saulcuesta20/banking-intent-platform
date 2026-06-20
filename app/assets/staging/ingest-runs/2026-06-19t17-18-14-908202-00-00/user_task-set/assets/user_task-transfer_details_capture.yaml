@@ -1,0 +1,25 @@
+asset_id: user_task.transfer_details_capture
+asset_type: user_task
+name: Transfer Details Capture
+version: 1.0.0
+owner: business_model_kb
+description: Agent captures all necessary details for the transfer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_capture_details
+  task: capture_source_account_beneficiary_amount_currency_and_transfer_reason
+  type: manual
+  name: Transfer Details Capture
+  description: Agent captures all necessary details for the transfer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfer Details Capture
+  normalized_name: transfer details capture
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

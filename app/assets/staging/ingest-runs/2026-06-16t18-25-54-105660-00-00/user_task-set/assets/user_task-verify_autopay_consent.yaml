@@ -1,0 +1,29 @@
+asset_id: user_task.verify_autopay_consent
+asset_type: user_task
+name: Verify Autopay Consent
+version: 1.0.0
+owner: business_model_kb
+description: Verificar consentimiento de pago automatico.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verify_autopay_consent
+  task: verificar_consentimiento_de_pago_automatico
+  type: manual
+  name: Verify Autopay Consent
+  description: Verificar consentimiento de pago automatico.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Verificar consentimiento de pago automatico.
+  match_strategy: generated
+  canonical_name: Verify Autopay Consent
+  normalized_name: verify autopay consent
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

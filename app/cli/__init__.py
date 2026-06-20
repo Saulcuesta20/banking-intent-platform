@@ -4,6 +4,7 @@ import json
 import os
 import re
 import sys
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from textwrap import indent
@@ -15,6 +16,7 @@ from rich.console import Console
 from rich.table import Table
 from rich.tree import Tree as RichTree
 from app.factory import (
+    build_asset_catalog_store,
     build_asset_search_service,
     build_asset_sync_service,
     build_asset_validation_service,
@@ -28,6 +30,7 @@ from app.factory import (
     build_orchestration_executor_service,
 )
 from app.config.settings import load_settings
+from app.config.model import load_asset_contracts
 from app.capability.registry import RegistryCapabilityProvider
 from app.ingestion.orchestrator import IngestionOrchestratorConfig
 from app.knowledge_base.catalog_store import AssetCatalogStore
@@ -202,9 +205,9 @@ def kb_views() -> None:
             for name in registry.list_knowledge_bases()
         },
         "runtime_views": {
-            "repository": "Approved YAML/JSON assets and generated flow/process assets.",
+            "catalog": "Catalog of approved YAML/JSON assets and generated flow/process assets.",
             "graph": "Neo4j relationship view for flow/process/entity/task/tool retrieval.",
-            "vector": "Semantic text view for policies, rules, Q&A, and documents.",
+            "vector": "Semantic text view for approved Q&A and source documents.",
             "document": "Document view for long manuals, corpus chunks, and policy pages.",
             "relational": "Runtime state, audit, approvals, and monitoring.",
             "external_api": "Tool/API view for real-time evidence and service calls.",
@@ -230,7 +233,7 @@ def kb_route(query: str) -> None:
 def kb_show(
     knowledge_base: str,
     query: str | None = typer.Option(None, "--query", "-q", help="Filter assets by text."),
-    status: str = typer.Option("approved", "--status", help="approved, draft, candidate, deprecated, rejected, or all."),
+    status: str = typer.Option("all", "--status", help="approved, draft, candidate, deprecated, rejected, ready_for_review, in_review, validated, active, draft, retired, or all."),
     store: list[str] | None = typer.Option(None, "--store", help="Show only one configured engine/store. Can be repeated."),
     limit: int = typer.Option(50, "--limit", help="Maximum assets to return."),
     full: bool = typer.Option(False, "--full", help="Print full asset payloads."),
@@ -284,7 +287,7 @@ def kb_show(
             "name": f"KB-{_plural_asset_type(asset_type)}",
             "asset_type": asset_type,
             "description": config.description,
-            "data_owner": "repository",
+            "data_owner": "catalog",
             "canonical_data_format": "yaml",
             "configured_stores": configured_stores,
             "route_kind": config.route_kind,
@@ -311,7 +314,7 @@ def kb_show(
 
 @app.command("kb")
 def kb(
-    knowledge_base: str | None = typer.Option(None, "--kb", "--knowledge-base", help="Knowledge base/store filter: repository, graph, vector, relational, document."),
+    knowledge_base: str | None = typer.Option(None, "--kb", "--knowledge-base", help="Knowledge base/store filter: catalog, graph, vector, relational, document."),
     owner_kb: str | None = typer.Option(None, "--owner-kb", help="Logical owner KB filter, for example process_kb, planning_kb, rules_kb, business_model_kb, qa_kb, document_kb, causality_kb, or config_kb."),
     requested_asset_type: str | None = typer.Option(None, "--asset-type", "--asset", help="Asset type to filter, for example flow, process, business_rule, plan, tool."),
     asset_id: str | None = typer.Option(None, "--id", help="Global asset id to inspect."),
@@ -319,13 +322,14 @@ def kb(
     relation_type: str | None = typer.Option(None, "--relation-type", help="Filter assets with an outbound relation of this type."),
     store: str = typer.Option("catalog", "--store", help="catalog, document, vector, or all."),
     tree: bool = typer.Option(False, "--tree", help="Include child relationships as a tree."),
+    metadata: bool = typer.Option(False, "--metadata", help="Show catalog metadata and contract trees."),
     limit: int = typer.Option(50, "--limit", help="Maximum rows."),
     status: str = typer.Option("approved", "--status", help="approved, draft, candidate, deprecated, rejected, or all."),
     output_format: str = typer.Option("table", "--format", help="table, tree, or json."),
 ) -> None:
     """Query catalog and knowledge-base engines with one command."""
-    if output_format not in {"table", "tree", "json"}:
-        raise typer.BadParameter("--format must be table, tree, or json")
+    if output_format not in {"table", "tree", "json", "ontology-tree"}:
+        raise typer.BadParameter("--format must be table, tree, json, or ontology-tree")
     settings = load_settings()
     registry = build_enterprise_asset_registry()
     catalog = AssetCatalogStore(settings.processed_directory / "knowledge_base" / "asset_catalog.sqlite")
@@ -333,6 +337,33 @@ def kb(
         console.print("[bold red]Knowledge catalog is not loaded.[/bold red]")
         console.print("Run: kb reset-ingest --raw data/raw/enterprise_dump_2026")
         raise typer.Exit(1)
+
+    if metadata:
+        assets = catalog.list_assets(status="all", limit=max(limit, 100))
+        asset_index = {str(asset.get("asset_id") or ""): asset for asset in assets if isinstance(asset, dict) and asset.get("asset_id")}
+        asset_relations = {asset_id: catalog.children(asset_id) for asset_id in asset_index}
+        payload = {
+            "filters": {
+                "metadata": True,
+                "store": store,
+                "limit": limit,
+                "status": status,
+            },
+            "catalog_totals": catalog.totals(),
+            "metadata": _catalog_metadata_snapshot(catalog),
+            "asset_contracts": load_asset_contracts(),
+            "assets": assets,
+            "asset_index": asset_index,
+            "asset_relations": asset_relations,
+        }
+        if output_format == "json":
+            console.print_json(data=payload)
+            return
+        if output_format == "table":
+            _print_kb_metadata_result(payload)
+            return
+        _print_kb_metadata_tree_result(payload)
+        return
 
     asset_filter = requested_asset_type
     asset_type = _normalize_kb_asset_type(asset_filter, registry.list_asset_types()) if asset_filter else None
@@ -389,10 +420,88 @@ def kb(
     if output_format == "json":
         console.print_json(data=payload)
         return
+    if output_format == "ontology-tree":
+        _print_ontology_tree(payload)
+        return
     if tree or output_format == "tree":
         _print_kb_query_tree_result(payload)
         return
     _print_kb_query_result(payload)
+
+
+def _catalog_metadata_snapshot(catalog: AssetCatalogStore) -> dict[str, object]:
+    """Return catalog metadata grouped the same way the launcher filters it."""
+    assets = catalog.list_assets(status="all", limit=10_000)
+    asset_types = sorted({str(asset.get("asset_type") or "") for asset in assets if asset.get("asset_type")})
+    knowledge_bases = sorted({store for asset in assets for store in asset.get("stores") or []})
+    statuses = sorted({str(asset.get("status") or "") for asset in assets if asset.get("status")})
+    tags = sorted({tag for asset in assets for tag in asset.get("tags") or []})
+    domains = sorted({str(asset.get("domain_id") or "") for asset in assets if asset.get("domain_id")})
+    modules = sorted({str(asset.get("module_id") or "") for asset in assets if asset.get("module_id")})
+    return {
+        "asset_types": asset_types,
+        "knowledge_bases": knowledge_bases,
+        "statuses": statuses,
+        "tags": tags,
+        "domains": domains,
+        "modules": modules,
+        "counts": {
+            "asset_types": dict(Counter(str(asset.get("asset_type") or "") for asset in assets if asset.get("asset_type"))),
+            "knowledge_bases": dict(Counter(store for asset in assets for store in asset.get("stores") or [])),
+            "statuses": dict(Counter(str(asset.get("status") or "") for asset in assets if asset.get("status"))),
+            "tags": dict(Counter(tag for asset in assets for tag in asset.get("tags") or [])),
+            "domains": dict(Counter(str(asset.get("domain_id") or "") for asset in assets if asset.get("domain_id"))),
+            "modules": dict(Counter(str(asset.get("module_id") or "") for asset in assets if asset.get("module_id"))),
+        },
+    }
+
+
+def _print_ontology_tree(payload: dict[str, object]) -> None:
+    """Render ontology assets grouped by structural_layer as a rich tree."""
+    assets = payload.get("assets")
+    if not isinstance(assets, list) or not assets:
+        console.print("[bold red]No ontology assets found.[/bold red]")
+        return
+
+    filters = payload.get("filters") or {}
+    title = filters.get("owner_kb") or filters.get("query") or "ontology"
+
+    root = RichTree(f"[bold]{title}[/bold] ontology_tree")
+
+    by_layer: dict[str, list[dict[str, object]]] = {}
+    for asset in assets:
+        payload_data = asset.get("payload") if isinstance(asset.get("payload"), dict) else {}
+        layer = asset.get("structural_layer") or (payload_data.get("structural_layer") if isinstance(payload_data, dict) else None)
+        layer = str(layer or "unclassified")
+        by_layer.setdefault(layer, []).append(asset)
+
+    layer_order = [
+        "party", "organization", "capability", "portfolio", "offering",
+        "program", "channel", "transaction", "agreement", "event",
+        "metric", "workforce", "workforce_role", "business_resource", "unclassified",
+    ]
+    sorted_layers = sorted(by_layer.keys(), key=lambda l: (layer_order.index(l) if l in layer_order else 99, l))
+
+    for layer in sorted_layers:
+        layer_assets = by_layer[layer]
+        layer_branch = root.add(f"[bold]{layer}[/bold] ({len(layer_assets)} entities)")
+        for asset in sorted(layer_assets, key=lambda a: str(a.get("name") or a.get("asset_id") or "")):
+            asset_id = asset.get("asset_id") or ""
+            name = asset.get("name") or ""
+            description = ""
+            payload_data = asset.get("payload") if isinstance(asset.get("payload"), dict) else {}
+            if isinstance(payload_data, dict):
+                description = str(payload_data.get("description") or "")
+            aliases = asset.get("aliases") if isinstance(asset.get("aliases"), list) else []
+            alias_str = ", ".join(str(a) for a in aliases[:3]) if aliases else ""
+            label = f"{name} ({asset_id})"
+            if alias_str:
+                label += f" [{alias_str}]"
+            branch = layer_branch.add(label)
+            if description:
+                branch.add(_short_text(description, 120))
+
+    Console(width=220).print(root)
 
 
 def _print_kb_query_result(payload: dict[str, object]) -> None:
@@ -429,6 +538,86 @@ def _print_kb_query_result(payload: dict[str, object]) -> None:
     tree_payload = payload.get("tree")
     if isinstance(tree_payload, dict):
         _print_kb_tree(tree_payload)
+
+
+def _print_kb_metadata_result(payload: dict[str, object]) -> None:
+    """Render catalog metadata and asset contracts in compact tables."""
+    filters = payload.get("filters") or {}
+    if isinstance(filters, dict):
+        console.print("[bold]Catalog Metadata[/bold]")
+        console.print(f"store={filters.get('store')} status={filters.get('status')}")
+    metadata = payload.get("metadata")
+    if isinstance(metadata, dict):
+        for key in ("asset_types", "knowledge_bases", "statuses", "tags", "domains", "modules"):
+            values = metadata.get(key) or []
+            if isinstance(values, list):
+                console.print(f"{key}: {', '.join(str(value) for value in values) or '-'}")
+    contracts = payload.get("asset_contracts")
+    if isinstance(contracts, dict):
+        _print_asset_contracts_table(contracts)
+
+
+def _print_kb_metadata_tree_result(payload: dict[str, object]) -> None:
+    """Render catalog metadata and asset contracts as a tree."""
+    metadata = payload.get("metadata") if isinstance(payload.get("metadata"), dict) else {}
+    contracts = payload.get("asset_contracts") if isinstance(payload.get("asset_contracts"), dict) else {}
+    assets = payload.get("assets") if isinstance(payload.get("assets"), list) else []
+    asset_index = payload.get("asset_index") if isinstance(payload.get("asset_index"), dict) else {}
+    asset_relations = payload.get("asset_relations") if isinstance(payload.get("asset_relations"), dict) else {}
+
+    root = RichTree("[bold]catalog_metadata[/bold]")
+    _add_metadata_category_tree(root, "asset_types", metadata.get("asset_types"), metadata.get("counts", {}).get("asset_types"))
+    _add_metadata_category_tree(
+        root,
+        "knowledge_bases",
+        metadata.get("knowledge_bases"),
+        metadata.get("counts", {}).get("knowledge_bases"),
+    )
+    _add_metadata_category_tree(root, "statuses", metadata.get("statuses"), metadata.get("counts", {}).get("statuses"))
+    _add_metadata_category_tree(root, "tags", metadata.get("tags"), metadata.get("counts", {}).get("tags"))
+    _add_metadata_category_tree(root, "domains", metadata.get("domains"), metadata.get("counts", {}).get("domains"))
+    _add_metadata_category_tree(root, "modules", metadata.get("modules"), metadata.get("counts", {}).get("modules"))
+
+    contracts_branch = root.add("[bold]asset_contracts[/bold]")
+    for name, config in contracts.items():
+        if isinstance(config, dict):
+            branch = contracts_branch.add(name)
+            if config.get("description"):
+                branch.add(f"description: {config['description']}")
+            if config.get("required_fields"):
+                branch.add(f"required_fields: {', '.join(str(field) for field in config['required_fields'])}")
+            if config.get("optional_fields"):
+                branch.add(f"optional_fields: {', '.join(str(field) for field in config['optional_fields'])}")
+            relations = config.get("relations") or {}
+            if isinstance(relations, dict):
+                allowed_relations = relations.get("allowed") or []
+                if allowed_relations:
+                    branch.add(f"allowed_relations: {', '.join(str(value) for value in allowed_relations)}")
+            runtime_semantics = config.get("runtime_semantics") or {}
+            if isinstance(runtime_semantics, dict):
+                semantics = []
+                if runtime_semantics.get("selected_by"):
+                    semantics.append(f"selected_by={runtime_semantics['selected_by']}")
+                if runtime_semantics.get("triggered_by"):
+                    semantics.append(f"triggered_by={runtime_semantics['triggered_by']}")
+                if runtime_semantics.get("execution_target"):
+                    semantics.append(f"execution_target={runtime_semantics['execution_target']}")
+                if semantics:
+                    branch.add(", ".join(semantics))
+
+    if isinstance(assets, list) and assets:
+        assets_branch = root.add("[bold]asset_hierarchy[/bold]")
+        by_type: dict[str, list[dict[str, object]]] = {}
+        for asset in assets:
+            if not isinstance(asset, dict):
+                continue
+            by_type.setdefault(str(asset.get("asset_type") or "unknown"), []).append(asset)
+        for asset_type, typed_assets in sorted(by_type.items()):
+            type_branch = assets_branch.add(asset_type)
+            for asset in typed_assets:
+                _add_catalog_asset_hierarchy(type_branch, asset, asset_index, asset_relations)
+
+    Console(width=220).print(root)
 
 
 def _print_kb_query_tree_result(payload: dict[str, object]) -> None:
@@ -588,6 +777,129 @@ def _add_kb_tree_node(parent: RichTree, node: dict[str, object]) -> None:
             _add_kb_tree_node(branch, child)
 
 
+def _add_metadata_category_tree(
+    parent: RichTree,
+    category: str,
+    values: list[object] | dict[str, object] | None,
+    counts: dict[str, object] | None,
+) -> None:
+    """Attach one catalog metadata category to a Rich tree."""
+    branch = parent.add(f"[bold]{category}[/bold]")
+    if isinstance(values, list):
+        for value in values:
+            label = str(value)
+            count = counts.get(label) if isinstance(counts, dict) else None
+            branch.add(f"{label}{f' ({count})' if count is not None else ''}")
+
+
+def _add_catalog_asset_hierarchy(
+    parent: RichTree,
+    asset: dict[str, object],
+    asset_index: dict[str, object],
+    asset_relations: dict[str, object],
+) -> None:
+    """Render one asset with payload-driven hierarchy and linked catalog relations."""
+    branch = parent.add(_asset_tree_label(asset))
+    asset_payload = asset.get("payload") if isinstance(asset.get("payload"), dict) else {}
+    if not isinstance(asset_payload, dict):
+        asset_payload = {}
+
+    if asset.get("asset_type") == "flow":
+        _add_flow_payload_branch(branch, asset_payload)
+    elif asset.get("asset_type") == "user_task":
+        _add_user_task_payload_branch(branch, asset_payload)
+
+    asset_id = str(asset.get("asset_id") or "")
+    if asset_id:
+        relation_rows = asset_relations.get(asset_id) if isinstance(asset_relations, dict) else None
+        if relation_rows:
+            relations_branch = branch.add("catalog_relations")
+            for relation in relation_rows:
+                if not isinstance(relation, dict):
+                    continue
+                target = relation.get("target") if isinstance(relation.get("target"), dict) else {}
+                relation_branch = relations_branch.add(
+                    f"{relation.get('relation_type')} -> {_asset_tree_label(target or {'asset_id': relation.get('target_asset_id')})}"
+                )
+                if target and target.get("asset_type") in {"flow", "user_task"}:
+                    relation_asset = asset_index.get(str(target.get("asset_id") or ""))
+                    if isinstance(relation_asset, dict):
+                        relation_payload = relation_asset.get("payload") if isinstance(relation_asset.get("payload"), dict) else {}
+                        if relation_payload:
+                            if relation_asset.get("asset_type") == "flow":
+                                _add_flow_payload_branch(relation_branch, relation_payload)
+                            elif relation_asset.get("asset_type") == "user_task":
+                                _add_user_task_payload_branch(relation_branch, relation_payload)
+
+
+def _add_flow_payload_branch(parent: RichTree, payload: dict[str, object]) -> None:
+    """Render flow payload as a nested task/action/tool tree."""
+    user_tasks = payload.get("user_tasks")
+    if not isinstance(user_tasks, list) or not user_tasks:
+        return
+    tasks_branch = parent.add("user_tasks")
+    for user_task in user_tasks:
+        if not isinstance(user_task, dict):
+            continue
+        task_branch = tasks_branch.add(
+            f"{user_task.get('user_task_id') or user_task.get('task') or 'task'} | "
+            f"{user_task.get('name') or user_task.get('task') or ''}"
+        )
+        _add_user_task_payload_branch(task_branch, user_task)
+
+
+def _add_user_task_payload_branch(parent: RichTree, payload: dict[str, object]) -> None:
+    """Render one user task with its actions and tools."""
+    user_actions = payload.get("user_actions")
+    if isinstance(user_actions, list) and user_actions:
+        actions_branch = parent.add("user_actions")
+        for action in user_actions:
+            if not isinstance(action, dict):
+                continue
+            action_label = (
+                f"{action.get('action_id') or action.get('action')} | "
+                f"type={action.get('type')} impl={action.get('implementation_type')} "
+                f"state={action.get('lifecycle_state') or 'not_started'}"
+            )
+            action_branch = actions_branch.add(action_label)
+            tool_ids = action.get("tool_ids") if isinstance(action.get("tool_ids"), list) else []
+            if tool_ids:
+                tools_branch = action_branch.add("tools")
+                for tool_id in tool_ids:
+                    tools_branch.add(str(tool_id))
+
+    tools = payload.get("tools")
+    if isinstance(tools, list) and tools:
+        tools_branch = parent.add("tools")
+        for tool in tools:
+            if not isinstance(tool, dict):
+                continue
+            tools_branch.add(
+                f"{tool.get('tool_id') or ''} | {tool.get('tool_type') or ''} | {tool.get('operation') or ''}"
+            )
+
+
+def _print_asset_contracts_table(contracts: dict[str, dict[str, object]]) -> None:
+    """Print asset contracts as a compact summary table."""
+    table = Table(title="Asset Contracts")
+    table.add_column("asset_type")
+    table.add_column("required_fields", overflow="fold")
+    table.add_column("optional_fields", overflow="fold")
+    table.add_column("allowed_relations", overflow="fold")
+    for name, config in contracts.items():
+        if not isinstance(config, dict):
+            continue
+        relations = config.get("relations") or {}
+        allowed_relations = relations.get("allowed") if isinstance(relations, dict) else []
+        table.add_row(
+            name,
+            ", ".join(str(field) for field in config.get("required_fields") or []),
+            ", ".join(str(field) for field in config.get("optional_fields") or []),
+            ", ".join(str(value) for value in allowed_relations or []),
+        )
+    console.print(table)
+
+
 def _asset_tree_label(asset: dict[str, object]) -> str:
     """Return an informative one-line label for an asset tree node."""
     asset_id = asset.get("asset_id") or "unknown"
@@ -662,14 +974,14 @@ def _normalize_knowledge_base_filter(value: str | None) -> str | None:
 @app.command("kb-search")
 def kb_search(
     query: str,
-    view: str = typer.Option("all", "--view", help="repository, graph, or all."),
-    asset_type: list[str] | None = typer.Option(None, "--type", help="Repository asset type filter. Can be repeated."),
+    view: str = typer.Option("all", "--view", help="catalog, graph, or all."),
+    asset_type: list[str] | None = typer.Option(None, "--type", help="Catalog asset type filter. Can be repeated."),
     limit: int = typer.Option(10, "--limit", help="Maximum results per view."),
     full: bool = typer.Option(False, "--full", help="Print full records/assets."),
 ) -> None:
     """Search knowledge-base views directly without running full ask."""
     if view not in {"repository", "graph", "all"}:
-        raise typer.BadParameter("--view must be repository, graph, or all")
+        raise typer.BadParameter("--view must be catalog, graph, or all")
     payload: dict[str, object] = {"query": query, "view": view}
     if view in {"repository", "all"}:
         asset_result = build_asset_search_service().search(query, asset_types=asset_type or None, limit=limit)
@@ -792,6 +1104,24 @@ def kb_query(
             "evidence_assets": [_asset_summary(asset) for asset in asset_result.evidence_assets],
         }
     )
+    vector_payload: dict[str, object]
+    if asset_result.vector_results:
+        vector_payload = {
+            "status": "ok",
+            "results": (
+                asset_result.vector_results
+                if full
+                else [
+                    {"score": item.get("score", 0), "asset_id": item.get("payload", {}).get("asset_id"), "text": str(item.get("payload", {}).get("text", ""))[:200]}
+                    for item in asset_result.vector_results
+                ]
+            ),
+        }
+    else:
+        vector_payload = {
+            "status": "no_results",
+            "reason": "No vector results returned for this query.",
+        }
     console.print_json(
         data={
             "query": query,
@@ -801,10 +1131,7 @@ def kb_query(
                 "views": {
                     "repository": repository_payload,
                     "graph": graph_payload,
-                    "vector": {
-                        "status": "not_wired",
-                        "reason": "Qdrant adapter exists, but semantic indexing/search is not wired yet.",
-                    },
+                    "vector": vector_payload,
                     "relational": {
                         "status": "runtime_only",
                         "reason": "Postgres adapter exists for runtime/audit state, not ask-time knowledge retrieval yet.",
@@ -814,24 +1141,6 @@ def kb_query(
             },
         }
     )
-
-
-def _print_ask_flow_summary(question: str, events: list[tuple[str, str]], result) -> None:
-    payload = result.to_dict()
-    planning = _json_message_value(events, "planning", "output=") or {}
-    goal = payload.get("goal") or planning.get("goal") or {}
-    route = payload.get("route") or planning.get("route") or {}
-    user_needs = payload.get("user_needs") or planning.get("user_needs") or []
-    multiple_intentions_plan = payload.get("multiple_intentions_plan") or planning.get("multiple_intentions_plan") or {}
-    selection_policy = payload.get("execution_selection_policy") or {}
-    execution_options = payload.get("execution_options") or []
-    asset_search = _json_message_value(events, "asset_search", "output=") or {}
-    trace_file = _message_value(events, "debug_trace", "file=") or "not written"
-    selected_flow = f'{payload["flow_id"]} ({payload["flow_name"]})'
-
-    console.print("[bold]Ask trace summary[/bold]")
-    console.print(f"[bold]Question[/bold] {question}")
-    console.print("")
 
 
 def _load_ask_scenarios(scenario_file: Path) -> list[dict]:
@@ -1094,7 +1403,6 @@ def _normalize_kb_asset_type(value: str, known_asset_types: list[str]) -> str:
         "business-rules": "business_rule",
         "concepts": "concept",
         "entities": "entity",
-        "ontologies": "ontology",
         "tools": "tool",
         "documents": "document",
         "docs": "document",
@@ -1118,7 +1426,6 @@ def _plural_asset_type(asset_type: str) -> str:
         "business_rule": "business-rules",
         "concept": "concepts",
         "entity": "entities",
-        "ontology": "ontologies",
         "tool": "tools",
         "document": "documents",
         "configuration": "configurations",
@@ -1307,8 +1614,9 @@ def _catalog_tree(catalog: AssetCatalogStore, asset_id: str, *, depth: int) -> d
     if depth <= 1:
         return node
     for child in children:
-        target_id = child["target_asset_id"]
-        target = catalog.get_asset(target_id)
+        resolved_target = child.get("target") if isinstance(child.get("target"), dict) else None
+        target_id = str((resolved_target or {}).get("asset_id") or child["target_asset_id"])
+        target = catalog.get_asset(target_id) or resolved_target
         child["target"] = _asset_tree_summary(target, target_id)
         child["is_reference"] = target is None
         if target:
@@ -1910,6 +2218,8 @@ def ingest(source: Path) -> None:
             raw_path=source,
             audit_directory=settings.processed_directory / "ingestion_audit",
             knowledge_base_service=build_knowledge_base_service(),
+            asset_catalog_store=build_asset_catalog_store(),
+            asset_registry=build_enterprise_asset_registry(),
             apply=True,
         )
     )
@@ -1918,6 +2228,8 @@ def ingest(source: Path) -> None:
             "status": "ok",
             "source": str(source),
             "flows_persisted": result.flows_persisted,
+            "canonical_assets_generated": result.canonical_assets_generated,
+            "catalog_assets_persisted": result.catalog_assets_persisted,
             "audit_path": str(result.audit_path),
         }
     )

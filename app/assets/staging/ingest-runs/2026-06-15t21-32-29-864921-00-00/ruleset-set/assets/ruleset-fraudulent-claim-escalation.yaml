@@ -1,0 +1,33 @@
+asset_id: ruleset.fraudulent.claim.escalation
+asset_type: ruleset
+name: Fraudulent.claim.escalation Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction fraudulent.claim.escalation with 1 business rules.
+text: Claims flagged as fraud are escalated to the fraud investigation team.
+tags:
+- ruleset
+- fraudulent.claim.escalation
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.fraudulent_claim_escalation
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.claim
+  metadata: {}
+payload:
+  transaction_id: fraudulent.claim.escalation
+  ruleset_name: Fraudulent.claim.escalation Ruleset
+  rule_ids:
+  - business_rule.fraudulent_claim_escalation
+  conditions:
+  - Claim flagged fraud
+  consequences:
+  - Escalate
+  match_strategy: generated
+  canonical_name: Fraudulent.claim.escalation Ruleset
+  normalized_name: fraudulent.claim.escalation ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

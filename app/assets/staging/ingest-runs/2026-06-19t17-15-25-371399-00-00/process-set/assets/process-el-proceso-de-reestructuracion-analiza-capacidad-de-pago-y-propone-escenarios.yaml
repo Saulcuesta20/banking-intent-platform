@@ -1,0 +1,34 @@
+asset_id: process.el.proceso.de.reestructuracion.analiza.capacidad.de.pago.y.propone.escenarios
+asset_type: process
+name: Process reestructuracion analiza capacidad de pago
+version: 1.0.0
+owner: process_kb
+description: El proceso de reestructuracion analiza capacidad de pago y propone escenarios.
+text: El proceso de reestructuracion analiza capacidad de pago y propone escenarios.
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: El proceso de reestructuracion analiza capacidad de pago y propone escenarios.
+  source_section: Processes
+  transaction_id: el.proceso.de.reestructuracion.analiza.capacidad.de.pago.y.propone.escenarios
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Process reestructuracion analiza capacidad de pago
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de reestructuracion analiza capacidad de pago y propone escenarios.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de reestructuracion analiza capacidad de pago y propone escenarios.
+  match_strategy: generated
+  canonical_name: Process reestructuracion analiza capacidad de pago
+  normalized_name: process reestructuracion analiza capacidad de pago
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

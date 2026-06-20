@@ -1,0 +1,27 @@
+asset_id: user_task.update_contact_information
+asset_type: user_task
+name: Update Contact Information
+version: 1.0.0
+owner: business_model_kb
+description: Update client's phone number and email address in the system before loan
+  review.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_tck_1006
+  task: update_contact_information
+  type: data_update
+  name: Update Contact Information
+  description: Update client's phone number and email address in the system before
+    loan review.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Update Contact Information
+  normalized_name: update contact information
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

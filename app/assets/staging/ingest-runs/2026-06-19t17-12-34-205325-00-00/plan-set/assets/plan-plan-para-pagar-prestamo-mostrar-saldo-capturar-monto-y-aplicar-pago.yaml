@@ -1,0 +1,46 @@
+asset_id: plan.plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago
+asset_type: plan
+name: Plan pagar prestamo
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.'
+text: 'Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.'
+tags:
+- orchestration_plan
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  steps: []
+  plan_text: 'Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.'
+  source_section: Plans
+  transaction_id: plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Plan pagar prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.'
+  match_strategy: generated
+  canonical_name: Plan pagar prestamo
+  normalized_name: plan pagar prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

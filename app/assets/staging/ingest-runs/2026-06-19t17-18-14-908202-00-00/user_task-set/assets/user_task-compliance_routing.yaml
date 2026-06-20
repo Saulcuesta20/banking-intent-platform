@@ -1,0 +1,27 @@
+asset_id: user_task.compliance_routing
+asset_type: user_task
+name: Compliance Routing
+version: 1.0.0
+owner: business_model_kb
+description: Route transfer case to Compliance Review for further investigation when
+  screening results are inconclusive.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: compliance_routing
+  task: route_case_to_compliance_review_if_screening_is_inconclusive
+  type: escalation
+  name: Compliance Routing
+  description: Route transfer case to Compliance Review for further investigation
+    when screening results are inconclusive.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Compliance Routing
+  normalized_name: compliance routing
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

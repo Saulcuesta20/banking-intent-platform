@@ -1,0 +1,25 @@
+asset_id: user_task.profile_capture
+asset_type: user_task
+name: Profile Capture
+version: 1.0.0
+owner: business_model_kb
+description: Capture customer's personal and contact information.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: capture_profile
+  task: capture_customer_profile
+  type: data_entry
+  name: Profile Capture
+  description: Capture customer's personal and contact information.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Profile Capture
+  normalized_name: profile capture
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

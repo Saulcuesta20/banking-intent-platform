@@ -1,0 +1,26 @@
+asset_id: entity.beneficiary
+asset_type: entity
+name: Beneficiary
+version: 1.0.0
+owner: business_model_kb
+description: Persona o cuenta que recibe fondos.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Persona o cuenta que recibe fondos.
+  inferred_from: llm_asset_extraction
+  business_layer: party
+  entity_role: party
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Persona o cuenta que recibe fondos.
+  match_strategy: generated
+  canonical_name: Beneficiary
+  normalized_name: beneficiary
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

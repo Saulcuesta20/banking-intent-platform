@@ -1,0 +1,27 @@
+asset_id: plan.pl003
+asset_type: plan
+name: PL003
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para refinanciar con riesgo medio: revisar buro, calcular terminos,
+  validar politica y someter a aprobacion.'
+text: ''
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pl003
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: PL003
+  normalized_name: pl003
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

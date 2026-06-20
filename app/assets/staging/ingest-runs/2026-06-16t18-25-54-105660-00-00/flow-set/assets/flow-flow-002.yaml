@@ -1,0 +1,64 @@
+asset_id: flow.flow.002
+asset_type: flow
+name: open_account_for_automatic_debit
+version: 1.0.0
+owner: process_kb
+description: process_to_check_eligible_accounts_and_explain_automatic_debit_requirements
+text: process_to_check_eligible_accounts_and_explain_automatic_debit_requirements
+tags:
+- open.account.for.auto.debit
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.check_eligible_account
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.explain_auto_debit_requirements
+  metadata: {}
+payload:
+  flow_id: flow.002
+  flow_name: open_account_for_automatic_debit
+  intent: open.account.for.auto.debit
+  confidence: 0.75
+  business_event: customer_wants_to_open_an_account_for_automatic_payment
+  utterances: []
+  plan: []
+  tasks:
+  - task: check_eligible_account
+    type: verification
+  - task: explain_auto_debit_requirements
+    type: information
+  user_tasks:
+  - user_task_id: ut_003
+    task: check_eligible_account
+    type: verification
+    name: check_eligible_account
+    description: agent_checks_which_account_types_are_eligible_for_automatic_debit
+    tools: []
+    user_actions: []
+  - user_task_id: ut_004
+    task: explain_auto_debit_requirements
+    type: information
+    name: explain_auto_debit_requirements
+    description: agent_explains_the_requirements_for_setting_up_automatic_debit
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: process_to_check_eligible_accounts_and_explain_automatic_debit_requirements
+  source: data/raw/enterprise_dump_2026/customer_support_tickets.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    purpose: enable_customer_to_set_up_automatic_payments
+  purpose: enable_customer_to_set_up_automatic_payments
+  transaction_id: flow.002
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: open_account_for_automatic_debit
+  normalized_name: open account for automatic debit
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

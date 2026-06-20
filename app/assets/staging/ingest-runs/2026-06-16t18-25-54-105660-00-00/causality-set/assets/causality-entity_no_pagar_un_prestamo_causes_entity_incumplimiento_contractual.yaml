@@ -1,0 +1,54 @@
+asset_id: causality.entity_no_pagar_un_prestamo_causes_entity_incumplimiento_contractual
+asset_type: causality
+name: entity.no_pagar_un_prestamo causes entity.incumplimiento_contractual
+version: 1.0.0
+owner: causality_kb
+description: No pagar un prestamo causa incumplimiento contractual.
+text: No pagar un prestamo causa incumplimiento contractual.
+tags:
+- causality
+- causes
+relations:
+- type: has_cause
+  target_asset_id: entity.no_pagar_un_prestamo
+  metadata: {}
+- type: has_effect
+  target_asset_id: entity.incumplimiento_contractual
+  metadata: {}
+payload:
+  cause_text: No pagar un prestamo
+  effect_text: incumplimiento contractual
+  relation_kind: causes
+  statement: No pagar un prestamo causa incumplimiento contractual.
+  sentence: No pagar un prestamo causa incumplimiento contractual.
+  transaction_id: entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: No pagar un prestamo causes incumplimiento contractual
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: No pagar un prestamo causa incumplimiento contractual.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: No pagar un prestamo causa incumplimiento contractual.
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: No pagar un prestamo causa incumplimiento contractual.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: No pagar un prestamo causa incumplimiento contractual.
+  canonical_name: entity.no_pagar_un_prestamo causes entity.incumplimiento_contractual
+  resolved_cause_asset_id: entity.no_pagar_un_prestamo
+  resolved_effect_asset_id: entity.incumplimiento_contractual
+  match_strategy: generated
+  normalized_name: entity.no pagar un prestamo causes entity.incumplimiento contractual
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,67 @@
+asset_id: flow.tck.1001.verify.direct.debit
+asset_type: flow
+name: Verify Direct Debit Subscription
+version: 1.0.0
+owner: process_kb
+description: Customer asks if account is subscribed to direct debit and wants to confirm
+  charge date.
+text: Customer asks if account is subscribed to direct debit and wants to confirm
+  charge date.
+tags:
+- customer.wants.to.know.subscription.status.and.charge.date
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.check_subscription_status
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirm_charge_date
+  metadata: {}
+payload:
+  flow_id: tck.1001.verify.direct.debit
+  flow_name: Verify Direct Debit Subscription
+  intent: customer.wants.to.know.subscription.status.and.charge.date
+  confidence: 0.75
+  business_event: Customer inquiry about direct debit subscription
+  utterances: []
+  plan: []
+  tasks:
+  - task: check_if_account_is_subscribed_to_direct_debit
+    type: agent
+  - task: confirm_next_charge_date
+    type: agent
+  user_tasks:
+  - user_task_id: check_subscription_status
+    task: check_if_account_is_subscribed_to_direct_debit
+    type: agent
+    name: Check Subscription Status
+    description: Agent queries account system to verify direct debit subscription.
+    tools: []
+    user_actions: []
+  - user_task_id: confirm_charge_date
+    task: confirm_next_charge_date
+    type: agent
+    name: Confirm Charge Date
+    description: Agent retrieves next scheduled charge date from system.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Customer asks if account is subscribed to direct debit and wants to
+    confirm charge date.
+  source: data/raw/customer_support_tickets_mini.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    purpose: To provide customer with subscription status and next charge date.
+  purpose: To provide customer with subscription status and next charge date.
+  transaction_id: tck.1001.verify.direct.debit
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Verify Direct Debit Subscription
+  normalized_name: verify direct debit subscription
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

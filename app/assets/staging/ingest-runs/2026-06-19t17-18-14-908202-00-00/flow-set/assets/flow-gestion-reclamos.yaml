@@ -1,0 +1,77 @@
+asset_id: flow.gestion.reclamos
+asset_type: flow
+name: Complaint Handling
+version: 1.0.0
+owner: process_kb
+description: Multi-step process for handling customer complaints from reception to
+  resolution.
+text: Multi-step process for handling customer complaints from reception to resolution.
+tags:
+- ensure.customer.satisfaction.and.compliance.with.resolution.timelines
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.customer_lookup
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transaction_list_retrieval
+  metadata: {}
+payload:
+  flow_id: gestion.reclamos
+  flow_name: Complaint Handling
+  intent: ensure.customer.satisfaction.and.compliance.with.resolution.timelines
+  confidence: 0.75
+  business_event: complaint_received
+  utterances: []
+  plan: []
+  tasks:
+  - task: look_up_customer_information
+    type: automated
+  - task: list_transactions_for_an_account
+    type: automated
+  user_tasks:
+  - user_task_id: customer_lookup
+    task: look_up_customer_information
+    type: automated
+    name: Customer Lookup
+    description: Retrieve customer details from the system database.
+    tools: []
+    user_actions: []
+  - user_task_id: transaction_list
+    task: list_transactions_for_an_account
+    type: automated
+    name: Transaction List Retrieval
+    description: Retrieve a list of transactions for a given account.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Multi-step process for handling customer complaints from reception
+    to resolution.
+  source: data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra3.txt
+    - data/raw/savings_loans_domain_extra4.txt
+    purpose: Resolve customer complaints efficiently and within time limits.
+  purpose: Resolve customer complaints efficiently and within time limits.
+  transaction_id: gestion.reclamos
+  relation_hints:
+  - type: has_step
+    family: structural
+    phrase: step
+    sentence: Multi-step process for handling customer complaints from reception to
+      resolution.
+  - type: has_step
+    family: structural
+    phrase: step
+    sentence: Multi-step process for handling customer complaints from reception to
+      resolution.
+  match_strategy: generated
+  canonical_name: Complaint Handling
+  normalized_name: complaint handling
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,32 @@
+asset_id: user_task.notificaci_n_de_consolidaci_n
+asset_type: user_task
+name: Notificación de consolidación
+version: 1.0.0
+owner: business_model_kb
+description: Se envía una notificación al cliente informando que sus cuentas han sido
+  consolidadas exitosamente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: notificar_consolidacion
+  task: notificar_al_cliente_sobre_la_consolidaci_n
+  type: notification
+  name: Notificación de consolidación
+  description: Se envía una notificación al cliente informando que sus cuentas han
+    sido consolidadas exitosamente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Se envía una notificación al cliente informando que sus cuentas han
+      sido consolidadas exitosamente.
+  match_strategy: generated
+  canonical_name: Notificación de consolidación
+  normalized_name: notificación de consolidación
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

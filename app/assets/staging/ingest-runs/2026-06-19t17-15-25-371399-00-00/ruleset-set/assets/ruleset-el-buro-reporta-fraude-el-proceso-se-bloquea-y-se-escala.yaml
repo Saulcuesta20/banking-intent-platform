@@ -1,0 +1,31 @@
+asset_id: ruleset.el.buro.reporta.fraude.el.proceso.se.bloquea.y.se.escala
+asset_type: ruleset
+name: El.buro.reporta.fraude.el.proceso.se.bloquea.y.se.escala Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction el.buro.reporta.fraude.el.proceso.se.bloquea.y.se.escala
+  with 1 business rules.
+text: Si el buro reporta fraude, el proceso se bloquea y se escala.
+tags:
+- ruleset
+- el.buro.reporta.fraude.el.proceso.se.bloquea.y.se.escala
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.el_buro_reporta_fraude_el_proceso_se_bloquea_y_se_escala
+  metadata: {}
+payload:
+  transaction_id: el.buro.reporta.fraude.el.proceso.se.bloquea.y.se.escala
+  ruleset_name: El.buro.reporta.fraude.el.proceso.se.bloquea.y.se.escala Ruleset
+  rule_ids:
+  - business_rule.el_buro_reporta_fraude_el_proceso_se_bloquea_y_se_escala
+  conditions:
+  - Si el buro reporta fraude, el proceso se
+  consequences:
+  - y se escala
+  match_strategy: generated
+  canonical_name: El.buro.reporta.fraude.el.proceso.se.bloquea.y.se.escala Ruleset
+  normalized_name: el.buro.reporta.fraude.el.proceso.se.bloquea.y.se.escala ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

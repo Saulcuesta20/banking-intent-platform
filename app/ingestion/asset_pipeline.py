@@ -4,12 +4,14 @@ import csv
 import difflib
 import json
 import re
+import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 import yaml
 
+from app.config.model import asset_extraction_prompt
 from app.ingestion.llm_flow_loader import CorpusDocument, LLMClient
 from app.ingestion.relation_normalization import RelationNormalizationService
 from app.knowledge_base.models import AssetRelation, EnterpriseAsset
@@ -95,6 +97,12 @@ GENERIC_ACTION_WORDS = {
     "validates",
 }
 
+LEGACY_RELATION_TYPE_ALIASES = {
+    "materializes": "represents",
+    "materialized_in": "represented_by",
+    "materialized in": "represented_by",
+}
+
 
 @dataclass(frozen=True)
 class RelationPattern:
@@ -127,7 +135,7 @@ class AssetCandidate:
     name: str
     description: str = ""
     text: str = ""
-    status: str = "approved"
+    status: str = "draft"
     owner: str | None = None
     tags: list[str] = field(default_factory=list)
     aliases: list[str] = field(default_factory=list)
@@ -135,6 +143,8 @@ class AssetCandidate:
     relations: list[AssetRelation] = field(default_factory=list)
     payload: dict[str, Any] = field(default_factory=dict)
     evidence: list[dict[str, Any]] = field(default_factory=list)
+    structural_layer: str | None = None
+    business_layer: str | None = None
 
 
 class BasicTextAnalyzer:
@@ -237,6 +247,8 @@ class AssetCanonicalizer:
             existing.source_refs = _dedupe_preserve([*existing.source_refs, *candidate.source_refs])
             existing.relations = _dedupe_relations([*existing.relations, *candidate.relations])
             existing.payload.update(candidate.payload)
+            existing.structural_layer = existing.structural_layer or candidate.structural_layer
+            existing.business_layer = existing.business_layer or candidate.business_layer
             if len(candidate.text) > len(existing.text):
                 existing.text = candidate.text
             if len(candidate.description) > len(existing.description):
@@ -271,6 +283,8 @@ class AssetCanonicalizer:
                     source_refs=_dedupe_preserve([*aligned.source_refs, *candidate.source_refs]),
                     relations=_dedupe_relations([*aligned.relations, *candidate.relations]),
                     payload=payload,
+                    structural_layer=candidate.structural_layer or candidate.business_layer,
+                    business_layer=candidate.business_layer,
                 )
             )
         return sorted(assets, key=lambda asset: (asset.asset_type, asset.asset_id))
@@ -368,6 +382,7 @@ class CanonicalAssetPipeline:
         vocabulary: ConceptVocabulary | None = None,
         llm_client: LLMClient | None = None,
         relation_normalizer: RelationNormalizationService | None = None,
+        ontology_path: Path | None = None,
     ):
         self.registry = registry
         self.repository = repository or EnterpriseAssetRepository([])
@@ -381,6 +396,153 @@ class CanonicalAssetPipeline:
             repository=self.repository,
             vocabulary=self.vocabulary,
         )
+        self.ontology_keywords = self._load_ontology_keywords(ontology_path)
+
+    def _normalize_structural_layer(self, value: Any) -> str | None:
+        layer = str(value or "").strip()
+        if not layer:
+            return None
+        return "business_resource" if layer == "asset" else layer
+
+    def _infer_structural_layer(self, entity_name: str) -> str | None:
+        normalized_name = self._normalize_text(entity_name)
+        tokens = set(normalized_name.split())
+        for layer, keywords in self.ontology_keywords.items():
+            if any((kw in tokens) or (kw and kw in normalized_name) for kw in keywords):
+                return self._normalize_structural_layer(layer)
+        return None
+
+    def _infer_business_layer(self, entity_name: str) -> str | None:
+        return self._infer_structural_layer(entity_name)
+
+    def _infer_entity_role(self, entity_name: str, structural_layer: str | None) -> str | None:
+        layer_role_map = {
+            "party": "party",
+            "organization": "org_unit",
+            "capability": "capability",
+            "portfolio": "offering",
+            "offering": "offering",
+            "program": "capability",
+            "channel": "asset",
+            "transaction": "transaction",
+            "agreement": "agreement",
+            "event": "event",
+            "metric": "metric",
+            "workforce": "workforce_member",
+            "workforce_role": "workforce_role",
+            "asset": "asset",
+            "business_resource": "asset",
+        }
+        if structural_layer and structural_layer in layer_role_map:
+            return layer_role_map[structural_layer]
+
+        name_lower = entity_name.lower().strip()
+        fallback_keywords = [
+            ("workforce_member", ["specialist", "analyst", "advisor", "manager", "associate", "analista", "asesor"]),
+            ("org_unit", ["department", "division", "team", "unidad", "gerencia", "area"]),
+            ("party", ["customer", "client", "beneficiary", "vendor", "partner", "cliente", "proveedor", "beneficiario"]),
+            ("offering", ["product", "service", "loan", "account", "plan", "programa"]),
+            ("transaction", ["payment", "transfer", "transaction", "solicitud", "desembolso"]),
+            ("agreement", ["contract", "agreement", "policy", "terms", "contrato", "politica"]),
+            ("metric", ["rate", "score", "kpi", "indice", "porcentaje"]),
+            ("asset", ["system", "platform", "document", "dataset", "collateral", "note", "manual", "playbook"]),
+            ("event", ["event", "milestone", "deadline", "sla", "evento", "hito"]),
+        ]
+        for role, keywords in fallback_keywords:
+            if any(kw in name_lower for kw in keywords):
+                return role
+        return None
+
+    def _entity_metadata(
+        self,
+        name: str,
+        aliases: list[str],
+        *,
+        extra_payload: dict[str, Any] | None = None,
+        provided_structural_layer: str | None = None,
+        provided_business_layer: str | None = None,
+        provided_entity_role: str | None = None,
+    ) -> tuple[dict[str, Any], str | None, str | None]:
+        structural_layer = (
+            self._normalize_structural_layer(provided_structural_layer)
+            or self._normalize_structural_layer(provided_business_layer)
+            or self._infer_structural_layer(name)
+            or "business_resource"
+        )
+        entity_role = provided_entity_role or self._infer_entity_role(name, structural_layer)
+        payload: dict[str, Any] = {"aliases": list(aliases)}
+        if extra_payload:
+            payload.update(extra_payload)
+        if structural_layer:
+            payload["structural_layer"] = structural_layer
+            payload["business_layer"] = structural_layer
+        if entity_role:
+            payload["entity_role"] = entity_role
+        return payload, structural_layer, entity_role
+
+    @staticmethod
+    def _apply_entity_metadata(
+        candidate: AssetCandidate,
+        *,
+        structural_layer: str | None,
+        entity_role: str | None,
+    ) -> None:
+        if structural_layer:
+            if not candidate.structural_layer:
+                candidate.structural_layer = structural_layer
+            if not candidate.business_layer:
+                candidate.business_layer = structural_layer
+            candidate.payload.setdefault("structural_layer", structural_layer)
+            candidate.payload.setdefault("business_layer", structural_layer)
+        if entity_role:
+            candidate.payload.setdefault("entity_role", entity_role)
+
+    @staticmethod
+    def _normalize_text(value: str) -> str:
+        normalized = unicodedata.normalize("NFKD", value)
+        normalized = "".join(ch for ch in normalized if not unicodedata.combining(ch))
+        normalized = normalized.lower()
+        normalized = re.sub(r"[^a-z0-9]+", " ", normalized)
+        return normalized.strip()
+
+    @classmethod
+    def _normalize_keyword(cls, keyword: str) -> set[str]:
+        tokens = set()
+        cleaned = cls._normalize_text(keyword)
+        if cleaned:
+            tokens.add(cleaned)
+            tokens.update(part for part in cleaned.split() if part)
+        return tokens
+
+    @classmethod
+    def _keyword_values_from_ontology_field(cls, value: Any) -> set[str]:
+        keywords: set[str] = set()
+        if isinstance(value, str):
+            keywords.update(cls._normalize_keyword(value))
+        elif isinstance(value, list):
+            for item in value:
+                keywords.update(cls._keyword_values_from_ontology_field(item))
+        elif isinstance(value, dict):
+            for item in value.values():
+                keywords.update(cls._keyword_values_from_ontology_field(item))
+        return keywords
+
+    def _load_ontology_keywords(self, ontology_path: Path | None) -> dict[str, set[str]]:
+        if ontology_path is None or not ontology_path.exists():
+            return {}
+        try:
+            data = yaml.safe_load(ontology_path.read_text(encoding="utf-8")) or {}
+        except Exception:
+            return {}
+        layers = data.get("layers") or {}
+        mapping: dict[str, set[str]] = {}
+        for layer, definition in layers.items():
+            bucket: set[str] = set()
+            for field_name in ("generic_subtypes", "examples", "keywords"):
+                if field_name in definition:
+                    bucket.update(self._keyword_values_from_ontology_field(definition[field_name]))
+            mapping[layer] = {kw for kw in bucket if kw}
+        return mapping
 
     def run(
         self,
@@ -403,7 +565,10 @@ class CanonicalAssetPipeline:
     ) -> list[AssetCandidate]:
         candidates: list[AssetCandidate] = []
         candidates.extend(self._document_candidates(documents))
-        llm_assets = self._llm_asset_candidates(documents)
+        candidates.extend(self._container_config_candidates_from_extraction(extraction))
+        llm_assets = self._asset_candidates_from_extraction(extraction)
+        if not any(llm_assets.values()):
+            llm_assets = self._llm_asset_candidates(documents)
         candidates.extend(llm_assets.get("entity", []))
         candidates.extend(self._tool_candidates(extraction.get("tool_registry", []), documents))
         candidates.extend(self._user_task_candidates(extraction.get("user_tasks", []), documents))
@@ -415,7 +580,131 @@ class CanonicalAssetPipeline:
         candidates.extend(llm_assets.get("causality", []) or self._causality_candidates(documents, records))
         if not llm_assets.get("entity"):
             candidates.extend(self._entity_candidates(documents, records))
+        candidates.extend(self._entity_candidates_from_causality(candidates))
         return candidates
+
+    def _container_config_candidates_from_extraction(self, extraction: dict[str, Any]) -> list[AssetCandidate]:
+        values: list[AssetCandidate] = []
+        for asset_type in ("semantic_space", "domain", "module", "menu", "form", "form_version", "asset_set"):
+            for item in extraction.get(asset_type, []) or []:
+                if not isinstance(item, dict):
+                    continue
+                name = self._container_asset_name(asset_type, item)
+                if not name:
+                    continue
+                values.append(
+                    AssetCandidate(
+                        asset_type=asset_type,
+                        name=name,
+                        description=str(item.get("description") or item.get("purpose") or ""),
+                        text=str(item.get("purpose") or item.get("description") or ""),
+                        tags=[asset_type, "configuration"],
+                        relations=self._container_asset_relations(asset_type, item),
+                        payload={**item, "source_section": "LLMAssetExtraction"},
+                    )
+                )
+        return values
+
+    def _container_asset_name(self, asset_type: str, item: dict[str, Any]) -> str:
+        id_fields = {
+            "domain": ("domain_id", "name"),
+            "semantic_space": ("semantic_space_id", "space_id", "name"),
+            "module": ("module_id", "name"),
+            "menu": ("menu_id", "label", "name"),
+            "form": ("form_id", "name"),
+            "form_version": ("form_id", "version"),
+            "asset_set": ("asset_set_id", "id"),
+        }
+        parts = [str(item.get(field) or "").strip() for field in id_fields.get(asset_type, ())]
+        parts = [part for part in parts if part]
+        if asset_type == "form_version" and len(parts) >= 2:
+            return f"{parts[0]} {parts[1]}"
+        return parts[0] if parts else ""
+
+    def _container_asset_relations(self, asset_type: str, item: dict[str, Any]) -> list[AssetRelation]:
+        relations: list[AssetRelation] = []
+        if asset_type == "semantic_space":
+            for entity_ref in item.get("entities") or item.get("contexts") or []:
+                target = str(entity_ref.get("asset_id") if isinstance(entity_ref, dict) else entity_ref).strip()
+                if target:
+                    relations.append(AssetRelation(type="contains_context", target_asset_id=target))
+        elif asset_type == "module" and item.get("domain_id"):
+            relations.append(AssetRelation(type="belongs_to_domain", target_asset_id=f"domain.{_slug(str(item['domain_id']))}"))
+        elif asset_type in {"menu", "form"} and item.get("module_id"):
+            relations.append(AssetRelation(type="belongs_to_module", target_asset_id=f"module.{_slug(str(item['module_id']))}"))
+        elif asset_type == "form_version" and item.get("form_id"):
+            relations.append(AssetRelation(type="version_of", target_asset_id=f"form.{_slug(str(item['form_id']))}"))
+        elif asset_type == "asset_set":
+            relation_by_type = {
+                "flow": "groups_flow",
+                "process": "groups_process",
+                "plan": "groups_plan",
+                "ruleset": "groups_ruleset",
+                "business_rule": "groups_rule",
+                "entity": "groups_entity",
+                "tool": "groups_tool",
+                "qa": "groups_qa",
+                "causality": "groups_causality",
+                "user_task": "groups_user_task",
+            }
+            for member in item.get("members") or []:
+                member_id = str(member.get("asset_id") if isinstance(member, dict) else member).strip()
+                member_type = str(member.get("asset_type") if isinstance(member, dict) else member_id.split(".", 1)[0]).strip()
+                relation_type = relation_by_type.get(member_type)
+                if relation_type and member_id:
+                    relations.append(AssetRelation(type=relation_type, target_asset_id=member_id))
+        return relations
+
+    def _entity_candidates_from_causality(self, candidates: list[AssetCandidate]) -> list[AssetCandidate]:
+        existing_names = {
+            self.vocabulary.normalize_term(candidate.name).canonical
+            for candidate in candidates
+            if candidate.asset_type == "entity"
+        }
+        values: list[AssetCandidate] = []
+        for candidate in candidates:
+            if candidate.asset_type != "causality":
+                continue
+            for field_name in ("cause_text", "effect_text"):
+                text = str(candidate.payload.get(field_name) or "").strip()
+                if not text or not self._is_entity_candidate(text, source="causality"):
+                    continue
+                normalized = self.vocabulary.normalize_term(text)
+                if normalized.canonical in existing_names:
+                    continue
+                existing_names.add(normalized.canonical)
+                payload, structural_layer, entity_role = self._entity_metadata(
+                    text,
+                    normalized.aliases,
+                    extra_payload={
+                        "inferred_from": "causality_endpoint",
+                        "causality_field": field_name,
+                    },
+                )
+                values.append(
+                    AssetCandidate(
+                        asset_type="entity",
+                        name=text,
+                        description=f"Entity inferred from causality {field_name}: {text}",
+                        aliases=normalized.aliases,
+                        text=str(candidate.payload.get("sentence") or candidate.text or ""),
+                        payload=payload,
+                        structural_layer=structural_layer,
+                        business_layer=structural_layer,
+                    )
+                )
+                self._apply_entity_metadata(values[-1], structural_layer=structural_layer, entity_role=entity_role)
+        return values
+
+    def _asset_candidates_from_extraction(self, extraction: dict[str, Any]) -> dict[str, list[AssetCandidate]]:
+        return {
+            "entity": self._entity_candidates_from_llm([*(extraction.get("entity", []) or []), *(extraction.get("concept", []) or [])]),
+            "business_rule": self._rule_candidates_from_llm(extraction.get("business_rule", [])),
+            "process": self._process_candidates_from_llm(extraction.get("process", [])),
+            "plan": self._plan_candidates_from_llm(extraction.get("plan", [])),
+            "qa": self._qa_candidates_from_llm(extraction.get("qa", [])),
+            "causality": self._causality_candidates_from_llm(extraction.get("causality", [])),
+        }
 
     def enrich_relations(self, candidates: list[AssetCandidate], *, records: list[KnowledgeRecord]) -> list[AssetCandidate]:
         entity_map = {
@@ -454,12 +743,12 @@ class CanonicalAssetPipeline:
         except Exception:
             return {}
         return {
-            "entity": self._entity_candidates_from_llm(result.get("entities", [])),
-            "business_rule": self._rule_candidates_from_llm(result.get("business_rules", [])),
-            "process": self._process_candidates_from_llm(result.get("processes", [])),
-            "plan": self._plan_candidates_from_llm(result.get("plans", [])),
-            "qa": self._qa_candidates_from_llm(result.get("qas", [])),
-            "causality": self._causality_candidates_from_llm(result.get("causalities", [])),
+            "entity": self._entity_candidates_from_llm([*(result.get("entity", []) or []), *(result.get("concept", []) or [])]),
+            "business_rule": self._rule_candidates_from_llm(result.get("business_rule", [])),
+            "process": self._process_candidates_from_llm(result.get("process", [])),
+            "plan": self._plan_candidates_from_llm(result.get("plan", [])),
+            "qa": self._qa_candidates_from_llm(result.get("qa", [])),
+            "causality": self._causality_candidates_from_llm(result.get("causality", [])),
         }
 
     def _document_candidates(self, documents: list[CorpusDocument]) -> list[AssetCandidate]:
@@ -487,6 +776,25 @@ class CanonicalAssetPipeline:
             aliases = [str(alias).strip() for alias in item.get("aliases", []) if str(alias).strip()]
             description = str(item.get("description") or item.get("definition") or "").strip()
             evidence = [str(value).strip() for value in item.get("evidence", []) if str(value).strip()]
+            attributes = item.get("attributes") if isinstance(item.get("attributes"), list) else []
+            subtype = str(item.get("subtype") or "").strip()
+            technical_type = str(item.get("technical_type") or "").strip()
+            payload, structural_layer, entity_role = self._entity_metadata(
+                name,
+                aliases,
+                extra_payload={
+                    "definition": description,
+                    "inferred_from": "llm_asset_extraction",
+                    "attributes": attributes,
+                    "subtype": subtype,
+                    "technical_type": technical_type,
+                },
+                provided_structural_layer=item.get("structural_layer"),
+                provided_business_layer=item.get("business_layer"),
+                provided_entity_role=item.get("entity_role"),
+            )
+            if technical_type and structural_layer == "business_resource":
+                payload.setdefault("resource_kind", technical_type)
             values.append(
                 AssetCandidate(
                     asset_type="entity",
@@ -494,9 +802,13 @@ class CanonicalAssetPipeline:
                     description=description,
                     text="\n".join(evidence),
                     aliases=aliases,
-                    payload={"aliases": aliases, "definition": description, "inferred_from": "llm_asset_extraction"},
+                    relations=_entity_relations_from_llm(item),
+                    payload=payload,
+                    structural_layer=structural_layer,
+                    business_layer=structural_layer,
                 )
             )
+            self._apply_entity_metadata(values[-1], structural_layer=structural_layer, entity_role=entity_role)
         return values
 
     def _rule_candidates_from_llm(self, items: list[dict[str, Any]]) -> list[AssetCandidate]:
@@ -508,6 +820,12 @@ class CanonicalAssetPipeline:
                 continue
             conditions = [str(value).strip() for value in item.get("conditions", []) if str(value).strip()]
             consequences = [str(value).strip() for value in item.get("consequences", []) if str(value).strip()]
+            when = str(item.get("when") or "").strip()
+            then = str(item.get("then") or "").strip()
+            if when and when not in conditions:
+                conditions.insert(0, when)
+            if then and then not in consequences:
+                consequences.insert(0, then)
             if not conditions and not consequences:
                 inferred = _extract_rule_structure(rule_text)
                 conditions = inferred["conditions"]
@@ -526,8 +844,11 @@ class CanonicalAssetPipeline:
                         "source_section": "LLMAssetExtraction",
                         "conditions": conditions,
                         "consequences": consequences,
+                        "when": when,
+                        "then": then,
                         "transaction_id": transaction_id,
                         "ruleset_name": ruleset_name,
+                        "applies_to": item.get("applies_to", []),
                     },
                 )
             )
@@ -539,6 +860,8 @@ class CanonicalAssetPipeline:
             name = str(item.get("name") or "").strip()
             description = str(item.get("description") or "").strip()
             steps = [str(step).strip() for step in item.get("steps", []) if str(step).strip()]
+            triggers = [str(trigger).strip() for trigger in item.get("triggers", []) if str(trigger).strip()]
+            business_event = str(item.get("business_event") or "").strip()
             if not name:
                 continue
             values.append(
@@ -552,6 +875,12 @@ class CanonicalAssetPipeline:
                         "steps_text": "\n".join(steps),
                         "source_section": "LLMAssetExtraction",
                         "transaction_id": _normalize_transaction_id(item.get("transaction_id")),
+                        "business_event": business_event,
+                        "triggers": triggers,
+                        "execution_nodes": item.get("execution_nodes", []),
+                        "transitions": item.get("transitions", []),
+                        "rules": item.get("rules", []),
+                        "tools": item.get("tools", []),
                     },
                 )
             )
@@ -563,6 +892,7 @@ class CanonicalAssetPipeline:
             name = str(item.get("name") or "").strip()
             description = str(item.get("description") or item.get("objective") or "").strip()
             steps = [str(step).strip() for step in item.get("steps", []) if str(step).strip()]
+            business_event = str(item.get("business_event") or "").strip()
             if not name:
                 continue
             values.append(
@@ -577,6 +907,9 @@ class CanonicalAssetPipeline:
                         "plan_text": "\n".join(steps),
                         "source_section": "LLMAssetExtraction",
                         "transaction_id": _normalize_transaction_id(item.get("transaction_id")),
+                        "business_event": business_event,
+                        "tools": item.get("tools", []),
+                        "dependencies": item.get("dependencies", []),
                     },
                 )
             )
@@ -630,6 +963,7 @@ class CanonicalAssetPipeline:
                         "cause_text": cause,
                         "effect_text": effect,
                         "relation_kind": relation_kind,
+                        "statement": statement or f"{cause} {relation_kind} {effect}",
                         "sentence": statement or f"{cause} {relation_kind} {effect}",
                         "inferred_from": "llm_asset_extraction",
                         "transaction_id": _normalize_transaction_id(item.get("transaction_id")),
@@ -644,6 +978,7 @@ class CanonicalAssetPipeline:
             for concept in record.concepts:
                 normalized = self.vocabulary.normalize_term(concept)
                 key = normalized.canonical
+                payload, structural_layer, entity_role = self._entity_metadata(concept, normalized.aliases)
                 candidate = candidates.setdefault(
                     key,
                     AssetCandidate(
@@ -651,9 +986,12 @@ class CanonicalAssetPipeline:
                         name=concept,
                         description=f"Business entity aligned from corpus meaning: {concept}",
                         aliases=normalized.aliases,
-                        payload={"aliases": normalized.aliases},
+                        payload=payload,
+                        structural_layer=structural_layer,
+                        business_layer=structural_layer,
                     ),
                 )
+                self._apply_entity_metadata(candidate, structural_layer=structural_layer, entity_role=entity_role)
                 candidate.aliases = _dedupe_preserve([*candidate.aliases, *record.concept_aliases.get(concept, [])])
                 candidate.tags = _dedupe_preserve([*candidate.tags, record.intent])
                 candidate.source_refs = _dedupe_preserve([*candidate.source_refs, *record.metadata.get("source_files", [])])
@@ -664,6 +1002,7 @@ class CanonicalAssetPipeline:
             if not term:
                 continue
             normalized = self.vocabulary.normalize_term(term)
+            payload, structural_layer, entity_role = self._entity_metadata(term, normalized.aliases)
             candidate = candidates.setdefault(
                 normalized.canonical,
                 AssetCandidate(
@@ -671,9 +1010,12 @@ class CanonicalAssetPipeline:
                     name=term,
                     description=definition or f"Business entity inferred from glossary: {term}",
                     aliases=normalized.aliases,
-                    payload={"aliases": normalized.aliases},
+                    payload=payload,
+                    structural_layer=structural_layer,
+                    business_layer=structural_layer,
                 ),
             )
+            self._apply_entity_metadata(candidate, structural_layer=structural_layer, entity_role=entity_role)
             candidate.aliases = _dedupe_preserve([*candidate.aliases, *normalized.aliases])
             if definition:
                 candidate.text = f"{candidate.text}\n{definition}".strip()
@@ -686,6 +1028,11 @@ class CanonicalAssetPipeline:
                     if not self._is_entity_candidate(phrase, source="section"):
                         continue
                     normalized = self.vocabulary.normalize_term(phrase)
+                    payload, structural_layer, entity_role = self._entity_metadata(
+                        phrase,
+                        normalized.aliases,
+                        extra_payload={"inferred_from": "section_entities"},
+                    )
                     candidates.setdefault(
                         normalized.canonical,
                         AssetCandidate(
@@ -694,8 +1041,15 @@ class CanonicalAssetPipeline:
                             description=f"Business entity listed in corpus section: {item}",
                             aliases=normalized.aliases,
                             source_refs=[str(document.path)],
-                            payload={"aliases": normalized.aliases, "inferred_from": "section_entities"},
+                            payload=payload,
+                            structural_layer=structural_layer,
+                            business_layer=structural_layer,
                         ),
+                    )
+                    self._apply_entity_metadata(
+                        candidates[normalized.canonical],
+                        structural_layer=structural_layer,
+                        entity_role=entity_role,
                     )
         return list(candidates.values())
 
@@ -759,8 +1113,9 @@ class CanonicalAssetPipeline:
     def _flow_candidates(self, records: list[KnowledgeRecord], documents: list[CorpusDocument]) -> list[AssetCandidate]:
         values: list[AssetCandidate] = []
         for record in records:
+            purpose = str(record.metadata.get("purpose") or record.explanation or record.flow_name)
             relations = [
-                AssetRelation(type="decomposes_to_user_task", target_asset_id=f"user_task.{task.user_task_id or task.task}")
+                AssetRelation(type="decomposes_to_user_task", target_asset_id=f"user_task.{_slug(task.name or task.task or task.user_task_id or '')}")
                 for task in record.user_tasks
             ]
             values.append(
@@ -772,7 +1127,11 @@ class CanonicalAssetPipeline:
                     tags=[*record.concepts, record.intent],
                     source_refs=record.metadata.get("source_files", []),
                     relations=relations,
-                    payload={**record.model_dump(mode="json"), "transaction_id": _normalize_transaction_id(record.flow_id or record.intent)},
+                    payload={
+                        **record.model_dump(mode="json"),
+                        "purpose": purpose,
+                        "transaction_id": _normalize_transaction_id(record.flow_id or record.intent),
+                    },
                 )
             )
         for document in documents:
@@ -787,7 +1146,7 @@ class CanonicalAssetPipeline:
                         source_refs=[str(document.path)],
                         payload={
                             "utterances": [item],
-                            "intent": _slug(item).replace("_", "."),
+                            "purpose": item,
                             "transaction_id": _infer_transaction_id_from_text(item),
                         },
                     )
@@ -1023,6 +1382,7 @@ class CanonicalAssetPipeline:
                             "cause_text": cause,
                             "effect_text": effect,
                             "relation_kind": hints[0].relation_type,
+                            "statement": sentence.strip(),
                             "sentence": sentence.strip(),
                             "transaction_id": _record_transaction_id_for_text(sentence, records),
                         },
@@ -1226,10 +1586,11 @@ class CanonicalAssetPipeline:
         )
 
     def _normalize_relations(self, candidate: AssetCandidate) -> list[AssetRelation]:
+        relations = [_canonicalize_legacy_relation_type(relation) for relation in candidate.relations]
         if self.relation_normalizer is None:
-            return candidate.relations
+            return relations
         normalized_relations: list[AssetRelation] = []
-        for relation in candidate.relations:
+        for relation in relations:
             target_asset_type = _asset_type_from_asset_id(relation.target_asset_id)
             normalized_relations.append(
                 self.relation_normalizer.normalize_relation(
@@ -1251,37 +1612,7 @@ class CanonicalAssetPipeline:
         return content
 
     def _asset_schema_prompt(self) -> str:
-        return (
-            "Produce this exact JSON object:\n"
-            "{\n"
-            '  "entities": [\n'
-            '    {"name": "Entity name", "description": "Meaning", "aliases": ["alt name"], "evidence": ["supporting text"]}\n'
-            "  ],\n"
-            '  "business_rules": [\n'
-            '    {"name": "Rule name", "description": "Rule meaning", "transaction_id": "transaction_key", "ruleset_name": "Ruleset display name", "rule_text": "Original rule wording", "conditions": ["condition text"], "consequences": ["consequence text"]}\n'
-            "  ],\n"
-            '  "processes": [\n'
-            '    {"name": "Process name", "description": "What it does", "transaction_id": "transaction_key", "steps": ["step one", "step two"]}\n'
-            "  ],\n"
-            '  "plans": [\n'
-            '    {"name": "Plan name", "objective": "Goal", "description": "Plan meaning", "transaction_id": "transaction_key", "steps": ["step one", "step two"]}\n'
-            "  ],\n"
-            '  "qas": [\n'
-            '    {"question": "User question?", "answer": "Grounded answer", "transaction_id": "transaction_key"}\n'
-            "  ],\n"
-            '  "causalities": [\n'
-            '    {"statement": "Original cause/effect statement", "transaction_id": "transaction_key", "relation_kind": "causes|prevents|enables|results_in|increases_risk_of|reduces_risk_of", "cause_text": "Cause phrase", "effect_text": "Effect phrase"}\n'
-            "  ]\n"
-            "}\n"
-            "Rules:\n"
-            "- Do not invent assets unsupported by the corpus.\n"
-            "- Keep names reusable, concise, and neutral.\n"
-            "- Prefer canonical names over full sentence fragments.\n"
-            "- Only extract causalities when the corpus explicitly states cause/effect.\n"
-            "- For business rules, extract the condition and the consequence separately whenever the corpus makes them explicit.\n"
-            "- Use transaction_id for the business operation or request being served, such as opening an account, refinancing a loan, filing a claim, or updating a beneficiary.\n"
-            "- If no assets of one family are present, return an empty array for that family.\n"
-        )
+        return asset_extraction_prompt()
 
     def _group_transaction_assets(self, candidates: list[AssetCandidate]) -> list[AssetCandidate]:
         asset_id_map = {self.canonicalizer._asset_id(candidate): candidate for candidate in candidates}
@@ -1388,6 +1719,8 @@ class CanonicalAssetPipeline:
                 if member_id in asset_id_map and asset_id_map[member_id].asset_type not in {"document", "asset_set"}
             ]
             grouped_assets = [asset_id_map[member_id] for member_id in sorted(member_ids) if member_id in asset_id_map]
+            grouped_asset_types = sorted({asset.asset_type for asset in grouped_assets})
+            primary_asset_type = "flow" if "flow" in grouped_asset_types else (grouped_asset_types[0] if grouped_asset_types else "asset")
             values.append(
                 AssetCandidate(
                     asset_type="asset_set",
@@ -1400,7 +1733,13 @@ class CanonicalAssetPipeline:
                     payload={
                         "transaction_id": transaction_id,
                         "asset_ids": sorted(member_ids),
-                        "asset_types": sorted({asset.asset_type for asset in grouped_assets}),
+                        "asset_types": grouped_asset_types,
+                        "primary_asset_type": primary_asset_type,
+                        "members": [
+                            {"asset_id": asset_id, "asset_type": asset_id_map[asset_id].asset_type}
+                            for asset_id in sorted(member_ids)
+                            if asset_id in asset_id_map
+                        ],
                     },
                 )
             )
@@ -1430,14 +1769,54 @@ def _record_relations_for_text(text: str, records: list[KnowledgeRecord]) -> lis
         if record.flow_name.casefold() in lowered or record.intent.casefold().replace(".", " ") in lowered:
             relations.append(AssetRelation(type="applies_to_flow", target_asset_id=f"flow.{record.flow_id}"))
         for task in record.user_tasks:
-            task_key = str(task.user_task_id or task.task)
+            task_key = str(task.name or task.task or task.user_task_id or "")
             if _slug(task_key) and _slug(task_key) in _slug(lowered):
-                relations.append(AssetRelation(type="decomposes_to_user_task", target_asset_id=f"user_task.{task_key}"))
+                relations.append(AssetRelation(type="decomposes_to_user_task", target_asset_id=f"user_task.{_slug(task_key)}"))
         for concept in record.concepts:
             normalized = _slug(concept).replace("_", " ")
             if concept.casefold() in lowered or normalized in lowered:
                 relations.append(AssetRelation(type="uses_entity", target_asset_id=f"entity.{_slug(concept)}"))
     return _dedupe_relations(relations)
+
+
+def _entity_relations_from_llm(item: dict[str, Any]) -> list[AssetRelation]:
+    relations: list[AssetRelation] = []
+    raw_relations = item.get("relations") or []
+    if isinstance(raw_relations, list):
+        for raw_relation in raw_relations:
+            if not isinstance(raw_relation, dict):
+                continue
+            relation_type = str(raw_relation.get("type") or raw_relation.get("relation_type") or "related_to").strip()
+            target = str(
+                raw_relation.get("target_asset_id")
+                or raw_relation.get("target")
+                or raw_relation.get("target_entity_id")
+                or ""
+            ).strip()
+            if not target:
+                continue
+            target_asset_id = target if "." in target else f"entity.{_slug(target)}"
+            relations.append(AssetRelation(type=relation_type, target_asset_id=target_asset_id))
+
+    represents = item.get("represents") or []
+    if isinstance(represents, list):
+        for target in represents:
+            target_text = str(target.get("asset_id") if isinstance(target, dict) else target).strip()
+            if not target_text:
+                continue
+            target_asset_id = target_text if "." in target_text else f"entity.{_slug(target_text)}"
+            relations.append(AssetRelation(type="represents", target_asset_id=target_asset_id))
+
+    represented_by = item.get("represented_by") or item.get("materialized_in") or []
+    if isinstance(represented_by, list):
+        for target in represented_by:
+            target_text = str(target.get("asset_id") if isinstance(target, dict) else target).strip()
+            if not target_text:
+                continue
+            target_asset_id = target_text if "." in target_text else f"entity.{_slug(target_text)}"
+            relations.append(AssetRelation(type="represented_by", target_asset_id=target_asset_id))
+
+    return _dedupe_relations([_canonicalize_legacy_relation_type(relation) for relation in relations])
 
 
 def _split_cause_effect(sentence: str, phrase: str) -> tuple[str, str]:
@@ -1688,6 +2067,20 @@ def _group_relation_type_for(asset_type: str) -> str:
         "user_task": "groups_user_task",
     }
     return mapping.get(asset_type, "groups_entity")
+
+
+def _canonicalize_legacy_relation_type(relation: AssetRelation) -> AssetRelation:
+    raw_type = str(relation.type or "").strip()
+    normalized_type = LEGACY_RELATION_TYPE_ALIASES.get(raw_type) or LEGACY_RELATION_TYPE_ALIASES.get(raw_type.replace("_", " "))
+    if not normalized_type:
+        return relation
+    metadata = {
+        **relation.metadata,
+        "legacy_relation_type": raw_type,
+        "canonical_relation_type": normalized_type,
+        "normalization_strategy": relation.metadata.get("normalization_strategy", "legacy_alias"),
+    }
+    return AssetRelation(type=normalized_type, target_asset_id=relation.target_asset_id, metadata=metadata)
 
 
 def _slug(value: Any) -> str:

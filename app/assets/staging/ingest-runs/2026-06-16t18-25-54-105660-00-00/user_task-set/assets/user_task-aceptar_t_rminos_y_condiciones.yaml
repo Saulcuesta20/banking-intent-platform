@@ -1,0 +1,29 @@
+asset_id: user_task.aceptar_t_rminos_y_condiciones
+asset_type: user_task
+name: Aceptar términos y condiciones
+version: 1.0.0
+owner: business_model_kb
+description: El usuario acepta los términos y condiciones de la cuenta.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_accept_terms
+  task: aceptar_t_rminos_y_condiciones
+  type: agreement
+  name: Aceptar términos y condiciones
+  description: El usuario acepta los términos y condiciones de la cuenta.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El usuario acepta los términos y condiciones de la cuenta.
+  match_strategy: generated
+  canonical_name: Aceptar términos y condiciones
+  normalized_name: aceptar términos y condiciones
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

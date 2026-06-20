@@ -1,0 +1,48 @@
+asset_id: asset_set.flow.001
+asset_type: asset_set
+name: Flow.001 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.001.
+text: 'high_value_transfer
+
+  capture_transfer_details
+
+  Request Purpose Document'
+tags:
+- asset_set
+- flow.001
+relations:
+- type: groups_flow
+  target_asset_id: flow.flow.001
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.capture_transfer_details
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.request_purpose_document
+  metadata: {}
+payload:
+  transaction_id: flow.001
+  asset_ids:
+  - flow.flow.001
+  - user_task.capture_transfer_details
+  - user_task.request_purpose_document
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.flow.001
+    asset_type: flow
+  - asset_id: user_task.capture_transfer_details
+    asset_type: user_task
+  - asset_id: user_task.request_purpose_document
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Flow.001 Asset Set
+  normalized_name: flow.001 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

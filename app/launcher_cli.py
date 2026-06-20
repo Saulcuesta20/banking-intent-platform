@@ -12,12 +12,17 @@ from app.factory import (
     build_asset_catalog_store,
     build_asset_set_deployment_service,
 )
+from app.config.settings import load_settings
 from app.launcher.assetset_migration import export_legacy_launcher_asset_sets
 
 app = typer.Typer(help="Launcher commands for the Enterprise AI Launcher.")
 start_app = typer.Typer(help="Launcher startup commands.")
 assets_app = typer.Typer(help="AssetSet authoring, review, and deployment commands.")
 LAUNCHER_DIR = Path(__file__).parent / "launcher"
+
+
+def _asset_source_path() -> Path:
+    return load_settings().asset_source_path
 
 
 @start_app.command("engine")
@@ -51,7 +56,7 @@ def status() -> None:
 @app.command("publish")
 def publish() -> None:
     """Backward-compatible alias for loading AssetSets into Unified Catalog."""
-    values = build_asset_set_deployment_service().load_directory(LAUNCHER_DIR / "modules")
+    values = build_asset_set_deployment_service().load_directory(_asset_source_path())
     typer.echo(f"launcher AssetSets loaded for review: {len(values)}")
 
 
@@ -66,10 +71,10 @@ def export_asset_sets() -> None:
 
 @assets_app.command("load")
 def load_asset_sets(
-    root: Path = typer.Option(LAUNCHER_DIR / "modules", "--root"),
+    root: Path | None = typer.Option(None, "--root"),
 ) -> None:
     """Validate AssetSet YAML and register versions as ready for review."""
-    values = build_asset_set_deployment_service().load_directory(root)
+    values = build_asset_set_deployment_service().load_directory(root or _asset_source_path())
     typer.echo(f"asset sets loaded: {len(values)}")
 
 

@@ -1,0 +1,51 @@
+asset_id: asset_set.falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+asset_type: asset_set
+name: Falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse.
+text: 'falta documento oficial, la apertura de cuenta debe detenerse
+
+  apertura de cuenta
+
+  Falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse Ruleset'
+tags:
+- asset_set
+- falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+  metadata: {}
+payload:
+  transaction_id: falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+  asset_ids:
+  - business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+  - entity.apertura_de_cuenta
+  - ruleset.falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+    asset_type: business_rule
+  - asset_id: entity.apertura_de_cuenta
+    asset_type: entity
+  - asset_id: ruleset.falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse Asset
+    Set
+  normalized_name: falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse asset
+    set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

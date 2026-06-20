@@ -1,0 +1,20 @@
+asset_id: tool.transfer_submit
+asset_type: tool
+name: transfer.submit
+version: 1.0.0
+owner: business_model_kb
+description: La API transfer.submit ejecuta la transferencia bancaria.
+text: La API transfer.submit ejecuta la transferencia bancaria.
+tags: []
+relations: []
+payload:
+  description: La API transfer.submit ejecuta la transferencia bancaria.
+  tool_id: transfer.submit
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: transfer.submit
+  normalized_name: transfer.submit
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

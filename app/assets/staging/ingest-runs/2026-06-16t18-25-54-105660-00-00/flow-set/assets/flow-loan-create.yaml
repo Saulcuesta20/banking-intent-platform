@@ -1,0 +1,88 @@
+asset_id: flow.loan.create
+asset_type: flow
+name: Create Loan
+version: 1.0.0
+owner: process_kb
+description: Create a new loan application and record.
+text: Create a new loan application and record.
+tags:
+- add.loan.to.system
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.document_check
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.rules_validation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.loan_calculation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.create_loan_record
+  metadata: {}
+payload:
+  flow_id: loan.create
+  flow_name: Create Loan
+  intent: add.loan.to.system
+  confidence: 0.75
+  business_event: Loan origination
+  utterances: []
+  plan: []
+  tasks:
+  - task: document_check
+    type: automated
+  - task: rules_validation
+    type: automated
+  - task: loan_calculation
+    type: automated
+  - task: create_loan_record
+    type: automated
+  user_tasks:
+  - user_task_id: document_check
+    task: document_check
+    type: automated
+    name: Document Check
+    description: Verify required documents for loan application.
+    tools: []
+    user_actions: []
+  - user_task_id: rules_validation
+    task: rules_validation
+    type: automated
+    name: Rules Validation
+    description: Apply business rules to loan application.
+    tools: []
+    user_actions: []
+  - user_task_id: loan_calculation
+    task: loan_calculation
+    type: automated
+    name: Loan Calculation
+    description: Compute loan amounts, interest, and schedule.
+    tools: []
+    user_actions: []
+  - user_task_id: create_loan_record
+    task: create_loan_record
+    type: automated
+    name: Create Loan Record
+    description: Insert loan into the system.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Create a new loan application and record.
+  source: data/raw/banking_flows_additional.txt#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_flows_additional.txt#chunk-2
+    purpose: Initiate a loan for a customer.
+  purpose: Initiate a loan for a customer.
+  transaction_id: loan.create
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Create Loan
+  normalized_name: create loan
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

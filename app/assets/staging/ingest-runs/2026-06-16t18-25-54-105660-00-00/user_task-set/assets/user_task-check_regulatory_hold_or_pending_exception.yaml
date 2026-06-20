@@ -1,0 +1,25 @@
+asset_id: user_task.check_regulatory_hold_or_pending_exception
+asset_type: user_task
+name: Check Regulatory Hold or Pending Exception
+version: 1.0.0
+owner: business_model_kb
+description: Check for any regulatory hold or pending exception on the loan
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_regulatory_hold
+  task: check_regulatory_hold_or_pending_exception
+  type: verification
+  name: Check Regulatory Hold or Pending Exception
+  description: Check for any regulatory hold or pending exception on the loan
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Regulatory Hold or Pending Exception
+  normalized_name: check regulatory hold or pending exception
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

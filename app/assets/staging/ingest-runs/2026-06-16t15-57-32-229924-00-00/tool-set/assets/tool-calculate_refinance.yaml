@@ -1,0 +1,32 @@
+asset_id: tool.calculate_refinance
+asset_type: tool
+name: Calculate refinance
+version: 1.0.0
+owner: business_model_kb
+description: ''
+text: ''
+tags:
+- frontend_tool
+- calculate
+- loan_refinance
+relations: []
+payload:
+  tool_id: ui.refinance.calculate
+  tool_type: frontend_tool
+  operation: calculate
+  resource: loan_refinance
+  label: Calculate refinance
+  frontend_event: loan_refinance.calculate
+  requires_approval: false
+  user_tasks:
+  - review_refinance_options
+  flows:
+  - loan.refinance
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Calculate refinance
+  normalized_name: calculate refinance
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

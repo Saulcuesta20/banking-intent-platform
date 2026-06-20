@@ -1,0 +1,82 @@
+asset_id: plan.high.value.transfer.control
+asset_type: plan
+name: International transfer review
+version: 1.0.0
+owner: planning_kb
+description: 'Goal: decide whether a high value international transfer can be released.'
+text: "Goal: decide whether a high value international transfer can be released.\n\
+  \nSteps:\n1. Identify the customer and validate active relationship.\n2. Capture\
+  \ transfer details and normalize amount, currency, beneficiary, and\n   destination\
+  \ country.\n3. Screen the beneficiary through the compliance screening gateway.\n\
+  4. Evaluate high value transfer controls and destination risk.\n5. Request purpose\
+  \ document when the control requires evidence.\n6. Route to manager or compliance\
+  \ review when policy gates are triggered.\n7. Notify customer and record decision\
+  \ evidence.\n\nExpected tools: ui.customer.identify, customer.identity.validate,\n\
+  ui.transfer.capture, transfer.create, api.sanctions.screen, risk.case.create,\n\
+  ui.document.request, notification.send, approval.update."
+tags:
+- orchestration_plan
+- execute.international.wire.transfer
+- monitor.and.approve.high.risk.international.transfers
+relations:
+- type: has_step
+  target_asset_id: user_task.identify_the_customer_and_validate_active_relationship
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.capture_transfer_details_and_normalize_amount_currency_beneficiary_and
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.screen_the_beneficiary_through_the_compliance_screening_gateway
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.evaluate_high_value_transfer_controls_and_destination_risk
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.request_purpose_document_when_the_control_requires_evidence
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.route_to_manager_or_compliance_review_when_policy_gates_are_triggered
+  metadata: {}
+- type: has_step
+  target_asset_id: user_task.notify_customer_and_record_decision_evidence
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.high.value.transfer.control
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.high.value.transfer.flow
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.capture_transfer_details
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.compliance_review
+  metadata: {}
+payload:
+  steps:
+  - Identify the customer and validate active relationship
+  - Capture transfer details and normalize amount, currency, beneficiary, and
+  - Screen the beneficiary through the compliance screening gateway
+  - Evaluate high value transfer controls and destination risk
+  - Request purpose document when the control requires evidence
+  - Route to manager or compliance review when policy gates are triggered
+  - Notify customer and record decision evidence
+  plan_text: "Goal: decide whether a high value international transfer can be released.\n\
+    \nSteps:\n1. Identify the customer and validate active relationship.\n2. Capture\
+    \ transfer details and normalize amount, currency, beneficiary, and\n   destination\
+    \ country.\n3. Screen the beneficiary through the compliance screening gateway.\n\
+    4. Evaluate high value transfer controls and destination risk.\n5. Request purpose\
+    \ document when the control requires evidence.\n6. Route to manager or compliance\
+    \ review when policy gates are triggered.\n7. Notify customer and record decision\
+    \ evidence.\n\nExpected tools: ui.customer.identify, customer.identity.validate,\n\
+    ui.transfer.capture, transfer.create, api.sanctions.screen, risk.case.create,\n\
+    ui.document.request, notification.send, approval.update."
+  transaction_id: high.value.transfer.control
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: International transfer review
+  normalized_name: international transfer review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.fill_application
+asset_type: user_task
+name: Fill Application
+version: 1.0.0
+owner: business_model_kb
+description: Customer fills in personal information and selects account type.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_fill_application
+  task: fill_account_opening_application
+  type: form_filling
+  name: Fill Application
+  description: Customer fills in personal information and selects account type.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Fill Application
+  normalized_name: fill application
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

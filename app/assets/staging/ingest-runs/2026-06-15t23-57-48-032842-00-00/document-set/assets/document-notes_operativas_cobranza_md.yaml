@@ -1,0 +1,104 @@
+asset_id: document.notes_operativas_cobranza_md
+asset_type: document
+name: notes_operativas_cobranza.md
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/notes_operativas_cobranza.md
+text: '# Notas operativas de cobranza
+
+
+  Estas notas contienen fragmentos de procesos, criterios de atencion y
+
+  situaciones de seguimiento.
+
+
+  ## Casos frecuentes
+
+
+  - cliente con pago retrasado y buena disposicion
+
+  - cliente con promesa de pago
+
+  - cliente con refinanciamiento solicitado
+
+  - cliente con cambio de fecha de corte
+
+  - cliente con exencion temporal por desempleo
+
+
+  ## Acciones sugeridas
+
+
+  1. Confirmar saldo y ultima fecha de pago.
+
+  2. Registrar motivo de contacto.
+
+  3. Definir si requiere promesa, escalacion o seguimiento.
+
+  4. Enviar recordatorio si el caso permanece abierto.
+
+
+  ## Proceso
+
+
+  El analista de cobranza consulta al sistema, valida la situacion y luego
+
+  documenta el siguiente paso. Si el caso ya tiene una regla activa, no se
+
+  repite la solicitud a un usuario sin necesidad.'
+tags:
+- text
+- md
+relations: []
+payload:
+  path: data/raw/notes_operativas_cobranza.md
+  kind: text
+  sequence: 23
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- cliente con pago retrasado y buena disposicion'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: '- cliente con pago retrasado y buena disposicion'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- cliente con promesa de pago'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: '- cliente con promesa de pago'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- cliente con refinanciamiento solicitado'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- cliente con cambio de fecha de corte'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- cliente con exencion temporal por desempleo'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Confirmar saldo y ultima fecha de pago.
+  - type: transitions_to
+    family: structural
+    phrase: luego
+    sentence: El analista de cobranza consulta al sistema, valida la situacion y luego
+  - type: has_step
+    family: structural
+    phrase: paso
+    sentence: documenta el siguiente paso.
+  match_strategy: generated
+  canonical_name: notes_operativas_cobranza.md
+  normalized_name: notes operativas cobranza.md
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

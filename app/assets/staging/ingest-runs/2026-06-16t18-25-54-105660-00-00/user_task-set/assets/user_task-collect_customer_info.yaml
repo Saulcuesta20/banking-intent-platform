@@ -1,0 +1,25 @@
+asset_id: user_task.collect_customer_info
+asset_type: user_task
+name: Collect Customer Info
+version: 1.0.0
+owner: business_model_kb
+description: Gather customer ID, proof of address, tax ID
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: collect_customer_info
+  task: collect_customer_identification_and_documents
+  type: form
+  name: Collect Customer Info
+  description: Gather customer ID, proof of address, tax ID
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collect Customer Info
+  normalized_name: collect customer info
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,27 @@
+asset_id: plan.pl006
+asset_type: plan
+name: PL006
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para disputas de cargo: registrar caso, congelar instrumento, recolectar
+  evidencia y escalar.'
+text: ''
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pl006
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: PL006
+  normalized_name: pl006
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

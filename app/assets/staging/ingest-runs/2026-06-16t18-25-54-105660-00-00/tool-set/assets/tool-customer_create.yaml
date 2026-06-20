@@ -1,0 +1,28 @@
+asset_id: tool.customer_create
+asset_type: tool
+name: customer.create
+version: 1.0.0
+owner: business_model_kb
+description: El servicio customer.create registra un cliente nuevo.
+text: El servicio customer.create registra un cliente nuevo.
+tags: []
+relations: []
+payload:
+  description: El servicio customer.create registra un cliente nuevo.
+  tool_id: customer.create
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El servicio customer.create registra un cliente nuevo.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El servicio customer.create registra un cliente nuevo.
+  match_strategy: generated
+  canonical_name: customer.create
+  normalized_name: customer.create
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

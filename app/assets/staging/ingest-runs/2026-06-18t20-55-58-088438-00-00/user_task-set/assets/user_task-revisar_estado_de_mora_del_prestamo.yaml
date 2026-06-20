@@ -1,0 +1,31 @@
+asset_id: user_task.revisar_estado_de_mora_del_prestamo
+asset_type: user_task
+name: Revisar estado de mora del prestamo
+version: 1.0.0
+owner: business_model_kb
+description: Revisar estado de mora del prestamo.
+text: Revisar estado de mora del prestamo.
+tags: []
+relations: []
+payload:
+  description: Revisar estado de mora del prestamo.
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Revisar estado de mora del prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Revisar estado de mora del prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Revisar estado de mora del prestamo.
+  match_strategy: generated
+  canonical_name: Revisar estado de mora del prestamo
+  normalized_name: revisar estado de mora del prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

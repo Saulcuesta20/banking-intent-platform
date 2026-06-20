@@ -1,0 +1,34 @@
+asset_id: ruleset.transfer.high.amount.approval
+asset_type: ruleset
+name: Transfer.high.amount.approval Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction transfer.high.amount.approval with 1 business
+  rules.
+text: Transfers exceeding operational limit require approval.
+tags:
+- ruleset
+- transfer.high.amount.approval
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.transfer_high_amount_approval
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+payload:
+  transaction_id: transfer.high.amount.approval
+  ruleset_name: Transfer.high.amount.approval Ruleset
+  rule_ids:
+  - business_rule.transfer_high_amount_approval
+  conditions:
+  - Transfer amount > operational limit
+  consequences:
+  - Request human approval
+  match_strategy: generated
+  canonical_name: Transfer.high.amount.approval Ruleset
+  normalized_name: transfer.high.amount.approval ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

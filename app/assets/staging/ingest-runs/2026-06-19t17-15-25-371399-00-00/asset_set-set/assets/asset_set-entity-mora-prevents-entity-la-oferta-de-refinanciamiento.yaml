@@ -1,0 +1,50 @@
+asset_id: asset_set.entity.mora.prevents.entity.la.oferta.de.refinanciamiento
+asset_type: asset_set
+name: Entity.mora.prevents.entity.la.oferta.de.refinanciamiento Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for entity.mora.prevents.entity.la.oferta.de.refinanciamiento.
+text: 'entity.mora prevents entity.la_oferta_de_refinanciamiento
+
+  La oferta de refinanciamiento
+
+  mora'
+tags:
+- asset_set
+- entity.mora.prevents.entity.la.oferta.de.refinanciamiento
+relations:
+- type: groups_causality
+  target_asset_id: causality.entity_mora_prevents_entity_la_oferta_de_refinanciamiento
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.la_oferta_de_refinanciamiento
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.mora
+  metadata: {}
+payload:
+  transaction_id: entity.mora.prevents.entity.la.oferta.de.refinanciamiento
+  asset_ids:
+  - causality.entity_mora_prevents_entity_la_oferta_de_refinanciamiento
+  - entity.la_oferta_de_refinanciamiento
+  - entity.mora
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.entity_mora_prevents_entity_la_oferta_de_refinanciamiento
+    asset_type: causality
+  - asset_id: entity.la_oferta_de_refinanciamiento
+    asset_type: entity
+  - asset_id: entity.mora
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: Entity.mora.prevents.entity.la.oferta.de.refinanciamiento Asset
+    Set
+  normalized_name: entity.mora.prevents.entity.la.oferta.de.refinanciamiento asset
+    set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

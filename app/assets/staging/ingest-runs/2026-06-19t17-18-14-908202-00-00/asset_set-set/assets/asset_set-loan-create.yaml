@@ -1,0 +1,66 @@
+asset_id: asset_set.loan.create
+asset_type: asset_set
+name: Loan.create Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.create.
+text: 'cliente
+
+  prestamo
+
+  El analista indica: quiero crear un prestamo para un cliente existente
+
+  Plan crear prestamo
+
+  Process originacion de prestamo captura solicitud,'
+tags:
+- asset_set
+- loan.create
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.loan.create
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.loan.create
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.loan.create
+  metadata: {}
+payload:
+  transaction_id: loan.create
+  asset_ids:
+  - entity.customer
+  - entity.loan
+  - flow.loan.create
+  - plan.loan.create
+  - process.loan.create
+  asset_types:
+  - entity
+  - flow
+  - plan
+  - process
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: flow.loan.create
+    asset_type: flow
+  - asset_id: plan.loan.create
+    asset_type: plan
+  - asset_id: process.loan.create
+    asset_type: process
+  match_strategy: generated
+  canonical_name: Loan.create Asset Set
+  normalized_name: loan.create asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

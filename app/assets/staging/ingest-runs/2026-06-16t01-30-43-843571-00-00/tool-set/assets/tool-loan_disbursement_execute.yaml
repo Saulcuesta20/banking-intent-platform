@@ -1,0 +1,28 @@
+asset_id: tool.loan_disbursement_execute
+asset_type: tool
+name: loan.disbursement.execute
+version: 1.0.0
+owner: business_model_kb
+description: El servicio loan.disbursement.execute acredita los fondos del prestamo.
+text: El servicio loan.disbursement.execute acredita los fondos del prestamo.
+tags: []
+relations: []
+payload:
+  description: El servicio loan.disbursement.execute acredita los fondos del prestamo.
+  tool_id: loan.disbursement.execute
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El servicio loan.disbursement.execute acredita los fondos del prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El servicio loan.disbursement.execute acredita los fondos del prestamo.
+  match_strategy: generated
+  canonical_name: loan.disbursement.execute
+  normalized_name: loan.disbursement.execute
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,78 @@
+asset_id: flow.loan.refinance
+asset_type: flow
+name: Loan Refinancing Request
+version: 1.0.0
+owner: process_kb
+description: Customer wants options to refinance loan because monthly payment is high.
+text: Customer wants options to refinance loan because monthly payment is high.
+tags:
+- customer.wants.to.reduce.monthly.payment
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.review_loan_details
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.present_refinancing_options
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.process_refinancing_selection
+  metadata: {}
+payload:
+  flow_id: loan.refinance
+  flow_name: Loan Refinancing Request
+  intent: customer.wants.to.reduce.monthly.payment
+  confidence: 0.75
+  business_event: Customer requests to lower monthly payment
+  utterances: []
+  plan: []
+  tasks:
+  - task: review_loan_details_and_customer_income
+    type: agent
+  - task: present_refinancing_options_to_customer
+    type: agent
+  - task: process_customer_s_refinancing_selection
+    type: agent
+  user_tasks:
+  - user_task_id: review_loan_details
+    task: review_loan_details_and_customer_income
+    type: agent
+    name: Review Loan Details
+    description: Agent reviews current loan terms and customer income information.
+    tools: []
+    user_actions: []
+  - user_task_id: present_refinancing_options
+    task: present_refinancing_options_to_customer
+    type: agent
+    name: Present Refinancing Options
+    description: Agent uses loan calculator to generate options and presents them
+      to customer.
+    tools: []
+    user_actions: []
+  - user_task_id: process_refinancing_selection
+    task: process_customer_s_refinancing_selection
+    type: agent
+    name: Process Refinancing Selection
+    description: Agent records customer's chosen option and updates loan schedule.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Customer wants options to refinance loan because monthly payment is
+    high.
+  source: data/raw/customer_support_tickets_mini.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    purpose: To present refinancing options and process selection.
+  purpose: To present refinancing options and process selection.
+  transaction_id: loan.refinance
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Refinancing Request
+  normalized_name: loan refinancing request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

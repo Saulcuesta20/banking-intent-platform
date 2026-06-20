@@ -1,0 +1,25 @@
+asset_id: user_task.process_refinancing_selection
+asset_type: user_task
+name: Process Refinancing Selection
+version: 1.0.0
+owner: business_model_kb
+description: Agent records customer's chosen option and updates loan schedule.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: process_refinancing_selection
+  task: process_customer_s_refinancing_selection
+  type: agent
+  name: Process Refinancing Selection
+  description: Agent records customer's chosen option and updates loan schedule.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Process Refinancing Selection
+  normalized_name: process refinancing selection
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

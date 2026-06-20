@@ -1,0 +1,37 @@
+asset_id: user_task.configuraci_n_de_d_bito_autom_tico
+asset_type: user_task
+name: Configuración de débito automático
+version: 1.0.0
+owner: business_model_kb
+description: El cliente selecciona la cuenta y monto para el débito automático y autoriza
+  la transacción recurrente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: configurar_debito_automatico
+  task: configurar_d_bito_autom_tico
+  type: form
+  name: Configuración de débito automático
+  description: El cliente selecciona la cuenta y monto para el débito automático y
+    autoriza la transacción recurrente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente selecciona la cuenta y monto para el débito automático y
+      autoriza la transacción recurrente.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El cliente selecciona la cuenta y monto para el débito automático y
+      autoriza la transacción recurrente.
+  match_strategy: generated
+  canonical_name: Configuración de débito automático
+  normalized_name: configuración de débito automático
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

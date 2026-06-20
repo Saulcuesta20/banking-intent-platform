@@ -1,0 +1,97 @@
+asset_id: asset_set.alta.cliente.apertura.cuenta
+asset_type: asset_set
+name: Alta.cliente.apertura.cuenta Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for alta.cliente.apertura.cuenta.
+text: 'apertura de cuenta
+
+  cliente
+
+  Alta de cliente y apertura de cuenta
+
+  Identificar cliente
+
+  Llamar al core bancario
+
+  Notificar confirmación
+
+  Revisión manual
+
+  Solicitar documentos KYC
+
+  Validar identidad y documentos'
+tags:
+- asset_set
+- alta.cliente.apertura.cuenta
+relations:
+- type: groups_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.alta.cliente.apertura.cuenta
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_cliente
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.llamar_al_core_bancario
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.notificar_confirmaci_n
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.revisi_n_manual
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.solicitar_documentos_kyc
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_identidad_y_documentos
+  metadata: {}
+payload:
+  transaction_id: alta.cliente.apertura.cuenta
+  asset_ids:
+  - entity.apertura_de_cuenta
+  - entity.customer
+  - flow.alta.cliente.apertura.cuenta
+  - user_task.identificar_cliente
+  - user_task.llamar_al_core_bancario
+  - user_task.notificar_confirmaci_n
+  - user_task.revisi_n_manual
+  - user_task.solicitar_documentos_kyc
+  - user_task.validar_identidad_y_documentos
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.apertura_de_cuenta
+    asset_type: entity
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.alta.cliente.apertura.cuenta
+    asset_type: flow
+  - asset_id: user_task.identificar_cliente
+    asset_type: user_task
+  - asset_id: user_task.llamar_al_core_bancario
+    asset_type: user_task
+  - asset_id: user_task.notificar_confirmaci_n
+    asset_type: user_task
+  - asset_id: user_task.revisi_n_manual
+    asset_type: user_task
+  - asset_id: user_task.solicitar_documentos_kyc
+    asset_type: user_task
+  - asset_id: user_task.validar_identidad_y_documentos
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Alta.cliente.apertura.cuenta Asset Set
+  normalized_name: alta.cliente.apertura.cuenta asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

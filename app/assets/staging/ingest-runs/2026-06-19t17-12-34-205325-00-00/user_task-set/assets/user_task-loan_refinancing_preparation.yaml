@@ -1,0 +1,25 @@
+asset_id: user_task.loan_refinancing_preparation
+asset_type: user_task
+name: Loan Refinancing Preparation
+version: 1.0.0
+owner: business_model_kb
+description: Prepare documents and calculations for loan refinancing.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_refinance_prepare
+  task: prepare_loan_refinancing
+  type: automated
+  name: Loan Refinancing Preparation
+  description: Prepare documents and calculations for loan refinancing.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Refinancing Preparation
+  normalized_name: loan refinancing preparation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

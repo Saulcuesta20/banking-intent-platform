@@ -1,0 +1,29 @@
+asset_id: user_task.register_loan_request
+asset_type: user_task
+name: Register Loan Request
+version: 1.0.0
+owner: business_model_kb
+description: Registrar la solicitud del prestamo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: register_loan_request
+  task: registrar_la_solicitud_del_prestamo
+  type: manual
+  name: Register Loan Request
+  description: Registrar la solicitud del prestamo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Registrar la solicitud del prestamo.
+  match_strategy: generated
+  canonical_name: Register Loan Request
+  normalized_name: register loan request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

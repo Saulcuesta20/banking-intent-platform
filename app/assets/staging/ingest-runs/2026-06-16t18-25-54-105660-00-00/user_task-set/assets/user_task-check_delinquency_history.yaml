@@ -1,0 +1,25 @@
+asset_id: user_task.check_delinquency_history
+asset_type: user_task
+name: Check Delinquency History
+version: 1.0.0
+owner: business_model_kb
+description: Review delinquency history of the loan
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_delinquency
+  task: check_delinquency_history
+  type: verification
+  name: Check Delinquency History
+  description: Review delinquency history of the loan
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Delinquency History
+  normalized_name: check delinquency history
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,49 @@
+asset_id: asset_set.refinance.manager.approval.threshold.ruleset
+asset_type: asset_set
+name: Refinance.manager.approval.threshold.ruleset Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for refinance.manager.approval.threshold.ruleset.
+text: 'Refinance manager approval threshold
+
+  cuota
+
+  Refinance manager approval threshold Ruleset'
+tags:
+- asset_set
+- refinance.manager.approval.threshold.ruleset
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.refinance_manager_approval_threshold
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan_conditions
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.refinance.manager.approval.threshold.ruleset
+  metadata: {}
+payload:
+  transaction_id: refinance.manager.approval.threshold.ruleset
+  asset_ids:
+  - business_rule.refinance_manager_approval_threshold
+  - entity.loan_conditions
+  - ruleset.refinance.manager.approval.threshold.ruleset
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.refinance_manager_approval_threshold
+    asset_type: business_rule
+  - asset_id: entity.loan_conditions
+    asset_type: entity
+  - asset_id: ruleset.refinance.manager.approval.threshold.ruleset
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Refinance.manager.approval.threshold.ruleset Asset Set
+  normalized_name: refinance.manager.approval.threshold.ruleset asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

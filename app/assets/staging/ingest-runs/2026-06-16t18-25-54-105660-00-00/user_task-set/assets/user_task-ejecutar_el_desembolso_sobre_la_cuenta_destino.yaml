@@ -1,0 +1,31 @@
+asset_id: user_task.ejecutar_el_desembolso_sobre_la_cuenta_destino
+asset_type: user_task
+name: Ejecutar el desembolso sobre la cuenta destino
+version: 1.0.0
+owner: business_model_kb
+description: Ejecutar el desembolso sobre la cuenta destino.
+text: Ejecutar el desembolso sobre la cuenta destino.
+tags: []
+relations: []
+payload:
+  description: Ejecutar el desembolso sobre la cuenta destino.
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Ejecutar el desembolso sobre la cuenta destino
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Ejecutar el desembolso sobre la cuenta destino.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Ejecutar el desembolso sobre la cuenta destino.
+  match_strategy: generated
+  canonical_name: Ejecutar el desembolso sobre la cuenta destino
+  normalized_name: ejecutar el desembolso sobre la cuenta destino
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

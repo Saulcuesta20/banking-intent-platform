@@ -1,0 +1,26 @@
+asset_id: plan.plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+asset_type: plan
+name: Plan activar cuentas inactivas
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para activar cuentas inactivas: confirmar identidad, revisar bloqueos,
+  validar riesgo y restituir acceso.'
+text: 'Plan para activar cuentas inactivas: confirmar identidad, revisar bloqueos,
+  validar riesgo y restituir acceso.'
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: 'Plan para activar cuentas inactivas: confirmar identidad, revisar bloqueos,
+    validar riesgo y restituir acceso.'
+  source_section: Plans
+  transaction_id: plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Plan activar cuentas inactivas
+  normalized_name: plan activar cuentas inactivas
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

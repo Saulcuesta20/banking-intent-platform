@@ -1,0 +1,34 @@
+asset_id: flow.customer.update.profile
+asset_type: flow
+name: necesito actualizar mis datos personales
+version: 1.0.0
+owner: process_kb
+description: 'El cliente pide: necesito actualizar mis datos personales.'
+text: 'El cliente pide: necesito actualizar mis datos personales.'
+tags:
+- utterance_flow
+relations:
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  utterances:
+  - 'El cliente pide: necesito actualizar mis datos personales.'
+  purpose: 'El cliente pide: necesito actualizar mis datos personales.'
+  transaction_id: customer.update.profile
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente pide: necesito actualizar mis datos personales.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente pide: necesito actualizar mis datos personales.'
+  match_strategy: generated
+  canonical_name: necesito actualizar mis datos personales
+  normalized_name: necesito actualizar mis datos personales
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

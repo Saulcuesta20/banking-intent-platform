@@ -1,0 +1,33 @@
+asset_id: entity.cuenta_destino_verificada
+asset_type: entity
+name: cuenta destino verificada.
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: La transferencia internacional
+  exige cuenta destino verificada.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases:
+  - cuenta destino verificada
+  inferred_from: section_entities
+  structural_layer: channel
+  business_layer: channel
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: cuenta destino verificada.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Business entity listed in corpus section: La transferencia internacional
+      exige cuenta destino verificada.'
+  match_strategy: generated
+  canonical_name: cuenta destino verificada.
+  normalized_name: cuenta destino verificada.
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

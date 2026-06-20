@@ -1,0 +1,28 @@
+asset_id: entity.retraso_en_el_onboarding
+asset_type: entity
+name: retraso en el onboarding
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality effect_text: retraso en el onboarding'
+text: La falta de documento vigente causa retraso en el onboarding.
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: effect_text
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: La falta de documento vigente causa retraso en el onboarding.
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: La falta de documento vigente causa retraso en el onboarding.
+  match_strategy: generated
+  canonical_name: retraso en el onboarding
+  normalized_name: retraso en el onboarding
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

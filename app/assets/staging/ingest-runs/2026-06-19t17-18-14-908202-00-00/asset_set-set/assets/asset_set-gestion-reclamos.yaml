@@ -1,0 +1,48 @@
+asset_id: asset_set.gestion.reclamos
+asset_type: asset_set
+name: Gestion.reclamos Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for gestion.reclamos.
+text: 'Complaint Handling
+
+  Customer Lookup
+
+  Transaction List Retrieval'
+tags:
+- asset_set
+- gestion.reclamos
+relations:
+- type: groups_flow
+  target_asset_id: flow.gestion.reclamos
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.customer_lookup
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.transaction_list_retrieval
+  metadata: {}
+payload:
+  transaction_id: gestion.reclamos
+  asset_ids:
+  - flow.gestion.reclamos
+  - user_task.customer_lookup
+  - user_task.transaction_list_retrieval
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.gestion.reclamos
+    asset_type: flow
+  - asset_id: user_task.customer_lookup
+    asset_type: user_task
+  - asset_id: user_task.transaction_list_retrieval
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Gestion.reclamos Asset Set
+  normalized_name: gestion.reclamos asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

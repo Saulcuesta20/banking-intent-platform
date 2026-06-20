@@ -1,0 +1,22 @@
+asset_id: entity.claim
+asset_type: entity
+name: Claim
+version: 1.0.0
+owner: business_model_kb
+description: Solicitud de revisión por error, cargo no reconocido o problema operativo.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Solicitud de revisión por error, cargo no reconocido o problema operativo.
+  inferred_from: llm_asset_extraction
+  business_layer: transaction
+  entity_role: transaction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Claim
+  normalized_name: claim
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

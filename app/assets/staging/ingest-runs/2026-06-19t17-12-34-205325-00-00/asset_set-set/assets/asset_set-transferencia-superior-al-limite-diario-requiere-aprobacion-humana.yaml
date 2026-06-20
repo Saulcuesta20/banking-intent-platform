@@ -1,0 +1,51 @@
+asset_id: asset_set.transferencia.superior.al.limite.diario.requiere.aprobacion.humana
+asset_type: asset_set
+name: Transferencia.superior.al.limite.diario.requiere.aprobacion.humana Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for transferencia.superior.al.limite.diario.requiere.aprobacion.humana.
+text: 'transferencia superior al limite diario requiere aprobacion humana
+
+  aprobacion humana
+
+  Transferencia.superior.al.limite.diario.requiere.aprobacion.humana Ruleset'
+tags:
+- asset_set
+- transferencia.superior.al.limite.diario.requiere.aprobacion.humana
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.transferencia_superior_al_limite_diario_requiere_aprobacion_humana
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.aprobacion_humana
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.transferencia.superior.al.limite.diario.requiere.aprobacion.humana
+  metadata: {}
+payload:
+  transaction_id: transferencia.superior.al.limite.diario.requiere.aprobacion.humana
+  asset_ids:
+  - business_rule.transferencia_superior_al_limite_diario_requiere_aprobacion_humana
+  - entity.aprobacion_humana
+  - ruleset.transferencia.superior.al.limite.diario.requiere.aprobacion.humana
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.transferencia_superior_al_limite_diario_requiere_aprobacion_humana
+    asset_type: business_rule
+  - asset_id: entity.aprobacion_humana
+    asset_type: entity
+  - asset_id: ruleset.transferencia.superior.al.limite.diario.requiere.aprobacion.humana
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Transferencia.superior.al.limite.diario.requiere.aprobacion.humana
+    Asset Set
+  normalized_name: transferencia.superior.al.limite.diario.requiere.aprobacion.humana
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

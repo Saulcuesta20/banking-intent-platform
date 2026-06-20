@@ -1,0 +1,61 @@
+asset_id: causality.el_retraso_en_el_onboarding_causes_abandono_del_proceso_por_parte_del_cliente
+asset_type: causality
+name: El retraso en el onboarding causes abandono del proceso por parte del cliente
+version: 1.0.0
+owner: causality_kb
+description: El retraso en el onboarding genera abandono del proceso por parte del
+  cliente.
+text: El retraso en el onboarding genera abandono del proceso por parte del cliente.
+tags:
+- causality
+- causes
+relations:
+- type: has_cause
+  target_asset_id: entity.retraso_en_el_onboarding
+  metadata: {}
+payload:
+  cause_text: El retraso en el onboarding
+  effect_text: abandono del proceso por parte del cliente
+  relation_kind: causes
+  statement: El retraso en el onboarding genera abandono del proceso por parte del
+    cliente.
+  sentence: El retraso en el onboarding genera abandono del proceso por parte del
+    cliente.
+  transaction_id: el.retraso.en.el.onboarding.causes.abandono.del.proceso.por.parte.del.cliente
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El retraso en el onboarding causes abandono del proceso por parte del
+      cliente
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: El retraso en el onboarding genera abandono del proceso por parte del
+      cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El retraso en el onboarding genera abandono del proceso por parte del
+      cliente.
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: El retraso en el onboarding genera abandono del proceso por parte del
+      cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El retraso en el onboarding genera abandono del proceso por parte del
+      cliente.
+  resolved_cause_asset_id: entity.retraso_en_el_onboarding
+  resolved_effect_asset_id: null
+  match_strategy: generated
+  canonical_name: El retraso en el onboarding causes abandono del proceso por parte
+    del cliente
+  normalized_name: el retraso en el onboarding causes abandono del proceso por parte
+    del cliente
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

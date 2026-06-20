@@ -1,0 +1,26 @@
+asset_id: entity.la_validacion_reforzada_aprobada
+asset_type: entity
+name: La validacion reforzada aprobada
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality cause_text: La validacion reforzada aprobada'
+text: La validacion reforzada aprobada habilita la transferencia internacional.
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: cause_text
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: enables
+    family: causality
+    phrase: habilita
+    sentence: La validacion reforzada aprobada habilita la transferencia internacional.
+  match_strategy: generated
+  canonical_name: La validacion reforzada aprobada
+  normalized_name: la validacion reforzada aprobada
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

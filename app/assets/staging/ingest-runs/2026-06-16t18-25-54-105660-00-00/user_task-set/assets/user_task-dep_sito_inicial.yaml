@@ -1,0 +1,29 @@
+asset_id: user_task.dep_sito_inicial
+asset_type: user_task
+name: Depósito inicial
+version: 1.0.0
+owner: business_model_kb
+description: Realizar el depósito de fondos iniciales para activar la cuenta.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: realizar_deposito_inicial
+  task: realizar_dep_sito_inicial
+  type: transaction
+  name: Depósito inicial
+  description: Realizar el depósito de fondos iniciales para activar la cuenta.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Realizar el depósito de fondos iniciales para activar la cuenta.
+  match_strategy: generated
+  canonical_name: Depósito inicial
+  normalized_name: depósito inicial
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

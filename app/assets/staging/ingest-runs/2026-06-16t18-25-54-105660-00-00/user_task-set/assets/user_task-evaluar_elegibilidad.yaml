@@ -1,0 +1,32 @@
+asset_id: user_task.evaluar_elegibilidad
+asset_type: user_task
+name: Evaluar elegibilidad
+version: 1.0.0
+owner: business_model_kb
+description: Evaluar historial crediticio, capacidad de pago, relacion deuda ingreso
+  y reglas de riesgo
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_evaluate_eligibility
+  task: evaluar_elegibilidad
+  type: decision
+  name: Evaluar elegibilidad
+  description: Evaluar historial crediticio, capacidad de pago, relacion deuda ingreso
+    y reglas de riesgo
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Evaluar historial crediticio, capacidad de pago, relacion deuda ingreso
+      y reglas de riesgo
+  match_strategy: generated
+  canonical_name: Evaluar elegibilidad
+  normalized_name: evaluar elegibilidad
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

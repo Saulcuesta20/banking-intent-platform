@@ -1,0 +1,33 @@
+asset_id: user_task.env_o_de_email
+asset_type: user_task
+name: Envío de email
+version: 1.0.0
+owner: business_model_kb
+description: Enviar el estado de cuenta por correo electrónico al cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: enviar_email_estado
+  task: enviar_email_con_estado_de_cuenta
+  type: communication
+  name: Envío de email
+  description: Enviar el estado de cuenta por correo electrónico al cliente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Enviar el estado de cuenta por correo electrónico al cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Enviar el estado de cuenta por correo electrónico al cliente.
+  match_strategy: generated
+  canonical_name: Envío de email
+  normalized_name: envío de email
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

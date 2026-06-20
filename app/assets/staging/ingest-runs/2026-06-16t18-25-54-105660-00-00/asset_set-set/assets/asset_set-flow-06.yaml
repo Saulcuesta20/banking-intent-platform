@@ -1,0 +1,31 @@
+asset_id: asset_set.flow.06
+asset_type: asset_set
+name: Flow.06 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.06.
+text: Reporte de cargo no reconocido
+tags:
+- asset_set
+- flow.06
+relations:
+- type: groups_flow
+  target_asset_id: flow.flow.06
+  metadata: {}
+payload:
+  transaction_id: flow.06
+  asset_ids:
+  - flow.flow.06
+  asset_types:
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.flow.06
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Flow.06 Asset Set
+  normalized_name: flow.06 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

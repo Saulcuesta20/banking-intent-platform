@@ -1,0 +1,25 @@
+asset_id: user_task.retrieve_payment_history
+asset_type: user_task
+name: Retrieve Payment History
+version: 1.0.0
+owner: business_model_kb
+description: Get payment history for a customer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: retrieve_payment_history
+  task: retrieve_payment_history
+  type: automated
+  name: Retrieve Payment History
+  description: Get payment history for a customer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Retrieve Payment History
+  normalized_name: retrieve payment history
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

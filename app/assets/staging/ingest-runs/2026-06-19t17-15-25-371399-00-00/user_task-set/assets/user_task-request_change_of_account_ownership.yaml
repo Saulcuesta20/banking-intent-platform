@@ -1,0 +1,25 @@
+asset_id: user_task.request_change_of_account_ownership
+asset_type: user_task
+name: Request change of account ownership
+version: 1.0.0
+owner: business_model_kb
+description: Change the owner of the bank account
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: solicitar_cambio_titularidad
+  task: solicitar_cambio_de_titularidad_de_la_cuenta
+  type: request
+  name: Request change of account ownership
+  description: Change the owner of the bank account
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Request change of account ownership
+  normalized_name: request change of account ownership
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,64 @@
+asset_id: asset_set.tck.1003.duplicate.charge.investigation
+asset_type: asset_set
+name: Tck.1003.duplicate.charge.investigation Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for tck.1003.duplicate.charge.investigation.
+text: 'Duplicate Charge Investigation and Refund
+
+  Approve Refund
+
+  Investigate Transaction
+
+  Log Duplicate Charge Ticket
+
+  Process Refund'
+tags:
+- asset_set
+- tck.1003.duplicate.charge.investigation
+relations:
+- type: groups_flow
+  target_asset_id: flow.tck.1003.duplicate.charge.investigation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.approve_refund
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.investigate_transaction
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.log_duplicate_charge_ticket
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.process_refund
+  metadata: {}
+payload:
+  transaction_id: tck.1003.duplicate.charge.investigation
+  asset_ids:
+  - flow.tck.1003.duplicate.charge.investigation
+  - user_task.approve_refund
+  - user_task.investigate_transaction
+  - user_task.log_duplicate_charge_ticket
+  - user_task.process_refund
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.tck.1003.duplicate.charge.investigation
+    asset_type: flow
+  - asset_id: user_task.approve_refund
+    asset_type: user_task
+  - asset_id: user_task.investigate_transaction
+    asset_type: user_task
+  - asset_id: user_task.log_duplicate_charge_ticket
+    asset_type: user_task
+  - asset_id: user_task.process_refund
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Tck.1003.duplicate.charge.investigation Asset Set
+  normalized_name: tck.1003.duplicate.charge.investigation asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

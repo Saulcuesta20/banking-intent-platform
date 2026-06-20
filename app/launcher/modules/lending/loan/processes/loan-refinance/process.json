@@ -6,7 +6,7 @@
   "sourcePath": "config/definitions/flows/loan_refinance.flow.yaml",
   "processIds": ["loan_refinance"],
   "userTasks": ["review refinance options"],
-  "lowdefyPage": "loan-refinance",
+  "editorRoute": "loan-refinance",
   "currentFormVersion": "v1",
   "formId": "loan-refinance"
 }

@@ -1,0 +1,25 @@
+asset_id: user_task.assign_owner
+asset_type: user_task
+name: Assign Owner
+version: 1.0.0
+owner: business_model_kb
+description: Assign an owner to handle the complaint
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_complaint_assign_owner
+  task: assign_owner
+  type: manual
+  name: Assign Owner
+  description: Assign an owner to handle the complaint
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Assign Owner
+  normalized_name: assign owner
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

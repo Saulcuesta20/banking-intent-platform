@@ -1,0 +1,103 @@
+asset_id: flow.complaint.intake
+asset_type: flow
+name: Complaint intake
+version: 1.0.0
+owner: process_kb
+description: Create claim, collect evidence, classify claim type, assign owner, notify
+  customer.
+text: Create claim, collect evidence, classify claim type, assign owner, notify customer.
+tags:
+- to.manage.customer.complaints.efficiently
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.claim_creation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.evidence_collection
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.claim_classification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.claim_owner_assignment
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.customer_notification
+  metadata: {}
+payload:
+  flow_id: complaint.intake
+  flow_name: Complaint intake
+  intent: to.manage.customer.complaints.efficiently
+  confidence: 0.75
+  business_event: customer_complaint_received
+  utterances: []
+  plan: []
+  tasks:
+  - task: create_claim
+    type: case_initiation
+  - task: collect_evidence
+    type: evidence_gathering
+  - task: classify_claim_type
+    type: classification
+  - task: assign_owner
+    type: assignment
+  - task: notify_customer
+    type: communication
+  user_tasks:
+  - user_task_id: create_claim
+    task: create_claim
+    type: case_initiation
+    name: Claim Creation
+    description: Create a claim for the customer complaint.
+    tools: []
+    user_actions: []
+  - user_task_id: collect_evidence
+    task: collect_evidence
+    type: evidence_gathering
+    name: Evidence Collection
+    description: Collect evidence related to the complaint.
+    tools: []
+    user_actions: []
+  - user_task_id: classify_claim_type
+    task: classify_claim_type
+    type: classification
+    name: Claim Classification
+    description: Classify the type of claim.
+    tools: []
+    user_actions: []
+  - user_task_id: assign_owner
+    task: assign_owner
+    type: assignment
+    name: Claim Owner Assignment
+    description: Assign an owner to handle the claim.
+    tools: []
+    user_actions: []
+  - user_task_id: notify_customer
+    task: notify_customer
+    type: communication
+    name: Customer Notification
+    description: Notify the customer about the claim status.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Create claim, collect evidence, classify claim type, assign owner,
+    notify customer.
+  source: data/raw/enterprise_dump_2026/policy_controls_memo.md;data/raw/enterprise_dump_2026/process_fragments.json
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/policy_controls_memo.md
+    - data/raw/enterprise_dump_2026/process_fragments.json
+    purpose: To intake and process customer complaints.
+  purpose: To intake and process customer complaints.
+  transaction_id: complaint.intake
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Complaint intake
+  normalized_name: complaint intake
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

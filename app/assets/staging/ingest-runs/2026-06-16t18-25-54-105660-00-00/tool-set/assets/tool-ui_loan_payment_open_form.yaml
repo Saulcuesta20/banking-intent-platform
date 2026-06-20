@@ -1,0 +1,42 @@
+asset_id: tool.ui_loan_payment_open_form
+asset_type: tool
+name: ui.loan.payment.open_form
+version: 1.0.0
+owner: business_model_kb
+description: La interfaz ui.loan.payment.open_form muestra el formulario de pago del
+  prestamo.
+text: La interfaz ui.loan.payment.open_form muestra el formulario de pago del prestamo.
+tags: []
+relations: []
+payload:
+  description: La interfaz ui.loan.payment.open_form muestra el formulario de pago
+    del prestamo.
+  tool_id: ui.loan.payment.open.form
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La interfaz ui.loan.payment.open_form muestra el formulario de pago
+      del prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: La interfaz ui.loan.payment.open_form muestra el formulario de pago
+      del prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La interfaz ui.loan.payment.open_form muestra el formulario de pago
+      del prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: La interfaz ui.loan.payment.open_form muestra el formulario de pago
+      del prestamo.
+  match_strategy: generated
+  canonical_name: ui.loan.payment.open_form
+  normalized_name: ui.loan.payment.open form
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

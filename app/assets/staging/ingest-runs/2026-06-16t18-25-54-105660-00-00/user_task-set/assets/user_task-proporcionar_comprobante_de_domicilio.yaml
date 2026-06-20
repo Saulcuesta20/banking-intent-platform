@@ -1,0 +1,25 @@
+asset_id: user_task.proporcionar_comprobante_de_domicilio
+asset_type: user_task
+name: Proporcionar comprobante de domicilio
+version: 1.0.0
+owner: business_model_kb
+description: El usuario presenta un comprobante de domicilio reciente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_provide_address
+  task: proporcionar_comprobante_de_domicilio
+  type: document_submission
+  name: Proporcionar comprobante de domicilio
+  description: El usuario presenta un comprobante de domicilio reciente.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Proporcionar comprobante de domicilio
+  normalized_name: proporcionar comprobante de domicilio
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

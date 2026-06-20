@@ -1,0 +1,80 @@
+asset_id: asset_set.transfer.beneficiary.review
+asset_type: asset_set
+name: Transfer.beneficiary.review Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for transfer.beneficiary.review.
+text: 'Transfers and Beneficiary Review
+
+  Beneficiary Data Verification
+
+  Beneficiary Screening
+
+  Customer Identification for Transfer
+
+  Evidence Recording
+
+  High-Value Transfer Review
+
+  Transfer Details Capture'
+tags:
+- asset_set
+- transfer.beneficiary.review
+relations:
+- type: groups_flow
+  target_asset_id: flow.transfer.beneficiary.review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.beneficiary_data_verification
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.beneficiary_screening
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.customer_identification_for_transfer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.evidence_recording
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.high_value_transfer_review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.transfer_details_capture
+  metadata: {}
+payload:
+  transaction_id: transfer.beneficiary.review
+  asset_ids:
+  - flow.transfer.beneficiary.review
+  - user_task.beneficiary_data_verification
+  - user_task.beneficiary_screening
+  - user_task.customer_identification_for_transfer
+  - user_task.evidence_recording
+  - user_task.high_value_transfer_review
+  - user_task.transfer_details_capture
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.transfer.beneficiary.review
+    asset_type: flow
+  - asset_id: user_task.beneficiary_data_verification
+    asset_type: user_task
+  - asset_id: user_task.beneficiary_screening
+    asset_type: user_task
+  - asset_id: user_task.customer_identification_for_transfer
+    asset_type: user_task
+  - asset_id: user_task.evidence_recording
+    asset_type: user_task
+  - asset_id: user_task.high_value_transfer_review
+    asset_type: user_task
+  - asset_id: user_task.transfer_details_capture
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Transfer.beneficiary.review Asset Set
+  normalized_name: transfer.beneficiary.review asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

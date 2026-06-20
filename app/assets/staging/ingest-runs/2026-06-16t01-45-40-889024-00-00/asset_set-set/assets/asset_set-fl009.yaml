@@ -1,0 +1,40 @@
+asset_id: asset_set.fl009
+asset_type: asset_set
+name: Fl009 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl009.
+text: 'Reportar Cargo No Reconocido
+
+  Registrar disputa por cargo no reconocido'
+tags:
+- asset_set
+- fl009
+relations:
+- type: groups_flow
+  target_asset_id: flow.fl009
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.registrar_disputa_por_cargo_no_reconocido
+  metadata: {}
+payload:
+  transaction_id: fl009
+  asset_ids:
+  - flow.fl009
+  - user_task.registrar_disputa_por_cargo_no_reconocido
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.fl009
+    asset_type: flow
+  - asset_id: user_task.registrar_disputa_por_cargo_no_reconocido
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Fl009 Asset Set
+  normalized_name: fl009 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

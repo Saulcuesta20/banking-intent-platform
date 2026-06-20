@@ -1,0 +1,42 @@
+asset_id: asset_set.la.falta.de.documento.vigente.causes.retraso.en.el.onboarding
+asset_type: asset_set
+name: La.falta.de.documento.vigente.causes.retraso.en.el.onboarding Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for la.falta.de.documento.vigente.causes.retraso.en.el.onboarding.
+text: 'La falta de documento vigente causes retraso en el onboarding
+
+  retraso en el onboarding'
+tags:
+- asset_set
+- la.falta.de.documento.vigente.causes.retraso.en.el.onboarding
+relations:
+- type: groups_causality
+  target_asset_id: causality.la_falta_de_documento_vigente_causes_retraso_en_el_onboarding
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.retraso_en_el_onboarding
+  metadata: {}
+payload:
+  transaction_id: la.falta.de.documento.vigente.causes.retraso.en.el.onboarding
+  asset_ids:
+  - causality.la_falta_de_documento_vigente_causes_retraso_en_el_onboarding
+  - entity.retraso_en_el_onboarding
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.la_falta_de_documento_vigente_causes_retraso_en_el_onboarding
+    asset_type: causality
+  - asset_id: entity.retraso_en_el_onboarding
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: La.falta.de.documento.vigente.causes.retraso.en.el.onboarding Asset
+    Set
+  normalized_name: la.falta.de.documento.vigente.causes.retraso.en.el.onboarding asset
+    set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

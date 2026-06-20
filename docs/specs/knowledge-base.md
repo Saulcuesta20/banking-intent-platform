@@ -10,11 +10,11 @@ database is now one adapter type, not the whole knowledge component.
 ## Responsibilities
 - Load approved owner-KB assets from file/YAML/JSON sources.
 - Expose asset registry, asset repository, asset search, validation, and sync.
-- Normalize entity vocabulary and synonyms.
+- Normalize entity vocabulary and aliases.
 - Provide a `KnowledgeBaseService` boundary for runtime retrieval and ingestion.
 - Route retrieval to the right knowledge sources after the ask/goal router
   decides what the user needs.
-- Build an `EvidenceBundle` that records the sources and evidence used by ask.
+- Emit evidence JSON that records the sources and evidence used by ask.
 - Host storage adapters for graph, vector, NoSQL/document, relational, and file
   stores.
 - Keep graph/vector/search databases as technical indexes, not asset owners.
@@ -94,7 +94,7 @@ Question
        document
        relational
        external_api
-  -> EvidenceBundle
+  -> Evidence JSON
 ```
 
 ## Operator Query Command
@@ -112,6 +112,7 @@ kb query --asset-type tool --kb graph --format json
 kb query --asset-type plan --owner-kb planning_kb --text "cobranza preventiva"
 kb query --asset-type causality --relation-type has_effect --text "mora"
 kb query --owner-kb business_model_kb --asset-type entity --text "prestamo"
+kb query --metadata --tree
 ```
 
 `kb query` reads the asset-type registry and returns the logical owner KB plus
@@ -120,16 +121,31 @@ KB `process_kb` and can report repository, graph, and vector engines because
 those are the stores declared for `flow` in
 `config/asset_registry/asset_types.yaml`.
 
+`kb query --metadata --tree` also renders a structural hierarchy for the
+active catalog. That hierarchy shows the flow/task/action/tool shape from the
+catalog payloads, while the relation branch shows linked catalog assets such as
+`flow -> user_task -> tool`.
+
+Catalog metadata and governed asset contracts are separate but related:
+
+- `GET /catalog/metadata` and `kb query --metadata --tree` expose the current
+  catalog dimensions used by the launcher, including asset types, KBs, statuses,
+  tags, domains, and modules.
+- The governed asset contracts live in `config/model/extraction_schema.yaml`
+  under `asset_contracts`, and are loaded by `app/config/model.py` and
+  validated by `app/config/asset_contracts.py`.
+
 The lower-level commands remain useful for adapter debugging:
 
 - `kb query --kb repository` inspects the governed asset repository.
 - `kb query --kb graph` inspects Neo4j-oriented relationship retrieval.
-- `ask "..." --debug-trace` prints the evidence-bearing ask trace and is the quickest way to inspect the bundle shape consumed by ask.
+- `ask "..." --debug-trace` prints the evidence-bearing ask trace and is the quickest way to inspect the evidence JSON consumed by ask.
 
-## Evidence Bundle
+## Evidence JSON
 
-`EvidenceBundle` is the auditable package produced before planning and answer
-generation. It records:
+Evidence is not a separate governed asset type in the target architecture. Ask
+and ingestion should emit auditable JSON on assets, traces, and answer payloads.
+That JSON records:
 
 - selected knowledge source routes
 - views consulted or expected
@@ -137,9 +153,12 @@ generation. It records:
 - matched approved assets
 - source metadata such as confidence, source refs, versions, or API evidence
 
-The current implementation builds this bundle from graph search records and
-asset search results. Future adapters should add richer snippets, effective
-dates, versions, and external API responses.
+The current implementation still contains bundle-shaped trace data from graph
+search records and asset search results. Future adapters should write the same
+information as evidence JSON with richer snippets, effective dates, versions,
+and external API responses.
+
+See `docs/specs/ontology-search-spaces.md` for the target search-layer model.
 
 ## Adapter Roles
 

@@ -1,0 +1,27 @@
+asset_id: user_task.transaction_screening
+asset_type: user_task
+name: Transaction Screening
+version: 1.0.0
+owner: business_model_kb
+description: Automated checks on customer identity, transfer amount, beneficiary details,
+  destination country, sanctions status, and proof of purpose.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transaction_screening
+  task: screen_transaction
+  type: automated
+  name: Transaction Screening
+  description: Automated checks on customer identity, transfer amount, beneficiary
+    details, destination country, sanctions status, and proof of purpose.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transaction Screening
+  normalized_name: transaction screening
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

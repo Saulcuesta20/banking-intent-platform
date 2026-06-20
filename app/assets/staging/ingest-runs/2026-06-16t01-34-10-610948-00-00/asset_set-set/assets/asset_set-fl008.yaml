@@ -1,0 +1,40 @@
+asset_id: asset_set.fl008
+asset_type: asset_set
+name: Fl008 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl008.
+text: 'Activar Cuenta Inactiva
+
+  Ejecutar activacion de cuenta previamente bloqueada'
+tags:
+- asset_set
+- fl008
+relations:
+- type: groups_flow
+  target_asset_id: flow.fl008
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.ejecutar_activacion_de_cuenta_previamente_bloqueada
+  metadata: {}
+payload:
+  transaction_id: fl008
+  asset_ids:
+  - flow.fl008
+  - user_task.ejecutar_activacion_de_cuenta_previamente_bloqueada
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.fl008
+    asset_type: flow
+  - asset_id: user_task.ejecutar_activacion_de_cuenta_previamente_bloqueada
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Fl008 Asset Set
+  normalized_name: fl008 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,24 @@
+asset_id: qa.que_pasa_si_el_beneficiario_de_la_transferencia_no_coincide
+asset_type: qa
+name: Que pasa si el beneficiario de la transferencia no coincide?
+version: 1.0.0
+owner: qa_kb
+description: Que pasa si el beneficiario de la transferencia no coincide?
+text: Que pasa si el beneficiario de la transferencia no coincide?
+tags:
+- qa
+relations:
+- type: uses_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+payload:
+  question: Que pasa si el beneficiario de la transferencia no coincide?
+  transaction_id: que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Que pasa si el beneficiario de la transferencia no coincide?
+  normalized_name: que pasa si el beneficiario de la transferencia no coincide?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

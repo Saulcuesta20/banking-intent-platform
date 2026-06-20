@@ -1,0 +1,25 @@
+asset_id: user_task.confirmar_transferencia
+asset_type: user_task
+name: Confirmar transferencia
+version: 1.0.0
+owner: business_model_kb
+description: User confirms the transfer operation after validation.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_confirm_transfer
+  task: confirm_transfer
+  type: confirmation
+  name: Confirmar transferencia
+  description: User confirms the transfer operation after validation.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Confirmar transferencia
+  normalized_name: confirmar transferencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

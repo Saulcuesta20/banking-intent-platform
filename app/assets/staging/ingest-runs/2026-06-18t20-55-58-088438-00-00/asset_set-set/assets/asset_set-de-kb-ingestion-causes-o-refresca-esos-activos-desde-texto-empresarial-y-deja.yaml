@@ -1,0 +1,43 @@
+asset_id: asset_set.de.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja
+asset_type: asset_set
+name: De.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for de.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja.
+text: 'de KB ingestion causes o refresca esos activos desde texto empresarial y deja
+
+  de KB ingestion'
+tags:
+- asset_set
+- de.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja
+relations:
+- type: groups_causality
+  target_asset_id: causality.de_kb_ingestion_causes_o_refresca_esos_activos_desde_texto_empresarial_y_deja
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.de_kb_ingestion
+  metadata: {}
+payload:
+  transaction_id: de.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja
+  asset_ids:
+  - causality.de_kb_ingestion_causes_o_refresca_esos_activos_desde_texto_empresarial_y_deja
+  - entity.de_kb_ingestion
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.de_kb_ingestion_causes_o_refresca_esos_activos_desde_texto_empresarial_y_deja
+    asset_type: causality
+  - asset_id: entity.de_kb_ingestion
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: De.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja
+    Asset Set
+  normalized_name: de.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,65 @@
+asset_id: asset_set.fl101
+asset_type: asset_set
+name: Fl101 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl101.
+text: 'Customer
+
+  Diseñar Suite Everyday Banking
+
+  Diseñar la suite Everyday Banking
+
+  Identificar al cliente antes de cualquier operacion financiera
+
+  Mapear departamentos de Customer Experience'
+tags:
+- asset_set
+- fl101
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.fl101
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.dise_ar_la_suite_everyday_banking
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.mapear_departamentos_de_customer_experience
+  metadata: {}
+payload:
+  transaction_id: fl101
+  asset_ids:
+  - entity.customer
+  - flow.fl101
+  - user_task.dise_ar_la_suite_everyday_banking
+  - user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  - user_task.mapear_departamentos_de_customer_experience
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.fl101
+    asset_type: flow
+  - asset_id: user_task.dise_ar_la_suite_everyday_banking
+    asset_type: user_task
+  - asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+    asset_type: user_task
+  - asset_id: user_task.mapear_departamentos_de_customer_experience
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Fl101 Asset Set
+  normalized_name: fl101 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

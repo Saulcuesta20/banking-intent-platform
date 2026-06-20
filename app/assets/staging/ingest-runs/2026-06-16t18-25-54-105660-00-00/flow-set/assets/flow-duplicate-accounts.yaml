@@ -1,0 +1,82 @@
+asset_id: flow.duplicate.accounts
+asset_type: flow
+name: Manejo de duplicidad de cuentas
+version: 1.0.0
+owner: process_kb
+description: Proceso de verificación de identidad y consolidación de registros cuando
+  se detectan cuentas duplicadas.
+text: Proceso de verificación de identidad y consolidación de registros cuando se
+  detectan cuentas duplicadas.
+tags:
+- mantener.la.integridad.de.los.datos.del.cliente
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verificaci_n_de_identidad
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.consolidaci_n_de_cuentas
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.notificaci_n_de_consolidaci_n
+  metadata: {}
+payload:
+  flow_id: duplicate.accounts
+  flow_name: Manejo de duplicidad de cuentas
+  intent: mantener.la.integridad.de.los.datos.del.cliente
+  confidence: 0.75
+  business_event: Detección de cuentas duplicadas para un mismo cliente
+  utterances: []
+  plan: []
+  tasks:
+  - task: verificar_identidad_del_cliente
+    type: verification
+  - task: consolidar_registros_de_cuentas_duplicadas
+    type: system
+  - task: notificar_al_cliente_sobre_la_consolidaci_n
+    type: notification
+  user_tasks:
+  - user_task_id: verificar_identidad_cliente
+    task: verificar_identidad_del_cliente
+    type: verification
+    name: Verificación de identidad
+    description: Se verifica la identidad del cliente mediante documentos y datos
+      biométricos para confirmar que es el titular de las cuentas duplicadas.
+    tools: []
+    user_actions: []
+  - user_task_id: consolidar_registros
+    task: consolidar_registros_de_cuentas_duplicadas
+    type: system
+    name: Consolidación de cuentas
+    description: El sistema fusiona los registros de las cuentas duplicadas en un
+      solo perfil de cliente, manteniendo el historial y saldos.
+    tools: []
+    user_actions: []
+  - user_task_id: notificar_consolidacion
+    task: notificar_al_cliente_sobre_la_consolidaci_n
+    type: notification
+    name: Notificación de consolidación
+    description: Se envía una notificación al cliente informando que sus cuentas han
+      sido consolidadas exitosamente.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de verificación de identidad y consolidación de registros cuando
+    se detectan cuentas duplicadas.
+  source: data/raw/savings_loans_domain_extra4.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra4.txt
+    purpose: Unificar la información del cliente y eliminar duplicados.
+  purpose: Unificar la información del cliente y eliminar duplicados.
+  transaction_id: duplicate.accounts
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Manejo de duplicidad de cuentas
+  normalized_name: manejo de duplicidad de cuentas
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

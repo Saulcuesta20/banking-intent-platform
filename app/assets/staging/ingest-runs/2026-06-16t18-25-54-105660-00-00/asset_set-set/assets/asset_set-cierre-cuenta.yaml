@@ -1,0 +1,64 @@
+asset_id: asset_set.cierre.cuenta
+asset_type: asset_set
+name: Cierre.cuenta Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for cierre.cuenta.
+text: 'Cierre de cuenta y liquidación de saldos
+
+  Cierre de cuenta
+
+  Contacto con cobranzas
+
+  Transferencia de saldo
+
+  Verificación de saldo'
+tags:
+- asset_set
+- cierre.cuenta
+relations:
+- type: groups_flow
+  target_asset_id: flow.cierre.cuenta
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.cierre_de_cuenta
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.contacto_con_cobranzas
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.transferencia_de_saldo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verificaci_n_de_saldo
+  metadata: {}
+payload:
+  transaction_id: cierre.cuenta
+  asset_ids:
+  - flow.cierre.cuenta
+  - user_task.cierre_de_cuenta
+  - user_task.contacto_con_cobranzas
+  - user_task.transferencia_de_saldo
+  - user_task.verificaci_n_de_saldo
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.cierre.cuenta
+    asset_type: flow
+  - asset_id: user_task.cierre_de_cuenta
+    asset_type: user_task
+  - asset_id: user_task.contacto_con_cobranzas
+    asset_type: user_task
+  - asset_id: user_task.transferencia_de_saldo
+    asset_type: user_task
+  - asset_id: user_task.verificaci_n_de_saldo
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Cierre.cuenta Asset Set
+  normalized_name: cierre.cuenta asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

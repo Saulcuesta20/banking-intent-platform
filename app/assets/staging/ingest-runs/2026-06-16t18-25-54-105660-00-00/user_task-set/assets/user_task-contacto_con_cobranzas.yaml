@@ -1,0 +1,27 @@
+asset_id: user_task.contacto_con_cobranzas
+asset_type: user_task
+name: Contacto con cobranzas
+version: 1.0.0
+owner: business_model_kb
+description: Si el saldo es negativo, contactar al departamento de cobranzas para
+  gestionar el cierre.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: contactar_cobranzas_si_negativo
+  task: contactar_cobranzas_si_saldo_negativo
+  type: communication
+  name: Contacto con cobranzas
+  description: Si el saldo es negativo, contactar al departamento de cobranzas para
+    gestionar el cierre.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Contacto con cobranzas
+  normalized_name: contacto con cobranzas
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

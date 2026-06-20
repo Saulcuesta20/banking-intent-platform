@@ -1,0 +1,69 @@
+asset_id: flow.high.value.transfer.flow
+asset_type: flow
+name: High Value International Transfer
+version: 1.0.0
+owner: process_kb
+description: Process involves capturing transfer details, requesting purpose documentation,
+  and potential compliance review due to high value
+text: Process involves capturing transfer details, requesting purpose documentation,
+  and potential compliance review due to high value
+tags:
+- execute.international.wire.transfer
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.capture_transfer_details
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.request_document
+  metadata: {}
+payload:
+  flow_id: high.value.transfer.flow
+  flow_name: High Value International Transfer
+  intent: execute.international.wire.transfer
+  confidence: 0.75
+  business_event: Customer initiates transfer of $75,000 to another country
+  utterances: []
+  plan: []
+  tasks:
+  - task: capture_details_for_high_value_transfer
+    type: manual
+  - task: request_purpose_document_for_transfer
+    type: manual
+  user_tasks:
+  - user_task_id: capture_transfer_details_task
+    task: capture_details_for_high_value_transfer
+    type: manual
+    name: Capture Transfer Details
+    description: Agent records transfer amount, destination, and purpose as per customer
+      request
+    tools: []
+    user_actions: []
+  - user_task_id: request_document_task
+    task: request_purpose_document_for_transfer
+    type: manual
+    name: Request Document
+    description: Agent requests customer to provide a document explaining the purpose
+      of the transfer
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process involves capturing transfer details, requesting purpose documentation,
+    and potential compliance review due to high value
+  source: data/raw/enterprise_dump_2026/customer_support_tickets.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    purpose: To securely and compliantly process large cross-border transfers
+  purpose: To securely and compliantly process large cross-border transfers
+  transaction_id: high.value.transfer.flow
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: High Value International Transfer
+  normalized_name: high value international transfer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

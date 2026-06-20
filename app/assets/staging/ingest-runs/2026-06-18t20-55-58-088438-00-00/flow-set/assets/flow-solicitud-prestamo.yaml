@@ -1,0 +1,50 @@
+asset_id: flow.solicitud.prestamo
+asset_type: flow
+name: Solicitud de Prestamo
+version: 1.0.0
+owner: process_kb
+description: Proceso de capturar datos, documentos e ingresos para evaluar un préstamo.
+text: Proceso de capturar datos, documentos e ingresos para evaluar un préstamo.
+tags:
+- to.determine.eligibility.and.conditions.for.lending
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.solicitud_de_prestamo
+  metadata: {}
+payload:
+  flow_id: solicitud.prestamo
+  flow_name: Solicitud de Prestamo
+  intent: to.determine.eligibility.and.conditions.for.lending
+  confidence: 0.75
+  business_event: Loan Application
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de capturar datos, documentos e ingresos para evaluar un préstamo.
+  source: data/raw/savings_glossary.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_glossary.csv
+    purpose: To evaluate loan applications based on captured data.
+  purpose: To evaluate loan applications based on captured data.
+  transaction_id: solicitud.prestamo
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Solicitud de Prestamo
+  match_strategy: generated
+  canonical_name: Solicitud de Prestamo
+  normalized_name: solicitud de prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

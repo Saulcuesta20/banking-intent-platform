@@ -1,0 +1,54 @@
+asset_id: flow.flow.tck.1003
+asset_type: flow
+name: duplicate_charge_investigation_flow
+version: 1.0.0
+owner: process_kb
+description: Client reports a duplicate charge and requests investigation and refund.
+text: Client reports a duplicate charge and requests investigation and refund.
+tags:
+- dispute.resolution
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.investigate_duplicate_charge
+  metadata: {}
+payload:
+  flow_id: flow.tck.1003
+  flow_name: duplicate_charge_investigation_flow
+  intent: dispute.resolution
+  confidence: 0.75
+  business_event: client_reports_duplicate_charge
+  utterances: []
+  plan: []
+  tasks:
+  - task: investigate_duplicate_charge
+    type: investigation
+  user_tasks:
+  - user_task_id: user_task_tck_1003
+    task: investigate_duplicate_charge
+    type: investigation
+    name: Investigate Duplicate Charge
+    description: Investigate the reported duplicate charge and initiate refund if
+      validated.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Client reports a duplicate charge and requests investigation and refund.
+  source: data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    - data/raw/enterprise_dump_2026/00_readme.txt
+    purpose: To investigate the duplicate charge and process refund if confirmed.
+  purpose: To investigate the duplicate charge and process refund if confirmed.
+  transaction_id: flow.tck.1003
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: duplicate_charge_investigation_flow
+  normalized_name: duplicate charge investigation flow
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

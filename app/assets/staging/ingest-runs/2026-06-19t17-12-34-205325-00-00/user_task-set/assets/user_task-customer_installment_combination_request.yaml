@@ -1,0 +1,25 @@
+asset_id: user_task.customer_installment_combination_request
+asset_type: user_task
+name: Customer Installment Combination Request
+version: 1.0.0
+owner: business_model_kb
+description: Customer wants to combine two overdue installments
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_4
+  task: combine_overdue_installments
+  type: request
+  name: Customer Installment Combination Request
+  description: Customer wants to combine two overdue installments
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Installment Combination Request
+  normalized_name: customer installment combination request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

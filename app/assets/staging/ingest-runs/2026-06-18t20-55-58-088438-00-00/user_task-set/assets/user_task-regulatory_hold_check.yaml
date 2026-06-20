@@ -1,0 +1,27 @@
+asset_id: user_task.regulatory_hold_check
+asset_type: user_task
+name: Regulatory Hold Check
+version: 1.0.0
+owner: business_model_kb
+description: Advisor verifies if there are any regulatory restrictions or pending
+  issues that affect the loan.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_regulatory_hold
+  task: check_for_any_regulatory_holds_or_pending_exceptions_on_the_loan
+  type: manual
+  name: Regulatory Hold Check
+  description: Advisor verifies if there are any regulatory restrictions or pending
+    issues that affect the loan.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Regulatory Hold Check
+  normalized_name: regulatory hold check
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

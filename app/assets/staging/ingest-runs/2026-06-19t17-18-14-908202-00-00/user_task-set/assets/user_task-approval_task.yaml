@@ -1,0 +1,25 @@
+asset_id: user_task.approval_task
+asset_type: user_task
+name: Approval Task
+version: 1.0.0
+owner: business_model_kb
+description: Workflow continues only after approval
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_7
+  task: approve_workflow
+  type: approval
+  name: Approval Task
+  description: Workflow continues only after approval
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Approval Task
+  normalized_name: approval task
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

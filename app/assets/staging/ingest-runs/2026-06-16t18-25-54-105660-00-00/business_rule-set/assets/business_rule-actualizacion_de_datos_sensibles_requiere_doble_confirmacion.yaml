@@ -1,0 +1,26 @@
+asset_id: business_rule.actualizacion_de_datos_sensibles_requiere_doble_confirmacion
+asset_type: business_rule
+name: actualizacion de datos sensibles requiere doble confirmacion
+version: 1.0.0
+owner: rules_kb
+description: Toda actualizacion de datos sensibles requiere doble confirmacion.
+text: Toda actualizacion de datos sensibles requiere doble confirmacion.
+tags:
+- business_rule
+relations: []
+payload:
+  rule_text: Toda actualizacion de datos sensibles requiere doble confirmacion.
+  source_section: Rules
+  conditions:
+  - Toda actualizacion de datos sensibles
+  consequences:
+  - doble confirmacion
+  transaction_id: actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: actualizacion de datos sensibles requiere doble confirmacion
+  normalized_name: actualizacion de datos sensibles requiere doble confirmacion
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

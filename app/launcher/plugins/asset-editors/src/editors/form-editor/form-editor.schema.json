@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "form_id": {
+      "type": "string",
+      "title": "Form ID"
+    },
+    "module_id": {
+      "type": "string",
+      "title": "Module ID"
+    },
+    "fields": {
+      "type": "array",
+      "title": "Fields",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "layout": {
+      "type": "string",
+      "title": "Layout"
+    },
+    "validation": {
+      "type": "string",
+      "title": "Validation Rules"
+    }
+  },
+  "required": ["form_id", "module_id"]
+}

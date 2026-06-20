@@ -1,0 +1,42 @@
+asset_id: asset_set.plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago
+asset_type: asset_set
+name: Plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago.
+text: 'prestamo
+
+  Plan pagar prestamo'
+tags:
+- asset_set
+- plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago
+relations:
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago
+  metadata: {}
+payload:
+  transaction_id: plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago
+  asset_ids:
+  - entity.loan
+  - plan.plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago
+  asset_types:
+  - entity
+  - plan
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: plan.plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago
+    Asset Set
+  normalized_name: plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

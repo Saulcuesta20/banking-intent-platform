@@ -1,0 +1,25 @@
+asset_id: user_task.high_value_transfer_review
+asset_type: user_task
+name: High-Value Transfer Review
+version: 1.0.0
+owner: business_model_kb
+description: If amount exceeds threshold, perform additional review.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_review_high_value
+  task: review_high_value_transfers
+  type: manual
+  name: High-Value Transfer Review
+  description: If amount exceeds threshold, perform additional review.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: High-Value Transfer Review
+  normalized_name: high-value transfer review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

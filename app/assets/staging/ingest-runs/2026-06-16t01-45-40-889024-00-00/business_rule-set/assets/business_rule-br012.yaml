@@ -1,0 +1,38 @@
+asset_id: business_rule.br012
+asset_type: business_rule
+name: BR012
+version: 1.0.0
+owner: rules_kb
+description: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+text: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+tags:
+- business_rule
+relations: []
+payload:
+  rule_text: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+  source_section: LLMAssetExtraction
+  conditions:
+  - La cancelacion de prestamo anticipada
+  consequences:
+  - recalcular intereses devengados
+  when: ''
+  then: ''
+  transaction_id: br012
+  ruleset_name: ''
+  applies_to: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+  match_strategy: generated
+  canonical_name: BR012
+  normalized_name: br012
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

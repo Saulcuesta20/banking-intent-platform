@@ -1,0 +1,26 @@
+asset_id: asset_set.loan.application.plan
+asset_type: asset_set
+name: Loan.application.plan Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.application.plan.
+text: ''
+tags:
+- asset_set
+- loan.application.plan
+relations: []
+payload:
+  transaction_id: loan.application.plan
+  asset_ids:
+  - plan.loan.application.plan
+  asset_types: []
+  primary_asset_type: asset
+  members:
+  - asset_id: plan.loan.application.plan
+  match_strategy: generated
+  canonical_name: Loan.application.plan Asset Set
+  normalized_name: loan.application.plan asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

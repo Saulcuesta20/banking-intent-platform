@@ -1,0 +1,32 @@
+asset_id: user_task.consolidaci_n_de_cuentas
+asset_type: user_task
+name: Consolidación de cuentas
+version: 1.0.0
+owner: business_model_kb
+description: El sistema fusiona los registros de las cuentas duplicadas en un solo
+  perfil de cliente, manteniendo el historial y saldos.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: consolidar_registros
+  task: consolidar_registros_de_cuentas_duplicadas
+  type: system
+  name: Consolidación de cuentas
+  description: El sistema fusiona los registros de las cuentas duplicadas en un solo
+    perfil de cliente, manteniendo el historial y saldos.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El sistema fusiona los registros de las cuentas duplicadas en un solo
+      perfil de cliente, manteniendo el historial y saldos.
+  match_strategy: generated
+  canonical_name: Consolidación de cuentas
+  normalized_name: consolidación de cuentas
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

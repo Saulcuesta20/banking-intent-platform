@@ -1,0 +1,31 @@
+asset_id: ruleset.actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+asset_type: ruleset
+name: Actualizacion.de.datos.sensibles.requiere.doble.confirmacion Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+  with 1 business rules.
+text: Toda actualizacion de datos sensibles requiere doble confirmacion.
+tags:
+- ruleset
+- actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.actualizacion_de_datos_sensibles_requiere_doble_confirmacion
+  metadata: {}
+payload:
+  transaction_id: actualizacion.de.datos.sensibles.requiere.doble.confirmacion
+  ruleset_name: Actualizacion.de.datos.sensibles.requiere.doble.confirmacion Ruleset
+  rule_ids:
+  - business_rule.actualizacion_de_datos_sensibles_requiere_doble_confirmacion
+  conditions:
+  - Toda actualizacion de datos sensibles
+  consequences:
+  - doble confirmacion
+  match_strategy: generated
+  canonical_name: Actualizacion.de.datos.sensibles.requiere.doble.confirmacion Ruleset
+  normalized_name: actualizacion.de.datos.sensibles.requiere.doble.confirmacion ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

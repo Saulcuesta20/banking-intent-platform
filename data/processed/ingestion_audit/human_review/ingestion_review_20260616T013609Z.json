@@ -1,0 +1,2231 @@
+{
+  "status": "pending",
+  "instructions": [
+    "Review semantic classifications and extracted artifacts before graph loading.",
+    "Review every discovered asset type, not only flows.",
+    "Approve, reject, or correct actions, tools, entities, services, aliases, payloads, and relationships.",
+    "Confirm whether asset types with schema_defined_no_candidate are truly absent from the corpus.",
+    "Review generated AssetSet YAML manifests before promoting or deploying any version.",
+    "Change status to approved when the artifacts can be loaded.",
+    "Use reviewer_notes to document corrections, rejected assets, missing process definitions, or entity model gaps."
+  ],
+  "reviewer_notes": "",
+  "semantic_analysis": {
+    "summary": "",
+    "review_required": false,
+    "classifications": []
+  },
+  "asset_analysis": {
+    "asset_types": {
+      "domain": {
+        "candidate_count": 1,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "domain_id",
+          "name",
+          "purpose",
+          "description",
+          "order",
+          "icon",
+          "tags"
+        ]
+      },
+      "module": {
+        "candidate_count": 4,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "module_id",
+          "domain_id",
+          "name",
+          "purpose",
+          "description",
+          "order",
+          "icon",
+          "menus",
+          "tags"
+        ]
+      },
+      "menu": {
+        "candidate_count": 4,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "menu_id",
+          "module_id",
+          "label",
+          "path",
+          "description",
+          "order",
+          "icon",
+          "parent_menu_id",
+          "children",
+          "target_asset_id"
+        ]
+      },
+      "form": {
+        "candidate_count": 4,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "form_id",
+          "module_id",
+          "name",
+          "purpose",
+          "description",
+          "fields",
+          "layout",
+          "validation",
+          "bindings",
+          "current_version"
+        ]
+      },
+      "form_version": {
+        "candidate_count": 4,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "form_id",
+          "version",
+          "schema",
+          "renderer",
+          "bindings",
+          "validation",
+          "migration_notes"
+        ]
+      },
+      "flow": {
+        "candidate_count": 19,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "flow_id",
+          "flow_name",
+          "purpose",
+          "business_event",
+          "user_task_refs",
+          "related_process_ids",
+          "inputs",
+          "outputs",
+          "explanation"
+        ]
+      },
+      "process": {
+        "candidate_count": 21,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "process_id",
+          "process_name",
+          "business_event",
+          "triggers",
+          "execution_nodes",
+          "transitions",
+          "decisions",
+          "systems",
+          "exceptions",
+          "rules",
+          "tools"
+        ]
+      },
+      "qa": {
+        "candidate_count": 0,
+        "status": "not_detected_yet",
+        "payload_fields": [
+          "question",
+          "answer",
+          "purpose",
+          "source",
+          "citations",
+          "transaction_id"
+        ]
+      },
+      "plan": {
+        "candidate_count": 17,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "plan_id",
+          "objective",
+          "business_event",
+          "steps",
+          "tools",
+          "dependencies",
+          "execution_options"
+        ]
+      },
+      "user_task": {
+        "candidate_count": 38,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "user_task_id",
+          "task",
+          "type",
+          "name",
+          "description",
+          "user_actions",
+          "tools"
+        ]
+      },
+      "business_rule": {
+        "candidate_count": 12,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "rule_id",
+          "rule_text",
+          "when",
+          "conditions",
+          "then",
+          "consequences",
+          "applies_to",
+          "transaction_id",
+          "ruleset_name"
+        ]
+      },
+      "ruleset": {
+        "candidate_count": 0,
+        "status": "not_detected_yet",
+        "payload_fields": [
+          "ruleset_id",
+          "transaction_id",
+          "rules",
+          "entities",
+          "description"
+        ]
+      },
+      "concept": {
+        "candidate_count": 42,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "entity_id",
+          "name",
+          "aliases",
+          "attributes",
+          "relations",
+          "description",
+          "evidence"
+        ]
+      },
+      "entity": {
+        "candidate_count": 42,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "entity_id",
+          "name",
+          "aliases",
+          "attributes",
+          "relations",
+          "description",
+          "evidence",
+          "business_layer",
+          "entity_role",
+          "cardinality",
+          "direction",
+          "domain",
+          "sector"
+        ]
+      },
+      "tool": {
+        "candidate_count": 0,
+        "status": "not_detected_yet",
+        "payload_fields": [
+          "tool_id",
+          "tool_type",
+          "operation",
+          "resource",
+          "label",
+          "description",
+          "frontend_event",
+          "backend_protocol",
+          "endpoint",
+          "requires_approval",
+          "user_tasks",
+          "flows"
+        ]
+      },
+      "document": {
+        "candidate_count": 0,
+        "status": "not_detected_yet",
+        "payload_fields": [
+          "path",
+          "kind",
+          "sequence",
+          "title",
+          "source",
+          "text",
+          "description"
+        ]
+      },
+      "configuration": {
+        "candidate_count": 0,
+        "status": "not_detected_yet",
+        "payload_fields": [
+          "configuration_id",
+          "name",
+          "description",
+          "settings",
+          "policy",
+          "applies_to"
+        ]
+      },
+      "asset_set": {
+        "candidate_count": 1,
+        "status": "candidate_detected",
+        "payload_fields": [
+          "asset_set_id",
+          "version",
+          "primary_asset_type",
+          "members",
+          "domain_id",
+          "module_id",
+          "status",
+          "description",
+          "owner",
+          "tags",
+          "metadata"
+        ]
+      },
+      "causality": {
+        "candidate_count": 0,
+        "status": "not_detected_yet",
+        "payload_fields": [
+          "cause_text",
+          "effect_text",
+          "relation_kind",
+          "evidence",
+          "targets",
+          "transaction_id"
+        ]
+      }
+    },
+    "aliases": [
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl001",
+        "aliases": [
+          "Refinanciar Prestamo",
+          "Permitir al cliente solicitar condiciones mejores para un préstamo existente.",
+          "fl001"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl002",
+        "aliases": [
+          "Abrir Cuenta de Ahorro",
+          "Crear una nueva cuenta de ahorro para un cliente nuevo o existente.",
+          "fl002"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl003",
+        "aliases": [
+          "Transferir Dinero",
+          "Ejecutar una transferencia de fondos entre cuentas del cliente o a terceros.",
+          "fl003"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl004",
+        "aliases": [
+          "Pagar Prestamo",
+          "Permitir al cliente abonar una cuota o el total del préstamo.",
+          "fl004"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl005",
+        "aliases": [
+          "Consultar Estado de Solicitud",
+          "Informar al cliente sobre el estado actual de su solicitud de préstamo o cuenta.",
+          "fl005"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl006",
+        "aliases": [
+          "Actualizar Datos Personales",
+          "Modificar datos de contacto o información sensible del cliente.",
+          "fl006"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl007",
+        "aliases": [
+          "Cancelar Pago Automatico",
+          "Detener un débito automático previamente configurado.",
+          "fl007"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl008",
+        "aliases": [
+          "Activar Cuenta Inactiva",
+          "Restaurar el acceso a una cuenta que ha sido bloqueada.",
+          "fl008"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl009",
+        "aliases": [
+          "Reportar Cargo No Reconocido",
+          "Crear un reclamo por un cargo que el cliente no reconoce.",
+          "fl009"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl010",
+        "aliases": [
+          "Consultar Documentos de Onboarding",
+          "Informar al cliente qué documentos necesita para abrir una cuenta.",
+          "fl010"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl011",
+        "aliases": [
+          "Reestructurar Deuda en Atraso",
+          "Ofrecer una solución de reestructuración para préstamos con mora.",
+          "fl011"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl012",
+        "aliases": [
+          "Consultar Limite de Transferencia",
+          "Responder al cliente sobre su límite diario de transferencias.",
+          "fl012"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl013",
+        "aliases": [
+          "Crear Cliente Nuevo",
+          "Registrar un nuevo cliente en el sistema.",
+          "fl013"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl014",
+        "aliases": [
+          "Crear Prestamo para Cliente Existente",
+          "Iniciar la originación de un préstamo para un cliente ya registrado.",
+          "fl014"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl015",
+        "aliases": [
+          "Desembolsar Prestamo Aprobado",
+          "Transferir los fondos del préstamo aprobado a la cuenta destino del cliente.",
+          "fl015"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl016",
+        "aliases": [
+          "Pagar Prestamo Hoy",
+          "Permitir al cliente efectuar un pago inmediato del préstamo.",
+          "fl016"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl017",
+        "aliases": [
+          "Transferir Dinero al Prestamo",
+          "Aplicar un abono directo al préstamo mediante transferencia desde otra cuenta.",
+          "fl017"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl101",
+        "aliases": [
+          "Diseñar Suite Everyday Banking",
+          "Orquestar la suite SmartBalance Checking + Horizon Savings + EverydayPlus Debit para cada segmento.",
+          "fl101"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      },
+      {
+        "asset_type": "flow",
+        "asset_id": "flow.fl102",
+        "aliases": [
+          "Orquestar FlexPay + ShieldGuard",
+          "Combinar el desembolso FlexPay con el upsell ShieldGuard y coordinar seguros y lending.",
+          "fl102"
+        ],
+        "source": "flow_name_purpose_legacy_intent_utterances"
+      }
+    ],
+    "payloads": {
+      "domain": {
+        "expected_fields": [
+          "domain_id",
+          "name",
+          "purpose",
+          "description",
+          "order",
+          "icon",
+          "tags"
+        ],
+        "candidate_count": 1,
+        "status": "candidate_payload_available"
+      },
+      "module": {
+        "expected_fields": [
+          "module_id",
+          "domain_id",
+          "name",
+          "purpose",
+          "description",
+          "order",
+          "icon",
+          "menus",
+          "tags"
+        ],
+        "candidate_count": 4,
+        "status": "candidate_payload_available"
+      },
+      "menu": {
+        "expected_fields": [
+          "menu_id",
+          "module_id",
+          "label",
+          "path",
+          "description",
+          "order",
+          "icon",
+          "parent_menu_id",
+          "children",
+          "target_asset_id"
+        ],
+        "candidate_count": 4,
+        "status": "candidate_payload_available"
+      },
+      "form": {
+        "expected_fields": [
+          "form_id",
+          "module_id",
+          "name",
+          "purpose",
+          "description",
+          "fields",
+          "layout",
+          "validation",
+          "bindings",
+          "current_version"
+        ],
+        "candidate_count": 4,
+        "status": "candidate_payload_available"
+      },
+      "form_version": {
+        "expected_fields": [
+          "form_id",
+          "version",
+          "schema",
+          "renderer",
+          "bindings",
+          "validation",
+          "migration_notes"
+        ],
+        "candidate_count": 4,
+        "status": "candidate_payload_available"
+      },
+      "flow": {
+        "expected_fields": [
+          "flow_id",
+          "flow_name",
+          "purpose",
+          "business_event",
+          "user_task_refs",
+          "related_process_ids",
+          "inputs",
+          "outputs",
+          "explanation"
+        ],
+        "candidate_count": 19,
+        "status": "candidate_payload_available"
+      },
+      "process": {
+        "expected_fields": [
+          "process_id",
+          "process_name",
+          "business_event",
+          "triggers",
+          "execution_nodes",
+          "transitions",
+          "decisions",
+          "systems",
+          "exceptions",
+          "rules",
+          "tools"
+        ],
+        "candidate_count": 21,
+        "status": "candidate_payload_available"
+      },
+      "qa": {
+        "expected_fields": [
+          "question",
+          "answer",
+          "purpose",
+          "source",
+          "citations",
+          "transaction_id"
+        ],
+        "candidate_count": 0,
+        "status": "schema_defined_no_candidate"
+      },
+      "plan": {
+        "expected_fields": [
+          "plan_id",
+          "objective",
+          "business_event",
+          "steps",
+          "tools",
+          "dependencies",
+          "execution_options"
+        ],
+        "candidate_count": 17,
+        "status": "candidate_payload_available"
+      },
+      "user_task": {
+        "expected_fields": [
+          "user_task_id",
+          "task",
+          "type",
+          "name",
+          "description",
+          "user_actions",
+          "tools"
+        ],
+        "candidate_count": 38,
+        "status": "candidate_payload_available"
+      },
+      "business_rule": {
+        "expected_fields": [
+          "rule_id",
+          "rule_text",
+          "when",
+          "conditions",
+          "then",
+          "consequences",
+          "applies_to",
+          "transaction_id",
+          "ruleset_name"
+        ],
+        "candidate_count": 12,
+        "status": "candidate_payload_available"
+      },
+      "ruleset": {
+        "expected_fields": [
+          "ruleset_id",
+          "transaction_id",
+          "rules",
+          "entities",
+          "description"
+        ],
+        "candidate_count": 0,
+        "status": "schema_defined_no_candidate"
+      },
+      "concept": {
+        "expected_fields": [
+          "entity_id",
+          "name",
+          "aliases",
+          "attributes",
+          "relations",
+          "description",
+          "evidence"
+        ],
+        "candidate_count": 42,
+        "status": "candidate_payload_available"
+      },
+      "entity": {
+        "expected_fields": [
+          "entity_id",
+          "name",
+          "aliases",
+          "attributes",
+          "relations",
+          "description",
+          "evidence",
+          "business_layer",
+          "entity_role",
+          "cardinality",
+          "direction",
+          "domain",
+          "sector"
+        ],
+        "candidate_count": 42,
+        "status": "candidate_payload_available"
+      },
+      "tool": {
+        "expected_fields": [
+          "tool_id",
+          "tool_type",
+          "operation",
+          "resource",
+          "label",
+          "description",
+          "frontend_event",
+          "backend_protocol",
+          "endpoint",
+          "requires_approval",
+          "user_tasks",
+          "flows"
+        ],
+        "candidate_count": 0,
+        "status": "schema_defined_no_candidate"
+      },
+      "document": {
+        "expected_fields": [
+          "path",
+          "kind",
+          "sequence",
+          "title",
+          "source",
+          "text",
+          "description"
+        ],
+        "candidate_count": 0,
+        "status": "schema_defined_no_candidate"
+      },
+      "configuration": {
+        "expected_fields": [
+          "configuration_id",
+          "name",
+          "description",
+          "settings",
+          "policy",
+          "applies_to"
+        ],
+        "candidate_count": 0,
+        "status": "schema_defined_no_candidate"
+      },
+      "asset_set": {
+        "expected_fields": [
+          "asset_set_id",
+          "version",
+          "primary_asset_type",
+          "members",
+          "domain_id",
+          "module_id",
+          "status",
+          "description",
+          "owner",
+          "tags",
+          "metadata"
+        ],
+        "candidate_count": 1,
+        "status": "candidate_payload_available"
+      },
+      "causality": {
+        "expected_fields": [
+          "cause_text",
+          "effect_text",
+          "relation_kind",
+          "evidence",
+          "targets",
+          "transaction_id"
+        ],
+        "candidate_count": 0,
+        "status": "schema_defined_no_candidate"
+      }
+    },
+    "relationships": [
+      {
+        "source_asset_id": "module.m001",
+        "type": "belongs_to_domain",
+        "target_asset_id": "domain.d001"
+      },
+      {
+        "source_asset_id": "module.m002",
+        "type": "belongs_to_domain",
+        "target_asset_id": "domain.d001"
+      },
+      {
+        "source_asset_id": "module.m003",
+        "type": "belongs_to_domain",
+        "target_asset_id": "domain.d001"
+      },
+      {
+        "source_asset_id": "module.m004",
+        "type": "belongs_to_domain",
+        "target_asset_id": "domain.d001"
+      },
+      {
+        "source_asset_id": "menu.mn001",
+        "type": "belongs_to_module",
+        "target_asset_id": "module.m001"
+      },
+      {
+        "source_asset_id": "menu.mn002",
+        "type": "belongs_to_module",
+        "target_asset_id": "module.m002"
+      },
+      {
+        "source_asset_id": "menu.mn003",
+        "type": "belongs_to_module",
+        "target_asset_id": "module.m003"
+      },
+      {
+        "source_asset_id": "menu.mn004",
+        "type": "belongs_to_module",
+        "target_asset_id": "module.m004"
+      },
+      {
+        "source_asset_id": "form.f001",
+        "type": "belongs_to_module",
+        "target_asset_id": "module.m001"
+      },
+      {
+        "source_asset_id": "form.f002",
+        "type": "belongs_to_module",
+        "target_asset_id": "module.m002"
+      },
+      {
+        "source_asset_id": "form.f003",
+        "type": "belongs_to_module",
+        "target_asset_id": "module.m003"
+      },
+      {
+        "source_asset_id": "form.f004",
+        "type": "belongs_to_module",
+        "target_asset_id": "module.m004"
+      },
+      {
+        "source_asset_id": "form_version.f001.v1",
+        "type": "version_of",
+        "target_asset_id": "form.f001"
+      },
+      {
+        "source_asset_id": "form_version.f002.v1",
+        "type": "version_of",
+        "target_asset_id": "form.f002"
+      },
+      {
+        "source_asset_id": "form_version.f003.v1",
+        "type": "version_of",
+        "target_asset_id": "form.f003"
+      },
+      {
+        "source_asset_id": "form_version.f004.v1",
+        "type": "version_of",
+        "target_asset_id": "form.f004"
+      },
+      {
+        "source_asset_id": "flow.fl001",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl001",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.calcular_terminos_de_refinanciamiento"
+      },
+      {
+        "source_asset_id": "flow.fl001",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.revisar_score_de_riesgo_del_cliente"
+      },
+      {
+        "source_asset_id": "flow.fl001",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral"
+      },
+      {
+        "source_asset_id": "flow.fl002",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl002",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.recopilar_documentos_del_onboarding"
+      },
+      {
+        "source_asset_id": "flow.fl003",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl003",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.validar_beneficiario_para_transferencia_internacional"
+      },
+      {
+        "source_asset_id": "flow.fl004",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl004",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.verificar_consentimiento_de_pago_automatico"
+      },
+      {
+        "source_asset_id": "flow.fl004",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.aplicar_el_pago_recibido_al_prestamo"
+      },
+      {
+        "source_asset_id": "flow.fl005",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.revisar_estado_de_mora_del_prestamo"
+      },
+      {
+        "source_asset_id": "flow.fl006",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.confirmar_datos_sensibles_antes_de_la_actualizacion"
+      },
+      {
+        "source_asset_id": "flow.fl006",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl007",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.verificar_consentimiento_de_pago_automatico"
+      },
+      {
+        "source_asset_id": "flow.fl007",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.emitir_propuesta_de_cancelacion_anticipada"
+      },
+      {
+        "source_asset_id": "flow.fl008",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.ejecutar_activacion_de_cuenta_previamente_bloqueada"
+      },
+      {
+        "source_asset_id": "flow.fl009",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.registrar_disputa_por_cargo_no_reconocido"
+      },
+      {
+        "source_asset_id": "flow.fl010",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.recopilar_documentos_del_onboarding"
+      },
+      {
+        "source_asset_id": "flow.fl011",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.revisar_estado_de_mora_del_prestamo"
+      },
+      {
+        "source_asset_id": "flow.fl011",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.calcular_terminos_de_refinanciamiento"
+      },
+      {
+        "source_asset_id": "flow.fl011",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral"
+      },
+      {
+        "source_asset_id": "flow.fl013",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.capturar_datos_del_cliente_para_crear_el_registro"
+      },
+      {
+        "source_asset_id": "flow.fl013",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl013",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.recopilar_documentos_del_onboarding"
+      },
+      {
+        "source_asset_id": "flow.fl014",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.registrar_la_solicitud_del_prestamo"
+      },
+      {
+        "source_asset_id": "flow.fl014",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl014",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.calcular_terminos_de_refinanciamiento"
+      },
+      {
+        "source_asset_id": "flow.fl015",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.ejecutar_el_desembolso_sobre_la_cuenta_destino"
+      },
+      {
+        "source_asset_id": "flow.fl015",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl016",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl016",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.verificar_consentimiento_de_pago_automatico"
+      },
+      {
+        "source_asset_id": "flow.fl016",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.aplicar_el_pago_recibido_al_prestamo"
+      },
+      {
+        "source_asset_id": "flow.fl017",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl017",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.transferir_fondos_desde_la_cuenta_origen_al_prestamo"
+      },
+      {
+        "source_asset_id": "flow.fl101",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl101",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.mapear_departamentos_de_customer_experience"
+      },
+      {
+        "source_asset_id": "flow.fl101",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.diseñar_la_suite_everyday_banking"
+      },
+      {
+        "source_asset_id": "flow.fl102",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera"
+      },
+      {
+        "source_asset_id": "flow.fl102",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.calcular_terminos_de_refinanciamiento"
+      },
+      {
+        "source_asset_id": "flow.fl102",
+        "type": "decomposes_to_user_task",
+        "target_asset_id": "user_task.planificar_cross_sell_flexpay_+_shieldguard"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.s"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.v"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.i"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.g"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.s"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.c"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.c"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.o"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.u"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      },
+      {
+        "source_asset_id": "business_rule.minimum_initial_deposit_for_savings_account",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.t"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.s"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.v"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.i"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.g"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.s"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.c"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.c"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.o"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.u"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      },
+      {
+        "source_asset_id": "business_rule.savings_interest_compounding",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.t"
+      },
+      {
+        "source_asset_id": "business_rule.loan_dti_eligibility",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.l"
+      },
+      {
+        "source_asset_id": "business_rule.loan_dti_eligibility",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.o"
+      },
+      {
+        "source_asset_id": "business_rule.loan_dti_eligibility",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.loan_dti_eligibility",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      },
+      {
+        "source_asset_id": "business_rule.high_amount_loan_manual_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.l"
+      },
+      {
+        "source_asset_id": "business_rule.high_amount_loan_manual_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.o"
+      },
+      {
+        "source_asset_id": "business_rule.high_amount_loan_manual_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.high_amount_loan_manual_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      },
+      {
+        "source_asset_id": "business_rule.transfer_high_amount_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.t"
+      },
+      {
+        "source_asset_id": "business_rule.transfer_high_amount_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.r"
+      },
+      {
+        "source_asset_id": "business_rule.transfer_high_amount_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.transfer_high_amount_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      },
+      {
+        "source_asset_id": "business_rule.transfer_high_amount_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.s"
+      },
+      {
+        "source_asset_id": "business_rule.transfer_high_amount_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.f"
+      },
+      {
+        "source_asset_id": "business_rule.transfer_high_amount_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.e"
+      },
+      {
+        "source_asset_id": "business_rule.transfer_high_amount_approval",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.r"
+      },
+      {
+        "source_asset_id": "business_rule.insufficient_balance_stops_transfer",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.t"
+      },
+      {
+        "source_asset_id": "business_rule.insufficient_balance_stops_transfer",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.r"
+      },
+      {
+        "source_asset_id": "business_rule.insufficient_balance_stops_transfer",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.insufficient_balance_stops_transfer",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      },
+      {
+        "source_asset_id": "business_rule.insufficient_balance_stops_transfer",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.s"
+      },
+      {
+        "source_asset_id": "business_rule.insufficient_balance_stops_transfer",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.f"
+      },
+      {
+        "source_asset_id": "business_rule.insufficient_balance_stops_transfer",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.e"
+      },
+      {
+        "source_asset_id": "business_rule.insufficient_balance_stops_transfer",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.r"
+      },
+      {
+        "source_asset_id": "business_rule.missing_documents_request",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.c"
+      },
+      {
+        "source_asset_id": "business_rule.missing_documents_request",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.u"
+      },
+      {
+        "source_asset_id": "business_rule.missing_documents_request",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.s"
+      },
+      {
+        "source_asset_id": "business_rule.missing_documents_request",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.t"
+      },
+      {
+        "source_asset_id": "business_rule.missing_documents_request",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.o"
+      },
+      {
+        "source_asset_id": "business_rule.missing_documents_request",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.m"
+      },
+      {
+        "source_asset_id": "business_rule.missing_documents_request",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.e"
+      },
+      {
+        "source_asset_id": "business_rule.missing_documents_request",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.r"
+      },
+      {
+        "source_asset_id": "business_rule.fraudulent_claim_escalation",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.c"
+      },
+      {
+        "source_asset_id": "business_rule.fraudulent_claim_escalation",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.l"
+      },
+      {
+        "source_asset_id": "business_rule.fraudulent_claim_escalation",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.fraudulent_claim_escalation",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.i"
+      },
+      {
+        "source_asset_id": "business_rule.fraudulent_claim_escalation",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.m"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.s"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.v"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.i"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.g"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.s"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.c"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.c"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.o"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.u"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      },
+      {
+        "source_asset_id": "business_rule.low_balance_commission",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.t"
+      },
+      {
+        "source_asset_id": "business_rule.late_payment_penalty",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.l"
+      },
+      {
+        "source_asset_id": "business_rule.late_payment_penalty",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.o"
+      },
+      {
+        "source_asset_id": "business_rule.late_payment_penalty",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.a"
+      },
+      {
+        "source_asset_id": "business_rule.late_payment_penalty",
+        "type": "applies_to_flow",
+        "target_asset_id": "flow.n"
+      }
+    ],
+    "human_review_actions": [
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "domain",
+        "label": "Review domain candidates",
+        "candidate_count": 1
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "module",
+        "label": "Review module candidates",
+        "candidate_count": 4
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "menu",
+        "label": "Review menu candidates",
+        "candidate_count": 4
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "form",
+        "label": "Review form candidates",
+        "candidate_count": 4
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "form_version",
+        "label": "Review form_version candidates",
+        "candidate_count": 4
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "flow",
+        "label": "Review flow candidates",
+        "candidate_count": 19
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "process",
+        "label": "Review process candidates",
+        "candidate_count": 21
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "plan",
+        "label": "Review plan candidates",
+        "candidate_count": 17
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "user_task",
+        "label": "Review user_task candidates",
+        "candidate_count": 38
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "business_rule",
+        "label": "Review business_rule candidates",
+        "candidate_count": 12
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "concept",
+        "label": "Review concept candidates",
+        "candidate_count": 42
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "entity",
+        "label": "Review entity candidates",
+        "candidate_count": 42
+      },
+      {
+        "action_type": "approve_asset_candidates",
+        "asset_type": "asset_set",
+        "label": "Review asset_set candidates",
+        "candidate_count": 1
+      },
+      {
+        "action_type": "confirm_missing_asset_type",
+        "asset_type": "qa",
+        "label": "Confirm no qa assets were found"
+      },
+      {
+        "action_type": "confirm_missing_asset_type",
+        "asset_type": "ruleset",
+        "label": "Confirm no ruleset assets were found"
+      },
+      {
+        "action_type": "confirm_missing_asset_type",
+        "asset_type": "tool",
+        "label": "Confirm no tool assets were found"
+      },
+      {
+        "action_type": "confirm_missing_asset_type",
+        "asset_type": "document",
+        "label": "Confirm no document assets were found"
+      },
+      {
+        "action_type": "confirm_missing_asset_type",
+        "asset_type": "configuration",
+        "label": "Confirm no configuration assets were found"
+      },
+      {
+        "action_type": "confirm_missing_asset_type",
+        "asset_type": "causality",
+        "label": "Confirm no causality assets were found"
+      },
+      {
+        "action_type": "approve_aliases",
+        "asset_type": "all",
+        "label": "Review alias and similarity candidates",
+        "candidate_count": 19
+      },
+      {
+        "action_type": "approve_relationships",
+        "asset_type": "all",
+        "label": "Review cross-asset relationships",
+        "candidate_count": 140
+      },
+      {
+        "action_type": "approve_staged_asset_sets",
+        "asset_type": "all",
+        "label": "Review generated AssetSet YAML versions",
+        "candidate_count": 17
+      }
+    ],
+    "canonical_assets": {
+      "candidate_count": 395,
+      "asset_types": {
+        "asset_set": 113,
+        "business_rule": 12,
+        "causality": 14,
+        "document": 34,
+        "domain": 1,
+        "entity": 47,
+        "flow": 36,
+        "form": 4,
+        "form_version": 4,
+        "menu": 4,
+        "module": 4,
+        "plan": 17,
+        "process": 17,
+        "qa": 17,
+        "ruleset": 12,
+        "tool": 21,
+        "user_task": 38
+      },
+      "asset_ids": [
+        "asset_set.AS001",
+        "asset_set.account.opening.plan",
+        "asset_set.account.reactivate",
+        "asset_set.autopay.cancel",
+        "asset_set.br011",
+        "asset_set.br012",
+        "asset_set.como.cancelo.una.domiciliacion.de.pago",
+        "asset_set.como.creo.un.cliente.nuevo",
+        "asset_set.como.funciona.el.pago.automatico",
+        "asset_set.como.pago.mi.prestamo",
+        "asset_set.como.reporto.un.cargo.no.reconocido",
+        "asset_set.como.se.crea.un.prestamo",
+        "asset_set.como.se.reactiva.una.cuenta.bloqueada",
+        "asset_set.como.se.realiza.el.desembolso.de.un.prestamo.aprobado",
+        "asset_set.como.transfiero.dinero.a.mi.prestamo",
+        "asset_set.cual.es.el.limite.diario.de.transferencias",
+        "asset_set.cuando.se.requiere.aprobacion.humana",
+        "asset_set.customer.create",
+        "asset_set.customer.onboarding.documents",
+        "asset_set.customer.update.profile",
+        "asset_set.de.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja",
+        "asset_set.debt.restructure",
+        "asset_set.dispute.charge.report",
+        "asset_set.el.acceso.a.banca.online.se.enables.tras.verificacion.telefonica",
+        "asset_set.el.alias.incorrecto.del.beneficiario.causes.rechazo.de.la.transferencia",
+        "asset_set.el.aumento.del.riesgo.crediticio.causes.revision.manual.de.la.refinanciacion",
+        "asset_set.el.rechazo.reiterado.de.transferencias.causes.escalamiento.al.equipo.de.fraude",
+        "asset_set.el.retraso.en.el.onboarding.causes.abandono.del.proceso.por.parte.del.cliente",
+        "asset_set.el.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta",
+        "asset_set.entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio",
+        "asset_set.entity.la.validacion.reforzada.aprobada.enables.entity.la.transferencia.internacional",
+        "asset_set.entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual",
+        "asset_set.fl001",
+        "asset_set.fl002",
+        "asset_set.fl003",
+        "asset_set.fl004",
+        "asset_set.fl005",
+        "asset_set.fl006",
+        "asset_set.fl007",
+        "asset_set.fl008",
+        "asset_set.fl009",
+        "asset_set.fl010",
+        "asset_set.fl011",
+        "asset_set.fl012",
+        "asset_set.fl013",
+        "asset_set.fl014",
+        "asset_set.fl015",
+        "asset_set.fl016",
+        "asset_set.fl017",
+        "asset_set.fl101",
+        "asset_set.fl102",
+        "asset_set.fraudulent.claim.escalation",
+        "asset_set.high.amount.loan.manual.approval",
+        "asset_set.insufficient.balance.stops.transfer",
+        "asset_set.la.cuenta.sin.saldo.suficiente.prevents.ejecutar.el.pago.automatico",
+        "asset_set.la.falta.de.consentimiento.firmado.prevents.el.alta.de.pago.automatico",
+        "asset_set.la.falta.de.documento.vigente.causes.retraso.en.el.onboarding",
+        "asset_set.la.mora.superior.a.treinta.dias.prevents.la.oferta.de.refinanciamiento",
+        "asset_set.late.payment.penalty",
+        "asset_set.loan.application.plan",
+        "asset_set.loan.application.status.review",
+        "asset_set.loan.create",
+        "asset_set.loan.disbursement",
+        "asset_set.loan.dti.eligibility",
+        "asset_set.loan.payment",
+        "asset_set.loan.refinance",
+        "asset_set.loan.transfer.to.loan",
+        "asset_set.low.balance.commission",
+        "asset_set.minimum.initial.deposit.for.savings.account",
+        "asset_set.missing.documents.request",
+        "asset_set.money.transfer",
+        "asset_set.pl003",
+        "asset_set.pl004",
+        "asset_set.pl005",
+        "asset_set.pl006",
+        "asset_set.pl007",
+        "asset_set.pl008",
+        "asset_set.pl009",
+        "asset_set.pl010",
+        "asset_set.pl011",
+        "asset_set.pl012",
+        "asset_set.pl013",
+        "asset_set.pl014",
+        "asset_set.pl015",
+        "asset_set.pl016",
+        "asset_set.pl017",
+        "asset_set.pr001",
+        "asset_set.pr002",
+        "asset_set.pr003",
+        "asset_set.pr004",
+        "asset_set.pr005",
+        "asset_set.pr006",
+        "asset_set.pr007",
+        "asset_set.pr008",
+        "asset_set.pr009",
+        "asset_set.pr010",
+        "asset_set.pr011",
+        "asset_set.pr012",
+        "asset_set.pr013",
+        "asset_set.pr014",
+        "asset_set.pr015",
+        "asset_set.pr016",
+        "asset_set.pr017",
+        "asset_set.que.documentos.necesito.para.abrir.una.cuenta.de.ahorro",
+        "asset_set.que.implica.la.cancelacion.anticipada.de.un.prestamo",
+        "asset_set.que.necesito.para.refinanciar.mi.prestamo",
+        "asset_set.que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide",
+        "asset_set.que.pasa.si.tengo.mora.y.quiero.refinanciar",
+        "asset_set.que.valida.el.proceso.de.onboarding",
+        "asset_set.savings.account.open",
+        "asset_set.savings.interest.compounding",
+        "asset_set.transfer.high.amount.approval",
+        "asset_set.transfer.limit.inquiry",
+        "business_rule.br011",
+        "business_rule.br012",
+        "business_rule.fraudulent_claim_escalation",
+        "business_rule.high_amount_loan_manual_approval",
+        "business_rule.insufficient_balance_stops_transfer",
+        "business_rule.late_payment_penalty",
+        "business_rule.loan_dti_eligibility",
+        "business_rule.low_balance_commission",
+        "business_rule.minimum_initial_deposit_for_savings_account",
+        "business_rule.missing_documents_request",
+        "business_rule.savings_interest_compounding",
+        "business_rule.transfer_high_amount_approval",
+        "causality.de_kb_ingestion_causes_o_refresca_esos_activos_desde_texto_empresarial_y_deja",
+        "causality.el_acceso_a_banca_online_se_enables_tras_verificaci_n_telef_nica",
+        "causality.el_alias_incorrecto_del_beneficiario_causes_rechazo_de_la_transferencia",
+        "causality.el_aumento_del_riesgo_crediticio_causes_revision_manual_de_la_refinanciacion",
+        "causality.el_rechazo_reiterado_de_transferencias_causes_escalamiento_al_equipo_de_fraude",
+        "causality.el_retraso_en_el_onboarding_causes_abandono_del_proceso_por_parte_del_cliente",
+        "causality.el_score_alto_de_fraude_causes_congelamiento_preventivo_de_la_cuenta",
+        "causality.entity_el_incumplimiento_contractual_causes_entity_aumento_del_riesgo_crediticio",
+        "causality.entity_la_validacion_reforzada_aprobada_enables_entity_la_transferencia_internacional",
+        "causality.entity_no_pagar_un_prestamo_causes_entity_incumplimiento_contractual",
+        "causality.la_cuenta_sin_saldo_suficiente_prevents_ejecutar_el_pago_automatico",
+        "causality.la_falta_de_consentimiento_firmado_prevents_el_alta_de_pago_automatico",
+        "causality.la_falta_de_documento_vigente_causes_retraso_en_el_onboarding",
+        "causality.la_mora_superior_a_treinta_dias_prevents_la_oferta_de_refinanciamiento",
+        "document.00_readme_txt",
+        "document.banking_flows_additional_txt",
+        "document.banking_synonyms_and_glossary_runtime_txt",
+        "document.corporate_structure_and_offerings_md",
+        "document.customer_support_tickets_csv",
+        "document.customer_support_tickets_mini_csv",
+        "document.enterprise_asset_corpus_expanded_md",
+        "document.enterprise_operations_manual_md",
+        "document.enterprise_policy_and_controls_md",
+        "document.enterprise_support_wiki_md",
+        "document.enterprise_systems_catalog_md",
+        "document.glossary_fragment_md",
+        "document.intranet_transfer_help_html",
+        "document.loan_refinance_call_center_notes_txt",
+        "document.manual_operativo_credito_md",
+        "document.notes_operativas_cobranza_md",
+        "document.operations_controls_policy_md",
+        "document.orchestration_planning_notes_md",
+        "document.policy_controls_addendum_md",
+        "document.policy_controls_memo_md",
+        "document.process_examples_refinance_md",
+        "document.process_fragments_json",
+        "document.process_qa_seed_md",
+        "document.readme_md",
+        "document.savings_glossary_csv",
+        "document.savings_loans_domain_extra1_txt",
+        "document.savings_loans_domain_extra2_txt",
+        "document.savings_loans_domain_extra3_txt",
+        "document.savings_loans_domain_extra4_txt",
+        "document.savings_loans_domain_extra5_txt",
+        "document.savings_loans_domain_raw_txt",
+        "document.service_configuration_notes_md",
+        "document.systems_catalog_addendum_md",
+        "document.systems_catalog_export_json",
+        "domain.d001",
+        "entity.aumento_del_riesgo_crediticio",
+        "entity.beneficiary",
+        "entity.claim",
+        "entity.collateral",
+        "entity.creditnote",
+        "entity.creditscore",
+        "entity.customer",
+        "entity.customerdocuments",
+        "entity.customerexperiencedepartment",
+        "entity.de_kb_ingestion",
+        "entity.debitnote",
+        "entity.ejecutar_el_pago_automatico",
+        "entity.el_incumplimiento_contractual",
+        "entity.equipleasecommercialloan",
+        "entity.everydaybankingsuite",
+        "entity.everydayplusdebit",
+        "entity.flexpaypersonalloan",
+        "entity.horizonsavings",
+        "entity.identityverification",
+        "entity.incumplimiento_contractual",
+        "entity.installment",
+        "entity.interest",
+        "entity.interestrate",
+        "entity.la_oferta_de_refinanciamiento",
+        "entity.la_transferencia_internacional",
+        "entity.la_validacion_reforzada_aprobada",
+        "entity.loan",
+        "entity.loanapplication",
+        "entity.loanconditions",
+        "entity.loanpayment",
+        "entity.loanrefinance",
+        "entity.no_pagar_un_prestamo",
+        "entity.notification",
+        "entity.operationscontroldepartment",
+        "entity.personallendingdepartment",
+        "entity.rapidrefiprogram",
+        "entity.rechazo_de_la_transferencia",
+        "entity.retraso_en_el_onboarding",
+        "entity.riskscore",
+        "entity.savings_account",
+        "entity.savingsaccount",
+        "entity.shieldguardinsurancebundle",
+        "entity.smartbalancechecking",
+        "entity.transaction",
+        "entity.transfer",
+        "entity.transfer",
+        "entity.tras_verificacion_telefonica",
+        "flow.account.reactivate",
+        "flow.autopay.cancel",
+        "flow.customer.create",
+        "flow.customer.onboarding.documents",
+        "flow.customer.update.profile",
+        "flow.debt.restructure",
+        "flow.dispute.charge.report",
+        "flow.fl001",
+        "flow.fl002",
+        "flow.fl003",
+        "flow.fl004",
+        "flow.fl005",
+        "flow.fl006",
+        "flow.fl007",
+        "flow.fl008",
+        "flow.fl009",
+        "flow.fl010",
+        "flow.fl011",
+        "flow.fl012",
+        "flow.fl013",
+        "flow.fl014",
+        "flow.fl015",
+        "flow.fl016",
+        "flow.fl017",
+        "flow.fl101",
+        "flow.fl102",
+        "flow.loan.application.status.review",
+        "flow.loan.create",
+        "flow.loan.disbursement",
+        "flow.loan.payment",
+        "flow.loan.payment",
+        "flow.loan.refinance",
+        "flow.loan.transfer.to.loan",
+        "flow.money.transfer",
+        "flow.savings.account.open",
+        "flow.transfer.limit.inquiry",
+        "form.f001",
+        "form.f002",
+        "form.f003",
+        "form.f004",
+        "form_version.f001_v1",
+        "form_version.f002_v1",
+        "form_version.f003_v1",
+        "form_version.f004_v1",
+        "menu.mn001",
+        "menu.mn002",
+        "menu.mn003",
+        "menu.mn004",
+        "module.m001",
+        "module.m002",
+        "module.m003",
+        "module.m004",
+        "plan.account.opening.plan",
+        "plan.loan.application.plan",
+        "plan.pl003",
+        "plan.pl004",
+        "plan.pl005",
+        "plan.pl006",
+        "plan.pl007",
+        "plan.pl008",
+        "plan.pl009",
+        "plan.pl010",
+        "plan.pl011",
+        "plan.pl012",
+        "plan.pl013",
+        "plan.pl014",
+        "plan.pl015",
+        "plan.pl016",
+        "plan.pl017",
+        "process.pr001",
+        "process.pr002",
+        "process.pr003",
+        "process.pr004",
+        "process.pr005",
+        "process.pr006",
+        "process.pr007",
+        "process.pr008",
+        "process.pr009",
+        "process.pr010",
+        "process.pr011",
+        "process.pr012",
+        "process.pr013",
+        "process.pr014",
+        "process.pr015",
+        "process.pr016",
+        "process.pr017",
+        "qa.como_cancelo_una_domiciliacion_de_pago",
+        "qa.como_creo_un_cliente_nuevo",
+        "qa.como_funciona_el_pago_automatico",
+        "qa.como_pago_mi_prestamo",
+        "qa.como_reporto_un_cargo_no_reconocido",
+        "qa.como_se_crea_un_prestamo",
+        "qa.como_se_reactiva_una_cuenta_bloqueada",
+        "qa.como_se_realiza_el_desembolso_de_un_prestamo_aprobado",
+        "qa.como_transfiero_dinero_a_mi_prestamo",
+        "qa.cual_es_el_limite_diario_de_transferencias",
+        "qa.cuando_se_requiere_aprobacion_humana",
+        "qa.que_documentos_necesito_para_abrir_una_cuenta_de_ahorro",
+        "qa.que_implica_la_cancelacion_anticipada_de_un_prestamo",
+        "qa.que_necesito_para_refinanciar_mi_prestamo",
+        "qa.que_pasa_si_el_beneficiario_de_la_transferencia_no_coincide",
+        "qa.que_pasa_si_tengo_mora_y_quiero_refinanciar",
+        "qa.que_valida_el_proceso_de_onboarding",
+        "ruleset.br011",
+        "ruleset.br012",
+        "ruleset.fraudulent.claim.escalation",
+        "ruleset.high.amount.loan.manual.approval",
+        "ruleset.insufficient.balance.stops.transfer",
+        "ruleset.late.payment.penalty",
+        "ruleset.loan.dti.eligibility",
+        "ruleset.low.balance.commission",
+        "ruleset.minimum.initial.deposit.for.savings.account",
+        "ruleset.missing.documents.request",
+        "ruleset.savings.interest.compounding",
+        "ruleset.transfer.high.amount.approval",
+        "tool.account_reactivate",
+        "tool.approval_request_submit",
+        "tool.autopay_cancel",
+        "tool.autopay_register",
+        "tool.customer_create",
+        "tool.customer_read",
+        "tool.dispute_case_create",
+        "tool.document_upload",
+        "tool.document_validate",
+        "tool.loan_create",
+        "tool.loan_disbursement_execute",
+        "tool.loan_payment_apply",
+        "tool.loan_status_read",
+        "tool.loan_terms_calculate",
+        "tool.loan_transfer_apply",
+        "tool.risk_score_read",
+        "tool.transfer_submit",
+        "tool.ui_customer_create_open_form",
+        "tool.ui_loan_create_open_form",
+        "tool.ui_loan_payment_open_form",
+        "tool.ui_loan_transfer_open_form",
+        "user_task.aplicar_el_pago_recibido_al_prestamo",
+        "user_task.calcular_terminos_de_refinanciamiento",
+        "user_task.calculate_loan_eligibility",
+        "user_task.capturar_datos_del_cliente_para_crear_el_registro",
+        "user_task.capture_loan_application",
+        "user_task.check_credit_history",
+        "user_task.collect_evidence",
+        "user_task.collect_income_documents",
+        "user_task.communicate_resolution",
+        "user_task.confirmar_datos_sensibles_antes_de_la_actualizacion",
+        "user_task.create_transfer",
+        "user_task.disburse_loan",
+        "user_task.dise_ar_la_suite_everyday_banking",
+        "user_task.ejecutar_activacion_de_cuenta_previamente_bloqueada",
+        "user_task.ejecutar_el_desembolso_sobre_la_cuenta_destino",
+        "user_task.emitir_propuesta_de_cancelacion_anticipada",
+        "user_task.escalate_fraudulent_claim",
+        "user_task.human_approval",
+        "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera",
+        "user_task.identify_customer",
+        "user_task.mapear_departamentos_de_customer_experience",
+        "user_task.notify_transfer_result",
+        "user_task.planificar_cross_sell_flexpay_shieldguard",
+        "user_task.recopilar_documentos_del_onboarding",
+        "user_task.register_claim",
+        "user_task.registrar_disputa_por_cargo_no_reconocido",
+        "user_task.registrar_la_solicitud_del_prestamo",
+        "user_task.request_transfer_approval",
+        "user_task.review_transaction",
+        "user_task.revisar_estado_de_mora_del_prestamo",
+        "user_task.revisar_score_de_riesgo_del_cliente",
+        "user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral",
+        "user_task.transferir_fondos_desde_la_cuenta_origen_al_prestamo",
+        "user_task.validar_beneficiario_para_transferencia_internacional",
+        "user_task.validate_balance",
+        "user_task.validate_beneficiary",
+        "user_task.validate_source_account",
+        "user_task.verificar_consentimiento_de_pago_automatico"
+      ]
+    },
+    "validation": {
+      "total_assets": 395,
+      "asset_types": {
+        "asset_set": 113,
+        "business_rule": 12,
+        "causality": 14,
+        "document": 34,
+        "domain": 1,
+        "entity": 47,
+        "flow": 36,
+        "form": 4,
+        "form_version": 4,
+        "menu": 4,
+        "module": 4,
+        "plan": 17,
+        "process": 17,
+        "qa": 17,
+        "ruleset": 12,
+        "tool": 21,
+        "user_task": 38
+      },
+      "issues": [
+        "Asset 'AS001' has missing or too short description",
+        "Asset 'F001 v1' has missing or too short description",
+        "Asset 'F002 v1' has missing or too short description",
+        "Asset 'F003 v1' has missing or too short description",
+        "Asset 'F004 v1' has missing or too short description",
+        "Asset 'MN001' has missing or too short description",
+        "Asset 'MN002' has missing or too short description",
+        "Asset 'MN003' has missing or too short description",
+        "Asset 'MN004' has missing or too short description"
+      ],
+      "quality_score": 0.9772151898734177,
+      "review_question": "I found some issues with the extracted assets: Asset 'AS001' has missing or too short description; Asset 'F001 v1' has missing or too short description; Asset 'F002 v1' has missing or too short description. Should I proceed with these or would you like to review them first?"
+    },
+    "staged_asset_sets": [
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-asset_set-set",
+        "asset_type": "asset_set",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/asset_set-set/asset-set.yaml",
+        "asset_count": 113
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-business_rule-set",
+        "asset_type": "business_rule",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/business_rule-set/asset-set.yaml",
+        "asset_count": 12
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-causality-set",
+        "asset_type": "causality",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/causality-set/asset-set.yaml",
+        "asset_count": 14
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-document-set",
+        "asset_type": "document",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/document-set/asset-set.yaml",
+        "asset_count": 34
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-domain-set",
+        "asset_type": "domain",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/domain-set/asset-set.yaml",
+        "asset_count": 1
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-entity-set",
+        "asset_type": "entity",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/entity-set/asset-set.yaml",
+        "asset_count": 46
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-flow-set",
+        "asset_type": "flow",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/flow-set/asset-set.yaml",
+        "asset_count": 35
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-form-set",
+        "asset_type": "form",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/form-set/asset-set.yaml",
+        "asset_count": 4
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-form_version-set",
+        "asset_type": "form_version",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/form_version-set/asset-set.yaml",
+        "asset_count": 4
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-menu-set",
+        "asset_type": "menu",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/menu-set/asset-set.yaml",
+        "asset_count": 4
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-module-set",
+        "asset_type": "module",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/module-set/asset-set.yaml",
+        "asset_count": 4
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-plan-set",
+        "asset_type": "plan",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/plan-set/asset-set.yaml",
+        "asset_count": 17
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-process-set",
+        "asset_type": "process",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/process-set/asset-set.yaml",
+        "asset_count": 17
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-qa-set",
+        "asset_type": "qa",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/qa-set/asset-set.yaml",
+        "asset_count": 17
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-ruleset-set",
+        "asset_type": "ruleset",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/ruleset-set/asset-set.yaml",
+        "asset_count": 12
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-tool-set",
+        "asset_type": "tool",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/tool-set/asset-set.yaml",
+        "asset_count": 21
+      },
+      {
+        "asset_set_id": "ingest-2026-06-16t01-35-42-542154-00-00-user_task-set",
+        "asset_type": "user_task",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-16t01-35-42-542154-00-00/user_task-set/asset-set.yaml",
+        "asset_count": 38
+      }
+    ]
+  },
+  "candidate_outputs": {
+    "flows": [
+      "fl001",
+      "fl002",
+      "fl003",
+      "fl004",
+      "fl005",
+      "fl006",
+      "fl007",
+      "fl008",
+      "fl009",
+      "fl010",
+      "fl011",
+      "fl012",
+      "fl013",
+      "fl014",
+      "fl015",
+      "fl016",
+      "fl017",
+      "fl101",
+      "fl102"
+    ],
+    "user_tasks": [
+      "ut001",
+      "ut002",
+      "ut003",
+      "ut004",
+      "ut005",
+      "ut006",
+      "ut007",
+      "ut008",
+      "ut009",
+      "ut010",
+      "ut011",
+      "ut012",
+      "ut013",
+      "ut014",
+      "ut015",
+      "ut016",
+      "ut017",
+      "ut101",
+      "ut102",
+      "ut103",
+      "ut104",
+      "ut105",
+      "ut106",
+      "ut201",
+      "ut202",
+      "ut203",
+      "ut204",
+      "ut205",
+      "ut301",
+      "ut302",
+      "ut303",
+      "ut304",
+      "ut305",
+      "ut306",
+      "ut307",
+      "ut401",
+      "ut402",
+      "ut403"
+    ],
+    "tools": []
+  }
+}

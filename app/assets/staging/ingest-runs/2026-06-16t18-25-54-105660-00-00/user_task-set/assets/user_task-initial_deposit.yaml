@@ -1,0 +1,25 @@
+asset_id: user_task.initial_deposit
+asset_type: user_task
+name: Initial Deposit
+version: 1.0.0
+owner: business_model_kb
+description: Process initial deposit to activate account
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: make_initial_deposit
+  task: make_initial_deposit
+  type: transaction
+  name: Initial Deposit
+  description: Process initial deposit to activate account
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Initial Deposit
+  normalized_name: initial deposit
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

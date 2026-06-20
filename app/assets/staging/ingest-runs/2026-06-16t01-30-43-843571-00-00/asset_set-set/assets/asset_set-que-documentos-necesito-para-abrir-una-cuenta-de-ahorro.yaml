@@ -1,0 +1,31 @@
+asset_id: asset_set.que.documentos.necesito.para.abrir.una.cuenta.de.ahorro
+asset_type: asset_set
+name: Que.documentos.necesito.para.abrir.una.cuenta.de.ahorro Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for que.documentos.necesito.para.abrir.una.cuenta.de.ahorro.
+text: Que documentos necesito para abrir una cuenta de ahorro?
+tags:
+- asset_set
+- que.documentos.necesito.para.abrir.una.cuenta.de.ahorro
+relations:
+- type: groups_qa
+  target_asset_id: qa.que_documentos_necesito_para_abrir_una_cuenta_de_ahorro
+  metadata: {}
+payload:
+  transaction_id: que.documentos.necesito.para.abrir.una.cuenta.de.ahorro
+  asset_ids:
+  - qa.que_documentos_necesito_para_abrir_una_cuenta_de_ahorro
+  asset_types:
+  - qa
+  primary_asset_type: qa
+  members:
+  - asset_id: qa.que_documentos_necesito_para_abrir_una_cuenta_de_ahorro
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Que.documentos.necesito.para.abrir.una.cuenta.de.ahorro Asset Set
+  normalized_name: que.documentos.necesito.para.abrir.una.cuenta.de.ahorro asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

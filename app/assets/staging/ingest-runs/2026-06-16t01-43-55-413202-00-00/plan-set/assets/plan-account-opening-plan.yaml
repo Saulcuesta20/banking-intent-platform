@@ -1,0 +1,55 @@
+asset_id: plan.account.opening.plan
+asset_type: plan
+name: Account Opening Plan
+version: 1.0.0
+owner: planning_kb
+description: UT001 UT002 UT003 UT004 UT005 UT006
+text: 'UT001
+
+  UT002
+
+  UT003
+
+  UT004
+
+  UT005
+
+  UT006'
+tags:
+- orchestration_plan
+relations:
+- type: uses_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+payload:
+  steps:
+  - UT001
+  - UT002
+  - UT003
+  - UT004
+  - UT005
+  - UT006
+  plan_text: 'UT001
+
+    UT002
+
+    UT003
+
+    UT004
+
+    UT005
+
+    UT006'
+  source_section: LLMAssetExtraction
+  transaction_id: account.opening.plan
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Account Opening Plan
+  normalized_name: account opening plan
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

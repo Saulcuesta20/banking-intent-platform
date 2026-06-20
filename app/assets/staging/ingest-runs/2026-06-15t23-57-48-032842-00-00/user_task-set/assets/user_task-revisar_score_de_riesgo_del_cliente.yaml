@@ -1,0 +1,38 @@
+asset_id: user_task.revisar_score_de_riesgo_del_cliente
+asset_type: user_task
+name: Revisar score de riesgo del cliente
+version: 1.0.0
+owner: business_model_kb
+description: Consultar el score de riesgo proveniente del bureau de crédito y determinar
+  si se requiere revisión manual.
+text: Revisar score de riesgo del cliente.
+tags: []
+relations: []
+payload:
+  user_task_id: ut009
+  task: revisar_score_riesgo_cliente
+  type: human
+  name: Revisar score de riesgo del cliente
+  description: Revisar score de riesgo del cliente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Revisar score de riesgo del cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Revisar score de riesgo del cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Revisar score de riesgo del cliente.
+  match_strategy: generated
+  canonical_name: Revisar score de riesgo del cliente
+  normalized_name: revisar score de riesgo del cliente
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

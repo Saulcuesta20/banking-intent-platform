@@ -1,0 +1,29 @@
+asset_id: user_task.confirm_charge_date
+asset_type: user_task
+name: Confirm Charge Date
+version: 1.0.0
+owner: business_model_kb
+description: Agent retrieves next scheduled charge date from system.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_charge_date
+  task: confirm_next_charge_date
+  type: agent
+  name: Confirm Charge Date
+  description: Agent retrieves next scheduled charge date from system.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: transitions_to
+    family: structural
+    phrase: next
+    sentence: Agent retrieves next scheduled charge date from system.
+  match_strategy: generated
+  canonical_name: Confirm Charge Date
+  normalized_name: confirm charge date
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

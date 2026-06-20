@@ -1,0 +1,31 @@
+asset_id: asset_set.evaluacion.elegibilidad.prestamo
+asset_type: asset_set
+name: Evaluacion.elegibilidad.prestamo Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for evaluacion.elegibilidad.prestamo.
+text: Evaluación de elegibilidad de préstamo
+tags:
+- asset_set
+- evaluacion.elegibilidad.prestamo
+relations:
+- type: groups_flow
+  target_asset_id: flow.evaluacion.elegibilidad.prestamo
+  metadata: {}
+payload:
+  transaction_id: evaluacion.elegibilidad.prestamo
+  asset_ids:
+  - flow.evaluacion.elegibilidad.prestamo
+  asset_types:
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.evaluacion.elegibilidad.prestamo
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Evaluacion.elegibilidad.prestamo Asset Set
+  normalized_name: evaluacion.elegibilidad.prestamo asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

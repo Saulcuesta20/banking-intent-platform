@@ -1,0 +1,74 @@
+asset_id: document.customer_support_tickets_mini_csv
+asset_type: document
+name: customer_support_tickets_mini.csv
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/customer_support_tickets_mini.csv
+text: 'ticket_id,created_at,channel,subject,body,status
+
+  TCK-1001,2026-05-01,chat,"No veo mi pago automatico","El cliente pregunta si su
+  cuenta esta suscrita a domiciliacion y solicita confirmar la fecha de cargo.",open
+
+  TCK-1002,2026-05-02,branch,"Quiero bajar la cuota","Solicita opciones para refinanciar
+  el prestamo porque la cuota mensual quedo alta.",closed
+
+  TCK-1003,2026-05-03,phone,"Cargo duplicado","Reporta un cargo duplicado y pide investigacion
+  de soporte y reembolso.",open
+
+  TCK-1004,2026-05-04,chat,"Cambiar fecha de pago","Quiere mover la fecha de pago
+  sin caer en mora.",pending
+
+  TCK-1005,2026-05-05,email,"Solicitud de excepcion","Pide una excepcion por retraso
+  temporal mientras entrega documentos.",closed
+
+  TCK-1006,2026-05-06,branch,"Actualizar datos de contacto","Necesita actualizar telefono
+  y correo antes de la revision del prestamo.",open'
+tags:
+- text
+- csv
+relations: []
+payload:
+  path: data/raw/customer_support_tickets_mini.csv
+  kind: text
+  sequence: 5
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: TCK-1001,2026-05-01,chat,"No veo mi pago automatico","El cliente pregunta
+      si su cuenta esta suscrita a domiciliacion y solicita confirmar la fecha de
+      cargo.",open
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: TCK-1001,2026-05-01,chat,"No veo mi pago automatico","El cliente pregunta
+      si su cuenta esta suscrita a domiciliacion y solicita confirmar la fecha de
+      cargo.",open
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: TCK-1001,2026-05-01,chat,"No veo mi pago automatico","El cliente pregunta
+      si su cuenta esta suscrita a domiciliacion y solicita confirmar la fecha de
+      cargo.",open
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: TCK-1002,2026-05-02,branch,"Quiero bajar la cuota","Solicita opciones
+      para refinanciar el prestamo porque la cuota mensual quedo alta.",closed
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: TCK-1004,2026-05-04,chat,"Cambiar fecha de pago","Quiere mover la fecha
+      de pago sin caer en mora.",pending
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: TCK-1006,2026-05-06,branch,"Actualizar datos de contacto","Necesita
+      actualizar telefono y correo antes de la revision del prestamo.",open
+  match_strategy: generated
+  canonical_name: customer_support_tickets_mini.csv
+  normalized_name: customer support tickets mini.csv
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

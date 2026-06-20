@@ -1,0 +1,27 @@
+asset_id: user_task.proporcionar_informaci_n_de_ingresos
+asset_type: user_task
+name: Proporcionar información de ingresos
+version: 1.0.0
+owner: business_model_kb
+description: El usuario presenta comprobantes de ingresos (recibos de sueldo, declaración
+  de impuestos, etc.).
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_provide_income
+  task: proporcionar_informaci_n_de_ingresos
+  type: document_submission
+  name: Proporcionar información de ingresos
+  description: El usuario presenta comprobantes de ingresos (recibos de sueldo, declaración
+    de impuestos, etc.).
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Proporcionar información de ingresos
+  normalized_name: proporcionar información de ingresos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

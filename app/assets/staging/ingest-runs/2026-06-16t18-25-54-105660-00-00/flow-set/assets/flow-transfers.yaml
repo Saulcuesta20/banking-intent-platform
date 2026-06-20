@@ -1,0 +1,154 @@
+asset_id: flow.transfers
+asset_type: flow
+name: Transferencias
+version: 1.0.0
+owner: process_kb
+description: Una transferencia requiere identificar al cliente, validar cuenta origen,
+  validar saldo, verificar beneficiario o CBU, crear la transferencia y notificar
+  el resultado. Cuando el monto supera el limite operativo o hay riesgo, se debe solicitar
+  aprobacion antes de ejecutar.
+text: Una transferencia requiere identificar al cliente, validar cuenta origen, validar
+  saldo, verificar beneficiario o CBU, crear la transferencia y notificar el resultado.
+  Cuando el monto supera el limite operativo o hay riesgo, se debe solicitar aprobacion
+  antes de ejecutar.
+tags:
+- hacer.una.transferencia
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identificar_cliente
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validar_cuenta_origen
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validar_saldo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verificar_beneficiario
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.crear_transferencia
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.notificar_resultado
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+payload:
+  flow_id: transfers
+  flow_name: Transferencias
+  intent: hacer.una.transferencia
+  confidence: 0.75
+  business_event: cliente realiza una transferencia
+  utterances: []
+  plan: []
+  tasks:
+  - task: identificar_al_cliente
+    type: verification
+  - task: validar_cuenta_origen
+    type: verification
+  - task: validar_saldo
+    type: verification
+  - task: verificar_beneficiario
+    type: verification
+  - task: crear_transferencia
+    type: execution
+  - task: notificar_resultado
+    type: communication
+  user_tasks:
+  - user_task_id: transfer_identify_client
+    task: identificar_al_cliente
+    type: verification
+    name: Identificar cliente
+    description: Verificar identidad del cliente
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_validate_source
+    task: validar_cuenta_origen
+    type: verification
+    name: Validar cuenta origen
+    description: Verificar que la cuenta origen existe y pertenece al cliente
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_validate_balance
+    task: validar_saldo
+    type: verification
+    name: Validar saldo
+    description: Verificar que hay saldo suficiente
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_verify_beneficiary
+    task: verificar_beneficiario
+    type: verification
+    name: Verificar beneficiario
+    description: Verificar que el beneficiario o CBU es valido
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_create
+    task: crear_transferencia
+    type: execution
+    name: Crear transferencia
+    description: Ejecutar la transferencia
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_notify
+    task: notificar_resultado
+    type: communication
+    name: Notificar resultado
+    description: Notificar al cliente el resultado de la transferencia
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Una transferencia requiere identificar al cliente, validar cuenta origen,
+    validar saldo, verificar beneficiario o CBU, crear la transferencia y notificar
+    el resultado. Cuando el monto supera el limite operativo o hay riesgo, se debe
+    solicitar aprobacion antes de ejecutar.
+  source: data/raw/process_qa_seed.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/process_qa_seed.md
+    purpose: Realizar una transferencia de fondos
+  purpose: Realizar una transferencia de fondos
+  transaction_id: transfers
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Una transferencia requiere identificar al cliente, validar cuenta origen,
+      validar saldo, verificar beneficiario o CBU, crear la transferencia y notificar
+      el resultado.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Una transferencia requiere identificar al cliente, validar cuenta origen,
+      validar saldo, verificar beneficiario o CBU, crear la transferencia y notificar
+      el resultado.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Una transferencia requiere identificar al cliente, validar cuenta origen,
+      validar saldo, verificar beneficiario o CBU, crear la transferencia y notificar
+      el resultado.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Una transferencia requiere identificar al cliente, validar cuenta origen,
+      validar saldo, verificar beneficiario o CBU, crear la transferencia y notificar
+      el resultado.
+  match_strategy: generated
+  canonical_name: Transferencias
+  normalized_name: transferencias
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,33 @@
+asset_id: qa.como_funciona_el_pago_automatico
+asset_type: qa
+name: Como funciona el pago automatico?
+version: 1.0.0
+owner: qa_kb
+description: Como funciona el pago automatico?
+text: Como funciona el pago automatico?
+tags:
+- qa
+relations: []
+payload:
+  question: Como funciona el pago automatico?
+  transaction_id: como.funciona.el.pago.automatico
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Como funciona el pago automatico?
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Como funciona el pago automatico?
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Como funciona el pago automatico?
+  match_strategy: generated
+  canonical_name: Como funciona el pago automatico?
+  normalized_name: como funciona el pago automatico?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

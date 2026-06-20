@@ -1,0 +1,26 @@
+asset_id: entity.loan_refinance
+asset_type: entity
+name: refinanciacion
+version: 1.0.0
+owner: business_model_kb
+description: Proceso para modificar condiciones de un préstamo vigente, normalmente
+  tasa, plazo, cuota o cronograma
+text: Proceso para modificar condiciones de un préstamo vigente, normalmente tasa,
+  plazo, cuota o cronograma
+tags: []
+relations: []
+payload:
+  aliases:
+  - loan refinance
+  - refinanciar
+  - bajar cuota
+  - renegociar credito
+  business_layer: channel
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: refinanciacion
+  normalized_name: refinanciacion
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

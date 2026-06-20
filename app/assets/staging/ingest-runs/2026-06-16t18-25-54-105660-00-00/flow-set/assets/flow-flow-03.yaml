@@ -1,0 +1,42 @@
+asset_id: flow.flow.03
+asset_type: flow
+name: Transferencia de dinero
+version: 1.0.0
+owner: process_kb
+description: El proceso de transferencia valida origen, valida destino y ejecuta el
+  movimiento.
+text: El proceso de transferencia valida origen, valida destino y ejecuta el movimiento.
+tags:
+- money.transfer
+relations: []
+payload:
+  flow_id: flow.03
+  flow_name: Transferencia de dinero
+  intent: money.transfer
+  confidence: 0.75
+  business_event: Cliente solicita transferencia
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de transferencia valida origen, valida destino y ejecuta
+    el movimiento.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Realizar una transferencia de dinero
+  purpose: Realizar una transferencia de dinero
+  transaction_id: flow.03
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transferencia de dinero
+  normalized_name: transferencia de dinero
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.track_exceptions
+asset_type: user_task
+name: Track Exceptions
+version: 1.0.0
+owner: business_model_kb
+description: Part of support team activities to track exceptions.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: track_exceptions
+  task: track_exceptions
+  type: ''
+  name: Track Exceptions
+  description: Part of support team activities to track exceptions.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Track Exceptions
+  normalized_name: track exceptions
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

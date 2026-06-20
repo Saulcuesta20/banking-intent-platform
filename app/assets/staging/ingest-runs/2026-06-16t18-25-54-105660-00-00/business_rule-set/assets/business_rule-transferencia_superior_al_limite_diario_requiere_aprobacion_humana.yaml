@@ -1,0 +1,37 @@
+asset_id: business_rule.transferencia_superior_al_limite_diario_requiere_aprobacion_humana
+asset_type: business_rule
+name: transferencia superior al limite diario requiere aprobacion humana
+version: 1.0.0
+owner: rules_kb
+description: Toda transferencia superior al limite diario requiere aprobacion humana.
+text: Toda transferencia superior al limite diario requiere aprobacion humana.
+tags:
+- business_rule
+- money.transfer
+- realizar.transferencia
+relations:
+- type: applies_to_flow
+  target_asset_id: flow.transfer
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.transferencia
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.aprobacion_humana
+  metadata: {}
+payload:
+  rule_text: Toda transferencia superior al limite diario requiere aprobacion humana.
+  source_section: Rules
+  conditions:
+  - Toda transferencia superior al limite diario
+  consequences:
+  - aprobacion humana
+  transaction_id: transfer
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: transferencia superior al limite diario requiere aprobacion humana
+  normalized_name: transferencia superior al limite diario requiere aprobacion humana
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

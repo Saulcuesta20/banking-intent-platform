@@ -1,0 +1,25 @@
+asset_id: user_task.document_collection
+asset_type: user_task
+name: Document Collection
+version: 1.0.0
+owner: business_model_kb
+description: Collect any missing documents required for refinance.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_collect_documents
+  task: collect_missing_documents
+  type: manual
+  name: Document Collection
+  description: Collect any missing documents required for refinance.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Document Collection
+  normalized_name: document collection
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

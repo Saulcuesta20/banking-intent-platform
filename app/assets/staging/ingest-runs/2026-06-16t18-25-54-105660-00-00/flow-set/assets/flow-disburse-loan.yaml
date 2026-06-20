@@ -1,0 +1,64 @@
+asset_id: flow.disburse.loan
+asset_type: flow
+name: Disburse Loan
+version: 1.0.0
+owner: process_kb
+description: Release funds for an approved loan.
+text: Release funds for an approved loan.
+tags:
+- loan.disbursement
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validate_disbursement
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transfer_execution
+  metadata: {}
+payload:
+  flow_id: disburse.loan
+  flow_name: Disburse Loan
+  intent: loan.disbursement
+  confidence: 0.75
+  business_event: Loan disbursement
+  utterances: []
+  plan: []
+  tasks:
+  - task: validate_disbursement
+    type: automated
+  - task: transfer_execution
+    type: automated
+  user_tasks:
+  - user_task_id: validate_disbursement
+    task: validate_disbursement
+    type: automated
+    name: Validate Disbursement
+    description: Check disbursement conditions before release.
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_execution
+    task: transfer_execution
+    type: automated
+    name: Transfer Execution
+    description: Execute the fund transfer for disbursement.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Release funds for an approved loan.
+  source: data/raw/banking_flows_additional.txt#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_flows_additional.txt#chunk-2
+    purpose: Transfer loan amount to customer.
+  purpose: Transfer loan amount to customer.
+  transaction_id: disburse.loan
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Disburse Loan
+  normalized_name: disburse loan
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

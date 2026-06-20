@@ -1,0 +1,36 @@
+asset_id: ruleset.apertura.cuenta
+asset_type: ruleset
+name: Apertura.cuenta Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction apertura.cuenta with 1 business rules.
+text: Si falta documento oficial, la apertura de cuenta debe detenerse.
+tags:
+- ruleset
+- apertura.cuenta
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.apertura.cuenta
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+payload:
+  transaction_id: apertura.cuenta
+  ruleset_name: Apertura.cuenta Ruleset
+  rule_ids:
+  - business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+  conditions:
+  - Si falta documento oficial, la apertura de cuenta
+  consequences:
+  - detenerse
+  match_strategy: generated
+  canonical_name: Apertura.cuenta Ruleset
+  normalized_name: apertura.cuenta ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

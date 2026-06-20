@@ -1,0 +1,117 @@
+asset_id: flow.customer.onboarding
+asset_type: flow
+name: Customer Onboarding
+version: 1.0.0
+owner: process_kb
+description: Service desk verifies identity, captures profile, checks existing records,
+  creates or updates customer record, links documents, records consent.
+text: Service desk verifies identity, captures profile, checks existing records, creates
+  or updates customer record, links documents, records consent.
+tags:
+- ensure.customer.data.is.accurate.and.consent.is.recorded
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identity_verification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.profile_capture
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.customer_existence_check
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.new_customer_record_creation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.consent_recording
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.customer_information_update
+  metadata: {}
+payload:
+  flow_id: customer.onboarding
+  flow_name: Customer Onboarding
+  intent: ensure.customer.data.is.accurate.and.consent.is.recorded
+  confidence: 0.75
+  business_event: New customer arrives at branch or initiates digital onboarding
+  utterances: []
+  plan: []
+  tasks:
+  - task: verify_customer_identity
+    type: verification
+  - task: capture_customer_profile
+    type: data_entry
+  - task: check_if_customer_exists
+    type: verification
+  - task: create_new_customer_record
+    type: creation
+  - task: record_customer_consent
+    type: compliance
+  - task: update_customer_information
+    type: update
+  user_tasks:
+  - user_task_id: verify_identity
+    task: verify_customer_identity
+    type: verification
+    name: Identity Verification
+    description: Service desk verifies the customer's identity using provided documents.
+    tools: []
+    user_actions: []
+  - user_task_id: capture_profile
+    task: capture_customer_profile
+    type: data_entry
+    name: Profile Capture
+    description: Capture customer's personal and contact information.
+    tools: []
+    user_actions: []
+  - user_task_id: check_existing_customer
+    task: check_if_customer_exists
+    type: verification
+    name: Customer Existence Check
+    description: Check customer master for existing record.
+    tools: []
+    user_actions: []
+  - user_task_id: create_customer_record
+    task: create_new_customer_record
+    type: creation
+    name: New Customer Record Creation
+    description: Create a new customer record in the system and link identification
+      documents.
+    tools: []
+    user_actions: []
+  - user_task_id: record_consent
+    task: record_customer_consent
+    type: compliance
+    name: Consent Recording
+    description: Record customer's consent for data processing.
+    tools: []
+    user_actions: []
+  - user_task_id: update_customer_info
+    task: update_customer_information
+    type: update
+    name: Customer Information Update
+    description: Update existing customer's address, phone, employment, and preferred
+      contact channel.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Service desk verifies identity, captures profile, checks existing records,
+    creates or updates customer record, links documents, records consent.
+  source: data/raw/banking_flows_additional.txt#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_flows_additional.txt#chunk-1
+    purpose: To onboard new customers or update returning customer information.
+  purpose: To onboard new customers or update returning customer information.
+  transaction_id: customer.onboarding
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Onboarding
+  normalized_name: customer onboarding
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,65 @@
+asset_id: flow.transfer.compliance.review.flow
+asset_type: flow
+name: Transfer Compliance Review
+version: 1.0.0
+owner: process_kb
+description: Agent explains compliance review process and requires manager approval
+text: Agent explains compliance review process and requires manager approval
+tags:
+- review.and.approve.flagged.transfers
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.compliance_review
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.manager_approval
+  metadata: {}
+payload:
+  flow_id: transfer.compliance.review.flow
+  flow_name: Transfer Compliance Review
+  intent: review.and.approve.flagged.transfers
+  confidence: 0.75
+  business_event: Customer's transfer is retained for compliance review
+  utterances: []
+  plan: []
+  tasks:
+  - task: perform_compliance_review_on_retained_transfer
+    type: manual
+  - task: obtain_manager_approval_for_transfer
+    type: manual
+  user_tasks:
+  - user_task_id: compliance_review_task
+    task: perform_compliance_review_on_retained_transfer
+    type: manual
+    name: Compliance Review
+    description: Agent reviews the transfer against compliance policies and checks
+      for any violations
+    tools: []
+    user_actions: []
+  - user_task_id: manager_approval_task
+    task: obtain_manager_approval_for_transfer
+    type: manual
+    name: Manager Approval
+    description: Agent escalates to manager for final approval on the flagged transfer
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Agent explains compliance review process and requires manager approval
+  source: data/raw/enterprise_dump_2026/customer_support_tickets.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    purpose: Ensure transfer adheres to regulatory policies
+  purpose: Ensure transfer adheres to regulatory policies
+  transaction_id: transfer.compliance.review.flow
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfer Compliance Review
+  normalized_name: transfer compliance review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

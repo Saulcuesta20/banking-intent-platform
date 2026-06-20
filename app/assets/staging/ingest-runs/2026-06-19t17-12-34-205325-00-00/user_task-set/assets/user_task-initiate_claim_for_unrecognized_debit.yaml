@@ -1,0 +1,25 @@
+asset_id: user_task.initiate_claim_for_unrecognized_debit
+asset_type: user_task
+name: Initiate claim for unrecognized debit
+version: 1.0.0
+owner: business_model_kb
+description: Report and dispute an unauthorized debit transaction
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: iniciar_reclamo_debito
+  task: iniciar_reclamo_por_d_bito_no_reconocido
+  type: claim
+  name: Initiate claim for unrecognized debit
+  description: Report and dispute an unauthorized debit transaction
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Initiate claim for unrecognized debit
+  normalized_name: initiate claim for unrecognized debit
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

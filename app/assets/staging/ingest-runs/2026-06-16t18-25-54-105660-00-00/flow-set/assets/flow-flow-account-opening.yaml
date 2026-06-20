@@ -1,0 +1,98 @@
+asset_id: flow.flow.account.opening
+asset_type: flow
+name: Account Opening
+version: 1.0.0
+owner: process_kb
+description: Opening a SmartBalance Checking account with EverydayPlus Debit card,
+  triggering KYC and debit activation.
+text: Opening a SmartBalance Checking account with EverydayPlus Debit card, triggering
+  KYC and debit activation.
+tags:
+- customer.wants.to.open.a.checking.account.and.get.a.debit.card
+- open.account
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.kyc_verification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.debit_card_activation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verify_identity
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verify_address
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.perform_kyc
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.create_account
+  metadata: {}
+payload:
+  flow_id: flow.account.opening
+  flow_name: Account Opening
+  intent: open.account
+  confidence: 0.75
+  business_event: new_client_onboarding
+  utterances: []
+  plan: []
+  tasks:
+  - task: verify_identity
+    type: manual
+  - task: verify_address
+    type: manual
+  - task: perform_kyc
+    type: manual
+  - task: create_account
+    type: automated
+  user_tasks:
+  - user_task_id: user_task_verify_identity
+    task: verify_identity
+    type: manual
+    name: Verify Identity
+    description: Validate the client's identity document (e.g., passport, ID card).
+    tools: []
+    user_actions: []
+  - user_task_id: user_task_verify_address
+    task: verify_address
+    type: manual
+    name: Verify Address
+    description: Validate the client's proof of address document.
+    tools: []
+    user_actions: []
+  - user_task_id: user_task_perform_kyc
+    task: perform_kyc
+    type: manual
+    name: Perform KYC
+    description: Complete Know Your Customer checks including risk assessment.
+    tools: []
+    user_actions: []
+  - user_task_id: user_task_create_account
+    task: create_account
+    type: automated
+    name: Create Account
+    description: Open the new account in the core banking system after KYC approval.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to open a new bank account for a client, including KYC, document
+    validation, and initial deposit.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-1
+    purpose: Create a new account for the client after verifying identity and compliance.
+  purpose: Create a new account for the client after verifying identity and compliance.
+  transaction_id: flow.account.opening
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Account Opening
+  normalized_name: account opening
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,66 @@
+asset_id: document.savings_loans_domain_raw_txt
+asset_type: document
+name: savings_loans_domain_raw.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/savings_loans_domain_raw.txt
+text: "Savings Accounts and Loans - Domain Documentation\n\nOverview:\nThis document\
+  \ provides a synthesized domain description for retail banking focused on savings\
+  \ accounts and consumer loans. It consolidates glossary terms, common processes,\
+  \ business rules, compliance notes, and example utterances for NLP intent creation.\n\
+  \nGlossary (sample):\n- Savings Account: A deposit account that earns interest,\
+  \ used for saving money.\n- Term Deposit: A time-bound deposit with fixed interest\
+  \ rate.\n- CBU: Clave Bancaria Uniforme, unique bank account identifier.\n- Interest\
+  \ Rate: The percentage paid by a bank on deposits or charged on loans.\n- APR: Annual\
+  \ Percentage Rate for loans, includes fees.\n- Collateral: Asset pledged to secure\
+  \ a loan.\n- Principal: The original sum borrowed or deposited.\n- Installment:\
+  \ Periodic payment toward loan principal and interest.\n\nCommon Processes:\n1.\
+  \ Account Opening\n   - Customer identification\n   - Document collection (ID, proof\
+  \ of address, tax ID)\n   - Risk and KYC screening\n   - Account creation and CBU\
+  \ assignment\n   - Initial deposit and product enrollment\n\n2. Savings Account\
+  \ Maintenance\n   - Deposit and withdrawal processing\n   - Interest accrual and\
+  \ posting schedule\n   - Account statements generation\n   - Dormancy and closure\
+  \ procedures\n\n3. Loan Application and Origination\n   - Collect application details\
+  \ (amount, term, purpose)\n   - Verify identity and income\n   - Check credit history\
+  \ and scoring\n   - Calculate eligibility and propose terms\n   - Request human\
+  \ underwriter approval for borderline cases\n   - Disbursement and repayment schedule\
+  \ setup\n\nBusiness Rules (examples):\n- Minimum initial deposit for savings account:\
+  \ 100 units of currency.\n- Savings interest is compounded monthly and credited\
+  \ on the last business day.\n- Loan eligibility requires debt-to-income ratio below\
+  \ 40% unless supplemental collateral provided.\n- Loans above 50,000 require manual\
+  \ underwriting approval.\n\nCompliance Notes:\n- Collect and retain KYC documents\
+  \ for 5 years.\n- Ensure customer consent for electronic statements.\n\nExample\
+  \ Utterances (savings):\n- \"Quiero abrir una cuenta de ahorro\"\n- \"Cómo puedo\
+  \ crear una cuenta para ahorrar?\"\n- \"Cuál es la tasa de interés para cuentas\
+  \ de ahorro?\"\n- \"Necesito cerrar mi cuenta de ahorros\"\n\nExample Utterances\
+  \ (loans):\n- \"Quiero solicitar un préstamo personal\"\n- \"Cuál es la tasa para\
+  \ préstamos a 12 meses?\"\n- \"Cómo refinancio mi préstamo?\"\n- \"Necesito pagar\
+  \ mi cuota de préstamo\"\n\nEnd of synthesized domain raw text."
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: data/raw/savings_loans_domain_raw.txt
+  kind: text
+  sequence: 33
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- "Quiero abrir una cuenta de ahorro"'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- "Cómo puedo crear una cuenta para ahorrar?"'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- "Necesito cerrar mi cuenta de ahorros"'
+  match_strategy: generated
+  canonical_name: savings_loans_domain_raw.txt
+  normalized_name: savings loans domain raw.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

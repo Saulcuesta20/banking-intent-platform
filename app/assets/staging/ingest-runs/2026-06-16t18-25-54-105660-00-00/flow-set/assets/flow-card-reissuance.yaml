@@ -1,0 +1,79 @@
+asset_id: flow.card.reissuance
+asset_type: flow
+name: Reexpedición de tarjeta
+version: 1.0.0
+owner: process_kb
+description: Proceso de verificación de identidad, bloqueo de tarjeta anterior y emisión
+  de nueva tarjeta.
+text: Proceso de verificación de identidad, bloqueo de tarjeta anterior y emisión
+  de nueva tarjeta.
+tags:
+- reexpedir.tarjeta
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verificaci_n_de_identidad
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.bloqueo_de_tarjeta
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.emisi_n_de_tarjeta
+  metadata: {}
+payload:
+  flow_id: card.reissuance
+  flow_name: Reexpedición de tarjeta
+  intent: reexpedir.tarjeta
+  confidence: 0.75
+  business_event: Solicitud de reexpedición de tarjeta
+  utterances: []
+  plan: []
+  tasks:
+  - task: verificar_identidad
+    type: manual
+  - task: bloquear_tarjeta_anterior
+    type: manual
+  - task: emitir_y_enviar_nueva_tarjeta
+    type: manual
+  user_tasks:
+  - user_task_id: identity_verification
+    task: verificar_identidad
+    type: manual
+    name: Verificación de identidad
+    description: Verificar la identidad del solicitante.
+    tools: []
+    user_actions: []
+  - user_task_id: card_blocking
+    task: bloquear_tarjeta_anterior
+    type: manual
+    name: Bloqueo de tarjeta
+    description: Bloquear la tarjeta anterior para evitar uso no autorizado.
+    tools: []
+    user_actions: []
+  - user_task_id: card_issuance
+    task: emitir_y_enviar_nueva_tarjeta
+    type: manual
+    name: Emisión de tarjeta
+    description: Emitir una nueva tarjeta y enviarla al cliente.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de verificación de identidad, bloqueo de tarjeta anterior y
+    emisión de nueva tarjeta.
+  source: data/raw/savings_loans_domain_extra3.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra3.txt
+    purpose: Emitir nueva tarjeta al cliente
+  purpose: Emitir nueva tarjeta al cliente
+  transaction_id: card.reissuance
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Reexpedición de tarjeta
+  normalized_name: reexpedición de tarjeta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

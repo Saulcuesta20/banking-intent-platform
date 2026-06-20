@@ -1,0 +1,37 @@
+asset_id: user_task.registro_de_datos_de_cuenta
+asset_type: user_task
+name: Registro de datos de cuenta
+version: 1.0.0
+owner: business_model_kb
+description: Ingresar los datos del cliente y configurar la nueva cuenta de ahorro.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: registrar_datos_cuenta
+  task: registrar_datos_de_cuenta
+  type: data_entry
+  name: Registro de datos de cuenta
+  description: Ingresar los datos del cliente y configurar la nueva cuenta de ahorro.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Registro de datos de cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Ingresar los datos del cliente y configurar la nueva cuenta de ahorro.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Ingresar los datos del cliente y configurar la nueva cuenta de ahorro.
+  match_strategy: generated
+  canonical_name: Registro de datos de cuenta
+  normalized_name: registro de datos de cuenta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

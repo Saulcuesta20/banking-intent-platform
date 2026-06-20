@@ -1,0 +1,38 @@
+asset_id: document.glossary_fragment_md
+asset_type: document
+name: glossary_fragment.md
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/enterprise_dump_2026/glossary_fragment.md
+text: '# Glossary Fragment From Shared Drive
+
+
+  CBU: local account identifier used for transfers.
+
+  Automatic debit: recurring payment from an eligible account.
+
+  High value transfer: transfer above internal review threshold.
+
+  Enhanced due diligence: additional review for risk or compliance reasons.
+
+  Beneficiary screening: check performed before releasing certain transactions.
+
+  Refinance option: alternative loan conditions proposed to the customer.
+
+  Manager review: manual approval queue used when policy gates require escalation.'
+tags:
+- text
+- md
+relations: []
+payload:
+  path: data/raw/enterprise_dump_2026/glossary_fragment.md
+  kind: text
+  sequence: 9
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: glossary_fragment.md
+  normalized_name: glossary fragment.md
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

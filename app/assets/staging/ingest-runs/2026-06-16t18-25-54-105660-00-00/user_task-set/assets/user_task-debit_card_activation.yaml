@@ -1,0 +1,25 @@
+asset_id: user_task.debit_card_activation
+asset_type: user_task
+name: Debit Card Activation
+version: 1.0.0
+owner: business_model_kb
+description: Activate the debit card for the new account.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: activate_debit_card
+  task: activate_everydayplus_debit_card
+  type: activation
+  name: Debit Card Activation
+  description: Activate the debit card for the new account.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Debit Card Activation
+  normalized_name: debit card activation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

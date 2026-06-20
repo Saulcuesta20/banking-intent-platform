@@ -1,0 +1,25 @@
+asset_id: user_task.verify_balances
+asset_type: user_task
+name: Verify Balances
+version: 1.0.0
+owner: business_model_kb
+description: Part of support team activities to verify customer balances.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verify_balances
+  task: verify_balances
+  type: ''
+  name: Verify Balances
+  description: Part of support team activities to verify customer balances.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Verify Balances
+  normalized_name: verify balances
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

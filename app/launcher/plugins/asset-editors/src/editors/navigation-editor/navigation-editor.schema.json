@@ -1,0 +1,101 @@
+{
+  "type": "object",
+  "properties": {
+    "navigation_id": {
+      "type": "string",
+      "title": "Navigation ID"
+    },
+    "navigation_name": {
+      "type": "string",
+      "title": "Navigation Name"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "domain": {
+      "type": "string",
+      "title": "Domain"
+    },
+    "module": {
+      "type": "string",
+      "title": "Module"
+    },
+    "items": {
+      "type": "array",
+      "title": "Navigation Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Item ID"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "enum": ["menu", "link", "divider", "header"]
+          },
+          "icon": {
+            "type": "string",
+            "title": "Icon"
+          },
+          "route": {
+            "type": "string",
+            "title": "Route"
+          },
+          "children": {
+            "type": "array",
+            "title": "Children",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "title": "ID"
+                },
+                "label": {
+                  "type": "string",
+                  "title": "Label"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type"
+                },
+                "route": {
+                  "type": "string",
+                  "title": "Route"
+                }
+              },
+              "required": ["id", "label"]
+            }
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "required": ["id", "label", "type"]
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "title": "Metadata",
+      "properties": {
+        "version": {
+          "type": "string",
+          "title": "Version"
+        },
+        "author": {
+          "type": "string",
+          "title": "Author"
+        }
+      }
+    }
+  },
+  "required": ["navigation_id", "navigation_name", "description", "domain", "module"]
+}

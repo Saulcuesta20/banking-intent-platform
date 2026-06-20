@@ -1,0 +1,27 @@
+asset_id: user_task.definir_garant_a
+asset_type: user_task
+name: Definir garantía
+version: 1.0.0
+owner: business_model_kb
+description: El usuario define si ofrece una garantía para el préstamo y proporciona
+  detalles.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_define_collateral
+  task: definir_garant_a_si_aplica
+  type: selection
+  name: Definir garantía
+  description: El usuario define si ofrece una garantía para el préstamo y proporciona
+    detalles.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Definir garantía
+  normalized_name: definir garantía
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

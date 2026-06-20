@@ -1,0 +1,33 @@
+asset_id: user_task.transfer_funds_to_loan
+asset_type: user_task
+name: Transfer Funds to Loan
+version: 1.0.0
+owner: business_model_kb
+description: Transferir fondos desde la cuenta origen al prestamo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_funds_to_loan
+  task: transferir_fondos_desde_la_cuenta_origen_al_prestamo
+  type: system
+  name: Transfer Funds to Loan
+  description: Transferir fondos desde la cuenta origen al prestamo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Transferir fondos desde la cuenta origen al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Transferir fondos desde la cuenta origen al prestamo.
+  match_strategy: generated
+  canonical_name: Transfer Funds to Loan
+  normalized_name: transfer funds to loan
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

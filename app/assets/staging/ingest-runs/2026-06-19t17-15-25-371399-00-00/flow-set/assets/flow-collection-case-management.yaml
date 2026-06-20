@@ -1,0 +1,96 @@
+asset_id: flow.collection.case.management
+asset_type: flow
+name: Collection Case Management Process
+version: 1.0.0
+owner: process_kb
+description: Analyst handles collection cases by confirming details, recording contact,
+  defining actions, and sending reminders if needed.
+text: Analyst handles collection cases by confirming details, recording contact, defining
+  actions, and sending reminders if needed.
+tags:
+- ensure.appropriate.follow.up.and.resolution.of.collection.issues
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.balance_and_payment_confirmation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.contact_reason_recording
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.action_definition
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.reminder_sending
+  metadata: {}
+payload:
+  flow_id: collection.case.management
+  flow_name: Collection Case Management Process
+  intent: ensure.appropriate.follow.up.and.resolution.of.collection.issues
+  confidence: 0.75
+  business_event: Customer case with late payment or related issue
+  utterances: []
+  plan: []
+  tasks:
+  - task: confirm_the_customer_s_current_balance_and_last_payment_date
+    type: manual
+  - task: record_the_reason_for_contact_with_the_customer
+    type: manual
+  - task: define_the_next_action_based_on_the_case_status
+    type: decision
+  - task: send_a_reminder_if_the_case_remains_open
+    type: automated
+  user_tasks:
+  - user_task_id: confirm_balance_last_payment
+    task: confirm_the_customer_s_current_balance_and_last_payment_date
+    type: manual
+    name: Balance and Payment Confirmation
+    description: Analyst queries the system to retrieve and verify the balance and
+      last payment date.
+    tools: []
+    user_actions: []
+  - user_task_id: record_contact_reason
+    task: record_the_reason_for_contact_with_the_customer
+    type: manual
+    name: Contact Reason Recording
+    description: Analyst documents why the customer was contacted, such as late payment,
+      promise to pay, etc.
+    tools: []
+    user_actions: []
+  - user_task_id: define_next_action
+    task: define_the_next_action_based_on_the_case_status
+    type: decision
+    name: Action Definition
+    description: Analyst determines whether the case requires a payment promise, escalation,
+      or follow-up based on the situation.
+    tools: []
+    user_actions: []
+  - user_task_id: send_reminder
+    task: send_a_reminder_if_the_case_remains_open
+    type: automated
+    name: Reminder Sending
+    description: System or analyst sends a reminder to the customer or internally
+      if the case is still open and requires attention.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Analyst handles collection cases by confirming details, recording contact,
+    defining actions, and sending reminders if needed.
+  source: data/raw/notes_operativas_cobranza.md;data/raw/policy_controls_addendum.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/notes_operativas_cobranza.md
+    - data/raw/policy_controls_addendum.md
+    purpose: Manage and resolve collection cases systematically.
+  purpose: Manage and resolve collection cases systematically.
+  transaction_id: collection.case.management
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collection Case Management Process
+  normalized_name: collection case management process
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,40 @@
+asset_id: asset_set.autopay.cancel
+asset_type: asset_set
+name: Autopay.cancel Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for autopay.cancel.
+text: 'cliente
+
+  quiero cancelar el pago automatico'
+tags:
+- asset_set
+- autopay.cancel
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.autopay.cancel
+  metadata: {}
+payload:
+  transaction_id: autopay.cancel
+  asset_ids:
+  - entity.customer
+  - flow.autopay.cancel
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.autopay.cancel
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Autopay.cancel Asset Set
+  normalized_name: autopay.cancel asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

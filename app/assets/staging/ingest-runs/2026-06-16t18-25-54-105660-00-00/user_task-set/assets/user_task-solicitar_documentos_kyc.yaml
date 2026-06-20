@@ -1,0 +1,27 @@
+asset_id: user_task.solicitar_documentos_kyc
+asset_type: user_task
+name: Solicitar documentos KYC
+version: 1.0.0
+owner: business_model_kb
+description: Solicitar identificación vigente, comprobante de domicilio y datos fiscales
+  si corresponde.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_solicitar_documentos_kyc
+  task: solicitar_documentos_kyc
+  type: human
+  name: Solicitar documentos KYC
+  description: Solicitar identificación vigente, comprobante de domicilio y datos
+    fiscales si corresponde.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Solicitar documentos KYC
+  normalized_name: solicitar documentos kyc
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

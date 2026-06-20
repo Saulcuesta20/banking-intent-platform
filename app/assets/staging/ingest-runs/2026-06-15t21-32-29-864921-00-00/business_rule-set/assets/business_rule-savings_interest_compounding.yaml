@@ -1,0 +1,33 @@
+asset_id: business_rule.savings_interest_compounding
+asset_type: business_rule
+name: Savings interest compounding
+version: 1.0.0
+owner: rules_kb
+description: Interest is compounded monthly and credited on the last business day.
+text: Interest is compounded monthly and credited on the last business day.
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.interest
+  metadata: {}
+payload:
+  rule_text: Interest is compounded monthly and credited on the last business day.
+  source_section: LLMAssetExtraction
+  conditions:
+  - Monthly interest posting
+  consequences:
+  - Compound and credit interest
+  when: Monthly interest posting
+  then: Compound and credit interest
+  transaction_id: savings.interest.compounding
+  ruleset_name: ''
+  applies_to: SavingsAccount
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Savings interest compounding
+  normalized_name: savings interest compounding
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

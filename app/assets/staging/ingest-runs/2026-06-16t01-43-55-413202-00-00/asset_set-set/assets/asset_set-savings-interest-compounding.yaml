@@ -1,0 +1,49 @@
+asset_id: asset_set.savings.interest.compounding
+asset_type: asset_set
+name: Savings.interest.compounding Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for savings.interest.compounding.
+text: 'Savings interest compounding
+
+  Interest
+
+  Savings.interest.compounding Ruleset'
+tags:
+- asset_set
+- savings.interest.compounding
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.savings_interest_compounding
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.interest
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.savings.interest.compounding
+  metadata: {}
+payload:
+  transaction_id: savings.interest.compounding
+  asset_ids:
+  - business_rule.savings_interest_compounding
+  - entity.interest
+  - ruleset.savings.interest.compounding
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.savings_interest_compounding
+    asset_type: business_rule
+  - asset_id: entity.interest
+    asset_type: entity
+  - asset_id: ruleset.savings.interest.compounding
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Savings.interest.compounding Asset Set
+  normalized_name: savings.interest.compounding asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

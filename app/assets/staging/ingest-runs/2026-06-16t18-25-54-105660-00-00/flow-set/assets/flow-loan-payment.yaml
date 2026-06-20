@@ -1,0 +1,64 @@
+asset_id: flow.loan.payment
+asset_type: flow
+name: Pay Loan
+version: 1.0.0
+owner: process_kb
+description: Process a payment towards a loan.
+text: Process a payment towards a loan.
+tags:
+- post.payment
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.payment_posting
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.update_loan_balance
+  metadata: {}
+payload:
+  flow_id: loan.payment
+  flow_name: Pay Loan
+  intent: post.payment
+  confidence: 0.75
+  business_event: Loan payment
+  utterances: []
+  plan: []
+  tasks:
+  - task: payment_posting
+    type: automated
+  - task: update_loan_balance
+    type: automated
+  user_tasks:
+  - user_task_id: payment_posting
+    task: payment_posting
+    type: automated
+    name: Payment Posting
+    description: Post payment to loan account.
+    tools: []
+    user_actions: []
+  - user_task_id: update_loan_balance
+    task: update_loan_balance
+    type: automated
+    name: Update Loan Balance
+    description: Recalculate and update loan balance after payment.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process a payment towards a loan.
+  source: data/raw/banking_flows_additional.txt#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_flows_additional.txt#chunk-2
+    purpose: Record payment and update loan balance.
+  purpose: Record payment and update loan balance.
+  transaction_id: loan.payment
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Pay Loan
+  normalized_name: pay loan
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

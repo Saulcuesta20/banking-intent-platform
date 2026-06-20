@@ -1,0 +1,29 @@
+asset_id: user_task.recolectar_evidencia
+asset_type: user_task
+name: Recolectar evidencia
+version: 1.0.0
+owner: business_model_kb
+description: Recolectar evidencia del cliente y del banco
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: claims_collect_evidence
+  task: recolectar_evidencia
+  type: data_collection
+  name: Recolectar evidencia
+  description: Recolectar evidencia del cliente y del banco
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Recolectar evidencia del cliente y del banco
+  match_strategy: generated
+  canonical_name: Recolectar evidencia
+  normalized_name: recolectar evidencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

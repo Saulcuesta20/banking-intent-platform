@@ -1,0 +1,33 @@
+asset_id: user_task.generaci_n_de_pdf
+asset_type: user_task
+name: Generación de PDF
+version: 1.0.0
+owner: business_model_kb
+description: Generar el documento PDF con el estado de cuenta del mes.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: generar_pdf_estado
+  task: generar_pdf_de_estado_de_cuenta
+  type: generation
+  name: Generación de PDF
+  description: Generar el documento PDF con el estado de cuenta del mes.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Generar el documento PDF con el estado de cuenta del mes.
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: Generar el documento PDF con el estado de cuenta del mes.
+  match_strategy: generated
+  canonical_name: Generación de PDF
+  normalized_name: generación de pdf
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

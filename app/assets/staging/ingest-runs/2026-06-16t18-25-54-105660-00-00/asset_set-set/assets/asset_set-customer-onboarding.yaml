@@ -1,0 +1,80 @@
+asset_id: asset_set.customer.onboarding
+asset_type: asset_set
+name: Customer.onboarding Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for customer.onboarding.
+text: 'Customer Onboarding
+
+  Consent Recording
+
+  Customer Existence Check
+
+  Customer Information Update
+
+  Identity Verification
+
+  New Customer Record Creation
+
+  Profile Capture'
+tags:
+- asset_set
+- customer.onboarding
+relations:
+- type: groups_flow
+  target_asset_id: flow.customer.onboarding
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.consent_recording
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.customer_existence_check
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.customer_information_update
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identity_verification
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.new_customer_record_creation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.profile_capture
+  metadata: {}
+payload:
+  transaction_id: customer.onboarding
+  asset_ids:
+  - flow.customer.onboarding
+  - user_task.consent_recording
+  - user_task.customer_existence_check
+  - user_task.customer_information_update
+  - user_task.identity_verification
+  - user_task.new_customer_record_creation
+  - user_task.profile_capture
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.customer.onboarding
+    asset_type: flow
+  - asset_id: user_task.consent_recording
+    asset_type: user_task
+  - asset_id: user_task.customer_existence_check
+    asset_type: user_task
+  - asset_id: user_task.customer_information_update
+    asset_type: user_task
+  - asset_id: user_task.identity_verification
+    asset_type: user_task
+  - asset_id: user_task.new_customer_record_creation
+    asset_type: user_task
+  - asset_id: user_task.profile_capture
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Customer.onboarding Asset Set
+  normalized_name: customer.onboarding asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

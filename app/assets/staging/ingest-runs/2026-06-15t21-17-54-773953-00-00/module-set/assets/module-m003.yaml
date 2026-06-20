@@ -1,0 +1,28 @@
+asset_id: module.m003
+asset_type: module
+name: M003
+version: 1.0.0
+owner: config_kb
+description: Gestión de transferencias entre cuentas propias y de terceros.
+text: Gestión de transferencias entre cuentas propias y de terceros.
+tags:
+- module
+- configuration
+relations:
+- type: belongs_to_domain
+  target_asset_id: domain.d001
+  metadata: {}
+payload:
+  module_id: M003
+  domain_id: D001
+  name: Transfer Management
+  purpose: Gestión de transferencias entre cuentas propias y de terceros.
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: M003
+  normalized_name: m003
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

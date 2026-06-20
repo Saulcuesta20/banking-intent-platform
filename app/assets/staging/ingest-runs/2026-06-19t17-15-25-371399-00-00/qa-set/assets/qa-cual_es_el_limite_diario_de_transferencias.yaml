@@ -1,0 +1,21 @@
+asset_id: qa.cual_es_el_limite_diario_de_transferencias
+asset_type: qa
+name: Cual es el limite diario de transferencias?
+version: 1.0.0
+owner: qa_kb
+description: Cual es el limite diario de transferencias?
+text: Cual es el limite diario de transferencias?
+tags:
+- qa
+relations: []
+payload:
+  question: Cual es el limite diario de transferencias?
+  transaction_id: cual.es.el.limite.diario.de.transferencias
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Cual es el limite diario de transferencias?
+  normalized_name: cual es el limite diario de transferencias?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

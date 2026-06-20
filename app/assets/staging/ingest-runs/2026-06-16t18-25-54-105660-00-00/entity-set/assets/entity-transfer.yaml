@@ -1,0 +1,34 @@
+asset_id: entity.transfer
+asset_type: entity
+name: CBU
+version: 1.0.0
+owner: business_model_kb
+description: Identificador único de cuenta para transferencias
+text: 'Identificador único de cuenta para transferencias
+
+  Movimiento de fondos entre cuentas propias o de terceros'
+tags: []
+relations: []
+payload:
+  aliases:
+  - transfer
+  - transferencia
+  - transferir
+  - envio dinero
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Identificador único de cuenta para transferencias
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Identificador único de cuenta para transferencias
+  match_strategy: generated
+  canonical_name: CBU
+  normalized_name: cbu
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

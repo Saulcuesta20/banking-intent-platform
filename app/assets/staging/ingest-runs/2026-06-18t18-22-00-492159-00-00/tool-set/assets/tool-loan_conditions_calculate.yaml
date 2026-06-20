@@ -1,0 +1,31 @@
+asset_id: tool.loan_conditions_calculate
+asset_type: tool
+name: loan.conditions.calculate
+version: 1.0.0
+owner: business_model_kb
+description: Calculate new loan conditions.
+text: ''
+tags:
+- backend_tool
+- calculate
+- loan
+relations: []
+payload:
+  tool_id: loan.conditions.calculate
+  tool_type: backend_tool
+  operation: calculate
+  resource: loan
+  description: Calculate new loan conditions.
+  requires_approval: false
+  user_tasks:
+  - review_refinance_options
+  flows:
+  - loan.refinance
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: loan.conditions.calculate
+  normalized_name: loan.conditions.calculate
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.compare_options
+asset_type: user_task
+name: Compare Options
+version: 1.0.0
+owner: business_model_kb
+description: Compare different refinance options
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_loan_compare_options
+  task: compare_options
+  type: manual
+  name: Compare Options
+  description: Compare different refinance options
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Compare Options
+  normalized_name: compare options
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

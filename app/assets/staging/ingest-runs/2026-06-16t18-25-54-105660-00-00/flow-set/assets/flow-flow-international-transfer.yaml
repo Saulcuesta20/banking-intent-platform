@@ -1,0 +1,93 @@
+asset_id: flow.flow.international.transfer
+asset_type: flow
+name: International Transfer
+version: 1.0.0
+owner: process_kb
+description: Process to execute an international transfer, including beneficiary verification,
+  limit checks, and approval if needed.
+text: Process to execute an international transfer, including beneficiary verification,
+  limit checks, and approval if needed.
+tags:
+- send.international.transfer
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verify_beneficiary
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.check_daily_limit
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.approve_transfer_if_needed
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.execute_transfer
+  metadata: {}
+payload:
+  flow_id: flow.international.transfer
+  flow_name: International Transfer
+  intent: send.international.transfer
+  confidence: 0.75
+  business_event: client_initiates_international_transfer
+  utterances: []
+  plan: []
+  tasks:
+  - task: verify_beneficiary
+    type: manual
+  - task: check_daily_limit
+    type: automated
+  - task: approve_transfer_if_needed
+    type: manual
+  - task: execute_transfer
+    type: automated
+  user_tasks:
+  - user_task_id: user_task_verify_beneficiary
+    task: verify_beneficiary
+    type: manual
+    name: Verify Beneficiary
+    description: Perform enhanced due diligence on the international beneficiary.
+    tools: []
+    user_actions: []
+  - user_task_id: user_task_check_daily_limit
+    task: check_daily_limit
+    type: automated
+    name: Check Daily Limit
+    description: Verify that the transfer amount does not exceed the daily limit.
+    tools: []
+    user_actions: []
+  - user_task_id: user_task_approve_transfer_if_needed
+    task: approve_transfer_if_needed
+    type: manual
+    name: Approve Transfer (if needed)
+    description: Human approval required if transfer exceeds daily limit or triggers
+      other rules.
+    tools: []
+    user_actions: []
+  - user_task_id: user_task_execute_transfer
+    task: execute_transfer
+    type: automated
+    name: Execute Transfer
+    description: Process the international transfer through the payment system.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to execute an international transfer, including beneficiary
+    verification, limit checks, and approval if needed.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-1
+    purpose: Send funds to a verified international beneficiary within regulatory
+      limits.
+  purpose: Send funds to a verified international beneficiary within regulatory limits.
+  transaction_id: flow.international.transfer
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: International Transfer
+  normalized_name: international transfer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

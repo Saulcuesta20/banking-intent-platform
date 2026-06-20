@@ -1,0 +1,48 @@
+asset_id: asset_set.entity.loan.causes.entity.loan.refinance
+asset_type: asset_set
+name: Entity.loan.causes.entity.loan.refinance Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for entity.loan.causes.entity.loan.refinance.
+text: 'entity.loan causes entity.loan_refinance
+
+  prestamo
+
+  refinanciacion'
+tags:
+- asset_set
+- entity.loan.causes.entity.loan.refinance
+relations:
+- type: groups_causality
+  target_asset_id: causality.entity_loan_causes_entity_loan_refinance
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan_refinance
+  metadata: {}
+payload:
+  transaction_id: entity.loan.causes.entity.loan.refinance
+  asset_ids:
+  - causality.entity_loan_causes_entity_loan_refinance
+  - entity.loan
+  - entity.loan_refinance
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.entity_loan_causes_entity_loan_refinance
+    asset_type: causality
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: entity.loan_refinance
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: Entity.loan.causes.entity.loan.refinance Asset Set
+  normalized_name: entity.loan.causes.entity.loan.refinance asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

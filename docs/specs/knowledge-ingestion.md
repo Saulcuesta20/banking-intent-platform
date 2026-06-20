@@ -14,6 +14,10 @@ assets with one owner knowledge base per asset type.
 - Persist processed metadata and KB-oriented indexes for graph/search loading.
 - Canonicalize assets before graph projection so aliases and duplicates collapse
   into one governed identity in the unified catalog.
+- Prepare ontology search-space output so ingest can discover
+  `semantic_space`, classify entities by `structural_layer`, and store aliases
+  as governed entity graph/catalog data instead of a standalone YAML synonym
+  catalog.
 
 ## Main Components
 - File source scanner
@@ -70,6 +74,14 @@ asset registry/validators      -> config_kb
 The ingestion orchestrator may create technical search indexes, but those indexes
 do not own assets. The owner KB remains the source of truth.
 
+The target ontology migration is documented in
+`docs/specs/ontology-search-spaces.md`. In short, new extraction should emit
+canonical `entity` assets, discover `semantic_space` assets, rename
+`business_layer` to `structural_layer`, stop producing `entity_role` as a
+primary field, keep `technical_type` limited to table entities, keep columns and
+identifiers as entity properties, and emit evidence as JSON rather than a
+separate evidence asset type.
+
 ## Example Input/Output
 Input: `Neo4j/loan_refinance.flow.yaml`
 
@@ -95,9 +107,11 @@ extraction. The current direction is LLM-first for asset proposal generation:
 the same OpenAI-compatible client used for flow extraction also proposes
 entities, rules, processes, plans, Q&A, and causalities. Local code then
 reconciles, validates, deduplicates, and projects those proposals. LLM-assisted corpus extraction lives in
-`app/ingestion/llm_flow_loader.py`. The extraction command is coordinated by
-`app/ingestion/orchestrator.py` and `tools/kb_reset_load.py`, which own
-sequencing and audit.
+`app/ingestion/llm_flow_loader.py`. Primary ingestion commands, FastAPI
+`/ingest`, and launcher-facing runtime loading are coordinated by
+`app/ingestion/orchestrator.py`, which owns sequencing, audit, canonical asset
+generation, and Unified Catalog persistence. `tools/kb_reset_load.py` remains a
+direct maintenance utility for low-level KB reset/load scenarios.
 
 Extraction instructions belongs in ingestion, not runtime planning.
 `app/ingestion/orchestrator.py` defines a provider interface backed by
@@ -139,5 +153,5 @@ base comes from:
 - the enterprise memory accumulated in `asset_catalog`
 
 That means the generic language understanding is pre-trained, while the
-enterprise-specific canonicalization evolves from approved assets, aliases, and
-review history already stored in the platform.
+enterprise-specific canonicalization evolves from approved assets, graph/catalog
+aliases, and review history already stored in the platform.

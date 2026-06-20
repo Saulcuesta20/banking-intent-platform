@@ -1,0 +1,56 @@
+asset_id: asset_set.tck.1005.exception.request
+asset_type: asset_set
+name: Tck.1005.exception.request Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for tck.1005.exception.request.
+text: 'Exception Request for Late Payment
+
+  Approve or Deny Exception
+
+  Review Exception Request
+
+  Verify Documents'
+tags:
+- asset_set
+- tck.1005.exception.request
+relations:
+- type: groups_flow
+  target_asset_id: flow.tck.1005.exception.request
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.approve_or_deny_exception
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.review_exception_request
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_documents
+  metadata: {}
+payload:
+  transaction_id: tck.1005.exception.request
+  asset_ids:
+  - flow.tck.1005.exception.request
+  - user_task.approve_or_deny_exception
+  - user_task.review_exception_request
+  - user_task.verify_documents
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.tck.1005.exception.request
+    asset_type: flow
+  - asset_id: user_task.approve_or_deny_exception
+    asset_type: user_task
+  - asset_id: user_task.review_exception_request
+    asset_type: user_task
+  - asset_id: user_task.verify_documents
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Tck.1005.exception.request Asset Set
+  normalized_name: tck.1005.exception.request asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,90 @@
+asset_id: flow.transfer.flow
+asset_type: flow
+name: Fund Transfers
+version: 1.0.0
+owner: process_kb
+description: Process for validating and executing bank transfers with balance and
+  risk checks.
+text: Process for validating and executing bank transfers with balance and risk checks.
+tags:
+- inform.about.transfer.requirements.guide.data.preparation.or.execute.the.transfer.after.validation
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transfer_validation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.balance_check
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transfer_execution
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transfer_approval_request
+  metadata: {}
+payload:
+  flow_id: transfer.flow
+  flow_name: Fund Transfers
+  intent: inform.about.transfer.requirements.guide.data.preparation.or.execute.the.transfer.after.validation
+  confidence: 0.75
+  business_event: Client initiates or asks about a fund transfer
+  utterances: []
+  plan: []
+  tasks:
+  - task: validate_transfer_data_and_check_balance
+    type: automated
+  - task: check_sufficient_balance_for_transfer
+    type: automated
+  - task: create_and_execute_transfer
+    type: automated
+  - task: request_approval_for_large_transfers
+    type: manual
+  user_tasks:
+  - user_task_id: validate_transfer_data_task
+    task: validate_transfer_data_and_check_balance
+    type: automated
+    name: Transfer Validation
+    description: Verify account balance and risk factors before transfer.
+    tools: []
+    user_actions: []
+  - user_task_id: check_balance_task
+    task: check_sufficient_balance_for_transfer
+    type: automated
+    name: Balance Check
+    description: Ensure origin account has enough funds.
+    tools: []
+    user_actions: []
+  - user_task_id: create_transfer_task
+    task: create_and_execute_transfer
+    type: automated
+    name: Transfer Execution
+    description: Initiate the fund transfer via the transfer service.
+    tools: []
+    user_actions: []
+  - user_task_id: request_transfer_approval_task
+    task: request_approval_for_large_transfers
+    type: manual
+    name: Transfer Approval Request
+    description: Escalate transfers exceeding operational limits for approval.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process for validating and executing bank transfers with balance and
+    risk checks.
+  source: data/raw/enterprise_operations_manual.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_operations_manual.md
+    purpose: To securely transfer funds between accounts.
+  purpose: To securely transfer funds between accounts.
+  transaction_id: transfer.flow
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Fund Transfers
+  normalized_name: fund transfers
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

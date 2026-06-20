@@ -1,0 +1,25 @@
+asset_id: user_task.transaction_list_retrieval
+asset_type: user_task
+name: Transaction List Retrieval
+version: 1.0.0
+owner: business_model_kb
+description: Retrieve a list of transactions for a given account.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transaction_list
+  task: list_transactions_for_an_account
+  type: automated
+  name: Transaction List Retrieval
+  description: Retrieve a list of transactions for a given account.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transaction List Retrieval
+  normalized_name: transaction list retrieval
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

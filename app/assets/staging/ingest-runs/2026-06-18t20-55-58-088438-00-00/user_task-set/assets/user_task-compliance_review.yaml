@@ -1,0 +1,27 @@
+asset_id: user_task.compliance_review
+asset_type: user_task
+name: Compliance Review
+version: 1.0.0
+owner: business_model_kb
+description: Agent reviews the transfer against compliance policies and checks for
+  any violations
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: compliance_review_task
+  task: perform_compliance_review_on_retained_transfer
+  type: manual
+  name: Compliance Review
+  description: Agent reviews the transfer against compliance policies and checks for
+    any violations
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Compliance Review
+  normalized_name: compliance review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

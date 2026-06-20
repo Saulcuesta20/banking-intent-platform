@@ -1,0 +1,42 @@
+asset_id: plan.plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+asset_type: plan
+name: Plan reducir mora temprana
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para reducir mora temprana: identificar cuentas vencidas, contactar
+  cliente, ofrecer arreglo y monitorear respuesta.'
+text: 'Plan para reducir mora temprana: identificar cuentas vencidas, contactar cliente,
+  ofrecer arreglo y monitorear respuesta.'
+tags:
+- orchestration_plan
+relations:
+- type: uses_entity
+  target_asset_id: entity.mora
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  steps: []
+  plan_text: 'Plan para reducir mora temprana: identificar cuentas vencidas, contactar
+    cliente, ofrecer arreglo y monitorear respuesta.'
+  source_section: Plans
+  transaction_id: plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Plan para reducir mora temprana: identificar cuentas vencidas, contactar
+      cliente, ofrecer arreglo y monitorear respuesta.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Plan para reducir mora temprana: identificar cuentas vencidas, contactar
+      cliente, ofrecer arreglo y monitorear respuesta.'
+  match_strategy: generated
+  canonical_name: Plan reducir mora temprana
+  normalized_name: plan reducir mora temprana
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

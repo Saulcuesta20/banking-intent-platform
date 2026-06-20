@@ -1,0 +1,60 @@
+asset_id: asset_set.transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+asset_type: asset_set
+name: Transferencia.internacional.requiere.validacion.reforzada.del.beneficiario Asset
+  Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for transferencia.internacional.requiere.validacion.reforzada.del.beneficiario.
+text: 'transferencia internacional requiere validacion reforzada del beneficiario
+
+  beneficiario
+
+  la transferencia internacional
+
+  Transferencia.internacional.requiere.validacion.reforzada.del.beneficiario Ruleset'
+tags:
+- asset_set
+- transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.transferencia_internacional_requiere_validacion_reforzada_del_beneficiario
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.la_transferencia_internacional
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+  metadata: {}
+payload:
+  transaction_id: transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+  asset_ids:
+  - business_rule.transferencia_internacional_requiere_validacion_reforzada_del_beneficiario
+  - entity.beneficiario
+  - entity.la_transferencia_internacional
+  - ruleset.transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.transferencia_internacional_requiere_validacion_reforzada_del_beneficiario
+    asset_type: business_rule
+  - asset_id: entity.beneficiario
+    asset_type: entity
+  - asset_id: entity.la_transferencia_internacional
+    asset_type: entity
+  - asset_id: ruleset.transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+    Asset Set
+  normalized_name: transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

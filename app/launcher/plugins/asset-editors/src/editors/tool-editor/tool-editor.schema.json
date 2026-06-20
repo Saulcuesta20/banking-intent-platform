@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "tool_id": {
+      "type": "string",
+      "title": "Tool ID"
+    },
+    "tool_type": {
+      "type": "string",
+      "title": "Tool Type",
+      "enum": ["frontend_tool", "backend_tool", "llm_tool"]
+    },
+    "operation": {
+      "type": "string",
+      "title": "Operation"
+    },
+    "resource": {
+      "type": "string",
+      "title": "Resource"
+    },
+    "label": {
+      "type": "string",
+      "title": "Label"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    }
+  },
+  "required": ["tool_id", "tool_type", "operation", "resource"]
+}

@@ -1,0 +1,25 @@
+asset_id: user_task.update_payment_schedule
+asset_type: user_task
+name: Update Payment Schedule
+version: 1.0.0
+owner: business_model_kb
+description: Agent updates the payment schedule in the system.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: update_payment_schedule
+  task: update_payment_schedule_with_new_date
+  type: agent
+  name: Update Payment Schedule
+  description: Agent updates the payment schedule in the system.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Update Payment Schedule
+  normalized_name: update payment schedule
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

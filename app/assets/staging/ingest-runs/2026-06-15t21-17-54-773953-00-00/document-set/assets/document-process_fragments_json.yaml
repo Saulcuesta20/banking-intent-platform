@@ -1,0 +1,33 @@
+asset_id: document.process_fragments_json
+asset_type: document
+name: process_fragments.json
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/enterprise_dump_2026/process_fragments.json
+text: "{\n  \"source\": \"operations-sharepoint-export\",\n  \"fragments\": [\n  \
+  \  {\n      \"title\": \"Savings account opening\",\n      \"text\": \"Identify\
+  \ customer, collect documents, run KYC, create account, ask for initial deposit\
+  \ when applicable, confirm account status.\"\n    },\n    {\n      \"title\": \"\
+  International transfer review\",\n      \"text\": \"Capture details, validate source\
+  \ account, screen beneficiary, request purpose document if needed, route to manager\
+  \ review, release or reject.\"\n    },\n    {\n      \"title\": \"Loan refinance\
+  \ handling\",\n      \"text\": \"Identify customer, read loan status, calculate\
+  \ conditions, compare options, prepare request, obtain approval.\"\n    },\n   \
+  \ {\n      \"title\": \"Complaint intake\",\n      \"text\": \"Create claim, collect\
+  \ evidence, classify claim type, assign owner, notify customer.\"\n    }\n  ]\n}"
+tags:
+- text
+- json
+relations: []
+payload:
+  path: data/raw/enterprise_dump_2026/process_fragments.json
+  kind: text
+  sequence: 14
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: process_fragments.json
+  normalized_name: process fragments.json
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

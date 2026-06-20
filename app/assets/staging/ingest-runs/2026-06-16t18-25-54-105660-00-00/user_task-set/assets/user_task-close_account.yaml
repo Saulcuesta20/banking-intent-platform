@@ -1,0 +1,25 @@
+asset_id: user_task.close_account
+asset_type: user_task
+name: Close Account
+version: 1.0.0
+owner: business_model_kb
+description: Close savings account after verifying balance and compliance
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: close_account
+  task: close_savings_account
+  type: closure
+  name: Close Account
+  description: Close savings account after verifying balance and compliance
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Close Account
+  normalized_name: close account
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

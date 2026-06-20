@@ -1,0 +1,22 @@
+asset_id: entity.customerexperiencedepartment
+asset_type: entity
+name: CustomerExperienceDepartment
+version: 1.0.0
+owner: business_model_kb
+description: Departamento que diseña journeys y coordina canales de atención.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Departamento que diseña journeys y coordina canales de atención.
+  inferred_from: llm_asset_extraction
+  business_layer: party
+  entity_role: party
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: CustomerExperienceDepartment
+  normalized_name: customerexperiencedepartment
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

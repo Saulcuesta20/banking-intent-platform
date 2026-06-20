@@ -1,0 +1,24 @@
+asset_id: domain.d001
+asset_type: domain
+name: D001
+version: 1.0.0
+owner: config_kb
+description: Group modules related to savings accounts, loans, transfers, and claims.
+text: Group modules related to savings accounts, loans, transfers, and claims.
+tags:
+- domain
+- configuration
+relations: []
+payload:
+  domain_id: D001
+  name: Savings and Loans
+  purpose: Group modules related to savings accounts, loans, transfers, and claims.
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: D001
+  normalized_name: d001
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

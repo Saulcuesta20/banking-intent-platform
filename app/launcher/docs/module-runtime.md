@@ -2,45 +2,67 @@
 
 ## Runtime Boundary
 
-The launcher has two UI runtimes:
+The launcher has one browser runtime:
 
-- React/shadcn owns the shell, navigation, three-panel layout, chat, trace, and context panel.
-- Lowdefy owns declarative catalog screens, asset editors, and, in phase two,
-  dynamically bound forms.
+- React/shadcn owns the shell, navigation, three-panel layout, chat, trace,
+  catalog explorer, and right context panel.
 
-The Unified Catalog is the launcher source of truth. React and Lowdefy query
-FastAPI; neither runtime reads repository files or Neo4j directly.
+The Unified Catalog is the launcher source of truth. The browser queries
+FastAPI only; it does not read Neo4j, Qdrant, or YAML files directly.
 
-## AssetSet Authoring
+## Module Registry
 
-Launcher assets are authored under:
+Launcher module metadata is generated from:
 
 ```text
-app/launcher/modules/<module>/assetsets/<set-name>/
-  asset-set.yaml
-  assets/
-    <asset>.yaml
+app/launcher/modules/<domain>/<module>/
 ```
 
-Each AssetSet declares:
-
-- immutable id and version
-- domain and module metadata
-- one primary asset type
-- exact member files
-- tags and Git metadata
-
-Export the original launcher JSON definitions once with:
+using:
 
 ```bash
-.venv/bin/python -m app.launcher_cli assets export
+npm run generate:module-registry
 ```
 
-Register AssetSet versions for review with:
+That writes:
 
-```bash
-.venv/bin/python -m app.launcher_cli assets load
+```text
+app/launcher/public/module-registry.json
 ```
+
+## Asset Editors
+
+The active editor pattern is:
+
+```text
+JSON Schema
+-> JSON Forms
+-> Zod
+-> FastAPI asset contract validation
+-> Unified Catalog draft version
+```
+
+The reference implementation is the flow editor:
+
+```text
+app/launcher/plugins/asset-editors/src/editors/flow-editor/
+```
+
+## Assets Workspace
+
+The sidebar `Assets` option provides:
+
+- tree view by Catalog and AssetSet
+- route view by domain/module/AssetSet/asset
+- launcher-embedded asset editor view
+- filters by name, type, status, and tag
+- canonical asset properties and relationships
+- human review actions
+- deployment and lifecycle history
+
+The browser shows the governed catalog view. Projection metadata may still be
+visible in asset detail, but the editable record is always the Unified Catalog
+entry.
 
 ## Lifecycle
 
@@ -54,84 +76,17 @@ draft
 -> retired
 ```
 
-Review and deployment are available from the launcher `Assets` workspace.
-Deployment is performed per AssetSet version, never per loose file.
+Review and deployment are performed per AssetSet version, never per loose file.
 
 ## Deployment
 
 Deployment performs these steps:
 
 1. Verify the AssetSet is validated.
-2. Load the exact member versions from Unified Catalog.
-3. Project each member to its configured knowledge stores.
+2. Load exact member versions from Unified Catalog.
+3. Project each member to the configured backend stores.
 4. Abort activation if a required projection fails.
 5. Atomically update the active AssetSet pointer for the environment.
-6. Record the previous version, actor, checksum, projections, and timestamp.
+6. Record deployment metadata and lifecycle events.
 
 Rollback reactivates the previous deployed AssetSet version.
-
-## Assets Workspace
-
-The sidebar `Assets` option provides:
-
-- tree view by KB projection and AssetSet
-- route view by domain/module/AssetSet/asset
-- launcher-embedded Lowdefy editor view
-- name, KB, type, status, and tag filters
-- canonical asset properties and relationships
-- human review actions
-- deployment and lifecycle history
-
-The tree shows projections. The editable canonical record always lives in the
-Unified Catalog.
-
-Lowdefy still runs on its own technical port, but users enter through the
-launcher. The center workspace iframes one focused editor page for the selected
-asset, not a standalone studio shell.
-
-Editor routing is driven by `asset_type`:
-
-| Asset types | Lowdefy page | Lowdefy editor |
-|---|---|
-| `flow` | `asset-flow-editor` | `FlowEditor` |
-| `process` | `asset-process-editor` | `ProcessEditor` |
-| `business_rule`, `rule`, `ruleset` | `asset-business-rule-editor` | `BusinessRuleEditor` |
-| `form` | `asset-form-editor` | `FormAssetEditor` |
-| `ontology`, `relationship` | `asset-ontology-editor` | `OntologyEditor` |
-| `entity`, `concept` | `asset-entity-editor` | `EntityEditor` |
-| `qa`, `question_answer` | `asset-qa-editor` | `QaEditor` |
-| `tool`, `api`, `tool_api` | `asset-tool-api-editor` | `ToolApiEditor` |
-| `domain`, `module`, `menu`, `submenu`, `navigation` | `asset-module-menu-editor` | `ModuleMenuEditor` |
-| `document`, `configuration`, `config` | `asset-document-config-editor` | `DocumentConfigEditor` |
-| all other types | `asset-code-editor` | `AssetCodeEditor` |
-
-All editors can switch to the canonical YAML/JSON source view.
-
-## Lowdefy
-
-`npm run generate:lowdefy` generates:
-
-```text
-app/launcher/lowdefy-runtime/lowdefy.yaml
-app/launcher/lowdefy-runtime/pages/*.yaml
-```
-
-The generated editor pages call:
-
-```text
-GET /catalog/assets/{asset_id}
-POST /catalog/assets/validate
-POST /catalog/assets/{asset_id}/versions
-```
-
-Saving from Lowdefy creates a new AssetSet version in:
-
-```text
-app/launcher/modules/<module>/assetsets/<set>/versions/<version>/
-```
-
-The new version enters `ready_for_review`. Lowdefy exposes the guarded
-`start_review`, `validate`, `request_changes`, and deployment operations.
-
-Form binding remains phase two. No launcher-side flow-to-form hardcoding should
-be added before the `TaskFormBinding` contract is implemented.

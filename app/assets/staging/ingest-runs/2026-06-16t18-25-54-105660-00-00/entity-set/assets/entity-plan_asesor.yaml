@@ -1,0 +1,22 @@
+asset_id: entity.plan_asesor
+asset_type: entity
+name: plan asesor
+version: 1.0.0
+owner: business_model_kb
+description: Secuencia prevalidada de user_tasks que debe proyectarse en runtime sin
+  ser generada por el LLM
+text: Secuencia prevalidada de user_tasks que debe proyectarse en runtime sin ser
+  generada por el LLM
+tags: []
+relations: []
+payload:
+  aliases: []
+  business_layer: offering
+  entity_role: offering
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: plan asesor
+  normalized_name: plan asesor
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

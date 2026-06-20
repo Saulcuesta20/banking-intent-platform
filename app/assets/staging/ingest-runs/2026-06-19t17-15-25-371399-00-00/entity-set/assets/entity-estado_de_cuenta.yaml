@@ -1,0 +1,25 @@
+asset_id: entity.estado_de_cuenta
+asset_type: entity
+name: estado de cuenta
+version: 1.0.0
+owner: business_model_kb
+description: Reporte de saldos, transacciones y cargos por periodo
+text: Reporte de saldos, transacciones y cargos por periodo
+tags: []
+relations: []
+payload:
+  aliases: []
+  structural_layer: business_resource
+  business_layer: business_resource
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: estado de cuenta
+  match_strategy: generated
+  canonical_name: estado de cuenta
+  normalized_name: estado de cuenta
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,43 @@
+asset_id: user_task.aplicar_el_pago_recibido_al_prestamo
+asset_type: user_task
+name: Aplicar el pago recibido al prestamo
+version: 1.0.0
+owner: business_model_kb
+description: Aplicar el pago recibido al prestamo.
+text: Aplicar el pago recibido al prestamo.
+tags: []
+relations: []
+payload:
+  description: Aplicar el pago recibido al prestamo.
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Aplicar el pago recibido al prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Aplicar el pago recibido al prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Aplicar el pago recibido al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Aplicar el pago recibido al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Aplicar el pago recibido al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Aplicar el pago recibido al prestamo.
+  match_strategy: generated
+  canonical_name: Aplicar el pago recibido al prestamo
+  normalized_name: aplicar el pago recibido al prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

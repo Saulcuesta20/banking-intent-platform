@@ -1,0 +1,33 @@
+asset_id: user_task.confirmar_cuenta
+asset_type: user_task
+name: Confirmar cuenta
+version: 1.0.0
+owner: business_model_kb
+description: El cliente confirma los datos y finaliza la apertura.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_account
+  task: confirmar_creaci_n_de_cuenta
+  type: confirmación
+  name: Confirmar cuenta
+  description: El cliente confirma los datos y finaliza la apertura.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Confirmar cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente confirma los datos y finaliza la apertura.
+  match_strategy: generated
+  canonical_name: Confirmar cuenta
+  normalized_name: confirmar cuenta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

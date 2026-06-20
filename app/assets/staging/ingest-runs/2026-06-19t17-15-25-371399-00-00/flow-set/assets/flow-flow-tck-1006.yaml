@@ -1,0 +1,54 @@
+asset_id: flow.flow.tck.1006
+asset_type: flow
+name: contact_information_update_flow
+version: 1.0.0
+owner: process_kb
+description: Client needs to update phone and email before loan review.
+text: Client needs to update phone and email before loan review.
+tags:
+- data.management
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.update_contact_information
+  metadata: {}
+payload:
+  flow_id: flow.tck.1006
+  flow_name: contact_information_update_flow
+  intent: data.management
+  confidence: 0.75
+  business_event: client_updates_contact_information
+  utterances: []
+  plan: []
+  tasks:
+  - task: update_contact_information
+    type: data_update
+  user_tasks:
+  - user_task_id: user_task_tck_1006
+    task: update_contact_information
+    type: data_update
+    name: Update Contact Information
+    description: Update client's phone number and email address in the system before
+      loan review.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Client needs to update phone and email before loan review.
+  source: data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    - data/raw/enterprise_dump_2026/00_readme.txt
+    purpose: To ensure contact information is current for loan review process.
+  purpose: To ensure contact information is current for loan review process.
+  transaction_id: flow.tck.1006
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: contact_information_update_flow
+  normalized_name: contact information update flow
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

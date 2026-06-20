@@ -1,0 +1,20 @@
+asset_id: entity.personallendingdepartment
+asset_type: entity
+name: PersonalLendingDepartment
+version: 1.0.0
+owner: business_model_kb
+description: Equipo que administra FlexPay, RapidRefi y upsells crediticios.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Equipo que administra FlexPay, RapidRefi y upsells crediticios.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: PersonalLendingDepartment
+  normalized_name: personallendingdepartment
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,30 @@
+asset_id: ruleset.late.payment.penalty
+asset_type: ruleset
+name: Late.payment.penalty Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction late.payment.penalty with 1 business rules.
+text: Penalty for late payment applies from the first day of delinquency.
+tags:
+- ruleset
+- late.payment.penalty
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.late_payment_penalty
+  metadata: {}
+payload:
+  transaction_id: late.payment.penalty
+  ruleset_name: Late.payment.penalty Ruleset
+  rule_ids:
+  - business_rule.late_payment_penalty
+  conditions:
+  - Payment missed past due date
+  consequences:
+  - Apply penalty
+  match_strategy: generated
+  canonical_name: Late.payment.penalty Ruleset
+  normalized_name: late.payment.penalty ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

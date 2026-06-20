@@ -1,0 +1,48 @@
+asset_id: asset_set.autopay.setup
+asset_type: asset_set
+name: Autopay.setup Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for autopay.setup.
+text: 'Autopay Setup
+
+  Confirm Sensitive Data
+
+  Verify Autopay Consent'
+tags:
+- asset_set
+- autopay.setup
+relations:
+- type: groups_flow
+  target_asset_id: flow.autopay.setup
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirm_sensitive_data
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_autopay_consent
+  metadata: {}
+payload:
+  transaction_id: autopay.setup
+  asset_ids:
+  - flow.autopay.setup
+  - user_task.confirm_sensitive_data
+  - user_task.verify_autopay_consent
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.autopay.setup
+    asset_type: flow
+  - asset_id: user_task.confirm_sensitive_data
+    asset_type: user_task
+  - asset_id: user_task.verify_autopay_consent
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Autopay.setup Asset Set
+  normalized_name: autopay.setup asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

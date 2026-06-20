@@ -1,0 +1,43 @@
+asset_id: flow.flow.05
+asset_type: flow
+name: Actualización de datos personales
+version: 1.0.0
+owner: process_kb
+description: El proceso de actualizacion de datos revisa titularidad, valida cambios
+  y registra auditoria.
+text: El proceso de actualizacion de datos revisa titularidad, valida cambios y registra
+  auditoria.
+tags:
+- el.cliente.desea.actualizar.sus.datos.personales
+relations: []
+payload:
+  flow_id: flow.05
+  flow_name: Actualización de datos personales
+  intent: el.cliente.desea.actualizar.sus.datos.personales
+  confidence: 0.75
+  business_event: Cliente solicita actualización de datos
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de actualizacion de datos revisa titularidad, valida cambios
+    y registra auditoria.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Actualizar datos personales
+  purpose: Actualizar datos personales
+  transaction_id: flow.05
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Actualización de datos personales
+  normalized_name: actualización de datos personales
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

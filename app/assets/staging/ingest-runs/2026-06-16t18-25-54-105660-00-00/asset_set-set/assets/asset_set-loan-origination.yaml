@@ -1,0 +1,56 @@
+asset_id: asset_set.loan.origination
+asset_type: asset_set
+name: Loan.origination Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.origination.
+text: 'Loan Origination
+
+  Document Request
+
+  Loan Request Capture
+
+  Underwriting Review'
+tags:
+- asset_set
+- loan.origination
+relations:
+- type: groups_flow
+  target_asset_id: flow.loan.origination
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.document_request
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.loan_request_capture
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.underwriting_review
+  metadata: {}
+payload:
+  transaction_id: loan.origination
+  asset_ids:
+  - flow.loan.origination
+  - user_task.document_request
+  - user_task.loan_request_capture
+  - user_task.underwriting_review
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.loan.origination
+    asset_type: flow
+  - asset_id: user_task.document_request
+    asset_type: user_task
+  - asset_id: user_task.loan_request_capture
+    asset_type: user_task
+  - asset_id: user_task.underwriting_review
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Loan.origination Asset Set
+  normalized_name: loan.origination asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

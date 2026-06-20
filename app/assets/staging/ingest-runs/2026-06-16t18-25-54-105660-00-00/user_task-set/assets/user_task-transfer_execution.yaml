@@ -1,0 +1,25 @@
+asset_id: user_task.transfer_execution
+asset_type: user_task
+name: Transfer Execution
+version: 1.0.0
+owner: business_model_kb
+description: Execute the fund transfer for disbursement.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_execution
+  task: transfer_execution
+  type: automated
+  name: Transfer Execution
+  description: Execute the fund transfer for disbursement.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfer Execution
+  normalized_name: transfer execution
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

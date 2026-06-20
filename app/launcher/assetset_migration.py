@@ -183,12 +183,12 @@ def _business_assets(
                     "name": form["title"],
                     "version": form["version"],
                     "description": f"Versioned form definition for {module_id}.",
-                    "tags": [domain_id, module_id, "form", "lowdefy"],
+                    "tags": [domain_id, module_id, "form", "jsonforms"],
                     "payload": {
                         **form,
                         "domain_id": domain_id,
                         "module_id": module_id,
-                        "renderer": "lowdefy",
+                        "renderer": "react",
                         "binding_status": "phase_two",
                     },
                 }

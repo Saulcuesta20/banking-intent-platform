@@ -1,0 +1,82 @@
+asset_id: flow.loan.with.collateral
+asset_type: flow
+name: Solicitud de préstamo con garantía vehicular
+version: 1.0.0
+owner: process_kb
+description: Proceso de evaluación de solicitud de préstamo respaldado por un vehículo
+  como colateral, incluyendo tasación y aprobación.
+text: Proceso de evaluación de solicitud de préstamo respaldado por un vehículo como
+  colateral, incluyendo tasación y aprobación.
+tags:
+- evaluar.la.viabilidad.del.prestamo.y.formalizar.la.garantia
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.solicitud_de_pr_stamo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.documentaci_n_del_veh_culo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.firma_de_contrato_de_pr_stamo
+  metadata: {}
+payload:
+  flow_id: loan.with.collateral
+  flow_name: Solicitud de préstamo con garantía vehicular
+  intent: evaluar.la.viabilidad.del.prestamo.y.formalizar.la.garantia
+  confidence: 0.75
+  business_event: Cliente solicita préstamo y ofrece vehículo como garantía
+  utterances: []
+  plan: []
+  tasks:
+  - task: presentar_solicitud_de_pr_stamo
+    type: form
+  - task: entregar_documentos_del_veh_culo
+    type: upload
+  - task: firmar_contrato_de_pr_stamo_y_garant_a
+    type: approval
+  user_tasks:
+  - user_task_id: presentar_solicitud_prestamo
+    task: presentar_solicitud_de_pr_stamo
+    type: form
+    name: Solicitud de préstamo
+    description: El cliente completa el formulario de solicitud de préstamo indicando
+      monto, plazo y propósito.
+    tools: []
+    user_actions: []
+  - user_task_id: entregar_documentos_vehiculo
+    task: entregar_documentos_del_veh_culo
+    type: upload
+    name: Documentación del vehículo
+    description: El cliente sube los documentos del vehículo (título, factura, fotos)
+      para la tasación.
+    tools: []
+    user_actions: []
+  - user_task_id: firmar_contrato_prestamo
+    task: firmar_contrato_de_pr_stamo_y_garant_a
+    type: approval
+    name: Firma de contrato de préstamo
+    description: El cliente revisa y firma el contrato de préstamo y el acuerdo de
+      garantía vehicular.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de evaluación de solicitud de préstamo respaldado por un vehículo
+    como colateral, incluyendo tasación y aprobación.
+  source: data/raw/savings_loans_domain_extra4.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra4.txt
+    purpose: Otorgar un préstamo garantizado con un vehículo.
+  purpose: Otorgar un préstamo garantizado con un vehículo.
+  transaction_id: loan.with.collateral
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Solicitud de préstamo con garantía vehicular
+  normalized_name: solicitud de préstamo con garantía vehicular
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

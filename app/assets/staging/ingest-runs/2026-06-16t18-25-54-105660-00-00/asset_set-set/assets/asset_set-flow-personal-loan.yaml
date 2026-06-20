@@ -1,0 +1,64 @@
+asset_id: asset_set.flow.personal.loan
+asset_type: asset_set
+name: Flow.personal.loan Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.personal.loan.
+text: 'Préstamo personal
+
+  Autorizar verificación crediticia
+
+  Definir garantía
+
+  Proporcionar información de empleo
+
+  Proporcionar información de ingresos'
+tags:
+- asset_set
+- flow.personal.loan
+relations:
+- type: groups_flow
+  target_asset_id: flow.flow.personal.loan
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.autorizar_verificaci_n_crediticia
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.definir_garant_a
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.proporcionar_informaci_n_de_empleo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.proporcionar_informaci_n_de_ingresos
+  metadata: {}
+payload:
+  transaction_id: flow.personal.loan
+  asset_ids:
+  - flow.flow.personal.loan
+  - user_task.autorizar_verificaci_n_crediticia
+  - user_task.definir_garant_a
+  - user_task.proporcionar_informaci_n_de_empleo
+  - user_task.proporcionar_informaci_n_de_ingresos
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.flow.personal.loan
+    asset_type: flow
+  - asset_id: user_task.autorizar_verificaci_n_crediticia
+    asset_type: user_task
+  - asset_id: user_task.definir_garant_a
+    asset_type: user_task
+  - asset_id: user_task.proporcionar_informaci_n_de_empleo
+    asset_type: user_task
+  - asset_id: user_task.proporcionar_informaci_n_de_ingresos
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Flow.personal.loan Asset Set
+  normalized_name: flow.personal.loan asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

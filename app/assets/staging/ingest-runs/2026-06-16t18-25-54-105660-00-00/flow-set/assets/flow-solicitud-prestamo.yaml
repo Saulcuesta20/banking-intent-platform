@@ -1,0 +1,125 @@
+asset_id: flow.solicitud.prestamo
+asset_type: flow
+name: Solicitud de préstamo
+version: 1.0.0
+owner: process_kb
+description: Proceso para crear solicitud de préstamo, consultar historial crediticio,
+  obtener contexto de política, calcular scoring y, si es necesario, obtener aprobación
+  humana. Se registra auditoría.
+text: Proceso para crear solicitud de préstamo, consultar historial crediticio, obtener
+  contexto de política, calcular scoring y, si es necesario, obtener aprobación humana.
+  Se registra auditoría.
+tags:
+- customer.wants.to.obtain.a.loan
+- solicitar.prestamo
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.proporcionar_evidencia_de_ingresos
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.aprobar_pr_stamo_borderline
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.crear_solicitud_de_pr_stamo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.consultar_historial_crediticio
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.obtener_contexto_de_pol_tica
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.calcular_scoring
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.aprobaci_n_humana_de_solicitud
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.registrar_auditor_a
+  metadata: {}
+payload:
+  flow_id: solicitud.prestamo
+  flow_name: Solicitud de préstamo
+  intent: solicitar.prestamo
+  confidence: 0.75
+  business_event: solicitud_prestamo
+  utterances: []
+  plan: []
+  tasks:
+  - task: crear_solicitud_prestamo
+    type: system
+  - task: consultar_historial_crediticio
+    type: system
+  - task: obtener_contexto_politica
+    type: system
+  - task: calcular_scoring
+    type: system
+  - task: aprobar_solicitud_humano
+    type: human
+  - task: registrar_auditoria
+    type: system
+  user_tasks:
+  - user_task_id: ut_crear_solicitud_prestamo
+    task: crear_solicitud_prestamo
+    type: system
+    name: Crear solicitud de préstamo
+    description: El sistema crea la solicitud de préstamo con los datos proporcionados.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_consultar_historial_crediticio
+    task: consultar_historial_crediticio
+    type: system
+    name: Consultar historial crediticio
+    description: Consulta el historial crediticio del cliente.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_obtener_contexto_politica
+    task: obtener_contexto_politica
+    type: system
+    name: Obtener contexto de política
+    description: Obtiene el contexto de política de riesgo.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_calcular_scoring
+    task: calcular_scoring
+    type: system
+    name: Calcular scoring
+    description: Calcula el scoring crediticio del cliente.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_aprobar_solicitud_humano
+    task: aprobar_solicitud_humano
+    type: human
+    name: Aprobación humana de solicitud
+    description: Aprobación manual para solicitudes borderline o de alto riesgo.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_registrar_auditoria
+    task: registrar_auditoria
+    type: system
+    name: Registrar auditoría
+    description: Registrar auditoría de cada llamada, entrada y resultado.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para crear solicitud de préstamo, consultar historial crediticio,
+    obtener contexto de política, calcular scoring y, si es necesario, obtener aprobación
+    humana. Se registra auditoría.
+  source: data/raw/enterprise_operations_manual.md#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_operations_manual.md#chunk-1
+    purpose: Evaluar y procesar solicitud de préstamo
+  purpose: Evaluar y procesar solicitud de préstamo
+  transaction_id: solicitud.prestamo
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Solicitud de préstamo
+  normalized_name: solicitud de préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

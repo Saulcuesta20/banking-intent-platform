@@ -1,0 +1,67 @@
+asset_id: flow.insurance.enrollment
+asset_type: flow
+name: Insurance Enrollment
+version: 1.0.0
+owner: process_kb
+description: Linking ShieldGuard Insurance to a loan onboarding, requiring agreement
+  acceptance and beneficiary confirmation.
+text: Linking ShieldGuard Insurance to a loan onboarding, requiring agreement acceptance
+  and beneficiary confirmation.
+tags:
+- customer.wants.to.add.insurance.coverage.to.their.loan
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.agreement_acceptance
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.beneficiary_confirmation
+  metadata: {}
+payload:
+  flow_id: insurance.enrollment
+  flow_name: Insurance Enrollment
+  intent: customer.wants.to.add.insurance.coverage.to.their.loan
+  confidence: 0.75
+  business_event: Insurance enrollment transaction
+  utterances: []
+  plan: []
+  tasks:
+  - task: accept_shieldguard_protection_terms
+    type: consent
+  - task: confirm_beneficiary_details
+    type: confirmation
+  user_tasks:
+  - user_task_id: accept_agreement
+    task: accept_shieldguard_protection_terms
+    type: consent
+    name: Agreement Acceptance
+    description: Customer reviews and accepts the insurance terms and conditions.
+    tools: []
+    user_actions: []
+  - user_task_id: confirm_beneficiary
+    task: confirm_beneficiary_details
+    type: confirmation
+    name: Beneficiary Confirmation
+    description: Customer provides and confirms beneficiary information for the insurance.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Linking ShieldGuard Insurance to a loan onboarding, requiring agreement
+    acceptance and beneficiary confirmation.
+  source: data/raw/corporate_structure_and_offerings.md#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/corporate_structure_and_offerings.md#chunk-1
+    purpose: To enroll customer in ShieldGuard Insurance bundle tied to a loan.
+  purpose: To enroll customer in ShieldGuard Insurance bundle tied to a loan.
+  transaction_id: insurance.enrollment
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Insurance Enrollment
+  normalized_name: insurance enrollment
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

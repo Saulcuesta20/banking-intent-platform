@@ -1,0 +1,25 @@
+asset_id: user_task.compliance_review
+asset_type: user_task
+name: compliance_review
+version: 1.0.0
+owner: business_model_kb
+description: agent_performs_compliance_review_on_the_retained_transfer
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_005
+  task: compliance_review
+  type: review
+  name: compliance_review
+  description: agent_performs_compliance_review_on_the_retained_transfer
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: compliance_review
+  normalized_name: compliance review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

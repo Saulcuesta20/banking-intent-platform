@@ -1,0 +1,27 @@
+asset_id: document.domain_txt
+asset_type: document
+name: domain.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from /tmp/pytest-of-saul/pytest-9/test_ingestion_orchestrator_pe0/raw/domain.txt
+text: Refinanciacion de prestamo
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: /tmp/pytest-of-saul/pytest-9/test_ingestion_orchestrator_pe0/raw/domain.txt
+  kind: text
+  sequence: 1
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Refinanciacion de prestamo
+  match_strategy: generated
+  canonical_name: domain.txt
+  normalized_name: domain.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,29 @@
+asset_id: user_task.obtener_condiciones_actuales
+asset_type: user_task
+name: Obtener condiciones actuales
+version: 1.0.0
+owner: business_model_kb
+description: Obtener las condiciones actuales del préstamo del cliente
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_get_current_loan_terms
+  task: obtener_condiciones_actuales_del_cliente
+  type: data_retrieval
+  name: Obtener condiciones actuales
+  description: Obtener las condiciones actuales del préstamo del cliente
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Obtener las condiciones actuales del préstamo del cliente
+  match_strategy: generated
+  canonical_name: Obtener condiciones actuales
+  normalized_name: obtener condiciones actuales
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

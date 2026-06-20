@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "properties": {
+    "user_task_id": {
+      "type": "string",
+      "title": "User Task ID"
+    },
+    "task": {
+      "type": "string",
+      "title": "Task"
+    },
+    "type": {
+      "type": "string",
+      "title": "Type"
+    },
+    "name": {
+      "type": "string",
+      "title": "Name"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "user_actions": {
+      "type": "array",
+      "title": "User Actions"
+    },
+    "tools": {
+      "type": "array",
+      "title": "Tools"
+    }
+  },
+  "required": [
+    "user_task_id",
+    "task",
+    "type",
+    "name",
+    "description"
+  ]
+}

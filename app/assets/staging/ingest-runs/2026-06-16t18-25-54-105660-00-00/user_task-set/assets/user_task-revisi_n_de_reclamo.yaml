@@ -1,0 +1,25 @@
+asset_id: user_task.revisi_n_de_reclamo
+asset_type: user_task
+name: Revisión de reclamo
+version: 1.0.0
+owner: business_model_kb
+description: Revisar documentos y conciliar movimientos para verificar el reclamo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: claim_review
+  task: revisi_n_documental_y_conciliaci_n_de_movimientos
+  type: manual
+  name: Revisión de reclamo
+  description: Revisar documentos y conciliar movimientos para verificar el reclamo.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Revisión de reclamo
+  normalized_name: revisión de reclamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

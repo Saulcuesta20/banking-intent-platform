@@ -1,0 +1,25 @@
+asset_id: user_task.recopilaci_n_de_documentos
+asset_type: user_task
+name: Recopilación de documentos
+version: 1.0.0
+owner: business_model_kb
+description: Recopilar ingresos y documentos del solicitante
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_collect_income_docs
+  task: recopilar_ingresos_y_documentos
+  type: data_collection
+  name: Recopilación de documentos
+  description: Recopilar ingresos y documentos del solicitante
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Recopilación de documentos
+  normalized_name: recopilación de documentos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

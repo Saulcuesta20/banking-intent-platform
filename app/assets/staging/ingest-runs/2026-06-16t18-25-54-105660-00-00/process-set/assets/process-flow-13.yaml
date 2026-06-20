@@ -1,0 +1,45 @@
+asset_id: process.flow.13
+asset_type: process
+name: Process alta de cliente captura datos,
+version: 1.0.0
+owner: process_kb
+description: El proceso de alta de cliente captura datos, valida identidad y crea
+  el cliente.
+text: El proceso de alta de cliente captura datos, valida identidad y crea el cliente.
+tags:
+- process_fragment
+- customer.create
+relations:
+- type: applies_to_flow
+  target_asset_id: flow.flow.13
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  steps_text: El proceso de alta de cliente captura datos, valida identidad y crea
+    el cliente.
+  source_section: Processes
+  transaction_id: flow.13
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Process alta de cliente captura datos,
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El proceso de alta de cliente captura datos, valida identidad y crea
+      el cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El proceso de alta de cliente captura datos, valida identidad y crea
+      el cliente.
+  match_strategy: generated
+  canonical_name: Process alta de cliente captura datos,
+  normalized_name: process alta de cliente captura datos,
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

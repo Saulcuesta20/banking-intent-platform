@@ -1,0 +1,25 @@
+asset_id: user_task.claim_case_registration
+asset_type: user_task
+name: Claim Case Registration
+version: 1.0.0
+owner: business_model_kb
+description: Create a case for the claim in the claims management system.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: register_claim_case_task
+  task: register_claim_case_in_the_system
+  type: automated
+  name: Claim Case Registration
+  description: Create a case for the claim in the claims management system.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Claim Case Registration
+  normalized_name: claim case registration
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

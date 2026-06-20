@@ -1,0 +1,26 @@
+asset_id: user_task.loan_details_collection
+asset_type: user_task
+name: Loan Details Collection
+version: 1.0.0
+owner: business_model_kb
+description: Collect amount, term, purpose, income evidence, and documents from client.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: gather_loan_details_task
+  task: gather_loan_application_details
+  type: guided
+  name: Loan Details Collection
+  description: Collect amount, term, purpose, income evidence, and documents from
+    client.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Details Collection
+  normalized_name: loan details collection
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

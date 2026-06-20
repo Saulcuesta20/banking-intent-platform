@@ -1,0 +1,43 @@
+asset_id: flow.insurance.enrollment.flow
+asset_type: flow
+name: Insurance Enrollment Process
+version: 1.0.0
+owner: process_kb
+description: Process for enrolling in ShieldGuard Insurance linked to loan onboarding,
+  requiring agreement acceptance and beneficiary confirmation event.
+text: Process for enrolling in ShieldGuard Insurance linked to loan onboarding, requiring
+  agreement acceptance and beneficiary confirmation event.
+tags:
+- cross.sell.shieldguard.insurance.to.customers.with.personal.loans
+relations: []
+payload:
+  flow_id: insurance.enrollment.flow
+  flow_name: Insurance Enrollment Process
+  intent: cross.sell.shieldguard.insurance.to.customers.with.personal.loans
+  confidence: 0.75
+  business_event: insurance_enrollment
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process for enrolling in ShieldGuard Insurance linked to loan onboarding,
+    requiring agreement acceptance and beneficiary confirmation event.
+  source: data/raw/corporate_structure_and_offerings.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/corporate_structure_and_offerings.md
+    purpose: To attach insurance protection to lending products during loan origination.
+  purpose: To attach insurance protection to lending products during loan origination.
+  transaction_id: insurance.enrollment.flow
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Insurance Enrollment Process
+  normalized_name: insurance enrollment process
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

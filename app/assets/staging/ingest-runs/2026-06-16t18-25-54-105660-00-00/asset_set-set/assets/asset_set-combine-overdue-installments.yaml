@@ -1,0 +1,48 @@
+asset_id: asset_set.combine.overdue.installments
+asset_type: asset_set
+name: Combine.overdue.installments Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for combine.overdue.installments.
+text: 'Combine Overdue Installments
+
+  Confirm Exception
+
+  Verify Documents'
+tags:
+- asset_set
+- combine.overdue.installments
+relations:
+- type: groups_flow
+  target_asset_id: flow.combine.overdue.installments
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirm_exception
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_documents
+  metadata: {}
+payload:
+  transaction_id: combine.overdue.installments
+  asset_ids:
+  - flow.combine.overdue.installments
+  - user_task.confirm_exception
+  - user_task.verify_documents
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.combine.overdue.installments
+    asset_type: flow
+  - asset_id: user_task.confirm_exception
+    asset_type: user_task
+  - asset_id: user_task.verify_documents
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Combine.overdue.installments Asset Set
+  normalized_name: combine.overdue.installments asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

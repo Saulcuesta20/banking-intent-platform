@@ -1,0 +1,53 @@
+asset_id: ruleset.transfer
+asset_type: ruleset
+name: Transfer Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction transfer with 2 business rules.
+text: 'Toda transferencia superior al limite diario requiere aprobacion humana.
+
+  La transferencia internacional requiere validacion reforzada del beneficiario.'
+tags:
+- ruleset
+- transfer
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.transferencia_superior_al_limite_diario_requiere_aprobacion_humana
+  metadata: {}
+- type: groups_rule
+  target_asset_id: business_rule.transferencia_internacional_requiere_validacion_reforzada_del_beneficiario
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.transfer
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.transferencia
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.aprobacion_humana
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.la_transferencia_internacional
+  metadata: {}
+payload:
+  transaction_id: transfer
+  ruleset_name: Transfer Ruleset
+  rule_ids:
+  - business_rule.transferencia_superior_al_limite_diario_requiere_aprobacion_humana
+  - business_rule.transferencia_internacional_requiere_validacion_reforzada_del_beneficiario
+  conditions:
+  - Toda transferencia superior al limite diario
+  - La transferencia internacional
+  consequences:
+  - aprobacion humana
+  - validacion reforzada del beneficiario
+  match_strategy: generated
+  canonical_name: Transfer Ruleset
+  normalized_name: transfer ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

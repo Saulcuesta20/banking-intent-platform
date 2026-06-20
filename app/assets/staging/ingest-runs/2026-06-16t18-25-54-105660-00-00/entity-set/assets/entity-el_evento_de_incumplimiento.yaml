@@ -1,0 +1,27 @@
+asset_id: entity.el_evento_de_incumplimiento
+asset_type: entity
+name: El evento de incumplimiento
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: El evento de incumplimiento
+  actualiza el estado del prestamo.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: section_entities
+  business_layer: channel
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Business entity listed in corpus section: El evento de incumplimiento
+      actualiza el estado del prestamo.'
+  match_strategy: generated
+  canonical_name: El evento de incumplimiento
+  normalized_name: el evento de incumplimiento
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

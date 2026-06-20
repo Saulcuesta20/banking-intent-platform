@@ -1,0 +1,22 @@
+asset_id: entity.equipleasecommercialloan
+asset_type: entity
+name: EquipLeaseCommercialLoan
+version: 1.0.0
+owner: business_model_kb
+description: Producto de leasing respaldado por activos para clientes comerciales.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Producto de leasing respaldado por activos para clientes comerciales.
+  inferred_from: llm_asset_extraction
+  business_layer: offering
+  entity_role: offering
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: EquipLeaseCommercialLoan
+  normalized_name: equipleasecommercialloan
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

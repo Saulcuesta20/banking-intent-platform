@@ -1,0 +1,49 @@
+asset_id: flow.flow.07
+asset_type: flow
+name: Reestructuración de deuda
+version: 1.0.0
+owner: process_kb
+description: El proceso de reestructuracion analiza capacidad de pago y propone escenarios.
+text: El proceso de reestructuracion analiza capacidad de pago y propone escenarios.
+tags:
+- el.cliente.desea.reestructurar.su.deuda
+relations: []
+payload:
+  flow_id: flow.07
+  flow_name: Reestructuración de deuda
+  intent: el.cliente.desea.reestructurar.su.deuda
+  confidence: 0.75
+  business_event: Cliente solicita reestructuración de deuda
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de reestructuracion analiza capacidad de pago y propone
+    escenarios.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Reestructurar una deuda en atraso
+  purpose: Reestructurar una deuda en atraso
+  transaction_id: flow.07
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de reestructuracion analiza capacidad de pago y propone escenarios.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de reestructuracion analiza capacidad de pago y propone escenarios.
+  match_strategy: generated
+  canonical_name: Reestructuración de deuda
+  normalized_name: reestructuración de deuda
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

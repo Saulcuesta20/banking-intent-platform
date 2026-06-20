@@ -10,7 +10,7 @@
   "userTasks": [
     "capture product configuration"
   ],
-  "lowdefyPage": "product-config",
+  "editorRoute": "product-config",
   "currentFormVersion": "v1",
   "formId": "product-config"
 }

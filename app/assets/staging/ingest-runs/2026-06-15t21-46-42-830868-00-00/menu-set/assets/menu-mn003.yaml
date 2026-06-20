@@ -1,0 +1,28 @@
+asset_id: menu.mn003
+asset_type: menu
+name: MN003
+version: 1.0.0
+owner: config_kb
+description: ''
+text: ''
+tags:
+- menu
+- configuration
+relations:
+- type: belongs_to_module
+  target_asset_id: module.m003
+  metadata: {}
+payload:
+  menu_id: MN003
+  module_id: M003
+  label: Transferencias
+  path: /transfer
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: MN003
+  normalized_name: mn003
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.manager_review_routing
+asset_type: user_task
+name: Manager Review Routing
+version: 1.0.0
+owner: business_model_kb
+description: Route the transfer to manager review when required.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: route_to_manager_review
+  task: route_to_manager_review
+  type: approval_routing
+  name: Manager Review Routing
+  description: Route the transfer to manager review when required.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Manager Review Routing
+  normalized_name: manager review routing
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

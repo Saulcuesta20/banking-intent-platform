@@ -1,0 +1,20 @@
+asset_id: entity.rapidrefiprogram
+asset_type: entity
+name: RapidRefiProgram
+version: 1.0.0
+owner: business_model_kb
+description: Programa de refinanciamiento acelerado con decisiones en 4 horas.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Programa de refinanciamiento acelerado con decisiones en 4 horas.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: RapidRefiProgram
+  normalized_name: rapidrefiprogram
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

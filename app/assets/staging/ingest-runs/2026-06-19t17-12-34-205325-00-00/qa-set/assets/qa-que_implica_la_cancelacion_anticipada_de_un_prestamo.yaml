@@ -1,0 +1,36 @@
+asset_id: qa.que_implica_la_cancelacion_anticipada_de_un_prestamo
+asset_type: qa
+name: Que implica la cancelacion anticipada de un prestamo?
+version: 1.0.0
+owner: qa_kb
+description: Que implica la cancelacion anticipada de un prestamo?
+text: Que implica la cancelacion anticipada de un prestamo?
+tags:
+- qa
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  question: Que implica la cancelacion anticipada de un prestamo?
+  transaction_id: que.implica.la.cancelacion.anticipada.de.un.prestamo
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Que implica la cancelacion anticipada de un prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Que implica la cancelacion anticipada de un prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Que implica la cancelacion anticipada de un prestamo?
+  match_strategy: generated
+  canonical_name: Que implica la cancelacion anticipada de un prestamo?
+  normalized_name: que implica la cancelacion anticipada de un prestamo?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.customer_identification_for_transfer
+asset_type: user_task
+name: Customer Identification for Transfer
+version: 1.0.0
+owner: business_model_kb
+description: Agent identifies the customer requesting the transfer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_identify_customer
+  task: identify_the_customer
+  type: manual
+  name: Customer Identification for Transfer
+  description: Agent identifies the customer requesting the transfer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Identification for Transfer
+  normalized_name: customer identification for transfer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

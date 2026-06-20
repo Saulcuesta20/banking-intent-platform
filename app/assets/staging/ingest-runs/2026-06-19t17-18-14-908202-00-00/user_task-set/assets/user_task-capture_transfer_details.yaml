@@ -1,0 +1,27 @@
+asset_id: user_task.capture_transfer_details
+asset_type: user_task
+name: Capture Transfer Details
+version: 1.0.0
+owner: business_model_kb
+description: Agent records transfer amount, destination, and purpose as per customer
+  request
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: capture_transfer_details_task
+  task: capture_details_for_high_value_transfer
+  type: manual
+  name: Capture Transfer Details
+  description: Agent records transfer amount, destination, and purpose as per customer
+    request
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Capture Transfer Details
+  normalized_name: capture transfer details
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

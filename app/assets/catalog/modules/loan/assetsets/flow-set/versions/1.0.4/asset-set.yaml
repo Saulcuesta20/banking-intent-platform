@@ -1,0 +1,21 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: loan-flow-set
+  name: Prestamos Flow Set
+  version: 1.0.4
+  domain: lending
+  module: loan
+  description: Versioned flow deployment set for loan.
+  tags:
+  - lending
+  - loan
+  - flow
+  git_commit: null
+spec:
+  assetType: flow
+  assets:
+  - assets/flow-loan-create.yaml
+  - assets/flow-loan-disbursement.yaml
+  - assets/flow-loan-payment.yaml
+  - assets/flow-loan-refinance.yaml

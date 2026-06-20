@@ -1,0 +1,68 @@
+asset_id: flow.renovacion.plazo.fijo
+asset_type: flow
+name: Renovación de plazo fijo
+version: 1.0.0
+owner: process_kb
+description: Proceso de renovación automática o manual de un depósito a plazo fijo
+  al llegar su vencimiento.
+text: Proceso de renovación automática o manual de un depósito a plazo fijo al llegar
+  su vencimiento.
+tags:
+- el.cliente.desea.renovar.su.plazo.fijo
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verificaci_n_de_vencimiento
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.renovaci_n_de_plazo_fijo
+  metadata: {}
+payload:
+  flow_id: renovacion.plazo.fijo
+  flow_name: Renovación de plazo fijo
+  intent: el.cliente.desea.renovar.su.plazo.fijo
+  confidence: 0.75
+  business_event: Vencimiento de plazo fijo
+  utterances: []
+  plan: []
+  tasks:
+  - task: verificar_vencimiento
+    type: check
+  - task: aplicar_renovaci_n
+    type: transaction
+  user_tasks:
+  - user_task_id: verificar_vencimiento
+    task: verificar_vencimiento
+    type: check
+    name: Verificación de vencimiento
+    description: Revisar la fecha de vencimiento del plazo fijo y las instrucciones
+      del cliente.
+    tools: []
+    user_actions: []
+  - user_task_id: aplicar_renovacion
+    task: aplicar_renovaci_n
+    type: transaction
+    name: Renovación de plazo fijo
+    description: Renovar el depósito a plazo fijo según las condiciones acordadas.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de renovación automática o manual de un depósito a plazo fijo
+    al llegar su vencimiento.
+  source: data/raw/savings_loans_domain_extra1.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra1.txt
+    purpose: Renovar el depósito a plazo fijo
+  purpose: Renovar el depósito a plazo fijo
+  transaction_id: renovacion.plazo.fijo
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Renovación de plazo fijo
+  normalized_name: renovación de plazo fijo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

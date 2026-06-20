@@ -1,0 +1,31 @@
+asset_id: asset_set.pl015
+asset_type: asset_set
+name: Pl015 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for pl015.
+text: PL015
+tags:
+- asset_set
+- pl015
+relations:
+- type: groups_plan
+  target_asset_id: plan.pl015
+  metadata: {}
+payload:
+  transaction_id: pl015
+  asset_ids:
+  - plan.pl015
+  asset_types:
+  - plan
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.pl015
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Pl015 Asset Set
+  normalized_name: pl015 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

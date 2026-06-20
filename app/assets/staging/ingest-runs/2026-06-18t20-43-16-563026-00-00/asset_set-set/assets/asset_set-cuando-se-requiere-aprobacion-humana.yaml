@@ -1,0 +1,40 @@
+asset_id: asset_set.cuando.se.requiere.aprobacion.humana
+asset_type: asset_set
+name: Cuando.se.requiere.aprobacion.humana Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for cuando.se.requiere.aprobacion.humana.
+text: 'aprobacion humana
+
+  Cuando se requiere aprobacion humana?'
+tags:
+- asset_set
+- cuando.se.requiere.aprobacion.humana
+relations:
+- type: groups_entity
+  target_asset_id: entity.aprobacion_humana
+  metadata: {}
+- type: groups_qa
+  target_asset_id: qa.cuando_se_requiere_aprobacion_humana
+  metadata: {}
+payload:
+  transaction_id: cuando.se.requiere.aprobacion.humana
+  asset_ids:
+  - entity.aprobacion_humana
+  - qa.cuando_se_requiere_aprobacion_humana
+  asset_types:
+  - entity
+  - qa
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.aprobacion_humana
+    asset_type: entity
+  - asset_id: qa.cuando_se_requiere_aprobacion_humana
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Cuando.se.requiere.aprobacion.humana Asset Set
+  normalized_name: cuando.se.requiere.aprobacion.humana asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

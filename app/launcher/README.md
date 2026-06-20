@@ -2,8 +2,14 @@
 
 React + TypeScript launcher shell built with shadcn/ui patterns.
 
-Lowdefy is embedded as the dynamic runtime for catalog screens, asset editors,
-and future flow forms.
+The launcher now runs as a single front-end application on port `3000`. Asset
+editing is launcher-native and uses:
+
+```text
+JSON Schema -> JSON Forms -> Zod -> FastAPI contract validation
+```
+
+There is no longer a separate Lowdefy editor runtime or a second UI port.
 
 ## Run
 
@@ -14,13 +20,29 @@ npm run dev
 This starts:
 
 - shell: `http://localhost:3000`
-- Lowdefy runtime: `http://localhost:3002`
 - module watcher: watches `modules/**/*.json`
+
+## Build
+
+```bash
+npm run build
+```
+
+Before build, the launcher regenerates:
+
+```text
+public/module-registry.json
+```
+
+from the module manifests under:
+
+```text
+modules/<domain>/<module>/
+```
 
 ## AssetSets And Unified Catalog
 
-Launcher assets are authored as versioned AssetSet YAML folders and deployed to
-the Unified Catalog:
+Launcher assets are governed as AssetSets and deployed to the Unified Catalog:
 
 ```bash
 cd /home/saul/banking-intent-platform
@@ -30,7 +52,7 @@ cd /home/saul/banking-intent-platform
 
 New versions enter `ready_for_review`. Review and deployment are performed in
 the launcher `Assets` workspace. The launcher reads active versions from the
-Unified Catalog; YAML and Neo4j are not launcher runtime registries.
+Unified Catalog; YAML, Neo4j, and Qdrant are not browser runtime registries.
 
 ## Backend
 
@@ -46,15 +68,16 @@ Override it with:
 VITE_LAUNCHER_API_URL=http://127.0.0.1:8030 npm run dev
 ```
 
-Chat questions are sent to `app/ask` through the backend `/ask` endpoint. The launcher does not perform local intent routing.
-
-The relevant endpoints are:
+Relevant endpoints:
 
 - `POST /ask`
 - `GET /launcher/home`
 - `GET /launcher/flows/{flow_id}`
+- `GET /catalog/metadata`
 - `GET /catalog/assets`
+- `GET /catalog/assets/{id}`
 - `POST /catalog/assets/validate`
+- `POST /catalog/assets/{id}/preview`
 - `POST /catalog/assets/{id}/versions`
 - `GET /catalog/asset-sets`
 - `POST /catalog/asset-sets/{id}/transition`
@@ -63,86 +86,25 @@ The relevant endpoints are:
 - `POST /orchestrator/process/execute`
 - `GET /orchestrator/executions`
 
-## Lowdefy Runtime
+## Active Editor Surface
 
-Module configuration lives in:
-
-```text
-modules/<domain>/<module>/module.json
-modules/<domain>/<module>/processes/<process>/process.json
-modules/<domain>/<module>/forms/<form>/versions/<version>/form.json
-```
-
-Current domains:
-
-- `master-data`
-- `deposits`
-- `lending`
-
-Lowdefy pages are generated from versioned module forms into:
+The structured flow editor lives under:
 
 ```text
-lowdefy-runtime/lowdefy.yaml
+plugins/asset-editors/src/editors/flow-editor/
 ```
 
-This YAML is a generated renderer artifact, not the runtime business source of
-truth. The `asset-explorer` Lowdefy page renders the Asset Studio and queries
-the Unified Catalog APIs.
-
-### Lowdefy Asset Editors
-
-The local plugin is located at:
-
-```text
-lowdefy-plugins/asset-editors/
-```
-
-| Block | Purpose |
-|---|---|
-| `AssetCodeEditor` | YAML/JSON source editor with syntax validation |
-| `ProcessCanvas` | Flow and process node editor |
-| `OntologyGraph` | Entity, concept, ontology, and relationship editor |
-| `RuleBuilder` | Business rule condition and outcome editor |
-| `FormDesigner` | Form field editor with live preview |
-| `NavigationTree` | Domain, module, menu, and submenu editor |
-| `AssetStudio` | Catalog browser and editor router |
-
-The editor validates through FastAPI. Saving creates a new immutable AssetSet
-patch version under `modules/<module>/assetsets/<set>/versions/<version>/` and
-submits it as `ready_for_review`. Review, validation, and deployment are then
-performed from the same Lowdefy workspace. Existing versions are never
-overwritten.
-
-Generate Lowdefy config with:
-
-```bash
-npm run generate:lowdefy
-```
-
-This writes both:
-
-```text
-lowdefy-runtime/lowdefy.yaml
-public/module-registry.json
-```
-
-See:
-
-```text
-docs/module-runtime.md
-```
-
-Override the runtime URL with:
-
-```bash
-VITE_LOWDEFY_RUNTIME_URL=http://localhost:3002 npm run dev:shell
-```
+The launcher opens editors from the Unified Catalog view instead of jumping to
+an external renderer. FastAPI remains the authority for validation, preview,
+versioning, review, and deployment.
 
 ## Architecture Boundary
 
-- shadcn/React owns the shell, navigation, chat workspace, context panel, resizing, and collapse behavior.
-- Lowdefy owns the Asset Studio editors and remains the dynamic runtime target for YAML-driven flow forms and declarative module screens.
-- FastAPI owns catalog queries, lifecycle validation, deployment, Ask resolution, workflow execution, and trace.
-- Unified Catalog owns canonical versions, review history, AssetSet deployments, and the active launcher view.
-- Neo4j, Qdrant, and Document KB are governed projections used by Ask and retrieval.
-- The right panel renders Ask and workflow traces as numbered steps with a concise result for each step.
+- React/shadcn owns the shell, navigation, workspace, context panel, and state.
+- JSON Forms owns the structured flow editor form rendering.
+- Zod owns frontend validation for editing interactions.
+- FastAPI owns catalog queries, validation, version creation, lifecycle, Ask,
+  orchestration, and trace.
+- Unified Catalog owns canonical asset versions and active runtime visibility.
+- Graph, vector, document, and relational stores are backend projections, not
+  independent launcher sources of truth.

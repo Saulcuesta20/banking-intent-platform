@@ -1,0 +1,27 @@
+asset_id: entity.rechazo_de_la_transferencia
+asset_type: entity
+name: rechazo de la transferencia
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality effect_text: rechazo de la transferencia'
+text: El alias incorrecto del beneficiario provoca rechazo de la transferencia.
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: effect_text
+  structural_layer: transaction
+  business_layer: transaction
+  entity_role: transaction
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: provoca
+    sentence: El alias incorrecto del beneficiario provoca rechazo de la transferencia.
+  match_strategy: generated
+  canonical_name: rechazo de la transferencia
+  normalized_name: rechazo de la transferencia
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

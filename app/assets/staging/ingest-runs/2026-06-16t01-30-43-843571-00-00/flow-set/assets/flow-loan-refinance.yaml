@@ -1,0 +1,43 @@
+asset_id: flow.loan.refinance
+asset_type: flow
+name: quiero refinanciar mi prestamo actual
+version: 1.0.0
+owner: process_kb
+description: 'El cliente dice: quiero refinanciar mi prestamo actual.'
+text: 'El cliente dice: quiero refinanciar mi prestamo actual.'
+tags:
+- utterance_flow
+relations: []
+payload:
+  utterances:
+  - 'El cliente dice: quiero refinanciar mi prestamo actual.'
+  purpose: 'El cliente dice: quiero refinanciar mi prestamo actual.'
+  transaction_id: loan.refinance
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: quiero refinanciar mi prestamo actual
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente dice: quiero refinanciar mi prestamo actual.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El cliente dice: quiero refinanciar mi prestamo actual.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente dice: quiero refinanciar mi prestamo actual.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El cliente dice: quiero refinanciar mi prestamo actual.'
+  match_strategy: generated
+  canonical_name: quiero refinanciar mi prestamo actual
+  normalized_name: quiero refinanciar mi prestamo actual
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

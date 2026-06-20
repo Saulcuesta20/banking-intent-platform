@@ -1,0 +1,22 @@
+asset_id: entity.el_buro_de_credito
+asset_type: entity
+name: El buro de credito
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: El buro de credito aporta
+  score y alertas regulatorias.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: section_entities
+  business_layer: asset
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: El buro de credito
+  normalized_name: el buro de credito
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

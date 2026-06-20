@@ -1,0 +1,43 @@
+asset_id: asset_set.el.retraso.en.el.onboarding.causes.abandono.del.proceso.por.parte.del.cliente
+asset_type: asset_set
+name: El.retraso.en.el.onboarding.causes.abandono.del.proceso.por.parte.del.cliente
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.retraso.en.el.onboarding.causes.abandono.del.proceso.por.parte.del.cliente.
+text: 'El retraso en el onboarding causes abandono del proceso por parte del cliente
+
+  retraso en el onboarding'
+tags:
+- asset_set
+- el.retraso.en.el.onboarding.causes.abandono.del.proceso.por.parte.del.cliente
+relations:
+- type: groups_causality
+  target_asset_id: causality.el_retraso_en_el_onboarding_causes_abandono_del_proceso_por_parte_del_cliente
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.retraso_en_el_onboarding
+  metadata: {}
+payload:
+  transaction_id: el.retraso.en.el.onboarding.causes.abandono.del.proceso.por.parte.del.cliente
+  asset_ids:
+  - causality.el_retraso_en_el_onboarding_causes_abandono_del_proceso_por_parte_del_cliente
+  - entity.retraso_en_el_onboarding
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.el_retraso_en_el_onboarding_causes_abandono_del_proceso_por_parte_del_cliente
+    asset_type: causality
+  - asset_id: entity.retraso_en_el_onboarding
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: El.retraso.en.el.onboarding.causes.abandono.del.proceso.por.parte.del.cliente
+    Asset Set
+  normalized_name: el.retraso.en.el.onboarding.causes.abandono.del.proceso.por.parte.del.cliente
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

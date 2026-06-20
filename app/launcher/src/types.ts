@@ -38,9 +38,8 @@ export type LauncherFlowSummary = {
   related_process_ids: string[]
   confidence: number
   explanation: string
-  renderer?: 'lowdefy' | 'react' | 'external'
-  lowdefy_page?: string
-  lowdefy_url?: string
+  renderer?: 'react' | 'external'
+  editor_route?: string
   module_config_id?: string
   form_id?: string
   form_version?: string
@@ -81,8 +80,7 @@ export type LauncherFlowDetailResponse = {
   form?: Record<string, unknown> | null
   form_version?: Record<string, unknown> | null
   renderer?: string | null
-  lowdefy_page?: string | null
-  lowdefy_url?: string | null
+  editor_route?: string | null
 }
 
 export type ExecutionResult = {
@@ -112,15 +110,6 @@ export type ChatMessage = {
   createdAt: string
 }
 
-export type FormField = {
-  name: string
-  label: string
-  type: 'text' | 'number' | 'select' | 'textarea' | 'date'
-  placeholder?: string
-  options?: string[]
-  required?: boolean
-}
-
 export type LauncherDomain = {
   domainId: string
   label: string
@@ -136,22 +125,6 @@ export type ModuleMenuItem = {
   children?: ModuleMenuItem[]
 }
 
-export type ModuleFormField = {
-  id: string
-  label: string
-  type: 'text' | 'number' | 'email' | 'textarea'
-  required?: boolean
-  placeholder?: string
-}
-
-export type ModuleFormDefinition = {
-  formId: string
-  pageId: string
-  title: string
-  submitTitle: string
-  fields: ModuleFormField[]
-}
-
 export type ModuleProcessDefinition = {
   processId: string
   name: string
@@ -160,7 +133,7 @@ export type ModuleProcessDefinition = {
   sourcePath?: string
   processIds?: string[]
   userTasks?: string[]
-  lowdefyPage: string
+  editorRoute: string
   currentFormVersion: string
   formId: string
 }
@@ -181,6 +154,7 @@ export type CatalogAsset = {
   asset_type: string
   name?: string | null
   status: string
+  primary_kb?: string | null
   domain_id?: string | null
   module_id?: string | null
   tags: string[]
@@ -213,6 +187,55 @@ export type CatalogAssetDetail = CatalogAsset & {
     target_asset_id: string
     metadata: Record<string, unknown>
   }>
+}
+
+export type OntologySelection = {
+  entity: {
+    asset_id: string
+    name?: string
+    layer?: string
+    role?: string
+    subtype?: string
+    technical_type?: string
+    description?: string
+    aliases?: string[]
+  } | null
+  relations: Array<{
+    id: string
+    relation_type: string
+    relation_family?: string
+    direction?: 'incoming' | 'outgoing'
+    source_entity_id?: string
+    source_name?: string
+    target_entity_id: string
+    target_name?: string
+  }>
+}
+
+export type AgentType = 'planning' | 'coordinator' | 'delegator' | 'worker' | 'monitoring'
+
+export type SkillAsset = {
+  skill_id: string
+  title: string
+  description: string
+  scope: 'business-agents' | 'asset-behaviors' | 'launcher-behaviors'
+  agent_types: AgentType[]
+  allowed_tools: string[]
+  status: 'draft' | 'review' | 'active'
+  version: string
+  markdown: string
+  updated_at: string
+}
+
+export type AgentDraft = {
+  agent_id: string
+  name: string
+  description: string
+  agent_type: AgentType
+  domain: 'ask' | 'ingestion' | 'asset' | 'tool' | 'system'
+  skill_ids: string[]
+  tool_ids: string[]
+  status: 'draft' | 'review' | 'active'
 }
 
 export type AssetSetSummary = {

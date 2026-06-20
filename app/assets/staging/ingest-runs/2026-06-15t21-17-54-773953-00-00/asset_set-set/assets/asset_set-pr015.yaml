@@ -1,0 +1,31 @@
+asset_id: asset_set.pr015
+asset_type: asset_set
+name: Pr015 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for pr015.
+text: PR015
+tags:
+- asset_set
+- pr015
+relations:
+- type: groups_process
+  target_asset_id: process.pr015
+  metadata: {}
+payload:
+  transaction_id: pr015
+  asset_ids:
+  - process.pr015
+  asset_types:
+  - process
+  primary_asset_type: process
+  members:
+  - asset_id: process.pr015
+    asset_type: process
+  match_strategy: generated
+  canonical_name: Pr015 Asset Set
+  normalized_name: pr015 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

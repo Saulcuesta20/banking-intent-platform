@@ -1,0 +1,28 @@
+asset_id: form.f002
+asset_type: form
+name: F002
+version: 1.0.0
+owner: config_kb
+description: Gather loan request details, income information and supporting documents.
+text: Gather loan request details, income information and supporting documents.
+tags:
+- form
+- configuration
+relations:
+- type: belongs_to_module
+  target_asset_id: module.m002
+  metadata: {}
+payload:
+  form_id: F002
+  module_id: M002
+  name: LoanApplicationForm
+  purpose: Gather loan request details, income information and supporting documents.
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: F002
+  normalized_name: f002
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

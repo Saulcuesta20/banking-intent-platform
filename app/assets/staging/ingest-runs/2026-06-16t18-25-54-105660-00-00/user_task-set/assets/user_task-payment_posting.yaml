@@ -1,0 +1,25 @@
+asset_id: user_task.payment_posting
+asset_type: user_task
+name: Payment Posting
+version: 1.0.0
+owner: business_model_kb
+description: Post payment to loan account.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: payment_posting
+  task: payment_posting
+  type: automated
+  name: Payment Posting
+  description: Post payment to loan account.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Payment Posting
+  normalized_name: payment posting
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

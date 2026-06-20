@@ -1,0 +1,56 @@
+asset_id: asset_set.flow.02
+asset_type: asset_set
+name: Flow.02 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.02.
+text: 'apertura de cuenta
+
+  cuenta de ahorro
+
+  ahorro
+
+  Apertura de cuenta de ahorro'
+tags:
+- asset_set
+- flow.02
+relations:
+- type: groups_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.cuenta_de_ahorro
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.flow.02
+  metadata: {}
+payload:
+  transaction_id: flow.02
+  asset_ids:
+  - entity.apertura_de_cuenta
+  - entity.cuenta_de_ahorro
+  - entity.savings_account
+  - flow.flow.02
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.apertura_de_cuenta
+    asset_type: entity
+  - asset_id: entity.cuenta_de_ahorro
+    asset_type: entity
+  - asset_id: entity.savings_account
+    asset_type: entity
+  - asset_id: flow.flow.02
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Flow.02 Asset Set
+  normalized_name: flow.02 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

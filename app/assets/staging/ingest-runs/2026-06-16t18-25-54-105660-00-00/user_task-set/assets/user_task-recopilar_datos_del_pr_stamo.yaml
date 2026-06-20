@@ -1,0 +1,32 @@
+asset_id: user_task.recopilar_datos_del_pr_stamo
+asset_type: user_task
+name: Recopilar datos del préstamo
+version: 1.0.0
+owner: business_model_kb
+description: Solicitar al cliente monto, plazo, finalidad, evidencia de ingresos y
+  documentos.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: recopilar_datos_prestamo
+  task: recopilar_datos_del_pr_stamo
+  type: form
+  name: Recopilar datos del préstamo
+  description: Solicitar al cliente monto, plazo, finalidad, evidencia de ingresos
+    y documentos.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Solicitar al cliente monto, plazo, finalidad, evidencia de ingresos
+      y documentos.
+  match_strategy: generated
+  canonical_name: Recopilar datos del préstamo
+  normalized_name: recopilar datos del préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,93 @@
+asset_id: asset_set.AS001
+asset_type: asset_set
+name: AS001
+version: 1.0.0
+owner: config_kb
+description: ''
+text: ''
+tags:
+- asset_set
+- configuration
+relations: []
+payload:
+  asset_set_id: AS001
+  version: '1.0'
+  primary_asset_type: flow
+  members:
+  - FL001
+  - FL002
+  - FL003
+  - FL004
+  - P001
+  - P002
+  - P003
+  - P004
+  - BR001
+  - BR002
+  - BR003
+  - BR004
+  - BR005
+  - BR006
+  - BR007
+  - BR008
+  - BR009
+  - BR010
+  - E001
+  - E002
+  - E003
+  - E004
+  - E005
+  - E006
+  - E007
+  - E008
+  - E009
+  - E010
+  - E011
+  - E012
+  - E013
+  - E014
+  - E015
+  - E016
+  - T001
+  - T002
+  - T003
+  - T004
+  - T005
+  - T006
+  - T007
+  - T008
+  - T009
+  - T010
+  - T011
+  - T012
+  - T013
+  - T014
+  - T015
+  - T016
+  - Q001
+  - Q002
+  - Q003
+  - Q004
+  - Q005
+  - Q006
+  - Q007
+  - Q008
+  - Q009
+  - Q010
+  - Q011
+  - Q012
+  - C001
+  - C002
+  - C003
+  - C004
+  - C005
+  - C006
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: AS001
+  normalized_name: as001
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,20 @@
+asset_id: entity.deposito
+asset_type: entity
+name: deposito
+version: 1.0.0
+owner: business_model_kb
+description: Movimiento que incrementa saldo disponible
+text: Movimiento que incrementa saldo disponible
+tags: []
+relations: []
+payload:
+  aliases: []
+  business_layer: asset
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: deposito
+  normalized_name: deposito
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

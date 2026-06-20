@@ -1,0 +1,25 @@
+asset_id: user_task.generate_statement
+asset_type: user_task
+name: Generate Statement
+version: 1.0.0
+owner: business_model_kb
+description: Generate monthly or periodic statement
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: generate_statement
+  task: generate_account_statement
+  type: report
+  name: Generate Statement
+  description: Generate monthly or periodic statement
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Generate Statement
+  normalized_name: generate statement
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

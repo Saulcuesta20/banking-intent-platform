@@ -1,0 +1,25 @@
+asset_id: user_task.kyc_process
+asset_type: user_task
+name: KYC Process
+version: 1.0.0
+owner: business_model_kb
+description: Perform Know Your Customer checks.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: run_kyc
+  task: run_kyc
+  type: compliance_check
+  name: KYC Process
+  description: Perform Know Your Customer checks.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: KYC Process
+  normalized_name: kyc process
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

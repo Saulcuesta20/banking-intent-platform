@@ -1,0 +1,31 @@
+asset_id: flow.customer.onboarding.documents
+asset_type: flow
+name: quiero conocer los documentos para onboarding
+version: 1.0.0
+owner: process_kb
+description: 'El cliente comenta: quiero conocer los documentos para onboarding.'
+text: 'El cliente comenta: quiero conocer los documentos para onboarding.'
+tags:
+- utterance_flow
+relations: []
+payload:
+  utterances:
+  - 'El cliente comenta: quiero conocer los documentos para onboarding.'
+  purpose: 'El cliente comenta: quiero conocer los documentos para onboarding.'
+  transaction_id: customer.onboarding.documents
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente comenta: quiero conocer los documentos para onboarding.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente comenta: quiero conocer los documentos para onboarding.'
+  match_strategy: generated
+  canonical_name: quiero conocer los documentos para onboarding
+  normalized_name: quiero conocer los documentos para onboarding
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

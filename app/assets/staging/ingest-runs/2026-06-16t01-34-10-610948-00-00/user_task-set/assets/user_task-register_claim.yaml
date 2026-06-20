@@ -1,0 +1,25 @@
+asset_id: user_task.register_claim
+asset_type: user_task
+name: Register Claim
+version: 1.0.0
+owner: business_model_kb
+description: Create a new claim record with basic details.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut201
+  task: register_claim
+  type: frontend
+  name: Register Claim
+  description: Create a new claim record with basic details.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Register Claim
+  normalized_name: register claim
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

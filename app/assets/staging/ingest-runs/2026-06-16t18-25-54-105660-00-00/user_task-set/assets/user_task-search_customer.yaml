@@ -1,0 +1,25 @@
+asset_id: user_task.search_customer
+asset_type: user_task
+name: Search Customer
+version: 1.0.0
+owner: business_model_kb
+description: Find customer record by search criteria.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: search_customer
+  task: search_customer
+  type: automated
+  name: Search Customer
+  description: Find customer record by search criteria.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Search Customer
+  normalized_name: search customer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

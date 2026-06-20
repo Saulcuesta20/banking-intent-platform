@@ -1,0 +1,33 @@
+asset_id: entity.vehiculo
+asset_type: entity
+name: vehiculo.
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: El cliente titular solicita
+  refinanciar su prestamo de vehiculo.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases:
+  - vehiculo
+  inferred_from: section_entities
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Business entity listed in corpus section: El cliente titular solicita
+      refinanciar su prestamo de vehiculo.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Business entity listed in corpus section: El cliente titular solicita
+      refinanciar su prestamo de vehiculo.'
+  match_strategy: generated
+  canonical_name: vehiculo.
+  normalized_name: vehiculo.
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

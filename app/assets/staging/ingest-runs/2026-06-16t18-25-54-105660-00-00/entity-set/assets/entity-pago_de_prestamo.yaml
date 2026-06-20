@@ -1,0 +1,36 @@
+asset_id: entity.pago_de_prestamo
+asset_type: entity
+name: pago de prestamo
+version: 1.0.0
+owner: business_model_kb
+description: Proceso para registrar el pago de una cuota o deuda crediticia
+text: Proceso para registrar el pago de una cuota o deuda crediticia
+tags: []
+relations: []
+payload:
+  aliases: []
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: pago de prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: pago de prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Proceso para registrar el pago de una cuota o deuda crediticia
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Proceso para registrar el pago de una cuota o deuda crediticia
+  match_strategy: generated
+  canonical_name: pago de prestamo
+  normalized_name: pago de prestamo
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

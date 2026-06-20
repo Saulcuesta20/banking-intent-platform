@@ -93,16 +93,35 @@ kb query --asset-type causality --text "mora"
 kb query --asset-type plan --owner-kb planning_kb --text "cobranza preventiva"
 kb query --owner-kb business_model_kb --asset-type entity --text "prestamo"
 kb query --relation-type causes --format json
+kb query --metadata --tree
 kb ingest --raw data/raw/enterprise_dump_2026
 kb reset-ingest --raw data/raw/enterprise_dump_2026
 ```
 
+For the current project corpus, prefer the combined raw root:
+
+```bash
+kb reset-ingest --raw data/raw
+kb query --engines
+kb query --text "refinanciamiento"
+kb query --asset-type flow --text "loan refinance"
+kb query --owner-kb business_model_kb --asset-type entity --text "prestamo"
+```
+
 `kb query` is now the preferred logical command for inspecting the knowledge-base
 engine. It can filter by owner KB, asset type, relation type, and text while
-still exposing the underlying technical stores. `kb ingest` and
-`kb reset-ingest` run the asset-oriented ingestion path, which extracts
+still exposing the underlying technical stores. `kb query --metadata --tree`
+shows the catalog metadata tree plus the governed asset contracts rendered from
+`config/model/extraction_schema.yaml`, and it also expands flow/user_task
+payloads into a visible flow -> task -> action -> tool hierarchy. `kb ingest`
+and `kb reset-ingest` run the asset-oriented ingestion path, which extracts
 candidate assets from corpus, normalizes them, aligns them against the unified
 catalog, and only then projects them to graph/document/vector stores.
+
+`kb reset-ingest --raw data/raw` is the clean-slate command for this repo: it
+clears the managed KB state and reloads from the unstructured corpus root under
+`data/raw/`, which includes both the seed files and the `enterprise_dump_2026`
+batch.
 
 Unclassified enterprise dump extraction:
 

@@ -1,0 +1,42 @@
+asset_id: process.loan.disbursement
+asset_type: process
+name: Process desembolso verifica aprobacion, confirma cuenta destino
+version: 1.0.0
+owner: process_kb
+description: El proceso de desembolso verifica aprobacion, confirma cuenta destino
+  y acredita fondos.
+text: El proceso de desembolso verifica aprobacion, confirma cuenta destino y acredita
+  fondos.
+tags:
+- process_fragment
+relations:
+- type: uses_entity
+  target_asset_id: entity.desembolso
+  metadata: {}
+payload:
+  steps_text: El proceso de desembolso verifica aprobacion, confirma cuenta destino
+    y acredita fondos.
+  source_section: Processes
+  transaction_id: loan.disbursement
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Process desembolso verifica aprobacion, confirma cuenta destino
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de desembolso verifica aprobacion, confirma cuenta destino
+      y acredita fondos.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de desembolso verifica aprobacion, confirma cuenta destino
+      y acredita fondos.
+  match_strategy: generated
+  canonical_name: Process desembolso verifica aprobacion, confirma cuenta destino
+  normalized_name: process desembolso verifica aprobacion, confirma cuenta destino
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

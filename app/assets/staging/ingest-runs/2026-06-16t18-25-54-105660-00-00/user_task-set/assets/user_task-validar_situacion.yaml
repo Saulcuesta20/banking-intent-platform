@@ -1,0 +1,32 @@
+asset_id: user_task.validar_situacion
+asset_type: user_task
+name: Validar situacion
+version: 1.0.0
+owner: business_model_kb
+description: Validar la situacion del cliente y definir si requiere promesa, escalacion
+  o seguimiento.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: validar_situacion
+  task: validar_situacion
+  type: decision
+  name: Validar situacion
+  description: Validar la situacion del cliente y definir si requiere promesa, escalacion
+    o seguimiento.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Validar la situacion del cliente y definir si requiere promesa, escalacion
+      o seguimiento.
+  match_strategy: generated
+  canonical_name: Validar situacion
+  normalized_name: validar situacion
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

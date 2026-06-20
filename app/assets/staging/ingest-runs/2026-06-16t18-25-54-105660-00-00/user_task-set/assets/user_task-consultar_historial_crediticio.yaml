@@ -1,0 +1,29 @@
+asset_id: user_task.consultar_historial_crediticio
+asset_type: user_task
+name: Consultar historial crediticio
+version: 1.0.0
+owner: business_model_kb
+description: Consulta el historial crediticio del cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_consultar_historial_crediticio
+  task: consultar_historial_crediticio
+  type: system
+  name: Consultar historial crediticio
+  description: Consulta el historial crediticio del cliente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Consulta el historial crediticio del cliente.
+  match_strategy: generated
+  canonical_name: Consultar historial crediticio
+  normalized_name: consultar historial crediticio
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

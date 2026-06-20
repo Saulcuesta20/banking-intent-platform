@@ -50,3 +50,21 @@ class EnterpriseAssetRepository:
                     continue
                 values.append(asset)
         return sorted(values, key=lambda asset: (asset.asset_type, asset.asset_id))
+
+    def find_referencers(
+        self,
+        asset_id: str,
+        relation_type: str | None = None,
+    ) -> list[tuple[str, str]]:
+        """Find all (source_asset_id, relation_type) pairs that reference the given asset.
+        This is an O(n) scan of in-memory assets.
+        """
+        pairs: list[tuple[str, str]] = []
+        for asset in self._assets.values():
+            for relation in asset.relations:
+                if relation.target_asset_id != asset_id:
+                    continue
+                if relation_type is not None and relation.type != relation_type:
+                    continue
+                pairs.append((asset.asset_id, relation.type))
+        return sorted(pairs, key=lambda pair: (pair[1], pair[0]))

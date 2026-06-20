@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flow Asset Editor Mockup</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --panel: #ffffff;
+        --line: #d9e1ee;
+        --text: #102039;
+        --muted: #637089;
+        --blue: #1f5eff;
+        --blue-soft: #ecf3ff;
+        --green: #1f8a5b;
+        --green-soft: #edf8f1;
+        --amber: #b57600;
+        --amber-soft: #fff5df;
+        --red: #d84343;
+        --red-soft: #fff0f0;
+        --shadow: 0 10px 30px rgba(16, 32, 57, 0.08);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      .page {
+        width: 1600px;
+        height: 1200px;
+        margin: 0 auto;
+        padding: 18px 20px 24px;
+        background: linear-gradient(180deg, #f7f9fd 0%, #f4f7fb 100%);
+      }
+      .topbar {
+        background: rgba(255,255,255,.86);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 18px 14px;
+        box-shadow: var(--shadow);
+      }
+      .crumbs {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      .title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .title h1 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.1;
+        letter-spacing: 0;
+      }
+      .title p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .tabs {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .tab {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 9px 14px;
+        background: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .tab.active {
+        background: var(--blue);
+        color: #fff;
+        border-color: var(--blue);
+      }
+      .shell {
+        display: grid;
+        grid-template-columns: 1.15fr 1.85fr 1fr;
+        gap: 16px;
+        margin-top: 16px;
+        align-items: start;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+      .panel h2 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+      .panel .body {
+        padding: 14px;
+      }
+      .section {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+        margin-top: 12px;
+      }
+      .section h3 {
+        margin: 0 0 10px;
+        font-size: 13px;
+      }
+      .fields {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .field {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 11px;
+        background: #fff;
+      }
+      .field .k {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .field .v {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .path {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+      .step {
+        border: 1px solid var(--line);
+        background: #fff;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .arrow {
+        color: var(--blue);
+        font-size: 20px;
+        font-weight: 800;
+      }
+      .task-list {
+        display: grid;
+        gap: 10px;
+      }
+      .task {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+      }
+      .task.active {
+        border-color: var(--blue);
+        background: var(--blue-soft);
+      }
+      .task-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+      }
+      .task-name {
+        font-weight: 800;
+        font-size: 14px;
+      }
+      .task-sub {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 3px;
+      }
+      .badge-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+      .badge {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 9px;
+        background: #fff;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .btns {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 10px;
+        padding: 9px 12px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .btn.primary {
+        background: var(--blue);
+        color: #fff;
+        border-color: var(--blue);
+      }
+      .btn.ghost {
+        background: #fff;
+      }
+      .btn.red {
+        color: var(--red);
+      }
+      .right-stack {
+        display: grid;
+        gap: 12px;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .pill.green {
+        background: var(--green-soft);
+        color: var(--green);
+        border: 1px solid #bfe5cf;
+      }
+      .pill.blue {
+        background: var(--blue-soft);
+        color: var(--blue);
+        border: 1px solid #cfe0ff;
+      }
+      .pill.amber {
+        background: var(--amber-soft);
+        color: var(--amber);
+        border: 1px solid #f0d5a0;
+      }
+      .pill.red {
+        background: var(--red-soft);
+        color: var(--red);
+        border: 1px solid #f2c5c5;
+      }
+      .explorer {
+        display: grid;
+        gap: 10px;
+      }
+      .explorer .box {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+      }
+      .explorer .box .head {
+        padding: 10px 12px;
+        font-size: 12px;
+        font-weight: 800;
+        border-bottom: 1px solid var(--line);
+      }
+      .explorer .box .content {
+        padding: 10px 12px;
+        color: var(--text);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      .panel-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .status {
+        text-align: right;
+      }
+      .status .ver {
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--blue);
+      }
+      .status .meta {
+        color: var(--muted);
+        font-size: 11px;
+        margin-top: 4px;
+      }
+      .stack-note {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fafcff;
+      }
+      .footer-band {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 16px;
+      }
+      .footer-band .section {
+        margin-top: 0;
+      }
+      .collapsed-hint {
+        border: 1px dashed #c6d2e4;
+        background: #f8fbff;
+        color: var(--muted);
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 12px;
+        margin-bottom: 12px;
+      }
+      .modal {
+        position: absolute;
+        left: 50%;
+        top: 170px;
+        transform: translateX(-50%);
+        width: 640px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: 0 24px 80px rgba(16, 32, 57, 0.18);
+        padding: 16px;
+      }
+      .modal h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+      .modal .mini {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 4px;
+      }
+      .modal .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .modal .wide {
+        grid-column: 1 / -1;
+      }
+      .modal .card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+      }
+      .modal .card .title {
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+      .modal .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-top: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="topbar">
+        <div class="crumbs">Launcher &gt; Asset Studio &gt; Flow asset editor</div>
+        <div class="title-row">
+          <div class="title">
+            <h1>Flow asset editor</h1>
+            <p>Only contract fields are shown. User tasks open in a popup editor with actions and tools.</p>
+          </div>
+          <div class="btns">
+            <button class="tab active">Structured Editor</button>
+            <button class="tab">Raw Source</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="shell">
+        <div class="panel">
+          <div class="body">
+            <h2>Flow document</h2>
+            <div class="section">
+              <h3>Identity</h3>
+              <div class="fields">
+                <div class="field"><div class="k">Flow ID</div><div class="v">loan.refinance</div></div>
+                <div class="field"><div class="k">Flow name</div><div class="v">Refinanciamiento de prestamo</div></div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Semantic fields</h3>
+              <div class="fields">
+                <div class="field wide"><div class="k">Purpose</div><div class="v">Quiero refinanciar mi prestamo</div></div>
+                <div class="field"><div class="k">Business event</div><div class="v">loan.refinance.requested</div></div>
+                <div class="field wide"><div class="k">User task refs</div><div class="v">review refinance options, capture customer confirmation, validate supporting documents, submit refinance request</div></div>
+                <div class="field wide"><div class="k">Inputs</div><div class="v">customer profile, current loan terms</div></div>
+                <div class="field wide"><div class="k">Outputs</div><div class="v">refinance scenario, updated repayment plan</div></div>
+                <div class="field wide"><div class="k">Explanation</div><div class="v">Este flujo inicia el proceso de refinanciamiento.</div></div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Flow path</h3>
+              <div class="path">
+                <div class="step">Ask selection</div><div class="arrow">→</div>
+                <div class="step">Purpose match</div><div class="arrow">→</div>
+                <div class="step">Business event</div><div class="arrow">→</div>
+                <div class="step">User tasks</div><div class="arrow">→</div>
+                <div class="step">Process or plan</div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="panel-title-row">
+                <div>
+                  <h3 style="margin:0 0 4px;">User tasks</h3>
+                  <div style="color:var(--muted);font-size:12px;">Each task opens in the popup editor below.</div>
+                </div>
+                <button class="btn ghost">+ Add task</button>
+              </div>
+              <div class="task-list" style="margin-top:12px;">
+                <div class="task active">
+                  <div class="task-top">
+                    <div>
+                      <div class="task-name">Review refinance options</div>
+                      <div class="task-sub">review refinance options</div>
+                    </div>
+                    <div class="btns">
+                      <button class="btn">Edit</button>
+                      <button class="btn red">Remove</button>
+                    </div>
+                  </div>
+                  <div class="badge-row">
+                    <span class="badge">Primary action: Review options</span>
+                    <span class="badge">Primary tool: Review options</span>
+                    <span class="badge">2 actions</span>
+                    <span class="badge">2 tools</span>
+                  </div>
+                </div>
+                <div class="task">
+                  <div class="task-top">
+                    <div>
+                      <div class="task-name">Capture customer confirmation</div>
+                      <div class="task-sub">capture customer confirmation</div>
+                    </div>
+                    <div class="btns">
+                      <button class="btn">Edit</button>
+                      <button class="btn red">Remove</button>
+                    </div>
+                  </div>
+                  <div class="badge-row">
+                    <span class="badge">Primary action: Confirm selection</span>
+                    <span class="badge">Primary tool: Confirm selection</span>
+                    <span class="badge">2 actions</span>
+                    <span class="badge">2 tools</span>
+                  </div>
+                </div>
+                <div class="task">
+                  <div class="task-top">
+                    <div>
+                      <div class="task-name">Validate supporting documents</div>
+                      <div class="task-sub">validate supporting documents</div>
+                    </div>
+                    <div class="btns">
+                      <button class="btn">Edit</button>
+                      <button class="btn red">Remove</button>
+                    </div>
+                  </div>
+                  <div class="badge-row">
+                    <span class="badge">Primary action: Upload documents</span>
+                    <span class="badge">Primary tool: Upload documents</span>
+                    <span class="badge">2 actions</span>
+                    <span class="badge">2 tools</span>
+                  </div>
+                </div>
+                <div class="task">
+                  <div class="task-top">
+                    <div>
+                      <div class="task-name">Submit refinance request</div>
+                      <div class="task-sub">submit refinance request</div>
+                    </div>
+                    <div class="btns">
+                      <button class="btn">Edit</button>
+                      <button class="btn red">Remove</button>
+                    </div>
+                  </div>
+                  <div class="badge-row">
+                    <span class="badge">Primary action: Submit refinance</span>
+                    <span class="badge">Primary tool: Submit refinance</span>
+                    <span class="badge">2 actions</span>
+                    <span class="badge">2 tools</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="body">
+            <div class="panel-title-row">
+              <div>
+                <h2>Asset Governance</h2>
+                <div style="color:var(--muted);font-size:12px;margin-top:4px;">Collapsed inquiry area lives here.</div>
+              </div>
+              <div class="status">
+                <div class="ver">1.0.3</div>
+                <div class="pill green" style="margin-top:4px;">active</div>
+                <div class="meta">Draft -</div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Contract explorer</h3>
+              <div class="explorer">
+                <div class="box">
+                  <div class="head" style="color:var(--blue);">Required fields</div>
+                  <div class="content">flow_id, flow_name, purpose, business_event, user_task_refs, explanation</div>
+                </div>
+                <div class="box">
+                  <div class="head" style="color:var(--green);">Optional fields</div>
+                  <div class="content">inputs, outputs</div>
+                </div>
+                <div class="box">
+                  <div class="head" style="color:var(--amber);">Runtime semantics</div>
+                  <div class="content">selected_by purpose / triggered_by business_event / execution_target process_or_plan</div>
+                </div>
+                <div class="box">
+                  <div class="head" style="color:var(--red);">Allowed relations</div>
+                  <div class="content">implemented_by_process, governed_by_rule, decomposes_to_user_task, uses_concept, uses_entity</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Governance and detail</h3>
+              <div class="stack-note">
+                <div style="font-size:12px;font-weight:800;margin-bottom:6px;">Runtime notes</div>
+                <div style="color:var(--muted);font-size:12px;line-height:1.45;">Ask selects by purpose. Business event routes execution. The launcher stays on the active flow version until review and deployment.</div>
+              </div>
+              <div class="stack-note" style="margin-top:10px;">
+                <div style="font-size:12px;font-weight:800;margin-bottom:6px;">Selected user task</div>
+                <div style="display:grid;gap:8px;font-size:12px;">
+                  <div><span style="color:var(--muted);font-weight:700;">Task ID</span><div>user_task.loan.refinance.options</div></div>
+                  <div><span style="color:var(--muted);font-weight:700;">Name</span><div>Review refinance options</div></div>
+                  <div><span style="color:var(--muted);font-weight:700;">User actions</span><div>2 actions</div></div>
+                  <div><span style="color:var(--muted);font-weight:700;">Tools</span><div>2 tools</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Actions</h3>
+              <div class="btns">
+                <button class="btn">Validate</button>
+                <button class="btn primary">Save draft</button>
+                <button class="btn">Reset sample</button>
+                <button class="btn">View Diff</button>
+                <button class="btn">Deploy</button>
+                <button class="btn">Discard</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="grid-column: 1 / -1; position: relative; overflow: hidden;">
+          <div class="body">
+            <div class="collapsed-hint">The left inquiry block is not a separate panel anymore. It collapses into Asset Governance.</div>
+            <div style="display:grid;grid-template-columns:1.4fr .8fr;gap:16px;">
+              <div class="section">
+                <h3>Navigation and flow path</h3>
+                <div class="path" style="margin-top: 8px;">
+                  <div class="step" style="background:var(--blue-soft);">Launcher</div>
+                  <div class="arrow">→</div>
+                  <div class="step">Contract explorer</div>
+                  <div class="arrow">→</div>
+                  <div class="step">Flow document</div>
+                  <div class="arrow">→</div>
+                  <div class="step">Task popup</div>
+                  <div class="arrow">→</div>
+                  <div class="step">Save draft</div>
+                </div>
+              </div>
+              <div class="section">
+                <h3>Legend</h3>
+                <div style="display:grid;gap:8px;font-size:12px;">
+                  <div><span class="pill blue">Blue</span> Flow document</div>
+                  <div><span class="pill green">Green</span> Contract explorer</div>
+                  <div><span class="pill amber">Amber</span> Runtime semantics</div>
+                  <div><span class="pill red">Red</span> Allowed relations</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal">
+          <h3>Edit user task</h3>
+          <div class="mini">Popup editor for the selected task. Only contract fields are editable.</div>
+          <div class="grid">
+            <div class="field"><div class="k">User task ID</div><div class="v">user_task.loan.refinance.options</div></div>
+            <div class="field"><div class="k">Task</div><div class="v">review refinance options</div></div>
+            <div class="field"><div class="k">Type</div><div class="v">user_task</div></div>
+            <div class="field"><div class="k">Name</div><div class="v">Review refinance options</div></div>
+            <div class="field wide"><div class="k">Description</div><div class="v">Show the available refinance conditions and compare installment outcomes.</div></div>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <div class="title">User actions</div>
+              <div style="display:grid;gap:8px;font-size:12px;">
+                <div class="field"><div class="k">Action ID</div><div class="v">ui.loan.refinance.options</div></div>
+                <div class="field"><div class="k">Type</div><div class="v">front</div></div>
+                <div class="field"><div class="k">Implementation type</div><div class="v">open_panel</div></div>
+                <div class="field"><div class="k">Label</div><div class="v">Review options</div></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="title">Tools</div>
+              <div style="display:grid;gap:8px;font-size:12px;">
+                <div class="field"><div class="k">Tool ID</div><div class="v">tool.loan.conditions.calculate</div></div>
+                <div class="field"><div class="k">Tool type</div><div class="v">backend_tool</div></div>
+                <div class="field"><div class="k">Operation</div><div class="v">calculate_conditions</div></div>
+                <div class="field"><div class="k">Label</div><div class="v">Calculate conditions</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn">Cancel</button>
+            <button class="btn primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

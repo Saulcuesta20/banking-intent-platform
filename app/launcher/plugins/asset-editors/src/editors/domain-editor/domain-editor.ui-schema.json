@@ -1,0 +1,45 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Domain Definition",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/domainId"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/label"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 1,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/description"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 1,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/order"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

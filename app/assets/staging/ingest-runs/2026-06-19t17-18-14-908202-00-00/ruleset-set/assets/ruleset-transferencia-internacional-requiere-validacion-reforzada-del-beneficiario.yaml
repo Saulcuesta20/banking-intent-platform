@@ -1,0 +1,40 @@
+asset_id: ruleset.transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+asset_type: ruleset
+name: Transferencia.internacional.requiere.validacion.reforzada.del.beneficiario Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+  with 1 business rules.
+text: La transferencia internacional requiere validacion reforzada del beneficiario.
+tags:
+- ruleset
+- transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.transferencia_internacional_requiere_validacion_reforzada_del_beneficiario
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.la_transferencia_internacional
+  metadata: {}
+payload:
+  transaction_id: transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+  ruleset_name: Transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+    Ruleset
+  rule_ids:
+  - business_rule.transferencia_internacional_requiere_validacion_reforzada_del_beneficiario
+  conditions:
+  - La transferencia internacional
+  consequences:
+  - validacion reforzada del beneficiario
+  match_strategy: generated
+  canonical_name: Transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+    Ruleset
+  normalized_name: transferencia.internacional.requiere.validacion.reforzada.del.beneficiario
+    ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

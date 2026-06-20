@@ -1,0 +1,58 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "QA Definition",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 1,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/question"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 1,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/answer",
+              "options": {
+                "multi": true
+              }
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/intent"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/source"
+            }
+          ]
+        },
+        {
+          "type": "Group",
+          "label": "Citations",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/citations"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

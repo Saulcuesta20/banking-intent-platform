@@ -1,0 +1,25 @@
+asset_id: user_task.read_loan_status
+asset_type: user_task
+name: Read loan status
+version: 1.0.0
+owner: business_model_kb
+description: Read current loan status and arrears status.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_loan_read_loan_status
+  task: read_loan_status
+  type: manual
+  name: Read Loan Status
+  description: Read the current status of the loan
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Read loan status
+  normalized_name: read loan status
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

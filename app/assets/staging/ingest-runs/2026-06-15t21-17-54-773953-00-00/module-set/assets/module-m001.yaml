@@ -1,0 +1,28 @@
+asset_id: module.m001
+asset_type: module
+name: M001
+version: 1.0.0
+owner: config_kb
+description: Operaciones de apertura, mantenimiento y cierre de cuentas de ahorro.
+text: Operaciones de apertura, mantenimiento y cierre de cuentas de ahorro.
+tags:
+- module
+- configuration
+relations:
+- type: belongs_to_domain
+  target_asset_id: domain.d001
+  metadata: {}
+payload:
+  module_id: M001
+  domain_id: D001
+  name: Account Management
+  purpose: Operaciones de apertura, mantenimiento y cierre de cuentas de ahorro.
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: M001
+  normalized_name: m001
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

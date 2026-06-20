@@ -1,0 +1,104 @@
+asset_id: flow.fl003
+asset_type: flow
+name: Transferir Dinero
+version: 1.0.0
+owner: process_kb
+description: Identificación del cliente, validación del beneficiario y ejecución de
+  la transferencia.
+text: Identificación del cliente, validación del beneficiario y ejecución de la transferencia.
+tags:
+- fl003
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validar_beneficiario_para_transferencia_internacional
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+payload:
+  flow_id: fl003
+  flow_name: Transferir Dinero
+  intent: fl003
+  confidence: 0.75
+  business_event: cliente_inicia_transferencia
+  utterances: []
+  plan: []
+  tasks:
+  - task: identificar_al_cliente
+    type: human
+  - task: validar_beneficiario_transferencia
+    type: human
+  user_tasks:
+  - user_task_id: ut001
+    task: identificar_al_cliente
+    type: human
+    name: Identificar al cliente antes de cualquier operacion financiera
+    description: El agente verifica la identidad del cliente y confirma que la relación
+      está activa antes de iniciar cualquier proceso.
+    tools: []
+    user_actions: []
+  - user_task_id: ut003
+    task: validar_beneficiario_transferencia
+    type: human
+    name: Validar beneficiario para transferencia internacional
+    description: Confirmar la identidad y datos del beneficiario antes de autorizar
+      una transferencia internacional.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Identificación del cliente, validación del beneficiario y ejecución
+    de la transferencia.
+  source: data/raw/README.md;data/raw/banking_flows_additional.txt;data/raw/banking_synonyms_and_glossary_runtime.txt;data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt;data/raw/enterprise_dump_2026/customer_support_tickets.csv;data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md;data/raw/enterprise_dump_2026/glossary_fragment.md;data/raw/enterprise_dump_2026/intranet_transfer_help.html;data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt;data/raw/enterprise_dump_2026/operations_controls_policy.md;data/raw/enterprise_dump_2026/orchestration_planning_notes.md;data/raw/enterprise_dump_2026/policy_controls_memo.md;data/raw/enterprise_dump_2026/process_fragments.json;data/raw/enterprise_dump_2026/service_configuration_notes.md;data/raw/enterprise_dump_2026/systems_catalog_export.json;data/raw/enterprise_operations_manual.md;data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md;data/raw/enterprise_systems_catalog.md;data/raw/manual_operativo_credito.md;data/raw/notes_operativas_cobranza.md;data/raw/policy_controls_addendum.md;data/raw/process_examples_refinance.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/README.md
+    - data/raw/banking_flows_additional.txt
+    - data/raw/banking_synonyms_and_glossary_runtime.txt
+    - data/raw/customer_support_tickets_mini.csv
+    - data/raw/enterprise_dump_2026/00_readme.txt
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md
+    - data/raw/enterprise_dump_2026/glossary_fragment.md
+    - data/raw/enterprise_dump_2026/intranet_transfer_help.html
+    - data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt
+    - data/raw/enterprise_dump_2026/operations_controls_policy.md
+    - data/raw/enterprise_dump_2026/orchestration_planning_notes.md
+    - data/raw/enterprise_dump_2026/policy_controls_memo.md
+    - data/raw/enterprise_dump_2026/process_fragments.json
+    - data/raw/enterprise_dump_2026/service_configuration_notes.md
+    - data/raw/enterprise_dump_2026/systems_catalog_export.json
+    - data/raw/enterprise_operations_manual.md
+    - data/raw/enterprise_policy_and_controls.md
+    - data/raw/enterprise_support_wiki.md
+    - data/raw/enterprise_systems_catalog.md
+    - data/raw/manual_operativo_credito.md
+    - data/raw/notes_operativas_cobranza.md
+    - data/raw/policy_controls_addendum.md
+    - data/raw/process_examples_refinance.md
+    purpose: Ejecutar una transferencia de fondos entre cuentas del cliente o a terceros.
+  purpose: Ejecutar una transferencia de fondos entre cuentas del cliente o a terceros.
+  transaction_id: fl003
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Identificación del cliente, validación del beneficiario y ejecución
+      de la transferencia.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Identificación del cliente, validación del beneficiario y ejecución
+      de la transferencia.
+  match_strategy: generated
+  canonical_name: Transferir Dinero
+  normalized_name: transferir dinero
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

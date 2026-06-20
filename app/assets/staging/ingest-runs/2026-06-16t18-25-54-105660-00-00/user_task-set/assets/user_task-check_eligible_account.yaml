@@ -1,0 +1,25 @@
+asset_id: user_task.check_eligible_account
+asset_type: user_task
+name: Check eligible account
+version: 1.0.0
+owner: business_model_kb
+description: agent_checks_which_account_types_are_eligible_for_automatic_debit
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_003
+  task: check_eligible_account
+  type: verification
+  name: check_eligible_account
+  description: agent_checks_which_account_types_are_eligible_for_automatic_debit
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check eligible account
+  normalized_name: check eligible account
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

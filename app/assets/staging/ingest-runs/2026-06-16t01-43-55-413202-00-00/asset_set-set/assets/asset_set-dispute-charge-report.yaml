@@ -1,0 +1,26 @@
+asset_id: asset_set.dispute.charge.report
+asset_type: asset_set
+name: Dispute.charge.report Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for dispute.charge.report.
+text: ''
+tags:
+- asset_set
+- dispute.charge.report
+relations: []
+payload:
+  transaction_id: dispute.charge.report
+  asset_ids:
+  - flow.dispute.charge.report
+  asset_types: []
+  primary_asset_type: asset
+  members:
+  - asset_id: flow.dispute.charge.report
+  match_strategy: generated
+  canonical_name: Dispute.charge.report Asset Set
+  normalized_name: dispute.charge.report asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

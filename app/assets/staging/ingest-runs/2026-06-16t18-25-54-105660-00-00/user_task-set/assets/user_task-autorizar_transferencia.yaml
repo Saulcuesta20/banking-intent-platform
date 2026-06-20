@@ -1,0 +1,29 @@
+asset_id: user_task.autorizar_transferencia
+asset_type: user_task
+name: Autorizar transferencia
+version: 1.0.0
+owner: business_model_kb
+description: El cliente autoriza la transferencia de fondos.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: authorize_transfer
+  task: autorizar_transferencia_de_desembolso
+  type: autorización
+  name: Autorizar transferencia
+  description: El cliente autoriza la transferencia de fondos.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente autoriza la transferencia de fondos.
+  match_strategy: generated
+  canonical_name: Autorizar transferencia
+  normalized_name: autorizar transferencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,81 @@
+asset_id: asset_set.complaint.intake
+asset_type: asset_set
+name: Complaint.intake Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for complaint.intake.
+text: 'Complaint intake
+
+  Complaint intake
+
+  Claim Classification
+
+  Claim Creation
+
+  Claim Owner Assignment
+
+  Customer Notification
+
+  Evidence Collection'
+tags:
+- asset_set
+- complaint.intake
+relations:
+- type: groups_flow
+  target_asset_id: flow.complaint.intake
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.complaint.intake
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.claim_classification
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.claim_creation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.claim_owner_assignment
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.customer_notification
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.evidence_collection
+  metadata: {}
+payload:
+  transaction_id: complaint.intake
+  asset_ids:
+  - flow.complaint.intake
+  - process.complaint.intake
+  - user_task.claim_classification
+  - user_task.claim_creation
+  - user_task.claim_owner_assignment
+  - user_task.customer_notification
+  - user_task.evidence_collection
+  asset_types:
+  - flow
+  - process
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.complaint.intake
+    asset_type: flow
+  - asset_id: process.complaint.intake
+    asset_type: process
+  - asset_id: user_task.claim_classification
+    asset_type: user_task
+  - asset_id: user_task.claim_creation
+    asset_type: user_task
+  - asset_id: user_task.claim_owner_assignment
+    asset_type: user_task
+  - asset_id: user_task.customer_notification
+    asset_type: user_task
+  - asset_id: user_task.evidence_collection
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Complaint.intake Asset Set
+  normalized_name: complaint.intake asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

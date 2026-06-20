@@ -1,0 +1,73 @@
+asset_id: asset_set.new.account.debit
+asset_type: asset_set
+name: New.account.debit Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for new.account.debit.
+text: 'apertura de cuenta
+
+  cliente
+
+  Apertura de cuenta y contratación de débito automático
+
+  Configuración de débito automático
+
+  Firma de contrato
+
+  Registro de datos personales'
+tags:
+- asset_set
+- new.account.debit
+relations:
+- type: groups_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.new.account.debit
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.configuraci_n_de_d_bito_autom_tico
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.firma_de_contrato
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.registro_de_datos_personales
+  metadata: {}
+payload:
+  transaction_id: new.account.debit
+  asset_ids:
+  - entity.apertura_de_cuenta
+  - entity.customer
+  - flow.new.account.debit
+  - user_task.configuraci_n_de_d_bito_autom_tico
+  - user_task.firma_de_contrato
+  - user_task.registro_de_datos_personales
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.apertura_de_cuenta
+    asset_type: entity
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.new.account.debit
+    asset_type: flow
+  - asset_id: user_task.configuraci_n_de_d_bito_autom_tico
+    asset_type: user_task
+  - asset_id: user_task.firma_de_contrato
+    asset_type: user_task
+  - asset_id: user_task.registro_de_datos_personales
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: New.account.debit Asset Set
+  normalized_name: new.account.debit asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

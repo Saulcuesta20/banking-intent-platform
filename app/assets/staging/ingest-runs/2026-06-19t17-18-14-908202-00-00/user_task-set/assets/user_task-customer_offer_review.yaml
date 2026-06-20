@@ -1,0 +1,25 @@
+asset_id: user_task.customer_offer_review
+asset_type: user_task
+name: Customer Offer Review
+version: 1.0.0
+owner: business_model_kb
+description: Customer reviews and signs the refinance offer
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_3
+  task: review_and_sign_offer
+  type: approval
+  name: Customer Offer Review
+  description: Customer reviews and signs the refinance offer
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Offer Review
+  normalized_name: customer offer review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

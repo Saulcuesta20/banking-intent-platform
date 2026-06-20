@@ -1,0 +1,25 @@
+asset_id: user_task.approve_business_case
+asset_type: user_task
+name: approve_business_case
+version: 1.0.0
+owner: business_model_kb
+description: ''
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: approve_business_case
+  task: approve_business_case
+  type: unspecified
+  name: approve_business_case
+  description: ''
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: approve_business_case
+  normalized_name: approve business case
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

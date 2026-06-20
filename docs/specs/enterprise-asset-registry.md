@@ -134,7 +134,11 @@ Only the owner KB can approve or change an asset. Other KBs may reference it by
 | `business_event` | `business_model_kb` | Yes | No | No | Domain signal emitted/projected by flows/processes. |
 | `tool` | `business_model_kb` | Yes | Consult only | Yes | Adapter-backed capability invoked by backend tools. |
 | `document` | `document_kb` | Yes | No | No | Evidence and source context. |
-| `ontology` | `business_model_kb` | Yes | No | No | Formal relationship semantics and validation. |
+| `ontology` | `business_model_kb` | Yes | No | No | Legacy technical alias for `entity`. |
+
+Vector storage is reserved for approved `qa` and source `document` assets. All
+other asset types use the repository and, where needed, graph/document or
+relational projections.
 
 `rule` and `business_rule` mean the same thing in this platform. Use
 `business_rule` as the canonical asset type.

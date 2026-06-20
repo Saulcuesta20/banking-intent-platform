@@ -1,0 +1,24 @@
+asset_id: entity.documentos_del_cliente
+asset_type: entity
+name: documentos del cliente
+version: 1.0.0
+owner: business_model_kb
+description: Archivos requeridos para onboarding, préstamo o revisión
+text: Archivos requeridos para onboarding, préstamo o revisión
+tags: []
+relations: []
+payload:
+  aliases: []
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: documentos del cliente
+  match_strategy: generated
+  canonical_name: documentos del cliente
+  normalized_name: documentos del cliente
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,37 @@
+asset_id: module.product-service-config
+asset_type: module
+name: Productos y Servicios
+description: Configuracion de comportamiento de productos y servicios.
+tags:
+- master-data
+- product-service-config
+- launcher
+relations:
+- type: belongs_to_domain
+  target_asset_id: domain.master-data
+payload:
+  moduleId: product-service-config
+  label: Productos y Servicios
+  description: Configuracion de comportamiento de productos y servicios.
+  icon: product
+  aliases:
+  - productos
+  - servicios
+  - products
+  - services
+  menus:
+  - id: product-config
+    label: Configurar producto
+    path: /master-data/product-service-config/product-config
+  topMenus:
+  - id: queries
+    label: Consultas
+  - id: operations
+    label: Operaciones
+  - id: configuration
+    label: Configuracion
+  - id: reports
+    label: Reportes
+  - id: monitoring
+    label: Monitoreo
+  domainId: master-data

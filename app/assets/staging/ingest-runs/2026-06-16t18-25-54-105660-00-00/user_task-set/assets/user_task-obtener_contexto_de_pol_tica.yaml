@@ -1,0 +1,25 @@
+asset_id: user_task.obtener_contexto_de_pol_tica
+asset_type: user_task
+name: Obtener contexto de política
+version: 1.0.0
+owner: business_model_kb
+description: Obtiene el contexto de política de riesgo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_obtener_contexto_politica
+  task: obtener_contexto_politica
+  type: system
+  name: Obtener contexto de política
+  description: Obtiene el contexto de política de riesgo.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Obtener contexto de política
+  normalized_name: obtener contexto de política
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

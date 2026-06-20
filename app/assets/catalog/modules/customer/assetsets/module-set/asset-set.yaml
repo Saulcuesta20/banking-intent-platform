@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: customer-module-set
+  name: Clientes Module Set
+  version: 1.0.0
+  domain: master-data
+  module: customer
+  description: Versioned module deployment set for customer.
+  tags:
+  - master-data
+  - customer
+  - module
+spec:
+  assetType: module
+  assets:
+  - assets/module-customer.yaml

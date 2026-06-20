@@ -1,0 +1,29 @@
+asset_id: user_task.explicaci_n_de_opciones
+asset_type: user_task
+name: Explicación de opciones
+version: 1.0.0
+owner: business_model_kb
+description: Explicar al cliente las opciones de refinanciamiento disponibles.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_explicar_opciones
+  task: explicar_opciones_de_refinanciamiento
+  type: manual
+  name: Explicación de opciones
+  description: Explicar al cliente las opciones de refinanciamiento disponibles.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Explicar al cliente las opciones de refinanciamiento disponibles.
+  match_strategy: generated
+  canonical_name: Explicación de opciones
+  normalized_name: explicación de opciones
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -97,11 +97,11 @@ export function RightContextPanel({
           <span>Acciones</span>
         </div>
         <div className="action-list">
-          <Button variant="outline" size="sm" disabled={!selectedFlow?.lowdefy_url} onClick={onOpenForm}>
+          <Button variant="outline" size="sm" disabled={!selectedFlow} onClick={onOpenForm}>
             <PlayCircle size={16} />
             Iniciar
           </Button>
-          <Button variant="outline" size="sm" disabled={!selectedFlow?.lowdefy_url} onClick={onOpenForm}>
+          <Button variant="outline" size="sm" disabled={!selectedFlow} onClick={onOpenForm}>
             <ShieldCheck size={16} />
             Confirmar
           </Button>

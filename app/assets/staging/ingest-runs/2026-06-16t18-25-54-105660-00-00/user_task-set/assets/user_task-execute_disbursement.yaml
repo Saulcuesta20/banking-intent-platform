@@ -1,0 +1,29 @@
+asset_id: user_task.execute_disbursement
+asset_type: user_task
+name: Execute Disbursement
+version: 1.0.0
+owner: business_model_kb
+description: Ejecutar el desembolso sobre la cuenta destino.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: execute_disbursement
+  task: ejecutar_el_desembolso_sobre_la_cuenta_destino
+  type: system
+  name: Execute Disbursement
+  description: Ejecutar el desembolso sobre la cuenta destino.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Ejecutar el desembolso sobre la cuenta destino.
+  match_strategy: generated
+  canonical_name: Execute Disbursement
+  normalized_name: execute disbursement
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

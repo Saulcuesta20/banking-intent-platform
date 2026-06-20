@@ -1,0 +1,33 @@
+asset_id: user_task.crear_cuenta
+asset_type: user_task
+name: Crear cuenta
+version: 1.0.0
+owner: business_model_kb
+description: Crear la cuenta de ahorro en el sistema core
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: savings_create_account
+  task: crear_cuenta_en_sistema_core
+  type: execution
+  name: Crear cuenta
+  description: Crear la cuenta de ahorro en el sistema core
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Crear cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Crear la cuenta de ahorro en el sistema core
+  match_strategy: generated
+  canonical_name: Crear cuenta
+  normalized_name: crear cuenta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

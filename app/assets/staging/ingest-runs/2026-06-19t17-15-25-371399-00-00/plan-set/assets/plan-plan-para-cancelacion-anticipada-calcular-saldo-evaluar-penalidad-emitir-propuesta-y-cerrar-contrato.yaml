@@ -1,0 +1,26 @@
+asset_id: plan.plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+asset_type: plan
+name: Plan cancelacion anticipada
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para cancelacion anticipada: calcular saldo, evaluar penalidad,
+  emitir propuesta y cerrar contrato.'
+text: 'Plan para cancelacion anticipada: calcular saldo, evaluar penalidad, emitir
+  propuesta y cerrar contrato.'
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: 'Plan para cancelacion anticipada: calcular saldo, evaluar penalidad,
+    emitir propuesta y cerrar contrato.'
+  source_section: Plans
+  transaction_id: plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Plan cancelacion anticipada
+  normalized_name: plan cancelacion anticipada
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

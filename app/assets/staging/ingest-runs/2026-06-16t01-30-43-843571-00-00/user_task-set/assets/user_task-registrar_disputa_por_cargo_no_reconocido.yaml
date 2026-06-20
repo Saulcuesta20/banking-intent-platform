@@ -1,0 +1,25 @@
+asset_id: user_task.registrar_disputa_por_cargo_no_reconocido
+asset_type: user_task
+name: Registrar disputa por cargo no reconocido
+version: 1.0.0
+owner: business_model_kb
+description: Crear un caso de reclamo, capturar evidencia y asignar al equipo de investigación.
+text: Registrar disputa por cargo no reconocido.
+tags: []
+relations: []
+payload:
+  user_task_id: ut006
+  task: registrar_disputa_cargo_no_reconocido
+  type: human
+  name: Registrar disputa por cargo no reconocido
+  description: Registrar disputa por cargo no reconocido.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Registrar disputa por cargo no reconocido
+  normalized_name: registrar disputa por cargo no reconocido
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

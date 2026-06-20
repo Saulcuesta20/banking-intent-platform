@@ -1,0 +1,69 @@
+asset_id: flow.high.value.transfer.control
+asset_type: flow
+name: High Value Transfer Control
+version: 1.0.0
+owner: process_kb
+description: Transfer is held for enhanced due diligence; if screening inconclusive,
+  routed to Compliance Review
+text: Transfer is held for enhanced due diligence; if screening inconclusive, routed
+  to Compliance Review
+tags:
+- monitor.and.approve.high.risk.international.transfers
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.enhanced_due_diligence_review
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.compliance_routing
+  metadata: {}
+payload:
+  flow_id: high.value.transfer.control
+  flow_name: High Value Transfer Control
+  intent: monitor.and.approve.high.risk.international.transfers
+  confidence: 0.75
+  business_event: International transfer above USD 50,000 is initiated
+  utterances: []
+  plan: []
+  tasks:
+  - task: perform_enhanced_due_diligence_review_on_high_value_transfer
+    type: review
+  - task: route_case_to_compliance_review_if_screening_is_inconclusive
+    type: escalation
+  user_tasks:
+  - user_task_id: enhanced_due_diligence_review
+    task: perform_enhanced_due_diligence_review_on_high_value_transfer
+    type: review
+    name: Enhanced Due Diligence Review
+    description: Review transfer record including source account, beneficiary identity,
+      destination country, amount, currency, and purpose to ensure compliance.
+    tools: []
+    user_actions: []
+  - user_task_id: compliance_routing
+    task: route_case_to_compliance_review_if_screening_is_inconclusive
+    type: escalation
+    name: Compliance Routing
+    description: Route transfer case to Compliance Review for further investigation
+      when screening results are inconclusive.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Transfer is held for enhanced due diligence; if screening inconclusive,
+    routed to Compliance Review
+  source: data/raw/enterprise_dump_2026/operations_controls_policy.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/operations_controls_policy.md
+    purpose: Ensure compliance and control high-value international transfers
+  purpose: Ensure compliance and control high-value international transfers
+  transaction_id: high.value.transfer.control
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: High Value Transfer Control
+  normalized_name: high value transfer control
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

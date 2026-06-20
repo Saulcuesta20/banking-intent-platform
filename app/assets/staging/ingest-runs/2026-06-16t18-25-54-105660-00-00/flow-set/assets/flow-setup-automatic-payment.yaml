@@ -1,0 +1,105 @@
+asset_id: flow.setup.automatic.payment
+asset_type: flow
+name: Configurar Pago Automático
+version: 1.0.0
+owner: process_kb
+description: Proceso para autorizar débitos automáticos desde una cuenta para pagos
+  recurrentes.
+text: Proceso para autorizar débitos automáticos desde una cuenta para pagos recurrentes.
+tags:
+- el.cliente.desea.configurar.un.pago.automatico.para.no.olvidar.fechas.de.vencimiento
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.seleccionar_servicio
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.dar_consentimiento
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.configurar_monto
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirmar_configuraci_n
+  metadata: {}
+payload:
+  flow_id: setup.automatic.payment
+  flow_name: Configurar Pago Automático
+  intent: el.cliente.desea.configurar.un.pago.automatico.para.no.olvidar.fechas.de.vencimiento
+  confidence: 0.75
+  business_event: Alta de domiciliación de pago
+  utterances: []
+  plan: []
+  tasks:
+  - task: seleccionar_servicio_a_domiciliar
+    type: selección
+  - task: dar_consentimiento_para_d_bito_autom_tico
+    type: autorización
+  - task: configurar_monto_y_frecuencia
+    type: configuración
+  - task: confirmar_configuraci_n_de_pago_autom_tico
+    type: confirmación
+  user_tasks:
+  - user_task_id: select_service
+    task: seleccionar_servicio_a_domiciliar
+    type: selección
+    name: Seleccionar servicio
+    description: El cliente elige el servicio o préstamo para el pago automático.
+    tools: []
+    user_actions: []
+  - user_task_id: provide_consent
+    task: dar_consentimiento_para_d_bito_autom_tico
+    type: autorización
+    name: Dar consentimiento
+    description: El cliente autoriza el débito automático desde su cuenta.
+    tools: []
+    user_actions: []
+  - user_task_id: set_amount
+    task: configurar_monto_y_frecuencia
+    type: configuración
+    name: Configurar monto
+    description: El cliente define el monto fijo o variable y la periodicidad del
+      pago.
+    tools: []
+    user_actions: []
+  - user_task_id: confirm_setup
+    task: confirmar_configuraci_n_de_pago_autom_tico
+    type: confirmación
+    name: Confirmar configuración
+    description: El cliente revisa y confirma la domiciliación.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para autorizar débitos automáticos desde una cuenta para pagos
+    recurrentes.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-5
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-5
+    purpose: Automatizar pagos de servicios o préstamos para evitar retrasos.
+  purpose: Automatizar pagos de servicios o préstamos para evitar retrasos.
+  transaction_id: setup.automatic.payment
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Configurar Pago Automático
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso para autorizar débitos automáticos desde una cuenta para pagos
+      recurrentes.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso para autorizar débitos automáticos desde una cuenta para pagos
+      recurrentes.
+  match_strategy: generated
+  canonical_name: Configurar Pago Automático
+  normalized_name: configurar pago automático
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

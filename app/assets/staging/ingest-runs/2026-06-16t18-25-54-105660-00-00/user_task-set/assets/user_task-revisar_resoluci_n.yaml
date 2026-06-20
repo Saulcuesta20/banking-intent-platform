@@ -1,0 +1,29 @@
+asset_id: user_task.revisar_resoluci_n
+asset_type: user_task
+name: Revisar resolución
+version: 1.0.0
+owner: business_model_kb
+description: El cliente revisa la decisión final sobre su disputa.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: review_resolution
+  task: revisar_resoluci_n_de_la_disputa
+  type: consulta
+  name: Revisar resolución
+  description: El cliente revisa la decisión final sobre su disputa.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente revisa la decisión final sobre su disputa.
+  match_strategy: generated
+  canonical_name: Revisar resolución
+  normalized_name: revisar resolución
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

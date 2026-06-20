@@ -1,0 +1,111 @@
+asset_id: flow.savings.account.open
+asset_type: flow
+name: Abrir Cuenta de Ahorro
+version: 1.0.0
+owner: process_kb
+description: Proceso de onboarding digital para crear una cuenta de ahorro, incluyendo
+  validación de identidad y documentos.
+text: Proceso de onboarding digital para crear una cuenta de ahorro, incluyendo validación
+  de identidad y documentos.
+tags:
+- savings_account.open
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identity_verification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.subir_documentos
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.aceptar_t_rminos
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirmar_cuenta
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.cuenta_de_ahorro
+  metadata: {}
+payload:
+  flow_id: savings_account.open
+  flow_name: Abrir Cuenta de Ahorro
+  intent: savings_account.open
+  confidence: 0.75
+  business_event: Apertura de cuenta de ahorro
+  utterances: []
+  plan: []
+  tasks:
+  - task: verify_customer_identity
+    type: verification
+  - task: subir_documentos_de_apertura
+    type: carga
+  - task: aceptar_t_rminos_y_condiciones
+    type: consentimiento
+  - task: confirmar_creaci_n_de_cuenta
+    type: confirmación
+  user_tasks:
+  - user_task_id: verify_identity
+    task: verify_customer_identity
+    type: verification
+    name: Identity Verification
+    description: Service desk verifies the customer's identity using provided documents.
+    tools: []
+    user_actions: []
+  - user_task_id: upload_documents
+    task: subir_documentos_de_apertura
+    type: carga
+    name: Subir documentos
+    description: El cliente sube comprobante de domicilio y otros documentos requeridos.
+    tools: []
+    user_actions: []
+  - user_task_id: accept_terms
+    task: aceptar_t_rminos_y_condiciones
+    type: consentimiento
+    name: Aceptar términos
+    description: El cliente acepta los términos de la cuenta de ahorro.
+    tools: []
+    user_actions: []
+  - user_task_id: confirm_account
+    task: confirmar_creaci_n_de_cuenta
+    type: confirmación
+    name: Confirmar cuenta
+    description: El cliente confirma los datos y finaliza la apertura.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de onboarding digital para crear una cuenta de ahorro, incluyendo
+    validación de identidad y documentos.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-5
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-5
+    purpose: Registrar un nuevo cliente y habilitar una cuenta de ahorro.
+  purpose: Registrar un nuevo cliente y habilitar una cuenta de ahorro.
+  transaction_id: savings.account.open
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Abrir Cuenta de Ahorro
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso de onboarding digital para crear una cuenta de ahorro, incluyendo
+      validación de identidad y documentos.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso de onboarding digital para crear una cuenta de ahorro, incluyendo
+      validación de identidad y documentos.
+  match_strategy: generated
+  canonical_name: Abrir Cuenta de Ahorro
+  normalized_name: abrir cuenta de ahorro
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

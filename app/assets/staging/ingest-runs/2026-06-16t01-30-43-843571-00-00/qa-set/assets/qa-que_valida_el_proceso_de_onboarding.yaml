@@ -1,0 +1,21 @@
+asset_id: qa.que_valida_el_proceso_de_onboarding
+asset_type: qa
+name: Que valida el proceso de onboarding?
+version: 1.0.0
+owner: qa_kb
+description: Que valida el proceso de onboarding?
+text: Que valida el proceso de onboarding?
+tags:
+- qa
+relations: []
+payload:
+  question: Que valida el proceso de onboarding?
+  transaction_id: que.valida.el.proceso.de.onboarding
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Que valida el proceso de onboarding?
+  normalized_name: que valida el proceso de onboarding?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

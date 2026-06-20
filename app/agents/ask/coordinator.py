@@ -21,6 +21,7 @@ class AskCoordinatorAgent(Agent):
             agent_id="agent.ask.coordinator",
             name="Ask Coordinator Agent",
             role="Coordinate question understanding, retrieval, routing, planning, answer building, approval, and audit.",
+            agent_class="coordinator",
             kind="coordinator",
             domain="ask",
             goals=[
@@ -28,6 +29,7 @@ class AskCoordinatorAgent(Agent):
                 "Route Q&A, flow, process, explanation, execution, clarification, and multiple-intention asks.",
             ],
             skills=["question_understanding", "rag_retrieval", "goal_routing", "planning", "answer_projection"],
+            tool_ids=[],
             graph_name="langgraph_ask",
             state_schema="AskAgentState",
             policy=AgentPolicy(requires_human_review=False),

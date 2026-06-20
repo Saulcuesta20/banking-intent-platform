@@ -1,0 +1,84 @@
+asset_id: business_rule.automatic_payment_account_requirement
+asset_type: business_rule
+name: Automatic payment account requirement
+version: 1.0.0
+owner: rules_kb
+description: A recurring loan payment can only be configured from an eligible savings
+  account.
+text: 'A recurring loan payment can only be configured from an eligible savings account.
+
+  If the customer does not have an eligible account, the agent must explain the
+
+  requirement and offer the account opening journey before enabling automatic
+
+  debit. The customer must accept terms and choose a payment day.
+
+
+  Control owner: Loan Servicing.
+
+  Systems mentioned: Account Eligibility Service, Loan Servicing Platform.
+
+  Related customer phrases: "necesito abrir cuenta para pago automatico", "quiero
+
+  pagar automaticamente mi prestamo".'
+tags:
+- business_rule
+relations:
+- type: applies_to_flow
+  target_asset_id: flow.loan.payment.registration
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  source_section: Automatic payment account requirement
+  rule_text: 'A recurring loan payment can only be configured from an eligible savings
+    account.
+
+    If the customer does not have an eligible account, the agent must explain the
+
+    requirement and offer the account opening journey before enabling automatic
+
+    debit. The customer must accept terms and choose a payment day.
+
+
+    Control owner: Loan Servicing.
+
+    Systems mentioned: Account Eligibility Service, Loan Servicing Platform.
+
+    Related customer phrases: "necesito abrir cuenta para pago automatico", "quiero
+
+    pagar automaticamente mi prestamo".'
+  conditions:
+  - A recurring loan payment can only be configured from an eligible savings account.
+    If the customer does not have an eligible account, the agent
+  consequences:
+  - 'explain the requirement and offer the account opening journey before enabling
+    automatic debit. The customer must accept terms and choose a payment day. Control
+    owner: Loan Servicing. Systems mentioned: Account Eligibility Service, Loan Servicing
+    Platform. Related customer phrases: "necesito abrir cuenta para pago automatico",
+    "quiero pagar automaticamente mi prestamo"'
+  transaction_id: loan.payment.registration
+  ruleset_name: Automatic payment account requirement Ruleset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Related customer phrases: "necesito abrir cuenta para pago automatico",
+      "quiero'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Related customer phrases: "necesito abrir cuenta para pago automatico",
+      "quiero'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: pagar automaticamente mi prestamo".
+  match_strategy: generated
+  canonical_name: Automatic payment account requirement
+  normalized_name: automatic payment account requirement
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

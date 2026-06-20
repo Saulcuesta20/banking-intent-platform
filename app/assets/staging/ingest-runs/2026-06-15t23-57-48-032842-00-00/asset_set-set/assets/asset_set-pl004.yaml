@@ -1,0 +1,40 @@
+asset_id: asset_set.pl004
+asset_type: asset_set
+name: Pl004 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for pl004.
+text: 'Transfer
+
+  PL004'
+tags:
+- asset_set
+- pl004
+relations:
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.pl004
+  metadata: {}
+payload:
+  transaction_id: pl004
+  asset_ids:
+  - entity.transfer
+  - plan.pl004
+  asset_types:
+  - entity
+  - plan
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: plan.pl004
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Pl004 Asset Set
+  normalized_name: pl004 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

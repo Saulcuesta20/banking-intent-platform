@@ -1,0 +1,65 @@
+asset_id: flow.customer.create
+asset_type: flow
+name: Create Customer
+version: 1.0.0
+owner: process_kb
+description: Create a new customer record in the system.
+text: Create a new customer record in the system.
+tags:
+- add.customer.to.system
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validate_customer_data
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.new_customer_record_creation
+  metadata: {}
+payload:
+  flow_id: customer.create
+  flow_name: Create Customer
+  intent: add.customer.to.system
+  confidence: 0.75
+  business_event: Customer onboarding
+  utterances: []
+  plan: []
+  tasks:
+  - task: validate_customer_data
+    type: automated
+  - task: create_new_customer_record
+    type: creation
+  user_tasks:
+  - user_task_id: validate_customer_data
+    task: validate_customer_data
+    type: automated
+    name: Validate Customer Data
+    description: Check customer details for completeness and correctness.
+    tools: []
+    user_actions: []
+  - user_task_id: create_customer_record
+    task: create_new_customer_record
+    type: creation
+    name: New Customer Record Creation
+    description: Create a new customer record in the system and link identification
+      documents.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Create a new customer record in the system.
+  source: data/raw/banking_flows_additional.txt#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_flows_additional.txt#chunk-2
+    purpose: Register a new customer for banking services.
+  purpose: Register a new customer for banking services.
+  transaction_id: customer.create
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Create Customer
+  normalized_name: create customer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

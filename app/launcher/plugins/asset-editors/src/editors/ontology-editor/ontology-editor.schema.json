@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "entities": {
+      "type": "array",
+      "title": "Entities",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "title": "ID" },
+          "name": { "type": "string", "title": "Name" },
+          "structural_layer": {
+            "type": "string",
+            "title": "Structural Layer",
+            "enum": [
+              "party",
+              "organization",
+              "capability",
+              "portfolio",
+              "offering",
+              "program",
+              "channel",
+              "transaction",
+              "agreement",
+              "event",
+              "metric",
+              "workforce",
+              "workforce_role",
+              "business_resource"
+            ]
+          },
+          "layer": {
+            "type": "string",
+            "title": "Layer (legacy)",
+            "enum": [
+              "party",
+              "organization",
+              "capability",
+              "portfolio",
+              "offering",
+              "program",
+              "channel",
+              "transaction",
+              "agreement",
+              "event",
+              "metric",
+              "workforce",
+              "workforce_role",
+              "business_resource"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "title": "Role",
+            "enum": ["core", "supporting", "risk", "experience", "channel", "insight"]
+          },
+          "subtype": {
+            "type": "string",
+            "title": "Subtype / Stereotype"
+          },
+          "technical_type": {
+            "type": "string",
+            "title": "Technical Type",
+            "enum": ["", "table", "api", "dataset", "service", "system", "document", "tool"]
+          },
+          "semantic_space": {
+            "type": "string",
+            "title": "Semantic Space",
+            "enum": [
+              "business_model",
+              "operations",
+              "risk",
+              "compliance",
+              "technology"
+            ]
+          },
+          "description": { "type": "string", "title": "Description" },
+          "aliases": {
+            "type": "array",
+            "title": "Aliases",
+            "items": { "type": "string" }
+          },
+          "attributes": {
+            "type": "array",
+            "title": "Attributes",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string", "title": "ID" },
+                "name": { "type": "string", "title": "Name" },
+                "type": { "type": "string", "title": "Type" },
+                "required": { "type": "boolean", "title": "Required" },
+                "description": { "type": "string", "title": "Description" }
+              },
+              "required": ["id", "name", "type"]
+            }
+          }
+        },
+        "required": ["id", "name", "structural_layer", "role"]
+      }
+    },
+    "relations": {
+      "type": "array",
+      "title": "Relations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "title": "ID" },
+          "source_entity_id": { "type": "string", "title": "Source Entity" },
+          "target_entity_id": { "type": "string", "title": "Target Entity" },
+          "relation_type": {
+            "type": "string",
+            "title": "Relation Type",
+            "enum": [
+              "related_to",
+              "governed_by",
+              "affects",
+              "increases",
+              "decreases",
+              "represented_by",
+              "represents",
+              "owned_by",
+              "uses",
+              "supports",
+              "enables"
+            ]
+          },
+          "description": { "type": "string", "title": "Description" }
+        },
+        "required": ["id", "source_entity_id", "target_entity_id", "relation_type"]
+      }
+    },
+    "layout": {
+      "type": "object",
+      "title": "Layout",
+      "properties": {
+        "nodes": {
+          "type": "object",
+          "title": "Node Positions",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "x": { "type": "number", "title": "X" },
+              "y": { "type": "number", "title": "Y" },
+              "collapsed": { "type": "boolean", "title": "Collapsed" }
+            },
+            "required": ["x", "y"]
+          }
+        }
+      }
+    }
+  },
+  "required": ["entities", "relations"]
+}

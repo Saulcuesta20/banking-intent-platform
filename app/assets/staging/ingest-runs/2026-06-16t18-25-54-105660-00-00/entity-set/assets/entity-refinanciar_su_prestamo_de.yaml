@@ -1,0 +1,36 @@
+asset_id: entity.refinanciar_su_prestamo_de
+asset_type: entity
+name: refinanciar su prestamo de
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: El cliente titular solicita
+  refinanciar su prestamo de vehiculo.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: section_entities
+  business_layer: channel
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: refinanciar su prestamo de
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Business entity listed in corpus section: El cliente titular solicita
+      refinanciar su prestamo de vehiculo.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Business entity listed in corpus section: El cliente titular solicita
+      refinanciar su prestamo de vehiculo.'
+  match_strategy: generated
+  canonical_name: refinanciar su prestamo de
+  normalized_name: refinanciar su prestamo de
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

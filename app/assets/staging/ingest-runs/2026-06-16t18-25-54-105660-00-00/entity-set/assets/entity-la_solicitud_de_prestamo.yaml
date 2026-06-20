@@ -1,0 +1,31 @@
+asset_id: entity.la_solicitud_de_prestamo
+asset_type: entity
+name: La solicitud de prestamo
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: La solicitud de prestamo contiene
+  plazo, monto y destino.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: section_entities
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La solicitud de prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Business entity listed in corpus section: La solicitud de prestamo
+      contiene plazo, monto y destino.'
+  match_strategy: generated
+  canonical_name: La solicitud de prestamo
+  normalized_name: la solicitud de prestamo
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,31 @@
+asset_id: entity.la_cuenta_de_ahorro
+asset_type: entity
+name: La cuenta de ahorro
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: La cuenta de ahorro base recibe
+  el deposito inicial del onboarding.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: section_entities
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: La cuenta de ahorro
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Business entity listed in corpus section: La cuenta de ahorro base
+      recibe el deposito inicial del onboarding.'
+  match_strategy: generated
+  canonical_name: La cuenta de ahorro
+  normalized_name: la cuenta de ahorro
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,19 @@
+asset_id: process.loan.payment
+asset_type: process
+name: Pago de prestamo
+description: quiero pagar mi prestamo hoy
+tags:
+- lending
+- loan
+- process
+relations:
+- type: implements_flow
+  target_asset_id: flow.loan.payment
+payload:
+  process_id: loan.payment
+  process_name: Pago de prestamo
+  domain: lending
+  module_id: loan
+  business_event: loan.payment.requested
+  user_tasks:
+  - capture payment

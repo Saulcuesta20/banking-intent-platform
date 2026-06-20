@@ -1,0 +1,25 @@
+asset_id: user_task.explain_auto_debit_requirements
+asset_type: user_task
+name: explain_auto_debit_requirements
+version: 1.0.0
+owner: business_model_kb
+description: agent_explains_the_requirements_for_setting_up_automatic_debit
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_004
+  task: explain_auto_debit_requirements
+  type: information
+  name: explain_auto_debit_requirements
+  description: agent_explains_the_requirements_for_setting_up_automatic_debit
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: explain_auto_debit_requirements
+  normalized_name: explain auto debit requirements
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

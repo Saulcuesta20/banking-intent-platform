@@ -1,0 +1,31 @@
+asset_id: asset_set.como.creo.un.cliente.nuevo
+asset_type: asset_set
+name: Como.creo.un.cliente.nuevo Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for como.creo.un.cliente.nuevo.
+text: Como creo un cliente nuevo?
+tags:
+- asset_set
+- como.creo.un.cliente.nuevo
+relations:
+- type: groups_qa
+  target_asset_id: qa.como_creo_un_cliente_nuevo
+  metadata: {}
+payload:
+  transaction_id: como.creo.un.cliente.nuevo
+  asset_ids:
+  - qa.como_creo_un_cliente_nuevo
+  asset_types:
+  - qa
+  primary_asset_type: qa
+  members:
+  - asset_id: qa.como_creo_un_cliente_nuevo
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Como.creo.un.cliente.nuevo Asset Set
+  normalized_name: como.creo.un.cliente.nuevo asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

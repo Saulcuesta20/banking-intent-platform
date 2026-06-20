@@ -1,0 +1,57 @@
+asset_id: asset_set.loan.disbursement
+asset_type: asset_set
+name: Loan.disbursement Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.disbursement.
+text: 'desembolso
+
+  prestamo
+
+  El tesorero comenta: quiero realizar el desembolso del prestamo aprobado
+
+  Process desembolso verifica aprobacion, confirma cuenta destino'
+tags:
+- asset_set
+- loan.disbursement
+relations:
+- type: groups_entity
+  target_asset_id: entity.desembolso
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.loan.disbursement
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.loan.disbursement
+  metadata: {}
+payload:
+  transaction_id: loan.disbursement
+  asset_ids:
+  - entity.desembolso
+  - entity.loan
+  - flow.loan.disbursement
+  - process.loan.disbursement
+  asset_types:
+  - entity
+  - flow
+  - process
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.desembolso
+    asset_type: entity
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: flow.loan.disbursement
+    asset_type: flow
+  - asset_id: process.loan.disbursement
+    asset_type: process
+  match_strategy: generated
+  canonical_name: Loan.disbursement Asset Set
+  normalized_name: loan.disbursement asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

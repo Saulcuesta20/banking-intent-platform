@@ -1,0 +1,48 @@
+asset_id: flow.generacion.estado.cuenta
+asset_type: flow
+name: Generación de estado de cuenta mensual y envío por mail
+version: 1.0.0
+owner: process_kb
+description: Process for generating and sending periodic account statements
+text: Process for generating and sending periodic account statements
+tags:
+- inform.clients.of.their.financial.transactions
+relations:
+- type: uses_entity
+  target_asset_id: entity.estado_de_cuenta
+  metadata: {}
+payload:
+  flow_id: generacion.estado.cuenta
+  flow_name: Generación de estado de cuenta mensual y envío por mail
+  intent: inform.clients.of.their.financial.transactions
+  confidence: 0.75
+  business_event: Monthly account statement is generated and sent
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process for generating and sending periodic account statements
+  source: data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra1.txt
+    - data/raw/savings_loans_domain_extra2.txt
+    purpose: Provide clients with summaries of account activity
+  purpose: Provide clients with summaries of account activity
+  transaction_id: generacion.estado.cuenta
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Generación de estado de cuenta mensual y envío por mail
+  match_strategy: generated
+  canonical_name: Generación de estado de cuenta mensual y envío por mail
+  normalized_name: generación de estado de cuenta mensual y envío por mail
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

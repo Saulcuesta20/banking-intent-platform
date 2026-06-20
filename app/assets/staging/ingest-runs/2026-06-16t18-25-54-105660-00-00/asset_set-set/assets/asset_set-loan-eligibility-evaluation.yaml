@@ -1,0 +1,64 @@
+asset_id: asset_set.loan.eligibility.evaluation
+asset_type: asset_set
+name: Loan.eligibility.evaluation Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.eligibility.evaluation.
+text: 'Evaluación de elegibilidad de préstamo
+
+  Aplicación de scoring
+
+  Cálculo de DTI
+
+  Consulta de buró
+
+  Recopilación de documentos'
+tags:
+- asset_set
+- loan.eligibility.evaluation
+relations:
+- type: groups_flow
+  target_asset_id: flow.loan.eligibility.evaluation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.aplicaci_n_de_scoring
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.c_lculo_de_dti
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.consulta_de_bur
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.recopilaci_n_de_documentos
+  metadata: {}
+payload:
+  transaction_id: loan.eligibility.evaluation
+  asset_ids:
+  - flow.loan.eligibility.evaluation
+  - user_task.aplicaci_n_de_scoring
+  - user_task.c_lculo_de_dti
+  - user_task.consulta_de_bur
+  - user_task.recopilaci_n_de_documentos
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.loan.eligibility.evaluation
+    asset_type: flow
+  - asset_id: user_task.aplicaci_n_de_scoring
+    asset_type: user_task
+  - asset_id: user_task.c_lculo_de_dti
+    asset_type: user_task
+  - asset_id: user_task.consulta_de_bur
+    asset_type: user_task
+  - asset_id: user_task.recopilaci_n_de_documentos
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Loan.eligibility.evaluation Asset Set
+  normalized_name: loan.eligibility.evaluation asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

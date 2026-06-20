@@ -1,0 +1,25 @@
+asset_id: user_task.notify_and_record_decision
+asset_type: user_task
+name: Notify and record decision
+version: 1.0.0
+owner: business_model_kb
+description: Notify customer and record decision evidence.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: international_transfer_review_step_7
+  task: notify_customer_and_record_decision_evidence
+  type: manual
+  name: Notify and record decision
+  description: Notify customer and record decision evidence.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Notify and record decision
+  normalized_name: notify and record decision
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

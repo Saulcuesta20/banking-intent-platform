@@ -1,0 +1,27 @@
+asset_id: user_task.dise_ar_la_suite_everyday_banking
+asset_type: user_task
+name: Diseñar la suite Everyday Banking
+version: 1.0.0
+owner: business_model_kb
+description: Definir combinaciones de productos SmartBalance Checking, Horizon Savings
+  y EverydayPlus Debit para cada segmento.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut402
+  task: diseñar_suite_everyday_banking
+  type: human
+  name: Diseñar la suite Everyday Banking
+  description: Definir combinaciones de productos SmartBalance Checking, Horizon Savings
+    y EverydayPlus Debit para cada segmento.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Diseñar la suite Everyday Banking
+  normalized_name: diseñar la suite everyday banking
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

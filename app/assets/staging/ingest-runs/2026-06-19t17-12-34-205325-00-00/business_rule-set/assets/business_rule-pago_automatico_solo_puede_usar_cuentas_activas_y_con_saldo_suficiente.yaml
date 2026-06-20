@@ -1,0 +1,37 @@
+asset_id: business_rule.pago_automatico_solo_puede_usar_cuentas_activas_y_con_saldo_suficiente
+asset_type: business_rule
+name: pago automatico solo puede usar cuentas activas y con saldo suficiente
+version: 1.0.0
+owner: rules_kb
+description: El pago automatico solo puede usar cuentas activas y con saldo suficiente.
+text: El pago automatico solo puede usar cuentas activas y con saldo suficiente.
+tags:
+- business_rule
+relations: []
+payload:
+  rule_text: El pago automatico solo puede usar cuentas activas y con saldo suficiente.
+  source_section: Rules
+  conditions: []
+  consequences:
+  - El pago automatico solo puede usar cuentas activas y con saldo suficiente.
+  transaction_id: pago.automatico.solo.puede.usar.cuentas.activas.y.con.saldo.suficiente
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: pago automatico solo puede usar cuentas activas y con saldo suficiente
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El pago automatico solo puede usar cuentas activas y con saldo suficiente.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El pago automatico solo puede usar cuentas activas y con saldo suficiente.
+  match_strategy: generated
+  canonical_name: pago automatico solo puede usar cuentas activas y con saldo suficiente
+  normalized_name: pago automatico solo puede usar cuentas activas y con saldo suficiente
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

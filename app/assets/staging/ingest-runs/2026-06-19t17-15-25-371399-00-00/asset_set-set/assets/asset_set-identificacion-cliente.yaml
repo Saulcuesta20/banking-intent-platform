@@ -1,0 +1,48 @@
+asset_id: asset_set.identificacion.cliente
+asset_type: asset_set
+name: Identificacion.cliente Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for identificacion.cliente.
+text: 'cliente
+
+  identificacion de cliente
+
+  Identificacion de Cliente'
+tags:
+- asset_set
+- identificacion.cliente
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.identificacion_de_cliente
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.identificacion.cliente
+  metadata: {}
+payload:
+  transaction_id: identificacion.cliente
+  asset_ids:
+  - entity.customer
+  - entity.identificacion_de_cliente
+  - flow.identificacion.cliente
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.identificacion_de_cliente
+    asset_type: entity
+  - asset_id: flow.identificacion.cliente
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Identificacion.cliente Asset Set
+  normalized_name: identificacion.cliente asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.revisar_transacciones
+asset_type: user_task
+name: Revisar transacciones
+version: 1.0.0
+owner: business_model_kb
+description: Revisar movimientos y reconciliar
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: claims_review_transactions
+  task: revisar_transacciones
+  type: analysis
+  name: Revisar transacciones
+  description: Revisar movimientos y reconciliar
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Revisar transacciones
+  normalized_name: revisar transacciones
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

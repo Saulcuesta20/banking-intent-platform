@@ -1,0 +1,25 @@
+asset_id: user_task.check_account
+asset_type: user_task
+name: Check Account
+version: 1.0.0
+owner: business_model_kb
+description: Advisor checks the current state of the customer's account.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: advisor_check_account
+  task: check_current_account_state
+  type: manual
+  name: Check Account
+  description: Advisor checks the current state of the customer's account.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Account
+  normalized_name: check account
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

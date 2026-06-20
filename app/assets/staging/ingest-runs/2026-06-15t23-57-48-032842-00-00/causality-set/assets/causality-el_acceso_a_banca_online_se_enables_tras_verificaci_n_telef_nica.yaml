@@ -1,0 +1,43 @@
+asset_id: causality.el_acceso_a_banca_online_se_enables_tras_verificaci_n_telef_nica
+asset_type: causality
+name: El acceso a banca online se enables tras verificación telefónica
+version: 1.0.0
+owner: causality_kb
+description: '- El acceso a banca online se habilita tras verificación telefónica.'
+text: '- El acceso a banca online se habilita tras verificación telefónica.'
+tags:
+- causality
+- enables
+relations:
+- type: has_effect
+  target_asset_id: entity.tras_verificacion_telefonica
+  metadata: {}
+payload:
+  cause_text: El acceso a banca online se
+  effect_text: tras verificación telefónica
+  relation_kind: enables
+  statement: '- El acceso a banca online se habilita tras verificación telefónica.'
+  sentence: '- El acceso a banca online se habilita tras verificación telefónica.'
+  transaction_id: el.acceso.a.banca.online.se.enables.tras.verificacion.telefonica
+  relation_hints:
+  - type: enables
+    family: causality
+    phrase: enables
+    sentence: El acceso a banca online se enables tras verificación telefónica
+  - type: enables
+    family: causality
+    phrase: habilita
+    sentence: '- El acceso a banca online se habilita tras verificación telefónica.'
+  - type: enables
+    family: causality
+    phrase: habilita
+    sentence: '- El acceso a banca online se habilita tras verificación telefónica.'
+  resolved_cause_asset_id: null
+  resolved_effect_asset_id: entity.tras_verificacion_telefonica
+  match_strategy: generated
+  canonical_name: El acceso a banca online se enables tras verificación telefónica
+  normalized_name: el acceso a banca online se enables tras verificación telefónica
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

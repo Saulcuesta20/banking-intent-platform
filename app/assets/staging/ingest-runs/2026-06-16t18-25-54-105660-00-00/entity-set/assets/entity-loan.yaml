@@ -1,0 +1,43 @@
+asset_id: entity.loan
+asset_type: entity
+name: prestamo
+version: 1.0.0
+owner: business_model_kb
+description: Producto crediticio donde el banco entrega capital y el cliente devuelve
+  capital e intereses en cuotas
+text: 'Producto crediticio donde el banco entrega capital y el cliente devuelve capital
+  e intereses en cuotas
+
+  Sinónimo operativo de préstamo en preguntas de clientes; debe mapearse al concepto
+  formal Loan'
+tags: []
+relations: []
+payload:
+  aliases:
+  - loan
+  - credito
+  - credit
+  - financiamiento
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Producto crediticio donde el banco entrega capital y el cliente devuelve
+      capital e intereses en cuotas
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Producto crediticio donde el banco entrega capital y el cliente devuelve
+      capital e intereses en cuotas
+  match_strategy: generated
+  canonical_name: prestamo
+  normalized_name: prestamo
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

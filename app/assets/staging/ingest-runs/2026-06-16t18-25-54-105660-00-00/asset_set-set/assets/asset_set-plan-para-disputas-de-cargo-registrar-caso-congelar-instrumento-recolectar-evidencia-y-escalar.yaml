@@ -1,0 +1,43 @@
+asset_id: asset_set.plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+asset_type: asset_set
+name: Plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar.
+text: 'Plan disputas de cargo
+
+  Recolectar evidencia'
+tags:
+- asset_set
+- plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+relations:
+- type: groups_plan
+  target_asset_id: plan.plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.recolectar_evidencia
+  metadata: {}
+payload:
+  transaction_id: plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+  asset_ids:
+  - plan.plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+  - user_task.recolectar_evidencia
+  asset_types:
+  - plan
+  - user_task
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+    asset_type: plan
+  - asset_id: user_task.recolectar_evidencia
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+    Asset Set
+  normalized_name: plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

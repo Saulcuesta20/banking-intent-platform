@@ -1,0 +1,105 @@
+asset_id: flow.reactivate.blocked.account
+asset_type: flow
+name: Reactivar Cuenta Bloqueada
+version: 1.0.0
+owner: process_kb
+description: Proceso para desbloquear una cuenta que ha sido suspendida por inactividad,
+  fraude o incumplimiento.
+text: Proceso para desbloquear una cuenta que ha sido suspendida por inactividad,
+  fraude o incumplimiento.
+tags:
+- el.cliente.desea.reactivar.su.cuenta.bloqueada.para.operar.nuevamente
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verificar_identidad
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.solicitar_desbloqueo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.pagar_penalidades
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirmar_reactivaci_n
+  metadata: {}
+payload:
+  flow_id: reactivate.blocked.account
+  flow_name: Reactivar Cuenta Bloqueada
+  intent: el.cliente.desea.reactivar.su.cuenta.bloqueada.para.operar.nuevamente
+  confidence: 0.75
+  business_event: Reactivación de cuenta suspendida
+  utterances: []
+  plan: []
+  tasks:
+  - task: verificar_identidad_para_reactivaci_n
+    type: validación
+  - task: solicitar_desbloqueo_de_cuenta
+    type: solicitud
+  - task: pagar_penalidades_si_aplica
+    type: pago
+  - task: confirmar_reactivaci_n_de_cuenta
+    type: confirmación
+  user_tasks:
+  - user_task_id: verify_identity_reactivation
+    task: verificar_identidad_para_reactivaci_n
+    type: validación
+    name: Verificar identidad
+    description: El cliente se identifica para iniciar el proceso de reactivación.
+    tools: []
+    user_actions: []
+  - user_task_id: request_unblock
+    task: solicitar_desbloqueo_de_cuenta
+    type: solicitud
+    name: Solicitar desbloqueo
+    description: El cliente envía una solicitud formal de desbloqueo.
+    tools: []
+    user_actions: []
+  - user_task_id: pay_penalties_if_applicable
+    task: pagar_penalidades_si_aplica
+    type: pago
+    name: Pagar penalidades
+    description: El cliente paga cualquier cargo por reactivación si es requerido.
+    tools: []
+    user_actions: []
+  - user_task_id: confirm_reactivation
+    task: confirmar_reactivaci_n_de_cuenta
+    type: confirmación
+    name: Confirmar reactivación
+    description: El cliente confirma que la cuenta ha sido reactivada y puede operar.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para desbloquear una cuenta que ha sido suspendida por inactividad,
+    fraude o incumplimiento.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-5
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-5
+    purpose: Restaurar el acceso y funcionalidad de la cuenta del cliente.
+  purpose: Restaurar el acceso y funcionalidad de la cuenta del cliente.
+  transaction_id: reactivate.blocked.account
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Reactivar Cuenta Bloqueada
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso para desbloquear una cuenta que ha sido suspendida por inactividad,
+      fraude o incumplimiento.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso para desbloquear una cuenta que ha sido suspendida por inactividad,
+      fraude o incumplimiento.
+  match_strategy: generated
+  canonical_name: Reactivar Cuenta Bloqueada
+  normalized_name: reactivar cuenta bloqueada
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

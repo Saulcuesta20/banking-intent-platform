@@ -1,0 +1,20 @@
+asset_id: tool.risk_score_read
+asset_type: tool
+name: risk.score.read
+version: 1.0.0
+owner: business_model_kb
+description: El motor risk.score.read consulta score y alertas.
+text: El motor risk.score.read consulta score y alertas.
+tags: []
+relations: []
+payload:
+  description: El motor risk.score.read consulta score y alertas.
+  tool_id: risk.score.read
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: risk.score.read
+  normalized_name: risk.score.read
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

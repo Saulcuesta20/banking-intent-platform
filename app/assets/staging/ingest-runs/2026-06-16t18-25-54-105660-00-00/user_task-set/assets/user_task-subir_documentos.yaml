@@ -1,0 +1,29 @@
+asset_id: user_task.subir_documentos
+asset_type: user_task
+name: Subir documentos
+version: 1.0.0
+owner: business_model_kb
+description: El cliente sube documentos que acrediten ingresos y situación financiera.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: upload_refinance_docs
+  task: subir_documentos_de_ingresos
+  type: carga
+  name: Subir documentos
+  description: El cliente sube documentos que acrediten ingresos y situación financiera.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente sube documentos que acrediten ingresos y situación financiera.
+  match_strategy: generated
+  canonical_name: Subir documentos
+  normalized_name: subir documentos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

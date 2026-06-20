@@ -1,0 +1,26 @@
+asset_id: user_task.calcular_terminos_de_refinanciamiento
+asset_type: user_task
+name: Calcular terminos de refinanciamiento
+version: 1.0.0
+owner: business_model_kb
+description: Ejecutar el cálculo de nuevas condiciones (tasa, plazo, cuota) para una
+  solicitud de refinanciamiento.
+text: Calcular terminos de refinanciamiento.
+tags: []
+relations: []
+payload:
+  user_task_id: ut004
+  task: calcular_terminos_refinanciamiento
+  type: human
+  name: Calcular terminos de refinanciamiento
+  description: Calcular terminos de refinanciamiento.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Calcular terminos de refinanciamiento
+  normalized_name: calcular terminos de refinanciamiento
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

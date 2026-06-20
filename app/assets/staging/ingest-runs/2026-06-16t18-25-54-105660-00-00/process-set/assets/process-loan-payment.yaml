@@ -1,0 +1,58 @@
+asset_id: process.loan.payment
+asset_type: process
+name: Process pago de prestamo consulta saldo, aplica pago
+version: 1.0.0
+owner: process_kb
+description: El proceso de pago de prestamo consulta saldo, aplica pago y actualiza
+  calendario.
+text: El proceso de pago de prestamo consulta saldo, aplica pago y actualiza calendario.
+tags:
+- process_fragment
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.pago_de_prestamo
+  metadata: {}
+payload:
+  steps_text: El proceso de pago de prestamo consulta saldo, aplica pago y actualiza
+    calendario.
+  source_section: Processes
+  transaction_id: loan.payment
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Process pago de prestamo consulta saldo, aplica pago
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Process pago de prestamo consulta saldo, aplica pago
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de pago de prestamo consulta saldo, aplica pago y actualiza
+      calendario.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de pago de prestamo consulta saldo, aplica pago y actualiza
+      calendario.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de pago de prestamo consulta saldo, aplica pago y actualiza
+      calendario.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de pago de prestamo consulta saldo, aplica pago y actualiza
+      calendario.
+  match_strategy: generated
+  canonical_name: Process pago de prestamo consulta saldo, aplica pago
+  normalized_name: process pago de prestamo consulta saldo, aplica pago
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

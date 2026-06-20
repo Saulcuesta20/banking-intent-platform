@@ -1,0 +1,104 @@
+{
+  "type": "object",
+  "properties": {
+    "rule_id": {
+      "type": "string",
+      "title": "Rule ID"
+    },
+    "rule_name": {
+      "type": "string",
+      "title": "Rule Name"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "domain": {
+      "type": "string",
+      "title": "Domain"
+    },
+    "rule_type": {
+      "type": "string",
+      "title": "Rule Type",
+      "enum": ["validation", "constraint", "business_logic", "gate", "transformation"]
+    },
+    "priority": {
+      "type": "integer",
+      "title": "Priority"
+    },
+    "conditions": {
+      "type": "array",
+      "title": "Conditions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "title": "Field"
+          },
+          "operator": {
+            "type": "string",
+            "title": "Operator"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "required": ["field", "operator", "value"]
+      }
+    },
+    "actions": {
+      "type": "array",
+      "title": "Actions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Action Type"
+          },
+          "target": {
+            "type": "string",
+            "title": "Target"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "required": ["type", "target"]
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "title": "Metadata",
+      "properties": {
+        "version": {
+          "type": "string",
+          "title": "Version"
+        },
+        "author": {
+          "type": "string",
+          "title": "Author"
+        },
+        "tags": {
+          "type": "array",
+          "title": "Tags",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": ["rule_id", "rule_name", "description", "domain", "rule_type"]
+}

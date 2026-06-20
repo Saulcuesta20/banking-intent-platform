@@ -1,0 +1,25 @@
+asset_id: user_task.conditions_calculation
+asset_type: user_task
+name: Conditions Calculation
+version: 1.0.0
+owner: business_model_kb
+description: Calculate possible refinance conditions using loan conditions calculator.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_calculate_conditions
+  task: calculate_available_conditions
+  type: automated
+  name: Conditions Calculation
+  description: Calculate possible refinance conditions using loan conditions calculator.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Conditions Calculation
+  normalized_name: conditions calculation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

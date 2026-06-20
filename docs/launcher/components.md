@@ -49,7 +49,7 @@ The main work area changes depending on what the user is doing:
 - flow browser
 - application module view
 - workflow run view
-- Lowdefy form renderer
+- dynamic editor form renderer
 - report dashboard
 - guided flow stepper
 - flow and process detail page
@@ -76,7 +76,7 @@ Shows:
 
 It must be collapsible and resizable.
 
-## Lowdefy Dynamic Form Renderer
+## Dynamic Form Renderer
 
 Renders input-driven tasks derived from `user_task` metadata and plugin manifests.
 
@@ -91,7 +91,7 @@ It should support:
 - binding to backend endpoints
 - plugin-specific declarative screens
 
-Lowdefy is embedded inside the center workspace or a plugin route. It is not the global shell.
+The form renderer is embedded inside the center workspace or a plugin route. It is not the global shell.
 
 ## Chat Workspace
 
@@ -120,7 +120,7 @@ The flow browser should let users:
 - preview the process layout
 - inspect the user task sequence
 - launch an approved flow
-- open the Lowdefy dynamic form when the flow requires user input
+- open the dynamic form when the flow requires user input
 
 ## Registry Loader
 
@@ -175,4 +175,4 @@ The canonical launcher shell is a React + TypeScript app using shadcn/ui.
 
 It lives in `app/launcher/`.
 
-The previous Lowdefy prototype in `launcher-ui/` has been removed. Lowdefy remains an architectural runtime option for dynamic forms and plugin screens, but it is not the shell package.
+The previous standalone prototype in `launcher-ui/` has been removed. The launcher shell remains React/shadcn-based, and specialized form surfaces are rendered inside that shell.

@@ -82,6 +82,45 @@ export function getCatalogAsset(assetId: string, version?: string) {
   return request<CatalogAssetDetail>(`/catalog/assets/${encodeURIComponent(assetId)}${query}`)
 }
 
+export function validateCatalogAssetDocument(payload: {
+  document: Record<string, unknown>
+  expected_asset_id: string
+  expected_asset_type: string
+}) {
+  return request<{ relation_count: number; stores?: string[] }>('/catalog/assets/validate', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  })
+}
+
+export function previewCatalogAssetVersion(
+  assetId: string,
+  payload: {
+    base_version: string
+    environment: string
+    document: Record<string, unknown>
+  },
+) {
+  return request<Record<string, unknown>>(`/catalog/assets/${encodeURIComponent(assetId)}/preview`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  })
+}
+
+export function createCatalogAssetVersion(
+  assetId: string,
+  payload: {
+    base_version: string
+    actor: string
+    document: Record<string, unknown>
+  },
+) {
+  return request<Record<string, unknown>>(`/catalog/assets/${encodeURIComponent(assetId)}/versions`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  })
+}
+
 export function getAssetSets(environment = 'dev') {
   return request<{ asset_sets: AssetSetSummary[] }>(
     `/catalog/asset-sets?environment=${encodeURIComponent(environment)}&status=all`,
@@ -174,7 +213,6 @@ export async function sendChatMessage(message: string, context: ChatContext): Pr
       selectedFlow = {
         ...selectedFlow,
         ...(context.flow ?? {}),
-        lowdefy_url: context.lowdefy_url ?? undefined,
       }
     } catch {
       // Ask remains authoritative even if optional launcher context is unavailable.

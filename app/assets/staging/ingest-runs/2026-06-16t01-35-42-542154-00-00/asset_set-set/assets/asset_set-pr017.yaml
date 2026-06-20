@@ -1,0 +1,40 @@
+asset_id: asset_set.pr017
+asset_type: asset_set
+name: Pr017 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for pr017.
+text: 'Transfer
+
+  PR017'
+tags:
+- asset_set
+- pr017
+relations:
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.pr017
+  metadata: {}
+payload:
+  transaction_id: pr017
+  asset_ids:
+  - entity.transfer
+  - process.pr017
+  asset_types:
+  - entity
+  - process
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: process.pr017
+    asset_type: process
+  match_strategy: generated
+  canonical_name: Pr017 Asset Set
+  normalized_name: pr017 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

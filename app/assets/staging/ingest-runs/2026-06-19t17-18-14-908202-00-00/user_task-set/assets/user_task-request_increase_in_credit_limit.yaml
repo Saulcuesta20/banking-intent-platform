@@ -1,0 +1,25 @@
+asset_id: user_task.request_increase_in_credit_limit
+asset_type: user_task
+name: Request increase in credit limit
+version: 1.0.0
+owner: business_model_kb
+description: Ask for a higher credit limit on a credit card or line of credit
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: solicitar_aumento_limite_credito
+  task: solicitar_aumento_de_l_mite_de_cr_dito
+  type: request
+  name: Request increase in credit limit
+  description: Ask for a higher credit limit on a credit card or line of credit
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Request increase in credit limit
+  normalized_name: request increase in credit limit
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

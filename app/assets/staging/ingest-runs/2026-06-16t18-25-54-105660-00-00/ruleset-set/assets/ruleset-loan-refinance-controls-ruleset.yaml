@@ -1,0 +1,46 @@
+asset_id: ruleset.loan.refinance.controls.ruleset
+asset_type: ruleset
+name: Loan refinance controls Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction loan.refinance.controls.ruleset with 1 business
+  rules.
+text: 'When a customer asks to refinance an active loan, the advisor must verify:
+
+  - current loan status
+
+  - delinquency history
+
+  - payment regularity
+
+  - identity match against the customer profile
+
+  - any regulatory hold or pending exception
+
+
+  If the loan has unresolved arrears, the request must be escalated for review.'
+tags:
+- ruleset
+- loan.refinance.controls.ruleset
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.loan_refinance_controls
+  metadata: {}
+payload:
+  transaction_id: loan.refinance.controls.ruleset
+  ruleset_name: Loan refinance controls Ruleset
+  rule_ids:
+  - business_rule.loan_refinance_controls
+  conditions:
+  - When a customer asks to refinance an active loan, the advisor
+  consequences:
+  - 'verify: - current loan status - delinquency history - payment regularity - identity
+    match against the customer profile - any regulatory hold or pending exception
+    If the loan has unresolved arrears, the request must be escalated for review'
+  match_strategy: generated
+  canonical_name: Loan refinance controls Ruleset
+  normalized_name: loan refinance controls ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,24 @@
+asset_id: flow.loan.disbursement
+asset_type: flow
+name: Desembolso de prestamo
+version: 1.0.4
+description: quiero desembolsar un prestamo aprobado
+tags:
+- lending
+- loan
+- flow
+relations:
+- type: implemented_by_process
+  target_asset_id: process.loan.disbursement
+payload:
+  flow_id: loan.disbursement
+  flow_name: Desembolso de prestamo
+  intent: quiero desembolsar un prestamo aprobado
+  business_event: loan.disbursement.requested
+  domain_id: lending
+  module_id: loan
+  renderer: external
+  user_tasks:
+  - review loan disbursement request
+  related_process_ids:
+  - loan_disbursement

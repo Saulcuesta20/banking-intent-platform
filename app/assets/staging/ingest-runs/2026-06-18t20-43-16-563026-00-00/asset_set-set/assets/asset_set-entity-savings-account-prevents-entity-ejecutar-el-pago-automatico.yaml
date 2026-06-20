@@ -1,0 +1,50 @@
+asset_id: asset_set.entity.savings.account.prevents.entity.ejecutar.el.pago.automatico
+asset_type: asset_set
+name: Entity.savings.account.prevents.entity.ejecutar.el.pago.automatico Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for entity.savings.account.prevents.entity.ejecutar.el.pago.automatico.
+text: 'entity.savings_account prevents entity.ejecutar_el_pago_automatico
+
+  ejecutar el pago automatico
+
+  ahorro'
+tags:
+- asset_set
+- entity.savings.account.prevents.entity.ejecutar.el.pago.automatico
+relations:
+- type: groups_causality
+  target_asset_id: causality.entity_savings_account_prevents_entity_ejecutar_el_pago_automatico
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.ejecutar_el_pago_automatico
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+payload:
+  transaction_id: entity.savings.account.prevents.entity.ejecutar.el.pago.automatico
+  asset_ids:
+  - causality.entity_savings_account_prevents_entity_ejecutar_el_pago_automatico
+  - entity.ejecutar_el_pago_automatico
+  - entity.savings_account
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.entity_savings_account_prevents_entity_ejecutar_el_pago_automatico
+    asset_type: causality
+  - asset_id: entity.ejecutar_el_pago_automatico
+    asset_type: entity
+  - asset_id: entity.savings_account
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: Entity.savings.account.prevents.entity.ejecutar.el.pago.automatico
+    Asset Set
+  normalized_name: entity.savings.account.prevents.entity.ejecutar.el.pago.automatico
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

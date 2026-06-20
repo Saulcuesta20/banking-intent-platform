@@ -1,0 +1,26 @@
+asset_id: plan.plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+asset_type: plan
+name: Plan cumplimiento de politicas documentales
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para cumplimiento de politicas documentales: identificar faltantes,
+  solicitar evidencia, validar vigencia y aprobar.'
+text: 'Plan para cumplimiento de politicas documentales: identificar faltantes, solicitar
+  evidencia, validar vigencia y aprobar.'
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: 'Plan para cumplimiento de politicas documentales: identificar faltantes,
+    solicitar evidencia, validar vigencia y aprobar.'
+  source_section: Plans
+  transaction_id: plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Plan cumplimiento de politicas documentales
+  normalized_name: plan cumplimiento de politicas documentales
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

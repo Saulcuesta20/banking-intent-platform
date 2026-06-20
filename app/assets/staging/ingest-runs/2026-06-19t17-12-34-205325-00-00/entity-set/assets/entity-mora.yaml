@@ -1,0 +1,29 @@
+asset_id: entity.mora
+asset_type: entity
+name: mora
+version: 1.0.0
+owner: business_model_kb
+description: Estado de atraso en el pago de una obligación
+text: Estado de atraso en el pago de una obligación
+tags: []
+relations: []
+payload:
+  aliases: []
+  structural_layer: business_resource
+  business_layer: business_resource
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Estado de atraso en el pago de una obligación
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Estado de atraso en el pago de una obligación
+  match_strategy: generated
+  canonical_name: mora
+  normalized_name: mora
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

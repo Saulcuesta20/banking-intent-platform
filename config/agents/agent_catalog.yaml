@@ -1,0 +1,120 @@
+agents:
+  - agent_id: agent.system.planning
+    agent_class: planning
+    name: Planning Agent
+    role: Decompose work into governed steps and surface the next best action.
+    kind: coordinator
+    domain: system
+    goals:
+      - Plan controlled multi-step work for business users.
+      - Separate goals, constraints, and tool-ready steps.
+    skills:
+      - goal_decomposition
+      - task_planning
+      - route_preparation
+    skill_ids:
+      - planning
+    graph_name: langgraph_planning
+    state_schema: PlanningAgentState
+    tool_ids: []
+    policy:
+      max_retries: 0
+      requires_human_review: false
+
+  - agent_id: agent.system.delegator
+    agent_class: delegator
+    name: Delegator Agent
+    role: Route work to the most suitable specialist or tool-backed agent.
+    kind: delegator
+    domain: system
+    goals:
+      - Delegate specialized work safely.
+      - Keep routing decisions auditable.
+    skills:
+      - work_routing
+      - specialist_selection
+      - handoff_management
+    skill_ids:
+      - delegation
+    graph_name: langgraph_delegation
+    state_schema: DelegationAgentState
+    tool_ids: []
+    policy:
+      max_retries: 0
+      requires_human_review: false
+
+  - agent_id: agent.system.monitoring
+    agent_class: monitoring
+    name: Monitoring Agent
+    role: Observe traces, performance, and policy compliance across agents.
+    kind: coordinator
+    domain: system
+    goals:
+      - Monitor health, traces, and control signals.
+      - Detect failures and policy drift.
+    skills:
+      - trace_inspection
+      - policy_monitoring
+      - run_observability
+    skill_ids:
+      - monitoring
+    graph_name: langgraph_monitoring
+    state_schema: MonitoringAgentState
+    tool_ids: []
+    policy:
+      max_retries: 0
+      requires_human_review: false
+
+  - agent_id: agent.business.loan.executive
+    agent_class: worker
+    name: Loan Executive Agent
+    role: Assist loan executives with origination review, customer context, and governed tool use.
+    kind: worker
+    domain: ask
+    goals:
+      - Support business review activities for loan origination.
+      - Keep tool use constrained to approved capabilities.
+    skills:
+      - loan_context_review
+      - origination_support
+      - customer_summary
+    skill_ids:
+      - loan-origination-review
+    graph_name: langgraph_business_worker
+    state_schema: BusinessAgentState
+    tool_ids:
+      - tool.loan.application.lookup
+      - tool.loan.risk.summary
+    policy:
+      max_retries: 1
+      requires_human_review: true
+      allowed_tool_ids:
+        - tool.loan.application.lookup
+        - tool.loan.risk.summary
+
+  - agent_id: agent.business.platform.admin
+    agent_class: worker
+    name: Platform Admin Agent
+    role: Assist platform administrators with catalog, deployment, and governance tasks.
+    kind: worker
+    domain: system
+    goals:
+      - Help platform operators inspect and manage catalog state.
+      - Provide guided support for governance and deployment workflows.
+    skills:
+      - catalog_review
+      - deployment_support
+      - governance_assistance
+    skill_ids:
+      - platform-governance
+    graph_name: langgraph_business_worker
+    state_schema: BusinessAgentState
+    tool_ids:
+      - tool.catalog.inspect
+      - tool.asset_set.review
+    policy:
+      max_retries: 1
+      requires_human_review: false
+      allowed_tool_ids:
+        - tool.catalog.inspect
+        - tool.asset_set.review

@@ -1,0 +1,61 @@
+asset_id: document.systems_catalog_addendum_md
+asset_type: document
+name: systems_catalog_addendum.md
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/systems_catalog_addendum.md
+text: '# Systems catalog addendum
+
+
+  This note mixes systems inventory and integration references.
+
+
+  ## Core systems
+
+
+  - Core banking platform
+
+  - Loan origination service
+
+  - Collections workflow service
+
+  - Customer profile service
+
+  - Document storage service
+
+  - Notification gateway
+
+
+  ## Integration notes
+
+
+  The support team uses these systems to:
+
+  - verify balances
+
+  - inspect payment schedules
+
+  - review refinance status
+
+  - send notices
+
+  - track exceptions
+
+
+  Some records mention API endpoints, but this document is still plain corpus.'
+tags:
+- text
+- md
+relations: []
+payload:
+  path: data/raw/systems_catalog_addendum.md
+  kind: text
+  sequence: 34
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: systems_catalog_addendum.md
+  normalized_name: systems catalog addendum.md
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

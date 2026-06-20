@@ -1,0 +1,25 @@
+asset_id: user_task.proporcionar_documentos
+asset_type: user_task
+name: Proporcionar documentos
+version: 1.0.0
+owner: business_model_kb
+description: Customer provides required documents for account opening.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_provide_documents
+  task: provide_documents
+  type: form
+  name: Proporcionar documentos
+  description: Customer provides required documents for account opening.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Proporcionar documentos
+  normalized_name: proporcionar documentos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

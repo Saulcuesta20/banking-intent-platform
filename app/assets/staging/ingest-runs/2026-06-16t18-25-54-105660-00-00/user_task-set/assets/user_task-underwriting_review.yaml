@@ -1,0 +1,32 @@
+asset_id: user_task.underwriting_review
+asset_type: user_task
+name: Underwriting Review
+version: 1.0.0
+owner: business_model_kb
+description: Underwriting team reviews the loan application and supporting documents,
+  then approves, rejects, or sends back for more information.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: underwriting_review
+  task: underwriting_review
+  type: review
+  name: Underwriting Review
+  description: Underwriting team reviews the loan application and supporting documents,
+    then approves, rejects, or sends back for more information.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: transitions_to
+    family: structural
+    phrase: then
+    sentence: Underwriting team reviews the loan application and supporting documents,
+      then approves, rejects, or sends back for more information.
+  match_strategy: generated
+  canonical_name: Underwriting Review
+  normalized_name: underwriting review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

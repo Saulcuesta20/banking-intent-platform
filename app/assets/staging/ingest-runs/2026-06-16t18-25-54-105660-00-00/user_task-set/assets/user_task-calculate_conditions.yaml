@@ -1,0 +1,25 @@
+asset_id: user_task.calculate_conditions
+asset_type: user_task
+name: Calculate Conditions
+version: 1.0.0
+owner: business_model_kb
+description: Calculate refinance conditions
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_loan_calculate_conditions
+  task: calculate_conditions
+  type: manual
+  name: Calculate Conditions
+  description: Calculate refinance conditions
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Calculate Conditions
+  normalized_name: calculate conditions
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

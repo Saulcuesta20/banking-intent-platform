@@ -1,0 +1,80 @@
+asset_id: asset_set.savings.account.opening
+asset_type: asset_set
+name: Savings.account.opening Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for savings.account.opening.
+text: 'Savings Account Opening
+
+  Ask for Initial Deposit
+
+  Collect Documents
+
+  Confirm Account Status
+
+  Create Account
+
+  Identify Customer
+
+  Run KYC'
+tags:
+- asset_set
+- savings.account.opening
+relations:
+- type: groups_flow
+  target_asset_id: flow.savings.account.opening
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.ask_for_initial_deposit
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.collect_documents
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirm_account_status
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.create_account
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identify_customer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.run_kyc
+  metadata: {}
+payload:
+  transaction_id: savings.account.opening
+  asset_ids:
+  - flow.savings.account.opening
+  - user_task.ask_for_initial_deposit
+  - user_task.collect_documents
+  - user_task.confirm_account_status
+  - user_task.create_account
+  - user_task.identify_customer
+  - user_task.run_kyc
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.savings.account.opening
+    asset_type: flow
+  - asset_id: user_task.ask_for_initial_deposit
+    asset_type: user_task
+  - asset_id: user_task.collect_documents
+    asset_type: user_task
+  - asset_id: user_task.confirm_account_status
+    asset_type: user_task
+  - asset_id: user_task.create_account
+    asset_type: user_task
+  - asset_id: user_task.identify_customer
+    asset_type: user_task
+  - asset_id: user_task.run_kyc
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Savings.account.opening Asset Set
+  normalized_name: savings.account.opening asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

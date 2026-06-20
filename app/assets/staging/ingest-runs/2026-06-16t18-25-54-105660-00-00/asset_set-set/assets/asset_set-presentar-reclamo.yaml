@@ -1,0 +1,57 @@
+asset_id: asset_set.presentar.reclamo
+asset_type: asset_set
+name: Presentar.reclamo Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for presentar.reclamo.
+text: 'reclamo
+
+  Presentar reclamo
+
+  Enviar reclamo
+
+  Recopilar datos del reclamo'
+tags:
+- asset_set
+- presentar.reclamo
+relations:
+- type: groups_entity
+  target_asset_id: entity.claim
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.presentar.reclamo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.enviar_reclamo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.recopilar_datos_del_reclamo
+  metadata: {}
+payload:
+  transaction_id: presentar.reclamo
+  asset_ids:
+  - entity.claim
+  - flow.presentar.reclamo
+  - user_task.enviar_reclamo
+  - user_task.recopilar_datos_del_reclamo
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.claim
+    asset_type: entity
+  - asset_id: flow.presentar.reclamo
+    asset_type: flow
+  - asset_id: user_task.enviar_reclamo
+    asset_type: user_task
+  - asset_id: user_task.recopilar_datos_del_reclamo
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Presentar.reclamo Asset Set
+  normalized_name: presentar.reclamo asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

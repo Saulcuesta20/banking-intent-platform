@@ -1,0 +1,40 @@
+asset_id: asset_set.late.payment.penalty
+asset_type: asset_set
+name: Late.payment.penalty Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for late.payment.penalty.
+text: 'Late payment penalty
+
+  Late.payment.penalty Ruleset'
+tags:
+- asset_set
+- late.payment.penalty
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.late_payment_penalty
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.late.payment.penalty
+  metadata: {}
+payload:
+  transaction_id: late.payment.penalty
+  asset_ids:
+  - business_rule.late_payment_penalty
+  - ruleset.late.payment.penalty
+  asset_types:
+  - business_rule
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.late_payment_penalty
+    asset_type: business_rule
+  - asset_id: ruleset.late.payment.penalty
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Late.payment.penalty Asset Set
+  normalized_name: late.payment.penalty asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

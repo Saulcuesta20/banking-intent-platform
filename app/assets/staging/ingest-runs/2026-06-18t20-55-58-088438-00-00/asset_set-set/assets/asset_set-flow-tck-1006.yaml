@@ -1,0 +1,40 @@
+asset_id: asset_set.flow.tck.1006
+asset_type: asset_set
+name: Flow.tck.1006 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.tck.1006.
+text: 'contact_information_update_flow
+
+  Update Contact Information'
+tags:
+- asset_set
+- flow.tck.1006
+relations:
+- type: groups_flow
+  target_asset_id: flow.flow.tck.1006
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.update_contact_information
+  metadata: {}
+payload:
+  transaction_id: flow.tck.1006
+  asset_ids:
+  - flow.flow.tck.1006
+  - user_task.update_contact_information
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.flow.tck.1006
+    asset_type: flow
+  - asset_id: user_task.update_contact_information
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Flow.tck.1006 Asset Set
+  normalized_name: flow.tck.1006 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

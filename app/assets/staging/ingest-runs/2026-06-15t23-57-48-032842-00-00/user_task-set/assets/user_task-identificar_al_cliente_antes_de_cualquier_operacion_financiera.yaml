@@ -1,0 +1,38 @@
+asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+asset_type: user_task
+name: Identificar al cliente antes de cualquier operacion financiera
+version: 1.0.0
+owner: business_model_kb
+description: El agente verifica la identidad del cliente y confirma que la relación
+  está activa antes de iniciar cualquier proceso.
+text: Identificar al cliente antes de cualquier operacion financiera.
+tags: []
+relations: []
+payload:
+  user_task_id: ut001
+  task: identificar_al_cliente
+  type: human
+  name: Identificar al cliente antes de cualquier operacion financiera
+  description: Identificar al cliente antes de cualquier operacion financiera.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Identificar al cliente antes de cualquier operacion financiera
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Identificar al cliente antes de cualquier operacion financiera.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Identificar al cliente antes de cualquier operacion financiera.
+  match_strategy: generated
+  canonical_name: Identificar al cliente antes de cualquier operacion financiera
+  normalized_name: identificar al cliente antes de cualquier operacion financiera
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

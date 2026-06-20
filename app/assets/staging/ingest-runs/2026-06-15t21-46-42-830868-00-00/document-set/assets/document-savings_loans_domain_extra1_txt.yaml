@@ -1,0 +1,139 @@
+asset_id: document.savings_loans_domain_extra1_txt
+asset_type: document
+name: savings_loans_domain_extra1.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/savings_loans_domain_extra1.txt
+text: 'Glosario Extendido - Ahorros y Préstamos (Parte 1)
+
+
+  Términos clave:
+
+  - Apertura de cuenta: proceso para crear una nueva cuenta bancaria para un cliente.
+
+  - Beneficiario: persona autorizada a recibir fondos.
+
+  - Chequera: talonario de cheques asociado a una cuenta corriente.
+
+  - Comisión por mantenimiento: cargo recurrente por mantener la cuenta activa.
+
+  - Conciliación: proceso de verificación de transacciones entre registros.
+
+  - Cuenta inactiva: cuenta sin movimientos por un periodo definido.
+
+  - Domiciliación: autorización de débitos automáticos desde una cuenta.
+
+  - Estado de cuenta: reporte periódico de saldos y movimientos.
+
+  - Extracto bancario: sinónimo de estado de cuenta.
+
+  - FP: fondos propios del cliente.
+
+
+  Procesos (breves):
+
+  1) Apertura de cuenta de ahorro con validación de KYC.
+
+  2) Renovación de plazo fijo al vencimiento.
+
+  3) Generación de estado de cuenta mensual y envío por mail.
+
+  4) Tramitación de cierre de cuenta y liquidación de saldos.
+
+
+  Reglas de negocio (ejemplos adicionales):
+
+  - Las transferencias interbancarias pueden tardar hasta 48 horas hábiles.
+
+  - Las solicitudes de cierre con saldo negativo requieren contacto con cobranzas.
+
+  - El acceso a banca online se habilita tras verificación telefónica.
+
+
+  Operaciones y acciones:
+
+  - Activar notificaciones SMS para movimientos.
+
+  - Bloquear tarjeta por pérdida/robo.
+
+  - Solicitar duplicado de estado de cuenta.
+
+
+  Notas de cumplimiento:
+
+  - Reportar operaciones sospechosas mayores a umbral configurado.'
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: data/raw/savings_loans_domain_extra1.txt
+  kind: text
+  sequence: 27
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- Apertura de cuenta: proceso para crear una nueva cuenta bancaria
+      para un cliente.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Apertura de cuenta: proceso para crear una nueva cuenta bancaria
+      para un cliente.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Chequera: talonario de cheques asociado a una cuenta corriente.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Comisión por mantenimiento: cargo recurrente por mantener la cuenta
+      activa.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Cuenta inactiva: cuenta sin movimientos por un periodo definido.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Domiciliación: autorización de débitos automáticos desde una cuenta.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Estado de cuenta: reporte periódico de saldos y movimientos.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Extracto bancario: sinónimo de estado de cuenta.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- FP: fondos propios del cliente.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 1) Apertura de cuenta de ahorro con validación de KYC.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 3) Generación de estado de cuenta mensual y envío por mail.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 4) Tramitación de cierre de cuenta y liquidación de saldos.
+  - type: enables
+    family: causality
+    phrase: habilita
+    sentence: '- El acceso a banca online se habilita tras verificación telefónica.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Solicitar duplicado de estado de cuenta.'
+  match_strategy: generated
+  canonical_name: savings_loans_domain_extra1.txt
+  normalized_name: savings loans domain extra1.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

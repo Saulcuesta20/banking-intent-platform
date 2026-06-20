@@ -1,0 +1,30 @@
+asset_id: business_rule.missing_documents_request
+asset_type: business_rule
+name: Missing documents request
+version: 1.0.0
+owner: rules_kb
+description: If required documents are incomplete, request additional information.
+text: If required documents are incomplete, request additional information.
+tags:
+- business_rule
+relations: []
+payload:
+  rule_text: If required documents are incomplete, request additional information.
+  source_section: LLMAssetExtraction
+  conditions:
+  - Document collection incomplete
+  consequences:
+  - Prompt for missing documents
+  when: Document collection incomplete
+  then: Prompt for missing documents
+  transaction_id: missing.documents.request
+  ruleset_name: ''
+  applies_to: Customer
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Missing documents request
+  normalized_name: missing documents request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

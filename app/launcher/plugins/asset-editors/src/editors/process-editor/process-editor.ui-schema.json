@@ -1,0 +1,79 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Process Definition",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/process_id"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/description"
+            }
+          ]
+        },
+        {
+          "type": "Group",
+          "label": "Execution Nodes",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/nodes",
+              "options": {
+                "detail": {
+                  "type": "GridLayout",
+                  "elements": [
+                    {
+                      "type": "Control",
+                      "scope": "#/properties/node_id"
+                    },
+                    {
+                      "type": "Control",
+                      "scope": "#/properties/name"
+                    },
+                    {
+                      "type": "Control",
+                      "scope": "#/properties/type"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "Group",
+          "label": "Transitions",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/edges",
+              "options": {
+                "detail": {
+                  "type": "GridLayout",
+                  "elements": [
+                    {
+                      "type": "Control",
+                      "scope": "#/properties/from_node"
+                    },
+                    {
+                      "type": "Control",
+                      "scope": "#/properties/to_node"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

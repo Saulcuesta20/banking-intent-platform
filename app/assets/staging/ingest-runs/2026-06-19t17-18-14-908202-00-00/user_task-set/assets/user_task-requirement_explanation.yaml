@@ -1,0 +1,27 @@
+asset_id: user_task.requirement_explanation
+asset_type: user_task
+name: Requirement Explanation
+version: 1.0.0
+owner: business_model_kb
+description: Inform customer about the need for an eligible savings account and guide
+  them through the account opening process if required.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: requirement_explanation
+  task: explain_account_requirement_and_offer_account_opening_journey
+  type: communication
+  name: Requirement Explanation
+  description: Inform customer about the need for an eligible savings account and
+    guide them through the account opening process if required.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Requirement Explanation
+  normalized_name: requirement explanation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,34 @@
+asset_id: asset_set.plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+asset_type: asset_set
+name: Plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar.
+text: Plan alta de pago automatico
+tags:
+- asset_set
+- plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+relations:
+- type: groups_plan
+  target_asset_id: plan.plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+  metadata: {}
+payload:
+  transaction_id: plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+  asset_ids:
+  - plan.plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+  asset_types:
+  - plan
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+    Asset Set
+  normalized_name: plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

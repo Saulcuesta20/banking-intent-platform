@@ -1,0 +1,38 @@
+asset_id: user_task.registrar_la_solicitud_del_prestamo
+asset_type: user_task
+name: Registrar la solicitud del prestamo
+version: 1.0.0
+owner: business_model_kb
+description: Recopilar monto, plazo, finalidad y evidencia de ingresos para iniciar
+  la originación del préstamo.
+text: Registrar la solicitud del prestamo.
+tags: []
+relations: []
+payload:
+  user_task_id: ut014
+  task: registrar_solicitud_prestamo
+  type: human
+  name: Registrar la solicitud del prestamo
+  description: Registrar la solicitud del prestamo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Registrar la solicitud del prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Registrar la solicitud del prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Registrar la solicitud del prestamo.
+  match_strategy: generated
+  canonical_name: Registrar la solicitud del prestamo
+  normalized_name: registrar la solicitud del prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

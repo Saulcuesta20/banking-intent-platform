@@ -1,0 +1,43 @@
+asset_id: asset_set.el.aumento.del.riesgo.crediticio.causes.revision.manual.de.la.refinanciacion
+asset_type: asset_set
+name: El.aumento.del.riesgo.crediticio.causes.revision.manual.de.la.refinanciacion
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.aumento.del.riesgo.crediticio.causes.revision.manual.de.la.refinanciacion.
+text: 'El aumento del riesgo crediticio causes revision manual de la refinanciacion
+
+  aumento del riesgo crediticio'
+tags:
+- asset_set
+- el.aumento.del.riesgo.crediticio.causes.revision.manual.de.la.refinanciacion
+relations:
+- type: groups_causality
+  target_asset_id: causality.el_aumento_del_riesgo_crediticio_causes_revision_manual_de_la_refinanciacion
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.aumento_del_riesgo_crediticio
+  metadata: {}
+payload:
+  transaction_id: el.aumento.del.riesgo.crediticio.causes.revision.manual.de.la.refinanciacion
+  asset_ids:
+  - causality.el_aumento_del_riesgo_crediticio_causes_revision_manual_de_la_refinanciacion
+  - entity.aumento_del_riesgo_crediticio
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.el_aumento_del_riesgo_crediticio_causes_revision_manual_de_la_refinanciacion
+    asset_type: causality
+  - asset_id: entity.aumento_del_riesgo_crediticio
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: El.aumento.del.riesgo.crediticio.causes.revision.manual.de.la.refinanciacion
+    Asset Set
+  normalized_name: el.aumento.del.riesgo.crediticio.causes.revision.manual.de.la.refinanciacion
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

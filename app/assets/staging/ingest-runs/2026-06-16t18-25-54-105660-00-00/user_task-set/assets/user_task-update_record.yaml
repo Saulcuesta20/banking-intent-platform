@@ -1,0 +1,25 @@
+asset_id: user_task.update_record
+asset_type: user_task
+name: Update Record
+version: 1.0.0
+owner: business_model_kb
+description: Apply the change to the customer record.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: update_record
+  task: update_record
+  type: automated
+  name: Update Record
+  description: Apply the change to the customer record.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Update Record
+  normalized_name: update record
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

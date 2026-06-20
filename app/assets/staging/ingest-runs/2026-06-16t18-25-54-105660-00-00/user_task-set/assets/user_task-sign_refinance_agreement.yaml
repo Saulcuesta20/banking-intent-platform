@@ -1,0 +1,25 @@
+asset_id: user_task.sign_refinance_agreement
+asset_type: user_task
+name: Sign Refinance Agreement
+version: 1.0.0
+owner: business_model_kb
+description: Customer signs the refinancing agreement digitally.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_sign_refinance
+  task: sign_refinancing_agreement
+  type: signature
+  name: Sign Refinance Agreement
+  description: Customer signs the refinancing agreement digitally.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Sign Refinance Agreement
+  normalized_name: sign refinance agreement
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

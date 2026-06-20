@@ -1,0 +1,31 @@
+asset_id: asset_set.pl008
+asset_type: asset_set
+name: Pl008 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for pl008.
+text: PL008
+tags:
+- asset_set
+- pl008
+relations:
+- type: groups_plan
+  target_asset_id: plan.pl008
+  metadata: {}
+payload:
+  transaction_id: pl008
+  asset_ids:
+  - plan.pl008
+  asset_types:
+  - plan
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.pl008
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Pl008 Asset Set
+  normalized_name: pl008 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

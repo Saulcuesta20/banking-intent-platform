@@ -1,0 +1,27 @@
+asset_id: user_task.case_escalation
+asset_type: user_task
+name: Case Escalation
+version: 1.0.0
+owner: business_model_kb
+description: Based on verification, if there are unresolved arrears, the advisor escalates
+  the case to a supervisor or review team.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: escalate_if_needed
+  task: escalate_the_case_for_review_if_unresolved_arrears_exist
+  type: decision
+  name: Case Escalation
+  description: Based on verification, if there are unresolved arrears, the advisor
+    escalates the case to a supervisor or review team.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Case Escalation
+  normalized_name: case escalation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,48 @@
+asset_id: asset_set.statement.request.payment.history
+asset_type: asset_set
+name: Statement.request.payment.history Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for statement.request.payment.history.
+text: 'Statement Request and Payment History Inquiry
+
+  Retrieve Payment History
+
+  Retrieve Statement'
+tags:
+- asset_set
+- statement.request.payment.history
+relations:
+- type: groups_flow
+  target_asset_id: flow.statement.request.payment.history
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.retrieve_payment_history
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.retrieve_statement
+  metadata: {}
+payload:
+  transaction_id: statement.request.payment.history
+  asset_ids:
+  - flow.statement.request.payment.history
+  - user_task.retrieve_payment_history
+  - user_task.retrieve_statement
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.statement.request.payment.history
+    asset_type: flow
+  - asset_id: user_task.retrieve_payment_history
+    asset_type: user_task
+  - asset_id: user_task.retrieve_statement
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Statement.request.payment.history Asset Set
+  normalized_name: statement.request.payment.history asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

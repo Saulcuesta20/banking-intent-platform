@@ -1,0 +1,32 @@
+asset_id: tool.ui_customer_create_open_form
+asset_type: tool
+name: ui.customer.create.open_form
+version: 1.0.0
+owner: business_model_kb
+description: La interfaz ui.customer.create.open_form muestra el formulario de alta
+  de cliente.
+text: La interfaz ui.customer.create.open_form muestra el formulario de alta de cliente.
+tags: []
+relations: []
+payload:
+  description: La interfaz ui.customer.create.open_form muestra el formulario de alta
+    de cliente.
+  tool_id: ui.customer.create.open.form
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: La interfaz ui.customer.create.open_form muestra el formulario de alta
+      de cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: La interfaz ui.customer.create.open_form muestra el formulario de alta
+      de cliente.
+  match_strategy: generated
+  canonical_name: ui.customer.create.open_form
+  normalized_name: ui.customer.create.open form
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

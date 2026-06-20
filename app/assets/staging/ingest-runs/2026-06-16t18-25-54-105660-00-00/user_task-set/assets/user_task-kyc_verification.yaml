@@ -1,0 +1,25 @@
+asset_id: user_task.kyc_verification
+asset_type: user_task
+name: KYC Verification
+version: 1.0.0
+owner: business_model_kb
+description: Verify customer identity and documents as per regulatory requirements.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: perform_kyc
+  task: perform_know_your_customer_verification
+  type: verification
+  name: KYC Verification
+  description: Verify customer identity and documents as per regulatory requirements.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: KYC Verification
+  normalized_name: kyc verification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,28 @@
+asset_id: form.f001
+asset_type: form
+name: F001
+version: 1.0.0
+owner: config_kb
+description: Collect client data and required documents for opening a savings account.
+text: Collect client data and required documents for opening a savings account.
+tags:
+- form
+- configuration
+relations:
+- type: belongs_to_module
+  target_asset_id: module.m001
+  metadata: {}
+payload:
+  form_id: F001
+  module_id: M001
+  name: AccountOpeningForm
+  purpose: Collect client data and required documents for opening a savings account.
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: F001
+  normalized_name: f001
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

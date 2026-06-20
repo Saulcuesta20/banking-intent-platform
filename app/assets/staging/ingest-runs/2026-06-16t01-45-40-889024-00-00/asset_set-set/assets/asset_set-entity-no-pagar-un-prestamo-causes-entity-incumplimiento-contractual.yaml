@@ -1,0 +1,50 @@
+asset_id: asset_set.entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual
+asset_type: asset_set
+name: Entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual.
+text: 'entity.no_pagar_un_prestamo causes entity.incumplimiento_contractual
+
+  incumplimiento contractual
+
+  No pagar un prestamo'
+tags:
+- asset_set
+- entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual
+relations:
+- type: groups_causality
+  target_asset_id: causality.entity_no_pagar_un_prestamo_causes_entity_incumplimiento_contractual
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.incumplimiento_contractual
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.no_pagar_un_prestamo
+  metadata: {}
+payload:
+  transaction_id: entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual
+  asset_ids:
+  - causality.entity_no_pagar_un_prestamo_causes_entity_incumplimiento_contractual
+  - entity.incumplimiento_contractual
+  - entity.no_pagar_un_prestamo
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.entity_no_pagar_un_prestamo_causes_entity_incumplimiento_contractual
+    asset_type: causality
+  - asset_id: entity.incumplimiento_contractual
+    asset_type: entity
+  - asset_id: entity.no_pagar_un_prestamo
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: Entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual
+    Asset Set
+  normalized_name: entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

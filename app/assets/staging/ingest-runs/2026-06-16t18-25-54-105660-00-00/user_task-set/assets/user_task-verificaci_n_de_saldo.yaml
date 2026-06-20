@@ -1,0 +1,32 @@
+asset_id: user_task.verificaci_n_de_saldo
+asset_type: user_task
+name: Verificación de saldo
+version: 1.0.0
+owner: business_model_kb
+description: Revisar el saldo actual de la cuenta para determinar si es positivo o
+  negativo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verificar_saldo_cuenta
+  task: verificar_saldo_de_cuenta
+  type: check
+  name: Verificación de saldo
+  description: Revisar el saldo actual de la cuenta para determinar si es positivo
+    o negativo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Revisar el saldo actual de la cuenta para determinar si es positivo
+      o negativo.
+  match_strategy: generated
+  canonical_name: Verificación de saldo
+  normalized_name: verificación de saldo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

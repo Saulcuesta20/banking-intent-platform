@@ -1,0 +1,29 @@
+asset_id: user_task.notificar_desembolso
+asset_type: user_task
+name: Notificar desembolso
+version: 1.0.0
+owner: business_model_kb
+description: Se envía comprobante al cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: notify_client
+  task: notificar_al_cliente_del_desembolso
+  type: notificación
+  name: Notificar desembolso
+  description: Se envía comprobante al cliente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Se envía comprobante al cliente.
+  match_strategy: generated
+  canonical_name: Notificar desembolso
+  normalized_name: notificar desembolso
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.customer_existence_check
+asset_type: user_task
+name: Customer Existence Check
+version: 1.0.0
+owner: business_model_kb
+description: Check customer master for existing record.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_existing_customer
+  task: check_if_customer_exists
+  type: verification
+  name: Customer Existence Check
+  description: Check customer master for existing record.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Existence Check
+  normalized_name: customer existence check
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

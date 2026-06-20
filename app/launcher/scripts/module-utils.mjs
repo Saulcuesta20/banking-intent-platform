@@ -4,7 +4,6 @@ import { join } from 'node:path'
 export const root = new URL('..', import.meta.url).pathname
 export const modulesDir = join(root, 'modules')
 export const publicDir = join(root, 'public')
-export const lowdefyFile = join(root, 'lowdefy-runtime', 'lowdefy.yaml')
 export const registryFile = join(publicDir, 'module-registry.json')
 
 export async function ensureOutputDirs() {
@@ -57,7 +56,7 @@ function validateProcess(process, path) {
   assertString(process.name, `${path}.name`)
   assertString(process.intent, `${path}.intent`)
   assertString(process.businessEvent, `${path}.businessEvent`)
-  assertString(process.lowdefyPage, `${path}.lowdefyPage`)
+  assertString(process.editorRoute, `${path}.editorRoute`)
   assertString(process.currentFormVersion, `${path}.currentFormVersion`)
   assertString(process.formId, `${path}.formId`)
 }
@@ -177,8 +176,8 @@ export function buildHomeFromModuleRegistry(registry) {
       related_process_ids: process.processIds ?? [],
       confidence: 1,
       explanation: process.intent,
-      renderer: 'lowdefy',
-      lowdefy_page: process.lowdefyPage,
+      renderer: 'react',
+      editor_route: process.editorRoute,
       module_config_id: module.moduleId,
       form_id: process.form.formId,
       form_version: process.form.version,

@@ -1,0 +1,33 @@
+asset_id: user_task.transferencia_de_saldo
+asset_type: user_task
+name: Transferencia de saldo
+version: 1.0.0
+owner: business_model_kb
+description: Transferir el saldo restante a otra cuenta del cliente o liquidarlo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transferir_saldo
+  task: transferir_saldo
+  type: transaction
+  name: Transferencia de saldo
+  description: Transferir el saldo restante a otra cuenta del cliente o liquidarlo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Transferir el saldo restante a otra cuenta del cliente o liquidarlo.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Transferir el saldo restante a otra cuenta del cliente o liquidarlo.
+  match_strategy: generated
+  canonical_name: Transferencia de saldo
+  normalized_name: transferencia de saldo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

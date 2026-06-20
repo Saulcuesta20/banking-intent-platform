@@ -1,0 +1,64 @@
+asset_id: asset_set.transferencia
+asset_type: asset_set
+name: Transferencia Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for transferencia.
+text: 'Transferencia
+
+  Informar saldo insuficiente
+
+  Llamar servicio de transferencias
+
+  Solicitar aprobación de operaciones
+
+  Validar saldo y riesgo'
+tags:
+- asset_set
+- transferencia
+relations:
+- type: groups_flow
+  target_asset_id: flow.transferencia
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.informar_saldo_insuficiente
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.llamar_servicio_de_transferencias
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.solicitar_aprobaci_n_de_operaciones
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_saldo_y_riesgo
+  metadata: {}
+payload:
+  transaction_id: transferencia
+  asset_ids:
+  - flow.transferencia
+  - user_task.informar_saldo_insuficiente
+  - user_task.llamar_servicio_de_transferencias
+  - user_task.solicitar_aprobaci_n_de_operaciones
+  - user_task.validar_saldo_y_riesgo
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.transferencia
+    asset_type: flow
+  - asset_id: user_task.informar_saldo_insuficiente
+    asset_type: user_task
+  - asset_id: user_task.llamar_servicio_de_transferencias
+    asset_type: user_task
+  - asset_id: user_task.solicitar_aprobaci_n_de_operaciones
+    asset_type: user_task
+  - asset_id: user_task.validar_saldo_y_riesgo
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Transferencia Asset Set
+  normalized_name: transferencia asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,58 @@
+asset_id: asset_set.loan.payment.registration
+asset_type: asset_set
+name: Loan.payment.registration Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.payment.registration.
+text: 'Automatic payment account requirement
+
+  prestamo
+
+  Loan Payment Registration
+
+  Automatic payment account requirement Ruleset'
+tags:
+- asset_set
+- loan.payment.registration
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.automatic_payment_account_requirement
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.loan.payment.registration
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.loan.payment.registration
+  metadata: {}
+payload:
+  transaction_id: loan.payment.registration
+  asset_ids:
+  - business_rule.automatic_payment_account_requirement
+  - entity.loan
+  - flow.loan.payment.registration
+  - ruleset.loan.payment.registration
+  asset_types:
+  - business_rule
+  - entity
+  - flow
+  - ruleset
+  primary_asset_type: flow
+  members:
+  - asset_id: business_rule.automatic_payment_account_requirement
+    asset_type: business_rule
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: flow.loan.payment.registration
+    asset_type: flow
+  - asset_id: ruleset.loan.payment.registration
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Loan.payment.registration Asset Set
+  normalized_name: loan.payment.registration asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

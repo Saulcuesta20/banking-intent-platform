@@ -1,0 +1,24 @@
+asset_id: process.dispute.charge.report
+asset_type: process
+name: Process cargo no reconocido abre caso, congela tarjeta
+version: 1.0.0
+owner: process_kb
+description: El proceso de cargo no reconocido abre caso, congela tarjeta y notifica
+  investigaciones.
+text: El proceso de cargo no reconocido abre caso, congela tarjeta y notifica investigaciones.
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: El proceso de cargo no reconocido abre caso, congela tarjeta y notifica
+    investigaciones.
+  source_section: Processes
+  transaction_id: dispute.charge.report
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Process cargo no reconocido abre caso, congela tarjeta
+  normalized_name: process cargo no reconocido abre caso, congela tarjeta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

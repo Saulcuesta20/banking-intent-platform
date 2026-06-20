@@ -1,0 +1,78 @@
+asset_id: flow.tck.1005.exception.request
+asset_type: flow
+name: Exception Request for Late Payment
+version: 1.0.0
+owner: process_kb
+description: Customer asks for an exception due to temporary delay while submitting
+  documents.
+text: Customer asks for an exception due to temporary delay while submitting documents.
+tags:
+- customer.wants.to.avoid.penalty.for.late.payment
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.review_exception_request
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verify_documents
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.approve_or_deny_exception
+  metadata: {}
+payload:
+  flow_id: tck.1005.exception.request
+  flow_name: Exception Request for Late Payment
+  intent: customer.wants.to.avoid.penalty.for.late.payment
+  confidence: 0.75
+  business_event: Customer requests exception for temporary delay
+  utterances: []
+  plan: []
+  tasks:
+  - task: review_exception_request_details
+    type: agent
+  - task: verify_supporting_documents
+    type: agent
+  - task: approve_or_deny_exception
+    type: agent
+  user_tasks:
+  - user_task_id: review_exception_request
+    task: review_exception_request_details
+    type: agent
+    name: Review Exception Request
+    description: Agent reviews customer's request and reason for delay.
+    tools: []
+    user_actions: []
+  - user_task_id: verify_documents
+    task: verify_supporting_documents
+    type: agent
+    name: Verify Documents
+    description: Agent checks documents for completeness and validity.
+    tools: []
+    user_actions: []
+  - user_task_id: approve_or_deny_exception
+    task: approve_or_deny_exception
+    type: agent
+    name: Approve or Deny Exception
+    description: Agent or manager makes decision on exception request.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Customer asks for an exception due to temporary delay while submitting
+    documents.
+  source: data/raw/customer_support_tickets_mini.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    purpose: To evaluate and approve/deny exception request.
+  purpose: To evaluate and approve/deny exception request.
+  transaction_id: tck.1005.exception.request
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Exception Request for Late Payment
+  normalized_name: exception request for late payment
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

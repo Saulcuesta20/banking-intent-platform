@@ -1,0 +1,25 @@
+asset_id: user_task.loan_status_review
+asset_type: user_task
+name: Loan Status Review
+version: 1.0.0
+owner: business_model_kb
+description: Agent reviews the current status and details of the customer's loan.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: read_loan_status
+  task: read_loan_status
+  type: data_retrieval
+  name: Loan Status Review
+  description: Read the current status of the loan.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Status Review
+  normalized_name: loan status review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

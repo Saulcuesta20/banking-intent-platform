@@ -1,0 +1,20 @@
+asset_id: entity.loanpayment
+asset_type: entity
+name: LoanPayment
+version: 1.0.0
+owner: business_model_kb
+description: Abono periódico o puntual realizado contra un préstamo.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Abono periódico o puntual realizado contra un préstamo.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: LoanPayment
+  normalized_name: loanpayment
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,21 @@
+asset_id: qa.cuando_se_requiere_aprobacion_humana
+asset_type: qa
+name: Cuando se requiere aprobacion humana?
+version: 1.0.0
+owner: qa_kb
+description: Cuando se requiere aprobacion humana?
+text: Cuando se requiere aprobacion humana?
+tags:
+- qa
+relations: []
+payload:
+  question: Cuando se requiere aprobacion humana?
+  transaction_id: cuando.se.requiere.aprobacion.humana
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Cuando se requiere aprobacion humana?
+  normalized_name: cuando se requiere aprobacion humana?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

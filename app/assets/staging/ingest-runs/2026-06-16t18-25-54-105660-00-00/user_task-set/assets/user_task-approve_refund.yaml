@@ -1,0 +1,25 @@
+asset_id: user_task.approve_refund
+asset_type: user_task
+name: Approve Refund
+version: 1.0.0
+owner: business_model_kb
+description: Agent or supervisor approves refund if duplicate confirmed.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: approve_refund
+  task: approve_refund
+  type: agent
+  name: Approve Refund
+  description: Agent or supervisor approves refund if duplicate confirmed.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Approve Refund
+  normalized_name: approve refund
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

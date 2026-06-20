@@ -1,0 +1,36 @@
+asset_id: module.m002
+asset_type: module
+name: M002
+version: 1.0.0
+owner: config_kb
+description: Procesos de solicitud, evaluación, refinanciación y pago de préstamos.
+text: Procesos de solicitud, evaluación, refinanciación y pago de préstamos.
+tags:
+- module
+- configuration
+relations:
+- type: belongs_to_domain
+  target_asset_id: domain.d001
+  metadata: {}
+payload:
+  module_id: M002
+  domain_id: D001
+  name: Loan Management
+  purpose: Procesos de solicitud, evaluación, refinanciación y pago de préstamos.
+  source_section: LLMAssetExtraction
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Procesos de solicitud, evaluación, refinanciación y pago de préstamos.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Procesos de solicitud, evaluación, refinanciación y pago de préstamos.
+  match_strategy: generated
+  canonical_name: M002
+  normalized_name: m002
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

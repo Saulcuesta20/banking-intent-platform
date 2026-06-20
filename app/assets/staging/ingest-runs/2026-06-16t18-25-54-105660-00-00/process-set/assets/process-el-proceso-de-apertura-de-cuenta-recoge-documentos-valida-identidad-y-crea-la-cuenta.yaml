@@ -1,0 +1,42 @@
+asset_id: process.el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+asset_type: process
+name: Process apertura de cuenta
+version: 1.0.0
+owner: process_kb
+description: El proceso de apertura de cuenta recoge documentos, valida identidad
+  y crea la cuenta.
+text: El proceso de apertura de cuenta recoge documentos, valida identidad y crea
+  la cuenta.
+tags:
+- process_fragment
+relations:
+- type: uses_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+payload:
+  steps_text: El proceso de apertura de cuenta recoge documentos, valida identidad
+    y crea la cuenta.
+  source_section: Processes
+  transaction_id: el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Process apertura de cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de apertura de cuenta recoge documentos, valida identidad
+      y crea la cuenta.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de apertura de cuenta recoge documentos, valida identidad
+      y crea la cuenta.
+  match_strategy: generated
+  canonical_name: Process apertura de cuenta
+  normalized_name: process apertura de cuenta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

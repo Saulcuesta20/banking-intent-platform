@@ -1,0 +1,33 @@
+asset_id: qa.como_creo_un_cliente_nuevo
+asset_type: qa
+name: Como creo un cliente nuevo?
+version: 1.0.0
+owner: qa_kb
+description: Como creo un cliente nuevo?
+text: Como creo un cliente nuevo?
+tags:
+- qa
+relations: []
+payload:
+  question: Como creo un cliente nuevo?
+  transaction_id: como.creo.un.cliente.nuevo
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Como creo un cliente nuevo?
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Como creo un cliente nuevo?
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Como creo un cliente nuevo?
+  match_strategy: generated
+  canonical_name: Como creo un cliente nuevo?
+  normalized_name: como creo un cliente nuevo?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

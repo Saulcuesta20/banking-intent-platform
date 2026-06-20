@@ -1,0 +1,2716 @@
+{
+  "user_tasks": [
+    {
+      "user_task_id": "accept_terms",
+      "task": "accept_account_terms_and_conditions",
+      "type": "agreement",
+      "name": "Terms Acceptance",
+      "description": "Customer accepts the terms and conditions for the account.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "account_balance_check",
+      "task": "check_account_balance",
+      "type": "automated",
+      "name": "Account Balance Check",
+      "description": "Query the current balance of a customer account.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "account_eligibility_check",
+      "task": "check_if_customer_has_eligible_savings_account_for_automatic_payment",
+      "type": "validation",
+      "name": "Account Eligibility Check",
+      "description": "Verify customer's account eligibility for setting up recurring loan payments.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "activar_notificaciones_sms",
+      "task": "activar_notificaciones_sms_para_movimientos",
+      "type": "action",
+      "name": "Activate SMS notifications for movements",
+      "description": "Enable SMS alerts for account transactions",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "approve_business_case",
+      "task": "approve_business_case",
+      "type": "unspecified",
+      "name": "approve_business_case",
+      "description": "",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "ask_initial_deposit",
+      "task": "ask_for_initial_deposit",
+      "type": "transaction_initiation",
+      "name": "Initial Deposit Request",
+      "description": "Request initial deposit when applicable.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "assign_owner",
+      "task": "assign_owner",
+      "type": "assignment",
+      "name": "Claim Owner Assignment",
+      "description": "Assign an owner to handle the claim.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "bloquear_tarjeta",
+      "task": "bloquear_tarjeta_por_p_rdida_robo",
+      "type": "action",
+      "name": "Block card due to loss/theft",
+      "description": "Report card lost or stolen and block it",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "calculate_conditions",
+      "task": "calculate_conditions",
+      "type": "calculation",
+      "name": "Refinance Conditions Calculation",
+      "description": "Calculate conditions for loan refinancing.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "calculate_scoring_task",
+      "task": "calculate_loan_risk_score",
+      "type": "automated",
+      "name": "Scoring Calculation",
+      "description": "Compute risk score based on client data and policies.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "call_core_banking_task",
+      "task": "call_core_banking_system_to_create_account",
+      "type": "automated",
+      "name": "Core Banking Call",
+      "description": "Interact with core banking system to open the account.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "capture_transfer_details",
+      "task": "capture_transfer_details",
+      "type": "data_entry",
+      "name": "Transfer Details Capture",
+      "description": "Capture details for the international transfer.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "capture_transfer_details_task",
+      "task": "capture_details_for_high_value_transfer",
+      "type": "manual",
+      "name": "Capture Transfer Details",
+      "description": "Agent records transfer amount, destination, and purpose as per customer request",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "check_account_eligibility_task",
+      "task": "check_account_eligibility_for_automatic_payment",
+      "type": "manual",
+      "name": "Check Eligibility",
+      "description": "Agent verifies if the customer's account is eligible for automatic debit setup",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "check_balance_task",
+      "task": "check_sufficient_balance_for_transfer",
+      "type": "automated",
+      "name": "Balance Check",
+      "description": "Ensure origin account has enough funds.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "check_credit_history",
+      "task": "check_customer_credit_history",
+      "type": "verification",
+      "name": "Credit History Check",
+      "description": "Access and evaluate the customer's credit score and history.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "check_delinquency_history",
+      "task": "review_the_delinquency_history_for_the_loan",
+      "type": "manual",
+      "name": "Delinquency History Check",
+      "description": "Advisor examines past delinquencies and payment defaults on the loan.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "check_regulatory_hold",
+      "task": "check_for_any_regulatory_holds_or_pending_exceptions_on_the_loan",
+      "type": "manual",
+      "name": "Regulatory Hold Check",
+      "description": "Advisor verifies if there are any regulatory restrictions or pending issues that affect the loan.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "claim_intake",
+      "task": "intake_claim_details",
+      "type": "user_task",
+      "name": "Claim Intake",
+      "description": "Collecting information for a claim",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "classify_claim_type",
+      "task": "classify_claim_type",
+      "type": "classification",
+      "name": "Claim Classification",
+      "description": "Classify the type of claim.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "collect_application_details",
+      "task": "collect_loan_application_details",
+      "type": "data_collection",
+      "name": "Application Collection",
+      "description": "Gather information such as loan amount, term, and purpose from the customer.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "collect_customer_documents",
+      "task": "collect_customer_documents",
+      "type": "unspecified",
+      "name": "collect_customer_documents",
+      "description": "",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "collect_documents",
+      "task": "collect_documents",
+      "type": "data_gathering",
+      "name": "Document Collection",
+      "description": "Collect necessary documents from the customer.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "collect_evidence",
+      "task": "collect_evidence",
+      "type": "evidence_gathering",
+      "name": "Evidence Collection",
+      "description": "Collect evidence related to the complaint.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "compare_options",
+      "task": "compare_options",
+      "type": "analysis",
+      "name": "Refinance Options Comparison",
+      "description": "Compare different refinancing options.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "compliance_review_task",
+      "task": "perform_compliance_review_on_retained_transfer",
+      "type": "manual",
+      "name": "Compliance Review",
+      "description": "Agent reviews the transfer against compliance policies and checks for any violations",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "compliance_routing",
+      "task": "route_case_to_compliance_review_if_screening_is_inconclusive",
+      "type": "escalation",
+      "name": "Compliance Routing",
+      "description": "Route transfer case to Compliance Review for further investigation when screening results are inconclusive.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "confirm_account_status",
+      "task": "confirm_account_status",
+      "type": "status_verification",
+      "name": "Account Status Confirmation",
+      "description": "Confirm the status of the newly created account.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "confirm_balance_last_payment",
+      "task": "confirm_the_customer_s_current_balance_and_last_payment_date",
+      "type": "manual",
+      "name": "Balance and Payment Confirmation",
+      "description": "Analyst queries the system to retrieve and verify the balance and last payment date.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "consult_credit_history_task",
+      "task": "consult_client_credit_history",
+      "type": "automated",
+      "name": "Credit History Consultation",
+      "description": "Retrieve credit history from external service.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "create_account",
+      "task": "create_account",
+      "type": "account_setup",
+      "name": "Account Creation",
+      "description": "Create the new savings account in the system.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "create_claim",
+      "task": "create_claim",
+      "type": "case_initiation",
+      "name": "Claim Creation",
+      "description": "Create a claim for the customer complaint.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "create_loan_request_task",
+      "task": "create_loan_request_in_the_system",
+      "type": "automated",
+      "name": "Loan Request Creation",
+      "description": "Submit the loan request for processing.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "create_transfer_task",
+      "task": "create_and_execute_transfer",
+      "type": "automated",
+      "name": "Transfer Execution",
+      "description": "Initiate the fund transfer via the transfer service.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "customer_document_collection",
+      "task": "collect_required_documents",
+      "type": "user_task",
+      "name": "Document Collection",
+      "description": "Collecting documents for KYC or other purposes",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "customer_lookup",
+      "task": "look_up_customer_information",
+      "type": "automated",
+      "name": "Customer Lookup",
+      "description": "Retrieve customer details from the system database.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "customer_notification",
+      "task": "notify_customer_when_request_is_held_for_review",
+      "type": "communication",
+      "name": "Customer Notification",
+      "description": "Send notification to customer with reason for hold, required evidence, and estimated review time, avoiding internal risk scores.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "define_next_action",
+      "task": "define_the_next_action_based_on_the_case_status",
+      "type": "decision",
+      "name": "Action Definition",
+      "description": "Analyst determines whether the case requires a payment promise, escalation, or follow-up based on the situation.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "enhanced_due_diligence_review",
+      "task": "perform_enhanced_due_diligence_review_on_high_value_transfer",
+      "type": "review",
+      "name": "Enhanced Due Diligence Review",
+      "description": "Review transfer record including source account, beneficiary identity, destination country, amount, currency, and purpose to ensure compliance.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "enter_transfer_details",
+      "task": "enter_transfer_details",
+      "type": "execution",
+      "name": "Transfer Data Entry",
+      "description": "Customer specifies origin account, beneficiary, amount, and concept for transfer.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "escalate_if_needed",
+      "task": "escalate_the_case_for_review_if_unresolved_arrears_exist",
+      "type": "decision",
+      "name": "Case Escalation",
+      "description": "Based on verification, if there are unresolved arrears, the advisor escalates the case to a supervisor or review team.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "explain_loan_calculation_task",
+      "task": "explain_loan_refinancing_conditions",
+      "type": "manual",
+      "name": "Explain Calculation",
+      "description": "Agent explains how loan refinancing conditions are calculated and offers a review",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "explain_options_task",
+      "task": "explicar_opciones_de_refinanciamiento",
+      "type": "advisory",
+      "name": "Explain Refinancing Options",
+      "description": "Explain available refinancing options based on client profile and banking policies.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "explain_requirements_task",
+      "task": "explain_automatic_debit_requirements",
+      "type": "manual",
+      "name": "Explain Requirements",
+      "description": "Agent explains the requirements and process for setting up automatic payments",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "file_claim_details",
+      "task": "file_claim_details",
+      "type": "execution",
+      "name": "Claim Information Submission",
+      "description": "Customer provides reason for claim, transaction reference, date, amount, and attaches evidence.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "gather_claim_details_task",
+      "task": "gather_details_for_claim_submission",
+      "type": "guided",
+      "name": "Claim Details Collection",
+      "description": "Collect reason, date, amount, reference, and evidence from client.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "gather_loan_details_task",
+      "task": "gather_loan_application_details",
+      "type": "guided",
+      "name": "Loan Details Collection",
+      "description": "Collect amount, term, purpose, income evidence, and documents from client.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "generate_statement",
+      "task": "generate_account_statement",
+      "type": "reporting",
+      "name": "Statement Generation",
+      "description": "Produce a statement of account transactions for a period.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "human_approval",
+      "task": "obtain_human_approval",
+      "type": "manual",
+      "name": "Human Approval",
+      "description": "Require manual approval from a human operator for certain actions.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "identify_client_task",
+      "task": "identify_the_client",
+      "type": "manual",
+      "name": "Client Identification",
+      "description": "Verify the client's identity through provided information.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "identify_customer",
+      "task": "identify_customer",
+      "type": "verification",
+      "name": "Customer Identification",
+      "description": "Identify and verify the customer's identity.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "iniciar_reclamo_debito",
+      "task": "iniciar_reclamo_por_d_bito_no_reconocido",
+      "type": "claim",
+      "name": "Initiate claim for unrecognized debit",
+      "description": "Report and dispute an unauthorized debit transaction",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "inspect_payment_schedules",
+      "task": "inspect_payment_schedules",
+      "type": "",
+      "name": "Inspect Payment Schedules",
+      "description": "Part of support team activities to inspect payment schedules.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "loan_application_capture",
+      "task": "capture_loan_application_details",
+      "type": "user/business task",
+      "name": "Loan Application Capture",
+      "description": "Application capture for loan application",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "loan_calculate_conditions",
+      "task": "calculate_available_conditions",
+      "type": "automated",
+      "name": "Conditions Calculation",
+      "description": "Calculate possible refinance conditions using loan conditions calculator.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "loan_collect_documents",
+      "task": "collect_missing_documents",
+      "type": "manual",
+      "name": "Document Collection",
+      "description": "Collect any missing documents required for refinance.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "loan_compare_options",
+      "task": "compare_refinance_options",
+      "type": "automated",
+      "name": "Refinance Options Comparison",
+      "description": "Compare different refinance options using loan refinance comparator.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "loan_eligibility_calculate",
+      "task": "calculate_loan_eligibility",
+      "type": "automated",
+      "name": "Loan Eligibility Calculation",
+      "description": "Assess customer eligibility for a loan based on criteria.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "loan_identify_customer",
+      "task": "identify_the_customer",
+      "type": "manual",
+      "name": "Customer Identification for Loan",
+      "description": "Agent identifies the customer requesting loan refinance.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "loan_refinance_prepare",
+      "task": "prepare_loan_refinancing",
+      "type": "automated",
+      "name": "Loan Refinancing Preparation",
+      "description": "Prepare documents and calculations for loan refinancing.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "loan_review_status",
+      "task": "review_current_loan_status",
+      "type": "manual",
+      "name": "Loan Status Review",
+      "description": "Agent reviews the current status and details of the customer's loan.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "loan_submit_request",
+      "task": "submit_refinance_request_for_approval",
+      "type": "manual",
+      "name": "Refinance Request Submission",
+      "description": "Submit the refinance request to the approval system.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "manager_approval_task",
+      "task": "obtain_manager_approval_for_transfer",
+      "type": "manual",
+      "name": "Manager Approval",
+      "description": "Agent escalates to manager for final approval on the flagged transfer",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "manager_review",
+      "task": "conduct_manager_review_for_refinance_approval",
+      "type": "review",
+      "name": "Manager Review",
+      "description": "Manager reviews loan status, calculated options, customer income evidence, and comparison summary before approving refinance request.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "match_identity",
+      "task": "match_the_customer_s_identity_against_their_profile",
+      "type": "manual",
+      "name": "Identity Verification",
+      "description": "Advisor confirms that the customer's identity matches the records to prevent fraud.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "notify_customer",
+      "task": "notify_customer",
+      "type": "communication",
+      "name": "Customer Notification",
+      "description": "Notify the customer about the claim status.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "obtain_approval",
+      "task": "obtain_approval",
+      "type": "approval_process",
+      "name": "Approval Acquisition",
+      "description": "Obtain approval for the refinancing request.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "obtain_policy_context_task",
+      "task": "obtain_policy_context_for_loan_evaluation",
+      "type": "automated",
+      "name": "Policy Context Retrieval",
+      "description": "Fetch relevant bank policies to assess loan eligibility.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "open_case_task",
+      "task": "abrir_expediente",
+      "type": "administrative",
+      "name": "Open Case",
+      "description": "Initiate a new case for the client's installment change request.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "options_calculation",
+      "task": "calculate_refinance_options_based_on_current_loan_and_customer_data",
+      "type": "calculation",
+      "name": "Options Calculation",
+      "description": "Generate refinance options considering current loan status, customer income evidence, and apply thresholds for manager review.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "payment_configuration",
+      "task": "configure_automatic_loan_payment_with_terms_and_payment_day",
+      "type": "setup",
+      "name": "Payment Configuration",
+      "description": "Set up recurring loan payment after customer acceptance, including terms and chosen payment day.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "prepare_refinance_request",
+      "task": "prepare_refinance_request",
+      "type": "unspecified",
+      "name": "prepare_refinance_request",
+      "description": "",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "prepare_request",
+      "task": "prepare_request",
+      "type": "request_preparation",
+      "name": "Refinance Request Preparation",
+      "description": "Prepare the refinancing request for approval.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "process_deposit",
+      "task": "process_a_deposit_transaction",
+      "type": "transaction",
+      "name": "Deposit Processing",
+      "description": "Handle the deposit of funds into the savings account.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "process_withdrawal",
+      "task": "process_a_withdrawal_transaction",
+      "type": "transaction",
+      "name": "Withdrawal Processing",
+      "description": "Handle the withdrawal of funds from the savings account.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "provide_identity_documents",
+      "task": "provide_identity_documents",
+      "type": "execution",
+      "name": "Identity Document Submission",
+      "description": "Customer uploads official identification and address proof for verification.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "provide_loan_details",
+      "task": "provide_loan_application_details",
+      "type": "execution",
+      "name": "Loan Details Input",
+      "description": "Customer enters loan amount, term, purpose, and uploads income proof.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "read_loan_status",
+      "task": "read_loan_status",
+      "type": "data_retrieval",
+      "name": "Loan Status Review",
+      "description": "Read the current status of the loan.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "record_contact_reason",
+      "task": "record_the_reason_for_contact_with_the_customer",
+      "type": "manual",
+      "name": "Contact Reason Recording",
+      "description": "Analyst documents why the customer was contacted, such as late payment, promise to pay, etc.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "record_interaction_task",
+      "task": "registrar_el_resultado_de_la_interaccion",
+      "type": "documentation",
+      "name": "Record Interaction",
+      "description": "Record the details and outcome of the interaction with the client.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "refinance_review_task",
+      "task": "start_refinance_review_for_loan_modification",
+      "type": "manual",
+      "name": "Refinance Review",
+      "description": "Agent initiates the process to review and modify loan terms for installment reduction",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "register_claim_case_task",
+      "task": "register_claim_case_in_the_system",
+      "type": "automated",
+      "name": "Claim Case Registration",
+      "description": "Create a case for the claim in the claims management system.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "register_evidence_task",
+      "task": "register_evidence_for_the_claim",
+      "type": "automated",
+      "name": "Evidence Registration",
+      "description": "Attach and log evidence provided by the client.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "release_or_reject_transfer",
+      "task": "release_or_reject_transfer",
+      "type": "decision_making",
+      "name": "Transfer Decision",
+      "description": "Release or reject the transfer based on review.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "request_approval_task",
+      "task": "request_human_approval_for_high_risk_loan",
+      "type": "manual",
+      "name": "Approval Request",
+      "description": "Escalate borderline or high-risk cases for human decision.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "request_document_task",
+      "task": "request_purpose_document_for_transfer",
+      "type": "manual",
+      "name": "Request Document",
+      "description": "Agent requests customer to provide a document explaining the purpose of the transfer",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "request_human_approval",
+      "task": "request_human_underwriter_approval",
+      "type": "approval",
+      "name": "Human Approval Request",
+      "description": "For borderline cases, request manual approval from an underwriter.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "request_kyc_documents_task",
+      "task": "request_kyc_documents_from_client",
+      "type": "guided",
+      "name": "KYC Document Request",
+      "description": "Ask for identification, proof of address, and tax data as required.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "request_purpose_document",
+      "task": "request_purpose_document",
+      "type": "document_request",
+      "name": "Purpose Document Request",
+      "description": "Request purpose document if needed for the transfer.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "request_transfer_approval_task",
+      "task": "request_approval_for_large_transfers",
+      "type": "manual",
+      "name": "Transfer Approval Request",
+      "description": "Escalate transfers exceeding operational limits for approval.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "requirement_explanation",
+      "task": "explain_account_requirement_and_offer_account_opening_journey",
+      "type": "communication",
+      "name": "Requirement Explanation",
+      "description": "Inform customer about the need for an eligible savings account and guide them through the account opening process if required.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "review_loan_status",
+      "task": "review_loan_status",
+      "type": "unspecified",
+      "name": "review_loan_status",
+      "description": "",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "review_movements_task",
+      "task": "review_transaction_movements_for_claim",
+      "type": "automated",
+      "name": "Movement Review",
+      "description": "Examine transaction history related to the claim.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "review_refinance_options",
+      "task": "review_refinance_options",
+      "type": "unspecified",
+      "name": "review_refinance_options",
+      "description": "",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "review_refinance_status",
+      "task": "review_refinance_status",
+      "type": "",
+      "name": "Review Refinance Status",
+      "description": "Part of support team activities to review refinance status.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "route_to_manager_review",
+      "task": "route_to_manager_review",
+      "type": "approval_routing",
+      "name": "Manager Review Routing",
+      "description": "Route the transfer to manager review when required.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "run_kyc",
+      "task": "run_kyc",
+      "type": "compliance_check",
+      "name": "KYC Process",
+      "description": "Perform Know Your Customer checks.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "screen_beneficiary",
+      "task": "screen_beneficiary",
+      "type": "sanctions_check",
+      "name": "Beneficiary Screening",
+      "description": "Screen the beneficiary against sanctions and risk lists.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "send_notices",
+      "task": "send_notices",
+      "type": "",
+      "name": "Send Notices",
+      "description": "Part of support team activities to send notices.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "send_reminder",
+      "task": "send_a_reminder_if_the_case_remains_open",
+      "type": "automated",
+      "name": "Reminder Sending",
+      "description": "System or analyst sends a reminder to the customer or internally if the case is still open and requires attention.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "setup_repayment",
+      "task": "set_up_repayment_schedule",
+      "type": "configuration",
+      "name": "Repayment Setup",
+      "description": "Create the repayment schedule for the loan, including installments and payment methods.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "solicitar_aumento_limite_credito",
+      "task": "solicitar_aumento_de_l_mite_de_cr_dito",
+      "type": "request",
+      "name": "Request increase in credit limit",
+      "description": "Ask for a higher credit limit on a credit card or line of credit",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "solicitar_cambio_titularidad",
+      "task": "solicitar_cambio_de_titularidad_de_la_cuenta",
+      "type": "request",
+      "name": "Request change of account ownership",
+      "description": "Change the owner of the bank account",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "solicitar_duplicado_estado_cuenta",
+      "task": "solicitar_duplicado_de_estado_de_cuenta",
+      "type": "request",
+      "name": "Request duplicate account statement",
+      "description": "Ask for a copy of the account statement",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "track_exceptions",
+      "task": "track_exceptions",
+      "type": "",
+      "name": "Track Exceptions",
+      "description": "Part of support team activities to track exceptions.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "transaction_list",
+      "task": "list_transactions_for_an_account",
+      "type": "automated",
+      "name": "Transaction List Retrieval",
+      "description": "Retrieve a list of transactions for a given account.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "transfer_beneficiary_registration",
+      "task": "register_beneficiary_for_transfer",
+      "type": "user_task",
+      "name": "Beneficiary Registration",
+      "description": "Registering a beneficiary for money transfers",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "transfer_capture_details",
+      "task": "capture_source_account_beneficiary_amount_currency_and_transfer_reason",
+      "type": "manual",
+      "name": "Transfer Details Capture",
+      "description": "Agent captures all necessary details for the transfer.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "transfer_identify_customer",
+      "task": "identify_the_customer",
+      "type": "manual",
+      "name": "Customer Identification for Transfer",
+      "description": "Agent identifies the customer requesting the transfer.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "transfer_perform_screening",
+      "task": "perform_beneficiary_screening",
+      "type": "automated",
+      "name": "Beneficiary Screening",
+      "description": "Screen beneficiary using compliance screening service.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "transfer_record_evidence",
+      "task": "record_required_evidence",
+      "type": "manual",
+      "name": "Evidence Recording",
+      "description": "Record all required evidence before releasing the transfer.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "transfer_review_high_value",
+      "task": "review_high_value_transfers",
+      "type": "manual",
+      "name": "High-Value Transfer Review",
+      "description": "If amount exceeds threshold, perform additional review.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "transfer_verify_beneficiary",
+      "task": "verify_beneficiary_data_completeness",
+      "type": "manual",
+      "name": "Beneficiary Data Verification",
+      "description": "Check if destination country or beneficiary data is incomplete and ask for clarification.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "user_task_tck_1001",
+      "task": "check_automatic_payment_subscription",
+      "type": "inquiry",
+      "name": "Check Automatic Payment Subscription",
+      "description": "Determine if the client's account is subscribed to automatic payments and confirm the charge date.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "user_task_tck_1002",
+      "task": "provide_loan_refinancing_options",
+      "type": "support",
+      "name": "Provide Loan Refinancing Options",
+      "description": "Evaluate and present options for refinancing the loan to lower the monthly installment.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "user_task_tck_1003",
+      "task": "investigate_duplicate_charge",
+      "type": "investigation",
+      "name": "Investigate Duplicate Charge",
+      "description": "Investigate the reported duplicate charge and initiate refund if validated.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "user_task_tck_1004",
+      "task": "change_payment_date",
+      "type": "modification",
+      "name": "Change Payment Date",
+      "description": "Adjust the payment date for the loan without causing default or penalties.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "user_task_tck_1005",
+      "task": "process_exception_request",
+      "type": "exception",
+      "name": "Process Exception Request",
+      "description": "Handle client's request for an exception due to temporary delay in document submission.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "user_task_tck_1006",
+      "task": "update_contact_information",
+      "type": "data_update",
+      "name": "Update Contact Information",
+      "description": "Update client's phone number and email address in the system before loan review.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "ut_1",
+      "task": "request_lower_payment",
+      "type": "request",
+      "name": "Customer Payment Request",
+      "description": "Customer requests a lower monthly payment",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "ut_2",
+      "task": "check_account_state",
+      "type": "verification",
+      "name": "Advisor Account Verification",
+      "description": "Advisor checks current account state",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "ut_3",
+      "task": "review_and_sign_offer",
+      "type": "approval",
+      "name": "Customer Offer Review",
+      "description": "Customer reviews and signs the refinance offer",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "ut_4",
+      "task": "combine_overdue_installments",
+      "type": "request",
+      "name": "Customer Installment Combination Request",
+      "description": "Customer wants to combine two overdue installments",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "ut_5",
+      "task": "verify_account_history",
+      "type": "verification",
+      "name": "Support Account Verification",
+      "description": "Support verifies account history and required documents",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "ut_6",
+      "task": "confirm_special_exception",
+      "type": "verification",
+      "name": "Collections Exception Check",
+      "description": "Collections confirms whether a special exception applies",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "ut_7",
+      "task": "approve_workflow",
+      "type": "approval",
+      "name": "Approval Task",
+      "description": "Workflow continues only after approval",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "ut_8",
+      "task": "open_refinance_case",
+      "type": "initiation",
+      "name": "Branch Agent Case Opening",
+      "description": "Branch agent opens the refinance case",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "ut_9",
+      "task": "receive_cancellation_request",
+      "type": "request",
+      "name": "Contact Center Request Handling",
+      "description": "Contact center receives a cancellation request for automatic payment",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "validate_address",
+      "task": "validate_customer_address",
+      "type": "validation",
+      "name": "Address Validation",
+      "description": "Confirm the customer's proof of address.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "validate_customer_id",
+      "task": "validate_customer_identification",
+      "type": "validation",
+      "name": "Customer ID Validation",
+      "description": "Verify the customer's identity using provided identification documents.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "validate_identity_task",
+      "task": "validate_client_identity_and_documents",
+      "type": "automated",
+      "name": "Identity Validation",
+      "description": "Check if documents are valid and identity is verified.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "validate_source_account",
+      "task": "validate_source_account",
+      "type": "account_verification",
+      "name": "Source Account Validation",
+      "description": "Validate the source account for the transfer.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "validate_tax_id",
+      "task": "validate_tax_identification_number",
+      "type": "validation",
+      "name": "Tax ID Validation",
+      "description": "Validate the customer's CUIT or CUIL for tax purposes.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "validate_transfer_data_task",
+      "task": "validate_transfer_data_and_check_balance",
+      "type": "automated",
+      "name": "Transfer Validation",
+      "description": "Verify account balance and risk factors before transfer.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "verify_balances",
+      "task": "verify_balances",
+      "type": "",
+      "name": "Verify Balances",
+      "description": "Part of support team activities to verify customer balances.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "verify_income",
+      "task": "verify_customer_income",
+      "type": "verification",
+      "name": "Income Verification",
+      "description": "Check the customer's income proof to assess repayment ability.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "verify_loan_status",
+      "task": "verify_the_current_status_of_the_customer_s_loan",
+      "type": "manual",
+      "name": "Loan Status Verification",
+      "description": "Advisor checks the loan system to confirm the current status of the loan, such as active, delinquent, or closed.",
+      "user_actions": [],
+      "tools": []
+    },
+    {
+      "user_task_id": "verify_payment_regularity",
+      "task": "check_the_regularity_of_payments_made_on_the_loan",
+      "type": "manual",
+      "name": "Payment Regularity Verification",
+      "description": "Advisor assesses whether payments have been made on time and consistently.",
+      "user_actions": [],
+      "tools": []
+    }
+  ],
+  "flows": [
+    {
+      "flow_id": "account.opening",
+      "flow_name": "Account Opening Process",
+      "purpose": "Onboard new customer and establish banking relationship.",
+      "intent": "savings_account.open",
+      "business_event": "customer_requests_account_opening",
+      "inputs": [
+        "identity_document",
+        "address_proof",
+        "tax_data"
+      ],
+      "outputs": [
+        "account_created",
+        "account_details"
+      ],
+      "user_task_refs": [
+        "provide_identity_documents"
+      ],
+      "explanation": "Validates customer identity and documents to create a new bank account.",
+      "source": "data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_policy_and_controls.md",
+          "data/raw/enterprise_support_wiki.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "account.opening.flow",
+      "flow_name": "Customer Onboarding and Account Opening",
+      "purpose": "To onboard new clients and establish banking relationships.",
+      "intent": "depending.on.client.request.inform.about.requirements.guide.step.by.step.or.execute.account.creation",
+      "business_event": "Client wants to become a customer and open an account",
+      "inputs": [
+        "client_information",
+        "kyc_documents"
+      ],
+      "outputs": [
+        "account_created",
+        "case_to_manual_review"
+      ],
+      "user_task_refs": [
+        "identify_client_task",
+        "request_kyc_documents_task",
+        "validate_identity_task",
+        "call_core_banking_task"
+      ],
+      "explanation": "Process to onboard a client, validate KYC documents, and open a bank account with the core system.",
+      "source": "data/raw/enterprise_operations_manual.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_operations_manual.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "apertura.cuenta",
+      "flow_name": "Apertura de Cuenta",
+      "purpose": "To onboard new customers and create banking accounts.",
+      "intent": "to.provide.access.to.banking.services",
+      "business_event": "Account Opening",
+      "inputs": [
+        "customer_information",
+        "identification_documents"
+      ],
+      "outputs": [
+        "new_account_details"
+      ],
+      "user_task_refs": [],
+      "explanation": "Proceso de crear una cuenta bancaria para un cliente.",
+      "source": "data/raw/savings_glossary.csv",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_glossary.csv"
+        ]
+      }
+    },
+    {
+      "flow_id": "apertura.cuenta.ahorro",
+      "flow_name": "Apertura de cuenta de ahorro con validación de KYC",
+      "purpose": "To establish a new savings account for a client after verification",
+      "intent": "ensure.secure.account.creation.with.kyc.compliance",
+      "business_event": "Client requests opening of a savings account",
+      "inputs": [
+        "client_information",
+        "kyc_documents"
+      ],
+      "outputs": [
+        "new_account_created",
+        "account_details"
+      ],
+      "user_task_refs": [],
+      "explanation": "Proceso para crear una nueva cuenta bancaria para un cliente",
+      "source": "data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_loans_domain_extra1.txt",
+          "data/raw/savings_loans_domain_extra2.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "automatic.debit.exception",
+      "flow_name": "Automatic Debit Exception Review",
+      "purpose": "Review exceptions in automatic debit transactions.",
+      "intent": "handle.failures.in.automatic.debit.processes",
+      "business_event": "automatic_debit_exception_occurred",
+      "inputs": [],
+      "outputs": [],
+      "user_task_refs": [],
+      "explanation": "Routes to loan_servicing_review.",
+      "source": "data/raw/enterprise_dump_2026/service_configuration_notes.md;data/raw/enterprise_dump_2026/systems_catalog_export.json",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/service_configuration_notes.md",
+          "data/raw/enterprise_dump_2026/systems_catalog_export.json"
+        ]
+      }
+    },
+    {
+      "flow_id": "automatic.payment.account.requirement",
+      "flow_name": "Automatic Payment Account Requirement",
+      "purpose": "Ensure loan payments are made from eligible savings accounts",
+      "intent": "automate.loan.payments.securely",
+      "business_event": "Customer requests setup of recurring loan payment",
+      "inputs": [
+        "customer_request",
+        "loan_details",
+        "account_information"
+      ],
+      "outputs": [
+        "configured_automatic_payment",
+        "account_opening_journey_initiated"
+      ],
+      "user_task_refs": [
+        "account_eligibility_check",
+        "requirement_explanation",
+        "payment_configuration"
+      ],
+      "explanation": "Check for eligible savings account; if absent, explain requirement and offer account opening journey before configuring payment",
+      "source": "data/raw/enterprise_dump_2026/operations_controls_policy.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/operations_controls_policy.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "automatic.payment.setup.flow",
+      "flow_name": "Account Setup for Automatic Debit",
+      "purpose": "Enable recurring automatic payments from customer account",
+      "intent": "configure.automatic.debit.facility",
+      "business_event": "Customer wants to open account for automatic payment",
+      "inputs": [
+        "account_details",
+        "payment_frequency"
+      ],
+      "outputs": [
+        "account_verified",
+        "requirements_explained"
+      ],
+      "user_task_refs": [
+        "check_account_eligibility_task",
+        "explain_requirements_task"
+      ],
+      "explanation": "Agent checks eligible account and explains automatic debit requirements",
+      "source": "data/raw/enterprise_dump_2026/customer_support_tickets.csv",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/customer_support_tickets.csv"
+        ]
+      }
+    },
+    {
+      "flow_id": "autopay.cancel",
+      "flow_name": "Cancellation of Automatic Payment",
+      "purpose": "To cancel automatic payment setting.",
+      "intent": "autopay.cancel",
+      "business_event": "Contact center receives cancellation request",
+      "inputs": [
+        "cancellation_request"
+      ],
+      "outputs": [
+        "updated_payment_setting",
+        "audit_log"
+      ],
+      "user_task_refs": [
+        "ut_9"
+      ],
+      "explanation": "Request received, system updates setting, and case logged for audit.",
+      "source": "data/raw/process_examples_refinance.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/process_examples_refinance.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "change.installment.flow",
+      "flow_name": "Change Installment Process",
+      "purpose": "To handle client requests for changing loan installments by verifying identity and providing refinancing options.",
+      "intent": "assist.the.client.through.a.structured.process.to.modify.loan.terms",
+      "business_event": "Client requests change in loan installment",
+      "inputs": [
+        "client_id",
+        "loan_id"
+      ],
+      "outputs": [
+        "case_opened",
+        "identity_validated",
+        "options_presented",
+        "interaction_recorded"
+      ],
+      "user_task_refs": [
+        "open_case_task",
+        "validate_identity_task",
+        "explain_options_task",
+        "record_interaction_task"
+      ],
+      "explanation": "When a client wants to change their installment, the process involves opening a case, validating identity, explaining refinancing options, and recording the interaction.",
+      "source": "data/raw/enterprise_systems_catalog.md;data/raw/manual_operativo_credito.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_systems_catalog.md",
+          "data/raw/manual_operativo_credito.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "cierre.cuenta",
+      "flow_name": "Tramitación de cierre de cuenta y liquidación de saldos",
+      "purpose": "Terminate the account and settle remaining funds",
+      "intent": "end.the.banking.relationship.for.the.account",
+      "business_event": "Client closes their account",
+      "inputs": [
+        "closure_request",
+        "account_details"
+      ],
+      "outputs": [
+        "account_closed",
+        "balances_settled"
+      ],
+      "user_task_refs": [],
+      "explanation": "Process to close account and settle balances",
+      "source": "data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_loans_domain_extra1.txt",
+          "data/raw/savings_loans_domain_extra2.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "claim.filling",
+      "flow_name": "Claim Filing Process",
+      "purpose": "Address customer complaints and disputes.",
+      "intent": "file.a.claim",
+      "business_event": "customer_reports_issue",
+      "inputs": [
+        "claim_reason",
+        "transaction_reference",
+        "date",
+        "amount",
+        "evidence"
+      ],
+      "outputs": [
+        "claim_registered",
+        "investigation_pending"
+      ],
+      "user_task_refs": [
+        "file_claim_details"
+      ],
+      "explanation": "Collects claim details and evidence to investigate and resolve customer issues.",
+      "source": "data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_policy_and_controls.md",
+          "data/raw/enterprise_support_wiki.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "claim.flow",
+      "flow_name": "Client Claims",
+      "purpose": "To address and resolve issues reported by clients.",
+      "intent": "inform.about.claim.process.guide.evidence.submission.or.execute.claim.registration.and.review",
+      "business_event": "Client files a complaint or claim",
+      "inputs": [
+        "claim_reason",
+        "date",
+        "amount",
+        "reference",
+        "evidence"
+      ],
+      "outputs": [
+        "claim_case_created",
+        "evidence_registered",
+        "movements_reviewed"
+      ],
+      "user_task_refs": [
+        "gather_claim_details_task",
+        "register_claim_case_task",
+        "register_evidence_task",
+        "review_movements_task"
+      ],
+      "explanation": "Process for managing client claims, including evidence gathering and resolution.",
+      "source": "data/raw/enterprise_operations_manual.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_operations_manual.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "collection.case.management",
+      "flow_name": "Collection Case Management Process",
+      "purpose": "Manage and resolve collection cases systematically.",
+      "intent": "ensure.appropriate.follow.up.and.resolution.of.collection.issues",
+      "business_event": "Customer case with late payment or related issue",
+      "inputs": [
+        "customer_case_details",
+        "system_data"
+      ],
+      "outputs": [
+        "case_documentation",
+        "next_steps",
+        "reminders_sent"
+      ],
+      "user_task_refs": [
+        "confirm_balance_last_payment",
+        "record_contact_reason",
+        "define_next_action",
+        "send_reminder"
+      ],
+      "explanation": "Analyst handles collection cases by confirming details, recording contact, defining actions, and sending reminders if needed.",
+      "source": "data/raw/notes_operativas_cobranza.md;data/raw/policy_controls_addendum.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/notes_operativas_cobranza.md",
+          "data/raw/policy_controls_addendum.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "complaint.intake",
+      "flow_name": "Complaint intake",
+      "purpose": "To intake and process customer complaints.",
+      "intent": "to.manage.customer.complaints.efficiently",
+      "business_event": "customer_complaint_received",
+      "inputs": [
+        "complaint_details",
+        "evidence"
+      ],
+      "outputs": [
+        "claim_created",
+        "claim_classified",
+        "owner_assigned",
+        "customer_notified"
+      ],
+      "user_task_refs": [
+        "create_claim",
+        "collect_evidence",
+        "classify_claim_type",
+        "assign_owner",
+        "notify_customer"
+      ],
+      "explanation": "Create claim, collect evidence, classify claim type, assign owner, notify customer.",
+      "source": "data/raw/enterprise_dump_2026/policy_controls_memo.md;data/raw/enterprise_dump_2026/process_fragments.json",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/policy_controls_memo.md",
+          "data/raw/enterprise_dump_2026/process_fragments.json"
+        ]
+      }
+    },
+    {
+      "flow_id": "evaluacion.crediticia",
+      "flow_name": "Evaluacion Crediticia",
+      "purpose": "To assess creditworthiness and determine loan eligibility.",
+      "intent": "to.ensure.responsible.lending.and.risk.management",
+      "business_event": "Credit Evaluation",
+      "inputs": [
+        "risk_data",
+        "history",
+        "income",
+        "rules"
+      ],
+      "outputs": [
+        "eligibility_decision"
+      ],
+      "user_task_refs": [],
+      "explanation": "Proceso de verificar riesgo, historial, ingresos y reglas para decidir elegibilidad.",
+      "source": "data/raw/savings_glossary.csv",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_glossary.csv"
+        ]
+      }
+    },
+    {
+      "flow_id": "evaluacion.elegibilidad.prestamo",
+      "flow_name": "Evaluación de elegibilidad de préstamo",
+      "purpose": "Determine if a client is eligible for a loan",
+      "intent": "assess.risk.and.creditworthiness",
+      "business_event": "Loan application is evaluated",
+      "inputs": [
+        "client_income",
+        "documents",
+        "credit_information"
+      ],
+      "outputs": [
+        "eligibility_decision",
+        "loan_offer_if_approved"
+      ],
+      "user_task_refs": [],
+      "explanation": "Steps include collecting documents, calculating DTI, checking credit score, applying rules",
+      "source": "data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_loans_domain_extra1.txt",
+          "data/raw/savings_loans_domain_extra2.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "flow.combine.overdue.installments",
+      "flow_name": "Combine Overdue Installments Refinance",
+      "purpose": "To refinance overdue installments by combining them.",
+      "intent": "combine.overdue.installments",
+      "business_event": "Customer wants to combine two overdue installments",
+      "inputs": [
+        "overdue_installments_info",
+        "account_history"
+      ],
+      "outputs": [
+        "approval_for_combination"
+      ],
+      "user_task_refs": [
+        "ut_4",
+        "ut_5",
+        "ut_6",
+        "ut_7"
+      ],
+      "explanation": "Involves support verification, collections exception check, and approval.",
+      "source": "data/raw/process_examples_refinance.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/process_examples_refinance.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "flow.tck.1001",
+      "flow_name": "automatic_payment_inquiry_flow",
+      "purpose": "To provide information on automatic payment settings and charge date.",
+      "intent": "information.request",
+      "business_event": "client_questions_automatic_payment",
+      "inputs": [
+        "client_request_details"
+      ],
+      "outputs": [
+        "payment_subscription_status",
+        "charge_date_information"
+      ],
+      "user_task_refs": [
+        "user_task_tck_1001"
+      ],
+      "explanation": "Client asks if account is subscribed to automatic payments and requests confirmation of charge date.",
+      "source": "data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/customer_support_tickets_mini.csv",
+          "data/raw/enterprise_dump_2026/00_readme.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "flow.tck.1002",
+      "flow_name": "loan_refinancing_request_flow",
+      "purpose": "To explore options for loan refinancing to reduce monthly installment.",
+      "intent": "loan.refinance",
+      "business_event": "client_requests_loan_refinancing",
+      "inputs": [
+        "loan_details",
+        "client_income"
+      ],
+      "outputs": [
+        "refinancing_options",
+        "updated_loan_terms"
+      ],
+      "user_task_refs": [
+        "user_task_tck_1002"
+      ],
+      "explanation": "Client wants to lower installment by refinancing the loan due to high monthly payment.",
+      "source": "data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/customer_support_tickets_mini.csv",
+          "data/raw/enterprise_dump_2026/00_readme.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "flow.tck.1003",
+      "flow_name": "duplicate_charge_investigation_flow",
+      "purpose": "To investigate the duplicate charge and process refund if confirmed.",
+      "intent": "dispute.resolution",
+      "business_event": "client_reports_duplicate_charge",
+      "inputs": [
+        "transaction_details",
+        "proof_of_charge"
+      ],
+      "outputs": [
+        "investigation_report",
+        "refund_confirmation"
+      ],
+      "user_task_refs": [
+        "user_task_tck_1003"
+      ],
+      "explanation": "Client reports a duplicate charge and requests investigation and refund.",
+      "source": "data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/customer_support_tickets_mini.csv",
+          "data/raw/enterprise_dump_2026/00_readme.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "flow.tck.1004",
+      "flow_name": "payment_date_change_flow",
+      "purpose": "To adjust payment date while avoiding negative consequences.",
+      "intent": "account.modification",
+      "business_event": "client_requests_payment_date_change",
+      "inputs": [
+        "current_payment_schedule",
+        "requested_date"
+      ],
+      "outputs": [
+        "new_payment_schedule",
+        "confirmation_no_penalty"
+      ],
+      "user_task_refs": [
+        "user_task_tck_1004"
+      ],
+      "explanation": "Client wants to move payment date without incurring penalty or falling into default.",
+      "source": "data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/customer_support_tickets_mini.csv",
+          "data/raw/enterprise_dump_2026/00_readme.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "flow.tck.1005",
+      "flow_name": "exception_request_flow",
+      "purpose": "To process an exception request for loan-related delay.",
+      "intent": "exception.handling",
+      "business_event": "client_requests_exception_for_delay",
+      "inputs": [
+        "exception_reason",
+        "document_delivery_status"
+      ],
+      "outputs": [
+        "exception_decision",
+        "updated_terms_if_approved"
+      ],
+      "user_task_refs": [
+        "user_task_tck_1005"
+      ],
+      "explanation": "Client asks for an exception due to temporary delay while delivering documents.",
+      "source": "data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/customer_support_tickets_mini.csv",
+          "data/raw/enterprise_dump_2026/00_readme.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "flow.tck.1006",
+      "flow_name": "contact_information_update_flow",
+      "purpose": "To ensure contact information is current for loan review process.",
+      "intent": "data.management",
+      "business_event": "client_updates_contact_information",
+      "inputs": [
+        "new_phone_number",
+        "new_email_address"
+      ],
+      "outputs": [
+        "updated_contact_record",
+        "confirmation_of_update"
+      ],
+      "user_task_refs": [
+        "user_task_tck_1006"
+      ],
+      "explanation": "Client needs to update phone and email before loan review.",
+      "source": "data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/customer_support_tickets_mini.csv",
+          "data/raw/enterprise_dump_2026/00_readme.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "generacion.estado.cuenta",
+      "flow_name": "Generación de estado de cuenta mensual y envío por mail",
+      "purpose": "Provide clients with summaries of account activity",
+      "intent": "inform.clients.of.their.financial.transactions",
+      "business_event": "Monthly account statement is generated and sent",
+      "inputs": [
+        "account_transactions_data"
+      ],
+      "outputs": [
+        "account_statement_sent_via_email"
+      ],
+      "user_task_refs": [],
+      "explanation": "Process for generating and sending periodic account statements",
+      "source": "data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_loans_domain_extra1.txt",
+          "data/raw/savings_loans_domain_extra2.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "gestion.reclamos",
+      "flow_name": "Complaint Handling",
+      "purpose": "Resolve customer complaints efficiently and within time limits.",
+      "intent": "ensure.customer.satisfaction.and.compliance.with.resolution.timelines",
+      "business_event": "complaint_received",
+      "inputs": [
+        "complaint_details",
+        "customer_information"
+      ],
+      "outputs": [
+        "resolution_status",
+        "customer_communication"
+      ],
+      "user_task_refs": [
+        "customer_lookup",
+        "transaction_list"
+      ],
+      "explanation": "Multi-step process for handling customer complaints from reception to resolution.",
+      "source": "data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_loans_domain_extra3.txt",
+          "data/raw/savings_loans_domain_extra4.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "high.value.transfer.control",
+      "flow_name": "High Value Transfer Control",
+      "purpose": "Ensure compliance and control high-value international transfers",
+      "intent": "monitor.and.approve.high.risk.international.transfers",
+      "business_event": "International transfer above USD 50,000 is initiated",
+      "inputs": [
+        "source_account",
+        "beneficiary_identity",
+        "destination_country",
+        "amount",
+        "currency",
+        "purpose_of_payment"
+      ],
+      "outputs": [
+        "released_transfer",
+        "escalated_case_to_compliance_review"
+      ],
+      "user_task_refs": [
+        "enhanced_due_diligence_review",
+        "compliance_routing"
+      ],
+      "explanation": "Transfer is held for enhanced due diligence; if screening inconclusive, routed to Compliance Review",
+      "source": "data/raw/enterprise_dump_2026/operations_controls_policy.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/operations_controls_policy.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "high.value.transfer.flow",
+      "flow_name": "High Value International Transfer",
+      "purpose": "To securely and compliantly process large cross-border transfers",
+      "intent": "execute.international.wire.transfer",
+      "business_event": "Customer initiates transfer of $75,000 to another country",
+      "inputs": [
+        "transfer_amount",
+        "destination_country",
+        "purpose_of_transfer"
+      ],
+      "outputs": [
+        "transfer_initiated",
+        "compliance_status"
+      ],
+      "user_task_refs": [
+        "capture_transfer_details_task",
+        "request_document_task"
+      ],
+      "explanation": "Process involves capturing transfer details, requesting purpose documentation, and potential compliance review due to high value",
+      "source": "data/raw/enterprise_dump_2026/customer_support_tickets.csv",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/customer_support_tickets.csv"
+        ]
+      }
+    },
+    {
+      "flow_id": "high.value.transfer.review",
+      "flow_name": "High Value Transfer Review",
+      "purpose": "Review high value transfers for compliance and risk management.",
+      "intent": "ensure.regulatory.compliance.for.transfers.exceeding.thresholds",
+      "business_event": "high_value_transfer_initiated",
+      "inputs": [],
+      "outputs": [],
+      "user_task_refs": [],
+      "explanation": "Routes to manager_review first, then compliance review when screening is inconclusive.",
+      "source": "data/raw/enterprise_dump_2026/service_configuration_notes.md;data/raw/enterprise_dump_2026/systems_catalog_export.json",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/service_configuration_notes.md",
+          "data/raw/enterprise_dump_2026/systems_catalog_export.json"
+        ]
+      }
+    },
+    {
+      "flow_id": "identificacion.cliente",
+      "flow_name": "Identificacion de Cliente",
+      "purpose": "To verify customer identity and assess risk for compliance.",
+      "intent": "to.prevent.fraud.and.meet.regulatory.requirements",
+      "business_event": "KYC Verification",
+      "inputs": [
+        "identity_documents",
+        "customer_data"
+      ],
+      "outputs": [
+        "verified_identity"
+      ],
+      "user_task_refs": [],
+      "explanation": "Proceso obligatorio para confirmar identidad y perfil de riesgo.",
+      "source": "data/raw/savings_glossary.csv",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_glossary.csv"
+        ]
+      }
+    },
+    {
+      "flow_id": "insurance.enrollment.flow",
+      "flow_name": "Insurance Enrollment Process",
+      "purpose": "To attach insurance protection to lending products during loan origination.",
+      "intent": "cross.sell.shieldguard.insurance.to.customers.with.personal.loans",
+      "business_event": "insurance_enrollment",
+      "inputs": [],
+      "outputs": [
+        "agreement_acceptance",
+        "beneficiary_confirmation_event"
+      ],
+      "user_task_refs": [],
+      "explanation": "Process for enrolling in ShieldGuard Insurance linked to loan onboarding, requiring agreement acceptance and beneficiary confirmation event.",
+      "source": "data/raw/corporate_structure_and_offerings.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/corporate_structure_and_offerings.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "international.transfer.review",
+      "flow_name": "International transfer review",
+      "purpose": "To review and process international transfer requests.",
+      "intent": "to.ensure.compliance.and.security.for.outbound.transfers",
+      "business_event": "outbound_transfer_requested",
+      "inputs": [
+        "transfer_details",
+        "source_account",
+        "beneficiary_info"
+      ],
+      "outputs": [
+        "transfer_decision",
+        "review_status"
+      ],
+      "user_task_refs": [
+        "capture_transfer_details",
+        "validate_source_account",
+        "screen_beneficiary",
+        "request_purpose_document",
+        "route_to_manager_review",
+        "release_or_reject_transfer"
+      ],
+      "explanation": "Capture details, validate source account, screen beneficiary, request purpose document if needed, route to manager review, release or reject.",
+      "source": "data/raw/enterprise_dump_2026/policy_controls_memo.md;data/raw/enterprise_dump_2026/process_fragments.json",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/policy_controls_memo.md",
+          "data/raw/enterprise_dump_2026/process_fragments.json"
+        ]
+      }
+    },
+    {
+      "flow_id": "loan.application",
+      "flow_name": "Loan Application Process",
+      "purpose": "Provide financing to customer based on eligibility.",
+      "intent": "apply.for.personal.loan",
+      "business_event": "customer_requests_loan",
+      "inputs": [
+        "loan_amount",
+        "loan_term",
+        "purpose",
+        "income_evidence"
+      ],
+      "outputs": [
+        "application_submitted",
+        "credit_evaluation"
+      ],
+      "user_task_refs": [
+        "provide_loan_details"
+      ],
+      "explanation": "Collects loan details and verifies income to evaluate creditworthiness.",
+      "source": "data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_policy_and_controls.md",
+          "data/raw/enterprise_support_wiki.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "loan.application.flow",
+      "flow_name": "Loan Application",
+      "purpose": "To evaluate and process loan requests based on client eligibility and bank policies.",
+      "intent": "inform.about.loan.evaluation.criteria.guide.through.application.steps.or.execute.loan.request.submission",
+      "business_event": "Client inquires about or requests a loan",
+      "inputs": [
+        "loan_details",
+        "income_evidence",
+        "documents"
+      ],
+      "outputs": [
+        "loan_request_created",
+        "scoring_calculated",
+        "approval_required"
+      ],
+      "user_task_refs": [
+        "gather_loan_details_task",
+        "create_loan_request_task",
+        "consult_credit_history_task",
+        "obtain_policy_context_task",
+        "calculate_scoring_task",
+        "request_approval_task"
+      ],
+      "explanation": "Process for handling loan applications, including consultation, guidance, and execution with risk assessment.",
+      "source": "data/raw/enterprise_operations_manual.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_operations_manual.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "loan.application.origination",
+      "flow_name": "Loan Application and Origination",
+      "purpose": "To evaluate and process loan applications, ensuring responsible lending and disbursement.",
+      "intent": "apply.for.and.obtain.a.loan",
+      "business_event": "Customer submits a loan application",
+      "inputs": [
+        "loan_amount",
+        "loan_term",
+        "purpose",
+        "income_proof",
+        "employment_details"
+      ],
+      "outputs": [
+        "loan_eligibility_calculated",
+        "terms_proposed",
+        "loan_approved",
+        "disbursement_scheduled"
+      ],
+      "user_task_refs": [
+        "collect_application_details",
+        "verify_income",
+        "check_credit_history",
+        "request_human_approval",
+        "setup_repayment"
+      ],
+      "explanation": "Process from loan application submission to disbursement, including eligibility checks, approval, and repayment setup.",
+      "source": "data/raw/savings_loans_domain_extra5.txt;data/raw/savings_loans_domain_raw.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_loans_domain_extra5.txt",
+          "data/raw/savings_loans_domain_raw.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "loan.application.process",
+      "flow_name": "Loan Application Process",
+      "purpose": "To process loan applications",
+      "intent": "user.wants.to.apply.for.a.loan",
+      "business_event": "Applying for a loan",
+      "inputs": [
+        "a",
+        "p",
+        "p",
+        "l",
+        "i",
+        "c",
+        "a",
+        "t",
+        "i",
+        "o",
+        "n",
+        "d",
+        "e",
+        "t",
+        "a",
+        "i",
+        "l",
+        "s",
+        "",
+        "d",
+        "o",
+        "c",
+        "u",
+        "m",
+        "e",
+        "n",
+        "t",
+        "s"
+      ],
+      "outputs": [
+        "l",
+        "o",
+        "a",
+        "n",
+        "d",
+        "e",
+        "c",
+        "i",
+        "s",
+        "i",
+        "o",
+        "n"
+      ],
+      "user_task_refs": [
+        "loan_application_capture"
+      ],
+      "explanation": "Involves application capture as a user task and backend tools for scoring, bureau checks, and eligibility calculation.",
+      "source": "data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1"
+        ]
+      }
+    },
+    {
+      "flow_id": "loan.disbursement",
+      "flow_name": "Loan Disbursement Process",
+      "purpose": "To disburse loan funds to the borrower under the FlexPay Personal Loan product.",
+      "intent": "provide.financing.with.fixed.rate.terms.and.repayment.conditions",
+      "business_event": "loan_disbursement",
+      "inputs": [],
+      "outputs": [
+        "disbursement_event",
+        "repayment_schedule_confirmation",
+        "collateral_verification"
+      ],
+      "user_task_refs": [],
+      "explanation": "Process for funding a FlexPay Personal Loan, generating disbursement event, confirming repayment schedule, and verifying collateral for secured loans.",
+      "source": "data/raw/corporate_structure_and_offerings.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/corporate_structure_and_offerings.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "loan.payment.registration",
+      "flow_name": "Loan Payment Registration",
+      "purpose": "To allow users to pay their loans",
+      "intent": "loan.payment",
+      "business_event": "Paying a loan installment",
+      "inputs": [
+        "l",
+        "o",
+        "a",
+        "n",
+        "d",
+        "e",
+        "t",
+        "a",
+        "i",
+        "l",
+        "s",
+        "",
+        "p",
+        "a",
+        "y",
+        "m",
+        "e",
+        "n",
+        "t",
+        "a",
+        "m",
+        "o",
+        "u",
+        "n",
+        "t"
+      ],
+      "outputs": [
+        "c",
+        "o",
+        "n",
+        "f",
+        "i",
+        "r",
+        "m",
+        "a",
+        "t",
+        "i",
+        "o",
+        "n",
+        "o",
+        "f",
+        "p",
+        "a",
+        "y",
+        "m",
+        "e",
+        "n",
+        "t"
+      ],
+      "user_task_refs": [],
+      "explanation": "Payment registration is a flow that involves registering the payment, with backend tools handling debit posting and balance updates.",
+      "source": "data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1"
+        ]
+      }
+    },
+    {
+      "flow_id": "loan.refinance",
+      "flow_name": "Loan Installment Reduction",
+      "purpose": "Modify loan to reduce customer's monthly burden",
+      "intent": "loan.refinance",
+      "business_event": "Customer requests to lower loan monthly payment",
+      "inputs": [
+        "loan_id",
+        "current_payment"
+      ],
+      "outputs": [
+        "refinance_proposal"
+      ],
+      "user_task_refs": [
+        "refinance_review_task",
+        "explain_loan_calculation_task"
+      ],
+      "explanation": "Agent starts refinance review to adjust loan terms and explains conditions using calculation tool",
+      "source": "data/raw/enterprise_dump_2026/customer_support_tickets.csv",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/customer_support_tickets.csv"
+        ]
+      }
+    },
+    {
+      "flow_id": "pago.prestamo",
+      "flow_name": "Pago de Prestamo",
+      "purpose": "To record and process customer loan repayments.",
+      "intent": "to.manage.loan.obligations.and.maintain.accurate.balances",
+      "business_event": "Loan Payment",
+      "inputs": [
+        "payment_details",
+        "loan_account"
+      ],
+      "outputs": [
+        "payment_confirmation"
+      ],
+      "user_task_refs": [],
+      "explanation": "Proceso para registrar el pago de una cuota o deuda crediticia.",
+      "source": "data/raw/savings_glossary.csv",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_glossary.csv"
+        ]
+      }
+    },
+    {
+      "flow_id": "reclamo",
+      "flow_name": "Reclamo",
+      "purpose": "To address and resolve customer disputes or errors.",
+      "intent": "to.maintain.customer.trust.and.correct.operational.issues",
+      "business_event": "Claim Process",
+      "inputs": [
+        "claim_details",
+        "supporting_documents"
+      ],
+      "outputs": [
+        "claim_resolution"
+      ],
+      "user_task_refs": [],
+      "explanation": "Solicitud de revisión por error, cargo no reconocido o problema operativo.",
+      "source": "data/raw/savings_glossary.csv",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_glossary.csv"
+        ]
+      }
+    },
+    {
+      "flow_id": "reexpedicion.tarjeta",
+      "flow_name": "Card Reissuance",
+      "purpose": "Replace cards securely and prevent fraud.",
+      "intent": "provide.new.cards.while.ensuring.security",
+      "business_event": "card_replacement_needed",
+      "inputs": [
+        "card_request",
+        "identity_verification"
+      ],
+      "outputs": [
+        "new_card_issued",
+        "old_card_blocked"
+      ],
+      "user_task_refs": [
+        "customer_lookup"
+      ],
+      "explanation": "Process to verify customer identity, block the old card, and issue a new one.",
+      "source": "data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_loans_domain_extra3.txt",
+          "data/raw/savings_loans_domain_extra4.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "renovacion.plazo.fijo",
+      "flow_name": "Renovación de plazo fijo al vencimiento",
+      "purpose": "To renew a fixed deposit with updated terms",
+      "intent": "continue.investment.with.similar.or.new.conditions",
+      "business_event": "Fixed deposit matures and client renews it",
+      "inputs": [
+        "fixed_deposit_details",
+        "renewal_options"
+      ],
+      "outputs": [
+        "renewed_fixed_deposit",
+        "updated_terms"
+      ],
+      "user_task_refs": [],
+      "explanation": "Process to renew a fixed deposit upon maturity",
+      "source": "data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_loans_domain_extra1.txt",
+          "data/raw/savings_loans_domain_extra2.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "savings.account.maintenance",
+      "flow_name": "Savings Account Maintenance",
+      "purpose": "To manage account operations and ensure compliance for existing savings accounts.",
+      "intent": "perform.maintenance.on.a.savings.account",
+      "business_event": "Various account operations such as deposits, withdrawals, or statement requests",
+      "inputs": [
+        "account_id",
+        "transaction_details"
+      ],
+      "outputs": [
+        "transaction_processed",
+        "interest_posted",
+        "statement_generated"
+      ],
+      "user_task_refs": [
+        "process_deposit",
+        "process_withdrawal",
+        "generate_statement"
+      ],
+      "explanation": "Ongoing maintenance activities for savings accounts, including transaction processing, interest accrual, and statement generation.",
+      "source": "data/raw/savings_loans_domain_extra5.txt;data/raw/savings_loans_domain_raw.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_loans_domain_extra5.txt",
+          "data/raw/savings_loans_domain_raw.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "savings.account.opening",
+      "flow_name": "Savings Account Opening",
+      "purpose": "To open a new savings account",
+      "intent": "user.wants.to.open.an.account",
+      "business_event": "Opening a savings account",
+      "inputs": [
+        "c",
+        "u",
+        "s",
+        "t",
+        "o",
+        "m",
+        "e",
+        "r",
+        "d",
+        "e",
+        "t",
+        "a",
+        "i",
+        "l",
+        "s",
+        "",
+        "d",
+        "o",
+        "c",
+        "u",
+        "m",
+        "e",
+        "n",
+        "t",
+        "s"
+      ],
+      "outputs": [
+        "a",
+        "c",
+        "c",
+        "o",
+        "u",
+        "n",
+        "t",
+        "d",
+        "e",
+        "t",
+        "a",
+        "i",
+        "l",
+        "s"
+      ],
+      "user_task_refs": [
+        "customer_document_collection"
+      ],
+      "explanation": "Should include Customer, SavingsAccount, CustomerDocuments, and KYC concepts.",
+      "source": "data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1"
+        ]
+      }
+    },
+    {
+      "flow_id": "solicitud.prestamo",
+      "flow_name": "Solicitud de Prestamo",
+      "purpose": "To evaluate loan applications based on captured data.",
+      "intent": "to.determine.eligibility.and.conditions.for.lending",
+      "business_event": "Loan Application",
+      "inputs": [
+        "customer_data",
+        "documents",
+        "income_proofs"
+      ],
+      "outputs": [
+        "loan_application_record"
+      ],
+      "user_task_refs": [],
+      "explanation": "Proceso de capturar datos, documentos e ingresos para evaluar un préstamo.",
+      "source": "data/raw/savings_glossary.csv",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/savings_glossary.csv"
+        ]
+      }
+    },
+    {
+      "flow_id": "transfer.beneficiary.review",
+      "flow_name": "Transfers and Beneficiary Review",
+      "purpose": "To process and secure fund transfers accurately and in compliance with regulations.",
+      "intent": "facilitate.transfers.while.ensuring.regulatory.adherence",
+      "business_event": "transfer_request",
+      "inputs": [
+        "source_account",
+        "beneficiary_details",
+        "amount",
+        "currency",
+        "transfer_reason"
+      ],
+      "outputs": [
+        "completed_transfer",
+        "audit_trail"
+      ],
+      "user_task_refs": [
+        "transfer_identify_customer",
+        "transfer_capture_details",
+        "transfer_review_high_value",
+        "transfer_verify_beneficiary",
+        "transfer_perform_screening",
+        "transfer_record_evidence"
+      ],
+      "explanation": "Process for handling customer requests for fund transfers from savings accounts, including beneficiary review and compliance checks.",
+      "source": "data/raw/enterprise_dump_2026/intranet_transfer_help.html;data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/intranet_transfer_help.html",
+          "data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "transfer.compliance.review.flow",
+      "flow_name": "Transfer Compliance Review",
+      "purpose": "Ensure transfer adheres to regulatory policies",
+      "intent": "review.and.approve.flagged.transfers",
+      "business_event": "Customer's transfer is retained for compliance review",
+      "inputs": [
+        "transfer_details",
+        "retention_reason"
+      ],
+      "outputs": [
+        "compliance_decision",
+        "approval_status"
+      ],
+      "user_task_refs": [
+        "compliance_review_task",
+        "manager_approval_task"
+      ],
+      "explanation": "Agent explains compliance review process and requires manager approval",
+      "source": "data/raw/enterprise_dump_2026/customer_support_tickets.csv",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_dump_2026/customer_support_tickets.csv"
+        ]
+      }
+    },
+    {
+      "flow_id": "transfer.execution",
+      "flow_name": "Transfer Execution Process",
+      "purpose": "Facilitate fund transfer as per customer instruction.",
+      "intent": "execute.money.transfer",
+      "business_event": "customer_requests_transfer",
+      "inputs": [
+        "origin_account",
+        "beneficiary_cbu",
+        "amount",
+        "concept"
+      ],
+      "outputs": [
+        "transfer_initiated",
+        "balance_debited"
+      ],
+      "user_task_refs": [
+        "enter_transfer_details"
+      ],
+      "explanation": "Checks balance and processes money transfer between accounts.",
+      "source": "data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_policy_and_controls.md",
+          "data/raw/enterprise_support_wiki.md"
+        ]
+      }
+    },
+    {
+      "flow_id": "transfer.flow",
+      "flow_name": "Fund Transfers",
+      "purpose": "To securely transfer funds between accounts.",
+      "intent": "inform.about.transfer.requirements.guide.data.preparation.or.execute.the.transfer.after.validation",
+      "business_event": "Client initiates or asks about a fund transfer",
+      "inputs": [
+        "client_id",
+        "account_origin",
+        "beneficiary",
+        "amount",
+        "concept"
+      ],
+      "outputs": [
+        "transfer_created",
+        "approval_requested"
+      ],
+      "user_task_refs": [
+        "validate_transfer_data_task",
+        "check_balance_task",
+        "create_transfer_task",
+        "request_transfer_approval_task"
+      ],
+      "explanation": "Process for validating and executing bank transfers with balance and risk checks.",
+      "source": "data/raw/enterprise_operations_manual.md",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "data/raw/enterprise_operations_manual.md"
+        ]
+      }
+    }
+  ],
+  "tool_registry": [],
+  "semantic_space": [],
+  "domain": [],
+  "module": [],
+  "menu": [],
+  "form": [],
+  "form_version": [],
+  "asset_set": [],
+  "concept": [],
+  "entity": [],
+  "business_rule": [],
+  "process": [],
+  "plan": [],
+  "qa": [],
+  "causality": [],
+  "_skipped": [
+    "data/raw/banking_flows_additional.txt",
+    "data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-1",
+    "data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2",
+    "data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-3",
+    "data/raw/enterprise_dump_2026/orchestration_planning_notes.md",
+    "data/raw/process_qa_seed.md"
+  ]
+}

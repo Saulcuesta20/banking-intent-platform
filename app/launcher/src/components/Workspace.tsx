@@ -55,13 +55,13 @@ export function Workspace({
           onChange={onChatValueChange}
           onSubmit={onChatSubmit}
         />
-        {selectedFlow?.lowdefy_url && (
+        {selectedFlow && (
           <section className="flow-runtime">
             <div className="flow-runtime-header">
               <div>
                 <p className="eyebrow">Activo dinamico</p>
                 <h2>{selectedFlow.flow_name}</h2>
-                <span>{selectedFlow.form_id} / {selectedFlow.form_version} / mapping provisional</span>
+                <span>{selectedFlow.form_id || selectedFlow.flow_id} / {selectedFlow.form_version || 'draft'} / editor React</span>
               </div>
               {formOpen ? (
                 <Button variant="ghost" size="icon" onClick={onCloseForm} aria-label="Cerrar formulario">
@@ -70,16 +70,20 @@ export function Workspace({
               ) : (
                 <Button onClick={onOpenForm}>
                   <ExternalLink size={16} />
-                  Confirmar y abrir formulario
+                  Abrir editor
                 </Button>
               )}
             </div>
-            {formOpen && (
-              <iframe
-                className="lowdefy-frame"
-                src={selectedFlow.lowdefy_url}
-                title={`Formulario ${selectedFlow.flow_name}`}
-              />
+            {formOpen ? (
+              <div className="flow-runtime-note">
+                <strong>Editor React</strong>
+                <p>El flujo se abre en la vista de activos del launcher para editar contrato, user tasks, acciones y tools.</p>
+              </div>
+            ) : (
+              <div className="flow-runtime-note">
+                <strong>Vista previa</strong>
+                <p>Selecciona abrir para saltar al editor del activo correspondiente en el catálogo unificado.</p>
+              </div>
             )}
           </section>
         )}

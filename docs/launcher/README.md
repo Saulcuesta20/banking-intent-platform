@@ -40,6 +40,6 @@ It should let users:
 - see live logs and traces
 - review approvals and notifications
 
-The launcher should be a separate deployable frontend app inside the same monorepo. The canonical shell should be built with React, TypeScript, and shadcn/ui, using shadcn-admin as a reference for app structure and admin-style interaction patterns.
+The launcher is a separate deployable frontend app inside the same monorepo. The canonical shell is built with React, TypeScript, and shadcn/ui, using shadcn-admin as a reference for app structure and admin-style interaction patterns.
 
-Lowdefy remains in the architecture as the dynamic engine for YAML-driven forms, flow screens, and plugin-specific declarative pages. It should not own the global shell, three-panel layout, chat workspace, navigation, or context-panel framework.
+The launcher shell owns the three-panel experience, chat workspace, navigation, and context panels. Dynamic editors are rendered inside the launcher experience and should not replace the shell or move the user into a separate app.

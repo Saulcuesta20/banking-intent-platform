@@ -1,0 +1,25 @@
+asset_id: user_task.create_transfer
+asset_type: user_task
+name: Create Transfer
+version: 1.0.0
+owner: business_model_kb
+description: Post the transfer transaction to the core system.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut305
+  task: create_transfer
+  type: backend
+  name: Create Transfer
+  description: Post the transfer transaction to the core system.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Create Transfer
+  normalized_name: create transfer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

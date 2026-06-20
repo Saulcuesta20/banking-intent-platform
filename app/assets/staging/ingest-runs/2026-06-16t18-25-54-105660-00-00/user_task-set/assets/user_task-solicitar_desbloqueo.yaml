@@ -1,0 +1,29 @@
+asset_id: user_task.solicitar_desbloqueo
+asset_type: user_task
+name: Solicitar desbloqueo
+version: 1.0.0
+owner: business_model_kb
+description: El cliente envía una solicitud formal de desbloqueo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: request_unblock
+  task: solicitar_desbloqueo_de_cuenta
+  type: solicitud
+  name: Solicitar desbloqueo
+  description: El cliente envía una solicitud formal de desbloqueo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente envía una solicitud formal de desbloqueo.
+  match_strategy: generated
+  canonical_name: Solicitar desbloqueo
+  normalized_name: solicitar desbloqueo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

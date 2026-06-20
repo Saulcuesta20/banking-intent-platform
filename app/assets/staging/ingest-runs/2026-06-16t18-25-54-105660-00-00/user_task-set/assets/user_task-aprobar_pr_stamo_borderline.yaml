@@ -1,0 +1,25 @@
+asset_id: user_task.aprobar_pr_stamo_borderline
+asset_type: user_task
+name: Aprobar préstamo borderline
+version: 1.0.0
+owner: business_model_kb
+description: Human approval required for borderline or high-risk loan applications.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_approve_borderline_loan
+  task: approve_borderline_loan
+  type: approval
+  name: Aprobar préstamo borderline
+  description: Human approval required for borderline or high-risk loan applications.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Aprobar préstamo borderline
+  normalized_name: aprobar préstamo borderline
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

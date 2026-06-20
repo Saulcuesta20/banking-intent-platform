@@ -1,0 +1,44 @@
+asset_id: flow.evaluacion.elegibilidad.prestamo
+asset_type: flow
+name: Evaluación de elegibilidad de préstamo
+version: 1.0.0
+owner: process_kb
+description: Steps include collecting documents, calculating DTI, checking credit
+  score, applying rules
+text: Steps include collecting documents, calculating DTI, checking credit score,
+  applying rules
+tags:
+- assess.risk.and.creditworthiness
+relations: []
+payload:
+  flow_id: evaluacion.elegibilidad.prestamo
+  flow_name: Evaluación de elegibilidad de préstamo
+  intent: assess.risk.and.creditworthiness
+  confidence: 0.75
+  business_event: Loan application is evaluated
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Steps include collecting documents, calculating DTI, checking credit
+    score, applying rules
+  source: data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra1.txt
+    - data/raw/savings_loans_domain_extra2.txt
+    purpose: Determine if a client is eligible for a loan
+  purpose: Determine if a client is eligible for a loan
+  transaction_id: evaluacion.elegibilidad.prestamo
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Evaluación de elegibilidad de préstamo
+  normalized_name: evaluación de elegibilidad de préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

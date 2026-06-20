@@ -1,0 +1,90 @@
+asset_id: flow.claim.flow
+asset_type: flow
+name: Client Claims
+version: 1.0.0
+owner: process_kb
+description: Process for managing client claims, including evidence gathering and
+  resolution.
+text: Process for managing client claims, including evidence gathering and resolution.
+tags:
+- inform.about.claim.process.guide.evidence.submission.or.execute.claim.registration.and.review
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.claim_details_collection
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.claim_case_registration
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.evidence_registration
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.movement_review
+  metadata: {}
+payload:
+  flow_id: claim.flow
+  flow_name: Client Claims
+  intent: inform.about.claim.process.guide.evidence.submission.or.execute.claim.registration.and.review
+  confidence: 0.75
+  business_event: Client files a complaint or claim
+  utterances: []
+  plan: []
+  tasks:
+  - task: gather_details_for_claim_submission
+    type: guided
+  - task: register_claim_case_in_the_system
+    type: automated
+  - task: register_evidence_for_the_claim
+    type: automated
+  - task: review_transaction_movements_for_claim
+    type: automated
+  user_tasks:
+  - user_task_id: gather_claim_details_task
+    task: gather_details_for_claim_submission
+    type: guided
+    name: Claim Details Collection
+    description: Collect reason, date, amount, reference, and evidence from client.
+    tools: []
+    user_actions: []
+  - user_task_id: register_claim_case_task
+    task: register_claim_case_in_the_system
+    type: automated
+    name: Claim Case Registration
+    description: Create a case for the claim in the claims management system.
+    tools: []
+    user_actions: []
+  - user_task_id: register_evidence_task
+    task: register_evidence_for_the_claim
+    type: automated
+    name: Evidence Registration
+    description: Attach and log evidence provided by the client.
+    tools: []
+    user_actions: []
+  - user_task_id: review_movements_task
+    task: review_transaction_movements_for_claim
+    type: automated
+    name: Movement Review
+    description: Examine transaction history related to the claim.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process for managing client claims, including evidence gathering and
+    resolution.
+  source: data/raw/enterprise_operations_manual.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_operations_manual.md
+    purpose: To address and resolve issues reported by clients.
+  purpose: To address and resolve issues reported by clients.
+  transaction_id: claim.flow
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Client Claims
+  normalized_name: client claims
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

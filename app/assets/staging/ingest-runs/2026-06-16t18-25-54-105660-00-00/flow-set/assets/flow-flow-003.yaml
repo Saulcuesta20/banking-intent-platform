@@ -1,0 +1,64 @@
+asset_id: flow.flow.003
+asset_type: flow
+name: transfer_retention_resolution
+version: 1.0.0
+owner: process_kb
+description: process_to_resolve_retained_transfers_through_compliance_review_and_manager_approval
+text: process_to_resolve_retained_transfers_through_compliance_review_and_manager_approval
+tags:
+- resolve.transfer.retention
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.compliance_review
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.manager_approval
+  metadata: {}
+payload:
+  flow_id: flow.003
+  flow_name: transfer_retention_resolution
+  intent: resolve.transfer.retention
+  confidence: 0.75
+  business_event: customer_reports_that_their_transfer_is_retained
+  utterances: []
+  plan: []
+  tasks:
+  - task: compliance_review
+    type: review
+  - task: manager_approval
+    type: approval
+  user_tasks:
+  - user_task_id: ut_005
+    task: compliance_review
+    type: review
+    name: compliance_review
+    description: agent_performs_compliance_review_on_the_retained_transfer
+    tools: []
+    user_actions: []
+  - user_task_id: ut_006
+    task: manager_approval
+    type: approval
+    name: manager_approval
+    description: manager_approves_the_release_of_the_retained_transfer
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: process_to_resolve_retained_transfers_through_compliance_review_and_manager_approval
+  source: data/raw/enterprise_dump_2026/customer_support_tickets.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    purpose: release_retained_transfers_after_proper_checks
+  purpose: release_retained_transfers_after_proper_checks
+  transaction_id: flow.003
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: transfer_retention_resolution
+  normalized_name: transfer retention resolution
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

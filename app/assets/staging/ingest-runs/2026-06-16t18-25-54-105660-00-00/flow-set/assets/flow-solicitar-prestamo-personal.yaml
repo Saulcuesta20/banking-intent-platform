@@ -1,0 +1,68 @@
+asset_id: flow.solicitar.prestamo.personal
+asset_type: flow
+name: Solicitar préstamo personal
+version: 1.0.0
+owner: process_kb
+description: Proceso para solicitar un préstamo personal, incluyendo recolección de
+  datos y creación de solicitud.
+text: Proceso para solicitar un préstamo personal, incluyendo recolección de datos
+  y creación de solicitud.
+tags:
+- el.cliente.desea.solicitar.un.prestamo.personal
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.recopilar_datos_del_pr_stamo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.crear_solicitud_de_pr_stamo
+  metadata: {}
+payload:
+  flow_id: solicitar.prestamo.personal
+  flow_name: Solicitar préstamo personal
+  intent: el.cliente.desea.solicitar.un.prestamo.personal
+  confidence: 0.75
+  business_event: Solicitud de préstamo personal
+  utterances: []
+  plan: []
+  tasks:
+  - task: recopilar_datos_del_pr_stamo
+    type: form
+  - task: crear_solicitud_de_pr_stamo
+    type: execution
+  user_tasks:
+  - user_task_id: recopilar_datos_prestamo
+    task: recopilar_datos_del_pr_stamo
+    type: form
+    name: Recopilar datos del préstamo
+    description: Solicitar al cliente monto, plazo, finalidad, evidencia de ingresos
+      y documentos.
+    tools: []
+    user_actions: []
+  - user_task_id: crear_solicitud_prestamo
+    task: crear_solicitud_de_pr_stamo
+    type: execution
+    name: Crear solicitud de préstamo
+    description: Crear la solicitud de préstamo con los datos recopilados.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para solicitar un préstamo personal, incluyendo recolección
+    de datos y creación de solicitud.
+  source: data/raw/enterprise_support_wiki.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_support_wiki.md
+    purpose: Permitir al cliente solicitar un préstamo personal.
+  purpose: Permitir al cliente solicitar un préstamo personal.
+  transaction_id: solicitar.prestamo.personal
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Solicitar préstamo personal
+  normalized_name: solicitar préstamo personal
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

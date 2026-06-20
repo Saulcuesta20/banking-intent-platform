@@ -1,0 +1,29 @@
+asset_id: entity.monto_y_destino
+asset_type: entity
+name: monto y destino.
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: La solicitud de prestamo contiene
+  plazo, monto y destino.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases:
+  - monto y destino
+  inferred_from: section_entities
+  structural_layer: channel
+  business_layer: channel
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Business entity listed in corpus section: La solicitud de prestamo
+      contiene plazo, monto y destino.'
+  match_strategy: generated
+  canonical_name: monto y destino.
+  normalized_name: monto y destino.
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

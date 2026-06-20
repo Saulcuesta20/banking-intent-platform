@@ -1,0 +1,25 @@
+asset_id: user_task.verify_account_status
+asset_type: user_task
+name: Verify Account Status
+version: 1.0.0
+owner: business_model_kb
+description: Agent checks account is in good standing and current payment date.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verify_account_status
+  task: verify_account_status_and_current_payment_date
+  type: agent
+  name: Verify Account Status
+  description: Agent checks account is in good standing and current payment date.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Verify Account Status
+  normalized_name: verify account status
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,3958 @@
+{
+  "started_at": "2026-06-14T01:36:48.149134+00:00",
+  "finished_at": "2026-06-14T01:42:16.273326+00:00",
+  "mode": "apply",
+  "extraction_instruction_mode": "none",
+  "semantic_analysis": {
+    "summary": "Mixed enterprise corpus classified with deterministic heuristics. Use LLM semantic analysis or human review before applying artifacts.",
+    "review_required": true,
+    "classifications": [
+      {
+        "source": "data/raw/README.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "rule",
+          "exception",
+          "document",
+          "system",
+          "integration",
+          "approval"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Raw Ingestion Corpus\n\nEsta carpeta simula fuentes reales de una empresa. Los documentos no estan\npreclasificados por intencion. La ingestion debe analizar el corpus, detectar\npatrones escondidos y proponer si cada fragmento sirve para Q&A, caso guiado,\nejecucion de proceso, reglas, excepciones, sistemas o aprobaciones.\n\nFuentes empresariales nuevas:\n\n- `enterprise_operations_manual.md`: manual operativo mezclado.\n- `enterprise_policy_and_controls.md`: politicas, controles, aprobaciones y excep",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/banking_flows_additional.txt",
+        "intent_class": "process_execution",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [
+          "customer.onboarding"
+        ],
+        "systems": [
+          "loan_origination"
+        ],
+        "confidence": 0.45,
+        "evidence": "Internal operations notes for the lending and customer platform.\n\nWhen a new customer arrives at the branch or opens a digital onboarding flow,\nthe service desk verifies identity, captures the customer profile, and checks\nwhether the person already exists in the customer master. If the customer is\nnew, the platform creates a customer record, links identification documents,\nand records consent. If the customer is returning, the agent updates the\naddress, phone number, employment status, and prefe",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/banking_synonyms_and_glossary_runtime.txt",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Banking Intent Platform - Synonyms, Glossary, and Concept Mapping Guidance\n\nPurpose:\nThis raw corpus file teaches ingestion which informal banking words should map\nto formal concepts, flow names, utterances, user tasks, and tools.\nThe runtime ask process must not invent terms. It should retrieve validated\nconcepts, synonyms, flows, user tasks, and tools from the graph.\n\nCanonical concepts and aliases:\n\n1. Loan\n   Informal terms: prestamo, credito, financiamiento, loan, prestamo personal,\n   line",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/customer_support_tickets_mini.csv",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "exception",
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "ticket_id,created_at,channel,subject,body,status\nTCK-1001,2026-05-01,chat,\"No veo mi pago automatico\",\"El cliente pregunta si su cuenta esta suscrita a domiciliacion y solicita confirmar la fecha de cargo.\",open\nTCK-1002,2026-05-02,branch,\"Quiero bajar la cuota\",\"Solicita opciones para refinanciar el prestamo porque la cuota mensual quedo alta.\",closed\nTCK-1003,2026-05-03,phone,\"Cargo duplicado\",\"Reporta un cargo duplicado y pide investigacion de soporte y reembolso.\",open\nTCK-1004,2026-05-04,ch",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/00_readme.txt",
+        "intent_class": "unknown",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Enterprise document dump received during discovery.\n\nThese files are intentionally unclassified. Treat them like a real company handoff:\npolicies, operational notes, HTML intranet pages, service catalog exports, support\nticket examples, process fragments, and glossary fragments are mixed together.\n\nThe ingestion process must scan, classify, infer candidate assets, find repeated\npatterns, and propose flows, processes, rules, entities, tools, Q&A, plans, and\nconfiguration candidates for review.",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/customer_support_tickets.csv",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer"
+        ],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "ticket_id,channel,customer_phrase,agent_resolution,notes\nT-1001,branch,\"quiero transferir 75000 dolares a otro pais\",\"captured transfer details and requested purpose document\",\"possible high value transfer review\"\nT-1002,mobile,\"como calculan las condiciones de refinanciacion\",\"explained loan condition calculation and offered refinance review\",\"tool explanation pattern\"\nT-1003,call_center,\"necesito abrir cuenta para pago automatico\",\"checked eligible account and explained automatic debit require",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md",
+        "intent_class": "process_execution",
+        "knowledge_types": [
+          "document",
+          "system",
+          "approval"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "customer.onboarding"
+        ],
+        "systems": [
+          "core_banking"
+        ],
+        "confidence": 0.45,
+        "evidence": "# Expanded Enterprise Asset Corpus\n\nEste corpus amplia la mezcla de lenguaje empresarial no estructurado para que\nla ingestion pueda proponer y alinear activos canonicos. Cada familia incluye\nal menos doce registros expresados como notas operativas, frases de negocio,\ncausa-efecto, pasos, preguntas y referencias cruzadas.\n\n## Entities\n\n1. El cliente titular solicita refinanciar su prestamo de vehiculo.\n2. La cuenta de ahorro base recibe el deposito inicial del onboarding.\n3. El pago automatico s",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/glossary_fragment.md",
+        "intent_class": "approval",
+        "knowledge_types": [],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Glossary Fragment From Shared Drive\n\nCBU: local account identifier used for transfers.\nAutomatic debit: recurring payment from an eligible account.\nHigh value transfer: transfer above internal review threshold.\nEnhanced due diligence: additional review for risk or compliance reasons.\nBeneficiary screening: check performed before releasing certain transactions.\nRefinance option: alternative loan conditions proposed to the customer.\nManager review: manual approval queue used when policy gates re",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/intranet_transfer_help.html",
+        "intent_class": "unknown",
+        "knowledge_types": [],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "<!doctype html>\n<html>\n  <head>\n    <title>Operations Intranet - Transfers and Beneficiary Review</title>\n  </head>\n  <body>\n    <h1>Transfers and Beneficiary Review</h1>\n    <p>Customers can request transfers from savings accounts through branch,\n    mobile, or assisted channels. The agent must identify the customer, capture\n    source account, beneficiary, amount, currency, and transfer reason.</p>\n\n    <h2>Operational reminders</h2>\n    <ul>\n      <li>Amounts above the current high-value thre",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Call center notes - loan refinance.\n\nAgents say customers usually ask to lower the monthly installment, extend the\nterm, compare new conditions, or understand why a refinance offer was declined.\nThe current manual tells agents to identify the customer, review current loan\nstatus, calculate available conditions, compare refinance options, collect\nmissing documents, and submit a refinance request for approval when required.\n\nKnown phrases:\n- quiero bajar la cuota\n- necesito mejores condiciones\n- c",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/operations_controls_policy.md",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer"
+        ],
+        "systems": [
+          "payments"
+        ],
+        "confidence": 0.45,
+        "evidence": "# Operations Controls Policy Extract\n\nThis document was exported from the internal policy wiki. It mixes controls,\nreview queues, operational guidance, and examples used by supervisors.\n\n## High value transfer control\n\nInternational transfers above USD 50,000 must remain on hold until enhanced due\ndiligence is completed. The transfer record must include source account,\nbeneficiary identity, destination country, amount, currency, and documented\npurpose of payment. If beneficiary screening is inco",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/orchestration_planning_notes.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Orchestration Planning Notes\n\nThe platform team documented how agents should compose customer journeys from\nbusiness tasks and tools. These notes are draft operational guidance, not a\nformal asset export.\n\n## Plan: International transfer review\n\nGoal: decide whether a high value international transfer can be released.\n\nSteps:\n1. Identify the customer and validate active relationship.\n2. Capture transfer details and normalize amount, currency, beneficiary, and\n   destination country.\n3. Screen ",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/policy_controls_memo.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "# Internal Policy And Controls Memo\n\nDocument owner: Risk and Operations\nRevision note: migrated from the legacy policy wiki.\n\nFor large outbound transactions, the platform should check customer identity,\ntransfer amount, beneficiary details, destination country, sanctions status,\nand proof of purpose. A manager review is required when the amount is above the\nconfigured threshold or the customer risk segment requires enhanced review.\n\nThe policy text uses several names for similar concepts:\n\n- c",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/process_fragments.json",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "{\n  \"source\": \"operations-sharepoint-export\",\n  \"fragments\": [\n    {\n      \"title\": \"Savings account opening\",\n      \"text\": \"Identify customer, collect documents, run KYC, create account, ask for initial deposit when applicable, confirm account status.\"\n    },\n    {\n      \"title\": \"International transfer review\",\n      \"text\": \"Capture details, validate source account, screen beneficiary, request purpose document if needed, route to manager review, release or reject.\"\n    },\n    {\n      \"title\"",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/service_configuration_notes.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "# Service Configuration Notes\n\nThe following notes were copied from deployment and support tickets. They are\nwritten as operational configuration guidance rather than structured assets.\n\nRouting source preferences:\n- Flow and process lookup should prefer the graph knowledge base.\n- Rules, policy snippets, and Q&A evidence should prefer the document knowledge\n  base and vector search.\n- Entity synonyms and relationships should be available in graph and vector\n  search for retrieval expansion.\n- R",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/enterprise_dump_2026/systems_catalog_export.json",
+        "intent_class": "unknown",
+        "knowledge_types": [],
+        "processes": [
+          "customer.onboarding"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "{\n  \"exported_from\": \"legacy-service-catalog\",\n  \"generated_at\": \"2026-05-01T12:00:00Z\",\n  \"services\": [\n    {\n      \"name\": \"Customer Profile Service\",\n      \"operations\": [\"customer.read\", \"customer.identity.validate\"],\n      \"notes\": \"Used by onboarding, loan servicing, transfers, and account maintenance.\"\n    },\n    {\n      \"name\": \"Loan Pricing Service\",\n      \"operations\": [\"loan.conditions.calculate\", \"loan_refinance.compare\"],\n      \"notes\": \"Calculates refinance conditions and compares ",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_operations_manual.md",
+        "intent_class": "process_execution",
+        "knowledge_types": [
+          "rule",
+          "document",
+          "system",
+          "approval"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing",
+          "customer.onboarding"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Manual Operativo Empresarial\n\n## Vision general\n\nEl area de banca minorista administra apertura de cuentas, solicitudes de\nprestamo, transferencias, reclamos y alta de clientes. Los documentos internos\nmezclan preguntas frecuentes, reglas de negocio, pasos manuales, integraciones\ntecnicas y controles de aprobacion. Durante la carga, el sistema debe descubrir\nsi un fragmento es informativo, guiado o ejecutable sin depender de etiquetas\nprevias.\n\n## Alta de cliente y apertura de cuenta\n\nCuando u",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_policy_and_controls.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "rule",
+          "exception",
+          "document",
+          "system",
+          "integration",
+          "approval"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Politicas, Controles y Excepciones\n\n## Politicas comunes\n\nTodo proceso ejecutable debe validar permisos, trazabilidad y fuente de datos.\nLas respuestas informativas no ejecutan acciones. Los casos guiados pueden\nrecolectar datos, pero no deben invocar servicios finales sin confirmacion y\nvalidaciones completas. La ejecucion de proceso puede invocar servicios legados\nsi el usuario confirma la operacion y los datos requeridos estan presentes.\n\n## Apertura de cuenta\n\nRegla: identity_must_be_valid",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_support_wiki.md",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "rule",
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Wiki de Soporte Interno\n\n## Preguntas frecuentes de clientes\n\nPregunta: Que documentos necesito para abrir una cuenta de ahorro?\nRespuesta esperada: identificacion oficial, comprobante de domicilio y datos\nfiscales si aplican. No iniciar proceso si el usuario solo pregunta requisitos.\n\nPregunta: Como solicito un prestamo personal?\nRespuesta esperada: explicar que se requieren monto, plazo, finalidad,\nevidencia de ingresos y documentos. Si el usuario pide guia, iniciar caso\nguiado. Si pide ejec",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/enterprise_systems_catalog.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "rule",
+          "document",
+          "system",
+          "integration"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing",
+          "customer.onboarding"
+        ],
+        "systems": [
+          "core_banking",
+          "loan_origination",
+          "credit_bureau",
+          "banking_policy_context",
+          "loan_scoring_service",
+          "payments",
+          "claims"
+        ],
+        "confidence": 0.65,
+        "evidence": "# Catalogo de Sistemas e Integraciones\n\n## Sistemas internos\n\nSistema: Customer Onboarding\nUso: alta de cliente, validacion de documentos y condiciones.\nProtocolos: API interna.\nOperaciones: customer.create, customer.conditions.validate, document.verify.\n\nSistema: Core Banking\nUso: creacion de cuenta, consulta de cuenta, validacion de saldo.\nProtocolos: API interna, base de datos controlada.\nOperaciones: account.create, account.balance.validate, customer.read.\n\nSistema: Loan Origination\nUso: cre",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/manual_operativo_credito.md",
+        "intent_class": "process_execution",
+        "knowledge_types": [
+          "rule",
+          "system",
+          "approval"
+        ],
+        "processes": [
+          "loan.application"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Manual operativo de credito\n\nEl objetivo de este manual es describir tareas operativas de prestamos, pagos,\nrefinanciamiento y atencion al cliente.\n\n## Capitulo 1: Analisis inicial\n\n1. Revisar el saldo actual del prestamo.\n2. Confirmar si el cliente tiene un pago automatico activo.\n3. Consultar si hay mora o pagos atrasados.\n4. Identificar si el caso corresponde a refinanciamiento o reestructuracion.\n\n## Capitulo 2: Flujo de atencion\n\nCuando el cliente desea cambiar la cuota:\n- abrir expedient",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/notes_operativas_cobranza.md",
+        "intent_class": "process_execution",
+        "knowledge_types": [
+          "rule",
+          "document",
+          "system"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Notas operativas de cobranza\n\nEstas notas contienen fragmentos de procesos, criterios de atencion y\nsituaciones de seguimiento.\n\n## Casos frecuentes\n\n- cliente con pago retrasado y buena disposicion\n- cliente con promesa de pago\n- cliente con refinanciamiento solicitado\n- cliente con cambio de fecha de corte\n- cliente con exencion temporal por desempleo\n\n## Acciones sugeridas\n\n1. Confirmar saldo y ultima fecha de pago.\n2. Registrar motivo de contacto.\n3. Definir si requiere promesa, escalacion",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/policy_controls_addendum.md",
+        "intent_class": "human_escalation",
+        "knowledge_types": [],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "# Polices and controls addendum\n\nThis file is intentionally unstructured and mixes policy fragments, control notes,\nand exception guidance for ingestion tests.\n\n## Loan refinance controls\n\nWhen a customer asks to refinance an active loan, the advisor must verify:\n- current loan status\n- delinquency history\n- payment regularity\n- identity match against the customer profile\n- any regulatory hold or pending exception\n\nIf the loan has unresolved arrears, the request must be escalated for review.\n\n##",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/process_examples_refinance.md",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "# Process examples for refinance\n\n## Example 1\n\nThe customer requests a lower monthly payment.\nThe advisor checks current account state.\nThe process evaluates eligibility.\nIf eligible, the system prepares a refinance proposal.\nThe customer reviews and signs the offer.\n\n## Example 2\n\nThe customer wants to combine two overdue installments.\nSupport verifies account history and required documents.\nCollections confirms whether a special exception applies.\nThe workflow continues only after approval.\n\n",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/process_qa_seed.md",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "rule",
+          "document",
+          "system",
+          "approval"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "# Banking Process QA Seed\n\n## Apertura de cuenta de ahorro\n\nLa apertura de una cuenta de ahorro inicia cuando el cliente solicita crear una\ncuenta nueva. El banco debe identificar al cliente, recolectar documentos,\nvalidar identidad, revisar condiciones de elegibilidad y crear la cuenta en el\nsistema core. Los documentos habituales son identificacion oficial,\ncomprobante de domicilio y datos fiscales cuando aplican.\n\nEl proceso puede continuar de forma guiada si el cliente pide ayuda paso a paso",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_glossary.csv",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "rule",
+          "document",
+          "approval"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "loan.application",
+          "money.transfer",
+          "claim.filing",
+          "customer.onboarding"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "term,synonyms,description\nahorro,\"cuenta de ahorros;cuenta de ahorro\",\"Saldo y propósito para reservar fondos a futuro\"\nCBU,\"clave bancaria uniforme\",\"Identificador único de cuenta para transferencias\"\ninteres,\"tasa de interes;porcentaje\",\"Costo del dinero prestado o remuneración de ahorros\"\nprestamo,\"credito;loan;financiamiento;prestamo personal\",\"Producto crediticio donde el banco entrega capital y el cliente devuelve capital e intereses en cuotas\"\ncredito,\"prestamo;loan;financiamiento;linea d",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_loans_domain_extra1.txt",
+        "intent_class": "unknown",
+        "knowledge_types": [
+          "rule"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "money.transfer"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Glosario Extendido - Ahorros y Préstamos (Parte 1)\n\nTérminos clave:\n- Apertura de cuenta: proceso para crear una nueva cuenta bancaria para un cliente.\n- Beneficiario: persona autorizada a recibir fondos.\n- Chequera: talonario de cheques asociado a una cuenta corriente.\n- Comisión por mantenimiento: cargo recurrente por mantener la cuenta activa.\n- Conciliación: proceso de verificación de transacciones entre registros.\n- Cuenta inactiva: cuenta sin movimientos por un periodo definido.\n- Domicili",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_loans_domain_extra2.txt",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "rule",
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Glosario Extendido - Ahorros y Préstamos (Parte 2)\n\nTérminos operativos:\n- Anticipo de haberes: adelanto de parte del salario.\n- Aval: garantía personal que respalda una obligación crediticia.\n- Beneficio por paquete bancario: descuentos o bonificaciones por producto combinado.\n- Capitalización: proceso de sumar intereses al capital.\n- Clave de seguridad: credenciales para operar canales digitales.\n\nProcesos detallados:\n1) Evaluación de elegibilidad de préstamo:\n   - Recopilar ingresos y documen",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_loans_domain_extra3.txt",
+        "intent_class": "process_execution",
+        "knowledge_types": [
+          "rule",
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening",
+          "money.transfer",
+          "claim.filing"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Glosario Extendido - Ahorros y Préstamos (Parte 3)\n\nReglas de tarifas y comisiones:\n- Comisión por manejo de cuenta: aplicable mensualmente si el saldo promedio cae bajo umbral.\n- Comisión por transferencia urgente: tarifa fija por transferencias con prioridad.\n- Comisión por descubierto: porcentaje sobre el monto sobregirado.\n\nProcesos de atención:\n1) Gestión de reclamos:\n   - Recepción del reclamo en canales (phone, mail, sucursal).\n   - Revisión documental y conciliación de movimientos.\n   - ",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_loans_domain_extra4.txt",
+        "intent_class": "unknown",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Glosario Extendido - Ahorros y Préstamos (Parte 4)\n\nEscenarios de negocio:\n- Cliente nuevo quiere abrir cuenta y contratar débito automático.\n- Cliente solicita préstamo y ofrece vehículo como garantía.\n- Cliente solicita refinanciación por pérdida de ingresos.\n\nCasos de excepción y manejo:\n- Documentos incompletos: solicitar envío digital y marcar caso pendiente.\n- Duplicidad de cuentas: verificar identidad y consolidar registros.\n- Pagos rechazados por fondos insuficientes: notificar y ofrecer",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/savings_loans_domain_extra5.txt",
+        "intent_class": "qa",
+        "knowledge_types": [
+          "document",
+          "system"
+        ],
+        "processes": [
+          "savings.account.opening"
+        ],
+        "systems": [],
+        "confidence": 0.65,
+        "evidence": "Glosario Extendido - Ahorros y Préstamos (Parte 5)\n\nTemplates y ejemplos de utterances (amplio set):\n- \"Quiero abrir una cuenta de ahorro con CBU\"\n- \"Cómo puedo solicitar un préstamo por 20000 a 24 meses\"\n- \"Qué documentos necesito para refinanciar mi préstamo\"\n- \"Cuál es la tasa de interés efectiva anual para cuentas de ahorro\"\n- \"Puedo pagar mi cuota con tarjeta de débito?\"\n- \"Cómo programo un débito automático para el préstamo\"\n- \"Qué pasa si me atraso un mes en el pago\"\n- \"Cómo solicito la b",
+        "needs_human_review": false,
+        "review_reason": ""
+      },
+      {
+        "source": "data/raw/savings_loans_domain_raw.txt",
+        "intent_class": "approval",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [
+          "savings.account.opening"
+        ],
+        "systems": [],
+        "confidence": 0.45,
+        "evidence": "Savings Accounts and Loans - Domain Documentation\n\nOverview:\nThis document provides a synthesized domain description for retail banking focused on savings accounts and consumer loans. It consolidates glossary terms, common processes, business rules, compliance notes, and example utterances for NLP intent creation.\n\nGlossary (sample):\n- Savings Account: A deposit account that earns interest, used for saving money.\n- Term Deposit: A time-bound deposit with fixed interest rate.\n- CBU: Clave Bancari",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      },
+      {
+        "source": "data/raw/systems_catalog_addendum.md",
+        "intent_class": "unknown",
+        "knowledge_types": [
+          "document"
+        ],
+        "processes": [],
+        "systems": [
+          "core_banking",
+          "loan_origination"
+        ],
+        "confidence": 0.45,
+        "evidence": "# Systems catalog addendum\n\nThis note mixes systems inventory and integration references.\n\n## Core systems\n\n- Core banking platform\n- Loan origination service\n- Collections workflow service\n- Customer profile service\n- Document storage service\n- Notification gateway\n\n## Integration notes\n\nThe support team uses these systems to:\n- verify balances\n- inspect payment schedules\n- review refinance status\n- send notices\n- track exceptions\n\nSome records mention API endpoints, but this document is still ",
+        "needs_human_review": true,
+        "review_reason": "mixed or ambiguous intent signals"
+      }
+    ]
+  },
+  "extraction_instructions": {
+    "findings": []
+  },
+  "human_review": {
+    "required": true,
+    "reason": "semantic analysis requires review",
+    "status": "pending",
+    "review_path": "/home/saul/banking-intent-platform/data/processed/ingestion_audit/human_review/ingestion_review_20260614T014216Z.json"
+  },
+  "raw_path": "data/raw",
+  "source_files": [
+    {
+      "path": "data/raw/README.md",
+      "kind": "text",
+      "sha256": "25bbf5af43b6de078154eb762088df07d4b2006a8576ddaabe1def53e2d00ad9"
+    },
+    {
+      "path": "data/raw/banking_flows_additional.txt",
+      "kind": "text",
+      "sha256": "0176443744b7b4d25608683ed5057c2400af2612292233c77761e4d9a056bb0e"
+    },
+    {
+      "path": "data/raw/banking_synonyms_and_glossary_runtime.txt",
+      "kind": "text",
+      "sha256": "721e48844baf0545e935cceea3ac1f4c019e618b7f22848aa7676f3494f1ec64"
+    },
+    {
+      "path": "data/raw/customer_support_tickets_mini.csv",
+      "kind": "text",
+      "sha256": "15bc9fc19d55c1a1f7debf698ba860dbd14a2e21fb3d068b6d242834fa3a3b80"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/00_readme.txt",
+      "kind": "text",
+      "sha256": "b9cbe85f4e30f79107ee4cd3ae01fdb6ffb0065e62d670dbc1cd8824676e24db"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/customer_support_tickets.csv",
+      "kind": "text",
+      "sha256": "8658196c1a7453ebb40d3d1de4fcd9489f750da64a0198f1739c17f7b1847625"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md",
+      "kind": "text",
+      "sha256": "56937796c7130b6e11287903587d82e6aba8afcf3b4f9f40e3f2d918583ae342"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/glossary_fragment.md",
+      "kind": "text",
+      "sha256": "ec9c2090fa7925c8e9d48b02b47fe6f9e2631e5b930c55aeea8fe100c6fa4235"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/intranet_transfer_help.html",
+      "kind": "text",
+      "sha256": "f5103c2f577f18e0604ec86a173e1a8ad959b89ad5d26ee4a629b0882982ddee"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt",
+      "kind": "text",
+      "sha256": "bc86248c1db3abfaba5184d4fe5df62d1e0fb8a222eda869f8e3903972b34733"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/operations_controls_policy.md",
+      "kind": "text",
+      "sha256": "38264201907382362ede7457a37d028b5808997930a7f2f36cf017dadaca6786"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/orchestration_planning_notes.md",
+      "kind": "text",
+      "sha256": "298a8755dcb56a8cb2b7978dbcb831f7d435c9850d7f559dffd932e509c9ee89"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/policy_controls_memo.md",
+      "kind": "text",
+      "sha256": "4ae9b40806431f360951c284bf6c5c1b701830c1cf02d4cf30cce257571ac4eb"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/process_fragments.json",
+      "kind": "text",
+      "sha256": "de5d157f4ed0bb5ac01905dd0a20a3654489f59c63417beffc5d32649e9f67b9"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/service_configuration_notes.md",
+      "kind": "text",
+      "sha256": "8c99834c615e2e9b5088f3158c4c09c5be69938496006a73b182c7e88fb757e4"
+    },
+    {
+      "path": "data/raw/enterprise_dump_2026/systems_catalog_export.json",
+      "kind": "text",
+      "sha256": "168fc266bd2792b15cdbac5bbbee12618c2972a7ef7daf361d71fa23d45294ab"
+    },
+    {
+      "path": "data/raw/enterprise_operations_manual.md",
+      "kind": "text",
+      "sha256": "f3b0b5a6b396e3c00189bec2495c3c8b55d4e5aa55e3135bb9b2c4c356efcfeb"
+    },
+    {
+      "path": "data/raw/enterprise_policy_and_controls.md",
+      "kind": "text",
+      "sha256": "734445925f925e4c7092070bb2496bfd39932c4bcf004b16648e67e880c98606"
+    },
+    {
+      "path": "data/raw/enterprise_support_wiki.md",
+      "kind": "text",
+      "sha256": "6abfe8535c2512a3b1c640b3430915943864c911f9d48d9f5fc207eafb396b3f"
+    },
+    {
+      "path": "data/raw/enterprise_systems_catalog.md",
+      "kind": "text",
+      "sha256": "072a78a842b3e1a7bf98ce05d29384f189e9b0e43e6ab9519f0192679a4ecf5b"
+    },
+    {
+      "path": "data/raw/manual_operativo_credito.md",
+      "kind": "text",
+      "sha256": "47477d967269a0e15461af18d1f74ca0b944bf041ff72d78534f8c12b355df16"
+    },
+    {
+      "path": "data/raw/notes_operativas_cobranza.md",
+      "kind": "text",
+      "sha256": "1177745f19d279a027fe16f3f577db62783952e28b2702adcba50f5b0d771cb2"
+    },
+    {
+      "path": "data/raw/policy_controls_addendum.md",
+      "kind": "text",
+      "sha256": "8be632fa7d136f1214c2ef57748e0843bd883e2bbddbd59b98f285b7fb37f181"
+    },
+    {
+      "path": "data/raw/process_examples_refinance.md",
+      "kind": "text",
+      "sha256": "3d46f4d4fc4ced6e1d4a6217d69a4fa9fe582d57434f15db87af093618b5b02b"
+    },
+    {
+      "path": "data/raw/process_qa_seed.md",
+      "kind": "text",
+      "sha256": "c19350ad9c0371f531500905bcc6bcfd870a5542a38ea9e41516c58aa36f80ff"
+    },
+    {
+      "path": "data/raw/savings_glossary.csv",
+      "kind": "text",
+      "sha256": "848977b233d13b7fc0d50a28ef414eab66806ceb951777bfa7f1399758ae07de"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_extra1.txt",
+      "kind": "text",
+      "sha256": "5274da053b6b698565275a4d2d25d552cd8141382711ccd2f005a87dea6abb47"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_extra2.txt",
+      "kind": "text",
+      "sha256": "45a5bf014d56e540f775f2e92fa7cb31603adecdd59ca4267efdc9f3933e6035"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_extra3.txt",
+      "kind": "text",
+      "sha256": "71abbbadb708a0944878af8bbb1a8a336e2d179309b81b0b3af5ca4592ae0afd"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_extra4.txt",
+      "kind": "text",
+      "sha256": "bb7f569a911f00af276822477ece9f26b87558388d3dc70186126bc34580a0c2"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_extra5.txt",
+      "kind": "text",
+      "sha256": "a98fb24e02fe18918703d6ba05cb7c0a95be8f9feccf686982cf13ad990765f3"
+    },
+    {
+      "path": "data/raw/savings_loans_domain_raw.txt",
+      "kind": "text",
+      "sha256": "1b7d13807cbc4c48905e0a9783868784831344393de69699a352e6d90191ad39"
+    },
+    {
+      "path": "data/raw/systems_catalog_addendum.md",
+      "kind": "text",
+      "sha256": "d0fd1fbffba1d7314ef36ff45797d690048a0eed2d1c0c09c2de4645da5c3db3"
+    }
+  ],
+  "outputs": {
+    "knowledge_base": "Neo4jKnowledgeBaseGraphAdapter",
+    "applied": true,
+    "flows": [
+      "account.opening.flow",
+      "automatic.debit.exception.flow",
+      "automatic.debit.setup.flow",
+      "automatic.debit.status.inquiry.flow",
+      "change.payment.date.flow",
+      "claim.submission.flow",
+      "collections.and.delinquency.management.flow",
+      "compliance.and.approval.inquiry.flow",
+      "customer.service.loan.inquiries.flow",
+      "digital.onboarding.flow",
+      "high.value.transfer.approval.flow",
+      "loan.application.flow",
+      "loan.disbursement",
+      "loan.origination.capture.flow",
+      "loan.origination.flow",
+      "loan.payment.flow",
+      "loan.refinance",
+      "onboarding.flow",
+      "payment.arrangement.flow",
+      "reimbursement.request.flow",
+      "statement.and.payment.history.inquiry.flow",
+      "transfer.funds.flow",
+      "transfer.initiation.flow",
+      "update.customer.contact.flow",
+      "update.customer.information.flow"
+    ],
+    "user_tasks": [
+      "account_creation",
+      "approve_business_case",
+      "automatic_debit_exception_task",
+      "cancel_pending_disbursement",
+      "capture_loan_origination_details",
+      "capture_loan_request_details",
+      "capture_transfer_details",
+      "check_eligible_account_and_explain_debit_requirements",
+      "claim_submission_task",
+      "collect_customer_documents",
+      "compliance_review_task",
+      "confirm_destination_account_and_validate_beneficiary",
+      "confirm_requested_change_and_update_record",
+      "contact_center_follow_up_task",
+      "create_customer_record_and_link_documents",
+      "create_loan_account_and_store_schedule",
+      "create_reminder_task_and_send_notifications",
+      "credit_check",
+      "credit_manager_review_task",
+      "customer_identification",
+      "document_collection",
+      "escalate_case_to_collections",
+      "explain_automatic_debit_status",
+      "explain_compliance_review_and_manager_approval",
+      "explain_loan_condition_calculation",
+      "fee_waiver_review_task",
+      "handle_statement_request_or_payment_history_inquiry",
+      "high_value_transfer_review_task",
+      "identify_customer",
+      "income_verification",
+      "initial_deposit",
+      "kyc_screening",
+      "loan_application",
+      "loan_application_task",
+      "loan_refinance_inquiry_task",
+      "loan_refinance_process_task",
+      "loan_servicing_review_task",
+      "manager_review_task",
+      "manual_credit_approval_task",
+      "mark_loan_as_closed_and_notify_customer",
+      "move_payment_date",
+      "notify_customer_of_update",
+      "onboarding_customer_task",
+      "open_support_case",
+      "payment_arrangement_task",
+      "prepare_refinance_request",
+      "process_loan_payment",
+      "record_disbursement_details",
+      "refinance_exception_review_task",
+      "request_additional_documents",
+      "request_loan_refinance_options",
+      "request_reimbursement",
+      "review_loan_status",
+      "review_refinance_options",
+      "search_customer_and_verify_identity",
+      "start_refinance_review",
+      "transfer_initiation_task",
+      "underwriting_review",
+      "update_customer_contact_details",
+      "update_customer_details",
+      "update_loan_balance_and_schedule",
+      "verify_identity_capture_profile_and_check_customer"
+    ],
+    "tools": [],
+    "canonical_assets": [
+      "asset_set.account.opening",
+      "asset_set.account.opening.flow",
+      "asset_set.account.reactivate",
+      "asset_set.automatic.debit.eligibility.check",
+      "asset_set.automatic.debit.exception.flow",
+      "asset_set.automatic.debit.setup.flow",
+      "asset_set.automatic.debit.status.inquiry.flow",
+      "asset_set.automatic.payment.setup",
+      "asset_set.autopay.cancel",
+      "asset_set.balance.must.be.available",
+      "asset_set.borderline.requires.approval",
+      "asset_set.change.payment.date.flow",
+      "asset_set.claim.evidence.required",
+      "asset_set.claim.submission.flow",
+      "asset_set.collections.and.delinquency.management.flow",
+      "asset_set.como.cancelo.una.domiciliacion.de.pago",
+      "asset_set.como.creo.un.cliente.nuevo",
+      "asset_set.como.funciona.el.pago.automatico",
+      "asset_set.como.pago.mi.prestamo",
+      "asset_set.como.reporto.un.cargo.no.reconocido",
+      "asset_set.como.se.crea.un.prestamo",
+      "asset_set.como.se.reactiva.una.cuenta.bloqueada",
+      "asset_set.como.se.realiza.el.desembolso.de.un.prestamo.aprobado",
+      "asset_set.como.transfiero.dinero.a.mi.prestamo",
+      "asset_set.complaint.intake",
+      "asset_set.compliance.and.approval.inquiry.flow",
+      "asset_set.cual.es.el.limite.diario.de.transferencias",
+      "asset_set.cuando.se.requiere.aprobacion.humana",
+      "asset_set.customer.create",
+      "asset_set.customer.onboarding.documents",
+      "asset_set.customer.service.loan.inquiries.flow",
+      "asset_set.customer.update.profile",
+      "asset_set.de.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja",
+      "asset_set.debt.restructure",
+      "asset_set.digital.onboarding.flow",
+      "asset_set.dispute.charge.report",
+      "asset_set.documents.must.be.complete",
+      "asset_set.el.acceso.a.banca.online.se.enables.tras.verificacion.telefonica",
+      "asset_set.el.proceso.de.activacion.de.cuenta.revisa.bloqueos.valida.identidad.y.restituye.acceso",
+      "asset_set.el.proceso.de.actualizacion.de.datos.revisa.titularidad.valida.cambios.y.registra.auditoria",
+      "asset_set.el.proceso.de.alta.de.cliente.captura.datos.valida.identidad.y.crea.el.cliente",
+      "asset_set.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento",
+      "asset_set.el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta",
+      "asset_set.el.proceso.de.aprobacion.reforzada.revisa.score.alto.y.emite.decision.humana",
+      "asset_set.el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito",
+      "asset_set.el.proceso.de.cargo.no.reconocido.abre.caso.congela.tarjeta.y.notifica.investigaciones",
+      "asset_set.el.proceso.de.desembolso.verifica.aprobacion.confirma.cuenta.destino.y.acredita.fondos",
+      "asset_set.el.proceso.de.originacion.de.prestamo.captura.solicitud.valida.condiciones.y.registra.el.prestamo",
+      "asset_set.el.proceso.de.pago.de.prestamo.consulta.saldo.aplica.pago.y.actualiza.calendario",
+      "asset_set.el.proceso.de.pago.de.prestamo.recibe.fondos.aplica.el.abono.y.actualiza.saldo",
+      "asset_set.el.proceso.de.reestructuracion.analiza.capacidad.de.pago.y.propone.escenarios",
+      "asset_set.el.proceso.de.refinanciamiento.identifica.al.cliente.revisa.mora.calcula.terminos.y.emite.oferta",
+      "asset_set.el.proceso.de.transferencia.a.prestamo.valida.referencia.ejecuta.traslado.y.confirma.aplicacion",
+      "asset_set.el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento",
+      "asset_set.el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude",
+      "asset_set.el.rechazo.reiterado.de.transferencias.causes.escalamiento.al.equipo.de.fraude",
+      "asset_set.el.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta",
+      "asset_set.entity.aumento.del.riesgo.crediticio.causes.entity.loanrefinance",
+      "asset_set.entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio",
+      "asset_set.entity.la.validacion.reforzada.aprobada.enables.entity.la.transferencia.internacional",
+      "asset_set.entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual",
+      "asset_set.entity.retraso.en.el.onboarding.causes.entity.customer",
+      "asset_set.entity.savingsaccount.prevents.entity.ejecutar.el.pago.automatico",
+      "asset_set.entity.transfer.causes.entity.rechazo.de.la.transferencia",
+      "asset_set.fraud.risk.requires.escalation",
+      "asset_set.high.amount.requires.approval",
+      "asset_set.high.value.transfer.approval.flow",
+      "asset_set.high.value.transfer.review",
+      "asset_set.identity.must.be.valid",
+      "asset_set.identity.validation.failed",
+      "asset_set.income.required",
+      "asset_set.insufficient.balance",
+      "asset_set.interest.posting",
+      "asset_set.international.transfer.review",
+      "asset_set.la.falta.de.consentimiento.firmado.prevents.el.alta.de.pago.automatico",
+      "asset_set.la.falta.de.documento.vigente.causes.retraso.en.el.onboarding",
+      "asset_set.la.mora.superior.a.treinta.dias.prevents.la.oferta.de.refinanciamiento",
+      "asset_set.loan.affordability.check",
+      "asset_set.loan.application.flow",
+      "asset_set.loan.application.status.review",
+      "asset_set.loan.create",
+      "asset_set.loan.disbursement",
+      "asset_set.loan.eligibility",
+      "asset_set.loan.origination",
+      "asset_set.loan.origination.capture.flow",
+      "asset_set.loan.origination.flow",
+      "asset_set.loan.payment",
+      "asset_set.loan.payment.flow",
+      "asset_set.loan.refinance",
+      "asset_set.loan.refinance.assistance",
+      "asset_set.loan.refinance.controls",
+      "asset_set.loan.refinance.handling",
+      "asset_set.loan.transfer.to.loan",
+      "asset_set.manual.credit.approval",
+      "asset_set.minimum.deposit",
+      "asset_set.missing.claim.evidence",
+      "asset_set.money.transfer",
+      "asset_set.onboarding.flow",
+      "asset_set.operational.exceptions.require.approval",
+      "asset_set.payment.arrangement.flow",
+      "asset_set.payment.due.date.grace.period",
+      "asset_set.plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso",
+      "asset_set.plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar",
+      "asset_set.plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar",
+      "asset_set.plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar",
+      "asset_set.plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato",
+      "asset_set.plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo",
+      "asset_set.plan.para.crear.cliente.abrir.formulario.capturar.datos.validar.identidad.y.registrar.cliente",
+      "asset_set.plan.para.crear.prestamo.mostrar.solicitud.capturar.campos.validar.politica.y.registrar.contrato",
+      "asset_set.plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar",
+      "asset_set.plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion",
+      "asset_set.plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar",
+      "asset_set.plan.para.onboarding.digital.capturar.identidad.validar.domicilio.ejecutar.kyc.y.crear.cuenta",
+      "asset_set.plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago",
+      "asset_set.plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta",
+      "asset_set.plan.para.refinanciar.con.riesgo.medio.revisar.buro.calcular.terminos.validar.politica.y.someter.a.aprobacion",
+      "asset_set.plan.para.resolver.transferencias.fallidas.revisar.logs.validar.destino.reprocesar.y.notificar.cliente",
+      "asset_set.plan.para.transferir.dinero.al.prestamo.capturar.referencia.validar.cuenta.origen.y.mover.fondos",
+      "asset_set.que.documentos.necesito.para.abrir.una.cuenta.de.ahorro",
+      "asset_set.que.implica.la.cancelacion.anticipada.de.un.prestamo",
+      "asset_set.que.necesito.para.refinanciar.mi.prestamo",
+      "asset_set.que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide",
+      "asset_set.que.pasa.si.tengo.mora.y.quiero.refinanciar",
+      "asset_set.que.valida.el.proceso.de.onboarding",
+      "asset_set.reimbursement.request.flow",
+      "asset_set.savings.account.open",
+      "asset_set.savings.account.opening",
+      "asset_set.statement.and.payment.history.inquiry.flow",
+      "asset_set.transfer.funds.flow",
+      "asset_set.transfer.initiation.flow",
+      "asset_set.transfer.limit.inquiry",
+      "asset_set.underwriting.approval",
+      "asset_set.update.customer.contact.flow",
+      "asset_set.update.customer.information.flow",
+      "business_rule.automatic_debit_eligibility_check",
+      "business_rule.balance_must_be_available",
+      "business_rule.borderline_requires_approval",
+      "business_rule.claim_evidence_required",
+      "business_rule.documents_must_be_complete",
+      "business_rule.fraud_risk_requires_escalation",
+      "business_rule.high_amount_requires_approval",
+      "business_rule.high_value_transfer_review",
+      "business_rule.identity_must_be_valid",
+      "business_rule.identity_validation_failed",
+      "business_rule.income_required",
+      "business_rule.insufficient_balance",
+      "business_rule.interest_posting",
+      "business_rule.loan_affordability_check",
+      "business_rule.loan_eligibility",
+      "business_rule.loan_refinance_controls",
+      "business_rule.manual_credit_approval",
+      "business_rule.minimum_deposit",
+      "business_rule.missing_claim_evidence",
+      "business_rule.operational_exceptions_require_approval",
+      "business_rule.payment_due_date_grace_period",
+      "business_rule.underwriting_approval",
+      "causality.de_kb_ingestion_causes_o_refresca_esos_activos_desde_texto_empresarial_y_deja",
+      "causality.el_acceso_a_banca_online_se_enables_tras_verificaci_n_telef_nica",
+      "causality.el_rechazo_reiterado_de_transferencias_causes_escalamiento_al_equipo_de_fraude",
+      "causality.el_score_alto_de_fraude_causes_congelamiento_preventivo_de_la_cuenta",
+      "causality.entity_aumento_del_riesgo_crediticio_causes_entity_loanrefinance",
+      "causality.entity_el_incumplimiento_contractual_causes_entity_aumento_del_riesgo_crediticio",
+      "causality.entity_la_validacion_reforzada_aprobada_enables_entity_la_transferencia_internacional",
+      "causality.entity_no_pagar_un_prestamo_causes_entity_incumplimiento_contractual",
+      "causality.entity_retraso_en_el_onboarding_causes_entity_customer",
+      "causality.entity_savingsaccount_prevents_entity_ejecutar_el_pago_automatico",
+      "causality.entity_transfer_causes_entity_rechazo_de_la_transferencia",
+      "causality.la_falta_de_consentimiento_firmado_prevents_el_alta_de_pago_automatico",
+      "causality.la_falta_de_documento_vigente_causes_retraso_en_el_onboarding",
+      "causality.la_mora_superior_a_treinta_dias_prevents_la_oferta_de_refinanciamiento",
+      "document.00_readme_txt",
+      "document.banking_flows_additional_txt",
+      "document.banking_synonyms_and_glossary_runtime_txt",
+      "document.customer_support_tickets_csv",
+      "document.customer_support_tickets_mini_csv",
+      "document.enterprise_asset_corpus_expanded_md",
+      "document.enterprise_operations_manual_md",
+      "document.enterprise_policy_and_controls_md",
+      "document.enterprise_support_wiki_md",
+      "document.enterprise_systems_catalog_md",
+      "document.glossary_fragment_md",
+      "document.intranet_transfer_help_html",
+      "document.loan_refinance_call_center_notes_txt",
+      "document.manual_operativo_credito_md",
+      "document.notes_operativas_cobranza_md",
+      "document.operations_controls_policy_md",
+      "document.orchestration_planning_notes_md",
+      "document.policy_controls_addendum_md",
+      "document.policy_controls_memo_md",
+      "document.process_examples_refinance_md",
+      "document.process_fragments_json",
+      "document.process_qa_seed_md",
+      "document.readme_md",
+      "document.savings_glossary_csv",
+      "document.savings_loans_domain_extra1_txt",
+      "document.savings_loans_domain_extra2_txt",
+      "document.savings_loans_domain_extra3_txt",
+      "document.savings_loans_domain_extra4_txt",
+      "document.savings_loans_domain_extra5_txt",
+      "document.savings_loans_domain_raw_txt",
+      "document.service_configuration_notes_md",
+      "document.systems_catalog_addendum_md",
+      "document.systems_catalog_export_json",
+      "domain.banking",
+      "domain.retail_banking",
+      "entity.approver",
+      "entity.aumento_del_riesgo_crediticio",
+      "entity.automatic_debit",
+      "entity.balance",
+      "entity.beneficiary",
+      "entity.beneficiary_screening",
+      "entity.claim",
+      "entity.credit_history",
+      "entity.creditnote",
+      "entity.customer",
+      "entity.customer_profile",
+      "entity.customerdocuments",
+      "entity.de_kb_ingestion",
+      "entity.debitnote",
+      "entity.desembolso",
+      "entity.ejecutar_el_pago_automatico",
+      "entity.el_incumplimiento_contractual",
+      "entity.enhanced_due_diligence",
+      "entity.high_value_transfer",
+      "entity.incumplimiento_contractual",
+      "entity.kyc_document",
+      "entity.la_oferta_de_refinanciamiento",
+      "entity.la_transferencia_internacional",
+      "entity.la_validacion_reforzada_aprobada",
+      "entity.loan",
+      "entity.loan",
+      "entity.loan_application",
+      "entity.loan_approval",
+      "entity.loan_conditions",
+      "entity.loan_refinance",
+      "entity.loanapplication",
+      "entity.loanconditions",
+      "entity.loanpayment",
+      "entity.loanrefinance",
+      "entity.manager_review",
+      "entity.no_pagar_un_prestamo",
+      "entity.payment_arrangement",
+      "entity.payment_schedule",
+      "entity.rechazo_de_la_transferencia",
+      "entity.refinance_option",
+      "entity.refinance_proposal",
+      "entity.retraso_en_el_onboarding",
+      "entity.savings_account",
+      "entity.savings_account",
+      "entity.savingsaccount",
+      "entity.supervisor",
+      "entity.transaction",
+      "entity.transfer",
+      "entity.transfer",
+      "entity.tras_verificacion_telefonica",
+      "flow.account.opening.flow",
+      "flow.account.reactivate",
+      "flow.automatic.debit.exception.flow",
+      "flow.automatic.debit.setup.flow",
+      "flow.automatic.debit.status.inquiry.flow",
+      "flow.autopay.cancel",
+      "flow.change.payment.date.flow",
+      "flow.claim.submission.flow",
+      "flow.collections.and.delinquency.management.flow",
+      "flow.compliance.and.approval.inquiry.flow",
+      "flow.customer.create",
+      "flow.customer.onboarding.documents",
+      "flow.customer.service.loan.inquiries.flow",
+      "flow.customer.update.profile",
+      "flow.debt.restructure",
+      "flow.digital.onboarding.flow",
+      "flow.dispute.charge.report",
+      "flow.high.value.transfer.approval.flow",
+      "flow.loan.application.flow",
+      "flow.loan.application.status.review",
+      "flow.loan.create",
+      "flow.loan.disbursement",
+      "flow.loan.disbursement",
+      "flow.loan.origination.capture.flow",
+      "flow.loan.origination.flow",
+      "flow.loan.payment",
+      "flow.loan.payment",
+      "flow.loan.payment.flow",
+      "flow.loan.refinance",
+      "flow.loan.refinance",
+      "flow.loan.transfer.to.loan",
+      "flow.money.transfer",
+      "flow.onboarding.flow",
+      "flow.payment.arrangement.flow",
+      "flow.reimbursement.request.flow",
+      "flow.savings.account.open",
+      "flow.statement.and.payment.history.inquiry.flow",
+      "flow.transfer.funds.flow",
+      "flow.transfer.initiation.flow",
+      "flow.transfer.limit.inquiry",
+      "flow.update.customer.contact.flow",
+      "flow.update.customer.information.flow",
+      "form.customer_profile_form",
+      "form.loan_application_form",
+      "form.loan_refinance_request_form",
+      "form.transfer_form",
+      "form_version.customer_profile_form_1_1",
+      "form_version.loan_application_form_1_0",
+      "form_version.loan_refinance_request_form_1_0",
+      "form_version.transfer_form_1_0",
+      "menu.claims_menu",
+      "menu.customer_onboarding_menu",
+      "menu.customers_menu",
+      "menu.loan_application_menu",
+      "menu.loans_menu",
+      "menu.payment_arrangement_menu",
+      "menu.payments_menu",
+      "menu.refinance_menu",
+      "menu.support_menu",
+      "menu.transfer_menu",
+      "module.claims_and_disputes",
+      "module.customer_management",
+      "module.lending",
+      "module.loan_services",
+      "module.payments",
+      "module.payments_and_transfers",
+      "module.support",
+      "plan.automatic.payment.setup",
+      "plan.international.transfer.review",
+      "plan.loan.refinance.assistance",
+      "plan.plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso",
+      "plan.plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar",
+      "plan.plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar",
+      "plan.plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar",
+      "plan.plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato",
+      "plan.plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo",
+      "plan.plan.para.crear.cliente.abrir.formulario.capturar.datos.validar.identidad.y.registrar.cliente",
+      "plan.plan.para.crear.prestamo.mostrar.solicitud.capturar.campos.validar.politica.y.registrar.contrato",
+      "plan.plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar",
+      "plan.plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion",
+      "plan.plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar",
+      "plan.plan.para.onboarding.digital.capturar.identidad.validar.domicilio.ejecutar.kyc.y.crear.cuenta",
+      "plan.plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago",
+      "plan.plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta",
+      "plan.plan.para.refinanciar.con.riesgo.medio.revisar.buro.calcular.terminos.validar.politica.y.someter.a.aprobacion",
+      "plan.plan.para.resolver.transferencias.fallidas.revisar.logs.validar.destino.reprocesar.y.notificar.cliente",
+      "plan.plan.para.transferir.dinero.al.prestamo.capturar.referencia.validar.cuenta.origen.y.mover.fondos",
+      "process.account.opening",
+      "process.complaint.intake",
+      "process.el.proceso.de.activacion.de.cuenta.revisa.bloqueos.valida.identidad.y.restituye.acceso",
+      "process.el.proceso.de.actualizacion.de.datos.revisa.titularidad.valida.cambios.y.registra.auditoria",
+      "process.el.proceso.de.alta.de.cliente.captura.datos.valida.identidad.y.crea.el.cliente",
+      "process.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento",
+      "process.el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta",
+      "process.el.proceso.de.aprobacion.reforzada.revisa.score.alto.y.emite.decision.humana",
+      "process.el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito",
+      "process.el.proceso.de.cargo.no.reconocido.abre.caso.congela.tarjeta.y.notifica.investigaciones",
+      "process.el.proceso.de.desembolso.verifica.aprobacion.confirma.cuenta.destino.y.acredita.fondos",
+      "process.el.proceso.de.originacion.de.prestamo.captura.solicitud.valida.condiciones.y.registra.el.prestamo",
+      "process.el.proceso.de.pago.de.prestamo.consulta.saldo.aplica.pago.y.actualiza.calendario",
+      "process.el.proceso.de.pago.de.prestamo.recibe.fondos.aplica.el.abono.y.actualiza.saldo",
+      "process.el.proceso.de.reestructuracion.analiza.capacidad.de.pago.y.propone.escenarios",
+      "process.el.proceso.de.refinanciamiento.identifica.al.cliente.revisa.mora.calcula.terminos.y.emite.oferta",
+      "process.el.proceso.de.transferencia.a.prestamo.valida.referencia.ejecuta.traslado.y.confirma.aplicacion",
+      "process.el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento",
+      "process.el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude",
+      "process.international.transfer.review",
+      "process.loan.origination",
+      "process.loan.refinance.handling",
+      "process.savings.account.opening",
+      "qa.como_cancelo_una_domiciliacion_de_pago",
+      "qa.como_creo_un_cliente_nuevo",
+      "qa.como_funciona_el_pago_automatico",
+      "qa.como_pago_mi_prestamo",
+      "qa.como_reporto_un_cargo_no_reconocido",
+      "qa.como_se_crea_un_prestamo",
+      "qa.como_se_reactiva_una_cuenta_bloqueada",
+      "qa.como_se_realiza_el_desembolso_de_un_prestamo_aprobado",
+      "qa.como_transfiero_dinero_a_mi_prestamo",
+      "qa.cual_es_el_limite_diario_de_transferencias",
+      "qa.cuando_se_requiere_aprobacion_humana",
+      "qa.que_documentos_necesito_para_abrir_una_cuenta_de_ahorro",
+      "qa.que_implica_la_cancelacion_anticipada_de_un_prestamo",
+      "qa.que_necesito_para_refinanciar_mi_prestamo",
+      "qa.que_pasa_si_el_beneficiario_de_la_transferencia_no_coincide",
+      "qa.que_pasa_si_tengo_mora_y_quiero_refinanciar",
+      "qa.que_valida_el_proceso_de_onboarding",
+      "ruleset.automatic.debit.eligibility.check",
+      "ruleset.balance.must.be.available",
+      "ruleset.borderline.requires.approval",
+      "ruleset.claim.evidence.required",
+      "ruleset.documents.must.be.complete",
+      "ruleset.fraud.risk.requires.escalation",
+      "ruleset.high.amount.requires.approval",
+      "ruleset.high.value.transfer.review",
+      "ruleset.identity.must.be.valid",
+      "ruleset.identity.validation.failed",
+      "ruleset.income.required",
+      "ruleset.insufficient.balance",
+      "ruleset.interest.posting",
+      "ruleset.loan.affordability.check",
+      "ruleset.loan.eligibility",
+      "ruleset.loan.refinance.controls",
+      "ruleset.manual.credit.approval",
+      "ruleset.minimum.deposit",
+      "ruleset.missing.claim.evidence",
+      "ruleset.operational.exceptions.require.approval",
+      "ruleset.payment.due.date.grace.period",
+      "ruleset.underwriting.approval",
+      "tool.account_reactivate",
+      "tool.approval_request_submit",
+      "tool.autopay_cancel",
+      "tool.autopay_register",
+      "tool.customer_create",
+      "tool.customer_read",
+      "tool.dispute_case_create",
+      "tool.document_upload",
+      "tool.document_validate",
+      "tool.loan_create",
+      "tool.loan_disbursement_execute",
+      "tool.loan_payment_apply",
+      "tool.loan_status_read",
+      "tool.loan_terms_calculate",
+      "tool.loan_transfer_apply",
+      "tool.risk_score_read",
+      "tool.transfer_submit",
+      "tool.ui_customer_create_open_form",
+      "tool.ui_loan_create_open_form",
+      "tool.ui_loan_payment_open_form",
+      "tool.ui_loan_transfer_open_form",
+      "user_task.aplicar_el_pago_recibido_al_prestamo",
+      "user_task.approve_business_case",
+      "user_task.automatic_debit_exception",
+      "user_task.calcular_terminos_de_refinanciamiento",
+      "user_task.cancel_pending_loan_disbursement",
+      "user_task.capturar_datos_del_cliente_para_crear_el_registro",
+      "user_task.capture_loan_origination_details",
+      "user_task.capture_loan_request",
+      "user_task.capture_loan_requirements",
+      "user_task.capture_transfer_details",
+      "user_task.check_account_eligibility_and_explain_debit",
+      "user_task.collect_customer_documents",
+      "user_task.collect_required_documents",
+      "user_task.compliance_review",
+      "user_task.confirm_and_update_customer_information",
+      "user_task.confirm_financial_capacity",
+      "user_task.confirm_loan_disbursement_details",
+      "user_task.confirmar_datos_sensibles_antes_de_la_actualizacion",
+      "user_task.contact_center_follow_up",
+      "user_task.create_bank_account",
+      "user_task.create_loan_account",
+      "user_task.create_payment_arrangement",
+      "user_task.credit_manager_review",
+      "user_task.customer_verification_and_profile_capture",
+      "user_task.ejecutar_activacion_de_cuenta_previamente_bloqueada",
+      "user_task.ejecutar_el_desembolso_sobre_la_cuenta_destino",
+      "user_task.emitir_propuesta_de_cancelacion_anticipada",
+      "user_task.escalate_delinquent_account",
+      "user_task.explain_automatic_debit_status",
+      "user_task.explain_compliance_and_approval_process",
+      "user_task.explain_loan_condition_calculation",
+      "user_task.handle_missed_payment",
+      "user_task.handle_statement_and_payment_history_requests",
+      "user_task.high_value_transfer_review",
+      "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera",
+      "user_task.identify_customer",
+      "user_task.initiate_transfer",
+      "user_task.inquire_about_loan_refinance",
+      "user_task.loan_application",
+      "user_task.loan_servicing_review",
+      "user_task.manager_review",
+      "user_task.manual_credit_approval",
+      "user_task.mark_loan_as_closed",
+      "user_task.move_payment_date",
+      "user_task.new_customer_record_creation",
+      "user_task.notify_customer_of_update",
+      "user_task.onboard_customer",
+      "user_task.open_customer_support_case",
+      "user_task.perform_kyc_checks",
+      "user_task.prepare_refinance_request",
+      "user_task.process_first_deposit",
+      "user_task.process_loan_payment",
+      "user_task.process_loan_refinance",
+      "user_task.recopilar_documentos_del_onboarding",
+      "user_task.record_loan_disbursement",
+      "user_task.refinance_exception_review",
+      "user_task.registrar_disputa_por_cargo_no_reconocido",
+      "user_task.registrar_la_solicitud_del_prestamo",
+      "user_task.request_additional_loan_documents",
+      "user_task.request_loan_refinance_options",
+      "user_task.request_reimbursement",
+      "user_task.review_credit_scoring",
+      "user_task.review_fee_waiver",
+      "user_task.review_loan_status",
+      "user_task.review_refinance_options",
+      "user_task.revisar_estado_de_mora_del_prestamo",
+      "user_task.revisar_score_de_riesgo_del_cliente",
+      "user_task.search_and_verify_customer_for_update",
+      "user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral",
+      "user_task.start_refinance_review",
+      "user_task.submit_claim",
+      "user_task.transferir_fondos_desde_la_cuenta_origen_al_prestamo",
+      "user_task.underwriting_review",
+      "user_task.update_customer_contact_details",
+      "user_task.update_customer_details",
+      "user_task.update_loan_balance_after_partial_payment",
+      "user_task.validar_beneficiario_para_transferencia_internacional",
+      "user_task.verificar_consentimiento_de_pago_automatico",
+      "user_task.verify_customer_identity"
+    ],
+    "staged_asset_sets": [
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-asset_set-set",
+        "asset_type": "asset_set",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/asset_set-set/asset-set.yaml",
+        "asset_count": 134
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-business_rule-set",
+        "asset_type": "business_rule",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/business_rule-set/asset-set.yaml",
+        "asset_count": 22
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-causality-set",
+        "asset_type": "causality",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/causality-set/asset-set.yaml",
+        "asset_count": 14
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-document-set",
+        "asset_type": "document",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/document-set/asset-set.yaml",
+        "asset_count": 33
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-domain-set",
+        "asset_type": "domain",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/domain-set/asset-set.yaml",
+        "asset_count": 2
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-entity-set",
+        "asset_type": "entity",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/entity-set/asset-set.yaml",
+        "asset_count": 47
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-flow-set",
+        "asset_type": "flow",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/flow-set/asset-set.yaml",
+        "asset_count": 39
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-form-set",
+        "asset_type": "form",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/form-set/asset-set.yaml",
+        "asset_count": 4
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-form_version-set",
+        "asset_type": "form_version",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/form_version-set/asset-set.yaml",
+        "asset_count": 4
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-menu-set",
+        "asset_type": "menu",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/menu-set/asset-set.yaml",
+        "asset_count": 10
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-module-set",
+        "asset_type": "module",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/module-set/asset-set.yaml",
+        "asset_count": 7
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-plan-set",
+        "asset_type": "plan",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/plan-set/asset-set.yaml",
+        "asset_count": 20
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-process-set",
+        "asset_type": "process",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/process-set/asset-set.yaml",
+        "asset_count": 23
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-qa-set",
+        "asset_type": "qa",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/qa-set/asset-set.yaml",
+        "asset_count": 17
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-ruleset-set",
+        "asset_type": "ruleset",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/ruleset-set/asset-set.yaml",
+        "asset_count": 22
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-tool-set",
+        "asset_type": "tool",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/tool-set/asset-set.yaml",
+        "asset_count": 21
+      },
+      {
+        "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-user_task-set",
+        "asset_type": "user_task",
+        "version": "1.0.0",
+        "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/user_task-set/asset-set.yaml",
+        "asset_count": 79
+      }
+    ],
+    "catalog_assets_persisted": 0,
+    "knowledge_base_error": null,
+    "asset_analysis": {
+      "asset_types": {
+        "domain": {
+          "candidate_count": 2,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "domain_id",
+            "name",
+            "purpose",
+            "description",
+            "order",
+            "icon",
+            "tags"
+          ]
+        },
+        "module": {
+          "candidate_count": 7,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "module_id",
+            "domain_id",
+            "name",
+            "purpose",
+            "description",
+            "order",
+            "icon",
+            "menus",
+            "tags"
+          ]
+        },
+        "menu": {
+          "candidate_count": 10,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "menu_id",
+            "module_id",
+            "label",
+            "path",
+            "description",
+            "order",
+            "icon",
+            "parent_menu_id",
+            "children",
+            "target_asset_id"
+          ]
+        },
+        "form": {
+          "candidate_count": 4,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "form_id",
+            "module_id",
+            "name",
+            "purpose",
+            "description",
+            "fields",
+            "layout",
+            "validation",
+            "bindings",
+            "current_version"
+          ]
+        },
+        "form_version": {
+          "candidate_count": 4,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "form_id",
+            "version",
+            "schema",
+            "renderer",
+            "bindings",
+            "validation",
+            "migration_notes"
+          ]
+        },
+        "flow": {
+          "candidate_count": 25,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "flow_id",
+            "flow_name",
+            "purpose",
+            "business_event",
+            "user_task_refs",
+            "related_process_ids",
+            "inputs",
+            "outputs",
+            "explanation"
+          ]
+        },
+        "process": {
+          "candidate_count": 26,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "process_id",
+            "process_name",
+            "business_event",
+            "triggers",
+            "execution_nodes",
+            "transitions",
+            "decisions",
+            "systems",
+            "exceptions",
+            "rules",
+            "tools"
+          ]
+        },
+        "qa": {
+          "candidate_count": 0,
+          "status": "not_detected_yet",
+          "payload_fields": [
+            "question",
+            "answer",
+            "purpose",
+            "source",
+            "citations",
+            "transaction_id"
+          ]
+        },
+        "plan": {
+          "candidate_count": 20,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "plan_id",
+            "objective",
+            "business_event",
+            "steps",
+            "tools",
+            "dependencies",
+            "execution_options"
+          ]
+        },
+        "user_task": {
+          "candidate_count": 62,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "user_task_id",
+            "task",
+            "type",
+            "name",
+            "description",
+            "user_actions",
+            "tools"
+          ]
+        },
+        "business_rule": {
+          "candidate_count": 34,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "rule_id",
+            "rule_text",
+            "when",
+            "conditions",
+            "then",
+            "consequences",
+            "applies_to",
+            "transaction_id",
+            "ruleset_name"
+          ]
+        },
+        "ruleset": {
+          "candidate_count": 0,
+          "status": "not_detected_yet",
+          "payload_fields": [
+            "ruleset_id",
+            "transaction_id",
+            "rules",
+            "entities",
+            "description"
+          ]
+        },
+        "concept": {
+          "candidate_count": 54,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "entity_id",
+            "name",
+            "aliases",
+            "attributes",
+            "relations",
+            "description",
+            "evidence"
+          ]
+        },
+        "entity": {
+          "candidate_count": 54,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "entity_id",
+            "name",
+            "aliases",
+            "attributes",
+            "relations",
+            "description",
+            "evidence"
+          ]
+        },
+        "tool": {
+          "candidate_count": 0,
+          "status": "not_detected_yet",
+          "payload_fields": [
+            "tool_id",
+            "tool_type",
+            "operation",
+            "resource",
+            "label",
+            "description",
+            "frontend_event",
+            "backend_protocol",
+            "endpoint",
+            "requires_approval",
+            "user_tasks",
+            "flows"
+          ]
+        },
+        "document": {
+          "candidate_count": 27,
+          "status": "candidate_detected",
+          "payload_fields": [
+            "path",
+            "kind",
+            "sequence",
+            "title",
+            "source",
+            "text",
+            "description"
+          ]
+        },
+        "configuration": {
+          "candidate_count": 0,
+          "status": "not_detected_yet",
+          "payload_fields": [
+            "configuration_id",
+            "name",
+            "description",
+            "settings",
+            "policy",
+            "applies_to"
+          ]
+        },
+        "asset_set": {
+          "candidate_count": 0,
+          "status": "not_detected_yet",
+          "payload_fields": [
+            "asset_set_id",
+            "version",
+            "primary_asset_type",
+            "members",
+            "domain_id",
+            "module_id",
+            "status",
+            "description",
+            "owner",
+            "tags",
+            "metadata"
+          ]
+        },
+        "causality": {
+          "candidate_count": 0,
+          "status": "not_detected_yet",
+          "payload_fields": [
+            "cause_text",
+            "effect_text",
+            "relation_kind",
+            "evidence",
+            "targets",
+            "transaction_id"
+          ]
+        }
+      },
+      "aliases": [
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.account.opening.flow",
+          "aliases": [
+            "Savings Account Opening",
+            "Establish new deposit account for customer",
+            "account.opening.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.automatic.debit.exception.flow",
+          "aliases": [
+            "Automatic Debit Exception Flow",
+            "To manage and resolve exceptions related to automatic debit payments.",
+            "automatic.debit.exception.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.automatic.debit.setup.flow",
+          "aliases": [
+            "Automatic Debit Setup",
+            "To assist customers in setting up automatic debits for payments and explain the requirements.",
+            "automatic.debit.setup.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.automatic.debit.status.inquiry.flow",
+          "aliases": [
+            "Automatic Debit Status Inquiry",
+            "To inform customers about the status of their automatic debit arrangements.",
+            "automatic.debit.status.inquiry.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.change.payment.date.flow",
+          "aliases": [
+            "Change Payment Date",
+            "To allow customers to change the scheduled date of their loan payment.",
+            "change.payment.date.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.claim.submission.flow",
+          "aliases": [
+            "Claim Submission Flow",
+            "To allow customers to submit claims and ensure proper documentation and review.",
+            "claim.submission.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.collections.and.delinquency.management.flow",
+          "aliases": [
+            "Collections and Delinquency Management",
+            "To manage loans that have become delinquent due to missed payments.",
+            "collections.and.delinquency.management.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.compliance.and.approval.inquiry.flow",
+          "aliases": [
+            "Compliance and Approval Inquiry",
+            "To explain compliance reviews and manager approval processes for specific transactions.",
+            "compliance.and.approval.inquiry.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.customer.service.loan.inquiries.flow",
+          "aliases": [
+            "Customer Service Loan Inquiries",
+            "To address various customer service requests related to loans, such as information correction or dispute resolution.",
+            "customer.service.loan.inquiries.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.digital.onboarding.flow",
+          "aliases": [
+            "Digital Customer Onboarding",
+            "To guide new customers through the process of opening an account and providing necessary information digitally.",
+            "digital.onboarding.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.high.value.transfer.approval.flow",
+          "aliases": [
+            "High Value Transfer Approval Flow",
+            "To ensure high-value transfers are reviewed and approved according to policy.",
+            "high.value.transfer.approval.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.loan.application.flow",
+          "aliases": [
+            "Loan Application Flow",
+            "To allow customers to apply for loans, guiding them through the process and handling necessary evaluations and approvals.",
+            "loan.application.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.loan.disbursement",
+          "aliases": [
+            "Loan Disbursement",
+            "To disburse approved loan funds to the designated recipient.",
+            "loan.disbursement"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.loan.origination.capture.flow",
+          "aliases": [
+            "Loan Origination Capture",
+            "To capture all necessary details for a new loan origination.",
+            "loan.origination.capture.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.loan.origination.flow",
+          "aliases": [
+            "New Personal Loan Origination",
+            "To allow customers to apply for and receive a new personal loan.",
+            "loan.origination.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.loan.payment.flow",
+          "aliases": [
+            "Loan Payment Processing",
+            "To process customer payments for their loans, whether full or partial.",
+            "loan.payment.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.loan.refinance",
+          "aliases": [
+            "Loan Refinance",
+            "To enable customers to refinance their existing loans to obtain better terms or lower monthly payments.",
+            "loan.refinance"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.onboarding.flow",
+          "aliases": [
+            "Customer Onboarding Flow",
+            "To onboard new customers by collecting necessary information and creating their accounts.",
+            "onboarding.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.payment.arrangement.flow",
+          "aliases": [
+            "Payment Arrangement Flow",
+            "To establish payment arrangements for customers facing difficulties, including promises to pay and special exceptions.",
+            "payment.arrangement.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.reimbursement.request.flow",
+          "aliases": [
+            "Reimbursement Request",
+            "To process customer requests for reimbursement of a charge.",
+            "reimbursement.request.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.statement.and.payment.history.inquiry.flow",
+          "aliases": [
+            "Statement and Payment History Inquiry",
+            "To provide customers with access to their account statements and payment history.",
+            "statement.and.payment.history.inquiry.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.transfer.funds.flow",
+          "aliases": [
+            "Transfer Funds",
+            "To facilitate the transfer of funds between accounts or to third parties.",
+            "transfer.funds.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.transfer.initiation.flow",
+          "aliases": [
+            "Transfer Initiation Flow",
+            "To enable customers to initiate financial transfers securely and efficiently.",
+            "transfer.initiation.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.update.customer.contact.flow",
+          "aliases": [
+            "Update Customer Contact Information",
+            "To update a customer's contact details.",
+            "update.customer.contact.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        },
+        {
+          "asset_type": "flow",
+          "asset_id": "flow.update.customer.information.flow",
+          "aliases": [
+            "Update Customer Information",
+            "To allow existing customers to update their personal and contact details.",
+            "update.customer.information.flow"
+          ],
+          "source": "flow_name_purpose_legacy_intent_utterances"
+        }
+      ],
+      "payloads": {
+        "domain": {
+          "expected_fields": [
+            "domain_id",
+            "name",
+            "purpose",
+            "description",
+            "order",
+            "icon",
+            "tags"
+          ],
+          "candidate_count": 2,
+          "status": "candidate_payload_available"
+        },
+        "module": {
+          "expected_fields": [
+            "module_id",
+            "domain_id",
+            "name",
+            "purpose",
+            "description",
+            "order",
+            "icon",
+            "menus",
+            "tags"
+          ],
+          "candidate_count": 7,
+          "status": "candidate_payload_available"
+        },
+        "menu": {
+          "expected_fields": [
+            "menu_id",
+            "module_id",
+            "label",
+            "path",
+            "description",
+            "order",
+            "icon",
+            "parent_menu_id",
+            "children",
+            "target_asset_id"
+          ],
+          "candidate_count": 10,
+          "status": "candidate_payload_available"
+        },
+        "form": {
+          "expected_fields": [
+            "form_id",
+            "module_id",
+            "name",
+            "purpose",
+            "description",
+            "fields",
+            "layout",
+            "validation",
+            "bindings",
+            "current_version"
+          ],
+          "candidate_count": 4,
+          "status": "candidate_payload_available"
+        },
+        "form_version": {
+          "expected_fields": [
+            "form_id",
+            "version",
+            "schema",
+            "renderer",
+            "bindings",
+            "validation",
+            "migration_notes"
+          ],
+          "candidate_count": 4,
+          "status": "candidate_payload_available"
+        },
+        "flow": {
+          "expected_fields": [
+            "flow_id",
+            "flow_name",
+            "purpose",
+            "business_event",
+            "user_task_refs",
+            "related_process_ids",
+            "inputs",
+            "outputs",
+            "explanation"
+          ],
+          "candidate_count": 25,
+          "status": "candidate_payload_available"
+        },
+        "process": {
+          "expected_fields": [
+            "process_id",
+            "process_name",
+            "business_event",
+            "triggers",
+            "execution_nodes",
+            "transitions",
+            "decisions",
+            "systems",
+            "exceptions",
+            "rules",
+            "tools"
+          ],
+          "candidate_count": 26,
+          "status": "candidate_payload_available"
+        },
+        "qa": {
+          "expected_fields": [
+            "question",
+            "answer",
+            "purpose",
+            "source",
+            "citations",
+            "transaction_id"
+          ],
+          "candidate_count": 0,
+          "status": "schema_defined_no_candidate"
+        },
+        "plan": {
+          "expected_fields": [
+            "plan_id",
+            "objective",
+            "business_event",
+            "steps",
+            "tools",
+            "dependencies",
+            "execution_options"
+          ],
+          "candidate_count": 20,
+          "status": "candidate_payload_available"
+        },
+        "user_task": {
+          "expected_fields": [
+            "user_task_id",
+            "task",
+            "type",
+            "name",
+            "description",
+            "user_actions",
+            "tools"
+          ],
+          "candidate_count": 62,
+          "status": "candidate_payload_available"
+        },
+        "business_rule": {
+          "expected_fields": [
+            "rule_id",
+            "rule_text",
+            "when",
+            "conditions",
+            "then",
+            "consequences",
+            "applies_to",
+            "transaction_id",
+            "ruleset_name"
+          ],
+          "candidate_count": 34,
+          "status": "candidate_payload_available"
+        },
+        "ruleset": {
+          "expected_fields": [
+            "ruleset_id",
+            "transaction_id",
+            "rules",
+            "entities",
+            "description"
+          ],
+          "candidate_count": 0,
+          "status": "schema_defined_no_candidate"
+        },
+        "concept": {
+          "expected_fields": [
+            "entity_id",
+            "name",
+            "aliases",
+            "attributes",
+            "relations",
+            "description",
+            "evidence"
+          ],
+          "candidate_count": 54,
+          "status": "candidate_payload_available"
+        },
+        "entity": {
+          "expected_fields": [
+            "entity_id",
+            "name",
+            "aliases",
+            "attributes",
+            "relations",
+            "description",
+            "evidence"
+          ],
+          "candidate_count": 54,
+          "status": "candidate_payload_available"
+        },
+        "tool": {
+          "expected_fields": [
+            "tool_id",
+            "tool_type",
+            "operation",
+            "resource",
+            "label",
+            "description",
+            "frontend_event",
+            "backend_protocol",
+            "endpoint",
+            "requires_approval",
+            "user_tasks",
+            "flows"
+          ],
+          "candidate_count": 0,
+          "status": "schema_defined_no_candidate"
+        },
+        "document": {
+          "expected_fields": [
+            "path",
+            "kind",
+            "sequence",
+            "title",
+            "source",
+            "text",
+            "description"
+          ],
+          "candidate_count": 0,
+          "status": "schema_defined_no_candidate"
+        },
+        "configuration": {
+          "expected_fields": [
+            "configuration_id",
+            "name",
+            "description",
+            "settings",
+            "policy",
+            "applies_to"
+          ],
+          "candidate_count": 0,
+          "status": "schema_defined_no_candidate"
+        },
+        "asset_set": {
+          "expected_fields": [
+            "asset_set_id",
+            "version",
+            "primary_asset_type",
+            "members",
+            "domain_id",
+            "module_id",
+            "status",
+            "description",
+            "owner",
+            "tags",
+            "metadata"
+          ],
+          "candidate_count": 0,
+          "status": "schema_defined_no_candidate"
+        },
+        "causality": {
+          "expected_fields": [
+            "cause_text",
+            "effect_text",
+            "relation_kind",
+            "evidence",
+            "targets",
+            "transaction_id"
+          ],
+          "candidate_count": 0,
+          "status": "schema_defined_no_candidate"
+        }
+      },
+      "relationships": [
+        {
+          "source_asset_id": "module.claims_and_disputes",
+          "type": "belongs_to_domain",
+          "target_asset_id": "domain.retail_banking"
+        },
+        {
+          "source_asset_id": "module.customer_management",
+          "type": "belongs_to_domain",
+          "target_asset_id": "domain.banking"
+        },
+        {
+          "source_asset_id": "module.lending",
+          "type": "belongs_to_domain",
+          "target_asset_id": "domain.banking"
+        },
+        {
+          "source_asset_id": "module.loan_services",
+          "type": "belongs_to_domain",
+          "target_asset_id": "domain.retail_banking"
+        },
+        {
+          "source_asset_id": "module.payments",
+          "type": "belongs_to_domain",
+          "target_asset_id": "domain.banking"
+        },
+        {
+          "source_asset_id": "module.payments_and_transfers",
+          "type": "belongs_to_domain",
+          "target_asset_id": "domain.retail_banking"
+        },
+        {
+          "source_asset_id": "module.support",
+          "type": "belongs_to_domain",
+          "target_asset_id": "domain.banking"
+        },
+        {
+          "source_asset_id": "menu.claims_menu",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.claims_and_disputes"
+        },
+        {
+          "source_asset_id": "menu.customer_onboarding_menu",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.customer_management"
+        },
+        {
+          "source_asset_id": "menu.customers_menu",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.customer_management"
+        },
+        {
+          "source_asset_id": "menu.loan_application_menu",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.loan_services"
+        },
+        {
+          "source_asset_id": "menu.loans_menu",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.lending"
+        },
+        {
+          "source_asset_id": "menu.payment_arrangement_menu",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.loan_services"
+        },
+        {
+          "source_asset_id": "menu.payments_menu",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.payments"
+        },
+        {
+          "source_asset_id": "menu.refinance_menu",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.loan_services"
+        },
+        {
+          "source_asset_id": "menu.support_menu",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.support"
+        },
+        {
+          "source_asset_id": "menu.transfer_menu",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.payments_and_transfers"
+        },
+        {
+          "source_asset_id": "form.customer_profile_form",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.customer_management"
+        },
+        {
+          "source_asset_id": "form.loan_application_form",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.lending"
+        },
+        {
+          "source_asset_id": "form.loan_refinance_request_form",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.lending"
+        },
+        {
+          "source_asset_id": "form.transfer_form",
+          "type": "belongs_to_module",
+          "target_asset_id": "module.payments"
+        },
+        {
+          "source_asset_id": "form_version.customer_profile_form.1_1",
+          "type": "version_of",
+          "target_asset_id": "form.customer_profile_form"
+        },
+        {
+          "source_asset_id": "form_version.loan_application_form.1_0",
+          "type": "version_of",
+          "target_asset_id": "form.loan_application_form"
+        },
+        {
+          "source_asset_id": "form_version.loan_refinance_request_form.1_0",
+          "type": "version_of",
+          "target_asset_id": "form.loan_refinance_request_form"
+        },
+        {
+          "source_asset_id": "form_version.transfer_form.1_0",
+          "type": "version_of",
+          "target_asset_id": "form.transfer_form"
+        },
+        {
+          "source_asset_id": "flow.account.opening.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.customer_identification"
+        },
+        {
+          "source_asset_id": "flow.account.opening.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.document_collection"
+        },
+        {
+          "source_asset_id": "flow.account.opening.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.kyc_screening"
+        },
+        {
+          "source_asset_id": "flow.account.opening.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.account_creation"
+        },
+        {
+          "source_asset_id": "flow.account.opening.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.initial_deposit"
+        },
+        {
+          "source_asset_id": "flow.automatic.debit.exception.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.automatic_debit_exception_task"
+        },
+        {
+          "source_asset_id": "flow.automatic.debit.exception.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.loan_servicing_review_task"
+        },
+        {
+          "source_asset_id": "flow.automatic.debit.setup.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.check_eligible_account_and_explain_debit_requirements"
+        },
+        {
+          "source_asset_id": "flow.automatic.debit.status.inquiry.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.explain_automatic_debit_status"
+        },
+        {
+          "source_asset_id": "flow.change.payment.date.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.move_payment_date"
+        },
+        {
+          "source_asset_id": "flow.claim.submission.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.claim_submission_task"
+        },
+        {
+          "source_asset_id": "flow.collections.and.delinquency.management.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.create_reminder_task_and_send_notifications"
+        },
+        {
+          "source_asset_id": "flow.collections.and.delinquency.management.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.escalate_case_to_collections"
+        },
+        {
+          "source_asset_id": "flow.compliance.and.approval.inquiry.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.explain_compliance_review_and_manager_approval"
+        },
+        {
+          "source_asset_id": "flow.customer.service.loan.inquiries.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.open_support_case"
+        },
+        {
+          "source_asset_id": "flow.digital.onboarding.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.verify_identity_capture_profile_and_check_customer"
+        },
+        {
+          "source_asset_id": "flow.digital.onboarding.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.create_customer_record_and_link_documents"
+        },
+        {
+          "source_asset_id": "flow.high.value.transfer.approval.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.high_value_transfer_review_task"
+        },
+        {
+          "source_asset_id": "flow.high.value.transfer.approval.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.manager_review_task"
+        },
+        {
+          "source_asset_id": "flow.high.value.transfer.approval.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.compliance_review_task"
+        },
+        {
+          "source_asset_id": "flow.loan.application.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.loan_application_task"
+        },
+        {
+          "source_asset_id": "flow.loan.disbursement",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.confirm_destination_account_and_validate_beneficiary"
+        },
+        {
+          "source_asset_id": "flow.loan.disbursement",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.record_disbursement_details"
+        },
+        {
+          "source_asset_id": "flow.loan.origination.capture.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.capture_loan_origination_details"
+        },
+        {
+          "source_asset_id": "flow.loan.origination.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.capture_loan_request_details"
+        },
+        {
+          "source_asset_id": "flow.loan.origination.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.request_additional_documents"
+        },
+        {
+          "source_asset_id": "flow.loan.origination.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.underwriting_review"
+        },
+        {
+          "source_asset_id": "flow.loan.origination.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.create_loan_account_and_store_schedule"
+        },
+        {
+          "source_asset_id": "flow.loan.payment.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.process_loan_payment"
+        },
+        {
+          "source_asset_id": "flow.loan.payment.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.update_loan_balance_and_schedule"
+        },
+        {
+          "source_asset_id": "flow.loan.payment.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.mark_loan_as_closed_and_notify_customer"
+        },
+        {
+          "source_asset_id": "flow.loan.refinance",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.request_loan_refinance_options"
+        },
+        {
+          "source_asset_id": "flow.loan.refinance",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.prepare_refinance_request"
+        },
+        {
+          "source_asset_id": "flow.loan.refinance",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.underwriting_review"
+        },
+        {
+          "source_asset_id": "flow.loan.refinance",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.create_loan_account_and_store_schedule"
+        },
+        {
+          "source_asset_id": "flow.onboarding.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.onboarding_customer_task"
+        },
+        {
+          "source_asset_id": "flow.payment.arrangement.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.payment_arrangement_task"
+        },
+        {
+          "source_asset_id": "flow.reimbursement.request.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.request_reimbursement"
+        },
+        {
+          "source_asset_id": "flow.statement.and.payment.history.inquiry.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.handle_statement_request_or_payment_history_inquiry"
+        },
+        {
+          "source_asset_id": "flow.transfer.funds.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.identify_customer"
+        },
+        {
+          "source_asset_id": "flow.transfer.funds.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.capture_transfer_details"
+        },
+        {
+          "source_asset_id": "flow.transfer.initiation.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.transfer_initiation_task"
+        },
+        {
+          "source_asset_id": "flow.update.customer.contact.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.update_customer_contact_details"
+        },
+        {
+          "source_asset_id": "flow.update.customer.information.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.search_customer_and_verify_identity"
+        },
+        {
+          "source_asset_id": "flow.update.customer.information.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.confirm_requested_change_and_update_record"
+        },
+        {
+          "source_asset_id": "flow.update.customer.information.flow",
+          "type": "decomposes_to_user_task",
+          "target_asset_id": "user_task.notify_customer_of_update"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.a"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.c"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.c"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.o"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.u"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.n"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.t"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.a"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.u"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.t"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.o"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.m"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.a"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.t"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.i"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.c"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow._"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.d"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.e"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.b"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.i"
+        },
+        {
+          "source_asset_id": "business_rule.automatic_debit_eligibility_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.t"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.l"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.o"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.a"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.n"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.a"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.p"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.p"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.l"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.i"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.c"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.a"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.t"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.i"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.o"
+        },
+        {
+          "source_asset_id": "business_rule.loan_affordability_check",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.n"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.l"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.o"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.a"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.n"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.p"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.a"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.y"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.m"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.e"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.n"
+        },
+        {
+          "source_asset_id": "business_rule.payment_due_date_grace_period",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.t"
+        },
+        {
+          "source_asset_id": "business_rule.high_value_transfer_review",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.t"
+        },
+        {
+          "source_asset_id": "business_rule.high_value_transfer_review",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.r"
+        },
+        {
+          "source_asset_id": "business_rule.high_value_transfer_review",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.a"
+        },
+        {
+          "source_asset_id": "business_rule.high_value_transfer_review",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.n"
+        },
+        {
+          "source_asset_id": "business_rule.high_value_transfer_review",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.s"
+        },
+        {
+          "source_asset_id": "business_rule.high_value_transfer_review",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.f"
+        },
+        {
+          "source_asset_id": "business_rule.high_value_transfer_review",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.e"
+        },
+        {
+          "source_asset_id": "business_rule.high_value_transfer_review",
+          "type": "applies_to_flow",
+          "target_asset_id": "flow.r"
+        }
+      ],
+      "human_review_actions": [
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "domain",
+          "label": "Review domain candidates",
+          "candidate_count": 2
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "module",
+          "label": "Review module candidates",
+          "candidate_count": 7
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "menu",
+          "label": "Review menu candidates",
+          "candidate_count": 10
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "form",
+          "label": "Review form candidates",
+          "candidate_count": 4
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "form_version",
+          "label": "Review form_version candidates",
+          "candidate_count": 4
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "flow",
+          "label": "Review flow candidates",
+          "candidate_count": 25
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "process",
+          "label": "Review process candidates",
+          "candidate_count": 26
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "plan",
+          "label": "Review plan candidates",
+          "candidate_count": 20
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "user_task",
+          "label": "Review user_task candidates",
+          "candidate_count": 62
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "business_rule",
+          "label": "Review business_rule candidates",
+          "candidate_count": 34
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "concept",
+          "label": "Review concept candidates",
+          "candidate_count": 54
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "entity",
+          "label": "Review entity candidates",
+          "candidate_count": 54
+        },
+        {
+          "action_type": "approve_asset_candidates",
+          "asset_type": "document",
+          "label": "Review document candidates",
+          "candidate_count": 27
+        },
+        {
+          "action_type": "confirm_missing_asset_type",
+          "asset_type": "qa",
+          "label": "Confirm no qa assets were found"
+        },
+        {
+          "action_type": "confirm_missing_asset_type",
+          "asset_type": "ruleset",
+          "label": "Confirm no ruleset assets were found"
+        },
+        {
+          "action_type": "confirm_missing_asset_type",
+          "asset_type": "tool",
+          "label": "Confirm no tool assets were found"
+        },
+        {
+          "action_type": "confirm_missing_asset_type",
+          "asset_type": "document",
+          "label": "Confirm no document assets were found"
+        },
+        {
+          "action_type": "confirm_missing_asset_type",
+          "asset_type": "configuration",
+          "label": "Confirm no configuration assets were found"
+        },
+        {
+          "action_type": "confirm_missing_asset_type",
+          "asset_type": "asset_set",
+          "label": "Confirm no asset_set assets were found"
+        },
+        {
+          "action_type": "confirm_missing_asset_type",
+          "asset_type": "causality",
+          "label": "Confirm no causality assets were found"
+        },
+        {
+          "action_type": "approve_aliases",
+          "asset_type": "all",
+          "label": "Review alias and similarity candidates",
+          "candidate_count": 25
+        },
+        {
+          "action_type": "approve_relationships",
+          "asset_type": "all",
+          "label": "Review cross-asset relationships",
+          "candidate_count": 127
+        },
+        {
+          "action_type": "approve_staged_asset_sets",
+          "asset_type": "all",
+          "label": "Review generated AssetSet YAML versions",
+          "candidate_count": 17
+        }
+      ],
+      "canonical_assets": {
+        "candidate_count": 504,
+        "asset_types": {
+          "asset_set": 134,
+          "business_rule": 22,
+          "causality": 14,
+          "document": 33,
+          "domain": 2,
+          "entity": 50,
+          "flow": 42,
+          "form": 4,
+          "form_version": 4,
+          "menu": 10,
+          "module": 7,
+          "plan": 20,
+          "process": 23,
+          "qa": 17,
+          "ruleset": 22,
+          "tool": 21,
+          "user_task": 79
+        },
+        "asset_ids": [
+          "asset_set.account.opening",
+          "asset_set.account.opening.flow",
+          "asset_set.account.reactivate",
+          "asset_set.automatic.debit.eligibility.check",
+          "asset_set.automatic.debit.exception.flow",
+          "asset_set.automatic.debit.setup.flow",
+          "asset_set.automatic.debit.status.inquiry.flow",
+          "asset_set.automatic.payment.setup",
+          "asset_set.autopay.cancel",
+          "asset_set.balance.must.be.available",
+          "asset_set.borderline.requires.approval",
+          "asset_set.change.payment.date.flow",
+          "asset_set.claim.evidence.required",
+          "asset_set.claim.submission.flow",
+          "asset_set.collections.and.delinquency.management.flow",
+          "asset_set.como.cancelo.una.domiciliacion.de.pago",
+          "asset_set.como.creo.un.cliente.nuevo",
+          "asset_set.como.funciona.el.pago.automatico",
+          "asset_set.como.pago.mi.prestamo",
+          "asset_set.como.reporto.un.cargo.no.reconocido",
+          "asset_set.como.se.crea.un.prestamo",
+          "asset_set.como.se.reactiva.una.cuenta.bloqueada",
+          "asset_set.como.se.realiza.el.desembolso.de.un.prestamo.aprobado",
+          "asset_set.como.transfiero.dinero.a.mi.prestamo",
+          "asset_set.complaint.intake",
+          "asset_set.compliance.and.approval.inquiry.flow",
+          "asset_set.cual.es.el.limite.diario.de.transferencias",
+          "asset_set.cuando.se.requiere.aprobacion.humana",
+          "asset_set.customer.create",
+          "asset_set.customer.onboarding.documents",
+          "asset_set.customer.service.loan.inquiries.flow",
+          "asset_set.customer.update.profile",
+          "asset_set.de.kb.ingestion.causes.o.refresca.esos.activos.desde.texto.empresarial.y.deja",
+          "asset_set.debt.restructure",
+          "asset_set.digital.onboarding.flow",
+          "asset_set.dispute.charge.report",
+          "asset_set.documents.must.be.complete",
+          "asset_set.el.acceso.a.banca.online.se.enables.tras.verificacion.telefonica",
+          "asset_set.el.proceso.de.activacion.de.cuenta.revisa.bloqueos.valida.identidad.y.restituye.acceso",
+          "asset_set.el.proceso.de.actualizacion.de.datos.revisa.titularidad.valida.cambios.y.registra.auditoria",
+          "asset_set.el.proceso.de.alta.de.cliente.captura.datos.valida.identidad.y.crea.el.cliente",
+          "asset_set.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento",
+          "asset_set.el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta",
+          "asset_set.el.proceso.de.aprobacion.reforzada.revisa.score.alto.y.emite.decision.humana",
+          "asset_set.el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito",
+          "asset_set.el.proceso.de.cargo.no.reconocido.abre.caso.congela.tarjeta.y.notifica.investigaciones",
+          "asset_set.el.proceso.de.desembolso.verifica.aprobacion.confirma.cuenta.destino.y.acredita.fondos",
+          "asset_set.el.proceso.de.originacion.de.prestamo.captura.solicitud.valida.condiciones.y.registra.el.prestamo",
+          "asset_set.el.proceso.de.pago.de.prestamo.consulta.saldo.aplica.pago.y.actualiza.calendario",
+          "asset_set.el.proceso.de.pago.de.prestamo.recibe.fondos.aplica.el.abono.y.actualiza.saldo",
+          "asset_set.el.proceso.de.reestructuracion.analiza.capacidad.de.pago.y.propone.escenarios",
+          "asset_set.el.proceso.de.refinanciamiento.identifica.al.cliente.revisa.mora.calcula.terminos.y.emite.oferta",
+          "asset_set.el.proceso.de.transferencia.a.prestamo.valida.referencia.ejecuta.traslado.y.confirma.aplicacion",
+          "asset_set.el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento",
+          "asset_set.el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude",
+          "asset_set.el.rechazo.reiterado.de.transferencias.causes.escalamiento.al.equipo.de.fraude",
+          "asset_set.el.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta",
+          "asset_set.entity.aumento.del.riesgo.crediticio.causes.entity.loanrefinance",
+          "asset_set.entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio",
+          "asset_set.entity.la.validacion.reforzada.aprobada.enables.entity.la.transferencia.internacional",
+          "asset_set.entity.no.pagar.un.prestamo.causes.entity.incumplimiento.contractual",
+          "asset_set.entity.retraso.en.el.onboarding.causes.entity.customer",
+          "asset_set.entity.savingsaccount.prevents.entity.ejecutar.el.pago.automatico",
+          "asset_set.entity.transfer.causes.entity.rechazo.de.la.transferencia",
+          "asset_set.fraud.risk.requires.escalation",
+          "asset_set.high.amount.requires.approval",
+          "asset_set.high.value.transfer.approval.flow",
+          "asset_set.high.value.transfer.review",
+          "asset_set.identity.must.be.valid",
+          "asset_set.identity.validation.failed",
+          "asset_set.income.required",
+          "asset_set.insufficient.balance",
+          "asset_set.interest.posting",
+          "asset_set.international.transfer.review",
+          "asset_set.la.falta.de.consentimiento.firmado.prevents.el.alta.de.pago.automatico",
+          "asset_set.la.falta.de.documento.vigente.causes.retraso.en.el.onboarding",
+          "asset_set.la.mora.superior.a.treinta.dias.prevents.la.oferta.de.refinanciamiento",
+          "asset_set.loan.affordability.check",
+          "asset_set.loan.application.flow",
+          "asset_set.loan.application.status.review",
+          "asset_set.loan.create",
+          "asset_set.loan.disbursement",
+          "asset_set.loan.eligibility",
+          "asset_set.loan.origination",
+          "asset_set.loan.origination.capture.flow",
+          "asset_set.loan.origination.flow",
+          "asset_set.loan.payment",
+          "asset_set.loan.payment.flow",
+          "asset_set.loan.refinance",
+          "asset_set.loan.refinance.assistance",
+          "asset_set.loan.refinance.controls",
+          "asset_set.loan.refinance.handling",
+          "asset_set.loan.transfer.to.loan",
+          "asset_set.manual.credit.approval",
+          "asset_set.minimum.deposit",
+          "asset_set.missing.claim.evidence",
+          "asset_set.money.transfer",
+          "asset_set.onboarding.flow",
+          "asset_set.operational.exceptions.require.approval",
+          "asset_set.payment.arrangement.flow",
+          "asset_set.payment.due.date.grace.period",
+          "asset_set.plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso",
+          "asset_set.plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar",
+          "asset_set.plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar",
+          "asset_set.plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar",
+          "asset_set.plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato",
+          "asset_set.plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo",
+          "asset_set.plan.para.crear.cliente.abrir.formulario.capturar.datos.validar.identidad.y.registrar.cliente",
+          "asset_set.plan.para.crear.prestamo.mostrar.solicitud.capturar.campos.validar.politica.y.registrar.contrato",
+          "asset_set.plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar",
+          "asset_set.plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion",
+          "asset_set.plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar",
+          "asset_set.plan.para.onboarding.digital.capturar.identidad.validar.domicilio.ejecutar.kyc.y.crear.cuenta",
+          "asset_set.plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago",
+          "asset_set.plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta",
+          "asset_set.plan.para.refinanciar.con.riesgo.medio.revisar.buro.calcular.terminos.validar.politica.y.someter.a.aprobacion",
+          "asset_set.plan.para.resolver.transferencias.fallidas.revisar.logs.validar.destino.reprocesar.y.notificar.cliente",
+          "asset_set.plan.para.transferir.dinero.al.prestamo.capturar.referencia.validar.cuenta.origen.y.mover.fondos",
+          "asset_set.que.documentos.necesito.para.abrir.una.cuenta.de.ahorro",
+          "asset_set.que.implica.la.cancelacion.anticipada.de.un.prestamo",
+          "asset_set.que.necesito.para.refinanciar.mi.prestamo",
+          "asset_set.que.pasa.si.el.beneficiario.de.la.transferencia.no.coincide",
+          "asset_set.que.pasa.si.tengo.mora.y.quiero.refinanciar",
+          "asset_set.que.valida.el.proceso.de.onboarding",
+          "asset_set.reimbursement.request.flow",
+          "asset_set.savings.account.open",
+          "asset_set.savings.account.opening",
+          "asset_set.statement.and.payment.history.inquiry.flow",
+          "asset_set.transfer.funds.flow",
+          "asset_set.transfer.initiation.flow",
+          "asset_set.transfer.limit.inquiry",
+          "asset_set.underwriting.approval",
+          "asset_set.update.customer.contact.flow",
+          "asset_set.update.customer.information.flow",
+          "business_rule.automatic_debit_eligibility_check",
+          "business_rule.balance_must_be_available",
+          "business_rule.borderline_requires_approval",
+          "business_rule.claim_evidence_required",
+          "business_rule.documents_must_be_complete",
+          "business_rule.fraud_risk_requires_escalation",
+          "business_rule.high_amount_requires_approval",
+          "business_rule.high_value_transfer_review",
+          "business_rule.identity_must_be_valid",
+          "business_rule.identity_validation_failed",
+          "business_rule.income_required",
+          "business_rule.insufficient_balance",
+          "business_rule.interest_posting",
+          "business_rule.loan_affordability_check",
+          "business_rule.loan_eligibility",
+          "business_rule.loan_refinance_controls",
+          "business_rule.manual_credit_approval",
+          "business_rule.minimum_deposit",
+          "business_rule.missing_claim_evidence",
+          "business_rule.operational_exceptions_require_approval",
+          "business_rule.payment_due_date_grace_period",
+          "business_rule.underwriting_approval",
+          "causality.de_kb_ingestion_causes_o_refresca_esos_activos_desde_texto_empresarial_y_deja",
+          "causality.el_acceso_a_banca_online_se_enables_tras_verificaci_n_telef_nica",
+          "causality.el_rechazo_reiterado_de_transferencias_causes_escalamiento_al_equipo_de_fraude",
+          "causality.el_score_alto_de_fraude_causes_congelamiento_preventivo_de_la_cuenta",
+          "causality.entity_aumento_del_riesgo_crediticio_causes_entity_loanrefinance",
+          "causality.entity_el_incumplimiento_contractual_causes_entity_aumento_del_riesgo_crediticio",
+          "causality.entity_la_validacion_reforzada_aprobada_enables_entity_la_transferencia_internacional",
+          "causality.entity_no_pagar_un_prestamo_causes_entity_incumplimiento_contractual",
+          "causality.entity_retraso_en_el_onboarding_causes_entity_customer",
+          "causality.entity_savingsaccount_prevents_entity_ejecutar_el_pago_automatico",
+          "causality.entity_transfer_causes_entity_rechazo_de_la_transferencia",
+          "causality.la_falta_de_consentimiento_firmado_prevents_el_alta_de_pago_automatico",
+          "causality.la_falta_de_documento_vigente_causes_retraso_en_el_onboarding",
+          "causality.la_mora_superior_a_treinta_dias_prevents_la_oferta_de_refinanciamiento",
+          "document.00_readme_txt",
+          "document.banking_flows_additional_txt",
+          "document.banking_synonyms_and_glossary_runtime_txt",
+          "document.customer_support_tickets_csv",
+          "document.customer_support_tickets_mini_csv",
+          "document.enterprise_asset_corpus_expanded_md",
+          "document.enterprise_operations_manual_md",
+          "document.enterprise_policy_and_controls_md",
+          "document.enterprise_support_wiki_md",
+          "document.enterprise_systems_catalog_md",
+          "document.glossary_fragment_md",
+          "document.intranet_transfer_help_html",
+          "document.loan_refinance_call_center_notes_txt",
+          "document.manual_operativo_credito_md",
+          "document.notes_operativas_cobranza_md",
+          "document.operations_controls_policy_md",
+          "document.orchestration_planning_notes_md",
+          "document.policy_controls_addendum_md",
+          "document.policy_controls_memo_md",
+          "document.process_examples_refinance_md",
+          "document.process_fragments_json",
+          "document.process_qa_seed_md",
+          "document.readme_md",
+          "document.savings_glossary_csv",
+          "document.savings_loans_domain_extra1_txt",
+          "document.savings_loans_domain_extra2_txt",
+          "document.savings_loans_domain_extra3_txt",
+          "document.savings_loans_domain_extra4_txt",
+          "document.savings_loans_domain_extra5_txt",
+          "document.savings_loans_domain_raw_txt",
+          "document.service_configuration_notes_md",
+          "document.systems_catalog_addendum_md",
+          "document.systems_catalog_export_json",
+          "domain.banking",
+          "domain.retail_banking",
+          "entity.approver",
+          "entity.aumento_del_riesgo_crediticio",
+          "entity.automatic_debit",
+          "entity.balance",
+          "entity.beneficiary",
+          "entity.beneficiary_screening",
+          "entity.claim",
+          "entity.credit_history",
+          "entity.creditnote",
+          "entity.customer",
+          "entity.customer_profile",
+          "entity.customerdocuments",
+          "entity.de_kb_ingestion",
+          "entity.debitnote",
+          "entity.desembolso",
+          "entity.ejecutar_el_pago_automatico",
+          "entity.el_incumplimiento_contractual",
+          "entity.enhanced_due_diligence",
+          "entity.high_value_transfer",
+          "entity.incumplimiento_contractual",
+          "entity.kyc_document",
+          "entity.la_oferta_de_refinanciamiento",
+          "entity.la_transferencia_internacional",
+          "entity.la_validacion_reforzada_aprobada",
+          "entity.loan",
+          "entity.loan",
+          "entity.loan_application",
+          "entity.loan_approval",
+          "entity.loan_conditions",
+          "entity.loan_refinance",
+          "entity.loanapplication",
+          "entity.loanconditions",
+          "entity.loanpayment",
+          "entity.loanrefinance",
+          "entity.manager_review",
+          "entity.no_pagar_un_prestamo",
+          "entity.payment_arrangement",
+          "entity.payment_schedule",
+          "entity.rechazo_de_la_transferencia",
+          "entity.refinance_option",
+          "entity.refinance_proposal",
+          "entity.retraso_en_el_onboarding",
+          "entity.savings_account",
+          "entity.savings_account",
+          "entity.savingsaccount",
+          "entity.supervisor",
+          "entity.transaction",
+          "entity.transfer",
+          "entity.transfer",
+          "entity.tras_verificacion_telefonica",
+          "flow.account.opening.flow",
+          "flow.account.reactivate",
+          "flow.automatic.debit.exception.flow",
+          "flow.automatic.debit.setup.flow",
+          "flow.automatic.debit.status.inquiry.flow",
+          "flow.autopay.cancel",
+          "flow.change.payment.date.flow",
+          "flow.claim.submission.flow",
+          "flow.collections.and.delinquency.management.flow",
+          "flow.compliance.and.approval.inquiry.flow",
+          "flow.customer.create",
+          "flow.customer.onboarding.documents",
+          "flow.customer.service.loan.inquiries.flow",
+          "flow.customer.update.profile",
+          "flow.debt.restructure",
+          "flow.digital.onboarding.flow",
+          "flow.dispute.charge.report",
+          "flow.high.value.transfer.approval.flow",
+          "flow.loan.application.flow",
+          "flow.loan.application.status.review",
+          "flow.loan.create",
+          "flow.loan.disbursement",
+          "flow.loan.disbursement",
+          "flow.loan.origination.capture.flow",
+          "flow.loan.origination.flow",
+          "flow.loan.payment",
+          "flow.loan.payment",
+          "flow.loan.payment.flow",
+          "flow.loan.refinance",
+          "flow.loan.refinance",
+          "flow.loan.transfer.to.loan",
+          "flow.money.transfer",
+          "flow.onboarding.flow",
+          "flow.payment.arrangement.flow",
+          "flow.reimbursement.request.flow",
+          "flow.savings.account.open",
+          "flow.statement.and.payment.history.inquiry.flow",
+          "flow.transfer.funds.flow",
+          "flow.transfer.initiation.flow",
+          "flow.transfer.limit.inquiry",
+          "flow.update.customer.contact.flow",
+          "flow.update.customer.information.flow",
+          "form.customer_profile_form",
+          "form.loan_application_form",
+          "form.loan_refinance_request_form",
+          "form.transfer_form",
+          "form_version.customer_profile_form_1_1",
+          "form_version.loan_application_form_1_0",
+          "form_version.loan_refinance_request_form_1_0",
+          "form_version.transfer_form_1_0",
+          "menu.claims_menu",
+          "menu.customer_onboarding_menu",
+          "menu.customers_menu",
+          "menu.loan_application_menu",
+          "menu.loans_menu",
+          "menu.payment_arrangement_menu",
+          "menu.payments_menu",
+          "menu.refinance_menu",
+          "menu.support_menu",
+          "menu.transfer_menu",
+          "module.claims_and_disputes",
+          "module.customer_management",
+          "module.lending",
+          "module.loan_services",
+          "module.payments",
+          "module.payments_and_transfers",
+          "module.support",
+          "plan.automatic.payment.setup",
+          "plan.international.transfer.review",
+          "plan.loan.refinance.assistance",
+          "plan.plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso",
+          "plan.plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar",
+          "plan.plan.para.alta.de.pago.automatico.verificar.cuenta.capturar.autorizacion.registrar.mandato.y.confirmar",
+          "plan.plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar",
+          "plan.plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato",
+          "plan.plan.para.cobranza.preventiva.detectar.senales.priorizar.cartera.contactar.y.documentar.acuerdo",
+          "plan.plan.para.crear.cliente.abrir.formulario.capturar.datos.validar.identidad.y.registrar.cliente",
+          "plan.plan.para.crear.prestamo.mostrar.solicitud.capturar.campos.validar.politica.y.registrar.contrato",
+          "plan.plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar",
+          "plan.plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion",
+          "plan.plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar",
+          "plan.plan.para.onboarding.digital.capturar.identidad.validar.domicilio.ejecutar.kyc.y.crear.cuenta",
+          "plan.plan.para.pagar.prestamo.mostrar.saldo.capturar.monto.y.aplicar.pago",
+          "plan.plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta",
+          "plan.plan.para.refinanciar.con.riesgo.medio.revisar.buro.calcular.terminos.validar.politica.y.someter.a.aprobacion",
+          "plan.plan.para.resolver.transferencias.fallidas.revisar.logs.validar.destino.reprocesar.y.notificar.cliente",
+          "plan.plan.para.transferir.dinero.al.prestamo.capturar.referencia.validar.cuenta.origen.y.mover.fondos",
+          "process.account.opening",
+          "process.complaint.intake",
+          "process.el.proceso.de.activacion.de.cuenta.revisa.bloqueos.valida.identidad.y.restituye.acceso",
+          "process.el.proceso.de.actualizacion.de.datos.revisa.titularidad.valida.cambios.y.registra.auditoria",
+          "process.el.proceso.de.alta.de.cliente.captura.datos.valida.identidad.y.crea.el.cliente",
+          "process.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento",
+          "process.el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta",
+          "process.el.proceso.de.aprobacion.reforzada.revisa.score.alto.y.emite.decision.humana",
+          "process.el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito",
+          "process.el.proceso.de.cargo.no.reconocido.abre.caso.congela.tarjeta.y.notifica.investigaciones",
+          "process.el.proceso.de.desembolso.verifica.aprobacion.confirma.cuenta.destino.y.acredita.fondos",
+          "process.el.proceso.de.originacion.de.prestamo.captura.solicitud.valida.condiciones.y.registra.el.prestamo",
+          "process.el.proceso.de.pago.de.prestamo.consulta.saldo.aplica.pago.y.actualiza.calendario",
+          "process.el.proceso.de.pago.de.prestamo.recibe.fondos.aplica.el.abono.y.actualiza.saldo",
+          "process.el.proceso.de.reestructuracion.analiza.capacidad.de.pago.y.propone.escenarios",
+          "process.el.proceso.de.refinanciamiento.identifica.al.cliente.revisa.mora.calcula.terminos.y.emite.oferta",
+          "process.el.proceso.de.transferencia.a.prestamo.valida.referencia.ejecuta.traslado.y.confirma.aplicacion",
+          "process.el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento",
+          "process.el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude",
+          "process.international.transfer.review",
+          "process.loan.origination",
+          "process.loan.refinance.handling",
+          "process.savings.account.opening",
+          "qa.como_cancelo_una_domiciliacion_de_pago",
+          "qa.como_creo_un_cliente_nuevo",
+          "qa.como_funciona_el_pago_automatico",
+          "qa.como_pago_mi_prestamo",
+          "qa.como_reporto_un_cargo_no_reconocido",
+          "qa.como_se_crea_un_prestamo",
+          "qa.como_se_reactiva_una_cuenta_bloqueada",
+          "qa.como_se_realiza_el_desembolso_de_un_prestamo_aprobado",
+          "qa.como_transfiero_dinero_a_mi_prestamo",
+          "qa.cual_es_el_limite_diario_de_transferencias",
+          "qa.cuando_se_requiere_aprobacion_humana",
+          "qa.que_documentos_necesito_para_abrir_una_cuenta_de_ahorro",
+          "qa.que_implica_la_cancelacion_anticipada_de_un_prestamo",
+          "qa.que_necesito_para_refinanciar_mi_prestamo",
+          "qa.que_pasa_si_el_beneficiario_de_la_transferencia_no_coincide",
+          "qa.que_pasa_si_tengo_mora_y_quiero_refinanciar",
+          "qa.que_valida_el_proceso_de_onboarding",
+          "ruleset.automatic.debit.eligibility.check",
+          "ruleset.balance.must.be.available",
+          "ruleset.borderline.requires.approval",
+          "ruleset.claim.evidence.required",
+          "ruleset.documents.must.be.complete",
+          "ruleset.fraud.risk.requires.escalation",
+          "ruleset.high.amount.requires.approval",
+          "ruleset.high.value.transfer.review",
+          "ruleset.identity.must.be.valid",
+          "ruleset.identity.validation.failed",
+          "ruleset.income.required",
+          "ruleset.insufficient.balance",
+          "ruleset.interest.posting",
+          "ruleset.loan.affordability.check",
+          "ruleset.loan.eligibility",
+          "ruleset.loan.refinance.controls",
+          "ruleset.manual.credit.approval",
+          "ruleset.minimum.deposit",
+          "ruleset.missing.claim.evidence",
+          "ruleset.operational.exceptions.require.approval",
+          "ruleset.payment.due.date.grace.period",
+          "ruleset.underwriting.approval",
+          "tool.account_reactivate",
+          "tool.approval_request_submit",
+          "tool.autopay_cancel",
+          "tool.autopay_register",
+          "tool.customer_create",
+          "tool.customer_read",
+          "tool.dispute_case_create",
+          "tool.document_upload",
+          "tool.document_validate",
+          "tool.loan_create",
+          "tool.loan_disbursement_execute",
+          "tool.loan_payment_apply",
+          "tool.loan_status_read",
+          "tool.loan_terms_calculate",
+          "tool.loan_transfer_apply",
+          "tool.risk_score_read",
+          "tool.transfer_submit",
+          "tool.ui_customer_create_open_form",
+          "tool.ui_loan_create_open_form",
+          "tool.ui_loan_payment_open_form",
+          "tool.ui_loan_transfer_open_form",
+          "user_task.aplicar_el_pago_recibido_al_prestamo",
+          "user_task.approve_business_case",
+          "user_task.automatic_debit_exception",
+          "user_task.calcular_terminos_de_refinanciamiento",
+          "user_task.cancel_pending_loan_disbursement",
+          "user_task.capturar_datos_del_cliente_para_crear_el_registro",
+          "user_task.capture_loan_origination_details",
+          "user_task.capture_loan_request",
+          "user_task.capture_loan_requirements",
+          "user_task.capture_transfer_details",
+          "user_task.check_account_eligibility_and_explain_debit",
+          "user_task.collect_customer_documents",
+          "user_task.collect_required_documents",
+          "user_task.compliance_review",
+          "user_task.confirm_and_update_customer_information",
+          "user_task.confirm_financial_capacity",
+          "user_task.confirm_loan_disbursement_details",
+          "user_task.confirmar_datos_sensibles_antes_de_la_actualizacion",
+          "user_task.contact_center_follow_up",
+          "user_task.create_bank_account",
+          "user_task.create_loan_account",
+          "user_task.create_payment_arrangement",
+          "user_task.credit_manager_review",
+          "user_task.customer_verification_and_profile_capture",
+          "user_task.ejecutar_activacion_de_cuenta_previamente_bloqueada",
+          "user_task.ejecutar_el_desembolso_sobre_la_cuenta_destino",
+          "user_task.emitir_propuesta_de_cancelacion_anticipada",
+          "user_task.escalate_delinquent_account",
+          "user_task.explain_automatic_debit_status",
+          "user_task.explain_compliance_and_approval_process",
+          "user_task.explain_loan_condition_calculation",
+          "user_task.handle_missed_payment",
+          "user_task.handle_statement_and_payment_history_requests",
+          "user_task.high_value_transfer_review",
+          "user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera",
+          "user_task.identify_customer",
+          "user_task.initiate_transfer",
+          "user_task.inquire_about_loan_refinance",
+          "user_task.loan_application",
+          "user_task.loan_servicing_review",
+          "user_task.manager_review",
+          "user_task.manual_credit_approval",
+          "user_task.mark_loan_as_closed",
+          "user_task.move_payment_date",
+          "user_task.new_customer_record_creation",
+          "user_task.notify_customer_of_update",
+          "user_task.onboard_customer",
+          "user_task.open_customer_support_case",
+          "user_task.perform_kyc_checks",
+          "user_task.prepare_refinance_request",
+          "user_task.process_first_deposit",
+          "user_task.process_loan_payment",
+          "user_task.process_loan_refinance",
+          "user_task.recopilar_documentos_del_onboarding",
+          "user_task.record_loan_disbursement",
+          "user_task.refinance_exception_review",
+          "user_task.registrar_disputa_por_cargo_no_reconocido",
+          "user_task.registrar_la_solicitud_del_prestamo",
+          "user_task.request_additional_loan_documents",
+          "user_task.request_loan_refinance_options",
+          "user_task.request_reimbursement",
+          "user_task.review_credit_scoring",
+          "user_task.review_fee_waiver",
+          "user_task.review_loan_status",
+          "user_task.review_refinance_options",
+          "user_task.revisar_estado_de_mora_del_prestamo",
+          "user_task.revisar_score_de_riesgo_del_cliente",
+          "user_task.search_and_verify_customer_for_update",
+          "user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral",
+          "user_task.start_refinance_review",
+          "user_task.submit_claim",
+          "user_task.transferir_fondos_desde_la_cuenta_origen_al_prestamo",
+          "user_task.underwriting_review",
+          "user_task.update_customer_contact_details",
+          "user_task.update_customer_details",
+          "user_task.update_loan_balance_after_partial_payment",
+          "user_task.validar_beneficiario_para_transferencia_internacional",
+          "user_task.verificar_consentimiento_de_pago_automatico",
+          "user_task.verify_customer_identity"
+        ]
+      },
+      "staged_asset_sets": [
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-asset_set-set",
+          "asset_type": "asset_set",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/asset_set-set/asset-set.yaml",
+          "asset_count": 134
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-business_rule-set",
+          "asset_type": "business_rule",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/business_rule-set/asset-set.yaml",
+          "asset_count": 22
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-causality-set",
+          "asset_type": "causality",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/causality-set/asset-set.yaml",
+          "asset_count": 14
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-document-set",
+          "asset_type": "document",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/document-set/asset-set.yaml",
+          "asset_count": 33
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-domain-set",
+          "asset_type": "domain",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/domain-set/asset-set.yaml",
+          "asset_count": 2
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-entity-set",
+          "asset_type": "entity",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/entity-set/asset-set.yaml",
+          "asset_count": 47
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-flow-set",
+          "asset_type": "flow",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/flow-set/asset-set.yaml",
+          "asset_count": 39
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-form-set",
+          "asset_type": "form",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/form-set/asset-set.yaml",
+          "asset_count": 4
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-form_version-set",
+          "asset_type": "form_version",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/form_version-set/asset-set.yaml",
+          "asset_count": 4
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-menu-set",
+          "asset_type": "menu",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/menu-set/asset-set.yaml",
+          "asset_count": 10
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-module-set",
+          "asset_type": "module",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/module-set/asset-set.yaml",
+          "asset_count": 7
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-plan-set",
+          "asset_type": "plan",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/plan-set/asset-set.yaml",
+          "asset_count": 20
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-process-set",
+          "asset_type": "process",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/process-set/asset-set.yaml",
+          "asset_count": 23
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-qa-set",
+          "asset_type": "qa",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/qa-set/asset-set.yaml",
+          "asset_count": 17
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-ruleset-set",
+          "asset_type": "ruleset",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/ruleset-set/asset-set.yaml",
+          "asset_count": 22
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-tool-set",
+          "asset_type": "tool",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/tool-set/asset-set.yaml",
+          "asset_count": 21
+        },
+        {
+          "asset_set_id": "ingest-2026-06-14t01-36-48-149134-00-00-user_task-set",
+          "asset_type": "user_task",
+          "version": "1.0.0",
+          "manifest_path": "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/user_task-set/asset-set.yaml",
+          "asset_count": 79
+        }
+      ]
+    }
+  },
+  "steps": [
+    {
+      "name": "scan_and_parse_corpus",
+      "owner": "custom",
+      "status": "ok",
+      "timestamp": "2026-06-14T01:36:48.152321+00:00",
+      "metadata": {
+        "documents": 33,
+        "source_files": [
+          "data/raw/README.md",
+          "data/raw/banking_flows_additional.txt",
+          "data/raw/banking_synonyms_and_glossary_runtime.txt",
+          "data/raw/customer_support_tickets_mini.csv",
+          "data/raw/enterprise_dump_2026/00_readme.txt",
+          "data/raw/enterprise_dump_2026/customer_support_tickets.csv",
+          "data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md",
+          "data/raw/enterprise_dump_2026/glossary_fragment.md",
+          "data/raw/enterprise_dump_2026/intranet_transfer_help.html",
+          "data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt",
+          "data/raw/enterprise_dump_2026/operations_controls_policy.md",
+          "data/raw/enterprise_dump_2026/orchestration_planning_notes.md",
+          "data/raw/enterprise_dump_2026/policy_controls_memo.md",
+          "data/raw/enterprise_dump_2026/process_fragments.json",
+          "data/raw/enterprise_dump_2026/service_configuration_notes.md",
+          "data/raw/enterprise_dump_2026/systems_catalog_export.json",
+          "data/raw/enterprise_operations_manual.md",
+          "data/raw/enterprise_policy_and_controls.md",
+          "data/raw/enterprise_support_wiki.md",
+          "data/raw/enterprise_systems_catalog.md",
+          "data/raw/manual_operativo_credito.md",
+          "data/raw/notes_operativas_cobranza.md",
+          "data/raw/policy_controls_addendum.md",
+          "data/raw/process_examples_refinance.md",
+          "data/raw/process_qa_seed.md",
+          "data/raw/savings_glossary.csv",
+          "data/raw/savings_loans_domain_extra1.txt",
+          "data/raw/savings_loans_domain_extra2.txt",
+          "data/raw/savings_loans_domain_extra3.txt",
+          "data/raw/savings_loans_domain_extra4.txt",
+          "data/raw/savings_loans_domain_extra5.txt",
+          "data/raw/savings_loans_domain_raw.txt",
+          "data/raw/systems_catalog_addendum.md"
+        ]
+      }
+    },
+    {
+      "name": "analyze_semantics_classify_corpus",
+      "owner": "llm_or_heuristic_plus_human_review",
+      "status": "review_required",
+      "timestamp": "2026-06-14T01:36:48.155219+00:00",
+      "metadata": {
+        "classifications": 33,
+        "review_required": true,
+        "summary": "Mixed enterprise corpus classified with deterministic heuristics. Use LLM semantic analysis or human review before applying artifacts."
+      }
+    },
+    {
+      "name": "build_extraction_instructions",
+      "owner": "llm_extraction_plus_custom_validation",
+      "status": "skipped",
+      "timestamp": "2026-06-14T01:36:48.155530+00:00",
+      "metadata": {
+        "extraction_instruction_mode": "none"
+      }
+    },
+    {
+      "name": "extract_validate_json",
+      "owner": "llm_extraction_plus_custom_validation",
+      "status": "ok",
+      "timestamp": "2026-06-14T01:42:13.563240+00:00",
+      "metadata": {
+        "attempt": 1,
+        "extraction_instruction_mode": "none",
+        "flows": 25,
+        "user_tasks": 62,
+        "tools": 0,
+        "asset_arrays": {
+          "user_tasks": 62,
+          "flows": 25,
+          "domain": 2,
+          "module": 7,
+          "menu": 10,
+          "form": 4,
+          "form_version": 4,
+          "asset_set": 0,
+          "entity": 54,
+          "business_rule": 34,
+          "process": 26,
+          "plan": 20,
+          "qa": 0,
+          "causality": 0
+        },
+        "semantic_review_required": true
+      }
+    },
+    {
+      "name": "classify_asset_types",
+      "owner": "langgraph_asset_classifier",
+      "status": "ok",
+      "timestamp": "2026-06-14T01:42:13.608132+00:00",
+      "metadata": {
+        "supported_asset_types": 19,
+        "discovered_asset_types": {
+          "domain": 2,
+          "module": 7,
+          "menu": 10,
+          "form": 4,
+          "form_version": 4,
+          "flow": 25,
+          "process": 26,
+          "plan": 20,
+          "user_task": 62,
+          "business_rule": 34,
+          "concept": 54,
+          "entity": 54,
+          "document": 27
+        },
+        "note": "Flow extraction is only the first asset source; missing asset types remain explicit review candidates."
+      }
+    },
+    {
+      "name": "resolve_aliases_and_similarity",
+      "owner": "vector_memory_or_human_review",
+      "status": "candidate",
+      "timestamp": "2026-06-14T01:42:13.608735+00:00",
+      "metadata": {
+        "alias_candidates": 25,
+        "coverage": [
+          "flow"
+        ],
+        "note": "Alias candidates are reviewable until full vector similarity is applied to every asset type."
+      }
+    },
+    {
+      "name": "hydrate_asset_payloads",
+      "owner": "asset_schema_hydration",
+      "status": "candidate",
+      "timestamp": "2026-06-14T01:42:13.650665+00:00",
+      "metadata": {
+        "payload_asset_types": 19,
+        "incomplete_asset_types": [
+          "qa",
+          "ruleset",
+          "tool",
+          "document",
+          "configuration",
+          "asset_set",
+          "causality"
+        ],
+        "note": "Every asset type has an expected payload composition, even when extraction did not produce candidates yet."
+      }
+    },
+    {
+      "name": "normalize_asset_relationships",
+      "owner": "relationship_normalization",
+      "status": "candidate",
+      "timestamp": "2026-06-14T01:42:13.651636+00:00",
+      "metadata": {
+        "relationship_candidates": 127,
+        "relationship_types": [
+          "applies_to_flow",
+          "belongs_to_domain",
+          "belongs_to_module",
+          "decomposes_to_user_task",
+          "version_of"
+        ],
+        "note": "Relationships are part of ingestion analysis and must be reviewed before governed AssetSet activation."
+      }
+    },
+    {
+      "name": "generate_canonical_assets",
+      "owner": "canonical_asset_pipeline",
+      "status": "candidate",
+      "timestamp": "2026-06-14T01:42:14.074180+00:00",
+      "metadata": {
+        "canonical_assets": 504,
+        "asset_types": {
+          "asset_set": 134,
+          "business_rule": 22,
+          "causality": 14,
+          "document": 33,
+          "domain": 2,
+          "entity": 50,
+          "flow": 42,
+          "form": 4,
+          "form_version": 4,
+          "menu": 10,
+          "module": 7,
+          "plan": 20,
+          "process": 23,
+          "qa": 17,
+          "ruleset": 22,
+          "tool": 21,
+          "user_task": 79
+        },
+        "note": "Canonical assets are generated for review/catalog persistence before governed deployment."
+      }
+    },
+    {
+      "name": "persist_catalog",
+      "owner": "asset_catalog",
+      "status": "ok",
+      "timestamp": "2026-06-14T01:42:15.448306+00:00",
+      "metadata": {
+        "mode": "apply",
+        "catalog_assets_persisted": 504,
+        "canonical_assets": 504,
+        "note": "Catalog assets are written early so the launcher can see them before the KB projection tail finishes."
+      }
+    },
+    {
+      "name": "stage_asset_set_yaml",
+      "owner": "ingestion_asset_set_stager",
+      "status": "ok",
+      "timestamp": "2026-06-14T01:42:16.259712+00:00",
+      "metadata": {
+        "run_id": "2026-06-14t01-36-48-149134-00-00",
+        "staged_asset_sets": 17,
+        "manifest_paths": [
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/asset_set-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/business_rule-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/causality-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/document-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/domain-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/entity-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/flow-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/form-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/form_version-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/menu-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/module-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/plan-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/process-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/qa-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/ruleset-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/tool-set/asset-set.yaml",
+          "/home/saul/banking-intent-platform/app/assets/staging/ingest-runs/2026-06-14t01-36-48-149134-00-00/user_task-set/asset-set.yaml"
+        ],
+        "note": "Canonical ingestion assets are written as governed AssetSet YAML proposals."
+      }
+    },
+    {
+      "name": "prepare_human_review_actions",
+      "owner": "human_review",
+      "status": "required",
+      "timestamp": "2026-06-14T01:42:16.260331+00:00",
+      "metadata": {
+        "actions": 23,
+        "action_types": [
+          "approve_aliases",
+          "approve_asset_candidates",
+          "approve_relationships",
+          "approve_staged_asset_sets",
+          "confirm_missing_asset_type"
+        ],
+        "note": "Human review covers actions, tools, entities, services, payloads, aliases, and relationships."
+      }
+    },
+    {
+      "name": "persist_knowledge",
+      "owner": "knowledge_base",
+      "status": "ok",
+      "timestamp": "2026-06-14T01:42:16.261511+00:00",
+      "metadata": {
+        "mode": "apply",
+        "requires_human_review": false,
+        "records": 25,
+        "canonical_assets": 504,
+        "staged_asset_sets": 17,
+        "catalog_asset_sets_persisted": 0,
+        "catalog_assets_persisted": 0,
+        "knowledge_base_error": null,
+        "asset_types_reviewed": 19,
+        "knowledge_base": "Neo4jKnowledgeBaseGraphAdapter",
+        "project_knowledge_bases": false
+      }
+    },
+    {
+      "name": "write_audit",
+      "owner": "langgraph",
+      "status": "ok",
+      "timestamp": "2026-06-14T01:42:16.272250+00:00",
+      "metadata": {
+        "audit_path": "/home/saul/banking-intent-platform/data/processed/ingestion_audit/ingestion_run_20260614T014216Z.json"
+      }
+    }
+  ]
+}

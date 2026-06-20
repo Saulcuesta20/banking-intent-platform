@@ -1,0 +1,31 @@
+asset_id: asset_set.como.se.reactiva.una.cuenta.bloqueada
+asset_type: asset_set
+name: Como.se.reactiva.una.cuenta.bloqueada Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for como.se.reactiva.una.cuenta.bloqueada.
+text: Como se reactiva una cuenta bloqueada?
+tags:
+- asset_set
+- como.se.reactiva.una.cuenta.bloqueada
+relations:
+- type: groups_qa
+  target_asset_id: qa.como_se_reactiva_una_cuenta_bloqueada
+  metadata: {}
+payload:
+  transaction_id: como.se.reactiva.una.cuenta.bloqueada
+  asset_ids:
+  - qa.como_se_reactiva_una_cuenta_bloqueada
+  asset_types:
+  - qa
+  primary_asset_type: qa
+  members:
+  - asset_id: qa.como_se_reactiva_una_cuenta_bloqueada
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Como.se.reactiva.una.cuenta.bloqueada Asset Set
+  normalized_name: como.se.reactiva.una.cuenta.bloqueada asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

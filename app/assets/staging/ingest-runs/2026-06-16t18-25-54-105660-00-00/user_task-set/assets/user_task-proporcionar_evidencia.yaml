@@ -1,0 +1,29 @@
+asset_id: user_task.proporcionar_evidencia
+asset_type: user_task
+name: Proporcionar evidencia
+version: 1.0.0
+owner: business_model_kb
+description: El cliente sube documentos o capturas que respalden su reclamo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: provide_evidence
+  task: proporcionar_evidencia
+  type: carga
+  name: Proporcionar evidencia
+  description: El cliente sube documentos o capturas que respalden su reclamo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente sube documentos o capturas que respalden su reclamo.
+  match_strategy: generated
+  canonical_name: Proporcionar evidencia
+  normalized_name: proporcionar evidencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

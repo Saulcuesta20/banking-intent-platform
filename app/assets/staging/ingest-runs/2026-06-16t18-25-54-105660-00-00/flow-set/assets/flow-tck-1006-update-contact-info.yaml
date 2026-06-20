@@ -1,0 +1,76 @@
+asset_id: flow.tck.1006.update.contact.info
+asset_type: flow
+name: Update Contact Information
+version: 1.0.0
+owner: process_kb
+description: Customer needs to update phone and email before loan review.
+text: Customer needs to update phone and email before loan review.
+tags:
+- customer.wants.to.ensure.contact.details.are.current.for.loan.review
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identity_verification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.update_phone
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.update_email
+  metadata: {}
+payload:
+  flow_id: tck.1006.update.contact.info
+  flow_name: Update Contact Information
+  intent: customer.wants.to.ensure.contact.details.are.current.for.loan.review
+  confidence: 0.75
+  business_event: Customer needs to update contact details before loan review
+  utterances: []
+  plan: []
+  tasks:
+  - task: verify_customer_identity
+    type: verification
+  - task: update_phone_number
+    type: agent
+  - task: update_email_address
+    type: agent
+  user_tasks:
+  - user_task_id: verify_identity
+    task: verify_customer_identity
+    type: verification
+    name: Identity Verification
+    description: Service desk verifies the customer's identity using provided documents.
+    tools: []
+    user_actions: []
+  - user_task_id: update_phone
+    task: update_phone_number
+    type: agent
+    name: Update Phone
+    description: Agent updates phone number in customer profile.
+    tools: []
+    user_actions: []
+  - user_task_id: update_email
+    task: update_email_address
+    type: agent
+    name: Update Email
+    description: Agent updates email address in customer profile.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Customer needs to update phone and email before loan review.
+  source: data/raw/customer_support_tickets_mini.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    purpose: To update customer contact information in system.
+  purpose: To update customer contact information in system.
+  transaction_id: tck.1006.update.contact.info
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Update Contact Information
+  normalized_name: update contact information
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -14,13 +14,42 @@ def _normalize_identifier(value: str) -> str:
     return normalized.strip("_")
 
 
+def _normalize_implementation_type(
+    value: Any,
+    *,
+    type_hint: str | None = None,
+    tool_id: str | None = None,
+) -> str:
+    normalized = str(value or "").strip().lower()
+    if normalized in {"show_form", "open_panel", "submit_search", "tool_call", "llm_tool", "service_call", "custom"}:
+        return normalized
+    if normalized in {"service_invocation", "service", "service_action"}:
+        return "service_call"
+    if normalized in {"ui", "front", "frontend", "front_action", "open_ui", "show_ui"}:
+        return "show_form" if normalized != "open_ui" else "open_panel"
+    if normalized in {"panel", "open_panel_view"}:
+        return "open_panel"
+    if normalized in {"search", "submit"}:
+        return "submit_search"
+    if normalized in {"tool", "backend", "backend_tool"}:
+        return "tool_call"
+    if normalized == "llm":
+        return "llm_tool"
+    if type_hint == "front":
+        return "show_form" if normalized else "custom"
+    if type_hint == "back":
+        normalized_tool_id = str(tool_id or "")
+        return "llm_tool" if "llm" in normalized_tool_id else "tool_call"
+    return "custom"
+
+
 class Action(BaseModel):
     action_id: str
     type: Literal["front", "back"]
     implementation_type: Literal["show_form", "open_panel", "submit_search", "tool_call", "llm_tool", "service_call", "custom"] = "custom"
+    lifecycle_state: Literal["not_started", "on_user_enter", "cancelled", "completed"] = "not_started"
     tool_id: str | None = None
-    operation: str | None = None
-    resource: str | None = None
+    tool_ids: list[str] = Field(default_factory=list)
     label: str | None = None
     triggers: str | None = None
     description: str | None = None
@@ -46,14 +75,18 @@ class Action(BaseModel):
             data["type"] = "back"
         if not data.get("tool_id") and str(data.get("type") or "") == "back":
             data["tool_id"] = data.get("action_id")
-        if "implementation_type" not in data or not data.get("implementation_type"):
-            inferred = "custom"
-            if str(data.get("type") or "") == "front":
-                inferred = "show_form" if data.get("triggers") else "custom"
-            elif str(data.get("type") or "") == "back":
-                tool_id = str(data.get("tool_id") or data.get("action_id") or "")
-                inferred = "llm_tool" if "llm" in tool_id else "tool_call"
-            data["implementation_type"] = inferred
+        if "tool_ids" not in data or not data.get("tool_ids"):
+            if isinstance(data.get("tool_id"), str) and data["tool_id"].strip():
+                data["tool_ids"] = [data["tool_id"].strip()]
+            else:
+                data["tool_ids"] = []
+        data["implementation_type"] = _normalize_implementation_type(
+            data.get("implementation_type"),
+            type_hint=str(data.get("type") or "").strip(),
+            tool_id=str(data.get("tool_id") or data.get("action_id") or ""),
+        )
+        lifecycle_state = str(data.get("lifecycle_state") or "").strip().lower().replace("-", "_")
+        data["lifecycle_state"] = lifecycle_state if lifecycle_state in {"not_started", "on_user_enter", "cancelled", "completed"} else "not_started"
         return data
 
     @property
@@ -61,14 +94,14 @@ class Action(BaseModel):
         """Legacy compatibility alias."""
         return self.action_id
 
-    def to_dict(self) -> dict[str, str | None]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "action": self.action_id,
             "type": self.type,
             "implementation_type": self.implementation_type,
+            "lifecycle_state": self.lifecycle_state,
             "tool": self.tool_id,
-            "operation": self.operation,
-            "resource": self.resource,
+            "tool_ids": list(self.tool_ids),
             "label": self.label,
             "triggers": self.triggers,
             "description": self.description,
@@ -79,9 +112,9 @@ class ActionRegistryEntry(BaseModel):
     action_id: str
     type: Literal["front", "back"]
     implementation_type: Literal["show_form", "open_panel", "submit_search", "tool_call", "llm_tool", "service_call", "custom"] = "custom"
+    lifecycle_state: Literal["not_started", "on_user_enter", "cancelled", "completed"] = "not_started"
     tool_id: str | None = None
-    operation: str | None = None
-    resource: str | None = None
+    tool_ids: list[str] = Field(default_factory=list)
     label: str | None = None
     triggers: str | None = None
     description: str | None = None
@@ -109,14 +142,18 @@ class ActionRegistryEntry(BaseModel):
             data["type"] = "back"
         if not data.get("tool_id") and str(data.get("type") or "") == "back":
             data["tool_id"] = data.get("action_id")
-        if "implementation_type" not in data or not data.get("implementation_type"):
-            inferred = "custom"
-            if str(data.get("type") or "") == "front":
-                inferred = "show_form" if data.get("triggers") else "custom"
-            elif str(data.get("type") or "") == "back":
-                tool_id = str(data.get("tool_id") or data.get("action_id") or "")
-                inferred = "llm_tool" if "llm" in tool_id else "tool_call"
-            data["implementation_type"] = inferred
+        if "tool_ids" not in data or not data.get("tool_ids"):
+            if isinstance(data.get("tool_id"), str) and data["tool_id"].strip():
+                data["tool_ids"] = [data["tool_id"].strip()]
+            else:
+                data["tool_ids"] = []
+        data["implementation_type"] = _normalize_implementation_type(
+            data.get("implementation_type"),
+            type_hint=str(data.get("type") or "").strip(),
+            tool_id=str(data.get("tool_id") or data.get("action_id") or ""),
+        )
+        lifecycle_state = str(data.get("lifecycle_state") or "").strip().lower().replace("-", "_")
+        data["lifecycle_state"] = lifecycle_state if lifecycle_state in {"not_started", "on_user_enter", "cancelled", "completed"} else "not_started"
         return data
 
     @property
@@ -129,9 +166,9 @@ class ActionRegistryEntry(BaseModel):
             "action": self.action_id,
             "type": self.type,
             "implementation_type": self.implementation_type,
+            "lifecycle_state": self.lifecycle_state,
             "tool": self.tool_id,
-            "operation": self.operation,
-            "resource": self.resource,
+            "tool_ids": list(self.tool_ids),
             "label": self.label,
             "triggers": self.triggers,
             "description": self.description,
@@ -150,38 +187,14 @@ class Task(BaseModel):
         return {"task": self.task, "type": self.type}
 
 
-class UserTaskStep(BaseModel):
-    step_id: str
-    type: Literal["user_action", "user_input"]
-    action: Action | None = None
-    wait_state: bool = False
-    required_inputs: list[str] = Field(default_factory=list)
-    produced_outputs: list[str] = Field(default_factory=list)
-    description: str | None = None
-
-    model_config = {"frozen": True}
-
-    @model_validator(mode="before")
-    @classmethod
-    def _migrate_wait_state(cls, data: Any) -> Any:
-        if not isinstance(data, dict):
-            return data
-        data = dict(data)
-        if data.get("type") == "user_input" and "wait_state" not in data:
-            data["wait_state"] = True
-        return data
-
-
 class UserTask(BaseModel):
     user_task_id: str | None = None
     task: str
     type: str
-    sequence: int | None = None
     name: str | None = None
     description: str | None = None
     tools: list[ToolDefinition] = Field(default_factory=list)
     user_actions: list[Action] = Field(default_factory=list)
-    interaction_steps: list[UserTaskStep] = Field(default_factory=list)
 
     model_config = {"frozen": True}
 
@@ -208,11 +221,8 @@ class UserTask(BaseModel):
                 data.get("back_actions") or [],
                 tools,
             )
-        if not data.get("interaction_steps"):
-            data["interaction_steps"] = cls._interaction_steps_from_user_actions(
-                data.get("user_task_id") or data.get("task") or "user_task",
-                data.get("user_actions") or [],
-            )
+        data.pop("interaction_steps", None)
+        data.pop("sequence", None)
         return data
 
     def to_task(self) -> Task:
@@ -223,11 +233,9 @@ class UserTask(BaseModel):
             "user_task_id": self.user_task_id,
             "task": self.task,
             "type": self.type,
-            "sequence": self.sequence,
             "name": self.name,
             "description": self.description,
             "user_actions": [action.to_dict() for action in self.user_actions],
-            "interaction_steps": [step.model_dump(mode="json") for step in self.interaction_steps],
             "tools": [tool.to_dict() for tool in self.tools],
         }
 
@@ -293,15 +301,15 @@ class UserTask(BaseModel):
             payload = action if isinstance(action, dict) else action.model_dump(mode="json")
             if not payload:
                 continue
-            user_actions.append(
-                {
-                    "action_id": payload.get("action_id") or payload.get("action"),
-                    "type": "front",
-                    "implementation_type": payload.get("implementation_type") or ("show_form" if payload.get("triggers") else "custom"),
-                    "tool_id": payload.get("tool_id"),
-                    "operation": payload.get("operation"),
-                    "resource": payload.get("resource"),
-                    "label": payload.get("label"),
+                user_actions.append(
+                    {
+                        "action_id": payload.get("action_id") or payload.get("action"),
+                        "type": "front",
+                        "implementation_type": payload.get("implementation_type") or ("show_form" if payload.get("triggers") else "custom"),
+                        "lifecycle_state": payload.get("lifecycle_state") or "not_started",
+                        "tool_id": payload.get("tool_id"),
+                        "tool_ids": [payload["tool_id"]] if payload.get("tool_id") else [],
+                        "label": payload.get("label"),
                     "triggers": payload.get("triggers"),
                     "description": payload.get("description"),
                 }
@@ -317,9 +325,9 @@ class UserTask(BaseModel):
                         "action_id": payload.get("action_id") or payload.get("action"),
                         "type": "back",
                         "implementation_type": payload.get("implementation_type") or ("llm_tool" if "llm" in str(tool_id or "") else "tool_call"),
+                        "lifecycle_state": payload.get("lifecycle_state") or "not_started",
                         "tool_id": tool_id,
-                        "operation": payload.get("operation"),
-                        "resource": payload.get("resource"),
+                        "tool_ids": [tool_id] if tool_id else [],
                         "label": payload.get("label"),
                         "triggers": payload.get("triggers"),
                         "description": payload.get("description"),
@@ -337,59 +345,15 @@ class UserTask(BaseModel):
                         "action_id": tool_id,
                         "type": "front" if tool_type == "frontend_tool" else "back",
                         "implementation_type": "show_form" if tool_type == "frontend_tool" else ("llm_tool" if "llm" in str(tool_id) else "tool_call"),
+                        "lifecycle_state": "not_started",
                         "tool_id": tool_id,
-                        "operation": tool.get("operation"),
-                        "resource": tool.get("resource"),
+                        "tool_ids": [tool_id],
                         "label": tool.get("label"),
                         "triggers": tool.get("triggers") or tool.get("frontend_event"),
                         "description": tool.get("description"),
                     }
                 )
         return user_actions
-
-    @staticmethod
-    def _interaction_steps_from_user_actions(task_id: Any, user_actions: list[Any]) -> list[dict[str, Any]]:
-        task_key = str(task_id or "user_task")
-        front_actions: list[dict[str, Any]] = []
-        back_actions: list[dict[str, Any]] = []
-        for raw_action in user_actions:
-            action = raw_action if isinstance(raw_action, dict) else raw_action.model_dump(mode="json")
-            if not action:
-                continue
-            if str(action.get("type") or "") == "front":
-                front_actions.append(action)
-            else:
-                back_actions.append(action)
-        steps: list[dict[str, Any]] = []
-        if front_actions:
-            steps.append(
-                {
-                    "step_id": f"{task_key}.front",
-                    "type": "user_action",
-                    "action": front_actions[0],
-                    "description": front_actions[0].get("description") or "Render the user-facing action.",
-                }
-            )
-        if front_actions or back_actions:
-            steps.append(
-                {
-                    "step_id": f"{task_key}.input",
-                    "type": "user_input",
-                    "wait_state": True,
-                    "description": "Wait for user input required by the task.",
-                }
-            )
-        if back_actions:
-            for index, action in enumerate(back_actions, start=1):
-                steps.append(
-                    {
-                        "step_id": f"{task_key}.back.{index}",
-                        "type": "user_action",
-                        "action": action,
-                        "description": action.get("description") or "Execute the backend user action.",
-                    }
-                )
-        return steps
 
 
 class ProcessActor(BaseModel):
@@ -838,18 +802,18 @@ class FlowDefinition(BaseModel):
     flow_id: str
     flow_name: str
     intent: str
-    confidence: float
+    confidence: float = 0.0
     business_event: str
-    utterances: list[str]
-    plan: list[str]
+    utterances: list[str] = Field(default_factory=list)
+    plan: list[str] = Field(default_factory=list)
     tasks: list[Task]
     user_tasks: list[UserTask] = Field(default_factory=list)
-    capabilities: list[str]
-    concepts: list[str]
+    capabilities: list[str] = Field(default_factory=list)
+    concepts: list[str] = Field(default_factory=list)
     concept_aliases: dict[str, list[str]] = Field(default_factory=dict)
     explanation: str
     source: str
-    metadata: dict[str, Any] = {}
+    metadata: dict[str, Any] = Field(default_factory=dict)
 
     model_config = {"frozen": True}
 

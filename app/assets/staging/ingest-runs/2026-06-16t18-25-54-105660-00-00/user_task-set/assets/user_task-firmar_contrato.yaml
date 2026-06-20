@@ -1,0 +1,29 @@
+asset_id: user_task.firmar_contrato
+asset_type: user_task
+name: Firmar contrato
+version: 1.0.0
+owner: business_model_kb
+description: El cliente firma digitalmente el nuevo contrato de refinanciamiento.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: sign_refinance_agreement
+  task: firmar_nuevo_contrato_de_pr_stamo
+  type: firma
+  name: Firmar contrato
+  description: El cliente firma digitalmente el nuevo contrato de refinanciamiento.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente firma digitalmente el nuevo contrato de refinanciamiento.
+  match_strategy: generated
+  canonical_name: Firmar contrato
+  normalized_name: firmar contrato
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

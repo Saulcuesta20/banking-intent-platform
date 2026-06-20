@@ -1,0 +1,43 @@
+asset_id: asset_set.el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+asset_type: asset_set
+name: El.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito.
+text: 'interes
+
+  Process cancelacion anticipada recalcula intereses'
+tags:
+- asset_set
+- el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+relations:
+- type: groups_entity
+  target_asset_id: entity.interes
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+  metadata: {}
+payload:
+  transaction_id: el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+  asset_ids:
+  - entity.interes
+  - process.el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+  asset_types:
+  - entity
+  - process
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.interes
+    asset_type: entity
+  - asset_id: process.el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+    asset_type: process
+  match_strategy: generated
+  canonical_name: El.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+    Asset Set
+  normalized_name: el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

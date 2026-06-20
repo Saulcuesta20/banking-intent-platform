@@ -1,0 +1,20 @@
+asset_id: entity.aprobacion_humana
+asset_type: entity
+name: aprobacion humana
+version: 1.0.0
+owner: business_model_kb
+description: Control humano requerido para casos de riesgo, excepción o monto elevado
+text: Control humano requerido para casos de riesgo, excepción o monto elevado
+tags: []
+relations: []
+payload:
+  aliases: []
+  business_layer: asset
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: aprobacion humana
+  normalized_name: aprobacion humana
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

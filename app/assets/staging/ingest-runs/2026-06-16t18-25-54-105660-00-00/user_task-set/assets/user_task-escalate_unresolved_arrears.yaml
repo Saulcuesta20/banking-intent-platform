@@ -1,0 +1,25 @@
+asset_id: user_task.escalate_unresolved_arrears
+asset_type: user_task
+name: Escalate Unresolved Arrears
+version: 1.0.0
+owner: business_model_kb
+description: If loan has unresolved arrears, escalate for review
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: escalate_arrears
+  task: escalate_if_unresolved_arrears
+  type: escalation
+  name: Escalate Unresolved Arrears
+  description: If loan has unresolved arrears, escalate for review
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Escalate Unresolved Arrears
+  normalized_name: escalate unresolved arrears
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

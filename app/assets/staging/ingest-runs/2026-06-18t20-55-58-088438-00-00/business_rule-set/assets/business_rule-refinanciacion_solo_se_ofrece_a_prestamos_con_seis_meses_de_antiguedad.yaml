@@ -1,0 +1,31 @@
+asset_id: business_rule.refinanciacion_solo_se_ofrece_a_prestamos_con_seis_meses_de_antiguedad
+asset_type: business_rule
+name: refinanciacion solo se ofrece a prestamos con seis meses de antiguedad
+version: 1.0.0
+owner: rules_kb
+description: La refinanciacion solo se ofrece a prestamos con seis meses de antiguedad.
+text: La refinanciacion solo se ofrece a prestamos con seis meses de antiguedad.
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan_refinance
+  metadata: {}
+payload:
+  rule_text: La refinanciacion solo se ofrece a prestamos con seis meses de antiguedad.
+  source_section: Rules
+  conditions: []
+  consequences:
+  - La refinanciacion solo se ofrece a prestamos con seis meses de antiguedad.
+  transaction_id: refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: refinanciacion solo se ofrece a prestamos con seis meses de antiguedad
+  normalized_name: refinanciacion solo se ofrece a prestamos con seis meses de antiguedad
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

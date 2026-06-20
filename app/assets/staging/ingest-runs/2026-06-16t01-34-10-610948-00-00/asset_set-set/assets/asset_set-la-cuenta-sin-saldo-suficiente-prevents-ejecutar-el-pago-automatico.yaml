@@ -1,0 +1,42 @@
+asset_id: asset_set.la.cuenta.sin.saldo.suficiente.prevents.ejecutar.el.pago.automatico
+asset_type: asset_set
+name: La.cuenta.sin.saldo.suficiente.prevents.ejecutar.el.pago.automatico Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for la.cuenta.sin.saldo.suficiente.prevents.ejecutar.el.pago.automatico.
+text: 'La cuenta sin saldo suficiente prevents ejecutar el pago automatico
+
+  ejecutar el pago automatico'
+tags:
+- asset_set
+- la.cuenta.sin.saldo.suficiente.prevents.ejecutar.el.pago.automatico
+relations:
+- type: groups_causality
+  target_asset_id: causality.la_cuenta_sin_saldo_suficiente_prevents_ejecutar_el_pago_automatico
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.ejecutar_el_pago_automatico
+  metadata: {}
+payload:
+  transaction_id: la.cuenta.sin.saldo.suficiente.prevents.ejecutar.el.pago.automatico
+  asset_ids:
+  - causality.la_cuenta_sin_saldo_suficiente_prevents_ejecutar_el_pago_automatico
+  - entity.ejecutar_el_pago_automatico
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.la_cuenta_sin_saldo_suficiente_prevents_ejecutar_el_pago_automatico
+    asset_type: causality
+  - asset_id: entity.ejecutar_el_pago_automatico
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: La.cuenta.sin.saldo.suficiente.prevents.ejecutar.el.pago.automatico
+    Asset Set
+  normalized_name: la.cuenta.sin.saldo.suficiente.prevents.ejecutar.el.pago.automatico
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

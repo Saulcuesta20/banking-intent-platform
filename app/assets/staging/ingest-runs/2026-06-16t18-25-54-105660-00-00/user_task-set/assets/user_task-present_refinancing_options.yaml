@@ -1,0 +1,26 @@
+asset_id: user_task.present_refinancing_options
+asset_type: user_task
+name: Present Refinancing Options
+version: 1.0.0
+owner: business_model_kb
+description: Agent uses loan calculator to generate options and presents them to customer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: present_refinancing_options
+  task: present_refinancing_options_to_customer
+  type: agent
+  name: Present Refinancing Options
+  description: Agent uses loan calculator to generate options and presents them to
+    customer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Present Refinancing Options
+  normalized_name: present refinancing options
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

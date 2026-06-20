@@ -1,0 +1,25 @@
+asset_id: user_task.solicitar_aprobaci_n_de_operaciones
+asset_type: user_task
+name: Solicitar aprobación de operaciones
+version: 1.0.0
+owner: business_model_kb
+description: Solicitar aprobación humana cuando el monto supera el límite operativo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_solicitar_aprobacion_operaciones
+  task: solicitar_aprobacion_operaciones
+  type: system
+  name: Solicitar aprobación de operaciones
+  description: Solicitar aprobación humana cuando el monto supera el límite operativo.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Solicitar aprobación de operaciones
+  normalized_name: solicitar aprobación de operaciones
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

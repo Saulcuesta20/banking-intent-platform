@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "domainId": {
+      "type": "string",
+      "title": "Domain ID"
+    },
+    "label": {
+      "type": "string",
+      "title": "Label"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "order": {
+      "type": "integer",
+      "title": "Order",
+      "default": 0
+    }
+  },
+  "required": ["domainId", "label", "description"]
+}

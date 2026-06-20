@@ -1,0 +1,49 @@
+asset_id: asset_set.fraudulent.claim.escalation
+asset_type: asset_set
+name: Fraudulent.claim.escalation Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fraudulent.claim.escalation.
+text: 'Fraudulent claim escalation
+
+  Claim
+
+  Fraudulent.claim.escalation Ruleset'
+tags:
+- asset_set
+- fraudulent.claim.escalation
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.fraudulent_claim_escalation
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.claim
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.fraudulent.claim.escalation
+  metadata: {}
+payload:
+  transaction_id: fraudulent.claim.escalation
+  asset_ids:
+  - business_rule.fraudulent_claim_escalation
+  - entity.claim
+  - ruleset.fraudulent.claim.escalation
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.fraudulent_claim_escalation
+    asset_type: business_rule
+  - asset_id: entity.claim
+    asset_type: entity
+  - asset_id: ruleset.fraudulent.claim.escalation
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Fraudulent.claim.escalation Asset Set
+  normalized_name: fraudulent.claim.escalation asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

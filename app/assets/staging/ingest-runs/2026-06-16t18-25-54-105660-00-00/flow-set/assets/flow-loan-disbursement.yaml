@@ -1,0 +1,56 @@
+asset_id: flow.loan.disbursement
+asset_type: flow
+name: Loan Disbursement
+version: 1.0.0
+owner: process_kb
+description: Back office confirms destination account, validates beneficiary, schedules
+  transfer, records disbursement.
+text: Back office confirms destination account, validates beneficiary, schedules transfer,
+  records disbursement.
+tags:
+- ensure.funds.are.transferred.correctly.and.recorded
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.disbursement_confirmation
+  metadata: {}
+payload:
+  flow_id: loan.disbursement
+  flow_name: Loan Disbursement
+  intent: ensure.funds.are.transferred.correctly.and.recorded
+  confidence: 0.75
+  business_event: Loan approved and all conditions precedent confirmed
+  utterances: []
+  plan: []
+  tasks:
+  - task: confirm_disbursement_details
+    type: verification
+  user_tasks:
+  - user_task_id: confirm_disbursement
+    task: confirm_disbursement_details
+    type: verification
+    name: Disbursement Confirmation
+    description: Back office confirms destination account, validates beneficiary,
+      and schedules the transfer.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Back office confirms destination account, validates beneficiary, schedules
+    transfer, records disbursement.
+  source: data/raw/banking_flows_additional.txt#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_flows_additional.txt#chunk-1
+    purpose: To disburse loan funds to the customer or third party.
+  purpose: To disburse loan funds to the customer or third party.
+  transaction_id: loan.disbursement
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Disbursement
+  normalized_name: loan disbursement
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

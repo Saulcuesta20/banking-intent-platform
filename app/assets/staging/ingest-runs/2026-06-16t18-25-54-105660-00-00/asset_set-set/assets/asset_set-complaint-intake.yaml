@@ -1,0 +1,81 @@
+asset_id: asset_set.complaint.intake
+asset_type: asset_set
+name: Complaint.intake Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for complaint.intake.
+text: 'Complaint Intake
+
+  Complaint intake
+
+  Assign Owner
+
+  Classify Claim Type
+
+  Collect Evidence
+
+  Create Claim
+
+  Notify Customer'
+tags:
+- asset_set
+- complaint.intake
+relations:
+- type: groups_flow
+  target_asset_id: flow.complaint.intake
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.complaint.intake
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.assign_owner
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.classify_claim_type
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.collect_evidence
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.create_claim
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.notify_customer
+  metadata: {}
+payload:
+  transaction_id: complaint.intake
+  asset_ids:
+  - flow.complaint.intake
+  - process.complaint.intake
+  - user_task.assign_owner
+  - user_task.classify_claim_type
+  - user_task.collect_evidence
+  - user_task.create_claim
+  - user_task.notify_customer
+  asset_types:
+  - flow
+  - process
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.complaint.intake
+    asset_type: flow
+  - asset_id: process.complaint.intake
+    asset_type: process
+  - asset_id: user_task.assign_owner
+    asset_type: user_task
+  - asset_id: user_task.classify_claim_type
+    asset_type: user_task
+  - asset_id: user_task.collect_evidence
+    asset_type: user_task
+  - asset_id: user_task.create_claim
+    asset_type: user_task
+  - asset_id: user_task.notify_customer
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Complaint.intake Asset Set
+  normalized_name: complaint.intake asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

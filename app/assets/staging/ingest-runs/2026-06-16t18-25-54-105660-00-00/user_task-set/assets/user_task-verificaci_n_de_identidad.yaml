@@ -1,0 +1,32 @@
+asset_id: user_task.verificaci_n_de_identidad
+asset_type: user_task
+name: Verificación de identidad
+version: 1.0.0
+owner: business_model_kb
+description: Se verifica la identidad del cliente mediante documentos y datos biométricos
+  para confirmar que es el titular de las cuentas duplicadas.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verificar_identidad_cliente
+  task: verificar_identidad_del_cliente
+  type: verification
+  name: Verificación de identidad
+  description: Se verifica la identidad del cliente mediante documentos y datos biométricos
+    para confirmar que es el titular de las cuentas duplicadas.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Se verifica la identidad del cliente mediante documentos y datos biométricos
+      para confirmar que es el titular de las cuentas duplicadas.
+  match_strategy: generated
+  canonical_name: Verificación de identidad
+  normalized_name: verificación de identidad
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

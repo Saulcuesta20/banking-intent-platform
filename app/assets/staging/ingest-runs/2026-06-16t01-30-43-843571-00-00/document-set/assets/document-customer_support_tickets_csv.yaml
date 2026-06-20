@@ -1,0 +1,53 @@
+asset_id: document.customer_support_tickets_csv
+asset_type: document
+name: customer_support_tickets.csv
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/enterprise_dump_2026/customer_support_tickets.csv
+text: 'ticket_id,channel,customer_phrase,agent_resolution,notes
+
+  T-1001,branch,"quiero transferir 75000 dolares a otro pais","captured transfer details
+  and requested purpose document","possible high value transfer review"
+
+  T-1002,mobile,"como calculan las condiciones de refinanciacion","explained loan
+  condition calculation and offered refinance review","tool explanation pattern"
+
+  T-1003,call_center,"necesito abrir cuenta para pago automatico","checked eligible
+  account and explained automatic debit requirements","qa plus rule pattern"
+
+  T-1004,call_center,"mi transferencia quedo retenida","explained compliance review
+  and manager approval","policy and process pattern"
+
+  T-1005,branch,"quiero bajar la cuota de mi prestamo","started refinance review","flow
+  execution intent"'
+tags:
+- text
+- csv
+relations: []
+payload:
+  path: data/raw/enterprise_dump_2026/customer_support_tickets.csv
+  kind: text
+  sequence: 7
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: T-1003,call_center,"necesito abrir cuenta para pago automatico","checked
+      eligible account and explained automatic debit requirements","qa plus rule pattern"
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: T-1003,call_center,"necesito abrir cuenta para pago automatico","checked
+      eligible account and explained automatic debit requirements","qa plus rule pattern"
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: T-1005,branch,"quiero bajar la cuota de mi prestamo","started refinance
+      review","flow execution intent"
+  match_strategy: generated
+  canonical_name: customer_support_tickets.csv
+  normalized_name: customer support tickets.csv
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

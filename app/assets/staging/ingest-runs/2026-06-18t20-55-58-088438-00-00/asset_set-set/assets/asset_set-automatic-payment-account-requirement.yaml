@@ -1,0 +1,56 @@
+asset_id: asset_set.automatic.payment.account.requirement
+asset_type: asset_set
+name: Automatic.payment.account.requirement Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for automatic.payment.account.requirement.
+text: 'Automatic Payment Account Requirement
+
+  Account Eligibility Check
+
+  Payment Configuration
+
+  Requirement Explanation'
+tags:
+- asset_set
+- automatic.payment.account.requirement
+relations:
+- type: groups_flow
+  target_asset_id: flow.automatic.payment.account.requirement
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.account_eligibility_check
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.payment_configuration
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.requirement_explanation
+  metadata: {}
+payload:
+  transaction_id: automatic.payment.account.requirement
+  asset_ids:
+  - flow.automatic.payment.account.requirement
+  - user_task.account_eligibility_check
+  - user_task.payment_configuration
+  - user_task.requirement_explanation
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.automatic.payment.account.requirement
+    asset_type: flow
+  - asset_id: user_task.account_eligibility_check
+    asset_type: user_task
+  - asset_id: user_task.payment_configuration
+    asset_type: user_task
+  - asset_id: user_task.requirement_explanation
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Automatic.payment.account.requirement Asset Set
+  normalized_name: automatic.payment.account.requirement asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

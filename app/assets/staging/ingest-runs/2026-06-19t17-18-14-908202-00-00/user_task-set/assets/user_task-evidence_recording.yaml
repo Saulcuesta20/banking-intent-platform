@@ -1,0 +1,25 @@
+asset_id: user_task.evidence_recording
+asset_type: user_task
+name: Evidence Recording
+version: 1.0.0
+owner: business_model_kb
+description: Record all required evidence before releasing the transfer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_record_evidence
+  task: record_required_evidence
+  type: manual
+  name: Evidence Recording
+  description: Record all required evidence before releasing the transfer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Evidence Recording
+  normalized_name: evidence recording
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

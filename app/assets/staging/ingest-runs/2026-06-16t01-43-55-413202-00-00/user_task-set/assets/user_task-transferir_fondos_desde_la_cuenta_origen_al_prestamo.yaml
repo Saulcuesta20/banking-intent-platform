@@ -1,0 +1,50 @@
+asset_id: user_task.transferir_fondos_desde_la_cuenta_origen_al_prestamo
+asset_type: user_task
+name: Transferir fondos desde la cuenta origen al prestamo
+version: 1.0.0
+owner: business_model_kb
+description: Mover dinero de una cuenta de ahorro o corriente al préstamo para reducir
+  el saldo.
+text: Transferir fondos desde la cuenta origen al prestamo.
+tags: []
+relations: []
+payload:
+  user_task_id: ut017
+  task: transferir_fondos_a_prestamo
+  type: human
+  name: Transferir fondos desde la cuenta origen al prestamo
+  description: Transferir fondos desde la cuenta origen al prestamo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Transferir fondos desde la cuenta origen al prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Transferir fondos desde la cuenta origen al prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Transferir fondos desde la cuenta origen al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Transferir fondos desde la cuenta origen al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Transferir fondos desde la cuenta origen al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Transferir fondos desde la cuenta origen al prestamo.
+  match_strategy: generated
+  canonical_name: Transferir fondos desde la cuenta origen al prestamo
+  normalized_name: transferir fondos desde la cuenta origen al prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,24 @@
+asset_id: entity.claim
+asset_type: entity
+name: reclamo
+version: 1.0.0
+owner: business_model_kb
+description: Solicitud de revisión por error, cargo no reconocido o problema operativo
+text: Solicitud de revisión por error, cargo no reconocido o problema operativo
+tags: []
+relations: []
+payload:
+  aliases:
+  - claim
+  - queja
+  - disputa
+  structural_layer: business_resource
+  business_layer: business_resource
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: reclamo
+  normalized_name: reclamo
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

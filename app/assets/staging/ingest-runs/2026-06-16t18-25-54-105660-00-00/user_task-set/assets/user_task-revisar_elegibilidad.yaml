@@ -1,0 +1,33 @@
+asset_id: user_task.revisar_elegibilidad
+asset_type: user_task
+name: Revisar elegibilidad
+version: 1.0.0
+owner: business_model_kb
+description: Revisar si el cliente cumple condiciones para abrir cuenta
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: savings_review_eligibility
+  task: revisar_condiciones_de_elegibilidad
+  type: decision
+  name: Revisar elegibilidad
+  description: Revisar si el cliente cumple condiciones para abrir cuenta
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Revisar si el cliente cumple condiciones para abrir cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Revisar si el cliente cumple condiciones para abrir cuenta
+  match_strategy: generated
+  canonical_name: Revisar elegibilidad
+  normalized_name: revisar elegibilidad
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

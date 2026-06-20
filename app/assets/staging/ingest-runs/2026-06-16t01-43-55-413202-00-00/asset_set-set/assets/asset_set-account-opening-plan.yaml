@@ -1,0 +1,26 @@
+asset_id: asset_set.account.opening.plan
+asset_type: asset_set
+name: Account.opening.plan Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for account.opening.plan.
+text: ''
+tags:
+- asset_set
+- account.opening.plan
+relations: []
+payload:
+  transaction_id: account.opening.plan
+  asset_ids:
+  - plan.account.opening.plan
+  asset_types: []
+  primary_asset_type: asset
+  members:
+  - asset_id: plan.account.opening.plan
+  match_strategy: generated
+  canonical_name: Account.opening.plan Asset Set
+  normalized_name: account.opening.plan asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

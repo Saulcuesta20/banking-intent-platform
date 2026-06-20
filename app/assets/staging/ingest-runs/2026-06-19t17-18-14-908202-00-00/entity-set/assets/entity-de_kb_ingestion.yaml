@@ -1,0 +1,28 @@
+asset_id: entity.de_kb_ingestion
+asset_type: entity
+name: de KB ingestion
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality cause_text: de KB ingestion'
+text: de KB ingestion genera o refresca esos activos desde texto empresarial y deja
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: cause_text
+  structural_layer: channel
+  business_layer: channel
+  entity_role: asset
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: de KB ingestion genera o refresca esos activos desde texto empresarial
+      y deja
+  match_strategy: generated
+  canonical_name: de KB ingestion
+  normalized_name: de kb ingestion
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,32 @@
+asset_id: plan.pl015
+asset_type: plan
+name: PL015
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para desembolso: verificar aprobacion, confirmar cuenta y ejecutar
+  acreditacion.'
+text: ''
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pl015
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para desembolso: verificar aprobacion, confirmar cuenta y ejecutar
+      acreditacion.'
+  match_strategy: generated
+  canonical_name: PL015
+  normalized_name: pl015
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

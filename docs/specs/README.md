@@ -17,8 +17,9 @@ For the proposed agent abstraction over LangGraph, ingestion coordinator,
 ask coordinator, and specialist asset agents, see
 `docs/specs/agent-langgraph-architecture.md`.
 
-For the Enterprise AI Launcher design, Lowdefy integration, component
-breakdown, and tech stack, see `docs/launcher/README.md`.
+For the Enterprise AI Launcher design, React/shadcn shell, JSON Forms asset
+editors, backend contract validation, and legacy editor-runtime compatibility,
+see `docs/launcher/README.md`.
 
 For Python readability standards, dataclass usage, Pydantic boundaries, and
 component style rules, see `docs/specs/python-code-standards.md`.

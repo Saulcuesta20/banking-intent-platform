@@ -1,0 +1,59 @@
+asset_id: flow.loan.application.process
+asset_type: flow
+name: Loan Application Process
+version: 1.0.0
+owner: process_kb
+description: Involves application capture as a user task and backend tools for scoring,
+  bureau checks, and eligibility calculation.
+text: Involves application capture as a user task and backend tools for scoring, bureau
+  checks, and eligibility calculation.
+tags:
+- apply.for.personal.loan
+- user.wants.to.apply.for.a.loan
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.loan_details_input
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.loan_application_capture
+  metadata: {}
+payload:
+  flow_id: loan.application.process
+  flow_name: Loan Application Process
+  intent: user.wants.to.apply.for.a.loan
+  confidence: 0.75
+  business_event: Applying for a loan
+  utterances: []
+  plan: []
+  tasks:
+  - task: capture_loan_application_details
+    type: user/business task
+  user_tasks:
+  - user_task_id: loan_application_capture
+    task: capture_loan_application_details
+    type: user/business task
+    name: Loan Application Capture
+    description: Application capture for loan application
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Involves application capture as a user task and backend tools for scoring,
+    bureau checks, and eligibility calculation.
+  source: data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1
+    purpose: To process loan applications
+  purpose: To process loan applications
+  transaction_id: loan.application.process
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Application Process
+  normalized_name: loan application process
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

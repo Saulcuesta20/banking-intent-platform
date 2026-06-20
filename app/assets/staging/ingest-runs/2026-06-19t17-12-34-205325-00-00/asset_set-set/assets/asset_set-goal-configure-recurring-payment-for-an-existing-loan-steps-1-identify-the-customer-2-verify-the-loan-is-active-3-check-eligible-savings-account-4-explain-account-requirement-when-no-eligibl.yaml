@@ -1,0 +1,43 @@
+asset_id: asset_set.goal.configure.recurring.payment.for.an.existing.loan.steps.1.identify.the.customer.2.verify.the.loan.is.active.3.check.eligible.savings.account.4.explain.account.requirement.when.no.eligible.account.exists.5.offer.account.opening.journey.6.capture.payment.day.and.customer.acceptance.7.enable.automatic.debit.and.send.confirmation.expected.tools.customer.identity.validate.loan.status.read.account.eligibility.check.ui.account.open.automatic.debit.create.notification.send
+asset_type: asset_set
+name: Goal.configure.recurring.payment.for.an.existing.loan.steps.1.identify.the.customer.2.verify.the.loan.is.active.3.check.eligible.savings.account.4.explain.account.requirement.when.no.eligible.account.exists.5.offer.account.opening.journey.6.capture.payment.day.and.customer.acceptance.7.enable.automatic.debit.and.send.confirmation.expected.tools.customer.identity.validate.loan.status.read.account.eligibility.check.ui.account.open.automatic.debit.create.notification.send
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for goal.configure.recurring.payment.for.an.existing.loan.steps.1.identify.the.customer.2.verify.the.loan.is.active.3.check.eligible.savings.account.4.explain.account.requirement.when.no.eligible.account.exists.5.offer.account.opening.journey.6.capture.payment.day.and.customer.acceptance.7.enable.automatic.debit.and.send.confirmation.expected.tools.customer.identity.validate.loan.status.read.account.eligibility.check.ui.account.open.automatic.debit.create.notification.send.
+text: 'Automatic payment setup
+
+  Account Eligibility Check'
+tags:
+- asset_set
+- goal.configure.recurring.payment.for.an.existing.loan.steps.1.identify.the.customer.2.verify.the.loan.is.active.3.check.eligible.savings.account.4.explain.account.requirement.when.no.eligible.account.exists.5.offer.account.opening.journey.6.capture.payment.day.and.customer.acceptance.7.enable.automatic.debit.and.send.confirmation.expected.tools.customer.identity.validate.loan.status.read.account.eligibility.check.ui.account.open.automatic.debit.create.notification.send
+relations:
+- type: groups_plan
+  target_asset_id: plan.goal.configure.recurring.payment.for.an.existing.loan.steps.1.identify.the.customer.2.verify.the.loan.is.active.3.check.eligible.savings.account.4.explain.account.requirement.when.no.eligible.account.exists.5.offer.account.opening.journey.6.capture.payment.day.and.customer.acceptance.7.enable.automatic.debit.and.send.confirmation.expected.tools.customer.identity.validate.loan.status.read.account.eligibility.check.ui.account.open.automatic.debit.create.notification.send
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.account_eligibility_check
+  metadata: {}
+payload:
+  transaction_id: goal.configure.recurring.payment.for.an.existing.loan.steps.1.identify.the.customer.2.verify.the.loan.is.active.3.check.eligible.savings.account.4.explain.account.requirement.when.no.eligible.account.exists.5.offer.account.opening.journey.6.capture.payment.day.and.customer.acceptance.7.enable.automatic.debit.and.send.confirmation.expected.tools.customer.identity.validate.loan.status.read.account.eligibility.check.ui.account.open.automatic.debit.create.notification.send
+  asset_ids:
+  - plan.goal.configure.recurring.payment.for.an.existing.loan.steps.1.identify.the.customer.2.verify.the.loan.is.active.3.check.eligible.savings.account.4.explain.account.requirement.when.no.eligible.account.exists.5.offer.account.opening.journey.6.capture.payment.day.and.customer.acceptance.7.enable.automatic.debit.and.send.confirmation.expected.tools.customer.identity.validate.loan.status.read.account.eligibility.check.ui.account.open.automatic.debit.create.notification.send
+  - user_task.account_eligibility_check
+  asset_types:
+  - plan
+  - user_task
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.goal.configure.recurring.payment.for.an.existing.loan.steps.1.identify.the.customer.2.verify.the.loan.is.active.3.check.eligible.savings.account.4.explain.account.requirement.when.no.eligible.account.exists.5.offer.account.opening.journey.6.capture.payment.day.and.customer.acceptance.7.enable.automatic.debit.and.send.confirmation.expected.tools.customer.identity.validate.loan.status.read.account.eligibility.check.ui.account.open.automatic.debit.create.notification.send
+    asset_type: plan
+  - asset_id: user_task.account_eligibility_check
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Goal.configure.recurring.payment.for.an.existing.loan.steps.1.identify.the.customer.2.verify.the.loan.is.active.3.check.eligible.savings.account.4.explain.account.requirement.when.no.eligible.account.exists.5.offer.account.opening.journey.6.capture.payment.day.and.customer.acceptance.7.enable.automatic.debit.and.send.confirmation.expected.tools.customer.identity.validate.loan.status.read.account.eligibility.check.ui.account.open.automatic.debit.create.notification.send
+    Asset Set
+  normalized_name: goal.configure.recurring.payment.for.an.existing.loan.steps.1.identify.the.customer.2.verify.the.loan.is.active.3.check.eligible.savings.account.4.explain.account.requirement.when.no.eligible.account.exists.5.offer.account.opening.journey.6.capture.payment.day.and.customer.acceptance.7.enable.automatic.debit.and.send.confirmation.expected.tools.customer.identity.validate.loan.status.read.account.eligibility.check.ui.account.open.automatic.debit.create.notification.send
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

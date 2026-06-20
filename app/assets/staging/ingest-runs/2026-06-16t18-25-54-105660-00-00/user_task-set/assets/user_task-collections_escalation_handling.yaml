@@ -1,0 +1,27 @@
+asset_id: user_task.collections_escalation_handling
+asset_type: user_task
+name: Collections Escalation Handling
+version: 1.0.0
+owner: business_model_kb
+description: Handle escalated cases through collections, recovery, and write-off stages
+  as per escalation rules.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: handle_escalation
+  task: handle_collections_escalation
+  type: workflow
+  name: Collections Escalation Handling
+  description: Handle escalated cases through collections, recovery, and write-off
+    stages as per escalation rules.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collections Escalation Handling
+  normalized_name: collections escalation handling
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

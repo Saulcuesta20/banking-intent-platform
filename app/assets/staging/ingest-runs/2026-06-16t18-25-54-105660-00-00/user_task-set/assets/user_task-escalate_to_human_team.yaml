@@ -1,0 +1,25 @@
+asset_id: user_task.escalate_to_human_team
+asset_type: user_task
+name: Escalate to Human Team
+version: 1.0.0
+owner: business_model_kb
+description: If fraud or legal risk indicators, escalate to human team.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: escalate_claim
+  task: escalate_claim
+  type: manual
+  name: Escalate to Human Team
+  description: If fraud or legal risk indicators, escalate to human team.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Escalate to Human Team
+  normalized_name: escalate to human team
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

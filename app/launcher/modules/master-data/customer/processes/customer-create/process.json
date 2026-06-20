@@ -10,7 +10,7 @@
   "userTasks": [
     "capture customer"
   ],
-  "lowdefyPage": "customer-create",
+  "editorRoute": "customer-create",
   "currentFormVersion": "v1",
   "formId": "customer-create"
 }

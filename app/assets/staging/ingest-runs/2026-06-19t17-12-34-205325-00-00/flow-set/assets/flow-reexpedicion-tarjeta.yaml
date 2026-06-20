@@ -1,0 +1,55 @@
+asset_id: flow.reexpedicion.tarjeta
+asset_type: flow
+name: Card Reissuance
+version: 1.0.0
+owner: process_kb
+description: Process to verify customer identity, block the old card, and issue a
+  new one.
+text: Process to verify customer identity, block the old card, and issue a new one.
+tags:
+- provide.new.cards.while.ensuring.security
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.customer_lookup
+  metadata: {}
+payload:
+  flow_id: reexpedicion.tarjeta
+  flow_name: Card Reissuance
+  intent: provide.new.cards.while.ensuring.security
+  confidence: 0.75
+  business_event: card_replacement_needed
+  utterances: []
+  plan: []
+  tasks:
+  - task: look_up_customer_information
+    type: automated
+  user_tasks:
+  - user_task_id: customer_lookup
+    task: look_up_customer_information
+    type: automated
+    name: Customer Lookup
+    description: Retrieve customer details from the system database.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to verify customer identity, block the old card, and issue
+    a new one.
+  source: data/raw/savings_loans_domain_extra3.txt;data/raw/savings_loans_domain_extra4.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra3.txt
+    - data/raw/savings_loans_domain_extra4.txt
+    purpose: Replace cards securely and prevent fraud.
+  purpose: Replace cards securely and prevent fraud.
+  transaction_id: reexpedicion.tarjeta
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Card Reissuance
+  normalized_name: card reissuance
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,48 @@
+asset_id: asset_set.tck.1001.verify.direct.debit
+asset_type: asset_set
+name: Tck.1001.verify.direct.debit Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for tck.1001.verify.direct.debit.
+text: 'Verify Direct Debit Subscription
+
+  Check Subscription Status
+
+  Confirm Charge Date'
+tags:
+- asset_set
+- tck.1001.verify.direct.debit
+relations:
+- type: groups_flow
+  target_asset_id: flow.tck.1001.verify.direct.debit
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.check_subscription_status
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirm_charge_date
+  metadata: {}
+payload:
+  transaction_id: tck.1001.verify.direct.debit
+  asset_ids:
+  - flow.tck.1001.verify.direct.debit
+  - user_task.check_subscription_status
+  - user_task.confirm_charge_date
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.tck.1001.verify.direct.debit
+    asset_type: flow
+  - asset_id: user_task.check_subscription_status
+    asset_type: user_task
+  - asset_id: user_task.confirm_charge_date
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Tck.1001.verify.direct.debit Asset Set
+  normalized_name: tck.1001.verify.direct.debit asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

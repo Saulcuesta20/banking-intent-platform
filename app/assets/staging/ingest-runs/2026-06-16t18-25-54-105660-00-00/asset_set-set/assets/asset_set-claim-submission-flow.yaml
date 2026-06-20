@@ -1,0 +1,64 @@
+asset_id: asset_set.claim.submission.flow
+asset_type: asset_set
+name: Claim.submission.flow Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for claim.submission.flow.
+text: 'Claim Submission and Processing
+
+  Escalate to Human Team
+
+  Execute Claim
+
+  Submit Claim Guide
+
+  Wait for Customer Information'
+tags:
+- asset_set
+- claim.submission.flow
+relations:
+- type: groups_flow
+  target_asset_id: flow.claim.submission.flow
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.escalate_to_human_team
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.execute_claim
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.submit_claim_guide
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.wait_for_customer_information
+  metadata: {}
+payload:
+  transaction_id: claim.submission.flow
+  asset_ids:
+  - flow.claim.submission.flow
+  - user_task.escalate_to_human_team
+  - user_task.execute_claim
+  - user_task.submit_claim_guide
+  - user_task.wait_for_customer_information
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.claim.submission.flow
+    asset_type: flow
+  - asset_id: user_task.escalate_to_human_team
+    asset_type: user_task
+  - asset_id: user_task.execute_claim
+    asset_type: user_task
+  - asset_id: user_task.submit_claim_guide
+    asset_type: user_task
+  - asset_id: user_task.wait_for_customer_information
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Claim.submission.flow Asset Set
+  normalized_name: claim.submission.flow asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

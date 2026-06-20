@@ -1,0 +1,114 @@
+asset_id: flow.claims
+asset_type: flow
+name: Reclamos
+version: 1.0.0
+owner: process_kb
+description: Un reclamo se registra cuando el cliente reporta una comision incorrecta,
+  cargo desconocido, transferencia no reconocida o problema operativo. El banco debe
+  crear el caso, recolectar evidencia, revisar transacciones, reconciliar movimientos
+  y comunicar una resolucion.
+text: Un reclamo se registra cuando el cliente reporta una comision incorrecta, cargo
+  desconocido, transferencia no reconocida o problema operativo. El banco debe crear
+  el caso, recolectar evidencia, revisar transacciones, reconciliar movimientos y
+  comunicar una resolucion.
+tags:
+- presentar.un.reclamo
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.crear_caso
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.recolectar_evidencia
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.revisar_transacciones
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.comunicar_resolucion
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.claim
+  metadata: {}
+payload:
+  flow_id: claims
+  flow_name: Reclamos
+  intent: presentar.un.reclamo
+  confidence: 0.75
+  business_event: cliente reporta una comision incorrecta, cargo desconocido, transferencia
+    no reconocida o problema operativo
+  utterances: []
+  plan: []
+  tasks:
+  - task: crear_caso_de_reclamo
+    type: data_collection
+  - task: recolectar_evidencia
+    type: data_collection
+  - task: revisar_transacciones
+    type: analysis
+  - task: comunicar_resolucion
+    type: communication
+  user_tasks:
+  - user_task_id: claims_create_case
+    task: crear_caso_de_reclamo
+    type: data_collection
+    name: Crear caso
+    description: Registrar el reclamo en el sistema
+    tools: []
+    user_actions: []
+  - user_task_id: claims_collect_evidence
+    task: recolectar_evidencia
+    type: data_collection
+    name: Recolectar evidencia
+    description: Recolectar evidencia del cliente y del banco
+    tools: []
+    user_actions: []
+  - user_task_id: claims_review_transactions
+    task: revisar_transacciones
+    type: analysis
+    name: Revisar transacciones
+    description: Revisar movimientos y reconciliar
+    tools: []
+    user_actions: []
+  - user_task_id: claims_communicate_resolution
+    task: comunicar_resolucion
+    type: communication
+    name: Comunicar resolucion
+    description: Comunicar la resolucion al cliente
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Un reclamo se registra cuando el cliente reporta una comision incorrecta,
+    cargo desconocido, transferencia no reconocida o problema operativo. El banco
+    debe crear el caso, recolectar evidencia, revisar transacciones, reconciliar movimientos
+    y comunicar una resolucion.
+  source: data/raw/process_qa_seed.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/process_qa_seed.md
+    purpose: Resolver un reclamo del cliente
+  purpose: Resolver un reclamo del cliente
+  transaction_id: claims
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Un reclamo se registra cuando el cliente reporta una comision incorrecta,
+      cargo desconocido, transferencia no reconocida o problema operativo.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Un reclamo se registra cuando el cliente reporta una comision incorrecta,
+      cargo desconocido, transferencia no reconocida o problema operativo.
+  match_strategy: generated
+  canonical_name: Reclamos
+  normalized_name: reclamos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

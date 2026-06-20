@@ -1,0 +1,20 @@
+asset_id: entity.flexpaypersonalloan
+asset_type: entity
+name: FlexPayPersonalLoan
+version: 1.0.0
+owner: business_model_kb
+description: Préstamo personal a tasa fija con plazos de 24 a 60 meses.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Préstamo personal a tasa fija con plazos de 24 a 60 meses.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: FlexPayPersonalLoan
+  normalized_name: flexpaypersonalloan
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

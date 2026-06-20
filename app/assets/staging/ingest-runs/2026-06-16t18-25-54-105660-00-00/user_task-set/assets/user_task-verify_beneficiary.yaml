@@ -1,0 +1,25 @@
+asset_id: user_task.verify_beneficiary
+asset_type: user_task
+name: Verify Beneficiary
+version: 1.0.0
+owner: business_model_kb
+description: Perform enhanced due diligence on the international beneficiary.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_verify_beneficiary
+  task: verify_beneficiary
+  type: manual
+  name: Verify Beneficiary
+  description: Perform enhanced due diligence on the international beneficiary.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Verify Beneficiary
+  normalized_name: verify beneficiary
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

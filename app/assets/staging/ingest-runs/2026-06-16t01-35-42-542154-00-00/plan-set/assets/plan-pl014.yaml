@@ -1,0 +1,32 @@
+asset_id: plan.pl014
+asset_type: plan
+name: PL014
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para crear prestamo: mostrar solicitud, capturar campos, validar
+  politica y registrar contrato.'
+text: ''
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pl014
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Plan para crear prestamo: mostrar solicitud, capturar campos, validar
+      politica y registrar contrato.'
+  match_strategy: generated
+  canonical_name: PL014
+  normalized_name: pl014
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

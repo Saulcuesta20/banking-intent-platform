@@ -1,0 +1,26 @@
+asset_id: plan.plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+asset_type: plan
+name: Plan disputas de cargo
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para disputas de cargo: registrar caso, congelar instrumento, recolectar
+  evidencia y escalar.'
+text: 'Plan para disputas de cargo: registrar caso, congelar instrumento, recolectar
+  evidencia y escalar.'
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: 'Plan para disputas de cargo: registrar caso, congelar instrumento, recolectar
+    evidencia y escalar.'
+  source_section: Plans
+  transaction_id: plan.para.disputas.de.cargo.registrar.caso.congelar.instrumento.recolectar.evidencia.y.escalar
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Plan disputas de cargo
+  normalized_name: plan disputas de cargo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,89 @@
+asset_id: flow.tck.1003.duplicate.charge.investigation
+asset_type: flow
+name: Duplicate Charge Investigation and Refund
+version: 1.0.0
+owner: process_kb
+description: Customer reports a duplicate charge and requests investigation and refund.
+text: Customer reports a duplicate charge and requests investigation and refund.
+tags:
+- customer.wants.refund.for.duplicate.charge
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.log_duplicate_charge_ticket
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.investigate_transaction
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.approve_refund
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.process_refund
+  metadata: {}
+payload:
+  flow_id: tck.1003.duplicate.charge.investigation
+  flow_name: Duplicate Charge Investigation and Refund
+  intent: customer.wants.refund.for.duplicate.charge
+  confidence: 0.75
+  business_event: Customer reports duplicate charge
+  utterances: []
+  plan: []
+  tasks:
+  - task: log_duplicate_charge_ticket
+    type: agent
+  - task: investigate_duplicate_charge
+    type: agent
+  - task: approve_refund
+    type: agent
+  - task: process_refund
+    type: agent
+  user_tasks:
+  - user_task_id: log_duplicate_charge_ticket
+    task: log_duplicate_charge_ticket
+    type: agent
+    name: Log Duplicate Charge Ticket
+    description: Agent creates a support ticket for duplicate charge investigation.
+    tools: []
+    user_actions: []
+  - user_task_id: investigate_transaction
+    task: investigate_duplicate_charge
+    type: agent
+    name: Investigate Transaction
+    description: Agent reviews transaction history to confirm duplicate.
+    tools: []
+    user_actions: []
+  - user_task_id: approve_refund
+    task: approve_refund
+    type: agent
+    name: Approve Refund
+    description: Agent or supervisor approves refund if duplicate confirmed.
+    tools: []
+    user_actions: []
+  - user_task_id: process_refund
+    task: process_refund
+    type: agent
+    name: Process Refund
+    description: Agent initiates refund to customer account.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Customer reports a duplicate charge and requests investigation and
+    refund.
+  source: data/raw/customer_support_tickets_mini.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    purpose: To investigate duplicate charge and process refund if confirmed.
+  purpose: To investigate duplicate charge and process refund if confirmed.
+  transaction_id: tck.1003.duplicate.charge.investigation
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Duplicate Charge Investigation and Refund
+  normalized_name: duplicate charge investigation and refund
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

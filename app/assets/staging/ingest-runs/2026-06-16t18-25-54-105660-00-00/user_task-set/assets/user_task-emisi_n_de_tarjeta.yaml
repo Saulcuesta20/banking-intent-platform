@@ -1,0 +1,29 @@
+asset_id: user_task.emisi_n_de_tarjeta
+asset_type: user_task
+name: Emisión de tarjeta
+version: 1.0.0
+owner: business_model_kb
+description: Emitir una nueva tarjeta y enviarla al cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: card_issuance
+  task: emitir_y_enviar_nueva_tarjeta
+  type: manual
+  name: Emisión de tarjeta
+  description: Emitir una nueva tarjeta y enviarla al cliente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Emitir una nueva tarjeta y enviarla al cliente.
+  match_strategy: generated
+  canonical_name: Emisión de tarjeta
+  normalized_name: emisión de tarjeta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

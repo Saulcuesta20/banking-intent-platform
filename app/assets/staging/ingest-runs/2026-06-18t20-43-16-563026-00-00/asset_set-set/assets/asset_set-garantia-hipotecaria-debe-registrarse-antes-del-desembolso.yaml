@@ -1,0 +1,59 @@
+asset_id: asset_set.garantia.hipotecaria.debe.registrarse.antes.del.desembolso
+asset_type: asset_set
+name: Garantia.hipotecaria.debe.registrarse.antes.del.desembolso Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for garantia.hipotecaria.debe.registrarse.antes.del.desembolso.
+text: 'garantia hipotecaria debe registrarse antes del desembolso
+
+  desembolso
+
+  garantia
+
+  Garantia.hipotecaria.debe.registrarse.antes.del.desembolso Ruleset'
+tags:
+- asset_set
+- garantia.hipotecaria.debe.registrarse.antes.del.desembolso
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.garantia_hipotecaria_debe_registrarse_antes_del_desembolso
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.desembolso
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.garantia
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.garantia.hipotecaria.debe.registrarse.antes.del.desembolso
+  metadata: {}
+payload:
+  transaction_id: garantia.hipotecaria.debe.registrarse.antes.del.desembolso
+  asset_ids:
+  - business_rule.garantia_hipotecaria_debe_registrarse_antes_del_desembolso
+  - entity.desembolso
+  - entity.garantia
+  - ruleset.garantia.hipotecaria.debe.registrarse.antes.del.desembolso
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.garantia_hipotecaria_debe_registrarse_antes_del_desembolso
+    asset_type: business_rule
+  - asset_id: entity.desembolso
+    asset_type: entity
+  - asset_id: entity.garantia
+    asset_type: entity
+  - asset_id: ruleset.garantia.hipotecaria.debe.registrarse.antes.del.desembolso
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Garantia.hipotecaria.debe.registrarse.antes.del.desembolso Asset
+    Set
+  normalized_name: garantia.hipotecaria.debe.registrarse.antes.del.desembolso asset
+    set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

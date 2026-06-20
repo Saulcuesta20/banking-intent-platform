@@ -1,0 +1,67 @@
+asset_id: business_rule.refinance_manager_approval_threshold
+asset_type: business_rule
+name: Refinance manager approval threshold
+version: 1.0.0
+owner: rules_kb
+description: Refinance options that extend the loan term by more than 24 months or
+  reduce the monthly installment by more than 20 percent require manager review.
+text: 'Refinance options that extend the loan term by more than 24 months or reduce
+
+  the monthly installment by more than 20 percent require manager review. The
+
+  reviewer must see current loan status, calculated options, customer income
+
+  evidence, and the comparison summary before approving the request.
+
+
+  Control owner: Credit Operations.
+
+  Systems mentioned: Loan Pricing Service, Approval Workbench.
+
+  Related customer phrases: "quiero bajar la cuota", "necesito mejores
+
+  condiciones", "por que no califico para refinanciar".'
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan_conditions
+  metadata: {}
+payload:
+  source_section: Refinance manager approval threshold
+  rule_text: 'Refinance options that extend the loan term by more than 24 months or
+    reduce
+
+    the monthly installment by more than 20 percent require manager review. The
+
+    reviewer must see current loan status, calculated options, customer income
+
+    evidence, and the comparison summary before approving the request.
+
+
+    Control owner: Credit Operations.
+
+    Systems mentioned: Loan Pricing Service, Approval Workbench.
+
+    Related customer phrases: "quiero bajar la cuota", "necesito mejores
+
+    condiciones", "por que no califico para refinanciar".'
+  conditions:
+  - Refinance options that extend the loan term by more than 24 months or reduce the
+    monthly installment by more than 20 percent require manager review. The reviewer
+  consequences:
+  - 'see current loan status, calculated options, customer income evidence, and the
+    comparison summary before approving the request. Control owner: Credit Operations.
+    Systems mentioned: Loan Pricing Service, Approval Workbench. Related customer
+    phrases: "quiero bajar la cuota", "necesito mejores condiciones", "por que no
+    califico para refinanciar"'
+  transaction_id: refinance.manager.approval.threshold.ruleset
+  ruleset_name: Refinance manager approval threshold Ruleset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Refinance manager approval threshold
+  normalized_name: refinance manager approval threshold
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,19 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: launcher-domain-set
+  name: Launcher Domain Set
+  version: 1.0.0
+  domain: platform
+  module: launcher
+  description: Versioned domain deployment set for launcher.
+  tags:
+  - platform
+  - launcher
+  - domain
+spec:
+  assetType: domain
+  assets:
+  - assets/domain-master-data.yaml
+  - assets/domain-deposits.yaml
+  - assets/domain-lending.yaml

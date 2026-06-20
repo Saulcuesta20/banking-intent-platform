@@ -1,0 +1,74 @@
+asset_id: flow.large.outbound.transaction.processing
+asset_type: flow
+name: Large Outbound Transaction Processing
+version: 1.0.0
+owner: process_kb
+description: Process for handling large outbound transactions including identity check,
+  amount, beneficiary details, destination country, sanctions status, proof of purpose,
+  and manager review if amount exceeds threshold or risk segment requires enhanced
+  review.
+text: Process for handling large outbound transactions including identity check, amount,
+  beneficiary details, destination country, sanctions status, proof of purpose, and
+  manager review if amount exceeds threshold or risk segment requires enhanced review.
+tags:
+- to.verify.and.approve.large.outbound.transfers
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transaction_screening
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.manager_review
+  metadata: {}
+payload:
+  flow_id: large.outbound.transaction.processing
+  flow_name: Large Outbound Transaction Processing
+  intent: to.verify.and.approve.large.outbound.transfers
+  confidence: 0.75
+  business_event: outbound_transaction_initiated
+  utterances: []
+  plan: []
+  tasks:
+  - task: screen_transaction
+    type: automated
+  - task: review_transaction
+    type: manual
+  user_tasks:
+  - user_task_id: transaction_screening
+    task: screen_transaction
+    type: automated
+    name: Transaction Screening
+    description: Automated checks on customer identity, transfer amount, beneficiary
+      details, destination country, sanctions status, and proof of purpose.
+    tools: []
+    user_actions: []
+  - user_task_id: manager_review
+    task: review_transaction
+    type: manual
+    name: Manager Review
+    description: Manager reviews transaction when amount exceeds configured threshold
+      or customer risk segment requires enhanced review.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process for handling large outbound transactions including identity
+    check, amount, beneficiary details, destination country, sanctions status, proof
+    of purpose, and manager review if amount exceeds threshold or risk segment requires
+    enhanced review.
+  source: data/raw/enterprise_dump_2026/policy_controls_memo.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/policy_controls_memo.md
+    purpose: Ensure compliance with internal policies for large transfers.
+  purpose: Ensure compliance with internal policies for large transfers.
+  transaction_id: large.outbound.transaction.processing
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Large Outbound Transaction Processing
+  normalized_name: large outbound transaction processing
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

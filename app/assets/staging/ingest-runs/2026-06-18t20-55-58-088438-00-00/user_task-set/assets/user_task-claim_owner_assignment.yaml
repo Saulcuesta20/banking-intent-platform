@@ -1,0 +1,25 @@
+asset_id: user_task.claim_owner_assignment
+asset_type: user_task
+name: Claim Owner Assignment
+version: 1.0.0
+owner: business_model_kb
+description: Assign an owner to handle the claim.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: assign_owner
+  task: assign_owner
+  type: assignment
+  name: Claim Owner Assignment
+  description: Assign an owner to handle the claim.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Claim Owner Assignment
+  normalized_name: claim owner assignment
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,40 @@
+asset_id: asset_set.debt.restructure
+asset_type: asset_set
+name: Debt.restructure Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for debt.restructure.
+text: 'cliente
+
+  quiero reestructurar una deuda en atraso'
+tags:
+- asset_set
+- debt.restructure
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.debt.restructure
+  metadata: {}
+payload:
+  transaction_id: debt.restructure
+  asset_ids:
+  - entity.customer
+  - flow.debt.restructure
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.debt.restructure
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Debt.restructure Asset Set
+  normalized_name: debt.restructure asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

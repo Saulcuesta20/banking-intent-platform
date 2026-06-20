@@ -1,0 +1,25 @@
+asset_id: user_task.explain_account_requirement
+asset_type: user_task
+name: Explain account requirement
+version: 1.0.0
+owner: business_model_kb
+description: Explain account requirement when no eligible account exists.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: automatic_payment_setup_step_4
+  task: explain_account_requirement_when_no_eligible_account_exists
+  type: manual
+  name: Explain account requirement
+  description: Explain account requirement when no eligible account exists.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Explain account requirement
+  normalized_name: explain account requirement
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

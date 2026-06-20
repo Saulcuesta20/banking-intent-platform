@@ -1,0 +1,25 @@
+asset_id: user_task.payment_regularity_verification
+asset_type: user_task
+name: Payment Regularity Verification
+version: 1.0.0
+owner: business_model_kb
+description: Advisor assesses whether payments have been made on time and consistently.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verify_payment_regularity
+  task: check_the_regularity_of_payments_made_on_the_loan
+  type: manual
+  name: Payment Regularity Verification
+  description: Advisor assesses whether payments have been made on time and consistently.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Payment Regularity Verification
+  normalized_name: payment regularity verification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

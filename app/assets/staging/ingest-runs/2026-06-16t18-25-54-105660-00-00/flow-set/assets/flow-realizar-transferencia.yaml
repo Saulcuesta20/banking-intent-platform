@@ -1,0 +1,67 @@
+asset_id: flow.realizar.transferencia
+asset_type: flow
+name: Realizar transferencia
+version: 1.0.0
+owner: process_kb
+description: Proceso para realizar una transferencia bancaria, recopilando datos y
+  ejecutando la transferencia.
+text: Proceso para realizar una transferencia bancaria, recopilando datos y ejecutando
+  la transferencia.
+tags:
+- el.cliente.desea.realizar.una.transferencia
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.recopilar_datos_de_transferencia
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.ejecutar_transferencia
+  metadata: {}
+payload:
+  flow_id: realizar.transferencia
+  flow_name: Realizar transferencia
+  intent: el.cliente.desea.realizar.una.transferencia
+  confidence: 0.75
+  business_event: Transferencia bancaria
+  utterances: []
+  plan: []
+  tasks:
+  - task: recopilar_datos_de_transferencia
+    type: form
+  - task: ejecutar_transferencia
+    type: execution
+  user_tasks:
+  - user_task_id: recopilar_datos_transferencia
+    task: recopilar_datos_de_transferencia
+    type: form
+    name: Recopilar datos de transferencia
+    description: Solicitar al cliente cuenta origen, beneficiario o CBU, monto y concepto.
+    tools: []
+    user_actions: []
+  - user_task_id: ejecutar_transferencia
+    task: ejecutar_transferencia
+    type: execution
+    name: Ejecutar transferencia
+    description: Ejecutar la transferencia con los datos proporcionados.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para realizar una transferencia bancaria, recopilando datos
+    y ejecutando la transferencia.
+  source: data/raw/enterprise_support_wiki.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_support_wiki.md
+    purpose: Permitir al cliente realizar una transferencia de fondos.
+  purpose: Permitir al cliente realizar una transferencia de fondos.
+  transaction_id: realizar.transferencia
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Realizar transferencia
+  normalized_name: realizar transferencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

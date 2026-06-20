@@ -1,0 +1,56 @@
+asset_id: flow.flow.14
+asset_type: flow
+name: Originación de préstamo
+version: 1.0.0
+owner: process_kb
+description: El proceso de originacion de prestamo captura solicitud, valida condiciones
+  y registra el prestamo.
+text: El proceso de originacion de prestamo captura solicitud, valida condiciones
+  y registra el prestamo.
+tags:
+- loan.create
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  flow_id: flow.14
+  flow_name: Originación de préstamo
+  intent: loan.create
+  confidence: 0.75
+  business_event: Analista solicita crear préstamo
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de originacion de prestamo captura solicitud, valida condiciones
+    y registra el prestamo.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Crear un préstamo para un cliente existente
+  purpose: Crear un préstamo para un cliente existente
+  transaction_id: flow.14
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de originacion de prestamo captura solicitud, valida condiciones
+      y registra el prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de originacion de prestamo captura solicitud, valida condiciones
+      y registra el prestamo.
+  match_strategy: generated
+  canonical_name: Originación de préstamo
+  normalized_name: originación de préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

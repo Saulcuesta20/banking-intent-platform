@@ -1,0 +1,56 @@
+asset_id: flow.claim.filling
+asset_type: flow
+name: Claim Filing Process
+version: 1.0.0
+owner: process_kb
+description: Collects claim details and evidence to investigate and resolve customer
+  issues.
+text: Collects claim details and evidence to investigate and resolve customer issues.
+tags:
+- file.a.claim
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.claim_information_submission
+  metadata: {}
+payload:
+  flow_id: claim.filling
+  flow_name: Claim Filing Process
+  intent: file.a.claim
+  confidence: 0.75
+  business_event: customer_reports_issue
+  utterances: []
+  plan: []
+  tasks:
+  - task: file_claim_details
+    type: execution
+  user_tasks:
+  - user_task_id: file_claim_details
+    task: file_claim_details
+    type: execution
+    name: Claim Information Submission
+    description: Customer provides reason for claim, transaction reference, date,
+      amount, and attaches evidence.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Collects claim details and evidence to investigate and resolve customer
+    issues.
+  source: data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_policy_and_controls.md
+    - data/raw/enterprise_support_wiki.md
+    purpose: Address customer complaints and disputes.
+  purpose: Address customer complaints and disputes.
+  transaction_id: claim.filling
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Claim Filing Process
+  normalized_name: claim filing process
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,33 @@
+asset_id: qa.como_cancelo_una_domiciliacion_de_pago
+asset_type: qa
+name: Como cancelo una domiciliacion de pago?
+version: 1.0.0
+owner: qa_kb
+description: Como cancelo una domiciliacion de pago?
+text: Como cancelo una domiciliacion de pago?
+tags:
+- qa
+relations: []
+payload:
+  question: Como cancelo una domiciliacion de pago?
+  transaction_id: como.cancelo.una.domiciliacion.de.pago
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Como cancelo una domiciliacion de pago?
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Como cancelo una domiciliacion de pago?
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Como cancelo una domiciliacion de pago?
+  match_strategy: generated
+  canonical_name: Como cancelo una domiciliacion de pago?
+  normalized_name: como cancelo una domiciliacion de pago?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

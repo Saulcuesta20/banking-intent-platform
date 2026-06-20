@@ -1,0 +1,64 @@
+asset_id: asset_set.report.unrecognized.charge
+asset_type: asset_set
+name: Report.unrecognized.charge Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for report.unrecognized.charge.
+text: 'Reportar Cargo No Reconocido
+
+  Enviar disputa
+
+  Identificar cargo
+
+  Proporcionar evidencia
+
+  Revisar resolución'
+tags:
+- asset_set
+- report.unrecognized.charge
+relations:
+- type: groups_flow
+  target_asset_id: flow.report.unrecognized.charge
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.enviar_disputa
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_cargo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.proporcionar_evidencia
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.revisar_resoluci_n
+  metadata: {}
+payload:
+  transaction_id: report.unrecognized.charge
+  asset_ids:
+  - flow.report.unrecognized.charge
+  - user_task.enviar_disputa
+  - user_task.identificar_cargo
+  - user_task.proporcionar_evidencia
+  - user_task.revisar_resoluci_n
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.report.unrecognized.charge
+    asset_type: flow
+  - asset_id: user_task.enviar_disputa
+    asset_type: user_task
+  - asset_id: user_task.identificar_cargo
+    asset_type: user_task
+  - asset_id: user_task.proporcionar_evidencia
+    asset_type: user_task
+  - asset_id: user_task.revisar_resoluci_n
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Report.unrecognized.charge Asset Set
+  normalized_name: report.unrecognized.charge asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

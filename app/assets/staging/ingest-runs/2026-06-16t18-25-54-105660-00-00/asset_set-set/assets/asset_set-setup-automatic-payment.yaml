@@ -1,0 +1,64 @@
+asset_id: asset_set.setup.automatic.payment
+asset_type: asset_set
+name: Setup.automatic.payment Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for setup.automatic.payment.
+text: 'Configurar Pago Automático
+
+  Configurar monto
+
+  Confirmar configuración
+
+  Dar consentimiento
+
+  Seleccionar servicio'
+tags:
+- asset_set
+- setup.automatic.payment
+relations:
+- type: groups_flow
+  target_asset_id: flow.setup.automatic.payment
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.configurar_monto
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirmar_configuraci_n
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.dar_consentimiento
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.seleccionar_servicio
+  metadata: {}
+payload:
+  transaction_id: setup.automatic.payment
+  asset_ids:
+  - flow.setup.automatic.payment
+  - user_task.configurar_monto
+  - user_task.confirmar_configuraci_n
+  - user_task.dar_consentimiento
+  - user_task.seleccionar_servicio
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.setup.automatic.payment
+    asset_type: flow
+  - asset_id: user_task.configurar_monto
+    asset_type: user_task
+  - asset_id: user_task.confirmar_configuraci_n
+    asset_type: user_task
+  - asset_id: user_task.dar_consentimiento
+    asset_type: user_task
+  - asset_id: user_task.seleccionar_servicio
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Setup.automatic.payment Asset Set
+  normalized_name: setup.automatic.payment asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,86 @@
+asset_id: flow.savings.account.maintenance
+asset_type: flow
+name: Savings Account Maintenance
+version: 1.0.0
+owner: process_kb
+description: Ongoing maintenance activities for savings accounts, including transaction
+  processing, interest accrual, and statement generation.
+text: Ongoing maintenance activities for savings accounts, including transaction processing,
+  interest accrual, and statement generation.
+tags:
+- perform.maintenance.on.a.savings.account
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.deposit_processing
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.withdrawal_processing
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.statement_generation
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.interes
+  metadata: {}
+payload:
+  flow_id: savings.account.maintenance
+  flow_name: Savings Account Maintenance
+  intent: perform.maintenance.on.a.savings.account
+  confidence: 0.75
+  business_event: Various account operations such as deposits, withdrawals, or statement
+    requests
+  utterances: []
+  plan: []
+  tasks:
+  - task: process_a_deposit_transaction
+    type: transaction
+  - task: process_a_withdrawal_transaction
+    type: transaction
+  - task: generate_account_statement
+    type: reporting
+  user_tasks:
+  - user_task_id: process_deposit
+    task: process_a_deposit_transaction
+    type: transaction
+    name: Deposit Processing
+    description: Handle the deposit of funds into the savings account.
+    tools: []
+    user_actions: []
+  - user_task_id: process_withdrawal
+    task: process_a_withdrawal_transaction
+    type: transaction
+    name: Withdrawal Processing
+    description: Handle the withdrawal of funds from the savings account.
+    tools: []
+    user_actions: []
+  - user_task_id: generate_statement
+    task: generate_account_statement
+    type: reporting
+    name: Statement Generation
+    description: Produce a statement of account transactions for a period.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Ongoing maintenance activities for savings accounts, including transaction
+    processing, interest accrual, and statement generation.
+  source: data/raw/savings_loans_domain_extra5.txt;data/raw/savings_loans_domain_raw.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra5.txt
+    - data/raw/savings_loans_domain_raw.txt
+    purpose: To manage account operations and ensure compliance for existing savings
+      accounts.
+  purpose: To manage account operations and ensure compliance for existing savings
+    accounts.
+  transaction_id: savings.account.maintenance
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Savings Account Maintenance
+  normalized_name: savings account maintenance
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

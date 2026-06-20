@@ -1,0 +1,70 @@
+asset_id: flow.presentar.reclamo
+asset_type: flow
+name: Presentar reclamo
+version: 1.0.0
+owner: process_kb
+description: Proceso para presentar un reclamo, recopilando motivo, referencia, fecha,
+  importe y evidencia.
+text: Proceso para presentar un reclamo, recopilando motivo, referencia, fecha, importe
+  y evidencia.
+tags:
+- el.cliente.desea.presentar.un.reclamo
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.recopilar_datos_del_reclamo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.enviar_reclamo
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.claim
+  metadata: {}
+payload:
+  flow_id: presentar.reclamo
+  flow_name: Presentar reclamo
+  intent: el.cliente.desea.presentar.un.reclamo
+  confidence: 0.75
+  business_event: Presentación de reclamo
+  utterances: []
+  plan: []
+  tasks:
+  - task: recopilar_datos_del_reclamo
+    type: form
+  - task: enviar_reclamo
+    type: execution
+  user_tasks:
+  - user_task_id: recopilar_datos_reclamo
+    task: recopilar_datos_del_reclamo
+    type: form
+    name: Recopilar datos del reclamo
+    description: Solicitar al cliente motivo, referencia, fecha, importe y evidencia.
+    tools: []
+    user_actions: []
+  - user_task_id: enviar_reclamo
+    task: enviar_reclamo
+    type: execution
+    name: Enviar reclamo
+    description: Enviar el reclamo con los datos recopilados.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para presentar un reclamo, recopilando motivo, referencia,
+    fecha, importe y evidencia.
+  source: data/raw/enterprise_support_wiki.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_support_wiki.md
+    purpose: Permitir al cliente presentar un reclamo.
+  purpose: Permitir al cliente presentar un reclamo.
+  transaction_id: presentar.reclamo
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Presentar reclamo
+  normalized_name: presentar reclamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

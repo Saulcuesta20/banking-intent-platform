@@ -1,0 +1,27 @@
+asset_id: user_task.mapear_departamentos_de_customer_experience
+asset_type: user_task
+name: Mapear departamentos de Customer Experience
+version: 1.0.0
+owner: business_model_kb
+description: Identificar departamentos clave, líderes y responsabilidades descritas
+  en el nuevo playbook corporativo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut401
+  task: mapear_departamentos_experiencia
+  type: human
+  name: Mapear departamentos de Customer Experience
+  description: Identificar departamentos clave, líderes y responsabilidades descritas
+    en el nuevo playbook corporativo.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Mapear departamentos de Customer Experience
+  normalized_name: mapear departamentos de customer experience
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

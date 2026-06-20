@@ -1,0 +1,27 @@
+asset_id: user_task.handle_operational_exception
+asset_type: user_task
+name: Handle Operational Exception
+version: 1.0.0
+owner: business_model_kb
+description: If exception required, obtain supervisor approval, customer signed revised
+  disclosure, and ensure refinance amount within thresholds
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: handle_exception
+  task: handle_operational_exception
+  type: approval
+  name: Handle Operational Exception
+  description: If exception required, obtain supervisor approval, customer signed
+    revised disclosure, and ensure refinance amount within thresholds
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Handle Operational Exception
+  normalized_name: handle operational exception
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,48 @@
+asset_id: asset_set.insurance.enrollment
+asset_type: asset_set
+name: Insurance.enrollment Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for insurance.enrollment.
+text: 'Insurance Enrollment
+
+  Agreement Acceptance
+
+  Beneficiary Confirmation'
+tags:
+- asset_set
+- insurance.enrollment
+relations:
+- type: groups_flow
+  target_asset_id: flow.insurance.enrollment
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.agreement_acceptance
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.beneficiary_confirmation
+  metadata: {}
+payload:
+  transaction_id: insurance.enrollment
+  asset_ids:
+  - flow.insurance.enrollment
+  - user_task.agreement_acceptance
+  - user_task.beneficiary_confirmation
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.insurance.enrollment
+    asset_type: flow
+  - asset_id: user_task.agreement_acceptance
+    asset_type: user_task
+  - asset_id: user_task.beneficiary_confirmation
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Insurance.enrollment Asset Set
+  normalized_name: insurance.enrollment asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

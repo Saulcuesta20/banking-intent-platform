@@ -1,0 +1,66 @@
+asset_id: flow.flow.12
+asset_type: flow
+name: Alta de pago automático
+version: 1.0.0
+owner: process_kb
+description: El proceso de alta de pago automatico valida cuenta cargo y confirma
+  consentimiento.
+text: El proceso de alta de pago automatico valida cuenta cargo y confirma consentimiento.
+tags:
+- el.cliente.desea.activar.el.pago.automatico
+relations: []
+payload:
+  flow_id: flow.12
+  flow_name: Alta de pago automático
+  intent: el.cliente.desea.activar.el.pago.automatico
+  confidence: 0.75
+  business_event: Cliente solicita alta de pago automático
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de alta de pago automatico valida cuenta cargo y confirma
+    consentimiento.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Configurar un pago automático
+  purpose: Configurar un pago automático
+  transaction_id: flow.12
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Alta de pago automático
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de alta de pago automatico valida cuenta cargo y confirma
+      consentimiento.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de alta de pago automatico valida cuenta cargo y confirma
+      consentimiento.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de alta de pago automatico valida cuenta cargo y confirma
+      consentimiento.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de alta de pago automatico valida cuenta cargo y confirma
+      consentimiento.
+  match_strategy: generated
+  canonical_name: Alta de pago automático
+  normalized_name: alta de pago automático
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

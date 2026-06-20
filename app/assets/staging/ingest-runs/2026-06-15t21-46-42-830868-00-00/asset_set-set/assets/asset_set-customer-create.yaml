@@ -1,0 +1,31 @@
+asset_id: asset_set.customer.create
+asset_type: asset_set
+name: Customer.create Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for customer.create.
+text: 'El operador solicita: quiero crear un cliente nuevo'
+tags:
+- asset_set
+- customer.create
+relations:
+- type: groups_flow
+  target_asset_id: flow.customer.create
+  metadata: {}
+payload:
+  transaction_id: customer.create
+  asset_ids:
+  - flow.customer.create
+  asset_types:
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.customer.create
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Customer.create Asset Set
+  normalized_name: customer.create asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

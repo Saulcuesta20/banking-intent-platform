@@ -1,0 +1,25 @@
+asset_id: user_task.capture_loan_application
+asset_type: user_task
+name: Capture Loan Application
+version: 1.0.0
+owner: business_model_kb
+description: Collect loan amount, term, purpose, income, and supporting documents.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut101
+  task: capture_loan_application
+  type: frontend
+  name: Capture Loan Application
+  description: Collect loan amount, term, purpose, income, and supporting documents.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Capture Loan Application
+  normalized_name: capture loan application
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

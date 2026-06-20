@@ -1,0 +1,239 @@
+{
+  "user_tasks": [
+    {
+      "user_task_id": "review_case_one",
+      "task": "review_case_one",
+      "type": "user_task",
+      "name": "Review Refinance Options",
+      "description": "Review refinance choices with the customer.",
+      "user_actions": [
+        {
+          "action_id": "ui.refinance.calculate",
+          "type": "front",
+          "implementation_type": "show_form",
+          "lifecycle_state": "not_started",
+          "tool_id": null,
+          "tool_ids": [
+            "ui.refinance.calculate"
+          ],
+          "label": "Calculate refinance",
+          "triggers": "loan_refinance.calculate",
+          "description": null
+        },
+        {
+          "action_id": "loan.conditions.calculate",
+          "type": "back",
+          "implementation_type": "tool_call",
+          "lifecycle_state": "not_started",
+          "tool_id": "loan.conditions.calculate",
+          "tool_ids": [
+            "loan.conditions.calculate"
+          ],
+          "label": null,
+          "triggers": null,
+          "description": "Calculate new loan conditions."
+        }
+      ],
+      "tools": [
+        {
+          "tool_id": "ui.refinance.calculate",
+          "tool_type": "frontend_tool",
+          "operation": "calculate",
+          "resource": "loan_refinance",
+          "label": "Calculate refinance",
+          "frontend_event": "loan_refinance.calculate",
+          "requires_approval": false
+        },
+        {
+          "tool_id": "loan.conditions.calculate",
+          "tool_type": "backend_tool",
+          "operation": "calculate",
+          "resource": "loan",
+          "description": "Calculate new loan conditions.",
+          "requires_approval": false
+        }
+      ]
+    },
+    {
+      "user_task_id": "review_case_two",
+      "task": "review_case_two",
+      "type": "user_task",
+      "name": "Review Refinance Options",
+      "description": "Review refinance choices with the customer.",
+      "user_actions": [
+        {
+          "action_id": "ui.refinance.calculate",
+          "type": "front",
+          "implementation_type": "show_form",
+          "lifecycle_state": "not_started",
+          "tool_id": null,
+          "tool_ids": [
+            "ui.refinance.calculate"
+          ],
+          "label": "Calculate refinance",
+          "triggers": "loan_refinance.calculate",
+          "description": null
+        },
+        {
+          "action_id": "loan.conditions.calculate",
+          "type": "back",
+          "implementation_type": "tool_call",
+          "lifecycle_state": "not_started",
+          "tool_id": "loan.conditions.calculate",
+          "tool_ids": [
+            "loan.conditions.calculate"
+          ],
+          "label": null,
+          "triggers": null,
+          "description": "Calculate new loan conditions."
+        }
+      ],
+      "tools": [
+        {
+          "tool_id": "ui.refinance.calculate",
+          "tool_type": "frontend_tool",
+          "operation": "calculate",
+          "resource": "loan_refinance",
+          "label": "Calculate refinance",
+          "frontend_event": "loan_refinance.calculate",
+          "requires_approval": false
+        },
+        {
+          "tool_id": "loan.conditions.calculate",
+          "tool_type": "backend_tool",
+          "operation": "calculate",
+          "resource": "loan",
+          "description": "Calculate new loan conditions.",
+          "requires_approval": false
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "flow_id": "alpha.case.one",
+      "flow_name": "Alpha Case One",
+      "purpose": "Help a customer request refinancing for an existing loan.",
+      "intent": "alpha.case.one",
+      "business_event": "LoanRefinancingRequested",
+      "inputs": [
+        "loan_id"
+      ],
+      "outputs": [
+        "refinance_result"
+      ],
+      "user_task_refs": [
+        "review_case_one"
+      ],
+      "explanation": "The corpus describes refinance options.",
+      "source": "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-0.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-1.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-10.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-11.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-12.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-13.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-14.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-15.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-16.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-17.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-18.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-19.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-2.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-20.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-21.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-22.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-23.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-24.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-25.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-26.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-27.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-28.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-29.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-3.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-4.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-0.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-1.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-10.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-11.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-12.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-13.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-14.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-15.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-16.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-17.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-18.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-19.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-2.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-20.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-21.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-22.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-23.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-24.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-25.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-26.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-27.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-28.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-29.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-3.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-4.txt"
+        ]
+      }
+    },
+    {
+      "flow_id": "beta.case.two",
+      "flow_name": "Beta Case Two",
+      "purpose": "Help a customer request refinancing for an existing loan.",
+      "intent": "beta.case.two",
+      "business_event": "LoanRefinancingRequested",
+      "inputs": [
+        "loan_id"
+      ],
+      "outputs": [
+        "refinance_result"
+      ],
+      "user_task_refs": [
+        "review_case_two"
+      ],
+      "explanation": "The corpus describes refinance options.",
+      "source": "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-5.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-6.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-7.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-8.txt;/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-9.txt",
+      "metadata": {
+        "generated_by": "llm_corpus_flow_loader",
+        "source_files": [
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-5.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-6.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-7.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-8.txt",
+          "/tmp/pytest-of-saul/pytest-34/test_corpus_flow_loader_batche0/raw/doc-9.txt"
+        ]
+      }
+    }
+  ],
+  "tool_registry": [
+    {
+      "tool_id": "loan.conditions.calculate",
+      "tool_type": "backend_tool",
+      "operation": "calculate",
+      "resource": "loan",
+      "description": "Calculate new loan conditions.",
+      "requires_approval": false,
+      "user_tasks": [
+        "review_case_one",
+        "review_case_two"
+      ],
+      "flows": [
+        "alpha.case.one",
+        "beta.case.two"
+      ]
+    },
+    {
+      "tool_id": "ui.refinance.calculate",
+      "tool_type": "frontend_tool",
+      "operation": "calculate",
+      "resource": "loan_refinance",
+      "label": "Calculate refinance",
+      "frontend_event": "loan_refinance.calculate",
+      "requires_approval": false,
+      "user_tasks": [
+        "review_case_one",
+        "review_case_two"
+      ],
+      "flows": [
+        "alpha.case.one",
+        "beta.case.two"
+      ]
+    }
+  ],
+  "semantic_space": [],
+  "domain": [],
+  "module": [],
+  "menu": [],
+  "form": [],
+  "form_version": [],
+  "asset_set": [],
+  "concept": [],
+  "entity": [],
+  "business_rule": [],
+  "process": [],
+  "plan": [],
+  "qa": [],
+  "causality": []
+}

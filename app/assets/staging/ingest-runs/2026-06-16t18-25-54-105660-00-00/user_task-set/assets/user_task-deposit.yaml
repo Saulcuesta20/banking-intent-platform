@@ -1,0 +1,25 @@
+asset_id: user_task.deposit
+asset_type: user_task
+name: Deposit
+version: 1.0.0
+owner: business_model_kb
+description: Deposit funds into savings account
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: process_deposit
+  task: process_deposit
+  type: transaction
+  name: Deposit
+  description: Deposit funds into savings account
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Deposit
+  normalized_name: deposit
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,27 @@
+asset_id: user_task.request_clarification
+asset_type: user_task
+name: Request Clarification
+version: 1.0.0
+owner: business_model_kb
+description: If destination country or beneficiary data is incomplete, ask customer
+  for clarification.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: request_clarification
+  task: request_clarification
+  type: communication
+  name: Request Clarification
+  description: If destination country or beneficiary data is incomplete, ask customer
+    for clarification.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Request Clarification
+  normalized_name: request clarification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

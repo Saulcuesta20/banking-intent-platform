@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-06T20:41:07.401Z",
+  "generatedAt": "2026-06-19T17:50:55.269Z",
   "domains": [
     {
       "domainId": "master-data",
@@ -76,7 +76,7 @@
           "userTasks": [
             "capture customer"
           ],
-          "lowdefyPage": "customer-create",
+          "editorRoute": "customer-create",
           "currentFormVersion": "v1",
           "formId": "customer-create",
           "processFolder": "customer-create",
@@ -179,7 +179,7 @@
           "userTasks": [
             "capture product configuration"
           ],
-          "lowdefyPage": "product-config",
+          "editorRoute": "product-config",
           "currentFormVersion": "v1",
           "formId": "product-config",
           "processFolder": "product-config",
@@ -281,7 +281,7 @@
           "userTasks": [
             "capture rate configuration"
           ],
-          "lowdefyPage": "rate-config",
+          "editorRoute": "rate-config",
           "currentFormVersion": "v1",
           "formId": "rate-config",
           "processFolder": "rate-config",
@@ -377,7 +377,7 @@
           "userTasks": [
             "capture account opening"
           ],
-          "lowdefyPage": "account-opening",
+          "editorRoute": "account-opening",
           "currentFormVersion": "v1",
           "formId": "account-opening",
           "processFolder": "account-opening",
@@ -488,7 +488,7 @@
           "userTasks": [
             "capture loan request"
           ],
-          "lowdefyPage": "loan-create",
+          "editorRoute": "loan-create",
           "currentFormVersion": "v1",
           "formId": "loan-create",
           "processFolder": "loan-create",
@@ -545,7 +545,7 @@
           "userTasks": [
             "capture disbursement"
           ],
-          "lowdefyPage": "loan-disbursement",
+          "editorRoute": "loan-disbursement",
           "currentFormVersion": "v1",
           "formId": "loan-disbursement",
           "processFolder": "loan-disbursement",
@@ -595,7 +595,7 @@
           "userTasks": [
             "capture payment"
           ],
-          "lowdefyPage": "loan-payment",
+          "editorRoute": "loan-payment",
           "currentFormVersion": "v1",
           "formId": "loan-payment",
           "processFolder": "loan-payment",
@@ -652,7 +652,7 @@
           "userTasks": [
             "review refinance options"
           ],
-          "lowdefyPage": "loan-refinance",
+          "editorRoute": "loan-refinance",
           "currentFormVersion": "v1",
           "formId": "loan-refinance",
           "processFolder": "loan-refinance",
@@ -997,8 +997,8 @@
         ],
         "confidence": 1,
         "explanation": "quiero crear un cliente nuevo",
-        "renderer": "lowdefy",
-        "lowdefy_page": "customer-create",
+        "renderer": "react",
+        "editor_route": "customer-create",
         "module_config_id": "customer",
         "form_id": "customer-create-form",
         "form_version": "v1",
@@ -1022,8 +1022,8 @@
         ],
         "confidence": 1,
         "explanation": "quiero configurar un producto o servicio",
-        "renderer": "lowdefy",
-        "lowdefy_page": "product-config",
+        "renderer": "react",
+        "editor_route": "product-config",
         "module_config_id": "product-service-config",
         "form_id": "product-config-form",
         "form_version": "v1",
@@ -1047,8 +1047,8 @@
         ],
         "confidence": 1,
         "explanation": "quiero configurar una tasa",
-        "renderer": "lowdefy",
-        "lowdefy_page": "rate-config",
+        "renderer": "react",
+        "editor_route": "rate-config",
         "module_config_id": "rates",
         "form_id": "rate-config-form",
         "form_version": "v1",
@@ -1072,8 +1072,8 @@
         ],
         "confidence": 1,
         "explanation": "quiero abrir una cuenta de deposits",
-        "renderer": "lowdefy",
-        "lowdefy_page": "account-opening",
+        "renderer": "react",
+        "editor_route": "account-opening",
         "module_config_id": "deposit-account",
         "form_id": "account-opening-form",
         "form_version": "v1",
@@ -1097,8 +1097,8 @@
         ],
         "confidence": 1,
         "explanation": "quiero crear un prestamo para un cliente existente",
-        "renderer": "lowdefy",
-        "lowdefy_page": "loan-create",
+        "renderer": "react",
+        "editor_route": "loan-create",
         "module_config_id": "loan",
         "form_id": "loan-create-form",
         "form_version": "v1",
@@ -1122,8 +1122,8 @@
         ],
         "confidence": 1,
         "explanation": "quiero realizar el desembolso del prestamo aprobado",
-        "renderer": "lowdefy",
-        "lowdefy_page": "loan-disbursement",
+        "renderer": "react",
+        "editor_route": "loan-disbursement",
         "module_config_id": "loan",
         "form_id": "loan-disbursement-form",
         "form_version": "v1",
@@ -1147,8 +1147,8 @@
         ],
         "confidence": 1,
         "explanation": "quiero pagar mi prestamo hoy",
-        "renderer": "lowdefy",
-        "lowdefy_page": "loan-payment",
+        "renderer": "react",
+        "editor_route": "loan-payment",
         "module_config_id": "loan",
         "form_id": "loan-payment-form",
         "form_version": "v1",
@@ -1172,8 +1172,8 @@
         ],
         "confidence": 1,
         "explanation": "quiero refinanciar mi prestamo",
-        "renderer": "lowdefy",
-        "lowdefy_page": "loan-refinance",
+        "renderer": "react",
+        "editor_route": "loan-refinance",
         "module_config_id": "loan",
         "form_id": "loan-refinance-form",
         "form_version": "v1",

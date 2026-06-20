@@ -1,0 +1,57 @@
+asset_id: asset_set.fl003
+asset_type: asset_set
+name: Fl003 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl003.
+text: 'Transfer
+
+  Transferir Dinero
+
+  Identificar al cliente antes de cualquier operacion financiera
+
+  Validar beneficiario para transferencia internacional'
+tags:
+- asset_set
+- fl003
+relations:
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.fl003
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_beneficiario_para_transferencia_internacional
+  metadata: {}
+payload:
+  transaction_id: fl003
+  asset_ids:
+  - entity.transfer
+  - flow.fl003
+  - user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  - user_task.validar_beneficiario_para_transferencia_internacional
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: flow.fl003
+    asset_type: flow
+  - asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+    asset_type: user_task
+  - asset_id: user_task.validar_beneficiario_para_transferencia_internacional
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Fl003 Asset Set
+  normalized_name: fl003 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

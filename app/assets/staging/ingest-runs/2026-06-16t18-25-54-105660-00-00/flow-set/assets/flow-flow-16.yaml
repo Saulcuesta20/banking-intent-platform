@@ -1,0 +1,72 @@
+asset_id: flow.flow.16
+asset_type: flow
+name: Pago de préstamo (recepción de fondos)
+version: 1.0.0
+owner: process_kb
+description: El proceso de pago de prestamo recibe fondos, aplica el abono y actualiza
+  saldo.
+text: El proceso de pago de prestamo recibe fondos, aplica el abono y actualiza saldo.
+tags:
+- el.cliente.desea.pagar.su.prestamo
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.pago_de_prestamo
+  metadata: {}
+payload:
+  flow_id: flow.16
+  flow_name: Pago de préstamo (recepción de fondos)
+  intent: el.cliente.desea.pagar.su.prestamo
+  confidence: 0.75
+  business_event: Cliente realiza pago de préstamo
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de pago de prestamo recibe fondos, aplica el abono y actualiza
+    saldo.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Recibir y aplicar un pago de préstamo
+  purpose: Recibir y aplicar un pago de préstamo
+  transaction_id: flow.16
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Pago de préstamo (recepción de fondos)
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de pago de prestamo recibe fondos, aplica el abono y actualiza
+      saldo.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de pago de prestamo recibe fondos, aplica el abono y actualiza
+      saldo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de pago de prestamo recibe fondos, aplica el abono y actualiza
+      saldo.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de pago de prestamo recibe fondos, aplica el abono y actualiza
+      saldo.
+  match_strategy: generated
+  canonical_name: Pago de préstamo (recepción de fondos)
+  normalized_name: pago de préstamo (recepción de fondos)
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

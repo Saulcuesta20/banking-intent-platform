@@ -1,0 +1,25 @@
+asset_id: user_task.refinance_request_submission
+asset_type: user_task
+name: Refinance Request Submission
+version: 1.0.0
+owner: business_model_kb
+description: Submit the refinance request to the approval system.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_submit_request
+  task: submit_refinance_request_for_approval
+  type: manual
+  name: Refinance Request Submission
+  description: Submit the refinance request to the approval system.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Refinance Request Submission
+  normalized_name: refinance request submission
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

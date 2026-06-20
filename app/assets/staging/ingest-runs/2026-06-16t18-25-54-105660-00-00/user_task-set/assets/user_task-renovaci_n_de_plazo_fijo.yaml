@@ -1,0 +1,25 @@
+asset_id: user_task.renovaci_n_de_plazo_fijo
+asset_type: user_task
+name: Renovación de plazo fijo
+version: 1.0.0
+owner: business_model_kb
+description: Renovar el depósito a plazo fijo según las condiciones acordadas.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: aplicar_renovacion
+  task: aplicar_renovaci_n
+  type: transaction
+  name: Renovación de plazo fijo
+  description: Renovar el depósito a plazo fijo según las condiciones acordadas.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Renovación de plazo fijo
+  normalized_name: renovación de plazo fijo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

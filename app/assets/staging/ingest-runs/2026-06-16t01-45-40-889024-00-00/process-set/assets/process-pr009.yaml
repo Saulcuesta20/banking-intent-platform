@@ -1,0 +1,29 @@
+asset_id: process.pr009
+asset_type: process
+name: PR009
+version: 1.0.0
+owner: process_kb
+description: 'Proceso de aprobación reforzada: revisa score alto y emite decisión
+  humana.'
+text: ''
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pr009
+  business_event: ''
+  triggers: []
+  execution_nodes: []
+  transitions: []
+  rules: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: PR009
+  normalized_name: pr009
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

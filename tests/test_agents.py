@@ -3,7 +3,11 @@ from pathlib import Path
 from app.agents.ask import AskCoordinatorAgent
 from app.agents.ask import KnowledgeRouterAgent
 from app.agents.catalog import build_agent_registry, build_asset_specialist_agents
+from app.agents.catalog_loader import AgentCatalogLoader
+from app.agents.generic import build_agent_from_definition
+from app.agents.skills.loader import SkillCatalogLoader
 from app.agents.ingestion import IngestionCoordinatorAgent
+from app.config.settings import load_settings
 from app.ingestion.orchestrator import IngestionOrchestrationResult, IngestionOrchestratorConfig
 
 
@@ -33,6 +37,11 @@ def test_asset_specialist_agents_are_registered():
     agent_ids = {agent.definition.agent_id for agent in registry.list_agents()}
 
     assert {
+        "agent.system.planning",
+        "agent.system.delegator",
+        "agent.system.monitoring",
+        "agent.business.loan.executive",
+        "agent.business.platform.admin",
         "agent.asset.flow",
         "agent.asset.process",
         "agent.asset.rule",
@@ -42,6 +51,51 @@ def test_asset_specialist_agents_are_registered():
         "agent.asset.configuration",
         "agent.ask.knowledge_router",
     }.issubset(agent_ids)
+
+
+def test_agent_catalog_loader_builds_configured_agents():
+    settings = load_settings()
+    definitions = AgentCatalogLoader().load_file(settings.agent_catalog_path)
+
+    agent_ids = {definition.agent_id for definition in definitions}
+    loan_agent = next(definition for definition in definitions if definition.agent_id == "agent.business.loan.executive")
+
+    assert {"agent.system.planning", "agent.system.delegator", "agent.system.monitoring"}.issubset(agent_ids)
+    assert loan_agent.agent_class == "worker"
+    assert loan_agent.skill_ids == ["loan-origination-review"]
+    assert loan_agent.tool_ids == [
+        "tool.loan.application.lookup",
+        "tool.loan.risk.summary",
+    ]
+
+
+def test_skill_catalog_loader_reads_markdown_skills():
+    settings = load_settings()
+    skills = SkillCatalogLoader().load_index(settings.agent_skills_path)
+
+    loan_skill = skills["loan-origination-review"]
+
+    assert loan_skill.name == "loan-origination-review"
+    assert "loan-originations" in loan_skill.description.lower()
+    assert "Use this skill for loan operations review" in loan_skill.instructions
+
+
+def test_configured_business_agent_enforces_tool_policy():
+    settings = load_settings()
+    definitions = AgentCatalogLoader().load_file(settings.agent_catalog_path)
+    loan_agent = build_agent_from_definition(
+        next(definition for definition in definitions if definition.agent_id == "agent.business.loan.executive")
+    )
+
+    allowed_result = loan_agent.run({"tool_ids": ["tool.loan.application.lookup"]})
+    denied_result = loan_agent.run({"tool_ids": ["tool.loan.application.lookup", "tool.forbidden.extra"]})
+
+    assert allowed_result.status == "ok"
+    assert allowed_result.output["decision"] == "assist"
+    assert [event["node"] for event in allowed_result.trace] == ["initialize", "load_skills", "validate_policy", "route_class", "finalize"]
+    assert allowed_result.output["loaded_skills"][0]["skill_id"] == "loan-origination-review"
+    assert denied_result.status == "failed"
+    assert "tool.forbidden.extra" in (denied_result.error or "")
 
 
 def test_ask_coordinator_wraps_ask_service():

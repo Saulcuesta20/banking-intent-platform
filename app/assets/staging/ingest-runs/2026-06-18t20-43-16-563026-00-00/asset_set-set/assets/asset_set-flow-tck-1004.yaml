@@ -1,0 +1,40 @@
+asset_id: asset_set.flow.tck.1004
+asset_type: asset_set
+name: Flow.tck.1004 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.tck.1004.
+text: 'payment_date_change_flow
+
+  Change Payment Date'
+tags:
+- asset_set
+- flow.tck.1004
+relations:
+- type: groups_flow
+  target_asset_id: flow.flow.tck.1004
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.change_payment_date
+  metadata: {}
+payload:
+  transaction_id: flow.tck.1004
+  asset_ids:
+  - flow.flow.tck.1004
+  - user_task.change_payment_date
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.flow.tck.1004
+    asset_type: flow
+  - asset_id: user_task.change_payment_date
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Flow.tck.1004 Asset Set
+  normalized_name: flow.tck.1004 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

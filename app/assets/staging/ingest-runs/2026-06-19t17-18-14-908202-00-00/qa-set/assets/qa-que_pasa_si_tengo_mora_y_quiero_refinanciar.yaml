@@ -1,0 +1,24 @@
+asset_id: qa.que_pasa_si_tengo_mora_y_quiero_refinanciar
+asset_type: qa
+name: Que pasa si tengo mora y quiero refinanciar?
+version: 1.0.0
+owner: qa_kb
+description: Que pasa si tengo mora y quiero refinanciar?
+text: Que pasa si tengo mora y quiero refinanciar?
+tags:
+- qa
+relations:
+- type: uses_entity
+  target_asset_id: entity.mora
+  metadata: {}
+payload:
+  question: Que pasa si tengo mora y quiero refinanciar?
+  transaction_id: que.pasa.si.tengo.mora.y.quiero.refinanciar
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Que pasa si tengo mora y quiero refinanciar?
+  normalized_name: que pasa si tengo mora y quiero refinanciar?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

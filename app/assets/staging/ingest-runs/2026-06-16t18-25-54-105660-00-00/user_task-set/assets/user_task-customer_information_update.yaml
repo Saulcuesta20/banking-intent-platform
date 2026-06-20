@@ -1,0 +1,27 @@
+asset_id: user_task.customer_information_update
+asset_type: user_task
+name: Customer Information Update
+version: 1.0.0
+owner: business_model_kb
+description: Update existing customer's address, phone, employment, and preferred
+  contact channel.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: update_customer_info
+  task: update_customer_information
+  type: update
+  name: Customer Information Update
+  description: Update existing customer's address, phone, employment, and preferred
+    contact channel.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Information Update
+  normalized_name: customer information update
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

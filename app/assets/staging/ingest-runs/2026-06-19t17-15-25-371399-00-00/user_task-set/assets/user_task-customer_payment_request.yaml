@@ -1,0 +1,25 @@
+asset_id: user_task.customer_payment_request
+asset_type: user_task
+name: Customer Payment Request
+version: 1.0.0
+owner: business_model_kb
+description: Customer requests a lower monthly payment
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_1
+  task: request_lower_payment
+  type: request
+  name: Customer Payment Request
+  description: Customer requests a lower monthly payment
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Payment Request
+  normalized_name: customer payment request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

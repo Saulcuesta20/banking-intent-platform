@@ -1,0 +1,34 @@
+asset_id: ruleset.savings.interest.compounding
+asset_type: ruleset
+name: Savings.interest.compounding Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction savings.interest.compounding with 1 business
+  rules.
+text: Interest is compounded monthly and credited on the last business day.
+tags:
+- ruleset
+- savings.interest.compounding
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.savings_interest_compounding
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.interest
+  metadata: {}
+payload:
+  transaction_id: savings.interest.compounding
+  ruleset_name: Savings.interest.compounding Ruleset
+  rule_ids:
+  - business_rule.savings_interest_compounding
+  conditions:
+  - Monthly interest posting
+  consequences:
+  - Compound and credit interest
+  match_strategy: generated
+  canonical_name: Savings.interest.compounding Ruleset
+  normalized_name: savings.interest.compounding ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

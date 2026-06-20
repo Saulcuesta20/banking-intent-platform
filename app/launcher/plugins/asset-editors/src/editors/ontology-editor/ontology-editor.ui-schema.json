@@ -1,0 +1,92 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Entities",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/entities",
+          "options": {
+            "detail": {
+              "type": "GridLayout",
+              "columns": 3,
+              "elements": [
+                { "type": "Control", "scope": "#/properties/id" },
+                { "type": "Control", "scope": "#/properties/name" },
+                { "type": "Control", "scope": "#/properties/structural_layer" },
+                { "type": "Control", "scope": "#/properties/subtype" },
+                { "type": "Control", "scope": "#/properties/technical_type" },
+                { "type": "Control", "scope": "#/properties/semantic_space" },
+                { "type": "Control", "scope": "#/properties/description" },
+                { "type": "Control", "scope": "#/properties/aliases" },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/attributes",
+                  "options": {
+                    "detail": {
+                      "type": "GridLayout",
+                      "columns": 4,
+                      "elements": [
+                        { "type": "Control", "scope": "#/properties/id" },
+                        { "type": "Control", "scope": "#/properties/name" },
+                        { "type": "Control", "scope": "#/properties/type" },
+                        { "type": "Control", "scope": "#/properties/required" },
+                        { "type": "Control", "scope": "#/properties/description" }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Relations",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/relations",
+          "options": {
+            "detail": {
+              "type": "GridLayout",
+              "columns": 4,
+              "elements": [
+                { "type": "Control", "scope": "#/properties/id" },
+                { "type": "Control", "scope": "#/properties/source_entity_id" },
+                { "type": "Control", "scope": "#/properties/target_entity_id" },
+                { "type": "Control", "scope": "#/properties/relation_type" },
+                { "type": "Control", "scope": "#/properties/description" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Layout",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/layout/properties/nodes",
+          "options": {
+            "detail": {
+              "type": "GridLayout",
+              "columns": 3,
+              "elements": [
+                { "type": "Control", "scope": "#/properties/x" },
+                { "type": "Control", "scope": "#/properties/y" },
+                { "type": "Control", "scope": "#/properties/collapsed" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

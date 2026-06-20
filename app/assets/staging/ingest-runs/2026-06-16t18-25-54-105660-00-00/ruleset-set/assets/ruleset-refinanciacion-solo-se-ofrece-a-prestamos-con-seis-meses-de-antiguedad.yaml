@@ -1,0 +1,39 @@
+asset_id: ruleset.refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+asset_type: ruleset
+name: Refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+  with 1 business rules.
+text: La refinanciacion solo se ofrece a prestamos con seis meses de antiguedad.
+tags:
+- ruleset
+- refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.refinanciacion_solo_se_ofrece_a_prestamos_con_seis_meses_de_antiguedad
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan_refinance
+  metadata: {}
+payload:
+  transaction_id: refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+  ruleset_name: Refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+    Ruleset
+  rule_ids:
+  - business_rule.refinanciacion_solo_se_ofrece_a_prestamos_con_seis_meses_de_antiguedad
+  conditions: []
+  consequences:
+  - La refinanciacion solo se ofrece a prestamos con seis meses de antiguedad.
+  match_strategy: generated
+  canonical_name: Refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+    Ruleset
+  normalized_name: refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+    ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

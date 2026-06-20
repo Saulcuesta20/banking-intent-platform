@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: customer-form-set
+  name: Clientes Form Set
+  version: 1.0.0
+  domain: master-data
+  module: customer
+  description: Versioned form deployment set for customer.
+  tags:
+  - master-data
+  - customer
+  - form
+spec:
+  assetType: form
+  assets:
+  - assets/form-customer-create-form.yaml

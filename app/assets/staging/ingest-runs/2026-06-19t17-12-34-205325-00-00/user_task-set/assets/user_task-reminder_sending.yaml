@@ -1,0 +1,27 @@
+asset_id: user_task.reminder_sending
+asset_type: user_task
+name: Reminder Sending
+version: 1.0.0
+owner: business_model_kb
+description: System or analyst sends a reminder to the customer or internally if the
+  case is still open and requires attention.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: send_reminder
+  task: send_a_reminder_if_the_case_remains_open
+  type: automated
+  name: Reminder Sending
+  description: System or analyst sends a reminder to the customer or internally if
+    the case is still open and requires attention.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Reminder Sending
+  normalized_name: reminder sending
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

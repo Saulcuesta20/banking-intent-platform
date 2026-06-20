@@ -1,0 +1,25 @@
+asset_id: user_task.present_plan
+asset_type: user_task
+name: Present Plan
+version: 1.0.0
+owner: business_model_kb
+description: The plan is presented to the customer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: present_plan
+  task: present_the_plan
+  type: manual
+  name: Present Plan
+  description: The plan is presented to the customer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Present Plan
+  normalized_name: present plan
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

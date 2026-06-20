@@ -1,0 +1,24 @@
+asset_id: entity.savings_account
+asset_type: entity
+name: ahorro
+version: 1.0.0
+owner: business_model_kb
+description: Saldo y propósito para reservar fondos a futuro
+text: Saldo y propósito para reservar fondos a futuro
+tags: []
+relations: []
+payload:
+  aliases:
+  - savings account
+  - cuenta
+  - cuenta ahorro
+  - account
+  business_layer: asset
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: ahorro
+  normalized_name: ahorro
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

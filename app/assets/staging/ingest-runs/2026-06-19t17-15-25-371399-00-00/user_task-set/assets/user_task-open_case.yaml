@@ -1,0 +1,25 @@
+asset_id: user_task.open_case
+asset_type: user_task
+name: Open Case
+version: 1.0.0
+owner: business_model_kb
+description: Initiate a new case for the client's installment change request.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: open_case_task
+  task: abrir_expediente
+  type: administrative
+  name: Open Case
+  description: Initiate a new case for the client's installment change request.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Open Case
+  normalized_name: open case
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.update_phone
+asset_type: user_task
+name: Update Phone
+version: 1.0.0
+owner: business_model_kb
+description: Agent updates phone number in customer profile.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: update_phone
+  task: update_phone_number
+  type: agent
+  name: Update Phone
+  description: Agent updates phone number in customer profile.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Update Phone
+  normalized_name: update phone
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

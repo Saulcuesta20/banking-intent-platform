@@ -1,0 +1,25 @@
+asset_id: user_task.process_refund
+asset_type: user_task
+name: Process Refund
+version: 1.0.0
+owner: business_model_kb
+description: Agent initiates refund to customer account.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: process_refund
+  task: process_refund
+  type: agent
+  name: Process Refund
+  description: Agent initiates refund to customer account.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Process Refund
+  normalized_name: process refund
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

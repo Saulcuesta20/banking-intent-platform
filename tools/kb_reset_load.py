@@ -63,7 +63,10 @@ def reset_load_knowledge_bases(
     topology = FederatedKnowledgeTopology.from_yaml(settings.federated_topology_path)
     relation_registry = RelationRegistry.from_yaml(settings.relation_registry_path)
     loader = CorpusFlowLoader(
-        OpenAICompatibleLLMClient(model=model),
+        OpenAICompatibleLLMClient(
+            model=model,
+            timeout_seconds=settings.intent_llm_timeout_seconds,
+        ),
         instruction_builder=(
             RoleBasedExtractionInstructionBuilder()
             if build_extraction_instructions
@@ -102,6 +105,7 @@ def reset_load_knowledge_bases(
         repository=existing_repository,
         llm_client=loader.llm_client,
         relation_normalizer=relation_normalizer,
+        ontology_path=settings.ontology_layers_path,
     ).run(documents=documents, extraction=extraction, records=records)
     assets = _attach_federated_routes(assets, topology, registry)
     written_definition_files = ExecutableDefinitionWriter(

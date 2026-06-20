@@ -1,0 +1,33 @@
+asset_id: process.el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+asset_type: process
+name: Process cancelacion anticipada recalcula intereses
+version: 1.0.0
+owner: process_kb
+description: El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+text: El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+tags:
+- process_fragment
+relations:
+- type: uses_entity
+  target_asset_id: entity.interes
+  metadata: {}
+payload:
+  steps_text: El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+  source_section: Processes
+  transaction_id: el.proceso.de.cancelacion.anticipada.recalcula.intereses.y.genera.finiquito
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+  match_strategy: generated
+  canonical_name: Process cancelacion anticipada recalcula intereses
+  normalized_name: process cancelacion anticipada recalcula intereses
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

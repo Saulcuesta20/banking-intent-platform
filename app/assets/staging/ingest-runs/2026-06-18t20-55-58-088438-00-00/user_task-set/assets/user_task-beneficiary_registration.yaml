@@ -1,0 +1,25 @@
+asset_id: user_task.beneficiary_registration
+asset_type: user_task
+name: Beneficiary Registration
+version: 1.0.0
+owner: business_model_kb
+description: Registering a beneficiary for money transfers
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_beneficiary_registration
+  task: register_beneficiary_for_transfer
+  type: user_task
+  name: Beneficiary Registration
+  description: Registering a beneficiary for money transfers
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Beneficiary Registration
+  normalized_name: beneficiary registration
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

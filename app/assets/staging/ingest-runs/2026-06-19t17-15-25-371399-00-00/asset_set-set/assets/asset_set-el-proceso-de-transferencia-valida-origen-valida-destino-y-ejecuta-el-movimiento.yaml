@@ -1,0 +1,34 @@
+asset_id: asset_set.el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento
+asset_type: asset_set
+name: El.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento.
+text: Process transferencia
+tags:
+- asset_set
+- el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento
+relations:
+- type: groups_process
+  target_asset_id: process.el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento
+  metadata: {}
+payload:
+  transaction_id: el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento
+  asset_ids:
+  - process.el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento
+  asset_types:
+  - process
+  primary_asset_type: process
+  members:
+  - asset_id: process.el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento
+    asset_type: process
+  match_strategy: generated
+  canonical_name: El.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento
+    Asset Set
+  normalized_name: el.proceso.de.transferencia.valida.origen.valida.destino.y.ejecuta.el.movimiento
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,43 @@
+asset_id: plan.customer.create
+asset_type: plan
+name: Plan crear cliente
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para crear cliente: abrir formulario, capturar datos, validar identidad
+  y registrar cliente.'
+text: 'Plan para crear cliente: abrir formulario, capturar datos, validar identidad
+  y registrar cliente.'
+tags:
+- orchestration_plan
+relations:
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  steps: []
+  plan_text: 'Plan para crear cliente: abrir formulario, capturar datos, validar identidad
+    y registrar cliente.'
+  source_section: Plans
+  transaction_id: customer.create
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Plan crear cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Plan para crear cliente: abrir formulario, capturar datos, validar
+      identidad y registrar cliente.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Plan para crear cliente: abrir formulario, capturar datos, validar
+      identidad y registrar cliente.'
+  match_strategy: generated
+  canonical_name: Plan crear cliente
+  normalized_name: plan crear cliente
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

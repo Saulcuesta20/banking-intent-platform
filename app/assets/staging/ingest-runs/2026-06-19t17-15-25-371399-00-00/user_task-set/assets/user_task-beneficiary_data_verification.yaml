@@ -1,0 +1,27 @@
+asset_id: user_task.beneficiary_data_verification
+asset_type: user_task
+name: Beneficiary Data Verification
+version: 1.0.0
+owner: business_model_kb
+description: Check if destination country or beneficiary data is incomplete and ask
+  for clarification.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_verify_beneficiary
+  task: verify_beneficiary_data_completeness
+  type: manual
+  name: Beneficiary Data Verification
+  description: Check if destination country or beneficiary data is incomplete and
+    ask for clarification.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Beneficiary Data Verification
+  normalized_name: beneficiary data verification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

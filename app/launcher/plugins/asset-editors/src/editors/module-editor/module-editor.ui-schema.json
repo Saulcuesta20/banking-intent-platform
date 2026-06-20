@@ -1,0 +1,49 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Module Definition",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/module_id"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/domain_id"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/label"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/description"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 1,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/menus"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

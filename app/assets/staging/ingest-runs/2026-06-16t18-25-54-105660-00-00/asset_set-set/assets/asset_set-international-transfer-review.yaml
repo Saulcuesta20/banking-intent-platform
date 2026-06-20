@@ -1,0 +1,80 @@
+asset_id: asset_set.international.transfer.review
+asset_type: asset_set
+name: International.transfer.review Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for international.transfer.review.
+text: 'International Transfer Review
+
+  Capture Details
+
+  Release or Reject
+
+  Request Purpose Document
+
+  Route to Manager Review
+
+  Screen Beneficiary
+
+  Validate Source Account'
+tags:
+- asset_set
+- international.transfer.review
+relations:
+- type: groups_flow
+  target_asset_id: flow.international.transfer.review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.capture_details
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.release_or_reject
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.request_purpose_document
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.route_to_manager_review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.screen_beneficiary
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validate_source_account
+  metadata: {}
+payload:
+  transaction_id: international.transfer.review
+  asset_ids:
+  - flow.international.transfer.review
+  - user_task.capture_details
+  - user_task.release_or_reject
+  - user_task.request_purpose_document
+  - user_task.route_to_manager_review
+  - user_task.screen_beneficiary
+  - user_task.validate_source_account
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.international.transfer.review
+    asset_type: flow
+  - asset_id: user_task.capture_details
+    asset_type: user_task
+  - asset_id: user_task.release_or_reject
+    asset_type: user_task
+  - asset_id: user_task.request_purpose_document
+    asset_type: user_task
+  - asset_id: user_task.route_to_manager_review
+    asset_type: user_task
+  - asset_id: user_task.screen_beneficiary
+    asset_type: user_task
+  - asset_id: user_task.validate_source_account
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: International.transfer.review Asset Set
+  normalized_name: international.transfer.review asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

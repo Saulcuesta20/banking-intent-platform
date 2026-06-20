@@ -1,0 +1,89 @@
+asset_id: flow.domestic.transfer
+asset_type: flow
+name: Domestic Transfer
+version: 1.0.0
+owner: process_kb
+description: Multi-step process to validate customer identity, review transfer details,
+  and execute the transfer.
+text: Multi-step process to validate customer identity, review transfer details, and
+  execute the transfer.
+tags:
+- transfer.funds.domestically
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validate_customer_identity
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.review_transfer_details
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirm_transfer
+  metadata: {}
+payload:
+  flow_id: domestic.transfer
+  flow_name: Domestic Transfer
+  intent: transfer.funds.domestically
+  confidence: 0.75
+  business_event: Customer initiates a domestic transfer
+  utterances: []
+  plan: []
+  tasks:
+  - task: validate_customer_identity
+    type: verification
+  - task: review_transfer_details
+    type: review
+  - task: confirm_transfer
+    type: confirmation
+  user_tasks:
+  - user_task_id: validate_customer_identity
+    task: validate_customer_identity
+    type: verification
+    name: Validate Customer Identity
+    description: Verify customer identity using the Customer Profile Service.
+    tools: []
+    user_actions: []
+  - user_task_id: review_transfer_details
+    task: review_transfer_details
+    type: review
+    name: Review Transfer Details
+    description: Review transfer details before submission.
+    tools: []
+    user_actions: []
+  - user_task_id: confirm_transfer
+    task: confirm_transfer
+    type: confirmation
+    name: Confirm Transfer
+    description: Confirm and execute the transfer.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Multi-step process to validate customer identity, review transfer details,
+    and execute the transfer.
+  source: data/raw/enterprise_dump_2026/systems_catalog_export.json
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/systems_catalog_export.json
+    purpose: Execute a domestic transfer after validation gates pass.
+  purpose: Execute a domestic transfer after validation gates pass.
+  transaction_id: domestic.transfer
+  relation_hints:
+  - type: has_step
+    family: structural
+    phrase: step
+    sentence: Multi-step process to validate customer identity, review transfer details,
+      and execute the transfer.
+  - type: has_step
+    family: structural
+    phrase: step
+    sentence: Multi-step process to validate customer identity, review transfer details,
+      and execute the transfer.
+  match_strategy: generated
+  canonical_name: Domestic Transfer
+  normalized_name: domestic transfer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

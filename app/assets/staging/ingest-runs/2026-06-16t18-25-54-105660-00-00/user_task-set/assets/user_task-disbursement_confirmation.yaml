@@ -1,0 +1,27 @@
+asset_id: user_task.disbursement_confirmation
+asset_type: user_task
+name: Disbursement Confirmation
+version: 1.0.0
+owner: business_model_kb
+description: Back office confirms destination account, validates beneficiary, and
+  schedules the transfer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_disbursement
+  task: confirm_disbursement_details
+  type: verification
+  name: Disbursement Confirmation
+  description: Back office confirms destination account, validates beneficiary, and
+    schedules the transfer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Disbursement Confirmation
+  normalized_name: disbursement confirmation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

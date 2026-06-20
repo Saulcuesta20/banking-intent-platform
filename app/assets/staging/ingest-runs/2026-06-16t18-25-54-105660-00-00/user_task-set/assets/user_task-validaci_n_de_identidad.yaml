@@ -1,0 +1,33 @@
+asset_id: user_task.validaci_n_de_identidad
+asset_type: user_task
+name: Validación de identidad
+version: 1.0.0
+owner: business_model_kb
+description: Validar la identidad del cliente mediante documento o biometría.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_validar_identidad
+  task: validar_identidad
+  type: manual
+  name: Validación de identidad
+  description: Validar la identidad del cliente mediante documento o biometría.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Validar la identidad del cliente mediante documento o biometría.
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: Validar la identidad del cliente mediante documento o biometría.
+  match_strategy: generated
+  canonical_name: Validación de identidad
+  normalized_name: validación de identidad
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

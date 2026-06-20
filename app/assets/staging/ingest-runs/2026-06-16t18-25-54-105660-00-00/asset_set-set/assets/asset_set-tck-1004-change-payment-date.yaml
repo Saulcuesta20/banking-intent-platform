@@ -1,0 +1,56 @@
+asset_id: asset_set.tck.1004.change.payment.date
+asset_type: asset_set
+name: Tck.1004.change.payment.date Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for tck.1004.change.payment.date.
+text: 'Change Payment Date
+
+  Propose New Date
+
+  Update Payment Schedule
+
+  Verify Account Status'
+tags:
+- asset_set
+- tck.1004.change.payment.date
+relations:
+- type: groups_flow
+  target_asset_id: flow.tck.1004.change.payment.date
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.propose_new_date
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.update_payment_schedule
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_account_status
+  metadata: {}
+payload:
+  transaction_id: tck.1004.change.payment.date
+  asset_ids:
+  - flow.tck.1004.change.payment.date
+  - user_task.propose_new_date
+  - user_task.update_payment_schedule
+  - user_task.verify_account_status
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.tck.1004.change.payment.date
+    asset_type: flow
+  - asset_id: user_task.propose_new_date
+    asset_type: user_task
+  - asset_id: user_task.update_payment_schedule
+    asset_type: user_task
+  - asset_id: user_task.verify_account_status
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Tck.1004.change.payment.date Asset Set
+  normalized_name: tck.1004.change.payment.date asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

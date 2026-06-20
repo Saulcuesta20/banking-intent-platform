@@ -1,0 +1,37 @@
+asset_id: entity.loan_conditions
+asset_type: entity
+name: cuota
+version: 1.0.0
+owner: business_model_kb
+description: Pago periódico de un préstamo compuesto por capital, intereses y posibles
+  cargos
+text: 'Pago periódico de un préstamo compuesto por capital, intereses y posibles cargos
+
+  Porcentaje usado para calcular costo financiero o remuneración de depósitos'
+tags: []
+relations: []
+payload:
+  aliases:
+  - loan conditions
+  - condiciones
+  - tasa
+  - plazo
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Pago periódico de un préstamo compuesto por capital, intereses y posibles
+      cargos
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Pago periódico de un préstamo compuesto por capital, intereses y posibles
+      cargos
+  match_strategy: generated
+  canonical_name: cuota
+  normalized_name: cuota
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

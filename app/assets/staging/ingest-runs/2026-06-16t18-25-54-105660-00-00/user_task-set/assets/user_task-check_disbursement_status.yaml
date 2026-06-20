@@ -1,0 +1,25 @@
+asset_id: user_task.check_disbursement_status
+asset_type: user_task
+name: Check Disbursement Status
+version: 1.0.0
+owner: business_model_kb
+description: Verify if disbursement is still pending.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_disbursement_status
+  task: check_disbursement_status
+  type: automated
+  name: Check Disbursement Status
+  description: Verify if disbursement is still pending.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Disbursement Status
+  normalized_name: check disbursement status
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

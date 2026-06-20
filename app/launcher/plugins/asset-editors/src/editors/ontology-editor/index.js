@@ -1,0 +1,20 @@
+export { OntologyEditorView, sourceDocument } from './components.js'
+export {
+  attributeZodSchema,
+  businessModelZodSchema,
+  createDefaultAttribute,
+  createDefaultEntity,
+  createDefaultRelation,
+  layoutZodSchema,
+  normalizeBusinessModelDocument,
+  normalizeBusinessModelPayload,
+  normalizeEntityNode,
+  normalizeRelationEdge,
+  validateBusinessModelDocument,
+  BUSINESS_LAYERS,
+  BUSINESS_ROLES,
+  RELATION_TYPES,
+  STRUCTURAL_LAYERS,
+  SEMANTIC_SPACES,
+  knowledgeBaseFromDocument,
+} from './helpers.js'

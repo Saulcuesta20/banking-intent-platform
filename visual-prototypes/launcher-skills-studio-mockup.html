@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launcher Skills Studio Mockup</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --panel: #ffffff;
+        --line: #d9e1ee;
+        --text: #102039;
+        --muted: #637089;
+        --blue: #1f5eff;
+        --blue-soft: #ecf3ff;
+        --green: #1f8a5b;
+        --green-soft: #edf8f1;
+        --amber: #b57600;
+        --amber-soft: #fff5df;
+        --violet: #6f56d9;
+        --violet-soft: #f2eeff;
+        --red: #d84343;
+        --red-soft: #fff0f0;
+        --shadow: 0 10px 30px rgba(16, 32, 57, 0.08);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      .page {
+        width: 1600px;
+        height: 1180px;
+        margin: 0 auto;
+        padding: 16px 18px 22px;
+        background: linear-gradient(180deg, #f7f9fd 0%, #f4f7fb 100%);
+      }
+      .topbar {
+        background: rgba(255,255,255,.9);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 14px 18px;
+      }
+      .crumbs {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+      .title-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .title h1 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.1;
+        letter-spacing: 0;
+      }
+      .title p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .tabs {
+        display: flex;
+        gap: 8px;
+        margin-top: 14px;
+        flex-wrap: wrap;
+      }
+      .tab {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 9px 13px;
+        background: #fff;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .tab.active {
+        background: var(--blue);
+        color: #fff;
+        border-color: var(--blue);
+      }
+      .shell {
+        display: grid;
+        grid-template-columns: 1.05fr 1.6fr 1.05fr;
+        gap: 16px;
+        margin-top: 16px;
+        align-items: start;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+      .panel .body {
+        padding: 14px;
+      }
+      .panel h2 {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+      .panel h3 {
+        margin: 0 0 10px;
+        font-size: 13px;
+      }
+      .subtle {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      .section {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+        margin-top: 12px;
+      }
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .pill-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 9px;
+        background: #fff;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .pill.blue { background: var(--blue-soft); border-color: #c6d9ff; color: var(--blue); }
+      .pill.green { background: var(--green-soft); border-color: #ccebd9; color: var(--green); }
+      .pill.violet { background: var(--violet-soft); border-color: #d9ceff; color: var(--violet); }
+      .pill.amber { background: var(--amber-soft); border-color: #f0d8a1; color: var(--amber); }
+      .pill.red { background: var(--red-soft); border-color: #f4c1c1; color: var(--red); }
+      .stack { display: grid; gap: 10px; }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+      }
+      .card.active {
+        border-color: var(--blue);
+        background: var(--blue-soft);
+      }
+      .card-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .card-title {
+        font-size: 14px;
+        font-weight: 800;
+      }
+      .card-sub {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta {
+        margin-top: 10px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .meta span {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 8px;
+        font-size: 11px;
+        font-weight: 700;
+        background: #fff;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .field {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 11px;
+        background: #fff;
+      }
+      .field .k {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .field .v {
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .editor {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #0f172a;
+        color: #dbe7ff;
+        overflow: hidden;
+      }
+      .editor-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 12px;
+        background: #15213a;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        font-size: 12px;
+      }
+      .editor-body {
+        display: grid;
+        grid-template-columns: 1fr 0.82fr;
+        gap: 0;
+        min-height: 460px;
+      }
+      .code {
+        padding: 14px;
+        border-right: 1px solid rgba(255,255,255,.08);
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 12px;
+        line-height: 1.65;
+        white-space: pre-wrap;
+      }
+      .preview {
+        padding: 14px;
+        background: linear-gradient(180deg, #111b31 0%, #0f172a 100%);
+      }
+      .preview-box {
+        background: rgba(255,255,255,.05);
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 12px;
+      }
+      .preview-box h4 {
+        margin: 0 0 8px;
+        font-size: 12px;
+        color: #fff;
+      }
+      .preview-list {
+        display: grid;
+        gap: 8px;
+      }
+      .preview-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+        font-size: 12px;
+        color: #dce8ff;
+      }
+      .preview-item strong { color: #fff; }
+      .right-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+      .count {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .btn-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 10px;
+        padding: 9px 12px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .btn.primary {
+        background: var(--blue);
+        color: #fff;
+        border-color: var(--blue);
+      }
+      .skill-list {
+        display: grid;
+        gap: 8px;
+      }
+      .skill-row {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 11px;
+        background: #fff;
+      }
+      .skill-row.active {
+        border-color: var(--violet);
+        background: var(--violet-soft);
+      }
+      .skill-row .t {
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .skill-row .d {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .scope-grid {
+        display: grid;
+        gap: 10px;
+      }
+      .scope-tile {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+      }
+      .scope-tile.active {
+        border-color: var(--green);
+        background: var(--green-soft);
+      }
+      .scope-tile .t {
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .scope-tile .d {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 4px;
+        line-height: 1.4;
+      }
+      .bottom-band {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 1.15fr 1fr 0.95fr;
+        gap: 16px;
+      }
+      .legend {
+        display: grid;
+        gap: 8px;
+      }
+      .legend-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-size: 12px;
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+      }
+      .mini {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px;
+        background: #fff;
+      }
+      .mini h4 {
+        margin: 0 0 8px;
+        font-size: 13px;
+      }
+      .future {
+        display: grid;
+        gap: 8px;
+      }
+      .future .item {
+        border: 1px dashed #c7d2e5;
+        border-radius: 10px;
+        padding: 10px 11px;
+        background: #fbfcfe;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="topbar">
+        <div class="crumbs">
+          <span>UNIFIED CATALOG</span>
+          <span>›</span>
+          <span>Launcher Embedded Editors</span>
+          <span>›</span>
+          <strong>Skills Studio</strong>
+        </div>
+        <div class="title-row">
+          <div class="title">
+            <h1>Skills Studio</h1>
+            <p>Administra skills de agentes en Markdown y deja listo el camino para dominios, assets, menus y comportamientos del launcher.</p>
+          </div>
+          <div class="btn-row">
+            <button class="btn">Nueva skill</button>
+            <button class="btn">Importar</button>
+            <button class="btn">Validar</button>
+            <button class="btn primary">Guardar borrador</button>
+          </div>
+        </div>
+        <div class="tabs">
+          <div class="tab">Overview</div>
+          <div class="tab active">Skills</div>
+          <div class="tab">Agents</div>
+          <div class="tab">Assets</div>
+          <div class="tab">Governance</div>
+          <div class="tab">Deployments</div>
+        </div>
+      </div>
+
+      <div class="shell">
+        <div class="panel">
+          <div class="body">
+            <div class="section-header">
+              <h2>Skill Library</h2>
+              <span class="count">5 skills activos</span>
+            </div>
+            <div class="scope-grid">
+              <div class="scope-tile active">
+                <div class="t">Scope: Business Agents</div>
+                <div class="d">Skills por tipo de agente: planning, coordinator, delegator, worker y monitoring.</div>
+              </div>
+              <div class="scope-tile">
+                <div class="t">Scope: Domain Extensions</div>
+                <div class="d">Skills futuras para dominar menús, dominios, módulos y reglas de navegación del launcher.</div>
+              </div>
+              <div class="scope-tile">
+                <div class="t">Scope: Asset Behaviors</div>
+                <div class="d">Skills para configurar el comportamiento de assets, revisiones, validación y edición asistida.</div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Agent Types</h3>
+              <div class="pill-row">
+                <span class="pill blue">planning</span>
+                <span class="pill green">coordinator</span>
+                <span class="pill amber">delegator</span>
+                <span class="pill violet">worker</span>
+                <span class="pill red">monitoring</span>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Configured Skills</h3>
+              <div class="skill-list">
+                <div class="skill-row active">
+                  <div class="t">loan-origination-review</div>
+                  <div class="d">Support loan-originations with governed review, summarization, and approved tool use.</div>
+                </div>
+                <div class="skill-row">
+                  <div class="t">platform-governance</div>
+                  <div class="d">Review catalog, deployments, lifecycle status, and platform governance state.</div>
+                </div>
+                <div class="skill-row">
+                  <div class="t">delegation</div>
+                  <div class="d">Route work to a specialist agent or approved tool-backed capability.</div>
+                </div>
+                <div class="skill-row">
+                  <div class="t">planning</div>
+                  <div class="d">Decompose work into governed steps and recommend the next action.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Coverage</h3>
+              <div class="grid-2">
+                <div class="field">
+                  <div class="k">Agents covered</div>
+                  <div class="v">Business worker templates</div>
+                </div>
+                <div class="field">
+                  <div class="k">Format</div>
+                  <div class="v">Markdown + YAML frontmatter</div>
+                </div>
+                <div class="field">
+                  <div class="k">Approval</div>
+                  <div class="v">Draft / Review / Active</div>
+                </div>
+                <div class="field">
+                  <div class="k">Future use</div>
+                  <div class="v">Launcher behaviors and assets</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="body">
+            <div class="section-header">
+              <div>
+                <h2>Skill Document</h2>
+                <div class="subtle">Editor visual del `SKILL.md` activo. El comportamiento se guarda como texto revisable.</div>
+              </div>
+              <div class="pill-row">
+                <span class="pill violet">loan-origination-review</span>
+                <span class="pill">worker</span>
+                <span class="pill green">approved tools</span>
+              </div>
+            </div>
+
+            <div class="editor">
+              <div class="editor-top">
+                <span>config/agents/skills/loan-origination-review/SKILL.md</span>
+                <span>Markdown + YAML frontmatter</span>
+              </div>
+              <div class="editor-body">
+                <div class="code">---
+name: loan-origination-review
+description: Support loan-originations with governed review, summarization, and approved tool use.
+allowed-tools:
+  - Read
+  - Grep
+---
+
+Use this skill for loan operations review, application context, and eligibility support.
+
+Rules:
+- Summarize borrower context, application state, and key policy constraints.
+- Use only approved tools referenced by the agent definition.
+- If a requested action would exceed policy, recommend escalation instead of execution.
+- Keep outputs concise enough for executive review.</div>
+                <div class="preview">
+                  <div class="preview-box">
+                    <h4>Skill Resolution</h4>
+                    <div class="preview-list">
+                      <div class="preview-item"><span>Skill ID</span><strong>loan-origination-review</strong></div>
+                      <div class="preview-item"><span>Status</span><strong>Loaded by AgentEngine</strong></div>
+                      <div class="preview-item"><span>Allowed tools</span><strong>Read, Grep</strong></div>
+                    </div>
+                  </div>
+                  <div class="preview-box">
+                    <h4>Runtime Behavior</h4>
+                    <div class="preview-list">
+                      <div class="preview-item"><span>Policy</span><strong>Tool access gated</strong></div>
+                      <div class="preview-item"><span>Trace</span><strong>initialize → load_skills → validate_policy → route_class → finalize</strong></div>
+                      <div class="preview-item"><span>Output</span><strong>Concise executive guidance</strong></div>
+                    </div>
+                  </div>
+                  <div class="preview-box">
+                    <h4>Review Notes</h4>
+                    <div class="subtle" style="color:#dce8ff">
+                      Este patrón puede ampliarse luego a skills para assets, dominios, menús y navegación del launcher, manteniendo el mismo editor markdown y la misma ruta de aprobación.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Skill Composition</h3>
+              <div class="grid-2">
+                <div class="field">
+                  <div class="k">Skill IDs</div>
+                  <div class="v">loan-origination-review</div>
+                </div>
+                <div class="field">
+                  <div class="k">Required tools</div>
+                  <div class="v">Read, Grep</div>
+                </div>
+                <div class="field">
+                  <div class="k">Agent class</div>
+                  <div class="v">worker</div>
+                </div>
+                <div class="field">
+                  <div class="k">Policy state</div>
+                  <div class="v">requires_human_review: true</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="body">
+            <div class="section-header">
+              <div>
+                <h2>Right Rail</h2>
+                <div class="subtle">Aquí vive el gobierno del asset hoy, y el bloque de skills puede crecer sin romper la pantalla.</div>
+              </div>
+              <span class="pill blue">Skills + Governance</span>
+            </div>
+
+            <div class="section">
+              <h3>Asset Governance</h3>
+              <div class="grid-2">
+                <div class="field">
+                  <div class="k">Asset Type</div>
+                  <div class="v">skill</div>
+                </div>
+                <div class="field">
+                  <div class="k">Version</div>
+                  <div class="v">0.3.0</div>
+                </div>
+                <div class="field">
+                  <div class="k">Status</div>
+                  <div class="v">draft</div>
+                </div>
+                <div class="field">
+                  <div class="k">Review</div>
+                  <div class="v">pending approval</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Skill Scope</h3>
+              <div class="stack">
+                <div class="card active">
+                  <div class="card-title">Business Agent Skills</div>
+                  <div class="card-sub">planning, coordinator, delegator, worker, monitoring</div>
+                </div>
+                <div class="card">
+                  <div class="card-title">Asset Skills</div>
+                  <div class="card-sub">flow, process, rule, qa, entity, tool, configuration</div>
+                </div>
+                <div class="card">
+                  <div class="card-title">Launcher Skills</div>
+                  <div class="card-sub">domains, menus, navigation, filters, behaviors</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Audit & Controls</h3>
+              <div class="stack">
+                <div class="field">
+                  <div class="k">Trace mode</div>
+                  <div class="v">full node trace</div>
+                </div>
+                <div class="field">
+                  <div class="k">Tool policy</div>
+                  <div class="v">separate from skill guidance</div>
+                </div>
+                <div class="field">
+                  <div class="k">Future editor</div>
+                  <div class="v">active asset behaviors</div>
+                </div>
+              </div>
+              <div class="btn-row" style="margin-top:10px">
+                <button class="btn">Preview</button>
+                <button class="btn">Compare</button>
+                <button class="btn primary">Save draft</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-band">
+        <div class="mini">
+          <h4>Scope Roadmap</h4>
+          <div class="future">
+            <div class="item">1. Skills for business agents in YAML/Markdown.</div>
+            <div class="item">2. Skills editor in launcher panel derecho.</div>
+            <div class="item">3. Same editor pattern for assets, domains and menus.</div>
+          </div>
+        </div>
+        <div class="mini">
+          <h4>Behavior Model</h4>
+          <div class="future">
+            <div class="item">AgentDefinition: contract.</div>
+            <div class="item">AgentEngine: execution.</div>
+            <div class="item">SkillCatalog: behavior guidance.</div>
+          </div>
+        </div>
+        <div class="mini">
+          <h4>Legend</h4>
+          <div class="legend">
+            <div class="legend-row"><span class="dot" style="background:#1f5eff"></span>Business agent scope</div>
+            <div class="legend-row"><span class="dot" style="background:#6f56d9"></span>Selected skill</div>
+            <div class="legend-row"><span class="dot" style="background:#1f8a5b"></span>Approved / active</div>
+            <div class="legend-row"><span class="dot" style="background:#b57600"></span>Draft / review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

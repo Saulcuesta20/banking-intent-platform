@@ -1,0 +1,40 @@
+asset_id: entity.apertura_de_cuenta
+asset_type: entity
+name: apertura de cuenta
+version: 1.0.0
+owner: business_model_kb
+description: Proceso de crear una cuenta bancaria para un cliente
+text: Proceso de crear una cuenta bancaria para un cliente
+tags: []
+relations: []
+payload:
+  aliases: []
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: apertura de cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso de crear una cuenta bancaria para un cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso de crear una cuenta bancaria para un cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso de crear una cuenta bancaria para un cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso de crear una cuenta bancaria para un cliente
+  match_strategy: generated
+  canonical_name: apertura de cuenta
+  normalized_name: apertura de cuenta
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

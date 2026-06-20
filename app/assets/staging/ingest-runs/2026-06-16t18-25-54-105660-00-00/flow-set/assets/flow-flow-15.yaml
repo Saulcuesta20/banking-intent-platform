@@ -1,0 +1,56 @@
+asset_id: flow.flow.15
+asset_type: flow
+name: Desembolso de préstamo
+version: 1.0.0
+owner: process_kb
+description: El proceso de desembolso verifica aprobacion, confirma cuenta destino
+  y acredita fondos.
+text: El proceso de desembolso verifica aprobacion, confirma cuenta destino y acredita
+  fondos.
+tags:
+- loan.disbursement
+relations:
+- type: uses_entity
+  target_asset_id: entity.desembolso
+  metadata: {}
+payload:
+  flow_id: flow.15
+  flow_name: Desembolso de préstamo
+  intent: loan.disbursement
+  confidence: 0.75
+  business_event: Tesorero solicita desembolso
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de desembolso verifica aprobacion, confirma cuenta destino
+    y acredita fondos.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Realizar el desembolso de un préstamo aprobado
+  purpose: Realizar el desembolso de un préstamo aprobado
+  transaction_id: flow.15
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de desembolso verifica aprobacion, confirma cuenta destino
+      y acredita fondos.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de desembolso verifica aprobacion, confirma cuenta destino
+      y acredita fondos.
+  match_strategy: generated
+  canonical_name: Desembolso de préstamo
+  normalized_name: desembolso de préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

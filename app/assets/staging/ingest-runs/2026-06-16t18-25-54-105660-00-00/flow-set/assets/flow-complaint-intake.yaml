@@ -1,0 +1,100 @@
+asset_id: flow.complaint.intake
+asset_type: flow
+name: Complaint Intake
+version: 1.0.0
+owner: process_kb
+description: Process to intake and handle customer complaints
+text: Process to intake and handle customer complaints
+tags:
+- intake.complaint
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.create_claim
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.collect_evidence
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.classify_claim_type
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.assign_owner
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.notify_customer
+  metadata: {}
+payload:
+  flow_id: complaint.intake
+  flow_name: Complaint Intake
+  intent: intake.complaint
+  confidence: 0.75
+  business_event: Complaint Submission
+  utterances: []
+  plan: []
+  tasks:
+  - task: create_claim
+    type: manual
+  - task: collect_evidence
+    type: manual
+  - task: classify_claim_type
+    type: manual
+  - task: assign_owner
+    type: manual
+  - task: notify_customer
+    type: manual
+  user_tasks:
+  - user_task_id: ut_complaint_create_claim
+    task: create_claim
+    type: manual
+    name: Create Claim
+    description: Create a complaint claim
+    tools: []
+    user_actions: []
+  - user_task_id: ut_complaint_collect_evidence
+    task: collect_evidence
+    type: manual
+    name: Collect Evidence
+    description: Collect evidence related to the complaint
+    tools: []
+    user_actions: []
+  - user_task_id: ut_complaint_classify_claim_type
+    task: classify_claim_type
+    type: manual
+    name: Classify Claim Type
+    description: Classify the type of complaint claim
+    tools: []
+    user_actions: []
+  - user_task_id: ut_complaint_assign_owner
+    task: assign_owner
+    type: manual
+    name: Assign Owner
+    description: Assign an owner to handle the complaint
+    tools: []
+    user_actions: []
+  - user_task_id: ut_complaint_notify_customer
+    task: notify_customer
+    type: manual
+    name: Notify Customer
+    description: Notify the customer about the complaint status
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to intake and handle customer complaints
+  source: data/raw/enterprise_dump_2026/process_fragments.json
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/process_fragments.json
+    purpose: To register and assign complaints
+  purpose: To register and assign complaints
+  transaction_id: complaint.intake
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Complaint Intake
+  normalized_name: complaint intake
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

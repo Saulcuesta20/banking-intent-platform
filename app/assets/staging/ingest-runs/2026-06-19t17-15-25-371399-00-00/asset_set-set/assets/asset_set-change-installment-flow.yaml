@@ -1,0 +1,64 @@
+asset_id: asset_set.change.installment.flow
+asset_type: asset_set
+name: Change.installment.flow Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for change.installment.flow.
+text: 'Change Installment Process
+
+  Explain Refinancing Options
+
+  Identity Validation
+
+  Open Case
+
+  Record Interaction'
+tags:
+- asset_set
+- change.installment.flow
+relations:
+- type: groups_flow
+  target_asset_id: flow.change.installment.flow
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.explain_refinancing_options
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identity_validation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.open_case
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.record_interaction
+  metadata: {}
+payload:
+  transaction_id: change.installment.flow
+  asset_ids:
+  - flow.change.installment.flow
+  - user_task.explain_refinancing_options
+  - user_task.identity_validation
+  - user_task.open_case
+  - user_task.record_interaction
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.change.installment.flow
+    asset_type: flow
+  - asset_id: user_task.explain_refinancing_options
+    asset_type: user_task
+  - asset_id: user_task.identity_validation
+    asset_type: user_task
+  - asset_id: user_task.open_case
+    asset_type: user_task
+  - asset_id: user_task.record_interaction
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Change.installment.flow Asset Set
+  normalized_name: change.installment.flow asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

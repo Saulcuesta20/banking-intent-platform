@@ -1,0 +1,295 @@
+asset_id: asset_set.transfer
+asset_type: asset_set
+name: Transfer Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for transfer.
+text: 'transferencia internacional requiere validacion reforzada del beneficiario
+
+  transferencia superior al limite diario requiere aprobacion humana
+
+  El rechazo reiterado de transferencias causes escalamiento al equipo de fraude
+
+  entity.beneficiario causes entity.rechazo_de_la_transferencia
+
+  entity.la_validacion_reforzada_aprobada enables entity.la_transferencia_internacional
+
+  aprobacion humana
+
+  beneficiario
+
+  cliente
+
+  la transferencia internacional
+
+  La validacion reforzada aprobada
+
+  prestamo
+
+  rechazo de la transferencia
+
+  CBU
+
+  Transferencia
+
+  Transferencia
+
+  Transferencias
+
+  Plan resolver transferencias fallidas
+
+  Process transferencia a prestamo
+
+  Cual es el limite diario de transferencias?
+
+  Que pasa si el beneficiario de la transferencia no coincide?
+
+  Transfer Ruleset
+
+  Aprobar monto alto
+
+  Confirmar transferencia
+
+  Crear transferencia
+
+  Identificar cliente
+
+  Informar saldo insuficiente
+
+  Llamar servicio de transferencias
+
+  Notificar resultado
+
+  Solicitar aprobación de operaciones
+
+  Validar cuenta origen
+
+  Validar saldo
+
+  Validar saldo y riesgo
+
+  Verificar beneficiario'
+tags:
+- asset_set
+- transfer
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.transferencia_internacional_requiere_validacion_reforzada_del_beneficiario
+  metadata: {}
+- type: groups_rule
+  target_asset_id: business_rule.transferencia_superior_al_limite_diario_requiere_aprobacion_humana
+  metadata: {}
+- type: groups_causality
+  target_asset_id: causality.el_rechazo_reiterado_de_transferencias_causes_escalamiento_al_equipo_de_fraude
+  metadata: {}
+- type: groups_causality
+  target_asset_id: causality.entity_beneficiario_causes_entity_rechazo_de_la_transferencia
+  metadata: {}
+- type: groups_causality
+  target_asset_id: causality.entity_la_validacion_reforzada_aprobada_enables_entity_la_transferencia_internacional
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.aprobacion_humana
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.la_transferencia_internacional
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.la_validacion_reforzada_aprobada
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.rechazo_de_la_transferencia
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.transfer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.transferencia
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.transfers
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.transfer
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.transfer
+  metadata: {}
+- type: groups_qa
+  target_asset_id: qa.cual_es_el_limite_diario_de_transferencias
+  metadata: {}
+- type: groups_qa
+  target_asset_id: qa.que_pasa_si_el_beneficiario_de_la_transferencia_no_coincide
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.transfer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.aprobar_monto_alto
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirmar_transferencia
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.crear_transferencia
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_cliente
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.informar_saldo_insuficiente
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.llamar_servicio_de_transferencias
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.notificar_resultado
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.solicitar_aprobaci_n_de_operaciones
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_cuenta_origen
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_saldo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validar_saldo_y_riesgo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verificar_beneficiario
+  metadata: {}
+payload:
+  transaction_id: transfer
+  asset_ids:
+  - business_rule.transferencia_internacional_requiere_validacion_reforzada_del_beneficiario
+  - business_rule.transferencia_superior_al_limite_diario_requiere_aprobacion_humana
+  - causality.el_rechazo_reiterado_de_transferencias_causes_escalamiento_al_equipo_de_fraude
+  - causality.entity_beneficiario_causes_entity_rechazo_de_la_transferencia
+  - causality.entity_la_validacion_reforzada_aprobada_enables_entity_la_transferencia_internacional
+  - entity.aprobacion_humana
+  - entity.beneficiario
+  - entity.customer
+  - entity.la_transferencia_internacional
+  - entity.la_validacion_reforzada_aprobada
+  - entity.loan
+  - entity.rechazo_de_la_transferencia
+  - entity.transfer
+  - flow.transfer
+  - flow.transferencia
+  - flow.transfers
+  - plan.transfer
+  - process.transfer
+  - qa.cual_es_el_limite_diario_de_transferencias
+  - qa.que_pasa_si_el_beneficiario_de_la_transferencia_no_coincide
+  - ruleset.transfer
+  - user_task.aprobar_monto_alto
+  - user_task.confirmar_transferencia
+  - user_task.crear_transferencia
+  - user_task.identificar_cliente
+  - user_task.informar_saldo_insuficiente
+  - user_task.llamar_servicio_de_transferencias
+  - user_task.notificar_resultado
+  - user_task.solicitar_aprobaci_n_de_operaciones
+  - user_task.validar_cuenta_origen
+  - user_task.validar_saldo
+  - user_task.validar_saldo_y_riesgo
+  - user_task.verificar_beneficiario
+  asset_types:
+  - business_rule
+  - causality
+  - entity
+  - flow
+  - plan
+  - process
+  - qa
+  - ruleset
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: business_rule.transferencia_internacional_requiere_validacion_reforzada_del_beneficiario
+    asset_type: business_rule
+  - asset_id: business_rule.transferencia_superior_al_limite_diario_requiere_aprobacion_humana
+    asset_type: business_rule
+  - asset_id: causality.el_rechazo_reiterado_de_transferencias_causes_escalamiento_al_equipo_de_fraude
+    asset_type: causality
+  - asset_id: causality.entity_beneficiario_causes_entity_rechazo_de_la_transferencia
+    asset_type: causality
+  - asset_id: causality.entity_la_validacion_reforzada_aprobada_enables_entity_la_transferencia_internacional
+    asset_type: causality
+  - asset_id: entity.aprobacion_humana
+    asset_type: entity
+  - asset_id: entity.beneficiario
+    asset_type: entity
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.la_transferencia_internacional
+    asset_type: entity
+  - asset_id: entity.la_validacion_reforzada_aprobada
+    asset_type: entity
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: entity.rechazo_de_la_transferencia
+    asset_type: entity
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: flow.transfer
+    asset_type: flow
+  - asset_id: flow.transferencia
+    asset_type: flow
+  - asset_id: flow.transfers
+    asset_type: flow
+  - asset_id: plan.transfer
+    asset_type: plan
+  - asset_id: process.transfer
+    asset_type: process
+  - asset_id: qa.cual_es_el_limite_diario_de_transferencias
+    asset_type: qa
+  - asset_id: qa.que_pasa_si_el_beneficiario_de_la_transferencia_no_coincide
+    asset_type: qa
+  - asset_id: ruleset.transfer
+    asset_type: ruleset
+  - asset_id: user_task.aprobar_monto_alto
+    asset_type: user_task
+  - asset_id: user_task.confirmar_transferencia
+    asset_type: user_task
+  - asset_id: user_task.crear_transferencia
+    asset_type: user_task
+  - asset_id: user_task.identificar_cliente
+    asset_type: user_task
+  - asset_id: user_task.informar_saldo_insuficiente
+    asset_type: user_task
+  - asset_id: user_task.llamar_servicio_de_transferencias
+    asset_type: user_task
+  - asset_id: user_task.notificar_resultado
+    asset_type: user_task
+  - asset_id: user_task.solicitar_aprobaci_n_de_operaciones
+    asset_type: user_task
+  - asset_id: user_task.validar_cuenta_origen
+    asset_type: user_task
+  - asset_id: user_task.validar_saldo
+    asset_type: user_task
+  - asset_id: user_task.validar_saldo_y_riesgo
+    asset_type: user_task
+  - asset_id: user_task.verificar_beneficiario
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Transfer Asset Set
+  normalized_name: transfer asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

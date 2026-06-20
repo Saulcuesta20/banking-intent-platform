@@ -1,0 +1,25 @@
+asset_id: user_task.sign_contract
+asset_type: user_task
+name: Sign Contract
+version: 1.0.0
+owner: business_model_kb
+description: Customer reviews and signs the loan agreement digitally.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_sign_contract
+  task: sign_loan_contract
+  type: signature
+  name: Sign Contract
+  description: Customer reviews and signs the loan agreement digitally.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Sign Contract
+  normalized_name: sign contract
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,34 @@
+asset_id: asset_set.plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+asset_type: asset_set
+name: Plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar.
+text: Plan actualizacion de datos sensibles
+tags:
+- asset_set
+- plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+relations:
+- type: groups_plan
+  target_asset_id: plan.plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+  metadata: {}
+payload:
+  transaction_id: plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+  asset_ids:
+  - plan.plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+  asset_types:
+  - plan
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+    Asset Set
+  normalized_name: plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,33 @@
+asset_id: business_rule.fraudulent_claim_escalation
+asset_type: business_rule
+name: Fraudulent claim escalation
+version: 1.0.0
+owner: rules_kb
+description: Claims flagged as fraud are escalated to the fraud investigation team.
+text: Claims flagged as fraud are escalated to the fraud investigation team.
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.claim
+  metadata: {}
+payload:
+  rule_text: Claims flagged as fraud are escalated to the fraud investigation team.
+  source_section: LLMAssetExtraction
+  conditions:
+  - Claim flagged fraud
+  consequences:
+  - Escalate
+  when: Claim flagged fraud
+  then: Escalate
+  transaction_id: fraudulent.claim.escalation
+  ruleset_name: ''
+  applies_to: Claim
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Fraudulent claim escalation
+  normalized_name: fraudulent claim escalation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

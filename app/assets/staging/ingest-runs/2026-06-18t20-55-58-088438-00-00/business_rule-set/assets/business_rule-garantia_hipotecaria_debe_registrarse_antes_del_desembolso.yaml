@@ -1,0 +1,32 @@
+asset_id: business_rule.garantia_hipotecaria_debe_registrarse_antes_del_desembolso
+asset_type: business_rule
+name: garantia hipotecaria debe registrarse antes del desembolso
+version: 1.0.0
+owner: rules_kb
+description: Toda garantia hipotecaria debe registrarse antes del desembolso.
+text: Toda garantia hipotecaria debe registrarse antes del desembolso.
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.desembolso
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.garantia
+  metadata: {}
+payload:
+  rule_text: Toda garantia hipotecaria debe registrarse antes del desembolso.
+  source_section: Rules
+  conditions:
+  - Toda garantia hipotecaria
+  consequences:
+  - registrarse antes del desembolso
+  transaction_id: garantia.hipotecaria.debe.registrarse.antes.del.desembolso
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: garantia hipotecaria debe registrarse antes del desembolso
+  normalized_name: garantia hipotecaria debe registrarse antes del desembolso
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

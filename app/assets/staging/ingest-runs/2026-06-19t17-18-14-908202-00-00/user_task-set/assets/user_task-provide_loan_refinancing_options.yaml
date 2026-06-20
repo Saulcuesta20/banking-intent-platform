@@ -1,0 +1,27 @@
+asset_id: user_task.provide_loan_refinancing_options
+asset_type: user_task
+name: Provide Loan Refinancing Options
+version: 1.0.0
+owner: business_model_kb
+description: Evaluate and present options for refinancing the loan to lower the monthly
+  installment.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_tck_1002
+  task: provide_loan_refinancing_options
+  type: support
+  name: Provide Loan Refinancing Options
+  description: Evaluate and present options for refinancing the loan to lower the
+    monthly installment.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Provide Loan Refinancing Options
+  normalized_name: provide loan refinancing options
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

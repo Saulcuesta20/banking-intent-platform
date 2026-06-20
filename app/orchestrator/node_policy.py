@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from app.config.model import load_node_policy
 from app.models import ProcessExecutionNode
 
 
@@ -16,36 +17,7 @@ class ExecutionNodePolicy:
     """Python-side policy for allowed execution node types by definition type."""
 
     allowed_types: dict[str, set[str]] = field(
-        default_factory=lambda: {
-            "process": {
-                "start",
-                "user_task",
-                "agent",
-                "wait_for_user_input",
-                "state_update",
-                "service_call",
-                "tool_call",
-                "subprocess_call",
-                "decision",
-                "approval",
-                "notification",
-                "end",
-            },
-            "flow": {
-                "start",
-                "user_task",
-                "agent",
-                "wait_for_user_input",
-                "state_update",
-                "service_call",
-                "tool_call",
-                "subprocess_call",
-                "decision",
-                "approval",
-                "notification",
-                "end",
-            },
-        }
+        default_factory=load_node_policy
     )
 
     def validate(self, definition_type: str, definition_id: str, nodes: list[ProcessExecutionNode]) -> None:

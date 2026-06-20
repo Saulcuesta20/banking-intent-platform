@@ -1,0 +1,19 @@
+asset_id: user_task.calcular_terminos_de_refinanciamiento
+asset_type: user_task
+name: Calcular terminos de refinanciamiento
+version: 1.0.0
+owner: business_model_kb
+description: Calcular terminos de refinanciamiento.
+text: Calcular terminos de refinanciamiento.
+tags: []
+relations: []
+payload:
+  description: Calcular terminos de refinanciamiento.
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Calcular terminos de refinanciamiento
+  normalized_name: calcular terminos de refinanciamiento
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.request_human_approval
+asset_type: user_task
+name: Request Human Approval
+version: 1.0.0
+owner: business_model_kb
+description: Solicitar aprobacion humana para operaciones fuera de umbral.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: request_human_approval
+  task: solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral
+  type: manual
+  name: Request Human Approval
+  description: Solicitar aprobacion humana para operaciones fuera de umbral.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Request Human Approval
+  normalized_name: request human approval
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

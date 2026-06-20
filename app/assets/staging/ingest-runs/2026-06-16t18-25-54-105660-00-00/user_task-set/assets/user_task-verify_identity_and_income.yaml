@@ -1,0 +1,25 @@
+asset_id: user_task.verify_identity_and_income
+asset_type: user_task
+name: Verify Identity and Income
+version: 1.0.0
+owner: business_model_kb
+description: Verify customer identity and income documents
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verify_identity_income
+  task: verify_identity_and_income
+  type: verification
+  name: Verify Identity and Income
+  description: Verify customer identity and income documents
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Verify Identity and Income
+  normalized_name: verify identity and income
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

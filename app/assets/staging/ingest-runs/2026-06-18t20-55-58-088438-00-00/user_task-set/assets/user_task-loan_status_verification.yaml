@@ -1,0 +1,27 @@
+asset_id: user_task.loan_status_verification
+asset_type: user_task
+name: Loan Status Verification
+version: 1.0.0
+owner: business_model_kb
+description: Advisor checks the loan system to confirm the current status of the loan,
+  such as active, delinquent, or closed.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: verify_loan_status
+  task: verify_the_current_status_of_the_customer_s_loan
+  type: manual
+  name: Loan Status Verification
+  description: Advisor checks the loan system to confirm the current status of the
+    loan, such as active, delinquent, or closed.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Status Verification
+  normalized_name: loan status verification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

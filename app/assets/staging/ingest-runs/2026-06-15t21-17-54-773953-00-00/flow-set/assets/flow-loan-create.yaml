@@ -1,0 +1,47 @@
+asset_id: flow.loan.create
+asset_type: flow
+name: 'El analista indica: quiero crear un prestamo para un cliente existente'
+version: 1.0.0
+owner: process_kb
+description: 'El analista indica: quiero crear un prestamo para un cliente existente.'
+text: 'El analista indica: quiero crear un prestamo para un cliente existente.'
+tags:
+- utterance_flow
+relations: []
+payload:
+  utterances:
+  - 'El analista indica: quiero crear un prestamo para un cliente existente.'
+  purpose: 'El analista indica: quiero crear un prestamo para un cliente existente.'
+  transaction_id: loan.create
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El analista indica: quiero crear un prestamo para un cliente existente'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El analista indica: quiero crear un prestamo para un cliente existente'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El analista indica: quiero crear un prestamo para un cliente existente.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El analista indica: quiero crear un prestamo para un cliente existente.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El analista indica: quiero crear un prestamo para un cliente existente.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El analista indica: quiero crear un prestamo para un cliente existente.'
+  match_strategy: generated
+  canonical_name: 'El analista indica: quiero crear un prestamo para un cliente existente'
+  normalized_name: 'el analista indica: quiero crear un prestamo para un cliente existente'
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

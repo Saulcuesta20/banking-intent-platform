@@ -1,0 +1,27 @@
+asset_id: user_task.identity_verification
+asset_type: user_task
+name: Identity Verification
+version: 1.0.0
+owner: business_model_kb
+description: Advisor confirms that the customer's identity matches the records to
+  prevent fraud.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: match_identity
+  task: match_the_customer_s_identity_against_their_profile
+  type: manual
+  name: Identity Verification
+  description: Advisor confirms that the customer's identity matches the records to
+    prevent fraud.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Identity Verification
+  normalized_name: identity verification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

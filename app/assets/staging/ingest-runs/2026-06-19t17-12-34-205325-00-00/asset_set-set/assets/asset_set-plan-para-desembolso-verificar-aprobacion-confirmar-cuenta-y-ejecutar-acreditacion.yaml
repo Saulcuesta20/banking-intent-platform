@@ -1,0 +1,43 @@
+asset_id: asset_set.plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+asset_type: asset_set
+name: Plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion.
+text: 'desembolso
+
+  Plan desembolso'
+tags:
+- asset_set
+- plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+relations:
+- type: groups_entity
+  target_asset_id: entity.desembolso
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+  metadata: {}
+payload:
+  transaction_id: plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+  asset_ids:
+  - entity.desembolso
+  - plan.plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+  asset_types:
+  - entity
+  - plan
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.desembolso
+    asset_type: entity
+  - asset_id: plan.plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+    Asset Set
+  normalized_name: plan.para.desembolso.verificar.aprobacion.confirmar.cuenta.y.ejecutar.acreditacion
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,40 @@
+asset_id: ruleset.cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+asset_type: ruleset
+name: Cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+  with 1 business rules.
+text: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+tags:
+- ruleset
+- cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.cancelacion_de_prestamo_anticipada_debe_recalcular_intereses_devengados
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.interes
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  transaction_id: cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+  ruleset_name: Cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+    Ruleset
+  rule_ids:
+  - business_rule.cancelacion_de_prestamo_anticipada_debe_recalcular_intereses_devengados
+  conditions:
+  - La cancelacion de prestamo anticipada
+  consequences:
+  - recalcular intereses devengados
+  match_strategy: generated
+  canonical_name: Cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+    Ruleset
+  normalized_name: cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+    ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

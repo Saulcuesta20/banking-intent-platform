@@ -1,0 +1,25 @@
+asset_id: user_task.evidence_registration
+asset_type: user_task
+name: Evidence Registration
+version: 1.0.0
+owner: business_model_kb
+description: Attach and log evidence provided by the client.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: register_evidence_task
+  task: register_evidence_for_the_claim
+  type: automated
+  name: Evidence Registration
+  description: Attach and log evidence provided by the client.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Evidence Registration
+  normalized_name: evidence registration
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

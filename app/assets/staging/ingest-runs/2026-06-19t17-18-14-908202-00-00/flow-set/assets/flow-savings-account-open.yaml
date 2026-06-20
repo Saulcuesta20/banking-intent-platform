@@ -1,0 +1,52 @@
+asset_id: flow.savings.account.open
+asset_type: flow
+name: quiero abrir una cuenta de ahorro nueva
+version: 1.0.0
+owner: process_kb
+description: 'El cliente pregunta: quiero abrir una cuenta de ahorro nueva.'
+text: 'El cliente pregunta: quiero abrir una cuenta de ahorro nueva.'
+tags:
+- utterance_flow
+relations:
+- type: uses_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.cuenta_de_ahorro
+  metadata: {}
+payload:
+  utterances:
+  - 'El cliente pregunta: quiero abrir una cuenta de ahorro nueva.'
+  purpose: 'El cliente pregunta: quiero abrir una cuenta de ahorro nueva.'
+  transaction_id: savings.account.open
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: quiero abrir una cuenta de ahorro nueva
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente pregunta: quiero abrir una cuenta de ahorro nueva.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'El cliente pregunta: quiero abrir una cuenta de ahorro nueva.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente pregunta: quiero abrir una cuenta de ahorro nueva.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'El cliente pregunta: quiero abrir una cuenta de ahorro nueva.'
+  match_strategy: generated
+  canonical_name: quiero abrir una cuenta de ahorro nueva
+  normalized_name: quiero abrir una cuenta de ahorro nueva
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

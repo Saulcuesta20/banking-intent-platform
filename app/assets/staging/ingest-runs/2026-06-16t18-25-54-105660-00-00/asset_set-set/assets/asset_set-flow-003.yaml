@@ -1,0 +1,48 @@
+asset_id: asset_set.flow.003
+asset_type: asset_set
+name: Flow.003 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.003.
+text: 'transfer_retention_resolution
+
+  compliance_review
+
+  manager_approval'
+tags:
+- asset_set
+- flow.003
+relations:
+- type: groups_flow
+  target_asset_id: flow.flow.003
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.compliance_review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.manager_approval
+  metadata: {}
+payload:
+  transaction_id: flow.003
+  asset_ids:
+  - flow.flow.003
+  - user_task.compliance_review
+  - user_task.manager_approval
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.flow.003
+    asset_type: flow
+  - asset_id: user_task.compliance_review
+    asset_type: user_task
+  - asset_id: user_task.manager_approval
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Flow.003 Asset Set
+  normalized_name: flow.003 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.aprobaci_n_humana_de_solicitud
+asset_type: user_task
+name: Aprobación humana de solicitud
+version: 1.0.0
+owner: business_model_kb
+description: Aprobación manual para solicitudes borderline o de alto riesgo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_aprobar_solicitud_humano
+  task: aprobar_solicitud_humano
+  type: human
+  name: Aprobación humana de solicitud
+  description: Aprobación manual para solicitudes borderline o de alto riesgo.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Aprobación humana de solicitud
+  normalized_name: aprobación humana de solicitud
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

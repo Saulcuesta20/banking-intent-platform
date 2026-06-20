@@ -1,0 +1,37 @@
+asset_id: user_task.confirmaci_n_de_pago_autom_tico
+asset_type: user_task
+name: Confirmación de pago automático
+version: 1.0.0
+owner: business_model_kb
+description: Verificar si el cliente tiene un pago automático activo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_confirmar_pago_automatico
+  task: confirmar_pago_autom_tico_activo
+  type: consulta
+  name: Confirmación de pago automático
+  description: Verificar si el cliente tiene un pago automático activo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Confirmación de pago automático
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Verificar si el cliente tiene un pago automático activo.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Verificar si el cliente tiene un pago automático activo.
+  match_strategy: generated
+  canonical_name: Confirmación de pago automático
+  normalized_name: confirmación de pago automático
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

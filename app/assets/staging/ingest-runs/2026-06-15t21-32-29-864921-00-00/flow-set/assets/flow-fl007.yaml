@@ -1,0 +1,93 @@
+asset_id: flow.fl007
+asset_type: flow
+name: Cancelar Pago Automatico
+version: 1.0.0
+owner: process_kb
+description: Verificación de consentimiento y generación de la propuesta de cancelación.
+text: Verificación de consentimiento y generación de la propuesta de cancelación.
+tags:
+- fl007
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verificar_consentimiento_de_pago_automatico
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.emitir_propuesta_de_cancelacion_anticipada
+  metadata: {}
+payload:
+  flow_id: fl007
+  flow_name: Cancelar Pago Automatico
+  intent: fl007
+  confidence: 0.75
+  business_event: cliente_cancela_automatico
+  utterances: []
+  plan: []
+  tasks:
+  - task: verificar_consentimiento_pago_automatico
+    type: human
+  - task: emitir_propuesta_cancelacion_anticipada
+    type: human
+  user_tasks:
+  - user_task_id: ut007
+    task: verificar_consentimiento_pago_automatico
+    type: human
+    name: Verificar consentimiento de pago automatico
+    description: Confirmar que el cliente ha aceptado los términos del débito automático
+      y que la cuenta es elegible.
+    tools: []
+    user_actions: []
+  - user_task_id: ut012
+    task: emitir_propuesta_cancelacion_anticipada
+    type: human
+    name: Emitir propuesta de cancelacion anticipada
+    description: Calcular intereses devengados y presentar la propuesta de cierre
+      anticipado al cliente.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Verificación de consentimiento y generación de la propuesta de cancelación.
+  source: data/raw/README.md;data/raw/banking_flows_additional.txt;data/raw/banking_synonyms_and_glossary_runtime.txt;data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt;data/raw/enterprise_dump_2026/customer_support_tickets.csv;data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md;data/raw/enterprise_dump_2026/glossary_fragment.md;data/raw/enterprise_dump_2026/intranet_transfer_help.html;data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt;data/raw/enterprise_dump_2026/operations_controls_policy.md;data/raw/enterprise_dump_2026/orchestration_planning_notes.md;data/raw/enterprise_dump_2026/policy_controls_memo.md;data/raw/enterprise_dump_2026/process_fragments.json;data/raw/enterprise_dump_2026/service_configuration_notes.md;data/raw/enterprise_dump_2026/systems_catalog_export.json;data/raw/enterprise_operations_manual.md;data/raw/enterprise_policy_and_controls.md;data/raw/enterprise_support_wiki.md;data/raw/enterprise_systems_catalog.md;data/raw/manual_operativo_credito.md;data/raw/notes_operativas_cobranza.md;data/raw/policy_controls_addendum.md;data/raw/process_examples_refinance.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/README.md
+    - data/raw/banking_flows_additional.txt
+    - data/raw/banking_synonyms_and_glossary_runtime.txt
+    - data/raw/customer_support_tickets_mini.csv
+    - data/raw/enterprise_dump_2026/00_readme.txt
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md
+    - data/raw/enterprise_dump_2026/glossary_fragment.md
+    - data/raw/enterprise_dump_2026/intranet_transfer_help.html
+    - data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt
+    - data/raw/enterprise_dump_2026/operations_controls_policy.md
+    - data/raw/enterprise_dump_2026/orchestration_planning_notes.md
+    - data/raw/enterprise_dump_2026/policy_controls_memo.md
+    - data/raw/enterprise_dump_2026/process_fragments.json
+    - data/raw/enterprise_dump_2026/service_configuration_notes.md
+    - data/raw/enterprise_dump_2026/systems_catalog_export.json
+    - data/raw/enterprise_operations_manual.md
+    - data/raw/enterprise_policy_and_controls.md
+    - data/raw/enterprise_support_wiki.md
+    - data/raw/enterprise_systems_catalog.md
+    - data/raw/manual_operativo_credito.md
+    - data/raw/notes_operativas_cobranza.md
+    - data/raw/policy_controls_addendum.md
+    - data/raw/process_examples_refinance.md
+    purpose: Detener un débito automático previamente configurado.
+  purpose: Detener un débito automático previamente configurado.
+  transaction_id: fl007
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Cancelar Pago Automatico
+  match_strategy: generated
+  canonical_name: Cancelar Pago Automatico
+  normalized_name: cancelar pago automatico
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

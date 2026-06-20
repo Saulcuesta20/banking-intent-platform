@@ -1,0 +1,49 @@
+asset_id: asset_set.low.balance.commission
+asset_type: asset_set
+name: Low.balance.commission Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for low.balance.commission.
+text: 'Low balance commission
+
+  Account
+
+  Low.balance.commission Ruleset'
+tags:
+- asset_set
+- low.balance.commission
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.low_balance_commission
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.low.balance.commission
+  metadata: {}
+payload:
+  transaction_id: low.balance.commission
+  asset_ids:
+  - business_rule.low_balance_commission
+  - entity.savings_account
+  - ruleset.low.balance.commission
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.low_balance_commission
+    asset_type: business_rule
+  - asset_id: entity.savings_account
+    asset_type: entity
+  - asset_id: ruleset.low.balance.commission
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Low.balance.commission Asset Set
+  normalized_name: low.balance.commission asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

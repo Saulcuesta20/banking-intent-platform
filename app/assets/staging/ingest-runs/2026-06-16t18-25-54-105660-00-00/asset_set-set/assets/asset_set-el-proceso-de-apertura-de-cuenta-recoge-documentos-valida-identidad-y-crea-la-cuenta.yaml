@@ -1,0 +1,43 @@
+asset_id: asset_set.el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+asset_type: asset_set
+name: El.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta.
+text: 'apertura de cuenta
+
+  Process apertura de cuenta'
+tags:
+- asset_set
+- el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+relations:
+- type: groups_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+  metadata: {}
+payload:
+  transaction_id: el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+  asset_ids:
+  - entity.apertura_de_cuenta
+  - process.el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+  asset_types:
+  - entity
+  - process
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.apertura_de_cuenta
+    asset_type: entity
+  - asset_id: process.el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+    asset_type: process
+  match_strategy: generated
+  canonical_name: El.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+    Asset Set
+  normalized_name: el.proceso.de.apertura.de.cuenta.recoge.documentos.valida.identidad.y.crea.la.cuenta
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

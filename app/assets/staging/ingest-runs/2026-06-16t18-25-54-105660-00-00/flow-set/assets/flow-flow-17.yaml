@@ -1,0 +1,56 @@
+asset_id: flow.flow.17
+asset_type: flow
+name: Transferencia a préstamo
+version: 1.0.0
+owner: process_kb
+description: El proceso de transferencia a prestamo valida referencia, ejecuta traslado
+  y confirma aplicacion.
+text: El proceso de transferencia a prestamo valida referencia, ejecuta traslado y
+  confirma aplicacion.
+tags:
+- el.cliente.desea.transferir.dinero.a.su.prestamo
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  flow_id: flow.17
+  flow_name: Transferencia a préstamo
+  intent: el.cliente.desea.transferir.dinero.a.su.prestamo
+  confidence: 0.75
+  business_event: Cliente transfiere dinero a su préstamo
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de transferencia a prestamo valida referencia, ejecuta traslado
+    y confirma aplicacion.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Transferir dinero a un préstamo
+  purpose: Transferir dinero a un préstamo
+  transaction_id: flow.17
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de transferencia a prestamo valida referencia, ejecuta traslado
+      y confirma aplicacion.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de transferencia a prestamo valida referencia, ejecuta traslado
+      y confirma aplicacion.
+  match_strategy: generated
+  canonical_name: Transferencia a préstamo
+  normalized_name: transferencia a préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

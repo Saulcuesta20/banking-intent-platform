@@ -1,0 +1,50 @@
+asset_id: user_task.aplicar_el_pago_recibido_al_prestamo
+asset_type: user_task
+name: Aplicar el pago recibido al prestamo
+version: 1.0.0
+owner: business_model_kb
+description: Registrar el abono, actualizar el calendario de amortización y notificar
+  al cliente.
+text: Aplicar el pago recibido al prestamo.
+tags: []
+relations: []
+payload:
+  user_task_id: ut016
+  task: aplicar_pago_recibido
+  type: human
+  name: Aplicar el pago recibido al prestamo
+  description: Aplicar el pago recibido al prestamo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Aplicar el pago recibido al prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Aplicar el pago recibido al prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Aplicar el pago recibido al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Aplicar el pago recibido al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Aplicar el pago recibido al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Aplicar el pago recibido al prestamo.
+  match_strategy: generated
+  canonical_name: Aplicar el pago recibido al prestamo
+  normalized_name: aplicar el pago recibido al prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -99,7 +99,7 @@ Example:
 asset_id: rule.refinance_eligibility
 asset_type: rule
 primary_kb: rules_kb
-stores: [repository, document, graph, vector]
+stores: [repository, document, graph]
 ```
 
 That means:
@@ -108,7 +108,8 @@ That means:
 - the asset is materialized in the repository catalog
 - supporting evidence can appear in `document`
 - relation traversal can appear in `graph`
-- semantic retrieval can appear in `vector`
+- semantic retrieval can appear in `vector` only for approved `qa` and
+  source `document` assets in the current contract
 
 Example of a flow:
 
@@ -116,7 +117,7 @@ Example of a flow:
 asset_id: flow.loan_refinance
 asset_type: flow
 primary_kb: process_kb
-stores: [repository, graph, vector]
+stores: [repository, graph]
 ```
 
 The catalog does not create a second truth layer. It is the unified inventory

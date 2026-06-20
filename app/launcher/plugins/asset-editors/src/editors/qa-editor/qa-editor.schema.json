@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "question": {
+      "type": "string",
+      "title": "Question"
+    },
+    "answer": {
+      "type": "string",
+      "title": "Answer"
+    },
+    "intent": {
+      "type": "string",
+      "title": "Intent"
+    },
+    "source": {
+      "type": "string",
+      "title": "Source"
+    },
+    "citations": {
+      "type": "array",
+      "title": "Citations",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["question", "answer"]
+}

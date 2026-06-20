@@ -1,0 +1,19 @@
+asset_id: user_task.registrar_disputa_por_cargo_no_reconocido
+asset_type: user_task
+name: Registrar disputa por cargo no reconocido
+version: 1.0.0
+owner: business_model_kb
+description: Registrar disputa por cargo no reconocido.
+text: Registrar disputa por cargo no reconocido.
+tags: []
+relations: []
+payload:
+  description: Registrar disputa por cargo no reconocido.
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Registrar disputa por cargo no reconocido
+  normalized_name: registrar disputa por cargo no reconocido
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

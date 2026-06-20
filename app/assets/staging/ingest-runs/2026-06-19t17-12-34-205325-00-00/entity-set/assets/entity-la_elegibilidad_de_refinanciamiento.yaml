@@ -1,0 +1,24 @@
+asset_id: entity.la_elegibilidad_de_refinanciamiento
+asset_type: entity
+name: la elegibilidad de refinanciamiento.
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: La mora acumulada impacta
+  la elegibilidad de refinanciamiento.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases:
+  - la elegibilidad de refinanciamiento
+  inferred_from: section_entities
+  structural_layer: channel
+  business_layer: channel
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: la elegibilidad de refinanciamiento.
+  normalized_name: la elegibilidad de refinanciamiento.
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

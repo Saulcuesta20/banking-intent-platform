@@ -1,0 +1,27 @@
+asset_id: user_task.wait_for_customer_information
+asset_type: user_task
+name: Wait for Customer Information
+version: 1.0.0
+owner: business_model_kb
+description: If evidence missing, process waits for customer to provide additional
+  info.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: wait_customer_info
+  task: wait_for_missing_evidence
+  type: wait
+  name: Wait for Customer Information
+  description: If evidence missing, process waits for customer to provide additional
+    info.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Wait for Customer Information
+  normalized_name: wait for customer information
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

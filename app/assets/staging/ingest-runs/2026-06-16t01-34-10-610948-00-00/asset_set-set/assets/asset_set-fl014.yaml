@@ -1,0 +1,56 @@
+asset_id: asset_set.fl014
+asset_type: asset_set
+name: Fl014 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl014.
+text: 'Crear Prestamo para Cliente Existente
+
+  Calcular terminos de refinanciamiento
+
+  Identificar al cliente antes de cualquier operacion financiera
+
+  Registrar la solicitud del prestamo'
+tags:
+- asset_set
+- fl014
+relations:
+- type: groups_flow
+  target_asset_id: flow.fl014
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.calcular_terminos_de_refinanciamiento
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.registrar_la_solicitud_del_prestamo
+  metadata: {}
+payload:
+  transaction_id: fl014
+  asset_ids:
+  - flow.fl014
+  - user_task.calcular_terminos_de_refinanciamiento
+  - user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  - user_task.registrar_la_solicitud_del_prestamo
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.fl014
+    asset_type: flow
+  - asset_id: user_task.calcular_terminos_de_refinanciamiento
+    asset_type: user_task
+  - asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+    asset_type: user_task
+  - asset_id: user_task.registrar_la_solicitud_del_prestamo
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Fl014 Asset Set
+  normalized_name: fl014 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

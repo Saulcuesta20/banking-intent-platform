@@ -18,7 +18,8 @@ additional technical stores.
 canonical asset
   -> lives once in the repository model
   -> has version, status, ownership, and source refs
-  -> may be projected to graph/vector/document/relational indexes
+  -> may be projected to graph/document/relational indexes
+  -> may be projected to vector only when the asset type is qa or document
 ```
 
 Projections are references or derived views. They are not the owner.

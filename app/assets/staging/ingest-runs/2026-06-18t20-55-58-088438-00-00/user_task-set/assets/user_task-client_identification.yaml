@@ -1,0 +1,25 @@
+asset_id: user_task.client_identification
+asset_type: user_task
+name: Client Identification
+version: 1.0.0
+owner: business_model_kb
+description: Verify the client's identity through provided information.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: identify_client_task
+  task: identify_the_client
+  type: manual
+  name: Client Identification
+  description: Verify the client's identity through provided information.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Client Identification
+  normalized_name: client identification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

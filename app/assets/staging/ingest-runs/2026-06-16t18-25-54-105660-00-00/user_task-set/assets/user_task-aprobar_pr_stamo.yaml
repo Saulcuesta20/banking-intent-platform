@@ -1,0 +1,25 @@
+asset_id: user_task.aprobar_pr_stamo
+asset_type: user_task
+name: Aprobar préstamo
+version: 1.0.0
+owner: business_model_kb
+description: Un oficial de crédito revisa y aprueba la solicitud.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: approve_loan
+  task: aprobar_pr_stamo
+  type: aprobación
+  name: Aprobar préstamo
+  description: Un oficial de crédito revisa y aprueba la solicitud.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Aprobar préstamo
+  normalized_name: aprobar préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

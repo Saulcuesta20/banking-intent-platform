@@ -1,0 +1,46 @@
+asset_id: flow.loan.transfer.to.loan
+asset_type: flow
+name: quiero transferir dinero a mi prestamo
+version: 1.0.0
+owner: process_kb
+description: 'El cliente expresa: quiero transferir dinero a mi prestamo.'
+text: 'El cliente expresa: quiero transferir dinero a mi prestamo.'
+tags:
+- utterance_flow
+relations:
+- type: uses_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+payload:
+  utterances:
+  - 'El cliente expresa: quiero transferir dinero a mi prestamo.'
+  purpose: 'El cliente expresa: quiero transferir dinero a mi prestamo.'
+  transaction_id: loan.transfer.to.loan
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: quiero transferir dinero a mi prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente expresa: quiero transferir dinero a mi prestamo.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El cliente expresa: quiero transferir dinero a mi prestamo.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente expresa: quiero transferir dinero a mi prestamo.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'El cliente expresa: quiero transferir dinero a mi prestamo.'
+  match_strategy: generated
+  canonical_name: quiero transferir dinero a mi prestamo
+  normalized_name: quiero transferir dinero a mi prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

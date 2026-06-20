@@ -1,0 +1,27 @@
+asset_id: entity.aumento_del_riesgo_crediticio
+asset_type: entity
+name: aumento del riesgo crediticio
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality effect_text: aumento del riesgo crediticio'
+text: El incumplimiento contractual genera aumento del riesgo crediticio.
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: effect_text
+  structural_layer: business_resource
+  business_layer: business_resource
+  entity_role: asset
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: El incumplimiento contractual genera aumento del riesgo crediticio.
+  match_strategy: generated
+  canonical_name: aumento del riesgo crediticio
+  normalized_name: aumento del riesgo crediticio
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

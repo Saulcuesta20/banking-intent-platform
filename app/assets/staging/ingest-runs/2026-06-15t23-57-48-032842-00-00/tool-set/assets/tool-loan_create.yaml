@@ -1,0 +1,28 @@
+asset_id: tool.loan_create
+asset_type: tool
+name: loan.create
+version: 1.0.0
+owner: business_model_kb
+description: El servicio loan.create registra el nuevo prestamo.
+text: El servicio loan.create registra el nuevo prestamo.
+tags: []
+relations: []
+payload:
+  description: El servicio loan.create registra el nuevo prestamo.
+  tool_id: loan.create
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El servicio loan.create registra el nuevo prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El servicio loan.create registra el nuevo prestamo.
+  match_strategy: generated
+  canonical_name: loan.create
+  normalized_name: loan.create
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

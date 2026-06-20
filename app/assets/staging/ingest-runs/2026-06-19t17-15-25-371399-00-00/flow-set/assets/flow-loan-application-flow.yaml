@@ -1,0 +1,118 @@
+asset_id: flow.loan.application.flow
+asset_type: flow
+name: Loan Application
+version: 1.0.0
+owner: process_kb
+description: Process for handling loan applications, including consultation, guidance,
+  and execution with risk assessment.
+text: Process for handling loan applications, including consultation, guidance, and
+  execution with risk assessment.
+tags:
+- inform.about.loan.evaluation.criteria.guide.through.application.steps.or.execute.loan.request.submission
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.loan_details_collection
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.loan_request_creation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.credit_history_consultation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.policy_context_retrieval
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.scoring_calculation
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.approval_request
+  metadata: {}
+payload:
+  flow_id: loan.application.flow
+  flow_name: Loan Application
+  intent: inform.about.loan.evaluation.criteria.guide.through.application.steps.or.execute.loan.request.submission
+  confidence: 0.75
+  business_event: Client inquires about or requests a loan
+  utterances: []
+  plan: []
+  tasks:
+  - task: gather_loan_application_details
+    type: guided
+  - task: create_loan_request_in_the_system
+    type: automated
+  - task: consult_client_credit_history
+    type: automated
+  - task: obtain_policy_context_for_loan_evaluation
+    type: automated
+  - task: calculate_loan_risk_score
+    type: automated
+  - task: request_human_approval_for_high_risk_loan
+    type: manual
+  user_tasks:
+  - user_task_id: gather_loan_details_task
+    task: gather_loan_application_details
+    type: guided
+    name: Loan Details Collection
+    description: Collect amount, term, purpose, income evidence, and documents from
+      client.
+    tools: []
+    user_actions: []
+  - user_task_id: create_loan_request_task
+    task: create_loan_request_in_the_system
+    type: automated
+    name: Loan Request Creation
+    description: Submit the loan request for processing.
+    tools: []
+    user_actions: []
+  - user_task_id: consult_credit_history_task
+    task: consult_client_credit_history
+    type: automated
+    name: Credit History Consultation
+    description: Retrieve credit history from external service.
+    tools: []
+    user_actions: []
+  - user_task_id: obtain_policy_context_task
+    task: obtain_policy_context_for_loan_evaluation
+    type: automated
+    name: Policy Context Retrieval
+    description: Fetch relevant bank policies to assess loan eligibility.
+    tools: []
+    user_actions: []
+  - user_task_id: calculate_scoring_task
+    task: calculate_loan_risk_score
+    type: automated
+    name: Scoring Calculation
+    description: Compute risk score based on client data and policies.
+    tools: []
+    user_actions: []
+  - user_task_id: request_approval_task
+    task: request_human_approval_for_high_risk_loan
+    type: manual
+    name: Approval Request
+    description: Escalate borderline or high-risk cases for human decision.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process for handling loan applications, including consultation, guidance,
+    and execution with risk assessment.
+  source: data/raw/enterprise_operations_manual.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_operations_manual.md
+    purpose: To evaluate and process loan requests based on client eligibility and
+      bank policies.
+  purpose: To evaluate and process loan requests based on client eligibility and bank
+    policies.
+  transaction_id: loan.application.flow
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Application
+  normalized_name: loan application
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

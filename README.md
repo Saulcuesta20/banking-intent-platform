@@ -164,6 +164,13 @@ Approved business assets live under `data/qa`, `data/rules`, and `data/plans`.
 to `PlanningService`. Business rules can also gate process execution before
 tools are invoked.
 
+## Configuration-Driven Models
+
+Extraction schemas and runtime node definitions are now declared in YAML under `config/model`.
+`config/model/extraction_schema.yaml` defines the LLM extraction JSON schema for flows, user tasks, and candidate business assets.
+`config/model/node_types.yaml` defines allowed execution node types for `process` and `flow` definitions.
+This keeps the runtime engine typed and declarative while moving prompt schema and policy definitions out of code.
+
 ```bash
 OPENAI_API_KEY=... python tools/extract_flows_from_corpus.py --raw-dir data/raw --apply --clean
 python tools/push_flows_to_neo4j.py --clear

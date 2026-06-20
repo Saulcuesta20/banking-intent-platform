@@ -1,0 +1,43 @@
+asset_id: causality.entity_el_incumplimiento_contractual_causes_entity_aumento_del_riesgo_crediticio
+asset_type: causality
+name: entity.el_incumplimiento_contractual causes entity.aumento_del_riesgo_crediticio
+version: 1.0.0
+owner: causality_kb
+description: El incumplimiento contractual genera aumento del riesgo crediticio.
+text: El incumplimiento contractual genera aumento del riesgo crediticio.
+tags:
+- causality
+- causes
+relations:
+- type: has_cause
+  target_asset_id: entity.el_incumplimiento_contractual
+  metadata: {}
+- type: has_effect
+  target_asset_id: entity.aumento_del_riesgo_crediticio
+  metadata: {}
+payload:
+  cause_text: El incumplimiento contractual
+  effect_text: aumento del riesgo crediticio
+  relation_kind: causes
+  statement: El incumplimiento contractual genera aumento del riesgo crediticio.
+  sentence: El incumplimiento contractual genera aumento del riesgo crediticio.
+  transaction_id: entity.el.incumplimiento.contractual.causes.entity.aumento.del.riesgo.crediticio
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: El incumplimiento contractual genera aumento del riesgo crediticio.
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: El incumplimiento contractual genera aumento del riesgo crediticio.
+  canonical_name: entity.el_incumplimiento_contractual causes entity.aumento_del_riesgo_crediticio
+  resolved_cause_asset_id: entity.el_incumplimiento_contractual
+  resolved_effect_asset_id: entity.aumento_del_riesgo_crediticio
+  match_strategy: generated
+  normalized_name: entity.el incumplimiento contractual causes entity.aumento del
+    riesgo crediticio
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,59 @@
+asset_id: asset_set.el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+asset_type: asset_set
+name: El.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar.
+text: 'el cliente tiene mora mayor a treinta dias, no puede refinanciar
+
+  cliente
+
+  mora
+
+  El.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar Ruleset'
+tags:
+- asset_set
+- el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.el_cliente_tiene_mora_mayor_a_treinta_dias_no_puede_refinanciar
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.mora
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+  metadata: {}
+payload:
+  transaction_id: el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+  asset_ids:
+  - business_rule.el_cliente_tiene_mora_mayor_a_treinta_dias_no_puede_refinanciar
+  - entity.customer
+  - entity.mora
+  - ruleset.el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.el_cliente_tiene_mora_mayor_a_treinta_dias_no_puede_refinanciar
+    asset_type: business_rule
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.mora
+    asset_type: entity
+  - asset_id: ruleset.el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: El.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+    Asset Set
+  normalized_name: el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

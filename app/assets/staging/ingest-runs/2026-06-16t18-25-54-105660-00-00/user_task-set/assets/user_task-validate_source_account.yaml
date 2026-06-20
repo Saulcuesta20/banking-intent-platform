@@ -1,0 +1,25 @@
+asset_id: user_task.validate_source_account
+asset_type: user_task
+name: Validate Source Account
+version: 1.0.0
+owner: business_model_kb
+description: Validate the source account for the transfer
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_intl_validate_source_account
+  task: validate_source_account
+  type: manual
+  name: Validate Source Account
+  description: Validate the source account for the transfer
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Validate Source Account
+  normalized_name: validate source account
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

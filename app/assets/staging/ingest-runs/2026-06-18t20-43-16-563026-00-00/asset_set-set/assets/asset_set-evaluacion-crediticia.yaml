@@ -1,0 +1,40 @@
+asset_id: asset_set.evaluacion.crediticia
+asset_type: asset_set
+name: Evaluacion.crediticia Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for evaluacion.crediticia.
+text: 'evaluacion crediticia
+
+  Evaluacion Crediticia'
+tags:
+- asset_set
+- evaluacion.crediticia
+relations:
+- type: groups_entity
+  target_asset_id: entity.evaluacion_crediticia
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.evaluacion.crediticia
+  metadata: {}
+payload:
+  transaction_id: evaluacion.crediticia
+  asset_ids:
+  - entity.evaluacion_crediticia
+  - flow.evaluacion.crediticia
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.evaluacion_crediticia
+    asset_type: entity
+  - asset_id: flow.evaluacion.crediticia
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Evaluacion.crediticia Asset Set
+  normalized_name: evaluacion.crediticia asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

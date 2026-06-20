@@ -1,0 +1,33 @@
+asset_id: qa.como_se_realiza_el_desembolso_de_un_prestamo_aprobado
+asset_type: qa
+name: Como se realiza el desembolso de un prestamo aprobado?
+version: 1.0.0
+owner: qa_kb
+description: Como se realiza el desembolso de un prestamo aprobado?
+text: Como se realiza el desembolso de un prestamo aprobado?
+tags:
+- qa
+relations: []
+payload:
+  question: Como se realiza el desembolso de un prestamo aprobado?
+  transaction_id: como.se.realiza.el.desembolso.de.un.prestamo.aprobado
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como se realiza el desembolso de un prestamo aprobado?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como se realiza el desembolso de un prestamo aprobado?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como se realiza el desembolso de un prestamo aprobado?
+  match_strategy: generated
+  canonical_name: Como se realiza el desembolso de un prestamo aprobado?
+  normalized_name: como se realiza el desembolso de un prestamo aprobado?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,33 @@
+asset_id: user_task.confirmar_instrucciones
+asset_type: user_task
+name: Confirmar instrucciones
+version: 1.0.0
+owner: business_model_kb
+description: El cliente indica la cuenta destino y monto a desembolsar.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_disbursement_instructions
+  task: confirmar_instrucciones_de_desembolso
+  type: confirmación
+  name: Confirmar instrucciones
+  description: El cliente indica la cuenta destino y monto a desembolsar.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente indica la cuenta destino y monto a desembolsar.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El cliente indica la cuenta destino y monto a desembolsar.
+  match_strategy: generated
+  canonical_name: Confirmar instrucciones
+  normalized_name: confirmar instrucciones
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

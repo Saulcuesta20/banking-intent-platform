@@ -1,0 +1,112 @@
+asset_id: flow.savings.account.opening
+asset_type: flow
+name: Savings Account Opening
+version: 1.0.0
+owner: process_kb
+description: Process to open a savings account for a customer
+text: Process to open a savings account for a customer
+tags:
+- open.a.savings.account
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identify_customer
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.collect_documents
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.run_kyc
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.create_account
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.ask_for_initial_deposit
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirm_account_status
+  metadata: {}
+payload:
+  flow_id: savings.account.opening
+  flow_name: Savings Account Opening
+  intent: open.a.savings.account
+  confidence: 0.75
+  business_event: Account Opening Request
+  utterances: []
+  plan: []
+  tasks:
+  - task: identify_customer
+    type: manual
+  - task: collect_documents
+    type: manual
+  - task: run_kyc
+    type: manual
+  - task: create_account
+    type: manual
+  - task: ask_for_initial_deposit_when_applicable
+    type: manual
+  - task: confirm_account_status
+    type: manual
+  user_tasks:
+  - user_task_id: ut_savings_identify_customer
+    task: identify_customer
+    type: manual
+    name: Identify Customer
+    description: Identify the customer requesting account opening
+    tools: []
+    user_actions: []
+  - user_task_id: ut_savings_collect_documents
+    task: collect_documents
+    type: manual
+    name: Collect Documents
+    description: Collect required documents from customer
+    tools: []
+    user_actions: []
+  - user_task_id: ut_savings_run_kyc
+    task: run_kyc
+    type: manual
+    name: Run KYC
+    description: Perform Know Your Customer checks
+    tools: []
+    user_actions: []
+  - user_task_id: ut_savings_create_account
+    task: create_account
+    type: manual
+    name: Create Account
+    description: Create the savings account in the system
+    tools: []
+    user_actions: []
+  - user_task_id: ut_savings_ask_initial_deposit
+    task: ask_for_initial_deposit_when_applicable
+    type: manual
+    name: Ask for Initial Deposit
+    description: Request initial deposit from customer if required
+    tools: []
+    user_actions: []
+  - user_task_id: ut_savings_confirm_account_status
+    task: confirm_account_status
+    type: manual
+    name: Confirm Account Status
+    description: Confirm the account is active and provide status
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to open a savings account for a customer
+  source: data/raw/enterprise_dump_2026/process_fragments.json
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/process_fragments.json
+    purpose: To create a new savings account
+  purpose: To create a new savings account
+  transaction_id: savings.account.opening
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Savings Account Opening
+  normalized_name: savings account opening
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

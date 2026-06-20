@@ -1,0 +1,64 @@
+asset_id: user_task.review_refinance_options
+asset_type: user_task
+name: Review Refinance Options
+version: 1.0.0
+owner: business_model_kb
+description: Review refinance choices with the customer.
+text: ''
+tags: []
+relations:
+- type: invokes_tool
+  target_asset_id: tool.ui_refinance_calculate
+  metadata: {}
+- type: invokes_tool
+  target_asset_id: tool.loan_conditions_calculate
+  metadata: {}
+payload:
+  user_task_id: review_refinance_options
+  task: review_refinance_options
+  type: user_task
+  name: Review Refinance Options
+  description: Review refinance choices with the customer.
+  user_actions:
+  - action_id: ui.refinance.calculate
+    type: front
+    implementation_type: show_form
+    lifecycle_state: not_started
+    tool_id: null
+    tool_ids:
+    - ui.refinance.calculate
+    label: Calculate refinance
+    triggers: loan_refinance.calculate
+    description: null
+  - action_id: loan.conditions.calculate
+    type: back
+    implementation_type: tool_call
+    lifecycle_state: not_started
+    tool_id: loan.conditions.calculate
+    tool_ids:
+    - loan.conditions.calculate
+    label: null
+    triggers: null
+    description: Calculate new loan conditions.
+  tools:
+  - tool_id: ui.refinance.calculate
+    tool_type: frontend_tool
+    operation: calculate
+    resource: loan_refinance
+    label: Calculate refinance
+    frontend_event: loan_refinance.calculate
+    requires_approval: false
+  - tool_id: loan.conditions.calculate
+    tool_type: backend_tool
+    operation: calculate
+    resource: loan
+    description: Calculate new loan conditions.
+    requires_approval: false
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Review Refinance Options
+  normalized_name: review refinance options
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

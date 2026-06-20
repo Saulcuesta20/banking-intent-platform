@@ -1,0 +1,34 @@
+asset_id: ruleset.falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+asset_type: ruleset
+name: Falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+  with 1 business rules.
+text: Si falta documento oficial, la apertura de cuenta debe detenerse.
+tags:
+- ruleset
+- falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+payload:
+  transaction_id: falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse
+  ruleset_name: Falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse Ruleset
+  rule_ids:
+  - business_rule.falta_documento_oficial_la_apertura_de_cuenta_debe_detenerse
+  conditions:
+  - Si falta documento oficial, la apertura de cuenta
+  consequences:
+  - detenerse
+  match_strategy: generated
+  canonical_name: Falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse Ruleset
+  normalized_name: falta.documento.oficial.la.apertura.de.cuenta.debe.detenerse ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

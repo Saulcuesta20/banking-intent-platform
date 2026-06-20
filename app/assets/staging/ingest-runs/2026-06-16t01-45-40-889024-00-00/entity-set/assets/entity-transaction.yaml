@@ -1,0 +1,22 @@
+asset_id: entity.transaction
+asset_type: entity
+name: Transaction
+version: 1.0.0
+owner: business_model_kb
+description: Movimiento financiero registrado en el core.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Movimiento financiero registrado en el core.
+  inferred_from: llm_asset_extraction
+  business_layer: asset
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transaction
+  normalized_name: transaction
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

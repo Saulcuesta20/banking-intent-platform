@@ -1,0 +1,25 @@
+asset_id: user_task.consulta_de_mora
+asset_type: user_task
+name: Consulta de mora
+version: 1.0.0
+owner: business_model_kb
+description: Revisar si hay pagos atrasados o mora en el préstamo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_consultar_mora
+  task: consultar_mora_o_pagos_atrasados
+  type: consulta
+  name: Consulta de mora
+  description: Revisar si hay pagos atrasados o mora en el préstamo.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Consulta de mora
+  normalized_name: consulta de mora
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,73 @@
+asset_id: flow.apertura.cuenta.ahorro
+asset_type: flow
+name: Apertura de cuenta de ahorro con validación de KYC
+version: 1.0.0
+owner: process_kb
+description: Proceso para crear una nueva cuenta bancaria para un cliente
+text: Proceso para crear una nueva cuenta bancaria para un cliente
+tags:
+- ensure.secure.account.creation.with.kyc.compliance
+relations:
+- type: uses_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.cuenta_de_ahorro
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+payload:
+  flow_id: apertura.cuenta.ahorro
+  flow_name: Apertura de cuenta de ahorro con validación de KYC
+  intent: ensure.secure.account.creation.with.kyc.compliance
+  confidence: 0.75
+  business_event: Client requests opening of a savings account
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para crear una nueva cuenta bancaria para un cliente
+  source: data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra1.txt
+    - data/raw/savings_loans_domain_extra2.txt
+    purpose: To establish a new savings account for a client after verification
+  purpose: To establish a new savings account for a client after verification
+  transaction_id: apertura.cuenta.ahorro
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Apertura de cuenta de ahorro con validación de KYC
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso para crear una nueva cuenta bancaria para un cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso para crear una nueva cuenta bancaria para un cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso para crear una nueva cuenta bancaria para un cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso para crear una nueva cuenta bancaria para un cliente
+  match_strategy: generated
+  canonical_name: Apertura de cuenta de ahorro con validación de KYC
+  normalized_name: apertura de cuenta de ahorro con validación de kyc
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

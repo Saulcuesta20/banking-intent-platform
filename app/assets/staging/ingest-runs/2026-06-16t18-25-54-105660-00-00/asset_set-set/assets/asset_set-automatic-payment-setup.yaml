@@ -1,0 +1,88 @@
+asset_id: asset_set.automatic.payment.setup
+asset_type: asset_set
+name: Automatic.payment.setup Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for automatic.payment.setup.
+text: 'Automatic payment setup
+
+  Capture payment day and acceptance
+
+  check_eligible_account
+
+  Enable debit and send confirmation
+
+  Explain account requirement
+
+  Identify Customer
+
+  Offer account opening
+
+  Verify loan active'
+tags:
+- asset_set
+- automatic.payment.setup
+relations:
+- type: groups_flow
+  target_asset_id: flow.automatic.payment.setup
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.capture_payment_day_and_acceptance
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.check_eligible_account
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.enable_debit_and_send_confirmation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.explain_account_requirement
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identify_customer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.offer_account_opening
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_loan_active
+  metadata: {}
+payload:
+  transaction_id: automatic.payment.setup
+  asset_ids:
+  - flow.automatic.payment.setup
+  - user_task.capture_payment_day_and_acceptance
+  - user_task.check_eligible_account
+  - user_task.enable_debit_and_send_confirmation
+  - user_task.explain_account_requirement
+  - user_task.identify_customer
+  - user_task.offer_account_opening
+  - user_task.verify_loan_active
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.automatic.payment.setup
+    asset_type: flow
+  - asset_id: user_task.capture_payment_day_and_acceptance
+    asset_type: user_task
+  - asset_id: user_task.check_eligible_account
+    asset_type: user_task
+  - asset_id: user_task.enable_debit_and_send_confirmation
+    asset_type: user_task
+  - asset_id: user_task.explain_account_requirement
+    asset_type: user_task
+  - asset_id: user_task.identify_customer
+    asset_type: user_task
+  - asset_id: user_task.offer_account_opening
+    asset_type: user_task
+  - asset_id: user_task.verify_loan_active
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Automatic.payment.setup Asset Set
+  normalized_name: automatic.payment.setup asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

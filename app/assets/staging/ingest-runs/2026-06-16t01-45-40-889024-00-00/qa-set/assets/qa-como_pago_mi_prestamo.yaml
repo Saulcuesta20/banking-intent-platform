@@ -1,0 +1,45 @@
+asset_id: qa.como_pago_mi_prestamo
+asset_type: qa
+name: Como pago mi prestamo?
+version: 1.0.0
+owner: qa_kb
+description: Como pago mi prestamo?
+text: Como pago mi prestamo?
+tags:
+- qa
+relations: []
+payload:
+  question: Como pago mi prestamo?
+  transaction_id: como.pago.mi.prestamo
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como pago mi prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Como pago mi prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como pago mi prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Como pago mi prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como pago mi prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Como pago mi prestamo?
+  match_strategy: generated
+  canonical_name: Como pago mi prestamo?
+  normalized_name: como pago mi prestamo?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

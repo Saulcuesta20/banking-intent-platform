@@ -1,0 +1,26 @@
+asset_id: asset_set.customer.update.profile
+asset_type: asset_set
+name: Customer.update.profile Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for customer.update.profile.
+text: ''
+tags:
+- asset_set
+- customer.update.profile
+relations: []
+payload:
+  transaction_id: customer.update.profile
+  asset_ids:
+  - flow.customer.update.profile
+  asset_types: []
+  primary_asset_type: asset
+  members:
+  - asset_id: flow.customer.update.profile
+  match_strategy: generated
+  canonical_name: Customer.update.profile Asset Set
+  normalized_name: customer.update.profile asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

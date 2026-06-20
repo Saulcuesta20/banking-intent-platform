@@ -1,0 +1,46 @@
+asset_id: causality.el_rechazo_reiterado_de_transferencias_causes_escalamiento_al_equipo_de_fraude
+asset_type: causality
+name: El rechazo reiterado de transferencias causes escalamiento al equipo de fraude
+version: 1.0.0
+owner: causality_kb
+description: El rechazo reiterado de transferencias causa escalamiento al equipo de
+  fraude.
+text: El rechazo reiterado de transferencias causa escalamiento al equipo de fraude.
+tags:
+- causality
+- causes
+relations:
+- type: has_cause
+  target_asset_id: entity.transfer
+  metadata: {}
+payload:
+  cause_text: El rechazo reiterado de transferencias
+  effect_text: escalamiento al equipo de fraude
+  relation_kind: causes
+  statement: El rechazo reiterado de transferencias causa escalamiento al equipo de
+    fraude.
+  sentence: El rechazo reiterado de transferencias causa escalamiento al equipo de
+    fraude.
+  transaction_id: el.rechazo.reiterado.de.transferencias.causes.escalamiento.al.equipo.de.fraude
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: El rechazo reiterado de transferencias causa escalamiento al equipo
+      de fraude.
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: El rechazo reiterado de transferencias causa escalamiento al equipo
+      de fraude.
+  resolved_cause_asset_id: entity.transfer
+  resolved_effect_asset_id: null
+  match_strategy: generated
+  canonical_name: El rechazo reiterado de transferencias causes escalamiento al equipo
+    de fraude
+  normalized_name: el rechazo reiterado de transferencias causes escalamiento al equipo
+    de fraude
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

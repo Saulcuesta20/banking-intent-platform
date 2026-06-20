@@ -1,0 +1,55 @@
+asset_id: process.account.opening
+asset_type: process
+name: Savings account opening
+version: 1.0.0
+owner: process_kb
+description: Identify customer, collect documents, run KYC, create account, ask for
+  initial deposit when applicable, confirm account status.
+text: Identify customer, collect documents, run KYC, create account, ask for initial
+  deposit when applicable, confirm account status.
+tags:
+- process_fragment
+relations:
+- type: applies_to_flow
+  target_asset_id: flow.account.opening
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identify_customer
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.flow.account.opening
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.create_account
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.savings.account.opening
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.collect_documents
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.run_kyc
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.ask_for_initial_deposit
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirm_account_status
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.deposit
+  metadata: {}
+payload:
+  source: operations-sharepoint-export
+  steps_text: Identify customer, collect documents, run KYC, create account, ask for
+    initial deposit when applicable, confirm account status.
+  transaction_id: account.opening
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Savings account opening
+  normalized_name: savings account opening
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

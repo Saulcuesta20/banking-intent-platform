@@ -1,0 +1,25 @@
+asset_id: user_task.tax_id_validation
+asset_type: user_task
+name: Tax ID Validation
+version: 1.0.0
+owner: business_model_kb
+description: Validate the customer's CUIT or CUIL for tax purposes.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: validate_tax_id
+  task: validate_tax_identification_number
+  type: validation
+  name: Tax ID Validation
+  description: Validate the customer's CUIT or CUIL for tax purposes.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Tax ID Validation
+  normalized_name: tax id validation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,37 @@
+asset_id: user_task.validar_cuenta_origen
+asset_type: user_task
+name: Validar cuenta origen
+version: 1.0.0
+owner: business_model_kb
+description: Verificar que la cuenta origen existe y pertenece al cliente
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_validate_source
+  task: validar_cuenta_origen
+  type: verification
+  name: Validar cuenta origen
+  description: Verificar que la cuenta origen existe y pertenece al cliente
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Validar cuenta origen
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Verificar que la cuenta origen existe y pertenece al cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Verificar que la cuenta origen existe y pertenece al cliente
+  match_strategy: generated
+  canonical_name: Validar cuenta origen
+  normalized_name: validar cuenta origen
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

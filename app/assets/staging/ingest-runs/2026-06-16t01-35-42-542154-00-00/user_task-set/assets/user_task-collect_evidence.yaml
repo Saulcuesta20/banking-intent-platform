@@ -1,0 +1,25 @@
+asset_id: user_task.collect_evidence
+asset_type: user_task
+name: Collect Evidence
+version: 1.0.0
+owner: business_model_kb
+description: Gather supporting documents and transaction records.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut202
+  task: collect_evidence
+  type: frontend
+  name: Collect Evidence
+  description: Gather supporting documents and transaction records.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collect Evidence
+  normalized_name: collect evidence
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

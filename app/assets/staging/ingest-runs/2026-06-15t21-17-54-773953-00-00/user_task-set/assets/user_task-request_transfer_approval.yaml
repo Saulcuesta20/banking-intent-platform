@@ -1,0 +1,25 @@
+asset_id: user_task.request_transfer_approval
+asset_type: user_task
+name: Request Transfer Approval
+version: 1.0.0
+owner: business_model_kb
+description: Obtain human approval for high‑value transfers.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut306
+  task: request_approval
+  type: backend
+  name: Request Transfer Approval
+  description: Obtain human approval for high‑value transfers.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Request Transfer Approval
+  normalized_name: request transfer approval
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

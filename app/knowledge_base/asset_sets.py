@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -10,13 +11,16 @@ from typing import Any
 import yaml
 from pydantic import BaseModel, Field, model_validator
 
+from app.config.asset_contracts import AssetContractRegistry
 from app.knowledge_base.catalog_store import AssetCatalogStore
 from app.knowledge_base.adapters.document.sqlite import SQLiteDocumentKnowledgeBaseAdapter
 from app.knowledge_base.adapters.graph.neo4j import Neo4jKnowledgeBaseGraphAdapter
 from app.knowledge_base.adapters.vector.qdrant import QdrantKnowledgeBaseVectorAdapter
 from app.knowledge_base.models import AssetRelation, EnterpriseAsset
 from app.knowledge_base.registry import EnterpriseAssetRegistry
-from app.models import KnowledgeRecord, Task
+from app.config.settings import load_settings
+
+from app.ingestion.federated_topology import FederatedKnowledgeTopology
 
 
 class AssetSetMetadata(BaseModel):
@@ -61,6 +65,7 @@ class AssetSetDeploymentService:
     graph: Neo4jKnowledgeBaseGraphAdapter | None = None
     vector: QdrantKnowledgeBaseVectorAdapter | None = None
     document: SQLiteDocumentKnowledgeBaseAdapter | None = None
+    contract_registry: AssetContractRegistry | None = None
 
     def load(
         self,
@@ -73,10 +78,20 @@ class AssetSetDeploymentService:
         manifest_path = manifest_path.resolve()
         raw = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
         manifest = AssetSetManifest.model_validate(raw)
-        assets = [
-            self._load_asset(entry, manifest=manifest, manifest_path=manifest_path)
-            for entry in manifest.spec.assets
-        ]
+        assets: list = []
+        skipped: list = []
+        for entry in manifest.spec.assets:
+            try:
+                assets.append(
+                    self._load_asset(entry, manifest=manifest, manifest_path=manifest_path)
+                )
+            except Exception as exc:
+                skipped.append({"asset": str(entry), "error": str(exc)})
+        if not assets and skipped:
+            raise ValueError(
+                f"All {len(skipped)} assets failed validation in {manifest.metadata.id}: "
+                + "; ".join(s["error"] for s in skipped[:3])
+            )
         canonical = {
             "manifest": manifest.model_dump(mode="json", by_alias=True),
             "assets": [asset.model_dump(mode="json") for asset in assets],
@@ -112,13 +127,16 @@ class AssetSetDeploymentService:
             },
             members=[(asset.asset_id, asset.version) for asset in assets],
         )
-        return self.store.transition_asset_set(
-            asset_set_id=manifest.metadata.id,
-            version=manifest.metadata.version,
-            to_status="ready_for_review",
-            actor=actor,
-            comment=comment,
-        )
+        return {
+            **self.store.transition_asset_set(
+                asset_set_id=manifest.metadata.id,
+                version=manifest.metadata.version,
+                to_status="ready_for_review",
+                actor=actor,
+                comment=comment,
+            ),
+            "skipped_assets": skipped,
+        }
 
     def load_directory(self, root: Path) -> list[dict[str, Any]]:
         """Load every asset-set.yaml below a directory."""
@@ -145,7 +163,9 @@ class AssetSetDeploymentService:
         asset_set = self.store.get_asset_set(str(asset_set_id), str(asset_set_version))
         if asset_set is None:
             raise KeyError(f"AssetSet version not found: {asset_set_id}@{asset_set_version}")
-        source_path = Path(str((asset_set.get("metadata") or {}).get("source_path") or ""))
+        source_path = self._canonical_manifest_path(
+            Path(str((asset_set.get("metadata") or {}).get("source_path") or ""))
+        )
         if not source_path.is_file():
             raise ValueError(f"AssetSet source manifest is unavailable: {source_path}")
 
@@ -206,7 +226,7 @@ class AssetSetDeploymentService:
             loaded = self.load(
                 target_manifest,
                 actor=actor,
-                comment=f"Asset {asset_id} edited in Lowdefy Asset Studio.",
+                comment=f"Asset {asset_id} edited in launcher asset editor.",
             )
             return {
                 **loaded,
@@ -217,6 +237,160 @@ class AssetSetDeploymentService:
         except Exception:
             shutil.rmtree(version_directory, ignore_errors=True)
             raise
+
+    def preview_draft_version(
+        self,
+        *,
+        asset_id: str,
+        base_version: str | None,
+        document: dict[str, Any],
+        environment: str = "dev",
+        new_version: str | None = None,
+    ) -> dict[str, Any]:
+        catalog_asset = self.store.get_catalog_asset(asset_id, base_version)
+        if catalog_asset is None:
+            raise KeyError(f"Catalog asset not found: {asset_id}@{base_version or 'latest'}")
+        asset_set_id = catalog_asset.get("asset_set_id")
+        asset_set_version = catalog_asset.get("asset_set_version")
+        if not asset_set_id or not asset_set_version:
+            raise ValueError(f"Asset is not managed by an AssetSet: {asset_id}")
+        asset_set = self.store.get_asset_set(str(asset_set_id), str(asset_set_version))
+        if asset_set is None:
+            raise KeyError(f"AssetSet version not found: {asset_set_id}@{asset_set_version}")
+        target_version = new_version or self._next_version(str(asset_set_version))
+        normalized = self._normalize_editor_document(
+            document,
+            expected_asset_id=asset_id,
+            expected_asset_type=str(catalog_asset["asset_type"]),
+        )
+        before = self._catalog_asset_document(catalog_asset)
+        after = {
+            **normalized,
+            "version": target_version,
+            "payload": {
+                **dict(normalized.get("payload") or {}),
+                "asset_set_id": str(asset_set_id),
+                "asset_set_version": target_version,
+            },
+        }
+        validation = self.validate_asset_document(
+            document=normalized,
+            expected_asset_id=asset_id,
+            expected_asset_type=str(catalog_asset["asset_type"]),
+        )
+        projection_preview = self.projection_preview_for_document(
+            document=after,
+            environment=environment,
+        )
+        changed = self._diff_documents(before, after)
+        return {
+            "asset_id": asset_id,
+            "asset_type": catalog_asset["asset_type"],
+            "asset_set_id": asset_set_id,
+            "base_version": asset_set_version,
+            "draft_version": target_version,
+            "environment": environment,
+            "validation": validation,
+            "diff": changed,
+            "projection_preview": projection_preview,
+            "deployment_impact": {
+                "active_version_remains": catalog_asset.get("active_environment") or environment,
+                "message": (
+                    f"Ask and runtime projections keep using {asset_set_id}@{asset_set_version} "
+                    f"until {asset_set_id}@{target_version} is reviewed, validated, and deployed."
+                ),
+            },
+        }
+
+    def diff_asset_versions(
+        self,
+        *,
+        asset_id: str,
+        from_version: str,
+        to_version: str,
+    ) -> dict[str, Any]:
+        before_asset = self.store.get_catalog_asset(asset_id, from_version)
+        after_asset = self.store.get_catalog_asset(asset_id, to_version)
+        if before_asset is None:
+            raise KeyError(f"Catalog asset not found: {asset_id}@{from_version}")
+        if after_asset is None:
+            raise KeyError(f"Catalog asset not found: {asset_id}@{to_version}")
+        before = self._catalog_asset_document(before_asset)
+        after = self._catalog_asset_document(after_asset)
+        return {
+            "asset_id": asset_id,
+            "from_version": from_version,
+            "to_version": to_version,
+            "diff": self._diff_documents(before, after),
+        }
+
+    def projection_preview(
+        self,
+        *,
+        asset_id: str,
+        version: str | None,
+        environment: str = "dev",
+    ) -> dict[str, Any]:
+        catalog_asset = self.store.get_catalog_asset(asset_id, version)
+        if catalog_asset is None:
+            raise KeyError(f"Catalog asset not found: {asset_id}@{version or 'latest'}")
+        return {
+            "asset_id": asset_id,
+            "version": catalog_asset["version"],
+            "environment": environment,
+            "projection_preview": self.projection_preview_for_document(
+                document=self._catalog_asset_document(catalog_asset),
+                environment=environment,
+            ),
+        }
+
+    def projection_preview_for_document(
+        self,
+        *,
+        document: dict[str, Any],
+        environment: str = "dev",
+    ) -> dict[str, Any]:
+        asset_type = str(document["asset_type"])
+        config = self.registry.get_asset_type(asset_type)
+        payload = dict(document.get("payload") or {})
+        semantic_text = "\n".join(
+            str(value)
+            for value in [
+                document.get("name") or "",
+                document.get("description") or "",
+                document.get("text") or "",
+                payload.get("intent") or "",
+                payload.get("business_event") or "",
+            ]
+            if value
+        )
+        relation_count = len(document.get("relations") or [])
+        stores: dict[str, dict[str, Any]] = {}
+        for store in config.stores:
+            if store == "graph":
+                detail = f"{relation_count} relationships staged"
+            elif store == "vector":
+                detail = "semantic text changed" if semantic_text else "metadata-only projection"
+            elif store == "document":
+                detail = "document index pending"
+            elif store == "repository":
+                detail = "YAML pending commit"
+            elif store == "relational":
+                detail = "catalog rows pending version insert"
+            else:
+                detail = "projection pending"
+            stores[store] = {
+                "status": "staging",
+                "environment": environment,
+                "detail": detail,
+                "asset_count": 1,
+            }
+        return {
+            "stores": stores,
+            "required_stores": list(config.stores),
+            "relation_count": relation_count,
+            "semantic_text_length": len(semantic_text),
+        }
 
     def validate_asset_document(
         self,
@@ -233,6 +407,7 @@ class AssetSetDeploymentService:
         asset_type = str(normalized["asset_type"])
         config = self.registry.get_asset_type(asset_type)
         relations = normalized.get("relations") or []
+        contract_validation = self._contracts().validate_document(normalized)
         return {
             "valid": True,
             "asset_id": normalized["asset_id"],
@@ -240,7 +415,110 @@ class AssetSetDeploymentService:
             "relation_count": len(relations),
             "stores": list(config.stores),
             "validators": list(config.validators),
+            "contract_validation": contract_validation.to_dict(),
+            "warnings": contract_validation.warnings,
         }
+
+    @staticmethod
+    def _catalog_asset_document(asset: dict[str, Any]) -> dict[str, Any]:
+        stored = dict(asset.get("payload") or {})
+        if stored.get("asset_id"):
+            document = stored
+        else:
+            document = {
+                "asset_id": asset["asset_id"],
+                "asset_type": asset["asset_type"],
+                "name": asset.get("name"),
+                "version": asset.get("version"),
+                "tags": asset.get("tags") or [],
+                "relations": asset.get("relationships") or [],
+                "payload": asset.get("payload") or {},
+            }
+        document = dict(document)
+        document.setdefault("asset_id", asset["asset_id"])
+        document.setdefault("asset_type", asset["asset_type"])
+        document.setdefault("name", asset.get("name") or asset["asset_id"])
+        document.setdefault("version", asset.get("version"))
+        document.setdefault("tags", asset.get("tags") or [])
+        document.setdefault("relations", asset.get("relationships") or [])
+        document.setdefault("payload", asset.get("payload") or {})
+        return document
+
+    @classmethod
+    def _diff_documents(cls, before: dict[str, Any], after: dict[str, Any]) -> dict[str, Any]:
+        fields = ["asset_id", "asset_type", "name", "description", "version", "text"]
+        field_changes = [
+            {"field": field, "before": before.get(field), "after": after.get(field)}
+            for field in fields
+            if before.get(field) != after.get(field)
+        ]
+        payload_changes = cls._mapping_changes(
+            before.get("payload") if isinstance(before.get("payload"), Mapping) else {},
+            after.get("payload") if isinstance(after.get("payload"), Mapping) else {},
+        )
+        before_tags = [str(tag) for tag in before.get("tags") or []]
+        after_tags = [str(tag) for tag in after.get("tags") or []]
+        before_relations = cls._relation_keys(before.get("relations") or [])
+        after_relations = cls._relation_keys(after.get("relations") or [])
+        return {
+            "changed": bool(
+                field_changes
+                or payload_changes
+                or before_tags != after_tags
+                or before_relations != after_relations
+            ),
+            "fields": field_changes,
+            "payload": payload_changes,
+            "tags": {
+                "added": sorted(set(after_tags) - set(before_tags)),
+                "removed": sorted(set(before_tags) - set(after_tags)),
+                "unchanged": sorted(set(before_tags) & set(after_tags)),
+            },
+            "relations": {
+                "added": sorted(after_relations - before_relations),
+                "removed": sorted(before_relations - after_relations),
+                "unchanged": sorted(before_relations & after_relations),
+            },
+            "summary": cls._diff_summary(field_changes, payload_changes, before_relations, after_relations),
+        }
+
+    @staticmethod
+    def _mapping_changes(before: Mapping[str, Any], after: Mapping[str, Any]) -> list[dict[str, Any]]:
+        keys = sorted(set(before) | set(after))
+        return [
+            {"field": key, "before": before.get(key), "after": after.get(key)}
+            for key in keys
+            if before.get(key) != after.get(key)
+        ]
+
+    @staticmethod
+    def _relation_keys(relations: list[Any]) -> set[str]:
+        keys = set()
+        for relation in relations:
+            if isinstance(relation, Mapping):
+                relation_type = relation.get("type") or relation.get("relation_type")
+                target = relation.get("target_asset_id") or relation.get("targetAssetId")
+                if relation_type and target:
+                    keys.add(f"{relation_type}->{target}")
+        return keys
+
+    @staticmethod
+    def _diff_summary(
+        fields: list[dict[str, Any]],
+        payload: list[dict[str, Any]],
+        before_relations: set[str],
+        after_relations: set[str],
+    ) -> list[str]:
+        values = []
+        if fields:
+            values.append(f"{len(fields)} top-level fields changed")
+        if payload:
+            values.append(f"{len(payload)} payload fields changed")
+        added_relations = len(after_relations - before_relations)
+        removed_relations = len(before_relations - after_relations)
+        if added_relations or removed_relations:
+            values.append(f"{added_relations} relationships added, {removed_relations} removed")
+        return values or ["No structural changes detected"]
 
     def deploy(
         self,
@@ -267,7 +545,10 @@ class AssetSetDeploymentService:
 
     def _project(self, asset_set: dict[str, Any]) -> dict[str, Any]:
         results: dict[str, Any] = {}
-        vector_records: list[dict[str, Any]] = []
+        vector_records_by_collection: dict[str, list[dict[str, Any]]] = {}
+        settings = load_settings()
+        topology = FederatedKnowledgeTopology.from_yaml(settings.federated_topology_path)
+        kb_to_collection = {kb_name: spec.vector_collection for kb_name, spec in topology.knowledge_bases.items()}
         for member in asset_set.get("members") or []:
             asset = EnterpriseAsset.model_validate(member["payload"]).model_copy(
                 update={"status": "active"}
@@ -277,33 +558,6 @@ class AssetSetDeploymentService:
                 if self.graph is None:
                     raise RuntimeError("Graph projection is required but no graph adapter is configured")
                 self.graph.upsert_asset(asset)
-                if asset.asset_type == "flow":
-                    body = asset.payload
-                    flow_id = str(body.get("flow_id") or asset.asset_id.removeprefix("flow."))
-                    task_names = [str(value) for value in body.get("user_tasks") or []]
-                    self.graph.upsert_record(
-                        KnowledgeRecord(
-                            flow_id=flow_id,
-                            flow_name=str(body.get("flow_name") or asset.name or flow_id),
-                            intent=str(body.get("intent") or asset.description),
-                            confidence=1,
-                            business_event=str(body.get("business_event") or "unknown"),
-                            utterances=[str(body.get("intent") or asset.description)],
-                            plan=task_names,
-                            tasks=[Task(task=name, type="user_task") for name in task_names],
-                            user_tasks=[],
-                            capabilities=[],
-                            concepts=[],
-                            explanation=asset.description,
-                            source=f"asset_set:{asset_set['asset_set_id']}@{asset_set['version']}",
-                            metadata={
-                                "asset_id": asset.asset_id,
-                                "asset_set_id": asset_set["asset_set_id"],
-                                "asset_set_version": asset_set["version"],
-                                "catalog_status": "active",
-                            },
-                        )
-                    )
                 self._increment_projection(results, "graph")
             if "document" in stores:
                 if self.document is None:
@@ -313,9 +567,11 @@ class AssetSetDeploymentService:
             if "vector" in stores:
                 if self.vector is None:
                     raise RuntimeError("Vector projection is required but no vector adapter is configured")
-                vector_records.append(
+                owner_kb = self.registry.owner_kb_for(asset.asset_type) or "enterprise_assets_active"
+                collection = kb_to_collection.get(owner_kb, "enterprise_assets_active")
+                vector_records_by_collection.setdefault(collection, []).append(
                     {
-                        "id": f"{asset.asset_id}:{asset.version}",
+                        "id": asset.asset_id,
                         "text": "\n".join(
                             value for value in [asset.name or "", asset.description, asset.text] if value
                         ),
@@ -324,9 +580,9 @@ class AssetSetDeploymentService:
                 )
             for store in stores & {"repository", "relational"}:
                 self._increment_projection(results, store)
-        if vector_records:
-            self.vector.upsert_texts("enterprise_assets_active", vector_records)
-            results["vector"] = {"status": "completed", "asset_count": len(vector_records)}
+        for collection, records in vector_records_by_collection.items():
+            self.vector.upsert_texts(collection, records)
+            results["vector"] = {"status": "completed", "asset_count": len(records)}
         return results
 
     @staticmethod
@@ -355,14 +611,23 @@ class AssetSetDeploymentService:
                 f"expected {manifest.spec.asset_type}"
             )
         self.registry.get_asset_type(asset_type)
-        asset_id = str(document.get("asset_id") or document.get("assetId") or "").strip()
-        if not asset_id:
-            raise ValueError(f"Asset in {source_ref} must define asset_id")
         payload = dict(document.get("payload") or {})
         payload.setdefault("domain_id", manifest.metadata.domain)
         payload.setdefault("module_id", manifest.metadata.module)
+        if asset_type == "tool":
+            payload.setdefault("tool_type", "backend")
+            payload.setdefault("operation", document.get("description") or "")
         payload["asset_set_id"] = manifest.metadata.id
         payload["asset_set_version"] = manifest.metadata.version
+        document["payload"] = payload
+        document = self._normalize_editor_document(
+            document,
+            expected_asset_id=None,
+            expected_asset_type=manifest.spec.asset_type,
+        )
+        asset_id = str(document.get("asset_id") or document.get("assetId") or "").strip()
+        if not asset_id:
+            raise ValueError(f"Asset in {source_ref} must define asset_id")
         relations = [
             AssetRelation(
                 type=str(item["type"]),
@@ -436,13 +701,50 @@ class AssetSetDeploymentService:
                 raise ValueError("Every relation must define type")
             if not (relation.get("target_asset_id") or relation.get("targetAssetId")):
                 raise ValueError("Every relation must define target_asset_id")
+        self._contracts().validate_document_or_raise(normalized)
         return normalized
+
+    def _validate_loaded_asset_document(
+        self,
+        document: dict[str, Any],
+        *,
+        known_asset_ids: set[str],
+    ) -> dict[str, Any]:
+        normalized = self._normalize_editor_document(
+            document,
+            expected_asset_id=None,
+            expected_asset_type=None,
+        )
+        self._contracts().validate_document_or_raise(
+            normalized,
+            known_asset_ids=known_asset_ids,
+            require_known_targets=False,
+        )
+        return normalized
+
+    def _contracts(self) -> AssetContractRegistry:
+        return self.contract_registry or AssetContractRegistry(registry=self.registry)
 
     @staticmethod
     def _asset_set_root(directory: Path) -> Path:
         if directory.parent.name == "versions":
             return directory.parent.parent
         return directory
+
+    @staticmethod
+    def _canonical_manifest_path(source_path: Path) -> Path:
+        """Prefer app/assets as the governed YAML root while old catalog rows migrate."""
+        if source_path.is_file():
+            parts = source_path.parts
+            marker = ("app", "launcher", "modules")
+            for index in range(0, len(parts) - len(marker) + 1):
+                if parts[index:index + len(marker)] == marker:
+                    relative = Path(*parts[index + len(marker):])
+                    candidate = load_settings().asset_source_path / relative
+                    if candidate.is_file():
+                        return candidate
+                    break
+        return source_path
 
     @staticmethod
     def _asset_filename(document: dict[str, Any]) -> str:

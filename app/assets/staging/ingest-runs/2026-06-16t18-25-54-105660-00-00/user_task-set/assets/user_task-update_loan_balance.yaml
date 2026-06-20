@@ -1,0 +1,25 @@
+asset_id: user_task.update_loan_balance
+asset_type: user_task
+name: Update Loan Balance
+version: 1.0.0
+owner: business_model_kb
+description: Recalculate and update loan balance after payment.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: update_loan_balance
+  task: update_loan_balance
+  type: automated
+  name: Update Loan Balance
+  description: Recalculate and update loan balance after payment.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Update Loan Balance
+  normalized_name: update loan balance
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

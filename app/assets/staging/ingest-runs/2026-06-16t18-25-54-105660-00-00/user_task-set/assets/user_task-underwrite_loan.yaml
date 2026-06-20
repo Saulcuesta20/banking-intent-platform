@@ -1,0 +1,25 @@
+asset_id: user_task.underwrite_loan
+asset_type: user_task
+name: Underwrite Loan
+version: 1.0.0
+owner: business_model_kb
+description: Approve loan; manual underwriting for borderline cases
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: underwrite_loan
+  task: underwrite_loan_manual_if_needed
+  type: approval
+  name: Underwrite Loan
+  description: Approve loan; manual underwriting for borderline cases
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Underwrite Loan
+  normalized_name: underwrite loan
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

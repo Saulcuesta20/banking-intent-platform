@@ -5,7 +5,8 @@ Define how domain entities are created during ingestion and projected during ask
 question.
 
 `entity` is the business name. `concept` is the current compatibility name used
-by code and existing data files.
+by code and existing data files. The target architecture keeps aliases on
+entity assets and graph projections, not in a standalone YAML synonym catalog.
 
 ## Responsibilities
 - Extract domain entities such as customer, savings account, loan, payment,
@@ -16,6 +17,8 @@ by code and existing data files.
   `concept_aliases` until the code/data migration renames them.
 - Store entities and synonyms in Neo4j using the current `Concept` and
   `Synonym` labels until graph labels are migrated.
+- Move alias authority from `config/knowledge_base/concept_aliases.yaml` to
+  governed entity alias data in the catalog/graph.
 - Rank selected flow entities against the user question for explainability.
 - Avoid creating entities dynamically during ask question.
 
@@ -30,9 +33,11 @@ by code and existing data files.
 
 ## Data Flow
 Ingestion extracts and validates entity names on each flow. Today those values
-are stored as `concepts`. Normalization loads the synonym catalog from
-`config/knowledge_base/concept_aliases.yaml` or `CONCEPT_ALIAS_CATALOG_PATH`, then
-builds `concept_aliases`.
+are stored as `concepts`. Normalization currently loads the synonym catalog
+from `config/knowledge_base/concept_aliases.yaml` or
+`CONCEPT_ALIAS_CATALOG_PATH`, then builds `concept_aliases`. This is legacy
+behavior. The target implementation should read aliases from approved entity
+payloads and graph alias data instead.
 
 Graph loading currently creates `Concept` nodes and linked `Synonym` nodes.
 During ask question, retrieval can match either the canonical entity name or any
@@ -46,39 +51,39 @@ Compatibility mapping:
 Business term      Current code/data name
 -------------      ----------------------
 entity             concept
-entity synonyms    concept_aliases
+entity aliases     concept_aliases
 EntityVocabulary   ConceptVocabulary
 Entity node        Concept node
-has_synonym        HAS_SYNONYM
+has_alias          HAS_SYNONYM
 related_entities   related_concepts
 ```
 
-## Entity And Synonym Model
-An entity is the canonical business meaning. A synonym is an alternate label,
+## Entity And Alias Model
+An entity is the canonical business meaning. An alias is an alternate label,
 phrase, spelling, or language variant for that same entity.
 
 ```text
 entity.loan
-  synonyms:
+  aliases:
     - prestamo
     - credito
     - loan
 
 entity.customer
-  synonyms:
+  aliases:
     - cliente
     - titular
     - usuario
 
 entity.savings_account
-  synonyms:
+  aliases:
     - cuenta
     - cuenta ahorro
     - cuenta de ahorros
     - savings account
 ```
 
-Entity relationships are separate from synonyms:
+Entity relationships are separate from aliases:
 
 ```text
 entity.loan_refinance
@@ -91,7 +96,7 @@ entity.payment
   related_to -> entity.transaction
 ```
 
-A synonym answers "what other words mean this entity?" A relationship answers
+An alias answers "what other words mean this entity?" A relationship answers
 "how is this entity connected to another business thing?"
 
 ## Example Input/Output
@@ -106,7 +111,7 @@ LoanConditions
 Customer
 ```
 
-Output synonyms may include:
+Output aliases may include:
 
 ```text
 prestamo -> Loan
@@ -129,9 +134,10 @@ code migration can introduce `EntityVocabulary`, `KnowledgeRecord.entities`,
 
 ## Implementation Notes
 Runtime entity behavior is projection and ranking over ingested names and
-synonyms. New entities are not created during ask question; they are normalized
-during ingestion or question understanding. Synonym vocabulary is maintained as
-data, not hardcoded in Python.
+aliases. New entities are not created during ask question; they are normalized
+during ingestion or question understanding. Alias vocabulary should be
+maintained as governed entity graph/catalog data, not hardcoded in Python and
+not as the target standalone YAML source.
 
 Entities belong to the business model knowledge base. Flows and processes
 reference them.
@@ -151,6 +157,7 @@ Not migrated yet:
 - Field rename from `concepts` to `entities`.
 - Neo4j label rename from `Concept` to `Entity`.
 - Result rename from `related_concepts` to `related_entities`.
+- Alias source migration from YAML file to approved entity alias graph data.
 
 ## Future Replacement Strategy
 Entity extraction can become richer during ingestion through graph traversal,

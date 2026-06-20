@@ -1,0 +1,90 @@
+asset_id: document.savings_loans_domain_extra5_txt
+asset_type: document
+name: savings_loans_domain_extra5.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/savings_loans_domain_extra5.txt
+text: 'Glosario Extendido - Ahorros y Préstamos (Parte 5)
+
+
+  Templates y ejemplos de utterances (amplio set):
+
+  - "Quiero abrir una cuenta de ahorro con CBU"
+
+  - "Cómo puedo solicitar un préstamo por 20000 a 24 meses"
+
+  - "Qué documentos necesito para refinanciar mi préstamo"
+
+  - "Cuál es la tasa de interés efectiva anual para cuentas de ahorro"
+
+  - "Puedo pagar mi cuota con tarjeta de débito?"
+
+  - "Cómo programo un débito automático para el préstamo"
+
+  - "Qué pasa si me atraso un mes en el pago"
+
+  - "Cómo solicito la baja de mi cuenta"
+
+  - "Necesito un estado de cuenta para el mes pasado"
+
+  - "Cómo activo notificaciones push para movimientos"
+
+
+  Checklists operativos:
+
+  - Apertura de cuenta: validar ID, validar domicilio, validar CUIT/CUIL, aceptar
+  términos.
+
+  - Préstamo personal: validar ingresos, validar empleo, verificar historial crediticio,
+  definir garantía si aplica.
+
+
+  Notas sobre datos maestros y sincronización:
+
+  - Mantener referencia única de cliente (customer_id) entre sistemas.
+
+  - Sincronizar saldos nocturnamente entre motores de cuentas y reportes.
+
+
+  Fin del bloque extra.'
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: data/raw/savings_loans_domain_extra5.txt
+  kind: text
+  sequence: 31
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- "Quiero abrir una cuenta de ahorro con CBU"'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: '- "Qué pasa si me atraso un mes en el pago"'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- "Cómo solicito la baja de mi cuenta"'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- "Necesito un estado de cuenta para el mes pasado"'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Apertura de cuenta: validar ID, validar domicilio, validar CUIT/CUIL,
+      aceptar términos.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- Mantener referencia única de cliente (customer_id) entre sistemas.'
+  match_strategy: generated
+  canonical_name: savings_loans_domain_extra5.txt
+  normalized_name: savings loans domain extra5.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

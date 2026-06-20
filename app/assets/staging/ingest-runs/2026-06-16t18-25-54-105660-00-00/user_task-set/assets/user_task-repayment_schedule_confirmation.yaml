@@ -1,0 +1,25 @@
+asset_id: user_task.repayment_schedule_confirmation
+asset_type: user_task
+name: Repayment Schedule Confirmation
+version: 1.0.0
+owner: business_model_kb
+description: Generate and confirm the repayment schedule with the customer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_repayment_schedule
+  task: confirm_repayment_schedule
+  type: confirmation
+  name: Repayment Schedule Confirmation
+  description: Generate and confirm the repayment schedule with the customer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Repayment Schedule Confirmation
+  normalized_name: repayment schedule confirmation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

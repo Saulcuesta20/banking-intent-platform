@@ -1,0 +1,72 @@
+asset_id: flow.flow.02
+asset_type: flow
+name: Apertura de cuenta de ahorro
+version: 1.0.0
+owner: process_kb
+description: Proceso para abrir una cuenta de ahorro, requiriendo identificación oficial,
+  comprobante de domicilio y datos fiscales.
+text: Proceso para abrir una cuenta de ahorro, requiriendo identificación oficial,
+  comprobante de domicilio y datos fiscales.
+tags:
+- savings_account.open
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.recopilar_documentos
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.crear_cuenta_de_ahorro
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.cuenta_de_ahorro
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+payload:
+  flow_id: flow.02
+  flow_name: Apertura de cuenta de ahorro
+  intent: savings_account.open
+  confidence: 0.75
+  business_event: Cliente solicita apertura de cuenta
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de apertura de cuenta recoge documentos, valida identidad
+    y crea la cuenta.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Abrir una nueva cuenta de ahorro
+  purpose: Abrir una nueva cuenta de ahorro
+  transaction_id: flow.02
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Apertura de cuenta de ahorro
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de apertura de cuenta recoge documentos, valida identidad
+      y crea la cuenta.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de apertura de cuenta recoge documentos, valida identidad
+      y crea la cuenta.
+  match_strategy: generated
+  canonical_name: Apertura de cuenta de ahorro
+  normalized_name: apertura de cuenta de ahorro
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

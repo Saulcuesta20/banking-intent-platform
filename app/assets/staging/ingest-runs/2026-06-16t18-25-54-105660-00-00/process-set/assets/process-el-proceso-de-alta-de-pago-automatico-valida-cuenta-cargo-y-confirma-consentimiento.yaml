@@ -1,0 +1,48 @@
+asset_id: process.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+asset_type: process
+name: Process alta de pago automatico
+version: 1.0.0
+owner: process_kb
+description: El proceso de alta de pago automatico valida cuenta cargo y confirma
+  consentimiento.
+text: El proceso de alta de pago automatico valida cuenta cargo y confirma consentimiento.
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: El proceso de alta de pago automatico valida cuenta cargo y confirma
+    consentimiento.
+  source_section: Processes
+  transaction_id: el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Process alta de pago automatico
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de alta de pago automatico valida cuenta cargo y confirma
+      consentimiento.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de alta de pago automatico valida cuenta cargo y confirma
+      consentimiento.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de alta de pago automatico valida cuenta cargo y confirma
+      consentimiento.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El proceso de alta de pago automatico valida cuenta cargo y confirma
+      consentimiento.
+  match_strategy: generated
+  canonical_name: Process alta de pago automatico
+  normalized_name: process alta de pago automatico
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

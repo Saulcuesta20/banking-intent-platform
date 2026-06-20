@@ -1,0 +1,22 @@
+asset_id: entity.customer
+asset_type: entity
+name: Customer
+version: 1.0.0
+owner: business_model_kb
+description: Persona que posee una relación con el banco; titular de cuentas y préstamos.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Persona o entidad que contrata productos bancarios.
+  inferred_from: llm_asset_extraction
+  business_layer: party
+  entity_role: party
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer
+  normalized_name: customer
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

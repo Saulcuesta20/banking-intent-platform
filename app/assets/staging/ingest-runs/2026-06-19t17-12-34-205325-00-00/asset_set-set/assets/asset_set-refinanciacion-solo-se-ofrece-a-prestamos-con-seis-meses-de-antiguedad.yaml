@@ -1,0 +1,60 @@
+asset_id: asset_set.refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+asset_type: asset_set
+name: Refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad Asset
+  Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad.
+text: 'refinanciacion solo se ofrece a prestamos con seis meses de antiguedad
+
+  prestamo
+
+  refinanciacion
+
+  Refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad Ruleset'
+tags:
+- asset_set
+- refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.refinanciacion_solo_se_ofrece_a_prestamos_con_seis_meses_de_antiguedad
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan_refinance
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+  metadata: {}
+payload:
+  transaction_id: refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+  asset_ids:
+  - business_rule.refinanciacion_solo_se_ofrece_a_prestamos_con_seis_meses_de_antiguedad
+  - entity.loan
+  - entity.loan_refinance
+  - ruleset.refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.refinanciacion_solo_se_ofrece_a_prestamos_con_seis_meses_de_antiguedad
+    asset_type: business_rule
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: entity.loan_refinance
+    asset_type: entity
+  - asset_id: ruleset.refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+    Asset Set
+  normalized_name: refinanciacion.solo.se.ofrece.a.prestamos.con.seis.meses.de.antiguedad
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

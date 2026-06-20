@@ -1,0 +1,25 @@
+asset_id: user_task.branch_agent_case_opening
+asset_type: user_task
+name: Branch Agent Case Opening
+version: 1.0.0
+owner: business_model_kb
+description: Branch agent opens the refinance case
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_8
+  task: open_refinance_case
+  type: initiation
+  name: Branch Agent Case Opening
+  description: Branch agent opens the refinance case
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Branch Agent Case Opening
+  normalized_name: branch agent case opening
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

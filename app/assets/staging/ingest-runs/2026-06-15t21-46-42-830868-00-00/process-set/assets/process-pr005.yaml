@@ -1,0 +1,29 @@
+asset_id: process.pr005
+asset_type: process
+name: PR005
+version: 1.0.0
+owner: process_kb
+description: 'Proceso de actualización de datos: revisa titularidad, valida cambios
+  y registra auditoría.'
+text: ''
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pr005
+  business_event: ''
+  triggers: []
+  execution_nodes: []
+  transitions: []
+  rules: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: PR005
+  normalized_name: pr005
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,20 @@
+asset_id: entity.collateral
+asset_type: entity
+name: Collateral
+version: 1.0.0
+owner: business_model_kb
+description: Activo o persona que respalda una obligación crediticia.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Activo o persona que respalda una obligación crediticia.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collateral
+  normalized_name: collateral
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

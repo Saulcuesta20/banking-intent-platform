@@ -1,0 +1,66 @@
+asset_id: flow.apertura.cuenta
+asset_type: flow
+name: Apertura de Cuenta
+version: 1.0.0
+owner: process_kb
+description: Proceso de crear una cuenta bancaria para un cliente.
+text: Proceso de crear una cuenta bancaria para un cliente.
+tags:
+- to.provide.access.to.banking.services
+relations:
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+payload:
+  flow_id: apertura.cuenta
+  flow_name: Apertura de Cuenta
+  intent: to.provide.access.to.banking.services
+  confidence: 0.75
+  business_event: Account Opening
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de crear una cuenta bancaria para un cliente.
+  source: data/raw/savings_glossary.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_glossary.csv
+    purpose: To onboard new customers and create banking accounts.
+  purpose: To onboard new customers and create banking accounts.
+  transaction_id: apertura.cuenta
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Apertura de Cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso de crear una cuenta bancaria para un cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso de crear una cuenta bancaria para un cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso de crear una cuenta bancaria para un cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso de crear una cuenta bancaria para un cliente.
+  match_strategy: generated
+  canonical_name: Apertura de Cuenta
+  normalized_name: apertura de cuenta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,28 @@
+asset_id: tool.autopay_register
+asset_type: tool
+name: autopay.register
+version: 1.0.0
+owner: business_model_kb
+description: La API autopay.register crea el mandato de pago automatico.
+text: La API autopay.register crea el mandato de pago automatico.
+tags: []
+relations: []
+payload:
+  description: La API autopay.register crea el mandato de pago automatico.
+  tool_id: autopay.register
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: La API autopay.register crea el mandato de pago automatico.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: La API autopay.register crea el mandato de pago automatico.
+  match_strategy: generated
+  canonical_name: autopay.register
+  normalized_name: autopay.register
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

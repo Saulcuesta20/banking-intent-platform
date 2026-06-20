@@ -1,0 +1,25 @@
+asset_id: user_task.credit_history_consultation
+asset_type: user_task
+name: Credit History Consultation
+version: 1.0.0
+owner: business_model_kb
+description: Retrieve credit history from external service.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: consult_credit_history_task
+  task: consult_client_credit_history
+  type: automated
+  name: Credit History Consultation
+  description: Retrieve credit history from external service.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Credit History Consultation
+  normalized_name: credit history consultation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

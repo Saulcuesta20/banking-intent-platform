@@ -1,0 +1,106 @@
+asset_id: flow.cobranza.001
+asset_type: flow
+name: proceso_de_cobranza
+version: 1.0.0
+owner: process_kb
+description: El analista de cobranza consulta al sistema, valida la situacion y documenta
+  el siguiente paso. Si el caso ya tiene una regla activa, no se repite la solicitud
+  a un usuario sin necesidad.
+text: El analista de cobranza consulta al sistema, valida la situacion y documenta
+  el siguiente paso. Si el caso ya tiene una regla activa, no se repite la solicitud
+  a un usuario sin necesidad.
+tags:
+- recuperar.el.pago.o.acordar.un.plan
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.consultar_sistema
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validar_situacion
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.documentar_siguiente_paso
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.enviar_recordatorio
+  metadata: {}
+payload:
+  flow_id: cobranza.001
+  flow_name: proceso_de_cobranza
+  intent: recuperar.el.pago.o.acordar.un.plan
+  confidence: 0.75
+  business_event: cliente_con_pago_retrasado
+  utterances: []
+  plan: []
+  tasks:
+  - task: consultar_sistema
+    type: data_entry
+  - task: validar_situacion
+    type: decision
+  - task: documentar_paso
+    type: documentation
+  - task: enviar_recordatorio
+    type: notification
+  user_tasks:
+  - user_task_id: consultar_sistema
+    task: consultar_sistema
+    type: data_entry
+    name: Consultar sistema
+    description: Consultar saldo y ultima fecha de pago del cliente en el sistema
+      de cobranza.
+    tools: []
+    user_actions: []
+  - user_task_id: validar_situacion
+    task: validar_situacion
+    type: decision
+    name: Validar situacion
+    description: Validar la situacion del cliente y definir si requiere promesa, escalacion
+      o seguimiento.
+    tools: []
+    user_actions: []
+  - user_task_id: documentar_paso
+    task: documentar_paso
+    type: documentation
+    name: Documentar siguiente paso
+    description: Documentar el siguiente paso en el sistema de cobranza.
+    tools: []
+    user_actions: []
+  - user_task_id: enviar_recordatorio
+    task: enviar_recordatorio
+    type: notification
+    name: Enviar recordatorio
+    description: Enviar recordatorio al cliente si el caso permanece abierto.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El analista de cobranza consulta al sistema, valida la situacion y
+    documenta el siguiente paso. Si el caso ya tiene una regla activa, no se repite
+    la solicitud a un usuario sin necesidad.
+  source: data/raw/notes_operativas_cobranza.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/notes_operativas_cobranza.md
+    purpose: gestionar_la_cobranza_de_clientes_con_pagos_retrasados
+  purpose: gestionar_la_cobranza_de_clientes_con_pagos_retrasados
+  transaction_id: cobranza.001
+  relation_hints:
+  - type: has_step
+    family: structural
+    phrase: paso
+    sentence: El analista de cobranza consulta al sistema, valida la situacion y documenta
+      el siguiente paso.
+  - type: has_step
+    family: structural
+    phrase: paso
+    sentence: El analista de cobranza consulta al sistema, valida la situacion y documenta
+      el siguiente paso.
+  match_strategy: generated
+  canonical_name: proceso_de_cobranza
+  normalized_name: proceso de cobranza
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

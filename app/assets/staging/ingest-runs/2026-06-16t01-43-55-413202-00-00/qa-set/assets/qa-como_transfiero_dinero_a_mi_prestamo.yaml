@@ -1,0 +1,33 @@
+asset_id: qa.como_transfiero_dinero_a_mi_prestamo
+asset_type: qa
+name: Como transfiero dinero a mi prestamo?
+version: 1.0.0
+owner: qa_kb
+description: Como transfiero dinero a mi prestamo?
+text: Como transfiero dinero a mi prestamo?
+tags:
+- qa
+relations: []
+payload:
+  question: Como transfiero dinero a mi prestamo?
+  transaction_id: como.transfiero.dinero.a.mi.prestamo
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como transfiero dinero a mi prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como transfiero dinero a mi prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Como transfiero dinero a mi prestamo?
+  match_strategy: generated
+  canonical_name: Como transfiero dinero a mi prestamo?
+  normalized_name: como transfiero dinero a mi prestamo?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

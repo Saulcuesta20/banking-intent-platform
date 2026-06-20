@@ -1,0 +1,31 @@
+asset_id: user_task.capturar_datos_del_cliente_para_crear_el_registro
+asset_type: user_task
+name: Capturar datos del cliente para crear el registro
+version: 1.0.0
+owner: business_model_kb
+description: Capturar datos del cliente para crear el registro.
+text: Capturar datos del cliente para crear el registro.
+tags: []
+relations: []
+payload:
+  description: Capturar datos del cliente para crear el registro.
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Capturar datos del cliente para crear el registro
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Capturar datos del cliente para crear el registro.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Capturar datos del cliente para crear el registro.
+  match_strategy: generated
+  canonical_name: Capturar datos del cliente para crear el registro
+  normalized_name: capturar datos del cliente para crear el registro
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

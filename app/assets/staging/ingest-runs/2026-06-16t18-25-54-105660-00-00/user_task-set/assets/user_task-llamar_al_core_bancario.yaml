@@ -1,0 +1,29 @@
+asset_id: user_task.llamar_al_core_bancario
+asset_type: user_task
+name: Llamar al core bancario
+version: 1.0.0
+owner: business_model_kb
+description: Crear cuenta de ahorro en el core bancario.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_llamar_core_bancario
+  task: llamar_core_bancario
+  type: system
+  name: Llamar al core bancario
+  description: Crear cuenta de ahorro en el core bancario.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Crear cuenta de ahorro en el core bancario.
+  match_strategy: generated
+  canonical_name: Llamar al core bancario
+  normalized_name: llamar al core bancario
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

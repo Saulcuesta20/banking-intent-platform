@@ -1,0 +1,94 @@
+asset_id: flow.claim.management
+asset_type: flow
+name: Gestión de reclamos
+version: 1.0.0
+owner: process_kb
+description: Process to handle customer claims with evidence collection and fraud
+  escalation.
+text: Process to handle customer claims with evidence collection and fraud escalation.
+tags:
+- customer.wants.to.file.a.claim
+- gestionar.reclamo
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.proporcionar_evidencia_de_reclamo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.proporcionar_informaci_n_adicional
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.escalar_fraude
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.claim
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.recepci_n_de_reclamo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.revisi_n_de_reclamo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.resoluci_n_de_reclamo
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  flow_id: claim.management
+  flow_name: Gestión de reclamos
+  intent: gestionar.reclamo
+  confidence: 0.75
+  business_event: Reclamo recibido
+  utterances: []
+  plan: []
+  tasks:
+  - task: recepci_n_del_reclamo_en_canales
+    type: manual
+  - task: revisi_n_documental_y_conciliaci_n_de_movimientos
+    type: manual
+  - task: resoluci_n_y_comunicaci_n_al_cliente
+    type: manual
+  user_tasks:
+  - user_task_id: claim_reception
+    task: recepci_n_del_reclamo_en_canales
+    type: manual
+    name: Recepción de reclamo
+    description: Recibir el reclamo a través de canales como teléfono, correo o sucursal.
+    tools: []
+    user_actions: []
+  - user_task_id: claim_review
+    task: revisi_n_documental_y_conciliaci_n_de_movimientos
+    type: manual
+    name: Revisión de reclamo
+    description: Revisar documentos y conciliar movimientos para verificar el reclamo.
+    tools: []
+    user_actions: []
+  - user_task_id: claim_resolution
+    task: resoluci_n_y_comunicaci_n_al_cliente
+    type: manual
+    name: Resolución de reclamo
+    description: Resolver el reclamo y comunicar la decisión al cliente en 7 días
+      hábiles.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de recepción, revisión y resolución de reclamos de clientes.
+  source: data/raw/savings_loans_domain_extra3.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra3.txt
+    purpose: Resolver reclamos en 7 días hábiles
+  purpose: Resolver reclamos en 7 días hábiles
+  transaction_id: claim.management
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Gestión de reclamos
+  normalized_name: gestión de reclamos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

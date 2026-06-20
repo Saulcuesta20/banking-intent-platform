@@ -1,0 +1,72 @@
+asset_id: asset_set.update.existing.customer
+asset_type: asset_set
+name: Update.existing.customer Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for update.existing.customer.
+text: 'Update Existing Customer
+
+  Confirm Change
+
+  Identity Verification
+
+  Notify Customer
+
+  Search Customer
+
+  Update Record'
+tags:
+- asset_set
+- update.existing.customer
+relations:
+- type: groups_flow
+  target_asset_id: flow.update.existing.customer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirm_change
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identity_verification
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.notify_customer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.search_customer
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.update_record
+  metadata: {}
+payload:
+  transaction_id: update.existing.customer
+  asset_ids:
+  - flow.update.existing.customer
+  - user_task.confirm_change
+  - user_task.identity_verification
+  - user_task.notify_customer
+  - user_task.search_customer
+  - user_task.update_record
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.update.existing.customer
+    asset_type: flow
+  - asset_id: user_task.confirm_change
+    asset_type: user_task
+  - asset_id: user_task.identity_verification
+    asset_type: user_task
+  - asset_id: user_task.notify_customer
+    asset_type: user_task
+  - asset_id: user_task.search_customer
+    asset_type: user_task
+  - asset_id: user_task.update_record
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Update.existing.customer Asset Set
+  normalized_name: update.existing.customer asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

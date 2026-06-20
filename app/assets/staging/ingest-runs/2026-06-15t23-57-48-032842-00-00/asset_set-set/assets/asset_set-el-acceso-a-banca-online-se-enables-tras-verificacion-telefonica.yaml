@@ -1,0 +1,42 @@
+asset_id: asset_set.el.acceso.a.banca.online.se.enables.tras.verificacion.telefonica
+asset_type: asset_set
+name: El.acceso.a.banca.online.se.enables.tras.verificacion.telefonica Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.acceso.a.banca.online.se.enables.tras.verificacion.telefonica.
+text: 'El acceso a banca online se enables tras verificación telefónica
+
+  tras verificación telefónica'
+tags:
+- asset_set
+- el.acceso.a.banca.online.se.enables.tras.verificacion.telefonica
+relations:
+- type: groups_causality
+  target_asset_id: causality.el_acceso_a_banca_online_se_enables_tras_verificaci_n_telef_nica
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.tras_verificacion_telefonica
+  metadata: {}
+payload:
+  transaction_id: el.acceso.a.banca.online.se.enables.tras.verificacion.telefonica
+  asset_ids:
+  - causality.el_acceso_a_banca_online_se_enables_tras_verificaci_n_telef_nica
+  - entity.tras_verificacion_telefonica
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.el_acceso_a_banca_online_se_enables_tras_verificaci_n_telef_nica
+    asset_type: causality
+  - asset_id: entity.tras_verificacion_telefonica
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: El.acceso.a.banca.online.se.enables.tras.verificacion.telefonica
+    Asset Set
+  normalized_name: el.acceso.a.banca.online.se.enables.tras.verificacion.telefonica
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

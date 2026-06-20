@@ -1,0 +1,48 @@
+asset_id: document.orchestration_planning_notes_md
+asset_type: document
+name: orchestration_planning_notes.md
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/enterprise_dump_2026/orchestration_planning_notes.md
+text: "# Orchestration Planning Notes\n\nThe platform team documented how agents should\
+  \ compose customer journeys from\nbusiness tasks and tools. These notes are draft\
+  \ operational guidance, not a\nformal asset export.\n\n## Plan: International transfer\
+  \ review\n\nGoal: decide whether a high value international transfer can be released.\n\
+  \nSteps:\n1. Identify the customer and validate active relationship.\n2. Capture\
+  \ transfer details and normalize amount, currency, beneficiary, and\n   destination\
+  \ country.\n3. Screen the beneficiary through the compliance screening gateway.\n\
+  4. Evaluate high value transfer controls and destination risk.\n5. Request purpose\
+  \ document when the control requires evidence.\n6. Route to manager or compliance\
+  \ review when policy gates are triggered.\n7. Notify customer and record decision\
+  \ evidence.\n\nExpected tools: ui.customer.identify, customer.identity.validate,\n\
+  ui.transfer.capture, transfer.create, api.sanctions.screen, risk.case.create,\n\
+  ui.document.request, notification.send, approval.update.\n\n## Plan: Loan refinance\
+  \ assistance\n\nGoal: help a customer understand and request refinance options.\n\
+  \nSteps:\n1. Identify the customer.\n2. Read current loan status and arrears status.\n\
+  3. Calculate refinance conditions.\n4. Compare refinance options and show payment\
+  \ impact.\n5. Check manager approval threshold.\n6. Collect missing evidence when\
+  \ required.\n7. Submit request or explain decline reason.\n\nExpected tools: ui.customer.identify,\
+  \ customer.identity.validate,\nloan.conditions.calculate, loan_refinance.compare,\
+  \ document.upload,\napproval.update.\n\n## Plan: Automatic payment setup\n\nGoal:\
+  \ configure recurring payment for an existing loan.\n\nSteps:\n1. Identify the customer.\n\
+  2. Verify the loan is active.\n3. Check eligible savings account.\n4. Explain account\
+  \ requirement when no eligible account exists.\n5. Offer account opening journey.\n\
+  6. Capture payment day and customer acceptance.\n7. Enable automatic debit and send\
+  \ confirmation.\n\nExpected tools: customer.identity.validate, loan.status.read,\n\
+  account.eligibility.check, ui.account.open, automatic_debit.create,\nnotification.send."
+tags:
+- text
+- md
+relations: []
+payload:
+  path: data/raw/enterprise_dump_2026/orchestration_planning_notes.md
+  kind: text
+  sequence: 13
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: orchestration_planning_notes.md
+  normalized_name: orchestration planning notes.md
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

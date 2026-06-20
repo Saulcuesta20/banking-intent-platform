@@ -1,0 +1,84 @@
+asset_id: flow.fl102
+asset_type: flow
+name: Orquestar FlexPay + ShieldGuard
+version: 1.0.0
+owner: process_kb
+description: El plan corporativo explica que Personal Lending coordina FlexPay con
+  ShieldGuard para elevar la tasa de adjunción.
+text: El plan corporativo explica que Personal Lending coordina FlexPay con ShieldGuard
+  para elevar la tasa de adjunción.
+tags:
+- fl102
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.calcular_terminos_de_refinanciamiento
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.planificar_cross_sell_flexpay_shieldguard
+  metadata: {}
+payload:
+  flow_id: fl102
+  flow_name: Orquestar FlexPay + ShieldGuard
+  intent: fl102
+  confidence: 0.75
+  business_event: flexpay_disbursement
+  utterances: []
+  plan: []
+  tasks:
+  - task: identificar_al_cliente
+    type: human
+  - task: calcular_terminos_refinanciamiento
+    type: human
+  - task: planificar_cross_sell_shieldguard
+    type: human
+  user_tasks:
+  - user_task_id: ut001
+    task: identificar_al_cliente
+    type: human
+    name: Identificar al cliente antes de cualquier operacion financiera
+    description: El agente verifica la identidad del cliente y confirma que la relación
+      está activa antes de iniciar cualquier proceso.
+    tools: []
+    user_actions: []
+  - user_task_id: ut004
+    task: calcular_terminos_refinanciamiento
+    type: human
+    name: Calcular terminos de refinanciamiento
+    description: Ejecutar el cálculo de nuevas condiciones (tasa, plazo, cuota) para
+      una solicitud de refinanciamiento.
+    tools: []
+    user_actions: []
+  - user_task_id: ut403
+    task: planificar_cross_sell_shieldguard
+    type: human
+    name: Planificar cross sell FlexPay + ShieldGuard
+    description: Coordinar con Lending y Protection Services para ofrecer ShieldGuard
+      en cada originación FlexPay.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El plan corporativo explica que Personal Lending coordina FlexPay con
+    ShieldGuard para elevar la tasa de adjunción.
+  source: data/raw/corporate_structure_and_offerings.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/corporate_structure_and_offerings.md
+    purpose: Combinar el desembolso FlexPay con el upsell ShieldGuard y coordinar
+      seguros y lending.
+  purpose: Combinar el desembolso FlexPay con el upsell ShieldGuard y coordinar seguros
+    y lending.
+  transaction_id: fl102
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Orquestar FlexPay + ShieldGuard
+  normalized_name: orquestar flexpay + shieldguard
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

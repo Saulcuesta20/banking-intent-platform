@@ -1,0 +1,34 @@
+asset_id: flow.debt.restructure
+asset_type: flow
+name: quiero reestructurar una deuda en atraso
+version: 1.0.0
+owner: process_kb
+description: 'El cliente pide: quiero reestructurar una deuda en atraso.'
+text: 'El cliente pide: quiero reestructurar una deuda en atraso.'
+tags:
+- utterance_flow
+relations:
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  utterances:
+  - 'El cliente pide: quiero reestructurar una deuda en atraso.'
+  purpose: 'El cliente pide: quiero reestructurar una deuda en atraso.'
+  transaction_id: debt.restructure
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente pide: quiero reestructurar una deuda en atraso.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'El cliente pide: quiero reestructurar una deuda en atraso.'
+  match_strategy: generated
+  canonical_name: quiero reestructurar una deuda en atraso
+  normalized_name: quiero reestructurar una deuda en atraso
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

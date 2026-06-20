@@ -1,0 +1,25 @@
+asset_id: user_task.aplicaci_n_de_scoring
+asset_type: user_task
+name: Aplicación de scoring
+version: 1.0.0
+owner: business_model_kb
+description: Aplicar reglas de scoring y determinar límites
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_apply_scoring
+  task: aplicar_reglas_de_scoring_y_l_mites
+  type: decision
+  name: Aplicación de scoring
+  description: Aplicar reglas de scoring y determinar límites
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Aplicación de scoring
+  normalized_name: aplicación de scoring
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

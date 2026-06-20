@@ -1,0 +1,76 @@
+asset_id: flow.tck.1004.change.payment.date
+asset_type: flow
+name: Change Payment Date
+version: 1.0.0
+owner: process_kb
+description: Customer wants to move payment date without defaulting.
+text: Customer wants to move payment date without defaulting.
+tags:
+- customer.wants.to.change.payment.date.to.avoid.default
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verify_account_status
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.propose_new_date
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.update_payment_schedule
+  metadata: {}
+payload:
+  flow_id: tck.1004.change.payment.date
+  flow_name: Change Payment Date
+  intent: customer.wants.to.change.payment.date.to.avoid.default
+  confidence: 0.75
+  business_event: Customer requests to change payment date
+  utterances: []
+  plan: []
+  tasks:
+  - task: verify_account_status_and_current_payment_date
+    type: agent
+  - task: propose_new_payment_date_to_customer
+    type: agent
+  - task: update_payment_schedule_with_new_date
+    type: agent
+  user_tasks:
+  - user_task_id: verify_account_status
+    task: verify_account_status_and_current_payment_date
+    type: agent
+    name: Verify Account Status
+    description: Agent checks account is in good standing and current payment date.
+    tools: []
+    user_actions: []
+  - user_task_id: propose_new_date
+    task: propose_new_payment_date_to_customer
+    type: agent
+    name: Propose New Date
+    description: Agent suggests available new dates and gets customer confirmation.
+    tools: []
+    user_actions: []
+  - user_task_id: update_payment_schedule
+    task: update_payment_schedule_with_new_date
+    type: agent
+    name: Update Payment Schedule
+    description: Agent updates the payment schedule in the system.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Customer wants to move payment date without defaulting.
+  source: data/raw/customer_support_tickets_mini.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    purpose: To update payment schedule to new date.
+  purpose: To update payment schedule to new date.
+  transaction_id: tck.1004.change.payment.date
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Change Payment Date
+  normalized_name: change payment date
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

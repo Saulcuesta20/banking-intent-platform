@@ -1,0 +1,45 @@
+asset_id: flow.cierre.cuenta
+asset_type: flow
+name: Tramitación de cierre de cuenta y liquidación de saldos
+version: 1.0.0
+owner: process_kb
+description: Process to close account and settle balances
+text: Process to close account and settle balances
+tags:
+- end.the.banking.relationship.for.the.account
+relations: []
+payload:
+  flow_id: cierre.cuenta
+  flow_name: Tramitación de cierre de cuenta y liquidación de saldos
+  intent: end.the.banking.relationship.for.the.account
+  confidence: 0.75
+  business_event: Client closes their account
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to close account and settle balances
+  source: data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra1.txt
+    - data/raw/savings_loans_domain_extra2.txt
+    purpose: Terminate the account and settle remaining funds
+  purpose: Terminate the account and settle remaining funds
+  transaction_id: cierre.cuenta
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Tramitación de cierre de cuenta y liquidación de saldos
+  match_strategy: generated
+  canonical_name: Tramitación de cierre de cuenta y liquidación de saldos
+  normalized_name: tramitación de cierre de cuenta y liquidación de saldos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

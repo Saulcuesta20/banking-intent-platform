@@ -1,0 +1,25 @@
+asset_id: user_task.activate_sms_notifications_for_movements
+asset_type: user_task
+name: Activate SMS notifications for movements
+version: 1.0.0
+owner: business_model_kb
+description: Enable SMS alerts for account transactions
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: activar_notificaciones_sms
+  task: activar_notificaciones_sms_para_movimientos
+  type: action
+  name: Activate SMS notifications for movements
+  description: Enable SMS alerts for account transactions
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Activate SMS notifications for movements
+  normalized_name: activate sms notifications for movements
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

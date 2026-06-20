@@ -1,0 +1,40 @@
+asset_id: asset_set.money.transfer
+asset_type: asset_set
+name: Money.transfer Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for money.transfer.
+text: 'Transfer
+
+  necesito transferir dinero a otra cuenta'
+tags:
+- asset_set
+- money.transfer
+relations:
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.money.transfer
+  metadata: {}
+payload:
+  transaction_id: money.transfer
+  asset_ids:
+  - entity.transfer
+  - flow.money.transfer
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: flow.money.transfer
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Money.transfer Asset Set
+  normalized_name: money.transfer asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,49 @@
+asset_id: asset_set.loan.refinance
+asset_type: asset_set
+name: Loan.refinance Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.refinance.
+text: 'Loan Refinance
+
+  loan.conditions.calculate
+
+  Review Refinance Options'
+tags:
+- asset_set
+- loan.refinance
+relations:
+- type: groups_flow
+  target_asset_id: flow.loan.refinance
+  metadata: {}
+- type: groups_tool
+  target_asset_id: tool.loan_conditions_calculate
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.review_refinance_options
+  metadata: {}
+payload:
+  transaction_id: loan.refinance
+  asset_ids:
+  - flow.loan.refinance
+  - tool.loan_conditions_calculate
+  - user_task.review_refinance_options
+  asset_types:
+  - flow
+  - tool
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.loan.refinance
+    asset_type: flow
+  - asset_id: tool.loan_conditions_calculate
+    asset_type: tool
+  - asset_id: user_task.review_refinance_options
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Loan.refinance Asset Set
+  normalized_name: loan.refinance asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

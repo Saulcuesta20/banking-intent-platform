@@ -161,7 +161,7 @@ class EnterpriseAsset(BaseModel):
         "deprecated",
         "retired",
         "rejected",
-    ] = "approved"
+    ] = "draft"
     owner: str | None = None
     description: str = ""
     text: str = ""
@@ -170,8 +170,14 @@ class EnterpriseAsset(BaseModel):
     relations: list[AssetRelation] = Field(default_factory=list)
     evidence: list[AssetEvidence] = Field(default_factory=list)
     payload: dict[str, Any] = Field(default_factory=dict)
+    structural_layer: str | None = None
+    business_layer: str | None = None
 
     model_config = {"frozen": True}
+
+    @property
+    def ontology_layer(self) -> str | None:
+        return self.structural_layer or self.business_layer
 
     @property
     def is_approved(self) -> bool:
@@ -190,6 +196,7 @@ class AssetSearchResult(BaseModel):
     primary_assets: list[EnterpriseAsset] = Field(default_factory=list)
     supporting_assets: list[EnterpriseAsset] = Field(default_factory=list)
     evidence_assets: list[EnterpriseAsset] = Field(default_factory=list)
+    vector_results: list[dict[str, Any]] = Field(default_factory=list)
 
     model_config = {"frozen": True}
 

@@ -10,7 +10,7 @@
   "userTasks": [
     "capture payment"
   ],
-  "lowdefyPage": "loan-payment",
+  "editorRoute": "loan-payment",
   "currentFormVersion": "v1",
   "formId": "loan-payment"
 }

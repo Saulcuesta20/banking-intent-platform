@@ -1,0 +1,32 @@
+asset_id: user_task.aceptaci_n_de_condiciones
+asset_type: user_task
+name: Aceptación de condiciones
+version: 1.0.0
+owner: business_model_kb
+description: El cliente revisa y acepta las nuevas condiciones del préstamo (plazo,
+  cuota, tasa) propuestas por el banco.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: aceptar_nuevas_condiciones
+  task: aceptar_nuevas_condiciones_de_refinanciaci_n
+  type: approval
+  name: Aceptación de condiciones
+  description: El cliente revisa y acepta las nuevas condiciones del préstamo (plazo,
+    cuota, tasa) propuestas por el banco.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente revisa y acepta las nuevas condiciones del préstamo (plazo,
+      cuota, tasa) propuestas por el banco.
+  match_strategy: generated
+  canonical_name: Aceptación de condiciones
+  normalized_name: aceptación de condiciones
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

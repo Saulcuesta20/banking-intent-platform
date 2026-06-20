@@ -1,0 +1,29 @@
+asset_id: user_task.capture_customer_data
+asset_type: user_task
+name: Capture Customer Data
+version: 1.0.0
+owner: business_model_kb
+description: Capturar datos del cliente para crear el registro.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: capture_customer_data
+  task: capturar_datos_del_cliente_para_crear_el_registro
+  type: manual
+  name: Capture Customer Data
+  description: Capturar datos del cliente para crear el registro.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Capturar datos del cliente para crear el registro.
+  match_strategy: generated
+  canonical_name: Capture Customer Data
+  normalized_name: capture customer data
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

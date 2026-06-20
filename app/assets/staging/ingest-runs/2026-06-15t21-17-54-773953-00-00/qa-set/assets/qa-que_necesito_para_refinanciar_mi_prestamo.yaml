@@ -1,0 +1,33 @@
+asset_id: qa.que_necesito_para_refinanciar_mi_prestamo
+asset_type: qa
+name: Que necesito para refinanciar mi prestamo?
+version: 1.0.0
+owner: qa_kb
+description: Que necesito para refinanciar mi prestamo?
+text: Que necesito para refinanciar mi prestamo?
+tags:
+- qa
+relations: []
+payload:
+  question: Que necesito para refinanciar mi prestamo?
+  transaction_id: que.necesito.para.refinanciar.mi.prestamo
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Que necesito para refinanciar mi prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Que necesito para refinanciar mi prestamo?
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Que necesito para refinanciar mi prestamo?
+  match_strategy: generated
+  canonical_name: Que necesito para refinanciar mi prestamo?
+  normalized_name: que necesito para refinanciar mi prestamo?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

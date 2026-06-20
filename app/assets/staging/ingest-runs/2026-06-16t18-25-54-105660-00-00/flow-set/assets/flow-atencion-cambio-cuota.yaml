@@ -1,0 +1,112 @@
+asset_id: flow.atencion.cambio.cuota
+asset_type: flow
+name: Atención para cambio de cuota
+version: 1.0.0
+owner: process_kb
+description: Proceso de atención al cliente que desea modificar el monto de su cuota,
+  incluyendo apertura de expediente, validación de identidad, explicación de opciones
+  de refinanciamiento y registro del resultado.
+text: Proceso de atención al cliente que desea modificar el monto de su cuota, incluyendo
+  apertura de expediente, validación de identidad, explicación de opciones de refinanciamiento
+  y registro del resultado.
+tags:
+- cambiar.la.cuota.del.prestamo
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.apertura_de_expediente
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validaci_n_de_identidad
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.explicaci_n_de_opciones
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.registro_de_resultado
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan_conditions
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  flow_id: atencion.cambio.cuota
+  flow_name: Atención para cambio de cuota
+  intent: cambiar.la.cuota.del.prestamo
+  confidence: 0.75
+  business_event: Cliente desea cambiar la cuota
+  utterances: []
+  plan: []
+  tasks:
+  - task: abrir_expediente
+    type: manual
+  - task: validar_identidad
+    type: manual
+  - task: explicar_opciones_de_refinanciamiento
+    type: manual
+  - task: registrar_resultado_de_la_interacci_n
+    type: manual
+  user_tasks:
+  - user_task_id: ut_abrir_expediente
+    task: abrir_expediente
+    type: manual
+    name: Apertura de expediente
+    description: Abrir expediente del cliente para gestionar cambio de cuota.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_validar_identidad
+    task: validar_identidad
+    type: manual
+    name: Validación de identidad
+    description: Validar la identidad del cliente mediante documento o biometría.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_explicar_opciones
+    task: explicar_opciones_de_refinanciamiento
+    type: manual
+    name: Explicación de opciones
+    description: Explicar al cliente las opciones de refinanciamiento disponibles.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_registrar_resultado
+    task: registrar_resultado_de_la_interacci_n
+    type: manual
+    name: Registro de resultado
+    description: Registrar el resultado de la interacción con el cliente.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de atención al cliente que desea modificar el monto de su cuota,
+    incluyendo apertura de expediente, validación de identidad, explicación de opciones
+    de refinanciamiento y registro del resultado.
+  source: data/raw/manual_operativo_credito.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/manual_operativo_credito.md
+    purpose: Atender solicitud de cambio de cuota y ofrecer opciones de refinanciamiento.
+  purpose: Atender solicitud de cambio de cuota y ofrecer opciones de refinanciamiento.
+  transaction_id: atencion.cambio.cuota
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso de atención al cliente que desea modificar el monto de su cuota,
+      incluyendo apertura de expediente, validación de identidad, explicación de opciones
+      de refinanciamiento y registro del resultado.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso de atención al cliente que desea modificar el monto de su cuota,
+      incluyendo apertura de expediente, validación de identidad, explicación de opciones
+      de refinanciamiento y registro del resultado.
+  match_strategy: generated
+  canonical_name: Atención para cambio de cuota
+  normalized_name: atención para cambio de cuota
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

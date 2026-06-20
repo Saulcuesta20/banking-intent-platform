@@ -1,0 +1,27 @@
+asset_id: user_task.enhanced_due_diligence_review
+asset_type: user_task
+name: Enhanced Due Diligence Review
+version: 1.0.0
+owner: business_model_kb
+description: Review transfer record including source account, beneficiary identity,
+  destination country, amount, currency, and purpose to ensure compliance.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: enhanced_due_diligence_review
+  task: perform_enhanced_due_diligence_review_on_high_value_transfer
+  type: review
+  name: Enhanced Due Diligence Review
+  description: Review transfer record including source account, beneficiary identity,
+    destination country, amount, currency, and purpose to ensure compliance.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Enhanced Due Diligence Review
+  normalized_name: enhanced due diligence review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

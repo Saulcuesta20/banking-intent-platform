@@ -1,0 +1,27 @@
+asset_id: plan.pl005
+asset_type: plan
+name: PL005
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para activar cuentas inactivas: confirmar identidad, revisar bloqueos,
+  validar riesgo y restituir acceso.'
+text: ''
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pl005
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: PL005
+  normalized_name: pl005
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

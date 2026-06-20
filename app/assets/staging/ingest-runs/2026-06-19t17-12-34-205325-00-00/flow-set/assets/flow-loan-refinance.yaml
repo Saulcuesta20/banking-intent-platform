@@ -1,0 +1,69 @@
+asset_id: flow.loan.refinance
+asset_type: flow
+name: Loan Installment Reduction
+version: 1.0.0
+owner: process_kb
+description: Agent starts refinance review to adjust loan terms and explains conditions
+  using calculation tool
+text: Agent starts refinance review to adjust loan terms and explains conditions using
+  calculation tool
+tags:
+- loan.refinance
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.refinance_review
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.explain_calculation
+  metadata: {}
+payload:
+  flow_id: loan.refinance
+  flow_name: Loan Installment Reduction
+  intent: loan.refinance
+  confidence: 0.75
+  business_event: Customer requests to lower loan monthly payment
+  utterances: []
+  plan: []
+  tasks:
+  - task: start_refinance_review_for_loan_modification
+    type: manual
+  - task: explain_loan_refinancing_conditions
+    type: manual
+  user_tasks:
+  - user_task_id: refinance_review_task
+    task: start_refinance_review_for_loan_modification
+    type: manual
+    name: Refinance Review
+    description: Agent initiates the process to review and modify loan terms for installment
+      reduction
+    tools: []
+    user_actions: []
+  - user_task_id: explain_loan_calculation_task
+    task: explain_loan_refinancing_conditions
+    type: manual
+    name: Explain Calculation
+    description: Agent explains how loan refinancing conditions are calculated and
+      offers a review
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Agent starts refinance review to adjust loan terms and explains conditions
+    using calculation tool
+  source: data/raw/enterprise_dump_2026/customer_support_tickets.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    purpose: Modify loan to reduce customer's monthly burden
+  purpose: Modify loan to reduce customer's monthly burden
+  transaction_id: loan.refinance
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Installment Reduction
+  normalized_name: loan installment reduction
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

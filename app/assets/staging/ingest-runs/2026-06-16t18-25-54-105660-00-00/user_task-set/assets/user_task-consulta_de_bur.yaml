@@ -1,0 +1,25 @@
+asset_id: user_task.consulta_de_bur
+asset_type: user_task
+name: Consulta de buró
+version: 1.0.0
+owner: business_model_kb
+description: Consultar el historial crediticio en el buró
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_query_credit_bureau
+  task: consultar_bur_de_cr_dito
+  type: external_query
+  name: Consulta de buró
+  description: Consultar el historial crediticio en el buró
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Consulta de buró
+  normalized_name: consulta de buró
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

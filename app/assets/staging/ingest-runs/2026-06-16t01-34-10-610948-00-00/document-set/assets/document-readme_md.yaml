@@ -1,0 +1,48 @@
+asset_id: document.readme_md
+asset_type: document
+name: README.md
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/README.md
+text: "# Raw Ingestion Corpus\n\nEsta carpeta simula fuentes reales de una empresa.\
+  \ Los documentos no estan\npreclasificados por intencion. La ingestion debe analizar\
+  \ el corpus, detectar\npatrones escondidos y proponer si cada fragmento sirve para\
+  \ Q&A, caso guiado,\nejecucion de proceso, reglas, excepciones, sistemas o aprobaciones.\n\
+  \nFuentes empresariales nuevas:\n\n- `enterprise_operations_manual.md`: manual operativo\
+  \ mezclado.\n- `enterprise_policy_and_controls.md`: politicas, controles, aprobaciones\
+  \ y excepciones.\n- `enterprise_support_wiki.md`: wiki de soporte con preguntas\
+  \ y guias.\n- `enterprise_systems_catalog.md`: sistemas, servicios legados y protocolos.\n\
+  - `enterprise_dump_2026/enterprise_asset_corpus_expanded.md`: corpus ampliado\n\
+  \  con al menos 12 registros por familia principal de activo para probar\n  alineacion\
+  \ canonica, aliases, planes y causalidad.\n\nEl root `data/raw/` tambien se usa\
+  \ como corpus compuesto: incluye los seeds\nanteriores y el lote `enterprise_dump_2026/`.\
+  \ La ingestion debe recorrerlo\nrecursivamente y tratar todo como texto crudo, no\
+  \ como assets ya estructurados.\n\nLa ingestion ya no debe asumir solo flows. El\
+  \ corpus mezcla entidades, reglas,\nprocesos, flows, planes, causalidad, Q&A, herramientas\
+  \ y documentos. La ruta\nde KB ingestion genera o refresca esos activos desde texto\
+  \ empresarial y deja\nevidencia para revision humana antes de cargar el grafo.\n\
+  \nComandos utiles:\n\n```bash\nmake extract-reasoning\nmake extract-autogen\nmake\
+  \ extract-apply\nmake graph-load\npython -m app.platform_cli reset-ingest --raw\
+  \ data/raw\npython -m app.platform_cli query --engines\npython -m app.platform_cli\
+  \ query --text \"refinanciamiento\"\n```"
+tags:
+- text
+- md
+relations: []
+payload:
+  path: data/raw/README.md
+  kind: text
+  sequence: 1
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: de KB ingestion genera o refresca esos activos desde texto empresarial
+      y deja
+  match_strategy: generated
+  canonical_name: README.md
+  normalized_name: readme.md
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

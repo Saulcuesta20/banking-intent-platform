@@ -1,0 +1,34 @@
+asset_id: asset_set.plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+asset_type: asset_set
+name: Plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar.
+text: Plan cumplimiento de politicas documentales
+tags:
+- asset_set
+- plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+relations:
+- type: groups_plan
+  target_asset_id: plan.plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+  metadata: {}
+payload:
+  transaction_id: plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+  asset_ids:
+  - plan.plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+  asset_types:
+  - plan
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+    Asset Set
+  normalized_name: plan.para.cumplimiento.de.politicas.documentales.identificar.faltantes.solicitar.evidencia.validar.vigencia.y.aprobar
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,33 @@
+asset_id: business_rule.transfer_high_amount_approval
+asset_type: business_rule
+name: Transfer high amount approval
+version: 1.0.0
+owner: rules_kb
+description: Transfers exceeding operational limit require approval.
+text: Transfers exceeding operational limit require approval.
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+payload:
+  rule_text: Transfers exceeding operational limit require approval.
+  source_section: LLMAssetExtraction
+  conditions:
+  - Transfer amount > operational limit
+  consequences:
+  - Request human approval
+  when: Transfer amount > operational limit
+  then: Request human approval
+  transaction_id: transfer.high.amount.approval
+  ruleset_name: ''
+  applies_to: Transfer
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfer high amount approval
+  normalized_name: transfer high amount approval
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

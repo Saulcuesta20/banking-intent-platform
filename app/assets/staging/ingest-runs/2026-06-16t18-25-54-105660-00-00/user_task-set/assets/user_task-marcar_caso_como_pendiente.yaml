@@ -1,0 +1,27 @@
+asset_id: user_task.marcar_caso_como_pendiente
+asset_type: user_task
+name: Marcar caso como pendiente
+version: 1.0.0
+owner: business_model_kb
+description: El sistema marca el caso como pendiente hasta que se reciban los documentos
+  completos.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: actualizar_estado_caso
+  task: actualizar_estado_del_caso_a_pendiente
+  type: system
+  name: Marcar caso como pendiente
+  description: El sistema marca el caso como pendiente hasta que se reciban los documentos
+    completos.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Marcar caso como pendiente
+  normalized_name: marcar caso como pendiente
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

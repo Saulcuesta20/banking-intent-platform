@@ -1,0 +1,65 @@
+asset_id: flow.pago.prestamo
+asset_type: flow
+name: Pago de Prestamo
+version: 1.0.0
+owner: process_kb
+description: Proceso para registrar el pago de una cuota o deuda crediticia.
+text: Proceso para registrar el pago de una cuota o deuda crediticia.
+tags:
+- to.manage.loan.obligations.and.maintain.accurate.balances
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan_conditions
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.pago_de_prestamo
+  metadata: {}
+payload:
+  flow_id: pago.prestamo
+  flow_name: Pago de Prestamo
+  intent: to.manage.loan.obligations.and.maintain.accurate.balances
+  confidence: 0.75
+  business_event: Loan Payment
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para registrar el pago de una cuota o deuda crediticia.
+  source: data/raw/savings_glossary.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_glossary.csv
+    purpose: To record and process customer loan repayments.
+  purpose: To record and process customer loan repayments.
+  transaction_id: pago.prestamo
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Pago de Prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Pago de Prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Proceso para registrar el pago de una cuota o deuda crediticia.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Proceso para registrar el pago de una cuota o deuda crediticia.
+  match_strategy: generated
+  canonical_name: Pago de Prestamo
+  normalized_name: pago de prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

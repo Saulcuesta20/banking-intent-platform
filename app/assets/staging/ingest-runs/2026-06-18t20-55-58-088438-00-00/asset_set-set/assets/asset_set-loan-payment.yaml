@@ -1,0 +1,48 @@
+asset_id: asset_set.loan.payment
+asset_type: asset_set
+name: Loan.payment Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.payment.
+text: 'cliente
+
+  prestamo
+
+  quiero pagar mi prestamo hoy'
+tags:
+- asset_set
+- loan.payment
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.loan.payment
+  metadata: {}
+payload:
+  transaction_id: loan.payment
+  asset_ids:
+  - entity.customer
+  - entity.loan
+  - flow.loan.payment
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: flow.loan.payment
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Loan.payment Asset Set
+  normalized_name: loan.payment asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,33 @@
+asset_id: user_task.crear_cuenta_de_ahorro
+asset_type: user_task
+name: Crear cuenta de ahorro
+version: 1.0.0
+owner: business_model_kb
+description: Crear la cuenta de ahorro con los documentos proporcionados.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: crear_cuenta_ahorro
+  task: crear_cuenta_de_ahorro
+  type: execution
+  name: Crear cuenta de ahorro
+  description: Crear la cuenta de ahorro con los documentos proporcionados.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Crear cuenta de ahorro
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Crear la cuenta de ahorro con los documentos proporcionados.
+  match_strategy: generated
+  canonical_name: Crear cuenta de ahorro
+  normalized_name: crear cuenta de ahorro
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

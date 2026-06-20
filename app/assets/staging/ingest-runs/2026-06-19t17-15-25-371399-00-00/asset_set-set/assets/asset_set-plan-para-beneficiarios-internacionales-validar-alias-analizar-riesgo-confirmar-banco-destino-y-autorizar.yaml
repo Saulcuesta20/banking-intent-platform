@@ -1,0 +1,43 @@
+asset_id: asset_set.plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+asset_type: asset_set
+name: Plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar.
+text: 'beneficiario
+
+  Plan beneficiarios internacionales'
+tags:
+- asset_set
+- plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+relations:
+- type: groups_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+  metadata: {}
+payload:
+  transaction_id: plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+  asset_ids:
+  - entity.beneficiario
+  - plan.plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+  asset_types:
+  - entity
+  - plan
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.beneficiario
+    asset_type: entity
+  - asset_id: plan.plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+    Asset Set
+  normalized_name: plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

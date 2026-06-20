@@ -1,0 +1,48 @@
+asset_id: asset_set.solicitud.prestamo
+asset_type: asset_set
+name: Solicitud.prestamo Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for solicitud.prestamo.
+text: 'prestamo
+
+  solicitud de prestamo
+
+  Solicitud de Prestamo'
+tags:
+- asset_set
+- solicitud.prestamo
+relations:
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.solicitud_de_prestamo
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.solicitud.prestamo
+  metadata: {}
+payload:
+  transaction_id: solicitud.prestamo
+  asset_ids:
+  - entity.loan
+  - entity.solicitud_de_prestamo
+  - flow.solicitud.prestamo
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: entity.solicitud_de_prestamo
+    asset_type: entity
+  - asset_id: flow.solicitud.prestamo
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Solicitud.prestamo Asset Set
+  normalized_name: solicitud.prestamo asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

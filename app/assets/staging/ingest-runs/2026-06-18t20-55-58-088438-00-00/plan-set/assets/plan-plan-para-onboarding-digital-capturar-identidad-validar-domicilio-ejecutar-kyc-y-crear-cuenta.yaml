@@ -1,0 +1,36 @@
+asset_id: plan.plan.para.onboarding.digital.capturar.identidad.validar.domicilio.ejecutar.kyc.y.crear.cuenta
+asset_type: plan
+name: Plan onboarding digital
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para onboarding digital: capturar identidad, validar domicilio,
+  ejecutar KYC y crear cuenta.'
+text: 'Plan para onboarding digital: capturar identidad, validar domicilio, ejecutar
+  KYC y crear cuenta.'
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: 'Plan para onboarding digital: capturar identidad, validar domicilio,
+    ejecutar KYC y crear cuenta.'
+  source_section: Plans
+  transaction_id: plan.para.onboarding.digital.capturar.identidad.validar.domicilio.ejecutar.kyc.y.crear.cuenta
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para onboarding digital: capturar identidad, validar domicilio,
+      ejecutar KYC y crear cuenta.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Plan para onboarding digital: capturar identidad, validar domicilio,
+      ejecutar KYC y crear cuenta.'
+  match_strategy: generated
+  canonical_name: Plan onboarding digital
+  normalized_name: plan onboarding digital
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

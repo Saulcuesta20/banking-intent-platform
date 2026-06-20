@@ -11,7 +11,6 @@ from app.knowledge_base.registry import EnterpriseAssetRegistry
 
 _CANONICAL_TOPOLOGY_ASSET_TYPES = {
     "concept": "entity",
-    "ontology": "entity",
 }
 
 
@@ -152,6 +151,8 @@ class FederatedKnowledgeTopology:
             self.memory_collections.global_asset_index: [],
         }
         for asset in assets:
+            if asset.asset_type not in {"qa", "document"}:
+                continue
             route = self.route_asset(asset, registry)
             collections.setdefault(route.vector_collection, [])
             text = _asset_text(asset)

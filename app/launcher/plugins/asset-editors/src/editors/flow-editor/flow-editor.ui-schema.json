@@ -1,0 +1,71 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Flow Definition",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/flow_id"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/flow_name"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/purpose"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/business_event"
+            }
+          ]
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/user_task_refs"
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Semantic Fields",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 3,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/related_process_ids"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/inputs"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/outputs"
+            }
+          ]
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/explanation"
+        }
+      ]
+    }
+  ]
+}

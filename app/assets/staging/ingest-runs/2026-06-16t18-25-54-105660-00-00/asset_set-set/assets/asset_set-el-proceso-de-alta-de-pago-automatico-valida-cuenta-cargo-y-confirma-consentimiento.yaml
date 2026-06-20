@@ -1,0 +1,34 @@
+asset_id: asset_set.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+asset_type: asset_set
+name: El.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento.
+text: Process alta de pago automatico
+tags:
+- asset_set
+- el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+relations:
+- type: groups_process
+  target_asset_id: process.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+  metadata: {}
+payload:
+  transaction_id: el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+  asset_ids:
+  - process.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+  asset_types:
+  - process
+  primary_asset_type: process
+  members:
+  - asset_id: process.el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+    asset_type: process
+  match_strategy: generated
+  canonical_name: El.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+    Asset Set
+  normalized_name: el.proceso.de.alta.de.pago.automatico.valida.cuenta.cargo.y.confirma.consentimiento
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

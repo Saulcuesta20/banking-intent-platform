@@ -1,0 +1,93 @@
+asset_id: flow.claim.submission.flow
+asset_type: flow
+name: Claim Submission and Processing
+version: 1.0.0
+owner: process_kb
+description: Process for handling customer claims including evidence collection, case
+  creation, and escalation if fraud suspected.
+text: Process for handling customer claims including evidence collection, case creation,
+  and escalation if fraud suspected.
+tags:
+- handle.claim.from.submission.to.resolution
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.submit_claim_guide
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.execute_claim
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.escalate_to_human_team
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.wait_for_customer_information
+  metadata: {}
+payload:
+  flow_id: claim.submission.flow
+  flow_name: Claim Submission and Processing
+  intent: handle.claim.from.submission.to.resolution
+  confidence: 0.75
+  business_event: Customer submits a claim
+  utterances: []
+  plan: []
+  tasks:
+  - task: fill_claim_guide
+    type: form
+  - task: execute_claim_processing
+    type: system
+  - task: escalate_claim
+    type: manual
+  - task: wait_for_missing_evidence
+    type: wait
+  user_tasks:
+  - user_task_id: submit_claim_guide
+    task: fill_claim_guide
+    type: form
+    name: Submit Claim Guide
+    description: 'Customer provides claim details: motivo, fecha, importe, referencia,
+      evidencia.'
+    tools: []
+    user_actions: []
+  - user_task_id: execute_claim
+    task: execute_claim_processing
+    type: system
+    name: Execute Claim
+    description: System creates case, registers evidence, and reviews movements.
+    tools: []
+    user_actions: []
+  - user_task_id: escalate_claim
+    task: escalate_claim
+    type: manual
+    name: Escalate to Human Team
+    description: If fraud or legal risk indicators, escalate to human team.
+    tools: []
+    user_actions: []
+  - user_task_id: wait_customer_info
+    task: wait_for_missing_evidence
+    type: wait
+    name: Wait for Customer Information
+    description: If evidence missing, process waits for customer to provide additional
+      info.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process for handling customer claims including evidence collection,
+    case creation, and escalation if fraud suspected.
+  source: data/raw/enterprise_operations_manual.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_operations_manual.md#chunk-2
+    purpose: To resolve customer claims efficiently and escalate suspicious cases.
+  purpose: To resolve customer claims efficiently and escalate suspicious cases.
+  transaction_id: claim.submission.flow
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Claim Submission and Processing
+  normalized_name: claim submission and processing
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

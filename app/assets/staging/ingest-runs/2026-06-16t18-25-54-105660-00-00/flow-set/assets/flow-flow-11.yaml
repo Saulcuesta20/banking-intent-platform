@@ -1,0 +1,51 @@
+asset_id: flow.flow.11
+asset_type: flow
+name: Cancelación anticipada
+version: 1.0.0
+owner: process_kb
+description: El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+text: El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+tags:
+- el.cliente.desea.cancelar.su.prestamo.anticipadamente
+relations:
+- type: uses_entity
+  target_asset_id: entity.interes
+  metadata: {}
+payload:
+  flow_id: flow.11
+  flow_name: Cancelación anticipada
+  intent: el.cliente.desea.cancelar.su.prestamo.anticipadamente
+  confidence: 0.75
+  business_event: Cliente solicita cancelación anticipada
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Cancelar un préstamo de forma anticipada
+  purpose: Cancelar un préstamo de forma anticipada
+  transaction_id: flow.11
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+  - type: causes
+    family: causality
+    phrase: genera
+    sentence: El proceso de cancelacion anticipada recalcula intereses y genera finiquito.
+  match_strategy: generated
+  canonical_name: Cancelación anticipada
+  normalized_name: cancelación anticipada
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

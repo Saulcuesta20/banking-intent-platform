@@ -1,0 +1,25 @@
+asset_id: user_task.loan_application_capture
+asset_type: user_task
+name: Loan Application Capture
+version: 1.0.0
+owner: business_model_kb
+description: Application capture for loan application
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_application_capture
+  task: capture_loan_application_details
+  type: user/business task
+  name: Loan Application Capture
+  description: Application capture for loan application
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Application Capture
+  normalized_name: loan application capture
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

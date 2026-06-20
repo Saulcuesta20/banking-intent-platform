@@ -1,0 +1,42 @@
+asset_id: process.loan.transfer.to.loan
+asset_type: process
+name: Process transferencia a prestamo
+version: 1.0.0
+owner: process_kb
+description: El proceso de transferencia a prestamo valida referencia, ejecuta traslado
+  y confirma aplicacion.
+text: El proceso de transferencia a prestamo valida referencia, ejecuta traslado y
+  confirma aplicacion.
+tags:
+- process_fragment
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  steps_text: El proceso de transferencia a prestamo valida referencia, ejecuta traslado
+    y confirma aplicacion.
+  source_section: Processes
+  transaction_id: loan.transfer.to.loan
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Process transferencia a prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de transferencia a prestamo valida referencia, ejecuta traslado
+      y confirma aplicacion.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El proceso de transferencia a prestamo valida referencia, ejecuta traslado
+      y confirma aplicacion.
+  match_strategy: generated
+  canonical_name: Process transferencia a prestamo
+  normalized_name: process transferencia a prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,29 @@
+asset_id: user_task.enviar_recordatorio
+asset_type: user_task
+name: Enviar recordatorio
+version: 1.0.0
+owner: business_model_kb
+description: Enviar recordatorio al cliente si el caso permanece abierto.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: enviar_recordatorio
+  task: enviar_recordatorio
+  type: notification
+  name: Enviar recordatorio
+  description: Enviar recordatorio al cliente si el caso permanece abierto.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Enviar recordatorio al cliente si el caso permanece abierto.
+  match_strategy: generated
+  canonical_name: Enviar recordatorio
+  normalized_name: enviar recordatorio
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

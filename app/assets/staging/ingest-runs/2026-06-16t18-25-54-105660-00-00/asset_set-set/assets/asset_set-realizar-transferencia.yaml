@@ -1,0 +1,48 @@
+asset_id: asset_set.realizar.transferencia
+asset_type: asset_set
+name: Realizar.transferencia Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for realizar.transferencia.
+text: 'Realizar transferencia
+
+  Ejecutar transferencia
+
+  Recopilar datos de transferencia'
+tags:
+- asset_set
+- realizar.transferencia
+relations:
+- type: groups_flow
+  target_asset_id: flow.realizar.transferencia
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.ejecutar_transferencia
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.recopilar_datos_de_transferencia
+  metadata: {}
+payload:
+  transaction_id: realizar.transferencia
+  asset_ids:
+  - flow.realizar.transferencia
+  - user_task.ejecutar_transferencia
+  - user_task.recopilar_datos_de_transferencia
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.realizar.transferencia
+    asset_type: flow
+  - asset_id: user_task.ejecutar_transferencia
+    asset_type: user_task
+  - asset_id: user_task.recopilar_datos_de_transferencia
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Realizar.transferencia Asset Set
+  normalized_name: realizar.transferencia asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

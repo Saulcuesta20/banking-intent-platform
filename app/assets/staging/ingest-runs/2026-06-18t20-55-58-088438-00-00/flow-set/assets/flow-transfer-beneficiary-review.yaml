@@ -1,0 +1,119 @@
+asset_id: flow.transfer.beneficiary.review
+asset_type: flow
+name: Transfers and Beneficiary Review
+version: 1.0.0
+owner: process_kb
+description: Process for handling customer requests for fund transfers from savings
+  accounts, including beneficiary review and compliance checks.
+text: Process for handling customer requests for fund transfers from savings accounts,
+  including beneficiary review and compliance checks.
+tags:
+- facilitate.transfers.while.ensuring.regulatory.adherence
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.customer_identification_for_transfer
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.transfer_details_capture
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.high_value_transfer_review
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.beneficiary_data_verification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.beneficiary_screening
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.evidence_recording
+  metadata: {}
+payload:
+  flow_id: transfer.beneficiary.review
+  flow_name: Transfers and Beneficiary Review
+  intent: facilitate.transfers.while.ensuring.regulatory.adherence
+  confidence: 0.75
+  business_event: transfer_request
+  utterances: []
+  plan: []
+  tasks:
+  - task: identify_the_customer
+    type: manual
+  - task: capture_source_account_beneficiary_amount_currency_and_transfer_reason
+    type: manual
+  - task: review_high_value_transfers
+    type: manual
+  - task: verify_beneficiary_data_completeness
+    type: manual
+  - task: perform_beneficiary_screening
+    type: automated
+  - task: record_required_evidence
+    type: manual
+  user_tasks:
+  - user_task_id: transfer_identify_customer
+    task: identify_the_customer
+    type: manual
+    name: Customer Identification for Transfer
+    description: Agent identifies the customer requesting the transfer.
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_capture_details
+    task: capture_source_account_beneficiary_amount_currency_and_transfer_reason
+    type: manual
+    name: Transfer Details Capture
+    description: Agent captures all necessary details for the transfer.
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_review_high_value
+    task: review_high_value_transfers
+    type: manual
+    name: High-Value Transfer Review
+    description: If amount exceeds threshold, perform additional review.
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_verify_beneficiary
+    task: verify_beneficiary_data_completeness
+    type: manual
+    name: Beneficiary Data Verification
+    description: Check if destination country or beneficiary data is incomplete and
+      ask for clarification.
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_perform_screening
+    task: perform_beneficiary_screening
+    type: automated
+    name: Beneficiary Screening
+    description: Screen beneficiary using compliance screening service.
+    tools: []
+    user_actions: []
+  - user_task_id: transfer_record_evidence
+    task: record_required_evidence
+    type: manual
+    name: Evidence Recording
+    description: Record all required evidence before releasing the transfer.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process for handling customer requests for fund transfers from savings
+    accounts, including beneficiary review and compliance checks.
+  source: data/raw/enterprise_dump_2026/intranet_transfer_help.html;data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/intranet_transfer_help.html
+    - data/raw/enterprise_dump_2026/loan_refinance_call_center_notes.txt
+    purpose: To process and secure fund transfers accurately and in compliance with
+      regulations.
+  purpose: To process and secure fund transfers accurately and in compliance with
+    regulations.
+  transaction_id: transfer.beneficiary.review
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfers and Beneficiary Review
+  normalized_name: transfers and beneficiary review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

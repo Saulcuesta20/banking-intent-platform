@@ -1,0 +1,28 @@
+asset_id: form.f004
+asset_type: form
+name: F004
+version: 1.0.0
+owner: config_kb
+description: Register a new claim and attach supporting evidence.
+text: Register a new claim and attach supporting evidence.
+tags:
+- form
+- configuration
+relations:
+- type: belongs_to_module
+  target_asset_id: module.m004
+  metadata: {}
+payload:
+  form_id: F004
+  module_id: M004
+  name: ClaimForm
+  purpose: Register a new claim and attach supporting evidence.
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: F004
+  normalized_name: f004
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

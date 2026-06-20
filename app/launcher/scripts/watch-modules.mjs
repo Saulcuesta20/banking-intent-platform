@@ -12,7 +12,7 @@ function runGenerate() {
   }
 
   running = true
-  const child = spawn(process.execPath, ['scripts/generate-lowdefy.mjs'], {
+  const child = spawn(process.execPath, ['scripts/generate-module-registry.mjs'], {
     cwd: new URL('..', import.meta.url).pathname,
     stdio: 'inherit',
   })

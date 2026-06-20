@@ -1,0 +1,25 @@
+asset_id: user_task.escalar_fraude
+asset_type: user_task
+name: Escalar fraude
+version: 1.0.0
+owner: business_model_kb
+description: Escalate claim to risk team if fraud or legal risk is detected.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_escalate_fraud
+  task: escalate_fraud
+  type: escalation
+  name: Escalar fraude
+  description: Escalate claim to risk team if fraud or legal risk is detected.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Escalar fraude
+  normalized_name: escalar fraude
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

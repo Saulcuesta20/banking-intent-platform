@@ -1,0 +1,26 @@
+asset_id: entity.horizonsavings
+asset_type: entity
+name: HorizonSavings
+version: 1.0.0
+owner: business_model_kb
+description: Cuenta de ahorro con intereses escalonados y bonos de lealtad.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Cuenta de ahorro con intereses escalonados y bonos de lealtad.
+  inferred_from: llm_asset_extraction
+  business_layer: channel
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Cuenta de ahorro con intereses escalonados y bonos de lealtad.
+  match_strategy: generated
+  canonical_name: HorizonSavings
+  normalized_name: horizonsavings
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

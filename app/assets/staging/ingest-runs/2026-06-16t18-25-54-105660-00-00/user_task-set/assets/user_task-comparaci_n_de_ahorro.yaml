@@ -1,0 +1,25 @@
+asset_id: user_task.comparaci_n_de_ahorro
+asset_type: user_task
+name: Comparación de ahorro
+version: 1.0.0
+owner: business_model_kb
+description: Comparar el ahorro neto con los costos de reestructuración
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_compare_savings
+  task: comparar_ahorro_neto_vs_costos_de_reestructuraci_n
+  type: analysis
+  name: Comparación de ahorro
+  description: Comparar el ahorro neto con los costos de reestructuración
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Comparación de ahorro
+  normalized_name: comparación de ahorro
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

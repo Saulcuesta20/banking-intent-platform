@@ -1,0 +1,25 @@
+asset_id: user_task.delinquency_history_check
+asset_type: user_task
+name: Delinquency History Check
+version: 1.0.0
+owner: business_model_kb
+description: Advisor examines past delinquencies and payment defaults on the loan.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_delinquency_history
+  task: review_the_delinquency_history_for_the_loan
+  type: manual
+  name: Delinquency History Check
+  description: Advisor examines past delinquencies and payment defaults on the loan.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Delinquency History Check
+  normalized_name: delinquency history check
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

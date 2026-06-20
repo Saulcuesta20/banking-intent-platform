@@ -1,0 +1,25 @@
+asset_id: user_task.initial_deposit_request
+asset_type: user_task
+name: Initial Deposit Request
+version: 1.0.0
+owner: business_model_kb
+description: Request initial deposit when applicable.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ask_initial_deposit
+  task: ask_for_initial_deposit
+  type: transaction_initiation
+  name: Initial Deposit Request
+  description: Request initial deposit when applicable.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Initial Deposit Request
+  normalized_name: initial deposit request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

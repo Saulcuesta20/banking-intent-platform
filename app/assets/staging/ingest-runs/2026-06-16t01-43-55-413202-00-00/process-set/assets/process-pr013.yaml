@@ -1,0 +1,34 @@
+asset_id: process.pr013
+asset_type: process
+name: PR013
+version: 1.0.0
+owner: process_kb
+description: 'Proceso de alta de cliente: captura datos, valida identidad y crea el
+  cliente.'
+text: ''
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pr013
+  business_event: ''
+  triggers: []
+  execution_nodes: []
+  transitions: []
+  rules: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Proceso de alta de cliente: captura datos, valida identidad y crea
+      el cliente.'
+  match_strategy: generated
+  canonical_name: PR013
+  normalized_name: pr013
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

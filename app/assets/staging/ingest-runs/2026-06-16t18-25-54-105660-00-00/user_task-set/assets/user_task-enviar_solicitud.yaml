@@ -1,0 +1,29 @@
+asset_id: user_task.enviar_solicitud
+asset_type: user_task
+name: Enviar solicitud
+version: 1.0.0
+owner: business_model_kb
+description: El cliente completa y envía la solicitud formal de refinanciamiento.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: submit_refinance_application
+  task: enviar_solicitud_de_refinanciamiento
+  type: formulario
+  name: Enviar solicitud
+  description: El cliente completa y envía la solicitud formal de refinanciamiento.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente completa y envía la solicitud formal de refinanciamiento.
+  match_strategy: generated
+  canonical_name: Enviar solicitud
+  normalized_name: enviar solicitud
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

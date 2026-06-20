@@ -1,0 +1,39 @@
+asset_id: qa.que_documentos_necesito_para_abrir_una_cuenta_de_ahorro
+asset_type: qa
+name: Que documentos necesito para abrir una cuenta de ahorro?
+version: 1.0.0
+owner: qa_kb
+description: Que documentos necesito para abrir una cuenta de ahorro?
+text: Que documentos necesito para abrir una cuenta de ahorro?
+tags:
+- qa
+relations:
+- type: uses_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.cuenta_de_ahorro
+  metadata: {}
+payload:
+  question: Que documentos necesito para abrir una cuenta de ahorro?
+  transaction_id: que.documentos.necesito.para.abrir.una.cuenta.de.ahorro
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Que documentos necesito para abrir una cuenta de ahorro?
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Que documentos necesito para abrir una cuenta de ahorro?
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Que documentos necesito para abrir una cuenta de ahorro?
+  match_strategy: generated
+  canonical_name: Que documentos necesito para abrir una cuenta de ahorro?
+  normalized_name: que documentos necesito para abrir una cuenta de ahorro?
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

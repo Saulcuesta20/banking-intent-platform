@@ -1,0 +1,53 @@
+asset_id: causality.entity_la_validacion_reforzada_aprobada_enables_entity_la_transferencia_internacional
+asset_type: causality
+name: entity.la_validacion_reforzada_aprobada enables entity.la_transferencia_internacional
+version: 1.0.0
+owner: causality_kb
+description: La validacion reforzada aprobada habilita la transferencia internacional.
+text: La validacion reforzada aprobada habilita la transferencia internacional.
+tags:
+- causality
+- enables
+relations:
+- type: applies_to_flow
+  target_asset_id: flow.transfer
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.transferencia
+  metadata: {}
+- type: has_cause
+  target_asset_id: entity.la_validacion_reforzada_aprobada
+  metadata: {}
+- type: has_effect
+  target_asset_id: entity.la_transferencia_internacional
+  metadata: {}
+payload:
+  cause_text: La validacion reforzada aprobada
+  effect_text: la transferencia internacional
+  relation_kind: enables
+  statement: La validacion reforzada aprobada habilita la transferencia internacional.
+  sentence: La validacion reforzada aprobada habilita la transferencia internacional.
+  transaction_id: transfer
+  relation_hints:
+  - type: enables
+    family: causality
+    phrase: enables
+    sentence: La validacion reforzada aprobada enables la transferencia internacional
+  - type: enables
+    family: causality
+    phrase: habilita
+    sentence: La validacion reforzada aprobada habilita la transferencia internacional.
+  - type: enables
+    family: causality
+    phrase: habilita
+    sentence: La validacion reforzada aprobada habilita la transferencia internacional.
+  canonical_name: entity.la_validacion_reforzada_aprobada enables entity.la_transferencia_internacional
+  resolved_cause_asset_id: entity.la_validacion_reforzada_aprobada
+  resolved_effect_asset_id: entity.la_transferencia_internacional
+  match_strategy: generated
+  normalized_name: entity.la validacion reforzada aprobada enables entity.la transferencia
+    internacional
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

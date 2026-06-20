@@ -1,0 +1,39 @@
+asset_id: entity.debit_note
+asset_type: entity
+name: nota de debito
+version: 1.0.0
+owner: business_model_kb
+description: Documento o registro que reconoce un cargo o ajuste en contra del cliente
+text: Documento o registro que reconoce un cargo o ajuste en contra del cliente
+tags: []
+relations: []
+payload:
+  aliases:
+  - debit note
+  - nota debito
+  structural_layer: event
+  business_layer: event
+  entity_role: event
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Documento o registro que reconoce un cargo o ajuste en contra del cliente
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: Documento o registro que reconoce un cargo o ajuste en contra del cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Documento o registro que reconoce un cargo o ajuste en contra del cliente
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: Documento o registro que reconoce un cargo o ajuste en contra del cliente
+  match_strategy: generated
+  canonical_name: nota de debito
+  normalized_name: nota de debito
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,43 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Task Identity",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/user_task_id"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/task"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 2,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/type"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/name"
+            }
+          ]
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/description"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+asset_id: user_task.revisi_n_manual
+asset_type: user_task
+name: Revisión manual
+version: 1.0.0
+owner: business_model_kb
+description: Revisión manual del caso cuando la validación de identidad falla.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_revision_manual
+  task: revision_manual
+  type: human
+  name: Revisión manual
+  description: Revisión manual del caso cuando la validación de identidad falla.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Revisión manual
+  normalized_name: revisión manual
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

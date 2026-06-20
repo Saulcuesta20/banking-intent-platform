@@ -1,0 +1,25 @@
+asset_id: user_task.capture_details
+asset_type: user_task
+name: Capture Details
+version: 1.0.0
+owner: business_model_kb
+description: Capture transfer details from customer
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_intl_capture_details
+  task: capture_details
+  type: manual
+  name: Capture Details
+  description: Capture transfer details from customer
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Capture Details
+  normalized_name: capture details
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

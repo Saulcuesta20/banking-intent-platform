@@ -37,6 +37,27 @@ relation_types:
     source_asset_types: [rule, process, flow, plan, causality]
     target_asset_types: [entity, process, flow, plan, causality]
 
+  represents:
+    family: business_technical_mapping
+    phrases:
+      - representa
+      - represents
+      - materializa
+      - materializes
+    source_asset_types: [entity]
+    target_asset_types: [entity]
+
+  represented_by:
+    family: business_technical_mapping
+    phrases:
+      - representado por
+      - represented by
+      - stored as
+      - implemented as
+      - materialized in
+    source_asset_types: [entity]
+    target_asset_types: [entity]
+
   governed_by_rule:
     family: governance
     phrases:

@@ -1,0 +1,39 @@
+asset_id: business_rule.loan_dti_eligibility
+asset_type: business_rule
+name: Loan DTI eligibility
+version: 1.0.0
+owner: rules_kb
+description: Loan eligibility requires debt‑to‑income ratio below 40% unless collateral
+  is provided.
+text: Loan eligibility requires debt‑to‑income ratio below 40% unless collateral is
+  provided.
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.collateral
+  metadata: {}
+payload:
+  rule_text: Loan eligibility requires debt‑to‑income ratio below 40% unless collateral
+    is provided.
+  source_section: LLMAssetExtraction
+  conditions:
+  - Evaluating loan eligibility
+  consequences:
+  - Check DTI < 40% or collateral present
+  when: Evaluating loan eligibility
+  then: Check DTI < 40% or collateral present
+  transaction_id: loan.dti.eligibility
+  ruleset_name: ''
+  applies_to: Loan
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan DTI eligibility
+  normalized_name: loan dti eligibility
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

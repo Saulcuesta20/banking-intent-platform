@@ -1,0 +1,65 @@
+asset_id: asset_set.savings.account.maintenance
+asset_type: asset_set
+name: Savings.account.maintenance Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for savings.account.maintenance.
+text: 'interes
+
+  Savings Account Maintenance
+
+  Deposit Processing
+
+  Statement Generation
+
+  Withdrawal Processing'
+tags:
+- asset_set
+- savings.account.maintenance
+relations:
+- type: groups_entity
+  target_asset_id: entity.interes
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.savings.account.maintenance
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.deposit_processing
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.statement_generation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.withdrawal_processing
+  metadata: {}
+payload:
+  transaction_id: savings.account.maintenance
+  asset_ids:
+  - entity.interes
+  - flow.savings.account.maintenance
+  - user_task.deposit_processing
+  - user_task.statement_generation
+  - user_task.withdrawal_processing
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.interes
+    asset_type: entity
+  - asset_id: flow.savings.account.maintenance
+    asset_type: flow
+  - asset_id: user_task.deposit_processing
+    asset_type: user_task
+  - asset_id: user_task.statement_generation
+    asset_type: user_task
+  - asset_id: user_task.withdrawal_processing
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Savings.account.maintenance Asset Set
+  normalized_name: savings.account.maintenance asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

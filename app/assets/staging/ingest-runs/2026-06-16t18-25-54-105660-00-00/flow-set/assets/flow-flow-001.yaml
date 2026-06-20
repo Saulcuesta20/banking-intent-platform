@@ -1,0 +1,64 @@
+asset_id: flow.flow.001
+asset_type: flow
+name: high_value_transfer
+version: 1.0.0
+owner: process_kb
+description: process_to_handle_high_value_transfer_requests_including_capture_of_details_and_document_verification
+text: process_to_handle_high_value_transfer_requests_including_capture_of_details_and_document_verification
+tags:
+- transfer.funds.internationally
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.capture_transfer_details
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.request_purpose_document
+  metadata: {}
+payload:
+  flow_id: flow.001
+  flow_name: high_value_transfer
+  intent: transfer.funds.internationally
+  confidence: 0.75
+  business_event: customer_requests_high_value_international_transfer
+  utterances: []
+  plan: []
+  tasks:
+  - task: capture_transfer_details
+    type: data_entry
+  - task: request_purpose_document
+    type: document_request
+  user_tasks:
+  - user_task_id: ut_001
+    task: capture_transfer_details
+    type: data_entry
+    name: capture_transfer_details
+    description: agent_captures_transfer_amount_destination_and_customer_information
+    tools: []
+    user_actions: []
+  - user_task_id: ut_002
+    task: request_purpose_document
+    type: document_request
+    name: request_purpose_document
+    description: agent_requests_purpose_document_from_customer_for_compliance
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: process_to_handle_high_value_transfer_requests_including_capture_of_details_and_document_verification
+  source: data/raw/enterprise_dump_2026/customer_support_tickets.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/customer_support_tickets.csv
+    purpose: ensure_compliance_and_proper_documentation_for_high_value_transfers
+  purpose: ensure_compliance_and_proper_documentation_for_high_value_transfers
+  transaction_id: flow.001
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: high_value_transfer
+  normalized_name: high value transfer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

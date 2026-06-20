@@ -1,0 +1,29 @@
+asset_id: user_task.enviar_disputa
+asset_type: user_task
+name: Enviar disputa
+version: 1.0.0
+owner: business_model_kb
+description: El cliente completa un formulario de disputa con los detalles del cargo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: submit_dispute
+  task: enviar_disputa_de_cargo
+  type: formulario
+  name: Enviar disputa
+  description: El cliente completa un formulario de disputa con los detalles del cargo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente completa un formulario de disputa con los detalles del cargo.
+  match_strategy: generated
+  canonical_name: Enviar disputa
+  normalized_name: enviar disputa
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

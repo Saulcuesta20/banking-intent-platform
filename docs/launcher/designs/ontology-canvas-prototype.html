@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Prototipo – Ontología (Business Model KB)</title>
+    <style>
+      :root {
+        --ink: #0f1d3d;
+        --muted: #667892;
+        --panel: #ffffff;
+        --canvas: #f4f7fb;
+        --line: #d7dfeb;
+        --blue: #1463ff;
+        --green: #147d64;
+        --orange: #f97316;
+        --purple: #7f56d9;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, sans-serif;
+        background: var(--canvas);
+        color: var(--ink);
+      }
+      .app {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr) 320px;
+        min-height: 100vh;
+      }
+      aside {
+        background: var(--panel);
+        border-right: 1px solid var(--line);
+        padding: 20px;
+      }
+      h2 { margin: 0 0 12px; font-size: 18px; }
+      .filters label {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+      .filters select,
+      .filters input {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px;
+        margin-bottom: 12px;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .chip {
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        font-size: 12px;
+        cursor: pointer;
+      }
+      .chip.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+      main {
+        background: #eef3ff;
+        position: relative;
+        overflow: hidden;
+      }
+      .graph-toolbar {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        display: flex;
+        gap: 8px;
+      }
+      .graph-toolbar button {
+        border: none;
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .graph-toolbar .primary { background: var(--blue); color: #fff; }
+      .graph-toolbar .ghost { background: rgba(255,255,255,0.8); }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+      .detail {
+        background: var(--panel);
+        border-left: 1px solid var(--line);
+        padding: 20px;
+      }
+      .detail-card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+      .detail-card h3 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+      .kv-grid {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 6px 12px;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside>
+        <h2>Business Model KB</h2>
+        <div class="filters">
+          <label>Knowledge base</label>
+          <select>
+            <option>business_model_kb</option>
+            <option>rules_kb</option>
+            <option>process_kb</option>
+          </select>
+          <label>Vista</label>
+          <select>
+            <option>Completa</option>
+            <option>Por capa</option>
+            <option>Por dominio</option>
+          </select>
+          <label>Buscar entidad</label>
+          <input placeholder="customer, onboarding, smartbalance…" />
+        </div>
+        <h3>Capas</h3>
+        <div class="chips">
+          <div class="chip active">Portfolio</div>
+          <div class="chip">Offering</div>
+          <div class="chip">Capability</div>
+          <div class="chip">Channel</div>
+          <div class="chip">Agreement</div>
+        </div>
+        <h3 style="margin-top:18px">Filtros rápidos</h3>
+        <div class="chips">
+          <div class="chip">Relaciones críticas</div>
+          <div class="chip">Con herramientas</div>
+          <div class="chip">Con reglas</div>
+        </div>
+      </aside>
+      <main>
+        <div class="graph-toolbar">
+          <button class="primary">+ Entidad</button>
+          <button class="ghost">+ Relación</button>
+          <button class="ghost">Vista matrix</button>
+          <button class="ghost">Exportar JSON</button>
+        </div>
+        <svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+          <rect x="60" y="80" width="200" height="110" rx="18" fill="#fff" stroke="var(--orange)" stroke-width="2" />
+          <text x="160" y="120" font-size="15" text-anchor="middle">Everyday Banking</text>
+          <text x="160" y="140" font-size="12" fill="var(--muted)" text-anchor="middle">Offering</text>
+
+          <rect x="360" y="60" width="180" height="100" rx="16" fill="#fff" stroke="var(--green)" stroke-width="2" />
+          <text x="450" y="100" font-size="15" text-anchor="middle">Onboarding Digital</text>
+          <text x="450" y="120" font-size="12" fill="var(--muted)" text-anchor="middle">Capability</text>
+
+          <rect x="660" y="90" width="170" height="90" rx="16" fill="#fff" stroke="var(--blue)" stroke-width="2" />
+          <text x="745" y="126" font-size="15" text-anchor="middle">App Móvil</text>
+          <text x="745" y="146" font-size="12" fill="var(--muted)" text-anchor="middle">Channel</text>
+
+          <line x1="260" y1="120" x2="360" y2="110" stroke="#b3c0ff" stroke-width="3" marker-end="url(#arrow)" />
+          <line x1="540" y1="110" x2="660" y2="130" stroke="#b3c0ff" stroke-width="3" marker-end="url(#arrow)" />
+
+          <rect x="280" y="280" width="180" height="100" rx="16" fill="#fff" stroke="var(--purple)" stroke-width="2" />
+          <text x="370" y="320" font-size="15" text-anchor="middle">Cuenta Nómina</text>
+          <text x="370" y="340" font-size="12" fill="var(--muted)" text-anchor="middle">Agreement</text>
+
+          <rect x="520" y="310" width="170" height="90" rx="16" fill="#fff" stroke="#ea580c" stroke-width="2" />
+          <text x="605" y="346" font-size="15" text-anchor="middle">FlexPay Personas</text>
+          <text x="605" y="366" font-size="12" fill="var(--muted)" text-anchor="middle">Portfolio</text>
+
+          <line x1="440" y1="330" x2="520" y2="350" stroke="#facc15" stroke-width="3" marker-end="url(#arrow)" />
+
+          <defs>
+            <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8" fill="#94a3b8" />
+            </marker>
+          </defs>
+        </svg>
+      </main>
+      <section class="detail">
+        <div class="detail-card">
+          <h3>Entidad seleccionada</h3>
+          <div class="kv-grid">
+            <span>Nombre</span><strong>Onboarding Digital</strong>
+            <span>Layer</span><strong>Capability</strong>
+            <span>Rol</span><strong>Core</strong>
+            <span>Relaciones</span><strong>6</strong>
+            <span>KB</span><strong>business_model_kb</strong>
+          </div>
+          <p style="margin-top:12px; font-size:13px; color:var(--muted)">
+            Proceso digital para incorporar clientes y activar productos Everyday Banking.
+          </p>
+          <button style="margin-top:12px; width:100%; border:none; border-radius:8px; padding:9px; background:var(--blue); color:#fff; font-weight:600;">Editar atributos</button>
+        </div>
+        <div class="detail-card">
+          <h3>Relaciones</h3>
+          <ul style="padding-left:16px; margin:0; color:var(--muted); font-size:13px;">
+            <li>supports → Everyday Banking (offering)</li>
+            <li>feeds → App móvil (channel)</li>
+            <li>enables → Cuenta Nómina (agreement)</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>Sub-vistas</h3>
+          <button style="width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:8px;">Vista entidad ↔ reglas</button>
+          <button style="width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;">Vista entidad ↔ herramientas</button>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

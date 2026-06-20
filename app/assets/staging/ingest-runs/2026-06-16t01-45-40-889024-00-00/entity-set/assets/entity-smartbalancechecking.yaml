@@ -1,0 +1,26 @@
+asset_id: entity.smartbalancechecking
+asset_type: entity
+name: SmartBalanceChecking
+version: 1.0.0
+owner: business_model_kb
+description: Cuenta transaccional con barrido automático para evitar sobregiros.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Cuenta transaccional con barrido automático para evitar sobregiros.
+  inferred_from: llm_asset_extraction
+  business_layer: offering
+  entity_role: offering
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Cuenta transaccional con barrido automático para evitar sobregiros.
+  match_strategy: generated
+  canonical_name: SmartBalanceChecking
+  normalized_name: smartbalancechecking
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

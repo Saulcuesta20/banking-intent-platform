@@ -1,0 +1,69 @@
+asset_id: flow.collections.delinquency
+asset_type: flow
+name: Collections and Delinquency Management
+version: 1.0.0
+owner: process_kb
+description: System creates reminder task, sends notifications, applies grace period,
+  escalates through collections, recovery, and write-off stages.
+text: System creates reminder task, sends notifications, applies grace period, escalates
+  through collections, recovery, and write-off stages.
+tags:
+- minimize.losses.and.ensure.traceability
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.payment_reminder_handling
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.collections_escalation_handling
+  metadata: {}
+payload:
+  flow_id: collections.delinquency
+  flow_name: Collections and Delinquency Management
+  intent: minimize.losses.and.ensure.traceability
+  confidence: 0.75
+  business_event: Payment missed
+  utterances: []
+  plan: []
+  tasks:
+  - task: handle_payment_reminder
+    type: notification
+  - task: handle_collections_escalation
+    type: workflow
+  user_tasks:
+  - user_task_id: handle_reminder
+    task: handle_payment_reminder
+    type: notification
+    name: Payment Reminder Handling
+    description: System creates a reminder task for the collections team to follow
+      up on missed payment. Team contacts customer and may apply grace period.
+    tools: []
+    user_actions: []
+  - user_task_id: handle_escalation
+    task: handle_collections_escalation
+    type: workflow
+    name: Collections Escalation Handling
+    description: Handle escalated cases through collections, recovery, and write-off
+      stages as per escalation rules.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: System creates reminder task, sends notifications, applies grace period,
+    escalates through collections, recovery, and write-off stages.
+  source: data/raw/banking_flows_additional.txt#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_flows_additional.txt#chunk-1
+    purpose: To manage delinquent loans and recover payments.
+  purpose: To manage delinquent loans and recover payments.
+  transaction_id: collections.delinquency
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collections and Delinquency Management
+  normalized_name: collections and delinquency management
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

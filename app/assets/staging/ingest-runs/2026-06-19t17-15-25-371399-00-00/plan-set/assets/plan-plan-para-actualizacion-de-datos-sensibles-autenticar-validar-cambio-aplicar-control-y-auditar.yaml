@@ -1,0 +1,26 @@
+asset_id: plan.plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+asset_type: plan
+name: Plan actualizacion de datos sensibles
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para actualizacion de datos sensibles: autenticar, validar cambio,
+  aplicar control y auditar.'
+text: 'Plan para actualizacion de datos sensibles: autenticar, validar cambio, aplicar
+  control y auditar.'
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: 'Plan para actualizacion de datos sensibles: autenticar, validar cambio,
+    aplicar control y auditar.'
+  source_section: Plans
+  transaction_id: plan.para.actualizacion.de.datos.sensibles.autenticar.validar.cambio.aplicar.control.y.auditar
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Plan actualizacion de datos sensibles
+  normalized_name: plan actualizacion de datos sensibles
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

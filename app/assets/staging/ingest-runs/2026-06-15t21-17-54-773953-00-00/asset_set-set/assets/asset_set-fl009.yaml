@@ -1,0 +1,31 @@
+asset_id: asset_set.fl009
+asset_type: asset_set
+name: Fl009 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl009.
+text: Reportar Cargo No Reconocido
+tags:
+- asset_set
+- fl009
+relations:
+- type: groups_flow
+  target_asset_id: flow.fl009
+  metadata: {}
+payload:
+  transaction_id: fl009
+  asset_ids:
+  - flow.fl009
+  asset_types:
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.fl009
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Fl009 Asset Set
+  normalized_name: fl009 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

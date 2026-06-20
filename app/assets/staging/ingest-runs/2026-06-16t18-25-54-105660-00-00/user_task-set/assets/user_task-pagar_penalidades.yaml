@@ -1,0 +1,29 @@
+asset_id: user_task.pagar_penalidades
+asset_type: user_task
+name: Pagar penalidades
+version: 1.0.0
+owner: business_model_kb
+description: El cliente paga cualquier cargo por reactivación si es requerido.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: pay_penalties_if_applicable
+  task: pagar_penalidades_si_aplica
+  type: pago
+  name: Pagar penalidades
+  description: El cliente paga cualquier cargo por reactivación si es requerido.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente paga cualquier cargo por reactivación si es requerido.
+  match_strategy: generated
+  canonical_name: Pagar penalidades
+  normalized_name: pagar penalidades
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

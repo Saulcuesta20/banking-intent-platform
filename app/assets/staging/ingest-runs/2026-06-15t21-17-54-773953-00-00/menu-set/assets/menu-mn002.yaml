@@ -1,0 +1,28 @@
+asset_id: menu.mn002
+asset_type: menu
+name: MN002
+version: 1.0.0
+owner: config_kb
+description: ''
+text: ''
+tags:
+- menu
+- configuration
+relations:
+- type: belongs_to_module
+  target_asset_id: module.m002
+  metadata: {}
+payload:
+  menu_id: MN002
+  module_id: M002
+  label: Solicitud de préstamo
+  path: /loan/apply
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: MN002
+  normalized_name: mn002
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

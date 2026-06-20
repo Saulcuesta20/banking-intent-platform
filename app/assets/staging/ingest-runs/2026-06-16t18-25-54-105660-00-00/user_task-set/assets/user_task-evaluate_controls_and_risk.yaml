@@ -1,0 +1,25 @@
+asset_id: user_task.evaluate_controls_and_risk
+asset_type: user_task
+name: Evaluate controls and risk
+version: 1.0.0
+owner: business_model_kb
+description: Evaluate high value transfer controls and destination risk.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: international_transfer_review_step_4
+  task: evaluate_high_value_transfer_controls_and_destination_risk
+  type: manual
+  name: Evaluate controls and risk
+  description: Evaluate high value transfer controls and destination risk.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Evaluate controls and risk
+  normalized_name: evaluate controls and risk
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

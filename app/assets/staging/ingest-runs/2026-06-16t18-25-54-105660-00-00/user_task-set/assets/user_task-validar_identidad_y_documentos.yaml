@@ -1,0 +1,27 @@
+asset_id: user_task.validar_identidad_y_documentos
+asset_type: user_task
+name: Validar identidad y documentos
+version: 1.0.0
+owner: business_model_kb
+description: Validar identidad y documentos antes de llamar al core bancario. Si falla,
+  enviar a revisión manual.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_validar_identidad_documentos
+  task: validar_identidad_documentos
+  type: system
+  name: Validar identidad y documentos
+  description: Validar identidad y documentos antes de llamar al core bancario. Si
+    falla, enviar a revisión manual.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Validar identidad y documentos
+  normalized_name: validar identidad y documentos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

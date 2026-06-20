@@ -1,0 +1,25 @@
+asset_id: user_task.check_high_value_threshold
+asset_type: user_task
+name: Check High-Value Threshold
+version: 1.0.0
+owner: business_model_kb
+description: If amount exceeds high-value threshold, additional review is required.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_high_value_threshold
+  task: check_high_value_threshold
+  type: decision
+  name: Check High-Value Threshold
+  description: If amount exceeds high-value threshold, additional review is required.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check High-Value Threshold
+  normalized_name: check high-value threshold
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,29 @@
+asset_id: tool.ui_loan_transfer_open_form
+asset_type: tool
+name: ui.loan.transfer.open_form
+version: 1.0.0
+owner: business_model_kb
+description: La interfaz ui.loan.transfer.open_form muestra la transferencia al prestamo.
+text: La interfaz ui.loan.transfer.open_form muestra la transferencia al prestamo.
+tags: []
+relations: []
+payload:
+  description: La interfaz ui.loan.transfer.open_form muestra la transferencia al
+    prestamo.
+  tool_id: ui.loan.transfer.open.form
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La interfaz ui.loan.transfer.open_form muestra la transferencia al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: La interfaz ui.loan.transfer.open_form muestra la transferencia al prestamo.
+  match_strategy: generated
+  canonical_name: ui.loan.transfer.open_form
+  normalized_name: ui.loan.transfer.open form
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

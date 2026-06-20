@@ -1,0 +1,27 @@
+asset_id: user_task.loan_request_capture
+asset_type: user_task
+name: Loan Request Capture
+version: 1.0.0
+owner: business_model_kb
+description: Advisor captures loan application details from customer including amount,
+  purpose, term, income, expected payment.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: capture_loan_request
+  task: capture_loan_request_details
+  type: data_entry
+  name: Loan Request Capture
+  description: Advisor captures loan application details from customer including amount,
+    purpose, term, income, expected payment.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Request Capture
+  normalized_name: loan request capture
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

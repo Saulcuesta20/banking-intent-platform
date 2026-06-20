@@ -1,0 +1,20 @@
+asset_id: tool.document_upload
+asset_type: tool
+name: document.upload
+version: 1.0.0
+owner: business_model_kb
+description: El conector document.upload recibe archivos del onboarding.
+text: El conector document.upload recibe archivos del onboarding.
+tags: []
+relations: []
+payload:
+  description: El conector document.upload recibe archivos del onboarding.
+  tool_id: document.upload
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: document.upload
+  normalized_name: document.upload
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

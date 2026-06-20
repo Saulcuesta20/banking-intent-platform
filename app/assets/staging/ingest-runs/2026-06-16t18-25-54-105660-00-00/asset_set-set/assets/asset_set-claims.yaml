@@ -1,0 +1,81 @@
+asset_id: asset_set.claims
+asset_type: asset_set
+name: Claims Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for claims.
+text: 'reclamo
+
+  cliente
+
+  Reclamos
+
+  Comunicar resolucion
+
+  Crear caso
+
+  Recolectar evidencia
+
+  Revisar transacciones'
+tags:
+- asset_set
+- claims
+relations:
+- type: groups_entity
+  target_asset_id: entity.claim
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.claims
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.comunicar_resolucion
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.crear_caso
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.recolectar_evidencia
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.revisar_transacciones
+  metadata: {}
+payload:
+  transaction_id: claims
+  asset_ids:
+  - entity.claim
+  - entity.customer
+  - flow.claims
+  - user_task.comunicar_resolucion
+  - user_task.crear_caso
+  - user_task.recolectar_evidencia
+  - user_task.revisar_transacciones
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.claim
+    asset_type: entity
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.claims
+    asset_type: flow
+  - asset_id: user_task.comunicar_resolucion
+    asset_type: user_task
+  - asset_id: user_task.crear_caso
+    asset_type: user_task
+  - asset_id: user_task.recolectar_evidencia
+    asset_type: user_task
+  - asset_id: user_task.revisar_transacciones
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Claims Asset Set
+  normalized_name: claims asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

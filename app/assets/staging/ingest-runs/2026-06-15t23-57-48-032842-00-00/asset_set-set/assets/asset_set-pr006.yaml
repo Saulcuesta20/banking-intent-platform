@@ -1,0 +1,31 @@
+asset_id: asset_set.pr006
+asset_type: asset_set
+name: Pr006 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for pr006.
+text: PR006
+tags:
+- asset_set
+- pr006
+relations:
+- type: groups_process
+  target_asset_id: process.pr006
+  metadata: {}
+payload:
+  transaction_id: pr006
+  asset_ids:
+  - process.pr006
+  asset_types:
+  - process
+  primary_asset_type: process
+  members:
+  - asset_id: process.pr006
+    asset_type: process
+  match_strategy: generated
+  canonical_name: Pr006 Asset Set
+  normalized_name: pr006 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

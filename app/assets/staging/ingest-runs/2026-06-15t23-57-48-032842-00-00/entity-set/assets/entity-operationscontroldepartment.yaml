@@ -1,0 +1,20 @@
+asset_id: entity.operationscontroldepartment
+asset_type: entity
+name: OperationsControlDepartment
+version: 1.0.0
+owner: business_model_kb
+description: Unidad que monitorea pagos, investigaciones y escalaciones.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Unidad que monitorea pagos, investigaciones y escalaciones.
+  inferred_from: llm_asset_extraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: OperationsControlDepartment
+  normalized_name: operationscontroldepartment
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

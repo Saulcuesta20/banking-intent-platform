@@ -1,0 +1,28 @@
+asset_id: tool.loan_transfer_apply
+asset_type: tool
+name: loan.transfer.apply
+version: 1.0.0
+owner: business_model_kb
+description: El servicio loan.transfer.apply mueve fondos hacia la deuda del prestamo.
+text: El servicio loan.transfer.apply mueve fondos hacia la deuda del prestamo.
+tags: []
+relations: []
+payload:
+  description: El servicio loan.transfer.apply mueve fondos hacia la deuda del prestamo.
+  tool_id: loan.transfer.apply
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El servicio loan.transfer.apply mueve fondos hacia la deuda del prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El servicio loan.transfer.apply mueve fondos hacia la deuda del prestamo.
+  match_strategy: generated
+  canonical_name: loan.transfer.apply
+  normalized_name: loan.transfer.apply
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

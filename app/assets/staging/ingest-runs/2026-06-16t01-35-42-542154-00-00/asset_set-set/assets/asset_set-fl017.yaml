@@ -1,0 +1,57 @@
+asset_id: asset_set.fl017
+asset_type: asset_set
+name: Fl017 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl017.
+text: 'Transfer
+
+  Transferir Dinero al Prestamo
+
+  Identificar al cliente antes de cualquier operacion financiera
+
+  Transferir fondos desde la cuenta origen al prestamo'
+tags:
+- asset_set
+- fl017
+relations:
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.fl017
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.transferir_fondos_desde_la_cuenta_origen_al_prestamo
+  metadata: {}
+payload:
+  transaction_id: fl017
+  asset_ids:
+  - entity.transfer
+  - flow.fl017
+  - user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+  - user_task.transferir_fondos_desde_la_cuenta_origen_al_prestamo
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: flow.fl017
+    asset_type: flow
+  - asset_id: user_task.identificar_al_cliente_antes_de_cualquier_operacion_financiera
+    asset_type: user_task
+  - asset_id: user_task.transferir_fondos_desde_la_cuenta_origen_al_prestamo
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Fl017 Asset Set
+  normalized_name: fl017 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.manager_approval
+asset_type: user_task
+name: manager_approval
+version: 1.0.0
+owner: business_model_kb
+description: manager_approves_the_release_of_the_retained_transfer
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_006
+  task: manager_approval
+  type: approval
+  name: manager_approval
+  description: manager_approves_the_release_of_the_retained_transfer
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: manager_approval
+  normalized_name: manager approval
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

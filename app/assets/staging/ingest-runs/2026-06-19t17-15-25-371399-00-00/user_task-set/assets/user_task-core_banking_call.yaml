@@ -1,0 +1,25 @@
+asset_id: user_task.core_banking_call
+asset_type: user_task
+name: Core Banking Call
+version: 1.0.0
+owner: business_model_kb
+description: Interact with core banking system to open the account.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: call_core_banking_task
+  task: call_core_banking_system_to_create_account
+  type: automated
+  name: Core Banking Call
+  description: Interact with core banking system to open the account.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Core Banking Call
+  normalized_name: core banking call
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,27 @@
+asset_id: user_task.options_calculation
+asset_type: user_task
+name: Options Calculation
+version: 1.0.0
+owner: business_model_kb
+description: Generate refinance options considering current loan status, customer
+  income evidence, and apply thresholds for manager review.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: options_calculation
+  task: calculate_refinance_options_based_on_current_loan_and_customer_data
+  type: calculation
+  name: Options Calculation
+  description: Generate refinance options considering current loan status, customer
+    income evidence, and apply thresholds for manager review.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Options Calculation
+  normalized_name: options calculation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

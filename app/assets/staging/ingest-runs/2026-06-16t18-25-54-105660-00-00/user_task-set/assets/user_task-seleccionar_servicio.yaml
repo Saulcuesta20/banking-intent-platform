@@ -1,0 +1,33 @@
+asset_id: user_task.seleccionar_servicio
+asset_type: user_task
+name: Seleccionar servicio
+version: 1.0.0
+owner: business_model_kb
+description: El cliente elige el servicio o préstamo para el pago automático.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: select_service
+  task: seleccionar_servicio_a_domiciliar
+  type: selección
+  name: Seleccionar servicio
+  description: El cliente elige el servicio o préstamo para el pago automático.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente elige el servicio o préstamo para el pago automático.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El cliente elige el servicio o préstamo para el pago automático.
+  match_strategy: generated
+  canonical_name: Seleccionar servicio
+  normalized_name: seleccionar servicio
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

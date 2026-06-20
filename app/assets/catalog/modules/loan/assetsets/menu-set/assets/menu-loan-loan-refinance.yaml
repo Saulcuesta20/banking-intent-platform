@@ -1,0 +1,17 @@
+asset_id: menu.loan.loan-refinance
+asset_type: menu
+name: Refinanciamiento
+description: Prestamos launcher menu.
+tags:
+- lending
+- loan
+- menu
+relations:
+- type: belongs_to_module
+  target_asset_id: module.loan
+payload:
+  id: loan-refinance
+  label: Refinanciamiento
+  path: /lending/loan/loan-refinance
+  module_id: loan
+  domain_id: lending

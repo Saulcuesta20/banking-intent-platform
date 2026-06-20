@@ -1,0 +1,60 @@
+asset_id: asset_set.cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+asset_type: asset_set
+name: Cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados Asset
+  Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados.
+text: 'cancelacion de prestamo anticipada debe recalcular intereses devengados
+
+  interes
+
+  prestamo
+
+  Cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados Ruleset'
+tags:
+- asset_set
+- cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.cancelacion_de_prestamo_anticipada_debe_recalcular_intereses_devengados
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.interes
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+  metadata: {}
+payload:
+  transaction_id: cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+  asset_ids:
+  - business_rule.cancelacion_de_prestamo_anticipada_debe_recalcular_intereses_devengados
+  - entity.interes
+  - entity.loan
+  - ruleset.cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+  asset_types:
+  - business_rule
+  - entity
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.cancelacion_de_prestamo_anticipada_debe_recalcular_intereses_devengados
+    asset_type: business_rule
+  - asset_id: entity.interes
+    asset_type: entity
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: ruleset.cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+    Asset Set
+  normalized_name: cancelacion.de.prestamo.anticipada.debe.recalcular.intereses.devengados
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

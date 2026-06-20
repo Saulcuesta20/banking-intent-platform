@@ -1,0 +1,27 @@
+asset_id: user_task.identificaci_n_de_caso
+asset_type: user_task
+name: Identificación de caso
+version: 1.0.0
+owner: business_model_kb
+description: Determinar si el caso corresponde a refinanciamiento o reestructuración
+  basado en la información recopilada.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_identificar_caso
+  task: identificar_tipo_de_caso
+  type: decisión
+  name: Identificación de caso
+  description: Determinar si el caso corresponde a refinanciamiento o reestructuración
+    basado en la información recopilada.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Identificación de caso
+  normalized_name: identificación de caso
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

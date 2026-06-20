@@ -1,0 +1,25 @@
+asset_id: entity.tras_verificacion_telefonica
+asset_type: entity
+name: tras verificación telefónica
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality effect_text: tras verificación telefónica'
+text: '- El acceso a banca online se habilita tras verificación telefónica.'
+tags: []
+relations: []
+payload:
+  aliases:
+  - tras verificacion telefonica
+  inferred_from: causality_endpoint
+  causality_field: effect_text
+  relation_hints:
+  - type: enables
+    family: causality
+    phrase: habilita
+    sentence: '- El acceso a banca online se habilita tras verificación telefónica.'
+  match_strategy: generated
+  canonical_name: tras verificación telefónica
+  normalized_name: tras verificación telefónica
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

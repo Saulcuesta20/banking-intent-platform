@@ -1,0 +1,25 @@
+asset_id: user_task.investigate_duplicate_charge
+asset_type: user_task
+name: Investigate Duplicate Charge
+version: 1.0.0
+owner: business_model_kb
+description: Investigate the reported duplicate charge and initiate refund if validated.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_tck_1003
+  task: investigate_duplicate_charge
+  type: investigation
+  name: Investigate Duplicate Charge
+  description: Investigate the reported duplicate charge and initiate refund if validated.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Investigate Duplicate Charge
+  normalized_name: investigate duplicate charge
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

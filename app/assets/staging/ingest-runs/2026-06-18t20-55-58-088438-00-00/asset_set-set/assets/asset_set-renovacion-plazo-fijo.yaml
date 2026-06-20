@@ -1,0 +1,31 @@
+asset_id: asset_set.renovacion.plazo.fijo
+asset_type: asset_set
+name: Renovacion.plazo.fijo Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for renovacion.plazo.fijo.
+text: Renovación de plazo fijo al vencimiento
+tags:
+- asset_set
+- renovacion.plazo.fijo
+relations:
+- type: groups_flow
+  target_asset_id: flow.renovacion.plazo.fijo
+  metadata: {}
+payload:
+  transaction_id: renovacion.plazo.fijo
+  asset_ids:
+  - flow.renovacion.plazo.fijo
+  asset_types:
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.renovacion.plazo.fijo
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Renovacion.plazo.fijo Asset Set
+  normalized_name: renovacion.plazo.fijo asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

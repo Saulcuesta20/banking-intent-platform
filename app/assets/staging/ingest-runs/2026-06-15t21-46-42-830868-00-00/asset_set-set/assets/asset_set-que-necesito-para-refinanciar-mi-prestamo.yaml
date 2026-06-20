@@ -1,0 +1,31 @@
+asset_id: asset_set.que.necesito.para.refinanciar.mi.prestamo
+asset_type: asset_set
+name: Que.necesito.para.refinanciar.mi.prestamo Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for que.necesito.para.refinanciar.mi.prestamo.
+text: Que necesito para refinanciar mi prestamo?
+tags:
+- asset_set
+- que.necesito.para.refinanciar.mi.prestamo
+relations:
+- type: groups_qa
+  target_asset_id: qa.que_necesito_para_refinanciar_mi_prestamo
+  metadata: {}
+payload:
+  transaction_id: que.necesito.para.refinanciar.mi.prestamo
+  asset_ids:
+  - qa.que_necesito_para_refinanciar_mi_prestamo
+  asset_types:
+  - qa
+  primary_asset_type: qa
+  members:
+  - asset_id: qa.que_necesito_para_refinanciar_mi_prestamo
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Que.necesito.para.refinanciar.mi.prestamo Asset Set
+  normalized_name: que.necesito.para.refinanciar.mi.prestamo asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

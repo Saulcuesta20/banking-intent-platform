@@ -1,0 +1,39 @@
+asset_id: process.el.proceso.de.activacion.de.cuenta.revisa.bloqueos.valida.identidad.y.restituye.acceso
+asset_type: process
+name: Process activacion de cuenta revisa bloqueos,
+version: 1.0.0
+owner: process_kb
+description: El proceso de activacion de cuenta revisa bloqueos, valida identidad
+  y restituye acceso.
+text: El proceso de activacion de cuenta revisa bloqueos, valida identidad y restituye
+  acceso.
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: El proceso de activacion de cuenta revisa bloqueos, valida identidad
+    y restituye acceso.
+  source_section: Processes
+  transaction_id: el.proceso.de.activacion.de.cuenta.revisa.bloqueos.valida.identidad.y.restituye.acceso
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Process activacion de cuenta revisa bloqueos,
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de activacion de cuenta revisa bloqueos, valida identidad
+      y restituye acceso.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de activacion de cuenta revisa bloqueos, valida identidad
+      y restituye acceso.
+  match_strategy: generated
+  canonical_name: Process activacion de cuenta revisa bloqueos,
+  normalized_name: process activacion de cuenta revisa bloqueos,
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

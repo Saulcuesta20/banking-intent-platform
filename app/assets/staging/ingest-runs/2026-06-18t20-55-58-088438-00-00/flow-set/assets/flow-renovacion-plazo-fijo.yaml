@@ -1,0 +1,41 @@
+asset_id: flow.renovacion.plazo.fijo
+asset_type: flow
+name: Renovación de plazo fijo al vencimiento
+version: 1.0.0
+owner: process_kb
+description: Process to renew a fixed deposit upon maturity
+text: Process to renew a fixed deposit upon maturity
+tags:
+- continue.investment.with.similar.or.new.conditions
+relations: []
+payload:
+  flow_id: renovacion.plazo.fijo
+  flow_name: Renovación de plazo fijo al vencimiento
+  intent: continue.investment.with.similar.or.new.conditions
+  confidence: 0.75
+  business_event: Fixed deposit matures and client renews it
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to renew a fixed deposit upon maturity
+  source: data/raw/savings_loans_domain_extra1.txt;data/raw/savings_loans_domain_extra2.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra1.txt
+    - data/raw/savings_loans_domain_extra2.txt
+    purpose: To renew a fixed deposit with updated terms
+  purpose: To renew a fixed deposit with updated terms
+  transaction_id: renovacion.plazo.fijo
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Renovación de plazo fijo al vencimiento
+  normalized_name: renovación de plazo fijo al vencimiento
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

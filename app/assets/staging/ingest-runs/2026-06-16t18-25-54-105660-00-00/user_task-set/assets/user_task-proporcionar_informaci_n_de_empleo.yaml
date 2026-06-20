@@ -1,0 +1,25 @@
+asset_id: user_task.proporcionar_informaci_n_de_empleo
+asset_type: user_task
+name: Proporcionar información de empleo
+version: 1.0.0
+owner: business_model_kb
+description: El usuario presenta constancia de empleo o contrato laboral.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_provide_employment
+  task: proporcionar_informaci_n_de_empleo
+  type: document_submission
+  name: Proporcionar información de empleo
+  description: El usuario presenta constancia de empleo o contrato laboral.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Proporcionar información de empleo
+  normalized_name: proporcionar información de empleo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

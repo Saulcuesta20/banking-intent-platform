@@ -1,0 +1,89 @@
+{
+  "type": "GridLayout",
+  "elements": [
+    {
+      "type": "Group",
+      "label": "Navigation Definition",
+      "elements": [
+        {
+          "type": "GridLayout",
+          "columns": 3,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/navigation_id"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/navigation_name"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/domain"
+            }
+          ]
+        },
+        {
+          "type": "GridLayout",
+          "columns": 3,
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/module"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/description"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/metadata"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Navigation Items",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/items",
+          "options": {
+            "detail": {
+              "type": "GridLayout",
+              "columns": 4,
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/id"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/label"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/type"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/route"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/icon"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/description"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

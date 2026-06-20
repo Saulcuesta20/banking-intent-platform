@@ -1,0 +1,35 @@
+asset_id: plan.pl004
+asset_type: plan
+name: PL004
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para resolver transferencias fallidas: revisar logs, validar destino,
+  reprocesar y notificar cliente.'
+text: ''
+tags:
+- orchestration_plan
+relations:
+- type: uses_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+payload:
+  steps: []
+  plan_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pl004
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Plan para resolver transferencias fallidas: revisar logs, validar destino,
+      reprocesar y notificar cliente.'
+  match_strategy: generated
+  canonical_name: PL004
+  normalized_name: pl004
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

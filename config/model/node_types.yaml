@@ -1,0 +1,105 @@
+version: 1.0.0
+description: Runtime node type model and execution policy for flow/process definitions.
+definition_types:
+  process:
+    allowed_types:
+      - start
+      - user_task
+      - agent
+      - wait_for_user_input
+      - state_update
+      - service_call
+      - tool_call
+      - subprocess_call
+      - decision
+      - approval
+      - notification
+      - end
+  flow:
+    allowed_types:
+      - start
+      - user_task
+      - agent
+      - wait_for_user_input
+      - state_update
+      - service_call
+      - tool_call
+      - subprocess_call
+      - decision
+      - approval
+      - notification
+      - end
+node_types:
+  start:
+    description: Start node for process/workflow entry.
+    required_fields:
+      - node_id
+      - type
+      - name
+  user_task:
+    description: Human business task node.
+    required_fields:
+      - node_id
+      - type
+      - name
+      - required_inputs
+  agent:
+    description: Agent or automated decision node.
+    required_fields:
+      - node_id
+      - type
+      - name
+  wait_for_user_input:
+    description: Pause until user provides required data.
+    required_fields:
+      - node_id
+      - type
+      - name
+  state_update:
+    description: Update execution state and continue.
+    required_fields:
+      - node_id
+      - type
+      - name
+  service_call:
+    description: Execute a backend service or integrated system.
+    required_fields:
+      - node_id
+      - type
+      - implementation
+  tool_call:
+    description: Invoke a tool operation during execution.
+    required_fields:
+      - node_id
+      - type
+      - implementation
+  subprocess_call:
+    description: Call a nested subprocess or integration.
+    required_fields:
+      - node_id
+      - type
+      - implementation
+  decision:
+    description: Decision-evaluation node.
+    required_fields:
+      - node_id
+      - type
+      - name
+  approval:
+    description: Approval or review gate node.
+    required_fields:
+      - node_id
+      - type
+      - name
+  notification:
+    description: Notification or outbound message node.
+    required_fields:
+      - node_id
+      - type
+      - name
+  end:
+    description: End node for completion.
+    required_fields:
+      - node_id
+      - type
+      - name

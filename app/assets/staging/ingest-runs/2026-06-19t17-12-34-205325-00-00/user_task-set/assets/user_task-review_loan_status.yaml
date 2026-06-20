@@ -1,0 +1,25 @@
+asset_id: user_task.review_loan_status
+asset_type: user_task
+name: review_loan_status
+version: 1.0.0
+owner: business_model_kb
+description: ''
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: review_loan_status
+  task: review_loan_status
+  type: unspecified
+  name: review_loan_status
+  description: ''
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: review_loan_status
+  normalized_name: review loan status
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

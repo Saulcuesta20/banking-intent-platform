@@ -1,0 +1,169 @@
+asset_id: flow.loan.refinance
+asset_type: flow
+name: Refinanciamiento de prestamo
+version: 1.0.5
+owner: null
+description: quiero refinanciar mi prestamo
+text: ''
+tags:
+- lending
+- loan
+- flow
+relations:
+- type: implemented_by_process
+  target_asset_id: process.loan.refinance
+  metadata: {}
+payload:
+  flow_id: loan.refinance
+  flow_name: Refinanciamiento de prestamo.
+  intent: quiero refinanciar mi prestamo
+  business_event: loan.refinance.requested
+  domain_id: lending
+  module_id: loan
+  renderer: external
+  user_tasks:
+  - user_task_id: user_task.loan.refinance.identify
+    task: identify eligible loan
+    type: user_task
+    name: Identify eligible loan
+    description: Search the customer portfolio and confirm which loan can be refinanced.
+    user_actions:
+    - action_id: ui.loan.refinance.search
+      type: front
+      implementation_type: open_panel
+      label: Search loan
+      triggers: search loan portfolio
+      description: Open the refinance search panel and locate the loan.
+    - action_id: backend.loan.refinance.eligibility
+      type: back
+      implementation_type: tool_call
+      tool_id: tool.loan.refinance.eligibility.evaluate
+      tool_ids:
+      - tool.loan.refinance.eligibility.evaluate
+      label: Evaluate eligibility
+      description: Validate policy and payment status for refinance.
+    tools:
+    - tool_id: ui.loan.refinance.search
+      tool_type: frontend_tool
+      label: Search loan
+      description: UI action to search candidate loans.
+      frontend_event: search loan portfolio
+    - tool_id: tool.loan.refinance.eligibility.evaluate
+      tool_type: backend_tool
+      operation: evaluate_eligibility
+      resource: loan
+      label: Evaluate eligibility
+      description: Check refinance eligibility rules.
+      backend_protocol: http
+      endpoint: /loan/refinance/eligibility
+  - user_task_id: user_task.loan.refinance.options
+    task: review refinance options
+    type: user_task
+    name: Review refinance options
+    description: Show the available refinance conditions and compare installment outcomes.
+    user_actions:
+    - action_id: ui.loan.refinance.options
+      type: front
+      implementation_type: open_panel
+      label: Review options
+      triggers: open refinance options
+      description: Open the refinance proposal panel.
+    - action_id: backend.loan.conditions.calculate
+      type: back
+      implementation_type: tool_call
+      tool_id: tool.loan.conditions.calculate
+      tool_ids:
+      - tool.loan.conditions.calculate
+      label: Calculate conditions
+      description: Calculate the new rates, terms, and installment amount.
+    tools:
+    - tool_id: ui.loan.refinance.options
+      tool_type: frontend_tool
+      label: Review options
+      description: UI action to compare refinance proposals.
+      frontend_event: open refinance options
+    - tool_id: tool.loan.conditions.calculate
+      tool_type: backend_tool
+      operation: calculate_conditions
+      resource: loan
+      label: Calculate conditions
+      description: Produce refinance scenarios.
+      backend_protocol: http
+      endpoint: /loan/conditions/calculate
+  - user_task_id: user_task.loan.refinance.confirmation
+    task: capture customer confirmation
+    type: user_task
+    name: Capture customer confirmation
+    description: Record the customer decision and the selected refinance scenario.
+    user_actions:
+    - action_id: ui.loan.refinance.confirm
+      type: front
+      implementation_type: show_form
+      label: Confirm selection
+      triggers: submit refinance confirmation
+      description: Capture the final customer selection.
+    tools:
+    - tool_id: ui.loan.refinance.confirm
+      tool_type: frontend_tool
+      label: Confirm selection
+      description: UI confirmation form for refinance selection.
+      frontend_event: submit refinance confirmation
+  - user_task_id: user_task.loan.refinance.documents
+    task: validate supporting documents
+    type: user_task
+    name: Validate supporting documents
+    description: Request and validate the required documentation for the refinance.
+    user_actions:
+    - action_id: ui.document.upload
+      type: front
+      implementation_type: show_form
+      label: Upload documents
+      triggers: upload refinance documents
+      description: Ask for the supporting documents.
+    - action_id: backend.document.validate
+      type: back
+      implementation_type: tool_call
+      tool_id: tool.document.validate
+      tool_ids:
+      - tool.document.validate
+      label: Validate documents
+      description: Validate required refinance documents.
+    tools:
+    - tool_id: ui.document.upload
+      tool_type: frontend_tool
+      label: Upload documents
+      description: UI for uploading refinance evidence.
+      frontend_event: upload refinance documents
+    - tool_id: tool.document.validate
+      tool_type: backend_tool
+      operation: validate_documents
+      resource: refinance
+      label: Validate documents
+      description: Validate refinance documentation package.
+      backend_protocol: http
+      endpoint: /documents/validate
+  - user_task_id: user_task.loan.refinance.submit
+    task: submit refinance request
+    type: user_task
+    name: Submit refinance request
+    description: Create the refinance case and hand it over to the orchestration backend.
+    user_actions:
+    - action_id: backend.loan.refinance.submit
+      type: back
+      implementation_type: tool_call
+      tool_id: tool.loan.refinance.submit
+      tool_ids:
+      - tool.loan.refinance.submit
+      label: Submit refinance
+      description: Create the refinance request in the backend workflow.
+    tools:
+    - tool_id: tool.loan.refinance.submit
+      tool_type: backend_tool
+      operation: submit_refinance
+      resource: loan
+      label: Submit refinance
+      description: Submit the refinance case for execution.
+      backend_protocol: http
+      endpoint: /loan/refinance/submit
+  related_process_ids:
+  - loan_refinance

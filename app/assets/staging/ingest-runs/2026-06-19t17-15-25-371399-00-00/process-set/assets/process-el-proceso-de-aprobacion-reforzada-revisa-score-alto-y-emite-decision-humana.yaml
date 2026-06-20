@@ -1,0 +1,24 @@
+asset_id: process.el.proceso.de.aprobacion.reforzada.revisa.score.alto.y.emite.decision.humana
+asset_type: process
+name: Process aprobacion reforzada revisa score alto
+version: 1.0.0
+owner: process_kb
+description: El proceso de aprobacion reforzada revisa score alto y emite decision
+  humana.
+text: El proceso de aprobacion reforzada revisa score alto y emite decision humana.
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: El proceso de aprobacion reforzada revisa score alto y emite decision
+    humana.
+  source_section: Processes
+  transaction_id: el.proceso.de.aprobacion.reforzada.revisa.score.alto.y.emite.decision.humana
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Process aprobacion reforzada revisa score alto
+  normalized_name: process aprobacion reforzada revisa score alto
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

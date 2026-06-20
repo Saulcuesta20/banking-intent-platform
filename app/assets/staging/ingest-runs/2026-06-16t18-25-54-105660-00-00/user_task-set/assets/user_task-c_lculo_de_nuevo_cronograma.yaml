@@ -1,0 +1,25 @@
+asset_id: user_task.c_lculo_de_nuevo_cronograma
+asset_type: user_task
+name: Cálculo de nuevo cronograma
+version: 1.0.0
+owner: business_model_kb
+description: Calcular el nuevo cronograma de pagos y costos
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_calculate_new_schedule
+  task: calcular_nuevo_cronograma_y_costos_asociados
+  type: calculation
+  name: Cálculo de nuevo cronograma
+  description: Calcular el nuevo cronograma de pagos y costos
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Cálculo de nuevo cronograma
+  normalized_name: cálculo de nuevo cronograma
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

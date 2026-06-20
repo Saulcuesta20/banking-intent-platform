@@ -1,0 +1,27 @@
+asset_id: plan.pl007
+asset_type: plan
+name: PL007
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para cumplimiento de politicas documentales: identificar faltantes,
+  solicitar evidencia, validar vigencia y aprobar.'
+text: ''
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pl007
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: PL007
+  normalized_name: pl007
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

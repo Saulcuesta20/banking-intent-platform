@@ -1,0 +1,40 @@
+asset_id: asset_set.br012
+asset_type: asset_set
+name: Br012 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for br012.
+text: 'BR012
+
+  Br012 Ruleset'
+tags:
+- asset_set
+- br012
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.br012
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.br012
+  metadata: {}
+payload:
+  transaction_id: br012
+  asset_ids:
+  - business_rule.br012
+  - ruleset.br012
+  asset_types:
+  - business_rule
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.br012
+    asset_type: business_rule
+  - asset_id: ruleset.br012
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Br012 Asset Set
+  normalized_name: br012 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

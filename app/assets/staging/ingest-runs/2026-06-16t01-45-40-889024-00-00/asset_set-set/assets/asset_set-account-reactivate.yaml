@@ -1,0 +1,31 @@
+asset_id: asset_set.account.reactivate
+asset_type: asset_set
+name: Account.reactivate Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for account.reactivate.
+text: quiero activar una cuenta inactiva
+tags:
+- asset_set
+- account.reactivate
+relations:
+- type: groups_flow
+  target_asset_id: flow.account.reactivate
+  metadata: {}
+payload:
+  transaction_id: account.reactivate
+  asset_ids:
+  - flow.account.reactivate
+  asset_types:
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.account.reactivate
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Account.reactivate Asset Set
+  normalized_name: account.reactivate asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

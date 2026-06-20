@@ -1,0 +1,22 @@
+asset_id: entity.customerdocuments
+asset_type: entity
+name: CustomerDocuments
+version: 1.0.0
+owner: business_model_kb
+description: Documentación requerida para KYC y apertura de cuentas.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Documentación requerida para KYC y apertura de cuentas.
+  inferred_from: llm_asset_extraction
+  business_layer: party
+  entity_role: party
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: CustomerDocuments
+  normalized_name: customerdocuments
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

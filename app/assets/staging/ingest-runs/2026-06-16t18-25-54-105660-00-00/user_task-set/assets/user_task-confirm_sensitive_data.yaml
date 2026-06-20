@@ -1,0 +1,25 @@
+asset_id: user_task.confirm_sensitive_data
+asset_type: user_task
+name: Confirm Sensitive Data
+version: 1.0.0
+owner: business_model_kb
+description: Confirmar datos sensibles antes de la actualizacion.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_sensitive_data
+  task: confirmar_datos_sensibles_antes_de_la_actualizacion
+  type: manual
+  name: Confirm Sensitive Data
+  description: Confirmar datos sensibles antes de la actualizacion.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Confirm Sensitive Data
+  normalized_name: confirm sensitive data
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

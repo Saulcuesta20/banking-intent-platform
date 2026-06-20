@@ -1,0 +1,25 @@
+asset_id: user_task.ejecutar_transferencia
+asset_type: user_task
+name: Ejecutar transferencia
+version: 1.0.0
+owner: business_model_kb
+description: Ejecutar la transferencia con los datos proporcionados.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: execute_transfer
+  task: ejecutar_transferencia
+  type: ejecución
+  name: Ejecutar transferencia
+  description: El sistema realiza la transferencia de fondos.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Ejecutar transferencia
+  normalized_name: ejecutar transferencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

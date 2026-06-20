@@ -1,0 +1,56 @@
+asset_id: flow.flow.tck.1005
+asset_type: flow
+name: exception_request_flow
+version: 1.0.0
+owner: process_kb
+description: Client asks for an exception due to temporary delay while delivering
+  documents.
+text: Client asks for an exception due to temporary delay while delivering documents.
+tags:
+- exception.handling
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.process_exception_request
+  metadata: {}
+payload:
+  flow_id: flow.tck.1005
+  flow_name: exception_request_flow
+  intent: exception.handling
+  confidence: 0.75
+  business_event: client_requests_exception_for_delay
+  utterances: []
+  plan: []
+  tasks:
+  - task: process_exception_request
+    type: exception
+  user_tasks:
+  - user_task_id: user_task_tck_1005
+    task: process_exception_request
+    type: exception
+    name: Process Exception Request
+    description: Handle client's request for an exception due to temporary delay in
+      document submission.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Client asks for an exception due to temporary delay while delivering
+    documents.
+  source: data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    - data/raw/enterprise_dump_2026/00_readme.txt
+    purpose: To process an exception request for loan-related delay.
+  purpose: To process an exception request for loan-related delay.
+  transaction_id: flow.tck.1005
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: exception_request_flow
+  normalized_name: exception request flow
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

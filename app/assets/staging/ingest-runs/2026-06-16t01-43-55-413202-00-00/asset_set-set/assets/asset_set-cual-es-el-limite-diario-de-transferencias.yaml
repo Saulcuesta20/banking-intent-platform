@@ -1,0 +1,40 @@
+asset_id: asset_set.cual.es.el.limite.diario.de.transferencias
+asset_type: asset_set
+name: Cual.es.el.limite.diario.de.transferencias Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for cual.es.el.limite.diario.de.transferencias.
+text: 'Transfer
+
+  Cual es el limite diario de transferencias?'
+tags:
+- asset_set
+- cual.es.el.limite.diario.de.transferencias
+relations:
+- type: groups_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+- type: groups_qa
+  target_asset_id: qa.cual_es_el_limite_diario_de_transferencias
+  metadata: {}
+payload:
+  transaction_id: cual.es.el.limite.diario.de.transferencias
+  asset_ids:
+  - entity.transfer
+  - qa.cual_es_el_limite_diario_de_transferencias
+  asset_types:
+  - entity
+  - qa
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.transfer
+    asset_type: entity
+  - asset_id: qa.cual_es_el_limite_diario_de_transferencias
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Cual.es.el.limite.diario.de.transferencias Asset Set
+  normalized_name: cual.es.el.limite.diario.de.transferencias asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

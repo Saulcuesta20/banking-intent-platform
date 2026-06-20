@@ -1,0 +1,31 @@
+asset_id: asset_set.pl016
+asset_type: asset_set
+name: Pl016 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for pl016.
+text: PL016
+tags:
+- asset_set
+- pl016
+relations:
+- type: groups_plan
+  target_asset_id: plan.pl016
+  metadata: {}
+payload:
+  transaction_id: pl016
+  asset_ids:
+  - plan.pl016
+  asset_types:
+  - plan
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.pl016
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Pl016 Asset Set
+  normalized_name: pl016 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

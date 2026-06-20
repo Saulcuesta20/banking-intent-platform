@@ -1,0 +1,28 @@
+asset_id: tool.customer_read
+asset_type: tool
+name: customer.read
+version: 1.0.0
+owner: business_model_kb
+description: El sistema customer.read consulta el perfil del cliente en core banking.
+text: El sistema customer.read consulta el perfil del cliente en core banking.
+tags: []
+relations: []
+payload:
+  description: El sistema customer.read consulta el perfil del cliente en core banking.
+  tool_id: customer.read
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El sistema customer.read consulta el perfil del cliente en core banking.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El sistema customer.read consulta el perfil del cliente en core banking.
+  match_strategy: generated
+  canonical_name: customer.read
+  normalized_name: customer.read
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

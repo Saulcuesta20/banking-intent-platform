@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: product-service-config-flow-set
+  name: Productos y Servicios Flow Set
+  version: 1.0.0
+  domain: master-data
+  module: product-service-config
+  description: Versioned flow deployment set for product-service-config.
+  tags:
+  - master-data
+  - product-service-config
+  - flow
+spec:
+  assetType: flow
+  assets:
+  - assets/flow-product-config.yaml

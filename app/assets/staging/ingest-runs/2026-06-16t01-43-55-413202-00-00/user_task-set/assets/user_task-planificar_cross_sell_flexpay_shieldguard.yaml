@@ -1,0 +1,27 @@
+asset_id: user_task.planificar_cross_sell_flexpay_shieldguard
+asset_type: user_task
+name: Planificar cross sell FlexPay + ShieldGuard
+version: 1.0.0
+owner: business_model_kb
+description: Coordinar con Lending y Protection Services para ofrecer ShieldGuard
+  en cada originación FlexPay.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut403
+  task: planificar_cross_sell_shieldguard
+  type: human
+  name: Planificar cross sell FlexPay + ShieldGuard
+  description: Coordinar con Lending y Protection Services para ofrecer ShieldGuard
+    en cada originación FlexPay.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Planificar cross sell FlexPay + ShieldGuard
+  normalized_name: planificar cross sell flexpay + shieldguard
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,31 @@
+asset_id: asset_set.que.valida.el.proceso.de.onboarding
+asset_type: asset_set
+name: Que.valida.el.proceso.de.onboarding Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for que.valida.el.proceso.de.onboarding.
+text: Que valida el proceso de onboarding?
+tags:
+- asset_set
+- que.valida.el.proceso.de.onboarding
+relations:
+- type: groups_qa
+  target_asset_id: qa.que_valida_el_proceso_de_onboarding
+  metadata: {}
+payload:
+  transaction_id: que.valida.el.proceso.de.onboarding
+  asset_ids:
+  - qa.que_valida_el_proceso_de_onboarding
+  asset_types:
+  - qa
+  primary_asset_type: qa
+  members:
+  - asset_id: qa.que_valida_el_proceso_de_onboarding
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Que.valida.el.proceso.de.onboarding Asset Set
+  normalized_name: que.valida.el.proceso.de.onboarding asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

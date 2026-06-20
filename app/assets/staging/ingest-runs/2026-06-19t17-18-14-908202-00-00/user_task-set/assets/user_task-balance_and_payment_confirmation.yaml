@@ -1,0 +1,27 @@
+asset_id: user_task.balance_and_payment_confirmation
+asset_type: user_task
+name: Balance and Payment Confirmation
+version: 1.0.0
+owner: business_model_kb
+description: Analyst queries the system to retrieve and verify the balance and last
+  payment date.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_balance_last_payment
+  task: confirm_the_customer_s_current_balance_and_last_payment_date
+  type: manual
+  name: Balance and Payment Confirmation
+  description: Analyst queries the system to retrieve and verify the balance and last
+    payment date.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Balance and Payment Confirmation
+  normalized_name: balance and payment confirmation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,64 @@
+asset_id: asset_set.claim.flow
+asset_type: asset_set
+name: Claim.flow Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for claim.flow.
+text: 'Client Claims
+
+  Claim Case Registration
+
+  Claim Details Collection
+
+  Evidence Registration
+
+  Movement Review'
+tags:
+- asset_set
+- claim.flow
+relations:
+- type: groups_flow
+  target_asset_id: flow.claim.flow
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.claim_case_registration
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.claim_details_collection
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.evidence_registration
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.movement_review
+  metadata: {}
+payload:
+  transaction_id: claim.flow
+  asset_ids:
+  - flow.claim.flow
+  - user_task.claim_case_registration
+  - user_task.claim_details_collection
+  - user_task.evidence_registration
+  - user_task.movement_review
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.claim.flow
+    asset_type: flow
+  - asset_id: user_task.claim_case_registration
+    asset_type: user_task
+  - asset_id: user_task.claim_details_collection
+    asset_type: user_task
+  - asset_id: user_task.evidence_registration
+    asset_type: user_task
+  - asset_id: user_task.movement_review
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Claim.flow Asset Set
+  normalized_name: claim.flow asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

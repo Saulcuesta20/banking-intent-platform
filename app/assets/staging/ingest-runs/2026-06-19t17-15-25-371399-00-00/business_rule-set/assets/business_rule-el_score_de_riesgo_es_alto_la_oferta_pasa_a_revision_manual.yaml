@@ -1,0 +1,37 @@
+asset_id: business_rule.el_score_de_riesgo_es_alto_la_oferta_pasa_a_revision_manual
+asset_type: business_rule
+name: el score de riesgo es alto, la oferta pasa a revision manual
+version: 1.0.0
+owner: rules_kb
+description: Si el score de riesgo es alto, la oferta pasa a revision manual.
+text: Si el score de riesgo es alto, la oferta pasa a revision manual.
+tags:
+- business_rule
+relations: []
+payload:
+  rule_text: Si el score de riesgo es alto, la oferta pasa a revision manual.
+  source_section: Rules
+  conditions: []
+  consequences:
+  - Si el score de riesgo es alto, la oferta pasa a revision manual.
+  transaction_id: el.score.de.riesgo.es.alto.la.oferta.pasa.a.revision.manual
+  relation_hints:
+  - type: transitions_to
+    family: structural
+    phrase: pasa a
+    sentence: el score de riesgo es alto, la oferta pasa a revision manual
+  - type: transitions_to
+    family: structural
+    phrase: pasa a
+    sentence: Si el score de riesgo es alto, la oferta pasa a revision manual.
+  - type: transitions_to
+    family: structural
+    phrase: pasa a
+    sentence: Si el score de riesgo es alto, la oferta pasa a revision manual.
+  match_strategy: generated
+  canonical_name: el score de riesgo es alto, la oferta pasa a revision manual
+  normalized_name: el score de riesgo es alto, la oferta pasa a revision manual
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

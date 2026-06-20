@@ -1,0 +1,25 @@
+asset_id: user_task.notify_transfer_result
+asset_type: user_task
+name: Notify Transfer Result
+version: 1.0.0
+owner: business_model_kb
+description: Send notification to the client about the transfer status.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut307
+  task: notify_result
+  type: backend
+  name: Notify Transfer Result
+  description: Send notification to the client about the transfer status.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Notify Transfer Result
+  normalized_name: notify transfer result
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

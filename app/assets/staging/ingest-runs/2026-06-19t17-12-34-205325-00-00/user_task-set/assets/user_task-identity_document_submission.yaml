@@ -1,0 +1,25 @@
+asset_id: user_task.identity_document_submission
+asset_type: user_task
+name: Identity Document Submission
+version: 1.0.0
+owner: business_model_kb
+description: Customer uploads official identification and address proof for verification.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: provide_identity_documents
+  task: provide_identity_documents
+  type: execution
+  name: Identity Document Submission
+  description: Customer uploads official identification and address proof for verification.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Identity Document Submission
+  normalized_name: identity document submission
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

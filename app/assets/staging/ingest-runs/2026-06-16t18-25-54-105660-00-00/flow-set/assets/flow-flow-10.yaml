@@ -1,0 +1,55 @@
+asset_id: flow.flow.10
+asset_type: flow
+name: Validación de beneficiario
+version: 1.0.0
+owner: process_kb
+description: El proceso de validacion de beneficiario compara alias, cuenta y riesgo
+  de fraude.
+text: El proceso de validacion de beneficiario compara alias, cuenta y riesgo de fraude.
+tags:
+- verificar.la.identidad.y.riesgo.del.beneficiario
+relations:
+- type: uses_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+payload:
+  flow_id: flow.10
+  flow_name: Validación de beneficiario
+  intent: verificar.la.identidad.y.riesgo.del.beneficiario
+  confidence: 0.75
+  business_event: Se requiere validación de beneficiario
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de validacion de beneficiario compara alias, cuenta y riesgo
+    de fraude.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Validar un beneficiario de transferencia
+  purpose: Validar un beneficiario de transferencia
+  transaction_id: flow.10
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de validacion de beneficiario compara alias, cuenta y riesgo
+      de fraude.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de validacion de beneficiario compara alias, cuenta y riesgo
+      de fraude.
+  match_strategy: generated
+  canonical_name: Validación de beneficiario
+  normalized_name: validación de beneficiario
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

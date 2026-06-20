@@ -1,0 +1,26 @@
+asset_id: user_task.customer_notification
+asset_type: user_task
+name: Customer Notification
+version: 1.0.0
+owner: business_model_kb
+description: Send notification to customer with reason for hold, required evidence,
+  and estimated review time, avoiding internal risk scores.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: notify_customer
+  task: notify_customer
+  type: communication
+  name: Customer Notification
+  description: Notify the customer about the claim status.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Notification
+  normalized_name: customer notification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

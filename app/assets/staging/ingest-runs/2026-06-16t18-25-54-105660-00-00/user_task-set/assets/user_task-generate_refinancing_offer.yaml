@@ -1,0 +1,25 @@
+asset_id: user_task.generate_refinancing_offer
+asset_type: user_task
+name: Generate Refinancing Offer
+version: 1.0.0
+owner: business_model_kb
+description: Create a new loan offer with rate, term, and fees based on eligibility.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_generate_offer
+  task: generate_offer
+  type: automated
+  name: Generate Refinancing Offer
+  description: Create a new loan offer with rate, term, and fees based on eligibility.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Generate Refinancing Offer
+  normalized_name: generate refinancing offer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.record_evidence
+asset_type: user_task
+name: Record Evidence
+version: 1.0.0
+owner: business_model_kb
+description: Agent records required evidence before releasing transfer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: record_evidence
+  task: record_evidence
+  type: documentation
+  name: Record Evidence
+  description: Agent records required evidence before releasing transfer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Record Evidence
+  normalized_name: record evidence
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

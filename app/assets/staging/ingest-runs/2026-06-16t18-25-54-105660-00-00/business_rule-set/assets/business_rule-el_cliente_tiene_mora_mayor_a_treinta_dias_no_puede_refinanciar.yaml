@@ -1,0 +1,43 @@
+asset_id: business_rule.el_cliente_tiene_mora_mayor_a_treinta_dias_no_puede_refinanciar
+asset_type: business_rule
+name: el cliente tiene mora mayor a treinta dias, no puede refinanciar
+version: 1.0.0
+owner: rules_kb
+description: Si el cliente tiene mora mayor a treinta dias, no puede refinanciar.
+text: Si el cliente tiene mora mayor a treinta dias, no puede refinanciar.
+tags:
+- business_rule
+relations:
+- type: uses_entity
+  target_asset_id: entity.mora
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  rule_text: Si el cliente tiene mora mayor a treinta dias, no puede refinanciar.
+  source_section: Rules
+  conditions: []
+  consequences:
+  - Si el cliente tiene mora mayor a treinta dias, no puede refinanciar.
+  transaction_id: el.cliente.tiene.mora.mayor.a.treinta.dias.no.puede.refinanciar
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: el cliente tiene mora mayor a treinta dias, no puede refinanciar
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Si el cliente tiene mora mayor a treinta dias, no puede refinanciar.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Si el cliente tiene mora mayor a treinta dias, no puede refinanciar.
+  match_strategy: generated
+  canonical_name: el cliente tiene mora mayor a treinta dias, no puede refinanciar
+  normalized_name: el cliente tiene mora mayor a treinta dias, no puede refinanciar
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

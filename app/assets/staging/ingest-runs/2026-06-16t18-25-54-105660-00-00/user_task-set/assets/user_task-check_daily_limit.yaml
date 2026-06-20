@@ -1,0 +1,25 @@
+asset_id: user_task.check_daily_limit
+asset_type: user_task
+name: Check Daily Limit
+version: 1.0.0
+owner: business_model_kb
+description: Verify that the transfer amount does not exceed the daily limit.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_check_daily_limit
+  task: check_daily_limit
+  type: automated
+  name: Check Daily Limit
+  description: Verify that the transfer amount does not exceed the daily limit.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Daily Limit
+  normalized_name: check daily limit
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

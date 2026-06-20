@@ -1,0 +1,40 @@
+asset_id: asset_set.flow.17
+asset_type: asset_set
+name: Flow.17 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.17.
+text: 'prestamo
+
+  Transferencia a préstamo'
+tags:
+- asset_set
+- flow.17
+relations:
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.flow.17
+  metadata: {}
+payload:
+  transaction_id: flow.17
+  asset_ids:
+  - entity.loan
+  - flow.flow.17
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: flow.flow.17
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Flow.17 Asset Set
+  normalized_name: flow.17 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

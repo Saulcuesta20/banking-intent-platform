@@ -1,0 +1,21 @@
+asset_id: entity.garantia
+asset_type: entity
+name: garantia
+version: 1.0.0
+owner: business_model_kb
+description: Activo o persona que respalda una obligación crediticia
+text: Activo o persona que respalda una obligación crediticia
+tags: []
+relations: []
+payload:
+  aliases: []
+  structural_layer: business_resource
+  business_layer: business_resource
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: garantia
+  normalized_name: garantia
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

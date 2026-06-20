@@ -1,0 +1,79 @@
+asset_id: flow.loan.management
+asset_type: flow
+name: Loan Management
+version: 1.0.0
+owner: process_kb
+description: Process to calculate refinancing terms, check delinquency, and issue
+  early cancellation proposal.
+text: Process to calculate refinancing terms, check delinquency, and issue early cancellation
+  proposal.
+tags:
+- provide.options.for.loan.restructuring.or.early.payoff
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.calculate_refinancing_terms
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.check_loan_delinquency
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.issue_early_cancellation_proposal
+  metadata: {}
+payload:
+  flow_id: loan.management
+  flow_name: Loan Management
+  intent: provide.options.for.loan.restructuring.or.early.payoff
+  confidence: 0.75
+  business_event: loan_modification_request
+  utterances: []
+  plan: []
+  tasks:
+  - task: calcular_terminos_de_refinanciamiento
+    type: system
+  - task: revisar_estado_de_mora_del_prestamo
+    type: system
+  - task: emitir_propuesta_de_cancelacion_anticipada
+    type: manual
+  user_tasks:
+  - user_task_id: calculate_refinancing_terms
+    task: calcular_terminos_de_refinanciamiento
+    type: system
+    name: Calculate Refinancing Terms
+    description: Calcular terminos de refinanciamiento.
+    tools: []
+    user_actions: []
+  - user_task_id: check_loan_delinquency
+    task: revisar_estado_de_mora_del_prestamo
+    type: system
+    name: Check Loan Delinquency
+    description: Revisar estado de mora del prestamo.
+    tools: []
+    user_actions: []
+  - user_task_id: issue_early_cancellation_proposal
+    task: emitir_propuesta_de_cancelacion_anticipada
+    type: manual
+    name: Issue Early Cancellation Proposal
+    description: Emitir propuesta de cancelacion anticipada.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to calculate refinancing terms, check delinquency, and issue
+    early cancellation proposal.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-4
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-4
+    purpose: To manage existing loans through modifications.
+  purpose: To manage existing loans through modifications.
+  transaction_id: loan.management
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Management
+  normalized_name: loan management
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

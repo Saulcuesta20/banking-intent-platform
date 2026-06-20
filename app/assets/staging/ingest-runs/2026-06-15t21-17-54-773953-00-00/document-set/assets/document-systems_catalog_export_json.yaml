@@ -1,0 +1,36 @@
+asset_id: document.systems_catalog_export_json
+asset_type: document
+name: systems_catalog_export.json
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/enterprise_dump_2026/systems_catalog_export.json
+text: "{\n  \"exported_from\": \"legacy-service-catalog\",\n  \"generated_at\": \"\
+  2026-05-01T12:00:00Z\",\n  \"services\": [\n    {\n      \"name\": \"Customer Profile\
+  \ Service\",\n      \"operations\": [\"customer.read\", \"customer.identity.validate\"\
+  ],\n      \"notes\": \"Used by onboarding, loan servicing, transfers, and account\
+  \ maintenance.\"\n    },\n    {\n      \"name\": \"Loan Pricing Service\",\n   \
+  \   \"operations\": [\"loan.conditions.calculate\", \"loan_refinance.compare\"],\n\
+  \      \"notes\": \"Calculates refinance conditions and compares installment scenarios.\"\
+  \n    },\n    {\n      \"name\": \"Transfer Service\",\n      \"operations\": [\"\
+  transfer.details.read\", \"transfer.create\", \"notification.send\"],\n      \"\
+  notes\": \"Creates domestic and international transfers after validation gates pass.\"\
+  \n    },\n    {\n      \"name\": \"Compliance Screening Gateway\",\n      \"operations\"\
+  : [\"api.sanctions.screen\", \"risk.case.create\"],\n      \"notes\": \"External\
+  \ screening service. Results are evidence for compliance review.\"\n    }\n  ]\n\
+  }"
+tags:
+- text
+- json
+relations: []
+payload:
+  path: data/raw/enterprise_dump_2026/systems_catalog_export.json
+  kind: text
+  sequence: 16
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: systems_catalog_export.json
+  normalized_name: systems catalog export.json
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

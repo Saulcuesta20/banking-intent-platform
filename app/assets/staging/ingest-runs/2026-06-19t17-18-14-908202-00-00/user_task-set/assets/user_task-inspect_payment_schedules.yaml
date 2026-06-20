@@ -1,0 +1,25 @@
+asset_id: user_task.inspect_payment_schedules
+asset_type: user_task
+name: Inspect Payment Schedules
+version: 1.0.0
+owner: business_model_kb
+description: Part of support team activities to inspect payment schedules.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: inspect_payment_schedules
+  task: inspect_payment_schedules
+  type: ''
+  name: Inspect Payment Schedules
+  description: Part of support team activities to inspect payment schedules.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Inspect Payment Schedules
+  normalized_name: inspect payment schedules
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

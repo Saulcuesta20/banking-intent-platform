@@ -1,0 +1,56 @@
+asset_id: asset_set.loan.with.collateral
+asset_type: asset_set
+name: Loan.with.collateral Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.with.collateral.
+text: 'Solicitud de préstamo con garantía vehicular
+
+  Documentación del vehículo
+
+  Firma de contrato de préstamo
+
+  Solicitud de préstamo'
+tags:
+- asset_set
+- loan.with.collateral
+relations:
+- type: groups_flow
+  target_asset_id: flow.loan.with.collateral
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.documentaci_n_del_veh_culo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.firma_de_contrato_de_pr_stamo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.solicitud_de_pr_stamo
+  metadata: {}
+payload:
+  transaction_id: loan.with.collateral
+  asset_ids:
+  - flow.loan.with.collateral
+  - user_task.documentaci_n_del_veh_culo
+  - user_task.firma_de_contrato_de_pr_stamo
+  - user_task.solicitud_de_pr_stamo
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.loan.with.collateral
+    asset_type: flow
+  - asset_id: user_task.documentaci_n_del_veh_culo
+    asset_type: user_task
+  - asset_id: user_task.firma_de_contrato_de_pr_stamo
+    asset_type: user_task
+  - asset_id: user_task.solicitud_de_pr_stamo
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Loan.with.collateral Asset Set
+  normalized_name: loan.with.collateral asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "properties": {
+    "process_id": {
+      "type": "string",
+      "title": "Process ID"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "nodes": {
+      "type": "array",
+      "title": "Execution Nodes",
+      "items": {
+        "type": "object",
+        "properties": {
+          "node_id": { "type": "string", "title": "Node ID" },
+          "name": { "type": "string", "title": "Name" },
+          "type": { "type": "string", "title": "Type" }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "title": "Transitions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from_node": { "type": "string", "title": "From Node" },
+          "to_node": { "type": "string", "title": "To Node" }
+        }
+      }
+    }
+  },
+  "required": ["process_id"]
+}

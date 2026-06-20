@@ -1,0 +1,81 @@
+asset_id: asset_set.savings.account.open
+asset_type: asset_set
+name: Savings.account.open Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for savings.account.open.
+text: 'cuenta de ahorro
+
+  ahorro
+
+  Abrir Cuenta de Ahorro
+
+  Aceptar términos
+
+  Confirmar cuenta
+
+  Identity Verification
+
+  Subir documentos'
+tags:
+- asset_set
+- savings.account.open
+relations:
+- type: groups_entity
+  target_asset_id: entity.cuenta_de_ahorro
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.savings.account.open
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.aceptar_t_rminos
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.confirmar_cuenta
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.identity_verification
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.subir_documentos
+  metadata: {}
+payload:
+  transaction_id: savings.account.open
+  asset_ids:
+  - entity.cuenta_de_ahorro
+  - entity.savings_account
+  - flow.savings.account.open
+  - user_task.aceptar_t_rminos
+  - user_task.confirmar_cuenta
+  - user_task.identity_verification
+  - user_task.subir_documentos
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.cuenta_de_ahorro
+    asset_type: entity
+  - asset_id: entity.savings_account
+    asset_type: entity
+  - asset_id: flow.savings.account.open
+    asset_type: flow
+  - asset_id: user_task.aceptar_t_rminos
+    asset_type: user_task
+  - asset_id: user_task.confirmar_cuenta
+    asset_type: user_task
+  - asset_id: user_task.identity_verification
+    asset_type: user_task
+  - asset_id: user_task.subir_documentos
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Savings.account.open Asset Set
+  normalized_name: savings.account.open asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

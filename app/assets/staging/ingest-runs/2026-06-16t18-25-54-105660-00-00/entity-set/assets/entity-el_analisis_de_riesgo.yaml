@@ -1,0 +1,23 @@
+asset_id: entity.el_analisis_de_riesgo
+asset_type: entity
+name: el analisis de riesgo.
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: La garantia hipotecaria soporta
+  el analisis de riesgo.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases:
+  - el analisis de riesgo
+  inferred_from: section_entities
+  business_layer: asset
+  entity_role: asset
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: el analisis de riesgo.
+  normalized_name: el analisis de riesgo.
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

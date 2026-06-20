@@ -1,0 +1,30 @@
+asset_id: ruleset.br011
+asset_type: ruleset
+name: Br011 Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction br011 with 1 business rules.
+text: Toda actualizacion de datos sensibles requiere doble confirmacion.
+tags:
+- ruleset
+- br011
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.br011
+  metadata: {}
+payload:
+  transaction_id: br011
+  ruleset_name: Br011 Ruleset
+  rule_ids:
+  - business_rule.br011
+  conditions:
+  - Toda actualizacion de datos sensibles
+  consequences:
+  - doble confirmacion
+  match_strategy: generated
+  canonical_name: Br011 Ruleset
+  normalized_name: br011 ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

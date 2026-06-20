@@ -1,0 +1,25 @@
+asset_id: user_task.support_account_verification
+asset_type: user_task
+name: Support Account Verification
+version: 1.0.0
+owner: business_model_kb
+description: Support verifies account history and required documents
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_5
+  task: verify_account_history
+  type: verification
+  name: Support Account Verification
+  description: Support verifies account history and required documents
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Support Account Verification
+  normalized_name: support account verification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

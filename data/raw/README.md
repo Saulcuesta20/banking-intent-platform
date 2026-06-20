@@ -15,6 +15,10 @@ Fuentes empresariales nuevas:
   con al menos 12 registros por familia principal de activo para probar
   alineacion canonica, aliases, planes y causalidad.
 
+El root `data/raw/` tambien se usa como corpus compuesto: incluye los seeds
+anteriores y el lote `enterprise_dump_2026/`. La ingestion debe recorrerlo
+recursivamente y tratar todo como texto crudo, no como assets ya estructurados.
+
 La ingestion ya no debe asumir solo flows. El corpus mezcla entidades, reglas,
 procesos, flows, planes, causalidad, Q&A, herramientas y documentos. La ruta
 de KB ingestion genera o refresca esos activos desde texto empresarial y deja
@@ -27,4 +31,7 @@ make extract-reasoning
 make extract-autogen
 make extract-apply
 make graph-load
+python -m app.platform_cli reset-ingest --raw data/raw
+python -m app.platform_cli query --engines
+python -m app.platform_cli query --text "refinanciamiento"
 ```

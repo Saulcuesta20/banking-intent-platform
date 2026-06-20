@@ -1,0 +1,26 @@
+asset_id: entity.la_oferta_de_refinanciamiento
+asset_type: entity
+name: la oferta de refinanciamiento
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality effect_text: la oferta de refinanciamiento'
+text: La mora superior a treinta dias bloquea la oferta de refinanciamiento.
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: effect_text
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: prevents
+    family: causality
+    phrase: bloquea
+    sentence: La mora superior a treinta dias bloquea la oferta de refinanciamiento.
+  match_strategy: generated
+  canonical_name: la oferta de refinanciamiento
+  normalized_name: la oferta de refinanciamiento
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

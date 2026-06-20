@@ -1,0 +1,42 @@
+asset_id: flow.flow.09
+asset_type: flow
+name: Aprobación reforzada
+version: 1.0.0
+owner: process_kb
+description: El proceso de aprobacion reforzada revisa score alto y emite decision
+  humana.
+text: El proceso de aprobacion reforzada revisa score alto y emite decision humana.
+tags:
+- revisar.y.aprobar.una.operacion.con.score.alto
+relations: []
+payload:
+  flow_id: flow.09
+  flow_name: Aprobación reforzada
+  intent: revisar.y.aprobar.una.operacion.con.score.alto
+  confidence: 0.75
+  business_event: Se requiere aprobación reforzada
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de aprobacion reforzada revisa score alto y emite decision
+    humana.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Aprobar una operación de alto riesgo
+  purpose: Aprobar una operación de alto riesgo
+  transaction_id: flow.09
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Aprobación reforzada
+  normalized_name: aprobación reforzada
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

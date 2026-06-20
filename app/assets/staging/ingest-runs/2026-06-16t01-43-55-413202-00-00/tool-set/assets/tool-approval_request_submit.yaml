@@ -1,0 +1,20 @@
+asset_id: tool.approval_request_submit
+asset_type: tool
+name: approval.request.submit
+version: 1.0.0
+owner: business_model_kb
+description: La API approval.request.submit envia casos a revision humana.
+text: La API approval.request.submit envia casos a revision humana.
+tags: []
+relations: []
+payload:
+  description: La API approval.request.submit envia casos a revision humana.
+  tool_id: approval.request.submit
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: approval.request.submit
+  normalized_name: approval.request.submit
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

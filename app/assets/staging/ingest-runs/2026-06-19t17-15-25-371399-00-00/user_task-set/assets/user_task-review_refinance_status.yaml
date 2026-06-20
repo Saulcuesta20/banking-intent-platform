@@ -1,0 +1,25 @@
+asset_id: user_task.review_refinance_status
+asset_type: user_task
+name: Review Refinance Status
+version: 1.0.0
+owner: business_model_kb
+description: Part of support team activities to review refinance status.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: review_refinance_status
+  task: review_refinance_status
+  type: ''
+  name: Review Refinance Status
+  description: Part of support team activities to review refinance status.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Review Refinance Status
+  normalized_name: review refinance status
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

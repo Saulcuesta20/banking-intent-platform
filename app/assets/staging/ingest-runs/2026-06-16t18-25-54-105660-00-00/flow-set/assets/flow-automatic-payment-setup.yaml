@@ -1,0 +1,124 @@
+asset_id: flow.automatic.payment.setup
+asset_type: flow
+name: Automatic payment setup
+version: 1.0.0
+owner: process_kb
+description: Configure recurring payment for an existing loan.
+text: Configure recurring payment for an existing loan.
+tags:
+- configure.recurring.payment.for.an.existing.loan
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identify_customer
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verify_loan_active
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.check_eligible_account
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.explain_account_requirement
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.offer_account_opening
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.capture_payment_day_and_acceptance
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.enable_debit_and_send_confirmation
+  metadata: {}
+payload:
+  flow_id: automatic.payment.setup
+  flow_name: Automatic payment setup
+  intent: configure.recurring.payment.for.an.existing.loan
+  confidence: 0.75
+  business_event: Configure recurring payment for loan
+  utterances: []
+  plan: []
+  tasks:
+  - task: identify_the_customer
+    type: manual
+  - task: verify_the_loan_is_active
+    type: manual
+  - task: check_eligible_savings_account
+    type: manual
+  - task: explain_account_requirement_when_no_eligible_account_exists
+    type: manual
+  - task: offer_account_opening_journey
+    type: manual
+  - task: capture_payment_day_and_customer_acceptance
+    type: manual
+  - task: enable_automatic_debit_and_send_confirmation
+    type: manual
+  user_tasks:
+  - user_task_id: automatic_payment_setup_step_1
+    task: identify_the_customer
+    type: manual
+    name: Identify customer
+    description: Identify the customer.
+    tools: []
+    user_actions: []
+  - user_task_id: automatic_payment_setup_step_2
+    task: verify_the_loan_is_active
+    type: manual
+    name: Verify loan active
+    description: Verify the loan is active.
+    tools: []
+    user_actions: []
+  - user_task_id: automatic_payment_setup_step_3
+    task: check_eligible_savings_account
+    type: manual
+    name: Check eligible account
+    description: Check eligible savings account.
+    tools: []
+    user_actions: []
+  - user_task_id: automatic_payment_setup_step_4
+    task: explain_account_requirement_when_no_eligible_account_exists
+    type: manual
+    name: Explain account requirement
+    description: Explain account requirement when no eligible account exists.
+    tools: []
+    user_actions: []
+  - user_task_id: automatic_payment_setup_step_5
+    task: offer_account_opening_journey
+    type: manual
+    name: Offer account opening
+    description: Offer account opening journey.
+    tools: []
+    user_actions: []
+  - user_task_id: automatic_payment_setup_step_6
+    task: capture_payment_day_and_customer_acceptance
+    type: manual
+    name: Capture payment day and acceptance
+    description: Capture payment day and customer acceptance.
+    tools: []
+    user_actions: []
+  - user_task_id: automatic_payment_setup_step_7
+    task: enable_automatic_debit_and_send_confirmation
+    type: manual
+    name: Enable debit and send confirmation
+    description: Enable automatic debit and send confirmation.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Configure recurring payment for an existing loan.
+  source: data/raw/enterprise_dump_2026/orchestration_planning_notes.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/orchestration_planning_notes.md
+    purpose: Configure recurring payment for an existing loan.
+  purpose: Configure recurring payment for an existing loan.
+  transaction_id: automatic.payment.setup
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Automatic payment setup
+  normalized_name: automatic payment setup
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

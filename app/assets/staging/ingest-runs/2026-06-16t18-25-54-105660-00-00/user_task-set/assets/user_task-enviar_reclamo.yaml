@@ -1,0 +1,25 @@
+asset_id: user_task.enviar_reclamo
+asset_type: user_task
+name: Enviar reclamo
+version: 1.0.0
+owner: business_model_kb
+description: Enviar el reclamo con los datos recopilados.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: enviar_reclamo
+  task: enviar_reclamo
+  type: execution
+  name: Enviar reclamo
+  description: Enviar el reclamo con los datos recopilados.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Enviar reclamo
+  normalized_name: enviar reclamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

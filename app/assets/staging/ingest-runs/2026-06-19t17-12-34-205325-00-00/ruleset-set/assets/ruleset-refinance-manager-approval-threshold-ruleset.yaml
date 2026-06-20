@@ -1,0 +1,54 @@
+asset_id: ruleset.refinance.manager.approval.threshold.ruleset
+asset_type: ruleset
+name: Refinance manager approval threshold Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction refinance.manager.approval.threshold.ruleset
+  with 1 business rules.
+text: 'Refinance options that extend the loan term by more than 24 months or reduce
+
+  the monthly installment by more than 20 percent require manager review. The
+
+  reviewer must see current loan status, calculated options, customer income
+
+  evidence, and the comparison summary before approving the request.
+
+
+  Control owner: Credit Operations.
+
+  Systems mentioned: Loan Pricing Service, Approval Workbench.
+
+  Related customer phrases: "quiero bajar la cuota", "necesito mejores
+
+  condiciones", "por que no califico para refinanciar".'
+tags:
+- ruleset
+- refinance.manager.approval.threshold.ruleset
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.refinance_manager_approval_threshold
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.loan_conditions
+  metadata: {}
+payload:
+  transaction_id: refinance.manager.approval.threshold.ruleset
+  ruleset_name: Refinance manager approval threshold Ruleset
+  rule_ids:
+  - business_rule.refinance_manager_approval_threshold
+  conditions:
+  - Refinance options that extend the loan term by more than 24 months or reduce the
+    monthly installment by more than 20 percent require manager review. The reviewer
+  consequences:
+  - 'see current loan status, calculated options, customer income evidence, and the
+    comparison summary before approving the request. Control owner: Credit Operations.
+    Systems mentioned: Loan Pricing Service, Approval Workbench. Related customer
+    phrases: "quiero bajar la cuota", "necesito mejores condiciones", "por que no
+    califico para refinanciar"'
+  match_strategy: generated
+  canonical_name: Refinance manager approval threshold Ruleset
+  normalized_name: refinance manager approval threshold ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

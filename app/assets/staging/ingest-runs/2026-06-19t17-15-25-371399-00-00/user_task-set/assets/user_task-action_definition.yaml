@@ -1,0 +1,27 @@
+asset_id: user_task.action_definition
+asset_type: user_task
+name: Action Definition
+version: 1.0.0
+owner: business_model_kb
+description: Analyst determines whether the case requires a payment promise, escalation,
+  or follow-up based on the situation.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: define_next_action
+  task: define_the_next_action_based_on_the_case_status
+  type: decision
+  name: Action Definition
+  description: Analyst determines whether the case requires a payment promise, escalation,
+    or follow-up based on the situation.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Action Definition
+  normalized_name: action definition
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

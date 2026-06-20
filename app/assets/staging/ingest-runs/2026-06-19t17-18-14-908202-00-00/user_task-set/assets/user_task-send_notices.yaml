@@ -1,0 +1,25 @@
+asset_id: user_task.send_notices
+asset_type: user_task
+name: Send Notices
+version: 1.0.0
+owner: business_model_kb
+description: Part of support team activities to send notices.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: send_notices
+  task: send_notices
+  type: ''
+  name: Send Notices
+  description: Part of support team activities to send notices.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Send Notices
+  normalized_name: send notices
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

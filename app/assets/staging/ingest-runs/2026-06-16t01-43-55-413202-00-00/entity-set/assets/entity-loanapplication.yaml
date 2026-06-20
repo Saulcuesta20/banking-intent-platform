@@ -1,0 +1,22 @@
+asset_id: entity.loanapplication
+asset_type: entity
+name: LoanApplication
+version: 1.0.0
+owner: business_model_kb
+description: Solicitud inicial para obtener un préstamo.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Solicitud inicial para obtener un préstamo.
+  inferred_from: llm_asset_extraction
+  business_layer: offering
+  entity_role: offering
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: LoanApplication
+  normalized_name: loanapplication
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

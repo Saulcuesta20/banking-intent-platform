@@ -1,0 +1,25 @@
+asset_id: user_task.review_and_sign
+asset_type: user_task
+name: Review and Sign
+version: 1.0.0
+owner: business_model_kb
+description: Customer reviews the refinance proposal and signs the offer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: customer_review_sign
+  task: review_and_sign_the_offer
+  type: manual
+  name: Review and Sign
+  description: Customer reviews the refinance proposal and signs the offer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Review and Sign
+  normalized_name: review and sign
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

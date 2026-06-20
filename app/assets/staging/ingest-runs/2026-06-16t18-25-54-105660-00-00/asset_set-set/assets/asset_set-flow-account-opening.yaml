@@ -1,0 +1,64 @@
+asset_id: asset_set.flow.account.opening
+asset_type: asset_set
+name: Flow.account.opening Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.account.opening.
+text: 'Account Opening
+
+  Create Account
+
+  Perform KYC
+
+  Verify Address
+
+  Verify Identity'
+tags:
+- asset_set
+- flow.account.opening
+relations:
+- type: groups_flow
+  target_asset_id: flow.flow.account.opening
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.create_account
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.perform_kyc
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_address
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verify_identity
+  metadata: {}
+payload:
+  transaction_id: flow.account.opening
+  asset_ids:
+  - flow.flow.account.opening
+  - user_task.create_account
+  - user_task.perform_kyc
+  - user_task.verify_address
+  - user_task.verify_identity
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.flow.account.opening
+    asset_type: flow
+  - asset_id: user_task.create_account
+    asset_type: user_task
+  - asset_id: user_task.perform_kyc
+    asset_type: user_task
+  - asset_id: user_task.verify_address
+    asset_type: user_task
+  - asset_id: user_task.verify_identity
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Flow.account.opening Asset Set
+  normalized_name: flow.account.opening asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

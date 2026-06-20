@@ -1,0 +1,25 @@
+asset_id: user_task.prepare_refinance_request
+asset_type: user_task
+name: prepare_refinance_request
+version: 1.0.0
+owner: business_model_kb
+description: ''
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: prepare_refinance_request
+  task: prepare_refinance_request
+  type: unspecified
+  name: prepare_refinance_request
+  description: ''
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: prepare_refinance_request
+  normalized_name: prepare refinance request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

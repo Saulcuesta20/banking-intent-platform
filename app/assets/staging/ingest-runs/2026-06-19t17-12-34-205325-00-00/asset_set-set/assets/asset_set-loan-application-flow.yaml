@@ -1,0 +1,80 @@
+asset_id: asset_set.loan.application.flow
+asset_type: asset_set
+name: Loan.application.flow Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.application.flow.
+text: 'Loan Application
+
+  Approval Request
+
+  Credit History Consultation
+
+  Loan Details Collection
+
+  Loan Request Creation
+
+  Policy Context Retrieval
+
+  Scoring Calculation'
+tags:
+- asset_set
+- loan.application.flow
+relations:
+- type: groups_flow
+  target_asset_id: flow.loan.application.flow
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.approval_request
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.credit_history_consultation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.loan_details_collection
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.loan_request_creation
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.policy_context_retrieval
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.scoring_calculation
+  metadata: {}
+payload:
+  transaction_id: loan.application.flow
+  asset_ids:
+  - flow.loan.application.flow
+  - user_task.approval_request
+  - user_task.credit_history_consultation
+  - user_task.loan_details_collection
+  - user_task.loan_request_creation
+  - user_task.policy_context_retrieval
+  - user_task.scoring_calculation
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.loan.application.flow
+    asset_type: flow
+  - asset_id: user_task.approval_request
+    asset_type: user_task
+  - asset_id: user_task.credit_history_consultation
+    asset_type: user_task
+  - asset_id: user_task.loan_details_collection
+    asset_type: user_task
+  - asset_id: user_task.loan_request_creation
+    asset_type: user_task
+  - asset_id: user_task.policy_context_retrieval
+    asset_type: user_task
+  - asset_id: user_task.scoring_calculation
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Loan.application.flow Asset Set
+  normalized_name: loan.application.flow asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

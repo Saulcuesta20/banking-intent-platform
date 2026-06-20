@@ -1,0 +1,31 @@
+asset_id: asset_set.flow.08
+asset_type: asset_set
+name: Flow.08 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.08.
+text: Activación de cuenta inactiva
+tags:
+- asset_set
+- flow.08
+relations:
+- type: groups_flow
+  target_asset_id: flow.flow.08
+  metadata: {}
+payload:
+  transaction_id: flow.08
+  asset_ids:
+  - flow.flow.08
+  asset_types:
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.flow.08
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Flow.08 Asset Set
+  normalized_name: flow.08 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

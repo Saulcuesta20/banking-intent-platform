@@ -10,7 +10,7 @@
   "userTasks": [
     "capture rate configuration"
   ],
-  "lowdefyPage": "rate-config",
+  "editorRoute": "rate-config",
   "currentFormVersion": "v1",
   "formId": "rate-config"
 }

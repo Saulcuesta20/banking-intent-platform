@@ -1,0 +1,31 @@
+asset_id: ruleset.onboarding.debe.cumplir.kyc.antes.de.crear.la.cuenta
+asset_type: ruleset
+name: Onboarding.debe.cumplir.kyc.antes.de.crear.la.cuenta Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction onboarding.debe.cumplir.kyc.antes.de.crear.la.cuenta
+  with 1 business rules.
+text: El onboarding debe cumplir KYC antes de crear la cuenta.
+tags:
+- ruleset
+- onboarding.debe.cumplir.kyc.antes.de.crear.la.cuenta
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.onboarding_debe_cumplir_kyc_antes_de_crear_la_cuenta
+  metadata: {}
+payload:
+  transaction_id: onboarding.debe.cumplir.kyc.antes.de.crear.la.cuenta
+  ruleset_name: Onboarding.debe.cumplir.kyc.antes.de.crear.la.cuenta Ruleset
+  rule_ids:
+  - business_rule.onboarding_debe_cumplir_kyc_antes_de_crear_la_cuenta
+  conditions:
+  - El onboarding
+  consequences:
+  - cumplir KYC antes de crear la cuenta
+  match_strategy: generated
+  canonical_name: Onboarding.debe.cumplir.kyc.antes.de.crear.la.cuenta Ruleset
+  normalized_name: onboarding.debe.cumplir.kyc.antes.de.crear.la.cuenta ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

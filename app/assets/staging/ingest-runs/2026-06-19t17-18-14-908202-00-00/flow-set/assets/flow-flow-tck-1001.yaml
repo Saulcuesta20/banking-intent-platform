@@ -1,0 +1,57 @@
+asset_id: flow.flow.tck.1001
+asset_type: flow
+name: automatic_payment_inquiry_flow
+version: 1.0.0
+owner: process_kb
+description: Client asks if account is subscribed to automatic payments and requests
+  confirmation of charge date.
+text: Client asks if account is subscribed to automatic payments and requests confirmation
+  of charge date.
+tags:
+- information.request
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.check_automatic_payment_subscription
+  metadata: {}
+payload:
+  flow_id: flow.tck.1001
+  flow_name: automatic_payment_inquiry_flow
+  intent: information.request
+  confidence: 0.75
+  business_event: client_questions_automatic_payment
+  utterances: []
+  plan: []
+  tasks:
+  - task: check_automatic_payment_subscription
+    type: inquiry
+  user_tasks:
+  - user_task_id: user_task_tck_1001
+    task: check_automatic_payment_subscription
+    type: inquiry
+    name: Check Automatic Payment Subscription
+    description: Determine if the client's account is subscribed to automatic payments
+      and confirm the charge date.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Client asks if account is subscribed to automatic payments and requests
+    confirmation of charge date.
+  source: data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    - data/raw/enterprise_dump_2026/00_readme.txt
+    purpose: To provide information on automatic payment settings and charge date.
+  purpose: To provide information on automatic payment settings and charge date.
+  transaction_id: flow.tck.1001
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: automatic_payment_inquiry_flow
+  normalized_name: automatic payment inquiry flow
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

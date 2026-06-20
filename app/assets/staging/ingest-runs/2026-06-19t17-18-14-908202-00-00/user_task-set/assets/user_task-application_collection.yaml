@@ -1,0 +1,26 @@
+asset_id: user_task.application_collection
+asset_type: user_task
+name: Application Collection
+version: 1.0.0
+owner: business_model_kb
+description: Gather information such as loan amount, term, and purpose from the customer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: collect_application_details
+  task: collect_loan_application_details
+  type: data_collection
+  name: Application Collection
+  description: Gather information such as loan amount, term, and purpose from the
+    customer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Application Collection
+  normalized_name: application collection
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

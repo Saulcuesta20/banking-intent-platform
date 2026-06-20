@@ -1,0 +1,34 @@
+asset_id: asset_set.plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+asset_type: asset_set
+name: Plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato.
+text: Plan cancelacion anticipada
+tags:
+- asset_set
+- plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+relations:
+- type: groups_plan
+  target_asset_id: plan.plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+  metadata: {}
+payload:
+  transaction_id: plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+  asset_ids:
+  - plan.plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+  asset_types:
+  - plan
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+    Asset Set
+  normalized_name: plan.para.cancelacion.anticipada.calcular.saldo.evaluar.penalidad.emitir.propuesta.y.cerrar.contrato
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,29 @@
+asset_id: plan.plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+asset_type: plan
+name: Plan beneficiarios internacionales
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para beneficiarios internacionales: validar alias, analizar riesgo,
+  confirmar banco destino y autorizar.'
+text: 'Plan para beneficiarios internacionales: validar alias, analizar riesgo, confirmar
+  banco destino y autorizar.'
+tags:
+- orchestration_plan
+relations:
+- type: uses_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+payload:
+  steps: []
+  plan_text: 'Plan para beneficiarios internacionales: validar alias, analizar riesgo,
+    confirmar banco destino y autorizar.'
+  source_section: Plans
+  transaction_id: plan.para.beneficiarios.internacionales.validar.alias.analizar.riesgo.confirmar.banco.destino.y.autorizar
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Plan beneficiarios internacionales
+  normalized_name: plan beneficiarios internacionales
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

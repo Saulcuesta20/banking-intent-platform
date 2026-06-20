@@ -1,0 +1,48 @@
+asset_id: asset_set.flow.16
+asset_type: asset_set
+name: Flow.16 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.16.
+text: 'prestamo
+
+  pago de prestamo
+
+  Pago de préstamo (recepción de fondos)'
+tags:
+- asset_set
+- flow.16
+relations:
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.pago_de_prestamo
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.flow.16
+  metadata: {}
+payload:
+  transaction_id: flow.16
+  asset_ids:
+  - entity.loan
+  - entity.pago_de_prestamo
+  - flow.flow.16
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: entity.pago_de_prestamo
+    asset_type: entity
+  - asset_id: flow.flow.16
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Flow.16 Asset Set
+  normalized_name: flow.16 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

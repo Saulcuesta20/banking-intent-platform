@@ -1,0 +1,27 @@
+asset_id: user_task.process_exception_request
+asset_type: user_task
+name: Process Exception Request
+version: 1.0.0
+owner: business_model_kb
+description: Handle client's request for an exception due to temporary delay in document
+  submission.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_tck_1005
+  task: process_exception_request
+  type: exception
+  name: Process Exception Request
+  description: Handle client's request for an exception due to temporary delay in
+    document submission.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Process Exception Request
+  normalized_name: process exception request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,31 @@
+asset_id: asset_set.fl016
+asset_type: asset_set
+name: Fl016 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl016.
+text: Pagar Prestamo Hoy
+tags:
+- asset_set
+- fl016
+relations:
+- type: groups_flow
+  target_asset_id: flow.fl016
+  metadata: {}
+payload:
+  transaction_id: fl016
+  asset_ids:
+  - flow.fl016
+  asset_types:
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.fl016
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Fl016 Asset Set
+  normalized_name: fl016 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,20 @@
+asset_id: tool.document_validate
+asset_type: tool
+name: document.validate
+version: 1.0.0
+owner: business_model_kb
+description: El servicio document.validate confirma formato y vigencia.
+text: El servicio document.validate confirma formato y vigencia.
+tags: []
+relations: []
+payload:
+  description: El servicio document.validate confirma formato y vigencia.
+  tool_id: document.validate
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: document.validate
+  normalized_name: document.validate
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,33 @@
+asset_id: user_task.identificar_cliente
+asset_type: user_task
+name: Identificar cliente
+version: 1.0.0
+owner: business_model_kb
+description: El ejecutivo identifica al cliente y crea o actualiza el caso de onboarding.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_identificar_cliente
+  task: identificar_cliente
+  type: human
+  name: Identificar cliente
+  description: El ejecutivo identifica al cliente y crea o actualiza el caso de onboarding.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Identificar cliente
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El ejecutivo identifica al cliente y crea o actualiza el caso de onboarding.
+  match_strategy: generated
+  canonical_name: Identificar cliente
+  normalized_name: identificar cliente
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

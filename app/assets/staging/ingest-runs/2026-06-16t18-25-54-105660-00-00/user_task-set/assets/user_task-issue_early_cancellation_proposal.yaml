@@ -1,0 +1,25 @@
+asset_id: user_task.issue_early_cancellation_proposal
+asset_type: user_task
+name: Issue Early Cancellation Proposal
+version: 1.0.0
+owner: business_model_kb
+description: Emitir propuesta de cancelacion anticipada.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: issue_early_cancellation_proposal
+  task: emitir_propuesta_de_cancelacion_anticipada
+  type: manual
+  name: Issue Early Cancellation Proposal
+  description: Emitir propuesta de cancelacion anticipada.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Issue Early Cancellation Proposal
+  normalized_name: issue early cancellation proposal
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

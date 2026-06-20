@@ -1,0 +1,25 @@
+asset_id: user_task.customer_lookup
+asset_type: user_task
+name: Customer Lookup
+version: 1.0.0
+owner: business_model_kb
+description: Retrieve customer details from the system database.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: customer_lookup
+  task: look_up_customer_information
+  type: automated
+  name: Customer Lookup
+  description: Retrieve customer details from the system database.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Customer Lookup
+  normalized_name: customer lookup
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

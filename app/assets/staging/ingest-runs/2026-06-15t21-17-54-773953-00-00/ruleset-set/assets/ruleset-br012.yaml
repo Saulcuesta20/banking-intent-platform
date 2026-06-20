@@ -1,0 +1,30 @@
+asset_id: ruleset.br012
+asset_type: ruleset
+name: Br012 Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction br012 with 1 business rules.
+text: La cancelacion de prestamo anticipada debe recalcular intereses devengados.
+tags:
+- ruleset
+- br012
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.br012
+  metadata: {}
+payload:
+  transaction_id: br012
+  ruleset_name: Br012 Ruleset
+  rule_ids:
+  - business_rule.br012
+  conditions:
+  - La cancelacion de prestamo anticipada
+  consequences:
+  - recalcular intereses devengados
+  match_strategy: generated
+  canonical_name: Br012 Ruleset
+  normalized_name: br012 ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

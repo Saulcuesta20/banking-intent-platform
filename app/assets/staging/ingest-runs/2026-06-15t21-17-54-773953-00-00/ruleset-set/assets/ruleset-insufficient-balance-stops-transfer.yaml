@@ -1,0 +1,37 @@
+asset_id: ruleset.insufficient.balance.stops.transfer
+asset_type: ruleset
+name: Insufficient.balance.stops.transfer Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction insufficient.balance.stops.transfer with 1 business
+  rules.
+text: If source account balance is insufficient, the transfer is halted.
+tags:
+- ruleset
+- insufficient.balance.stops.transfer
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.insufficient_balance_stops_transfer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.transfer
+  metadata: {}
+payload:
+  transaction_id: insufficient.balance.stops.transfer
+  ruleset_name: Insufficient.balance.stops.transfer Ruleset
+  rule_ids:
+  - business_rule.insufficient_balance_stops_transfer
+  conditions:
+  - Balance < transfer amount
+  consequences:
+  - Stop execution
+  match_strategy: generated
+  canonical_name: Insufficient.balance.stops.transfer Ruleset
+  normalized_name: insufficient.balance.stops.transfer ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

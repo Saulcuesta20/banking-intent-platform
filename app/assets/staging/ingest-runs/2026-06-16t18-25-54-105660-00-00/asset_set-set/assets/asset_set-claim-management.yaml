@@ -1,0 +1,73 @@
+asset_id: asset_set.claim.management
+asset_type: asset_set
+name: Claim.management Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for claim.management.
+text: 'reclamo
+
+  cliente
+
+  Gestión de reclamos
+
+  Recepción de reclamo
+
+  Resolución de reclamo
+
+  Revisión de reclamo'
+tags:
+- asset_set
+- claim.management
+relations:
+- type: groups_entity
+  target_asset_id: entity.claim
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.claim.management
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.recepci_n_de_reclamo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.resoluci_n_de_reclamo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.revisi_n_de_reclamo
+  metadata: {}
+payload:
+  transaction_id: claim.management
+  asset_ids:
+  - entity.claim
+  - entity.customer
+  - flow.claim.management
+  - user_task.recepci_n_de_reclamo
+  - user_task.resoluci_n_de_reclamo
+  - user_task.revisi_n_de_reclamo
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.claim
+    asset_type: entity
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.claim.management
+    asset_type: flow
+  - asset_id: user_task.recepci_n_de_reclamo
+    asset_type: user_task
+  - asset_id: user_task.resoluci_n_de_reclamo
+    asset_type: user_task
+  - asset_id: user_task.revisi_n_de_reclamo
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Claim.management Asset Set
+  normalized_name: claim.management asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

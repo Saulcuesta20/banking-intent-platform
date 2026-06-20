@@ -1,0 +1,26 @@
+asset_id: entity.creditscore
+asset_type: entity
+name: CreditScore
+version: 1.0.0
+owner: business_model_kb
+description: Valor numérico que representa la solvencia del cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Valor numérico que representa la solvencia del cliente.
+  inferred_from: llm_asset_extraction
+  business_layer: metric
+  entity_role: metric
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Valor numérico que representa la solvencia del cliente.
+  match_strategy: generated
+  canonical_name: CreditScore
+  normalized_name: creditscore
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

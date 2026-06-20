@@ -1,0 +1,19 @@
+asset_id: user_task.confirmar_datos_sensibles_antes_de_la_actualizacion
+asset_type: user_task
+name: Confirmar datos sensibles antes de la actualizacion
+version: 1.0.0
+owner: business_model_kb
+description: Confirmar datos sensibles antes de la actualizacion.
+text: Confirmar datos sensibles antes de la actualizacion.
+tags: []
+relations: []
+payload:
+  description: Confirmar datos sensibles antes de la actualizacion.
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Confirmar datos sensibles antes de la actualizacion
+  normalized_name: confirmar datos sensibles antes de la actualizacion
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

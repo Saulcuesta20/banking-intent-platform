@@ -1,0 +1,25 @@
+asset_id: user_task.proporcionar_evidencia_de_ingresos
+asset_type: user_task
+name: Proporcionar evidencia de ingresos
+version: 1.0.0
+owner: business_model_kb
+description: Customer provides income evidence for loan evaluation.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_provide_income_evidence
+  task: provide_income_evidence
+  type: form
+  name: Proporcionar evidencia de ingresos
+  description: Customer provides income evidence for loan evaluation.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Proporcionar evidencia de ingresos
+  normalized_name: proporcionar evidencia de ingresos
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

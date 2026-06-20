@@ -1,0 +1,49 @@
+asset_id: asset_set.flow.13
+asset_type: asset_set
+name: Flow.13 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for flow.13.
+text: 'cliente
+
+  Alta de cliente
+
+  Process alta de cliente captura datos,'
+tags:
+- asset_set
+- flow.13
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.flow.13
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.flow.13
+  metadata: {}
+payload:
+  transaction_id: flow.13
+  asset_ids:
+  - entity.customer
+  - flow.flow.13
+  - process.flow.13
+  asset_types:
+  - entity
+  - flow
+  - process
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.flow.13
+    asset_type: flow
+  - asset_id: process.flow.13
+    asset_type: process
+  match_strategy: generated
+  canonical_name: Flow.13 Asset Set
+  normalized_name: flow.13 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

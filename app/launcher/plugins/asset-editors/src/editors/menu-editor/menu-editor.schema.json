@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Menu ID"
+    },
+    "label": {
+      "type": "string",
+      "title": "Label"
+    },
+    "path": {
+      "type": "string",
+      "title": "Path"
+    },
+    "module_id": {
+      "type": "string",
+      "title": "Module ID"
+    },
+    "domain_id": {
+      "type": "string",
+      "title": "Domain ID"
+    }
+  },
+  "required": ["id", "label", "path", "module_id", "domain_id"]
+}

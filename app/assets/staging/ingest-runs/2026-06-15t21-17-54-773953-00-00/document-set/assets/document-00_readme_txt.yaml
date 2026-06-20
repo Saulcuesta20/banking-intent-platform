@@ -1,0 +1,37 @@
+asset_id: document.00_readme_txt
+asset_type: document
+name: 00_readme.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/enterprise_dump_2026/00_readme.txt
+text: 'Enterprise document dump received during discovery.
+
+
+  These files are intentionally unclassified. Treat them like a real company handoff:
+
+  policies, operational notes, HTML intranet pages, service catalog exports, support
+
+  ticket examples, process fragments, and glossary fragments are mixed together.
+
+
+  The ingestion process must scan, classify, infer candidate assets, find repeated
+
+  patterns, and propose flows, processes, rules, entities, tools, Q&A, plans, and
+
+  configuration candidates for review.'
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: data/raw/enterprise_dump_2026/00_readme.txt
+  kind: text
+  sequence: 5
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: 00_readme.txt
+  normalized_name: 00 readme.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

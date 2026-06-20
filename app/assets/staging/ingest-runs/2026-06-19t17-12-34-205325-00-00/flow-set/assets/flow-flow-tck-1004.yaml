@@ -1,0 +1,56 @@
+asset_id: flow.flow.tck.1004
+asset_type: flow
+name: payment_date_change_flow
+version: 1.0.0
+owner: process_kb
+description: Client wants to move payment date without incurring penalty or falling
+  into default.
+text: Client wants to move payment date without incurring penalty or falling into
+  default.
+tags:
+- account.modification
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.change_payment_date
+  metadata: {}
+payload:
+  flow_id: flow.tck.1004
+  flow_name: payment_date_change_flow
+  intent: account.modification
+  confidence: 0.75
+  business_event: client_requests_payment_date_change
+  utterances: []
+  plan: []
+  tasks:
+  - task: change_payment_date
+    type: modification
+  user_tasks:
+  - user_task_id: user_task_tck_1004
+    task: change_payment_date
+    type: modification
+    name: Change Payment Date
+    description: Adjust the payment date for the loan without causing default or penalties.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Client wants to move payment date without incurring penalty or falling
+    into default.
+  source: data/raw/customer_support_tickets_mini.csv;data/raw/enterprise_dump_2026/00_readme.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/customer_support_tickets_mini.csv
+    - data/raw/enterprise_dump_2026/00_readme.txt
+    purpose: To adjust payment date while avoiding negative consequences.
+  purpose: To adjust payment date while avoiding negative consequences.
+  transaction_id: flow.tck.1004
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: payment_date_change_flow
+  normalized_name: payment date change flow
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,32 @@
+asset_id: user_task.documentaci_n_del_veh_culo
+asset_type: user_task
+name: Documentación del vehículo
+version: 1.0.0
+owner: business_model_kb
+description: El cliente sube los documentos del vehículo (título, factura, fotos)
+  para la tasación.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: entregar_documentos_vehiculo
+  task: entregar_documentos_del_veh_culo
+  type: upload
+  name: Documentación del vehículo
+  description: El cliente sube los documentos del vehículo (título, factura, fotos)
+    para la tasación.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente sube los documentos del vehículo (título, factura, fotos)
+      para la tasación.
+  match_strategy: generated
+  canonical_name: Documentación del vehículo
+  normalized_name: documentación del vehículo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

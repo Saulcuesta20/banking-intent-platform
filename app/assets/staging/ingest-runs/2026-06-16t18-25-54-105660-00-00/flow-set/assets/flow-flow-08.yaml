@@ -1,0 +1,57 @@
+asset_id: flow.flow.08
+asset_type: flow
+name: Activación de cuenta inactiva
+version: 1.0.0
+owner: process_kb
+description: El proceso de activacion de cuenta revisa bloqueos, valida identidad
+  y restituye acceso.
+text: El proceso de activacion de cuenta revisa bloqueos, valida identidad y restituye
+  acceso.
+tags:
+- el.cliente.desea.activar.su.cuenta.inactiva
+relations: []
+payload:
+  flow_id: flow.08
+  flow_name: Activación de cuenta inactiva
+  intent: el.cliente.desea.activar.su.cuenta.inactiva
+  confidence: 0.75
+  business_event: Cliente solicita activación de cuenta
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de activacion de cuenta revisa bloqueos, valida identidad
+    y restituye acceso.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Activar una cuenta inactiva
+  purpose: Activar una cuenta inactiva
+  transaction_id: flow.08
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Activación de cuenta inactiva
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de activacion de cuenta revisa bloqueos, valida identidad
+      y restituye acceso.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El proceso de activacion de cuenta revisa bloqueos, valida identidad
+      y restituye acceso.
+  match_strategy: generated
+  canonical_name: Activación de cuenta inactiva
+  normalized_name: activación de cuenta inactiva
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

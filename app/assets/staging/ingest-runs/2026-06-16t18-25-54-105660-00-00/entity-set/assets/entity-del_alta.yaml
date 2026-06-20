@@ -1,0 +1,28 @@
+asset_id: entity.del_alta
+asset_type: entity
+name: del alta.
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: El documento de identidad
+  vigente se valida antes del alta.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases:
+  - del alta
+  inferred_from: section_entities
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: 'Business entity listed in corpus section: El documento de identidad
+      vigente se valida antes del alta.'
+  match_strategy: generated
+  canonical_name: del alta.
+  normalized_name: del alta.
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

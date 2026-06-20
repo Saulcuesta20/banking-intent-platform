@@ -1,0 +1,25 @@
+asset_id: user_task.check_approval_threshold
+asset_type: user_task
+name: Check approval threshold
+version: 1.0.0
+owner: business_model_kb
+description: Check manager approval threshold.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_refinance_assistance_step_5
+  task: check_manager_approval_threshold
+  type: manual
+  name: Check approval threshold
+  description: Check manager approval threshold.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check approval threshold
+  normalized_name: check approval threshold
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

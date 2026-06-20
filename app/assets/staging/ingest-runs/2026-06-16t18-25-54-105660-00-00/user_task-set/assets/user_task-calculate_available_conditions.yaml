@@ -1,0 +1,27 @@
+asset_id: user_task.calculate_available_conditions
+asset_type: user_task
+name: Calculate Available Conditions
+version: 1.0.0
+owner: business_model_kb
+description: Agent uses system to calculate possible refinance conditions based on
+  customer profile.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: calculate_conditions
+  task: calculate_available_conditions
+  type: system
+  name: Calculate Available Conditions
+  description: Agent uses system to calculate possible refinance conditions based
+    on customer profile.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Calculate Available Conditions
+  normalized_name: calculate available conditions
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

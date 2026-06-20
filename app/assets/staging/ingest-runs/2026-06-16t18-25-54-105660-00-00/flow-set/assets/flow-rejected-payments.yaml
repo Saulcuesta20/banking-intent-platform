@@ -1,0 +1,105 @@
+asset_id: flow.rejected.payments
+asset_type: flow
+name: Manejo de pagos rechazados por fondos insuficientes
+version: 1.0.0
+owner: process_kb
+description: Proceso de notificación al cliente y ofrecimiento de un plan de reprogramación
+  del pago.
+text: Proceso de notificación al cliente y ofrecimiento de un plan de reprogramación
+  del pago.
+tags:
+- recuperar.el.pago.y.mantener.la.relacion.comercial
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.notificaci_n_de_pago_rechazado
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.oferta_de_reprogramaci_n
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirmaci_n_de_acuerdo
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  flow_id: rejected.payments
+  flow_name: Manejo de pagos rechazados por fondos insuficientes
+  intent: recuperar.el.pago.y.mantener.la.relacion.comercial
+  confidence: 0.75
+  business_event: Pago rechazado por fondos insuficientes
+  utterances: []
+  plan: []
+  tasks:
+  - task: notificar_al_cliente_sobre_pago_rechazado
+    type: notification
+  - task: ofrecer_plan_de_reprogramaci_n_de_pago
+    type: form
+  - task: confirmar_nuevo_acuerdo_de_pago
+    type: approval
+  user_tasks:
+  - user_task_id: notificar_pago_rechazado
+    task: notificar_al_cliente_sobre_pago_rechazado
+    type: notification
+    name: Notificación de pago rechazado
+    description: Se envía una notificación al cliente informando que su pago fue rechazado
+      por fondos insuficientes.
+    tools: []
+    user_actions: []
+  - user_task_id: ofrecer_plan_reprogramacion
+    task: ofrecer_plan_de_reprogramaci_n_de_pago
+    type: form
+    name: Oferta de reprogramación
+    description: Se presenta al cliente un plan de reprogramación del pago (nueva
+      fecha, posible cargo) y se solicita su aceptación.
+    tools: []
+    user_actions: []
+  - user_task_id: confirmar_nuevo_acuerdo
+    task: confirmar_nuevo_acuerdo_de_pago
+    type: approval
+    name: Confirmación de acuerdo
+    description: El cliente confirma el nuevo acuerdo de pago reprogramado, y el sistema
+      actualiza el plan de pagos.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de notificación al cliente y ofrecimiento de un plan de reprogramación
+    del pago.
+  source: data/raw/savings_loans_domain_extra4.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra4.txt
+    purpose: Resolver la situación de pago fallido y evitar cargos adicionales.
+  purpose: Resolver la situación de pago fallido y evitar cargos adicionales.
+  transaction_id: rejected.payments
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso de notificación al cliente y ofrecimiento de un plan de reprogramación
+      del pago.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Proceso de notificación al cliente y ofrecimiento de un plan de reprogramación
+      del pago.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso de notificación al cliente y ofrecimiento de un plan de reprogramación
+      del pago.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Proceso de notificación al cliente y ofrecimiento de un plan de reprogramación
+      del pago.
+  match_strategy: generated
+  canonical_name: Manejo de pagos rechazados por fondos insuficientes
+  normalized_name: manejo de pagos rechazados por fondos insuficientes
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

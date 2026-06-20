@@ -1,0 +1,48 @@
+asset_id: asset_set.fl007
+asset_type: asset_set
+name: Fl007 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl007.
+text: 'Cancelar Pago Automatico
+
+  Emitir propuesta de cancelacion anticipada
+
+  Verificar consentimiento de pago automatico'
+tags:
+- asset_set
+- fl007
+relations:
+- type: groups_flow
+  target_asset_id: flow.fl007
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.emitir_propuesta_de_cancelacion_anticipada
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.verificar_consentimiento_de_pago_automatico
+  metadata: {}
+payload:
+  transaction_id: fl007
+  asset_ids:
+  - flow.fl007
+  - user_task.emitir_propuesta_de_cancelacion_anticipada
+  - user_task.verificar_consentimiento_de_pago_automatico
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.fl007
+    asset_type: flow
+  - asset_id: user_task.emitir_propuesta_de_cancelacion_anticipada
+    asset_type: user_task
+  - asset_id: user_task.verificar_consentimiento_de_pago_automatico
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Fl007 Asset Set
+  normalized_name: fl007 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -33,8 +33,6 @@ class CapabilityService:
             ToolRegistryEntry(
                 tool_id=entry.action_id,
                 tool_type="frontend_tool" if entry.type == "front" else "backend_tool",
-                operation=entry.operation,
-                resource=entry.resource,
                 label=entry.label,
                 description=entry.description,
                 frontend_event=entry.triggers if entry.type == "front" else None,

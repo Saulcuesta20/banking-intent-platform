@@ -1,0 +1,32 @@
+asset_id: form_version.f004_v1
+asset_type: form_version
+name: F004 v1
+version: 1.0.0
+owner: config_kb
+description: ''
+text: ''
+tags:
+- form_version
+- configuration
+relations:
+- type: version_of
+  target_asset_id: form.f004
+  metadata: {}
+payload:
+  form_id: F004
+  version: v1
+  schema:
+    fields:
+    - customer_id
+    - claim_type
+    - description
+    - evidence
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: F004 v1
+  normalized_name: f004 v1
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

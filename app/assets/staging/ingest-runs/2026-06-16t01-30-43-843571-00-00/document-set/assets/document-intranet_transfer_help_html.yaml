@@ -1,0 +1,35 @@
+asset_id: document.intranet_transfer_help_html
+asset_type: document
+name: intranet_transfer_help.html
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/enterprise_dump_2026/intranet_transfer_help.html
+text: "<!doctype html>\n<html>\n  <head>\n    <title>Operations Intranet - Transfers\
+  \ and Beneficiary Review</title>\n  </head>\n  <body>\n    <h1>Transfers and Beneficiary\
+  \ Review</h1>\n    <p>Customers can request transfers from savings accounts through\
+  \ branch,\n    mobile, or assisted channels. The agent must identify the customer,\
+  \ capture\n    source account, beneficiary, amount, currency, and transfer reason.</p>\n\
+  \n    <h2>Operational reminders</h2>\n    <ul>\n      <li>Amounts above the current\
+  \ high-value threshold require additional review.</li>\n      <li>If the destination\
+  \ country or beneficiary data is incomplete, ask for clarification.</li>\n     \
+  \ <li>Beneficiary screening is performed through the compliance screening service.</li>\n\
+  \      <li>Do not release a transfer until required evidence is recorded.</li>\n\
+  \    </ul>\n\n    <h2>Common customer questions</h2>\n    <p>\"Can I make an international\
+  \ transfer today?\"</p>\n    <p>\"Why do you need the purpose of the transfer?\"\
+  </p>\n    <p>\"How long does beneficiary screening take?\"</p>\n  </body>\n</html>"
+tags:
+- text
+- html
+relations: []
+payload:
+  path: data/raw/enterprise_dump_2026/intranet_transfer_help.html
+  kind: text
+  sequence: 10
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: intranet_transfer_help.html
+  normalized_name: intranet transfer help.html
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

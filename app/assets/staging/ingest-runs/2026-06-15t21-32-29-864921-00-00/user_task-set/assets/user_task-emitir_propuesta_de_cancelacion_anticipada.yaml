@@ -1,0 +1,26 @@
+asset_id: user_task.emitir_propuesta_de_cancelacion_anticipada
+asset_type: user_task
+name: Emitir propuesta de cancelacion anticipada
+version: 1.0.0
+owner: business_model_kb
+description: Calcular intereses devengados y presentar la propuesta de cierre anticipado
+  al cliente.
+text: Emitir propuesta de cancelacion anticipada.
+tags: []
+relations: []
+payload:
+  user_task_id: ut012
+  task: emitir_propuesta_cancelacion_anticipada
+  type: human
+  name: Emitir propuesta de cancelacion anticipada
+  description: Emitir propuesta de cancelacion anticipada.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Emitir propuesta de cancelacion anticipada
+  normalized_name: emitir propuesta de cancelacion anticipada
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

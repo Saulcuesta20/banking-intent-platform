@@ -1,0 +1,48 @@
+asset_id: asset_set.transfer.compliance.review.flow
+asset_type: asset_set
+name: Transfer.compliance.review.flow Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for transfer.compliance.review.flow.
+text: 'Transfer Compliance Review
+
+  Compliance Review
+
+  Manager Approval'
+tags:
+- asset_set
+- transfer.compliance.review.flow
+relations:
+- type: groups_flow
+  target_asset_id: flow.transfer.compliance.review.flow
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.compliance_review
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.manager_approval
+  metadata: {}
+payload:
+  transaction_id: transfer.compliance.review.flow
+  asset_ids:
+  - flow.transfer.compliance.review.flow
+  - user_task.compliance_review
+  - user_task.manager_approval
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.transfer.compliance.review.flow
+    asset_type: flow
+  - asset_id: user_task.compliance_review
+    asset_type: user_task
+  - asset_id: user_task.manager_approval
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Transfer.compliance.review.flow Asset Set
+  normalized_name: transfer.compliance.review.flow asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

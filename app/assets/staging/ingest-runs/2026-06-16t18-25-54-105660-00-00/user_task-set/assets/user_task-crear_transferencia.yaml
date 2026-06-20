@@ -1,0 +1,25 @@
+asset_id: user_task.crear_transferencia
+asset_type: user_task
+name: Crear transferencia
+version: 1.0.0
+owner: business_model_kb
+description: Ejecutar la transferencia
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_create
+  task: crear_transferencia
+  type: execution
+  name: Crear transferencia
+  description: Ejecutar la transferencia
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Crear transferencia
+  normalized_name: crear transferencia
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

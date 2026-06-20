@@ -1,0 +1,43 @@
+asset_id: asset_set.el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+asset_type: asset_set
+name: El.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude.
+text: 'beneficiario
+
+  Process validacion de beneficiario compara alias, cuenta'
+tags:
+- asset_set
+- el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+relations:
+- type: groups_entity
+  target_asset_id: entity.beneficiario
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+  metadata: {}
+payload:
+  transaction_id: el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+  asset_ids:
+  - entity.beneficiario
+  - process.el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+  asset_types:
+  - entity
+  - process
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.beneficiario
+    asset_type: entity
+  - asset_id: process.el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+    asset_type: process
+  match_strategy: generated
+  canonical_name: El.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+    Asset Set
+  normalized_name: el.proceso.de.validacion.de.beneficiario.compara.alias.cuenta.y.riesgo.de.fraude
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

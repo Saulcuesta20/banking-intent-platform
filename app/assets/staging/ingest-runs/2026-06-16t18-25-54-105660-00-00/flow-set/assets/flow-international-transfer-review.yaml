@@ -1,0 +1,112 @@
+asset_id: flow.international.transfer.review
+asset_type: flow
+name: International Transfer Review
+version: 1.0.0
+owner: process_kb
+description: Process to review and process an international transfer
+text: Process to review and process an international transfer
+tags:
+- review.international.transfer
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.capture_details
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validate_source_account
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.screen_beneficiary
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.request_purpose_document
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.route_to_manager_review
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.release_or_reject
+  metadata: {}
+payload:
+  flow_id: international.transfer.review
+  flow_name: International Transfer Review
+  intent: review.international.transfer
+  confidence: 0.75
+  business_event: International Transfer Request
+  utterances: []
+  plan: []
+  tasks:
+  - task: capture_details
+    type: manual
+  - task: validate_source_account
+    type: manual
+  - task: screen_beneficiary
+    type: manual
+  - task: request_purpose_document_if_needed
+    type: manual
+  - task: route_to_manager_review
+    type: manual
+  - task: release_or_reject
+    type: manual
+  user_tasks:
+  - user_task_id: ut_intl_capture_details
+    task: capture_details
+    type: manual
+    name: Capture Details
+    description: Capture transfer details from customer
+    tools: []
+    user_actions: []
+  - user_task_id: ut_intl_validate_source_account
+    task: validate_source_account
+    type: manual
+    name: Validate Source Account
+    description: Validate the source account for the transfer
+    tools: []
+    user_actions: []
+  - user_task_id: ut_intl_screen_beneficiary
+    task: screen_beneficiary
+    type: manual
+    name: Screen Beneficiary
+    description: Screen the beneficiary for compliance
+    tools: []
+    user_actions: []
+  - user_task_id: ut_intl_request_purpose_document
+    task: request_purpose_document_if_needed
+    type: manual
+    name: Request Purpose Document
+    description: Request purpose of transfer document if required
+    tools: []
+    user_actions: []
+  - user_task_id: ut_intl_route_to_manager_review
+    task: route_to_manager_review
+    type: manual
+    name: Route to Manager Review
+    description: Route the transfer to manager for review
+    tools: []
+    user_actions: []
+  - user_task_id: ut_intl_release_or_reject
+    task: release_or_reject
+    type: manual
+    name: Release or Reject
+    description: Make final decision to release or reject the transfer
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Process to review and process an international transfer
+  source: data/raw/enterprise_dump_2026/process_fragments.json
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/process_fragments.json
+    purpose: To ensure compliance and execute transfer
+  purpose: To ensure compliance and execute transfer
+  transaction_id: international.transfer.review
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: International Transfer Review
+  normalized_name: international transfer review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

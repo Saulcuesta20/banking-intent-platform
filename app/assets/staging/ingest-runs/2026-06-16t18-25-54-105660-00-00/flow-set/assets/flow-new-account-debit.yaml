@@ -1,0 +1,112 @@
+asset_id: flow.new.account.debit
+asset_type: flow
+name: Apertura de cuenta y contratación de débito automático
+version: 1.0.0
+owner: process_kb
+description: Proceso de registro de un nuevo cliente, creación de cuenta bancaria
+  y configuración de débito automático para pagos recurrentes.
+text: Proceso de registro de un nuevo cliente, creación de cuenta bancaria y configuración
+  de débito automático para pagos recurrentes.
+tags:
+- facilitar.la.apertura.de.cuenta.y.la.adhesion.al.servicio.de.debito.automatico
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.registro_de_datos_personales
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.firma_de_contrato
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.configuraci_n_de_d_bito_autom_tico
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+payload:
+  flow_id: new.account.debit
+  flow_name: Apertura de cuenta y contratación de débito automático
+  intent: facilitar.la.apertura.de.cuenta.y.la.adhesion.al.servicio.de.debito.automatico
+  confidence: 0.75
+  business_event: Cliente nuevo solicita abrir cuenta y contratar débito automático
+  utterances: []
+  plan: []
+  tasks:
+  - task: proporcionar_datos_personales_y_documentos_de_identidad
+    type: form
+  - task: firmar_contrato_de_apertura_de_cuenta
+    type: approval
+  - task: configurar_d_bito_autom_tico
+    type: form
+  user_tasks:
+  - user_task_id: proporcionar_datos_personales
+    task: proporcionar_datos_personales_y_documentos_de_identidad
+    type: form
+    name: Registro de datos personales
+    description: El cliente completa un formulario con su información personal y sube
+      documentos de identidad.
+    tools: []
+    user_actions: []
+  - user_task_id: firmar_contrato_apertura
+    task: firmar_contrato_de_apertura_de_cuenta
+    type: approval
+    name: Firma de contrato
+    description: El cliente revisa y firma digitalmente el contrato de apertura de
+      cuenta.
+    tools: []
+    user_actions: []
+  - user_task_id: configurar_debito_automatico
+    task: configurar_d_bito_autom_tico
+    type: form
+    name: Configuración de débito automático
+    description: El cliente selecciona la cuenta y monto para el débito automático
+      y autoriza la transacción recurrente.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de registro de un nuevo cliente, creación de cuenta bancaria
+    y configuración de débito automático para pagos recurrentes.
+  source: data/raw/savings_loans_domain_extra4.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra4.txt
+    purpose: Incorporar un nuevo cliente y habilitar pagos automáticos desde su cuenta.
+  purpose: Incorporar un nuevo cliente y habilitar pagos automáticos desde su cuenta.
+  transaction_id: new.account.debit
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Apertura de cuenta y contratación de débito automático
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso de registro de un nuevo cliente, creación de cuenta bancaria
+      y configuración de débito automático para pagos recurrentes.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso de registro de un nuevo cliente, creación de cuenta bancaria
+      y configuración de débito automático para pagos recurrentes.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso de registro de un nuevo cliente, creación de cuenta bancaria
+      y configuración de débito automático para pagos recurrentes.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso de registro de un nuevo cliente, creación de cuenta bancaria
+      y configuración de débito automático para pagos recurrentes.
+  match_strategy: generated
+  canonical_name: Apertura de cuenta y contratación de débito automático
+  normalized_name: apertura de cuenta y contratación de débito automático
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

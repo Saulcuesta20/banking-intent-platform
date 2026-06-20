@@ -16,7 +16,8 @@ bases.
 - `asset_catalog` remains the single unified inventory.
 - Logical KBs (`business_model_kb`, `rules_kb`, `process_kb`, `planning_kb`,
   `qa_kb`, `document_kb`, `causality_kb`) own assets semantically.
-- Vector memory is federated by collection in Qdrant.
+- Vector memory is federated by collection in Qdrant, but the current
+  contract only writes approved `qa` and source `document` assets there.
 - In the federated topology, `entity` is the canonical business-model asset
   family. Legacy `concept` and `ontology` names are normalized to `entity`
   instead of being treated as separate business-model families.
@@ -37,15 +38,13 @@ bases.
 
 ## Federated Vector Collections
 - `knowledge_assets`
-- `asset_alias_memory`
-- `relation_alias_memory`
-- `kb_business_model_assets`
-- `kb_rules_assets`
-- `kb_process_assets`
-- `kb_planning_assets`
 - `kb_qa_assets`
 - `kb_document_assets`
-- `kb_causality_assets`
+
+Alias and relation helper indexes remain separate:
+
+- `asset_alias_memory`
+- `relation_alias_memory`
 
 ## Execution Flow
 ```text

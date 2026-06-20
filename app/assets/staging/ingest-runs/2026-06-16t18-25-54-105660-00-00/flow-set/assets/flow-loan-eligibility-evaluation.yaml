@@ -1,0 +1,92 @@
+asset_id: flow.loan.eligibility.evaluation
+asset_type: flow
+name: Evaluación de elegibilidad de préstamo
+version: 1.0.0
+owner: process_kb
+description: Proceso para evaluar la elegibilidad de un préstamo basado en ingresos,
+  DTI, buró de crédito y reglas de scoring.
+text: Proceso para evaluar la elegibilidad de un préstamo basado en ingresos, DTI,
+  buró de crédito y reglas de scoring.
+tags:
+- evaluar.la.capacidad.crediticia.del.cliente
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.recopilaci_n_de_documentos
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.c_lculo_de_dti
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.consulta_de_bur
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.aplicaci_n_de_scoring
+  metadata: {}
+payload:
+  flow_id: loan.eligibility.evaluation
+  flow_name: Evaluación de elegibilidad de préstamo
+  intent: evaluar.la.capacidad.crediticia.del.cliente
+  confidence: 0.75
+  business_event: Solicitud de préstamo recibida
+  utterances: []
+  plan: []
+  tasks:
+  - task: recopilar_ingresos_y_documentos
+    type: data_collection
+  - task: calcular_dti
+    type: calculation
+  - task: consultar_bur_de_cr_dito
+    type: external_query
+  - task: aplicar_reglas_de_scoring_y_l_mites
+    type: decision
+  user_tasks:
+  - user_task_id: ut_collect_income_docs
+    task: recopilar_ingresos_y_documentos
+    type: data_collection
+    name: Recopilación de documentos
+    description: Recopilar ingresos y documentos del solicitante
+    tools: []
+    user_actions: []
+  - user_task_id: ut_calculate_dti
+    task: calcular_dti
+    type: calculation
+    name: Cálculo de DTI
+    description: Calcular la relación deuda-ingreso
+    tools: []
+    user_actions: []
+  - user_task_id: ut_query_credit_bureau
+    task: consultar_bur_de_cr_dito
+    type: external_query
+    name: Consulta de buró
+    description: Consultar el historial crediticio en el buró
+    tools: []
+    user_actions: []
+  - user_task_id: ut_apply_scoring
+    task: aplicar_reglas_de_scoring_y_l_mites
+    type: decision
+    name: Aplicación de scoring
+    description: Aplicar reglas de scoring y determinar límites
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para evaluar la elegibilidad de un préstamo basado en ingresos,
+    DTI, buró de crédito y reglas de scoring.
+  source: data/raw/savings_loans_domain_extra2.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra2.txt
+    purpose: Determinar si el solicitante cumple con los criterios para obtener un
+      préstamo.
+  purpose: Determinar si el solicitante cumple con los criterios para obtener un préstamo.
+  transaction_id: loan.eligibility.evaluation
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Evaluación de elegibilidad de préstamo
+  normalized_name: evaluación de elegibilidad de préstamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

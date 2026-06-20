@@ -1,0 +1,65 @@
+asset_id: asset_set.pago.prestamo
+asset_type: asset_set
+name: Pago.prestamo Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for pago.prestamo.
+text: 'prestamo
+
+  cuota
+
+  pago de prestamo
+
+  Pago de Prestamo
+
+  Process pago de prestamo recibe fondos, aplica el abono'
+tags:
+- asset_set
+- pago.prestamo
+relations:
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan_conditions
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.pago_de_prestamo
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.pago.prestamo
+  metadata: {}
+- type: groups_process
+  target_asset_id: process.pago.prestamo
+  metadata: {}
+payload:
+  transaction_id: pago.prestamo
+  asset_ids:
+  - entity.loan
+  - entity.loan_conditions
+  - entity.pago_de_prestamo
+  - flow.pago.prestamo
+  - process.pago.prestamo
+  asset_types:
+  - entity
+  - flow
+  - process
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: entity.loan_conditions
+    asset_type: entity
+  - asset_id: entity.pago_de_prestamo
+    asset_type: entity
+  - asset_id: flow.pago.prestamo
+    asset_type: flow
+  - asset_id: process.pago.prestamo
+    asset_type: process
+  match_strategy: generated
+  canonical_name: Pago.prestamo Asset Set
+  normalized_name: pago.prestamo asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,28 @@
+asset_id: asset_set.loan.transfer.to.loan
+asset_type: asset_set
+name: Loan.transfer.to.loan Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for loan.transfer.to.loan.
+text: ''
+tags:
+- asset_set
+- loan.transfer.to.loan
+relations: []
+payload:
+  transaction_id: loan.transfer.to.loan
+  asset_ids:
+  - flow.loan.transfer.to.loan
+  - process.loan.transfer.to.loan
+  asset_types: []
+  primary_asset_type: asset
+  members:
+  - asset_id: flow.loan.transfer.to.loan
+  - asset_id: process.loan.transfer.to.loan
+  match_strategy: generated
+  canonical_name: Loan.transfer.to.loan Asset Set
+  normalized_name: loan.transfer.to.loan asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

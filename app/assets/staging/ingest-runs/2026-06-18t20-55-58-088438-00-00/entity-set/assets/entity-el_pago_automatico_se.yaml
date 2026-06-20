@@ -1,0 +1,42 @@
+asset_id: entity.el_pago_automatico_se
+asset_type: entity
+name: El pago automatico se
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: El pago automatico se registra
+  contra la cuenta operativa del cliente.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: section_entities
+  structural_layer: business_resource
+  business_layer: business_resource
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El pago automatico se
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Business entity listed in corpus section: El pago automatico se registra
+      contra la cuenta operativa del cliente.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Business entity listed in corpus section: El pago automatico se registra
+      contra la cuenta operativa del cliente.'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Business entity listed in corpus section: El pago automatico se registra
+      contra la cuenta operativa del cliente.'
+  match_strategy: generated
+  canonical_name: El pago automatico se
+  normalized_name: el pago automatico se
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

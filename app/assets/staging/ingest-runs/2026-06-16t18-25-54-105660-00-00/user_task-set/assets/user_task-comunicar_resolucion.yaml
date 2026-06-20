@@ -1,0 +1,29 @@
+asset_id: user_task.comunicar_resolucion
+asset_type: user_task
+name: Comunicar resolucion
+version: 1.0.0
+owner: business_model_kb
+description: Comunicar la resolucion al cliente
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: claims_communicate_resolution
+  task: comunicar_resolucion
+  type: communication
+  name: Comunicar resolucion
+  description: Comunicar la resolucion al cliente
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Comunicar la resolucion al cliente
+  match_strategy: generated
+  canonical_name: Comunicar resolucion
+  normalized_name: comunicar resolucion
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

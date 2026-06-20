@@ -1,0 +1,25 @@
+asset_id: user_task.purpose_document_request
+asset_type: user_task
+name: Purpose Document Request
+version: 1.0.0
+owner: business_model_kb
+description: Request purpose document if needed for the transfer.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: request_purpose_document
+  task: request_purpose_document
+  type: document_request
+  name: Purpose Document Request
+  description: Request purpose document if needed for the transfer.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Purpose Document Request
+  normalized_name: purpose document request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

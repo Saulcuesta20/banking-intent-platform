@@ -1,0 +1,28 @@
+asset_id: menu.mn001
+asset_type: menu
+name: MN001
+version: 1.0.0
+owner: config_kb
+description: ''
+text: ''
+tags:
+- menu
+- configuration
+relations:
+- type: belongs_to_module
+  target_asset_id: module.m001
+  metadata: {}
+payload:
+  menu_id: MN001
+  module_id: M001
+  label: Apertura de cuenta de ahorro
+  path: /account/open
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: MN001
+  normalized_name: mn001
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

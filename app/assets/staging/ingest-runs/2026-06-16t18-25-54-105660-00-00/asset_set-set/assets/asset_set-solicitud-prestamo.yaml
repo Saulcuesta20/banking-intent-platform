@@ -1,0 +1,80 @@
+asset_id: asset_set.solicitud.prestamo
+asset_type: asset_set
+name: Solicitud.prestamo Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for solicitud.prestamo.
+text: 'Solicitud de préstamo
+
+  Aprobación humana de solicitud
+
+  Calcular scoring
+
+  Consultar historial crediticio
+
+  Crear solicitud de préstamo
+
+  Obtener contexto de política
+
+  Registrar auditoría'
+tags:
+- asset_set
+- solicitud.prestamo
+relations:
+- type: groups_flow
+  target_asset_id: flow.solicitud.prestamo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.aprobaci_n_humana_de_solicitud
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.calcular_scoring
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.consultar_historial_crediticio
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.crear_solicitud_de_pr_stamo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.obtener_contexto_de_pol_tica
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.registrar_auditor_a
+  metadata: {}
+payload:
+  transaction_id: solicitud.prestamo
+  asset_ids:
+  - flow.solicitud.prestamo
+  - user_task.aprobaci_n_humana_de_solicitud
+  - user_task.calcular_scoring
+  - user_task.consultar_historial_crediticio
+  - user_task.crear_solicitud_de_pr_stamo
+  - user_task.obtener_contexto_de_pol_tica
+  - user_task.registrar_auditor_a
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.solicitud.prestamo
+    asset_type: flow
+  - asset_id: user_task.aprobaci_n_humana_de_solicitud
+    asset_type: user_task
+  - asset_id: user_task.calcular_scoring
+    asset_type: user_task
+  - asset_id: user_task.consultar_historial_crediticio
+    asset_type: user_task
+  - asset_id: user_task.crear_solicitud_de_pr_stamo
+    asset_type: user_task
+  - asset_id: user_task.obtener_contexto_de_pol_tica
+    asset_type: user_task
+  - asset_id: user_task.registrar_auditor_a
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Solicitud.prestamo Asset Set
+  normalized_name: solicitud.prestamo asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

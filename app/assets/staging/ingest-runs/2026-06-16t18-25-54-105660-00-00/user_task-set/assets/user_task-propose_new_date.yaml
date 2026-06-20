@@ -1,0 +1,25 @@
+asset_id: user_task.propose_new_date
+asset_type: user_task
+name: Propose New Date
+version: 1.0.0
+owner: business_model_kb
+description: Agent suggests available new dates and gets customer confirmation.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: propose_new_date
+  task: propose_new_payment_date_to_customer
+  type: agent
+  name: Propose New Date
+  description: Agent suggests available new dates and gets customer confirmation.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Propose New Date
+  normalized_name: propose new date
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

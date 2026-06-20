@@ -1,0 +1,27 @@
+asset_id: user_task.approve_transfer_if_needed
+asset_type: user_task
+name: Approve Transfer (if needed)
+version: 1.0.0
+owner: business_model_kb
+description: Human approval required if transfer exceeds daily limit or triggers other
+  rules.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_approve_transfer_if_needed
+  task: approve_transfer_if_needed
+  type: manual
+  name: Approve Transfer (if needed)
+  description: Human approval required if transfer exceeds daily limit or triggers
+    other rules.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Approve Transfer (if needed)
+  normalized_name: approve transfer (if needed)
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

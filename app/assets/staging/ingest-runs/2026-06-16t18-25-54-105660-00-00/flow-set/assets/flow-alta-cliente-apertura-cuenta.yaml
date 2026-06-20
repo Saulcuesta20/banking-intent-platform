@@ -1,0 +1,147 @@
+asset_id: flow.alta.cliente.apertura.cuenta
+asset_type: flow
+name: Alta de cliente y apertura de cuenta
+version: 1.0.0
+owner: process_kb
+description: Proceso para crear o actualizar caso de onboarding, identificar cliente,
+  solicitar documentos KYC, validar identidad y documentos, llamar al core bancario
+  y notificar confirmación. Si la validación falla, se envía a revisión manual.
+text: Proceso para crear o actualizar caso de onboarding, identificar cliente, solicitar
+  documentos KYC, validar identidad y documentos, llamar al core bancario y notificar
+  confirmación. Si la validación falla, se envía a revisión manual.
+tags:
+- abrir.cuenta
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identificar_cliente
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.solicitar_documentos_kyc
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.validar_identidad_y_documentos
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.llamar_al_core_bancario
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.notificar_confirmaci_n
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.revisi_n_manual
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.apertura_de_cuenta
+  metadata: {}
+payload:
+  flow_id: alta.cliente.apertura.cuenta
+  flow_name: Alta de cliente y apertura de cuenta
+  intent: abrir.cuenta
+  confidence: 0.75
+  business_event: onboarding
+  utterances: []
+  plan: []
+  tasks:
+  - task: identificar_cliente
+    type: human
+  - task: solicitar_documentos_kyc
+    type: human
+  - task: validar_identidad_documentos
+    type: system
+  - task: llamar_core_bancario
+    type: system
+  - task: notificar_confirmacion
+    type: system
+  - task: revision_manual
+    type: human
+  user_tasks:
+  - user_task_id: ut_identificar_cliente
+    task: identificar_cliente
+    type: human
+    name: Identificar cliente
+    description: El ejecutivo identifica al cliente y crea o actualiza el caso de
+      onboarding.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_solicitar_documentos_kyc
+    task: solicitar_documentos_kyc
+    type: human
+    name: Solicitar documentos KYC
+    description: Solicitar identificación vigente, comprobante de domicilio y datos
+      fiscales si corresponde.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_validar_identidad_documentos
+    task: validar_identidad_documentos
+    type: system
+    name: Validar identidad y documentos
+    description: Validar identidad y documentos antes de llamar al core bancario.
+      Si falla, enviar a revisión manual.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_llamar_core_bancario
+    task: llamar_core_bancario
+    type: system
+    name: Llamar al core bancario
+    description: Crear cuenta de ahorro en el core bancario.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_notificar_confirmacion
+    task: notificar_confirmacion
+    type: system
+    name: Notificar confirmación
+    description: Notificar al cliente que la cuenta fue creada.
+    tools: []
+    user_actions: []
+  - user_task_id: ut_revision_manual
+    task: revision_manual
+    type: human
+    name: Revisión manual
+    description: Revisión manual del caso cuando la validación de identidad falla.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso para crear o actualizar caso de onboarding, identificar cliente,
+    solicitar documentos KYC, validar identidad y documentos, llamar al core bancario
+    y notificar confirmación. Si la validación falla, se envía a revisión manual.
+  source: data/raw/enterprise_operations_manual.md#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_operations_manual.md#chunk-1
+    purpose: Crear cuenta de ahorro para nuevo cliente
+  purpose: Crear cuenta de ahorro para nuevo cliente
+  transaction_id: alta.cliente.apertura.cuenta
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Alta de cliente y apertura de cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Alta de cliente y apertura de cuenta
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso para crear o actualizar caso de onboarding, identificar cliente,
+      solicitar documentos KYC, validar identidad y documentos, llamar al core bancario
+      y notificar confirmación.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso para crear o actualizar caso de onboarding, identificar cliente,
+      solicitar documentos KYC, validar identidad y documentos, llamar al core bancario
+      y notificar confirmación.
+  match_strategy: generated
+  canonical_name: Alta de cliente y apertura de cuenta
+  normalized_name: alta de cliente y apertura de cuenta
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

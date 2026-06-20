@@ -1,0 +1,25 @@
+asset_id: user_task.create_loan_record
+asset_type: user_task
+name: Create Loan Record
+version: 1.0.0
+owner: business_model_kb
+description: Insert loan into the system.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: create_loan_record
+  task: create_loan_record
+  type: automated
+  name: Create Loan Record
+  description: Insert loan into the system.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Create Loan Record
+  normalized_name: create loan record
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

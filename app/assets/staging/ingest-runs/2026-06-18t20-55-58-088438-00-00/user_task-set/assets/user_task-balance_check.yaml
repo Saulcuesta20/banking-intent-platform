@@ -1,0 +1,25 @@
+asset_id: user_task.balance_check
+asset_type: user_task
+name: Balance Check
+version: 1.0.0
+owner: business_model_kb
+description: Ensure origin account has enough funds.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_balance_task
+  task: check_sufficient_balance_for_transfer
+  type: automated
+  name: Balance Check
+  description: Ensure origin account has enough funds.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Balance Check
+  normalized_name: balance check
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

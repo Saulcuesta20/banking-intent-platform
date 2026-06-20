@@ -1,0 +1,34 @@
+asset_id: plan.pl016
+asset_type: plan
+name: PL016
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.'
+text: ''
+tags:
+- orchestration_plan
+relations: []
+payload:
+  steps: []
+  plan_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pl016
+  business_event: ''
+  tools: []
+  dependencies: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Plan para pagar prestamo: mostrar saldo, capturar monto y aplicar pago.'
+  match_strategy: generated
+  canonical_name: PL016
+  normalized_name: pl016
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

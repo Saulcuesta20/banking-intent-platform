@@ -1,0 +1,25 @@
+asset_id: user_task.beneficiary_screening
+asset_type: user_task
+name: Beneficiary Screening
+version: 1.0.0
+owner: business_model_kb
+description: Screen the beneficiary against sanctions and risk lists.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: transfer_perform_screening
+  task: perform_beneficiary_screening
+  type: automated
+  name: Beneficiary Screening
+  description: Screen beneficiary using compliance screening service.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Beneficiary Screening
+  normalized_name: beneficiary screening
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

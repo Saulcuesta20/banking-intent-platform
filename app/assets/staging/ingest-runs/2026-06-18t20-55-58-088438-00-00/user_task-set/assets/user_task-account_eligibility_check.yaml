@@ -1,0 +1,26 @@
+asset_id: user_task.account_eligibility_check
+asset_type: user_task
+name: Account Eligibility Check
+version: 1.0.0
+owner: business_model_kb
+description: Verify customer's account eligibility for setting up recurring loan payments.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: account_eligibility_check
+  task: check_if_customer_has_eligible_savings_account_for_automatic_payment
+  type: validation
+  name: Account Eligibility Check
+  description: Verify customer's account eligibility for setting up recurring loan
+    payments.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Account Eligibility Check
+  normalized_name: account eligibility check
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

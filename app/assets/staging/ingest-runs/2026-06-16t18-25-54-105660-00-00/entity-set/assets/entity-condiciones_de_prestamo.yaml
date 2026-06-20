@@ -1,0 +1,24 @@
+asset_id: entity.condiciones_de_prestamo
+asset_type: entity
+name: condiciones de prestamo
+version: 1.0.0
+owner: business_model_kb
+description: Conjunto de términos aprobados para un préstamo o refinanciación
+text: Conjunto de términos aprobados para un préstamo o refinanciación
+tags: []
+relations: []
+payload:
+  aliases: []
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: condiciones de prestamo
+  match_strategy: generated
+  canonical_name: condiciones de prestamo
+  normalized_name: condiciones de prestamo
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

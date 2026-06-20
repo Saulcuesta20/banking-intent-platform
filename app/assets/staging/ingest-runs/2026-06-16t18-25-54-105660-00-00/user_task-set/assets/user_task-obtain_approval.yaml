@@ -1,0 +1,25 @@
+asset_id: user_task.obtain_approval
+asset_type: user_task
+name: Obtain Approval
+version: 1.0.0
+owner: business_model_kb
+description: Obtain approval for the refinance
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_loan_obtain_approval
+  task: obtain_approval
+  type: manual
+  name: Obtain Approval
+  description: Obtain approval for the refinance
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Obtain Approval
+  normalized_name: obtain approval
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,29 @@
+asset_id: entity.installment
+asset_type: entity
+name: Installment
+version: 1.0.0
+owner: business_model_kb
+description: Pago periódico de un préstamo compuesto por capital, intereses y posibles
+  cargos.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Pago periódico de un préstamo compuesto por capital, intereses y posibles
+    cargos.
+  inferred_from: llm_asset_extraction
+  business_layer: transaction
+  entity_role: transaction
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: Pago periódico de un préstamo compuesto por capital, intereses y posibles
+      cargos.
+  match_strategy: generated
+  canonical_name: Installment
+  normalized_name: installment
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

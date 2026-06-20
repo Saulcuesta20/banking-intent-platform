@@ -1,0 +1,34 @@
+asset_id: process.pr008
+asset_type: process
+name: PR008
+version: 1.0.0
+owner: process_kb
+description: 'Proceso de activación de cuenta: revisa bloqueos, valida identidad y
+  restituye acceso.'
+text: ''
+tags:
+- process_fragment
+relations: []
+payload:
+  steps_text: ''
+  source_section: LLMAssetExtraction
+  transaction_id: pr008
+  business_event: ''
+  triggers: []
+  execution_nodes: []
+  transitions: []
+  rules: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Proceso de activación de cuenta: revisa bloqueos, valida identidad
+      y restituye acceso.'
+  match_strategy: generated
+  canonical_name: PR008
+  normalized_name: pr008
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

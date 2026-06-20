@@ -1,0 +1,32 @@
+asset_id: form_version.f003_v1
+asset_type: form_version
+name: F003 v1
+version: 1.0.0
+owner: config_kb
+description: ''
+text: ''
+tags:
+- form_version
+- configuration
+relations:
+- type: version_of
+  target_asset_id: form.f003
+  metadata: {}
+payload:
+  form_id: F003
+  version: v1
+  schema:
+    fields:
+    - source_account
+    - beneficiary_cbu
+    - amount
+    - concept
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: F003 v1
+  normalized_name: f003 v1
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

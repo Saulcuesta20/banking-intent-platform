@@ -1,0 +1,17 @@
+apiVersion: catalog.unify/v1
+kind: AssetSet
+metadata:
+  id: product-service-config-menu-set
+  name: Productos y Servicios Menu Set
+  version: 1.0.0
+  domain: master-data
+  module: product-service-config
+  description: Versioned menu deployment set for product-service-config.
+  tags:
+  - master-data
+  - product-service-config
+  - menu
+spec:
+  assetType: menu
+  assets:
+  - assets/menu-product-service-config-product-config.yaml

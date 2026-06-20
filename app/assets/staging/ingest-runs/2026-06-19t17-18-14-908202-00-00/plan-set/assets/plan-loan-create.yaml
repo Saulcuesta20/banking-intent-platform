@@ -1,0 +1,43 @@
+asset_id: plan.loan.create
+asset_type: plan
+name: Plan crear prestamo
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para crear prestamo: mostrar solicitud, capturar campos, validar
+  politica y registrar contrato.'
+text: 'Plan para crear prestamo: mostrar solicitud, capturar campos, validar politica
+  y registrar contrato.'
+tags:
+- orchestration_plan
+relations:
+- type: uses_entity
+  target_asset_id: entity.loan
+  metadata: {}
+payload:
+  steps: []
+  plan_text: 'Plan para crear prestamo: mostrar solicitud, capturar campos, validar
+    politica y registrar contrato.'
+  source_section: Plans
+  transaction_id: loan.create
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Plan crear prestamo
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Plan para crear prestamo: mostrar solicitud, capturar campos, validar
+      politica y registrar contrato.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Plan para crear prestamo: mostrar solicitud, capturar campos, validar
+      politica y registrar contrato.'
+  match_strategy: generated
+  canonical_name: Plan crear prestamo
+  normalized_name: plan crear prestamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.advisor_account_verification
+asset_type: user_task
+name: Advisor Account Verification
+version: 1.0.0
+owner: business_model_kb
+description: Advisor checks current account state
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_2
+  task: check_account_state
+  type: verification
+  name: Advisor Account Verification
+  description: Advisor checks current account state
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Advisor Account Verification
+  normalized_name: advisor account verification
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

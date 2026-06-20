@@ -1,0 +1,27 @@
+asset_id: user_task.submit_application
+asset_type: user_task
+name: Submit Application
+version: 1.0.0
+owner: business_model_kb
+description: Customer fills and submits loan application form with personal and financial
+  details.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_submit_application
+  task: submit_loan_application
+  type: form_filling
+  name: Submit Application
+  description: Customer fills and submits loan application form with personal and
+    financial details.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Submit Application
+  normalized_name: submit application
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

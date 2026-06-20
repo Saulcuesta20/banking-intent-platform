@@ -1,0 +1,103 @@
+asset_id: flow.loan.refinance
+asset_type: flow
+name: Loan Refinance
+version: 1.0.0
+owner: process_kb
+description: The corpus describes refinance options.
+text: The corpus describes refinance options.
+tags:
+- loan.refinance
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.review_refinance_options
+  metadata: {}
+payload:
+  flow_id: loan.refinance
+  flow_name: Loan Refinance
+  intent: loan.refinance
+  confidence: 0.75
+  business_event: LoanRefinancingRequested
+  utterances: []
+  plan: []
+  tasks:
+  - task: review_refinance_options
+    type: user_task
+  user_tasks:
+  - user_task_id: review_refinance_options
+    task: review_refinance_options
+    type: user_task
+    name: Review Refinance Options
+    description: Review refinance choices with the customer.
+    tools:
+    - tool_id: ui.refinance.calculate
+      tool_type: frontend_tool
+      operation: calculate
+      resource: loan_refinance
+      label: Calculate refinance
+      description: null
+      triggers: null
+      frontend_event: loan_refinance.calculate
+      backend_protocol: null
+      endpoint: null
+      llm_operation: null
+      llm_model: null
+      llm_provider: null
+      requires_approval: false
+      metadata: {}
+    - tool_id: loan.conditions.calculate
+      tool_type: backend_tool
+      operation: calculate
+      resource: loan
+      label: null
+      description: Calculate new loan conditions.
+      triggers: null
+      frontend_event: null
+      backend_protocol: null
+      endpoint: null
+      llm_operation: null
+      llm_model: null
+      llm_provider: null
+      requires_approval: false
+      metadata: {}
+    user_actions:
+    - action_id: ui.refinance.calculate
+      type: front
+      implementation_type: show_form
+      lifecycle_state: not_started
+      tool_id: null
+      tool_ids:
+      - ui.refinance.calculate
+      label: Calculate refinance
+      triggers: loan_refinance.calculate
+      description: null
+    - action_id: loan.conditions.calculate
+      type: back
+      implementation_type: tool_call
+      lifecycle_state: not_started
+      tool_id: loan.conditions.calculate
+      tool_ids:
+      - loan.conditions.calculate
+      label: null
+      triggers: null
+      description: Calculate new loan conditions.
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: The corpus describes refinance options.
+  source: /tmp/pytest-of-saul/pytest-34/test_ingestion_orchestrator_pe0/raw/domain.txt;semantic_analysis_review_context.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - /tmp/pytest-of-saul/pytest-34/test_ingestion_orchestrator_pe0/raw/domain.txt
+    - semantic_analysis_review_context.md
+    purpose: Help a customer request refinancing for an existing loan.
+  purpose: Help a customer request refinancing for an existing loan.
+  transaction_id: loan.refinance
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Refinance
+  normalized_name: loan refinance
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

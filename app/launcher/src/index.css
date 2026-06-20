@@ -34,7 +34,8 @@ body,
 }
 
 body {
-  min-width: 1080px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 button,

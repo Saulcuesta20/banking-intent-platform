@@ -1,0 +1,69 @@
+asset_id: flow.combine.overdue.installments
+asset_type: flow
+name: Combine Overdue Installments
+version: 1.0.0
+owner: process_kb
+description: Customer wants to combine overdue installments, support verifies account
+  history and documents, collections confirms exception, workflow continues after
+  approval.
+text: Customer wants to combine overdue installments, support verifies account history
+  and documents, collections confirms exception, workflow continues after approval.
+tags:
+- customer.wants.to.combine.overdue.payments
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.verify_documents
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.confirm_exception
+  metadata: {}
+payload:
+  flow_id: combine.overdue.installments
+  flow_name: Combine Overdue Installments
+  intent: customer.wants.to.combine.overdue.payments
+  confidence: 0.75
+  business_event: Customer wants to combine two overdue installments
+  utterances: []
+  plan: []
+  tasks:
+  - task: verify_account_history_and_required_documents
+    type: manual
+  - task: confirm_special_exception
+    type: manual
+  user_tasks:
+  - user_task_id: support_verify
+    task: verify_account_history_and_required_documents
+    type: manual
+    name: Verify Documents
+    description: Support verifies the customer's account history and required documents.
+    tools: []
+    user_actions: []
+  - user_task_id: collections_confirm
+    task: confirm_special_exception
+    type: manual
+    name: Confirm Exception
+    description: Collections confirms whether a special exception applies.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Customer wants to combine overdue installments, support verifies account
+    history and documents, collections confirms exception, workflow continues after
+    approval.
+  source: data/raw/process_examples_refinance.md
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/process_examples_refinance.md
+    purpose: To combine overdue installments
+  purpose: To combine overdue installments
+  transaction_id: combine.overdue.installments
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Combine Overdue Installments
+  normalized_name: combine overdue installments
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

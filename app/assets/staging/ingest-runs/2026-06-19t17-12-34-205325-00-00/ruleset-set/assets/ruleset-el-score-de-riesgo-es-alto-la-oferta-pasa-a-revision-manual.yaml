@@ -1,0 +1,30 @@
+asset_id: ruleset.el.score.de.riesgo.es.alto.la.oferta.pasa.a.revision.manual
+asset_type: ruleset
+name: El.score.de.riesgo.es.alto.la.oferta.pasa.a.revision.manual Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction el.score.de.riesgo.es.alto.la.oferta.pasa.a.revision.manual
+  with 1 business rules.
+text: Si el score de riesgo es alto, la oferta pasa a revision manual.
+tags:
+- ruleset
+- el.score.de.riesgo.es.alto.la.oferta.pasa.a.revision.manual
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.el_score_de_riesgo_es_alto_la_oferta_pasa_a_revision_manual
+  metadata: {}
+payload:
+  transaction_id: el.score.de.riesgo.es.alto.la.oferta.pasa.a.revision.manual
+  ruleset_name: El.score.de.riesgo.es.alto.la.oferta.pasa.a.revision.manual Ruleset
+  rule_ids:
+  - business_rule.el_score_de_riesgo_es_alto_la_oferta_pasa_a_revision_manual
+  conditions: []
+  consequences:
+  - Si el score de riesgo es alto, la oferta pasa a revision manual.
+  match_strategy: generated
+  canonical_name: El.score.de.riesgo.es.alto.la.oferta.pasa.a.revision.manual Ruleset
+  normalized_name: el.score.de.riesgo.es.alto.la.oferta.pasa.a.revision.manual ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,27 @@
+asset_id: user_task.manager_review
+asset_type: user_task
+name: Manager Review
+version: 1.0.0
+owner: business_model_kb
+description: Manager reviews transaction when amount exceeds configured threshold
+  or customer risk segment requires enhanced review.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: manager_review
+  task: review_transaction
+  type: manual
+  name: Manager Review
+  description: Manager reviews transaction when amount exceeds configured threshold
+    or customer risk segment requires enhanced review.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Manager Review
+  normalized_name: manager review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

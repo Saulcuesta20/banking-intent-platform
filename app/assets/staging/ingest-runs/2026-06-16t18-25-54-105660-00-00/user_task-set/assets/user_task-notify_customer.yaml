@@ -1,0 +1,25 @@
+asset_id: user_task.notify_customer
+asset_type: user_task
+name: Notify Customer
+version: 1.0.0
+owner: business_model_kb
+description: Send notification to customer about the update.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_complaint_notify_customer
+  task: notify_customer
+  type: manual
+  name: Notify Customer
+  description: Notify the customer about the complaint status
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Notify Customer
+  normalized_name: notify customer
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,27 @@
+asset_id: user_task.explain_calculation
+asset_type: user_task
+name: Explain Calculation
+version: 1.0.0
+owner: business_model_kb
+description: Agent explains how loan refinancing conditions are calculated and offers
+  a review
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: explain_loan_calculation_task
+  task: explain_loan_refinancing_conditions
+  type: manual
+  name: Explain Calculation
+  description: Agent explains how loan refinancing conditions are calculated and offers
+    a review
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Explain Calculation
+  normalized_name: explain calculation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

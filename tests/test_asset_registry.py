@@ -79,7 +79,7 @@ def test_enterprise_asset_repository_lists_assets():
     assert repository.get("qa.automatic_payment_account_required") is not None
     assert repository.get("business_rule.refinance_eligibility") is not None
     assert repository.get("plan.loan_refinance") is not None
-    assert [asset.asset_id for asset in repository.list_assets("plan")] == [
+    assert [asset.asset_id for asset in repository.list_assets("plan", approved_only=False)] == [
         "plan.loan_refinance",
         "plan.savings_account_opening",
     ]
@@ -90,7 +90,7 @@ def test_asset_search_groups_direct_consultable_and_supporting_assets():
     repository = EnterpriseAssetRepository(sample_assets())
     service = AssetSearchService(registry, repository)
 
-    result = service.search("Necesito una cuenta para pago automatico?")
+    result = service.search("Necesito una cuenta para pago automatico?", approved_only=False)
 
     assert "qa.automatic_payment_account_required" in [
         asset.asset_id for asset in result.primary_assets

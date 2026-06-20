@@ -1,0 +1,51 @@
+asset_id: plan.transfer
+asset_type: plan
+name: Plan resolver transferencias fallidas
+version: 1.0.0
+owner: planning_kb
+description: 'Plan para resolver transferencias fallidas: revisar logs, validar destino,
+  reprocesar y notificar cliente.'
+text: 'Plan para resolver transferencias fallidas: revisar logs, validar destino,
+  reprocesar y notificar cliente.'
+tags:
+- orchestration_plan
+- hacer.una.transferencia
+- money.transfer
+- realizar.transferencia
+relations:
+- type: applies_to_flow
+  target_asset_id: flow.transfer
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.transferencia
+  metadata: {}
+- type: applies_to_flow
+  target_asset_id: flow.transfers
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+payload:
+  steps: []
+  plan_text: 'Plan para resolver transferencias fallidas: revisar logs, validar destino,
+    reprocesar y notificar cliente.'
+  source_section: Plans
+  transaction_id: transfer
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Plan para resolver transferencias fallidas: revisar logs, validar destino,
+      reprocesar y notificar cliente.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Plan para resolver transferencias fallidas: revisar logs, validar destino,
+      reprocesar y notificar cliente.'
+  match_strategy: generated
+  canonical_name: Plan resolver transferencias fallidas
+  normalized_name: plan resolver transferencias fallidas
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

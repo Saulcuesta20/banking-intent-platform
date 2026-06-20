@@ -7,7 +7,9 @@ fighting LangGraph's native model.
 LangGraph gives us state graphs, nodes, transitions, and compiled execution.
 It does not require a first-class `Agent` object. This platform should add an
 `Agent` abstraction above LangGraph so that each agent has an explicit name,
-role, goals, skills, tools, state schema, graph, and governance policy.
+role, goals, skills, tools, state schema, graph, class family, and governance
+policy. Execution is handled by an `AgentEngine` layer that compiles the
+definition into a runnable graph when the agent is declarative.
 
 ## Book-Informed Design Notes
 The local reference `Biswas A. Building Agentic AI Systems...2025.pdf` supports
@@ -30,9 +32,10 @@ three ideas that fit this project:
 class Agent:
     name: str
     role: str
+    agent_class: Literal["planning", "coordinator", "delegator", "worker", "monitoring"]
     goals: list[str]
     skills: list[str]
-    tools: list[ToolDefinition]
+    tool_ids: list[str]
     state_schema: type
     graph_factory: AgentGraphFactory
     policies: AgentPolicy
@@ -56,8 +59,18 @@ app/agents/
   models.py
   registry.py
   runtime.py
+  engine.py
   state.py
   catalog.py
+  catalog_loader.py
+  generic/
+    base.py
+    planning.py
+    coordinator.py
+    delegator.py
+    worker.py
+    monitoring.py
+    factory.py
   ingestion/
     coordinator.py
   ask/
@@ -75,10 +88,15 @@ app/agents/
 ```
 
 `app/agents` is intentionally a thin runtime layer first. It gives each agent
-an explicit identity, role, goals, skills, graph name, policy, and auditable
-result envelope. The coordinator agents wrap the existing LangGraph-backed
-services; specialist asset agents start as registered workers and can later
-own deeper asset-specific LangGraph nodes.
+an explicit identity, class family, role, goals, skills, tool ids, graph name,
+policy, and auditable result envelope. The coordinator agents wrap the
+existing LangGraph-backed services; specialist asset agents start as registered
+workers and can later own deeper asset-specific LangGraph nodes. A declarative
+catalog at `config/agents/agent_catalog.yaml` now loads generic planning,
+coordinator, delegator, worker, and monitoring agents for configurable
+business roles. `AgentEngine` compiles those declarative definitions into a
+small LangGraph workflow that validates tool policy, routes by class, and
+emits a structured trace.
 
 ## Knowledge Source Routing
 The platform can consult several knowledge bases/views for the same question.
@@ -136,13 +154,17 @@ class AgentDefinition(BaseModel):
     agent_id: str
     name: str
     role: str
+    agent_class: Literal["planning", "coordinator", "delegator", "worker", "monitoring"] = "worker"
     goals: list[str]
     skills: list[str]
-    allowed_tool_ids: list[str]
+    skill_ids: list[str]
+    tool_ids: list[str]
     state_schema: str
     graph_name: str
     max_retries: int = 0
     requires_human_review: bool = False
+    enabled: bool = True
+    description: str | None = None
 ```
 
 ```python
@@ -218,6 +240,67 @@ START
   -> validate_assets
   -> human_review_gate
       -> write_preview when review required
+
+## Declarative Business Agents
+The platform now supports a declarative agent catalog for business-facing
+support roles. The catalog is loaded from YAML and mapped into runtime agent
+classes based on the `agent_class` field.
+
+```text
+config/agents/agent_catalog.yaml
+  -> AgentCatalogLoader
+  -> build_agents_from_definitions()
+  -> AgentRegistry
+```
+
+Supported classes:
+
+```text
+planning
+coordinator
+delegator
+worker
+monitoring
+```
+
+This is the recommended path for user-configurable business assistants. Ask
+and ingestion remain dedicated service-backed coordinators because they own
+platform workflows and orchestrators rather than a generic business-support
+template.
+
+## Skill Standard
+For business-oriented agents, the project now adopts the Anthropic skill
+pattern as a declarative markdown package:
+
+```text
+config/agents/skills/<skill-id>/SKILL.md
+```
+
+The upstream standard uses YAML frontmatter plus Markdown instructions. The
+official Anthropic guidance emphasizes `name` and `description` in the
+frontmatter, with additional files for deeper reference when needed. That fits
+this project well because it keeps skills concise, reviewable, and versionable
+while still allowing a richer skill library to grow over time.
+
+Current implementation:
+
+```text
+AgentDefinition.skill_ids
+  -> SkillCatalogLoader
+  -> AgentEngine load_skills node
+  -> loaded skill summaries in trace/output
+```
+
+This matches the book’s direction too: specialized agents, composable tools,
+clear delegation, and AgentOps-style visibility. Skills are the bridge between
+business intent and governed agent behavior.
+
+Phase 4 recommendation:
+
+- expose skills in the launcher UI as editable markdown packages
+- version and approve skills the same way AssetSets are versioned
+- let business users compose approved skills into agent templates
+- keep tool access policy separate from skill guidance
       -> apply_assets when approved/apply mode
   -> sync_knowledge_base
   -> END

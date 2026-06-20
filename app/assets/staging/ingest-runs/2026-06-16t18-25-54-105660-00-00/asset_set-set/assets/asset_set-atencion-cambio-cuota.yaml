@@ -1,0 +1,81 @@
+asset_id: asset_set.atencion.cambio.cuota
+asset_type: asset_set
+name: Atencion.cambio.cuota Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for atencion.cambio.cuota.
+text: 'cliente
+
+  cuota
+
+  Atención para cambio de cuota
+
+  Apertura de expediente
+
+  Explicación de opciones
+
+  Registro de resultado
+
+  Validación de identidad'
+tags:
+- asset_set
+- atencion.cambio.cuota
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan_conditions
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.atencion.cambio.cuota
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.apertura_de_expediente
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.explicaci_n_de_opciones
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.registro_de_resultado
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.validaci_n_de_identidad
+  metadata: {}
+payload:
+  transaction_id: atencion.cambio.cuota
+  asset_ids:
+  - entity.customer
+  - entity.loan_conditions
+  - flow.atencion.cambio.cuota
+  - user_task.apertura_de_expediente
+  - user_task.explicaci_n_de_opciones
+  - user_task.registro_de_resultado
+  - user_task.validaci_n_de_identidad
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.loan_conditions
+    asset_type: entity
+  - asset_id: flow.atencion.cambio.cuota
+    asset_type: flow
+  - asset_id: user_task.apertura_de_expediente
+    asset_type: user_task
+  - asset_id: user_task.explicaci_n_de_opciones
+    asset_type: user_task
+  - asset_id: user_task.registro_de_resultado
+    asset_type: user_task
+  - asset_id: user_task.validaci_n_de_identidad
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Atencion.cambio.cuota Asset Set
+  normalized_name: atencion.cambio.cuota asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

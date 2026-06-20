@@ -1,0 +1,24 @@
+asset_id: flow.loan.payment
+asset_type: flow
+name: Pago de prestamo
+version: 1.0.2
+description: quiero realizar un pago de prestamo
+tags:
+- lending
+- loan
+- flow
+relations:
+- type: implemented_by_process
+  target_asset_id: process.loan.payment
+payload:
+  flow_id: loan.payment
+  flow_name: Pago de prestamo
+  intent: quiero realizar un pago de prestamo
+  business_event: loan.payment.requested
+  domain_id: lending
+  module_id: loan
+  renderer: external
+  user_tasks:
+  - capture payment request
+  related_process_ids:
+  - loan_payment

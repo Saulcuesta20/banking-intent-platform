@@ -1,0 +1,19 @@
+asset_id: user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral
+asset_type: user_task
+name: Solicitar aprobacion humana para operaciones fuera de umbral
+version: 1.0.0
+owner: business_model_kb
+description: Solicitar aprobacion humana para operaciones fuera de umbral.
+text: Solicitar aprobacion humana para operaciones fuera de umbral.
+tags: []
+relations: []
+payload:
+  description: Solicitar aprobacion humana para operaciones fuera de umbral.
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Solicitar aprobacion humana para operaciones fuera de umbral
+  normalized_name: solicitar aprobacion humana para operaciones fuera de umbral
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

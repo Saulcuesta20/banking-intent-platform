@@ -1,0 +1,43 @@
+asset_id: flow.reclamo
+asset_type: flow
+name: Reclamo
+version: 1.0.0
+owner: process_kb
+description: Solicitud de revisión por error, cargo no reconocido o problema operativo.
+text: Solicitud de revisión por error, cargo no reconocido o problema operativo.
+tags:
+- to.maintain.customer.trust.and.correct.operational.issues
+relations:
+- type: uses_entity
+  target_asset_id: entity.claim
+  metadata: {}
+payload:
+  flow_id: reclamo
+  flow_name: Reclamo
+  intent: to.maintain.customer.trust.and.correct.operational.issues
+  confidence: 0.75
+  business_event: Claim Process
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Solicitud de revisión por error, cargo no reconocido o problema operativo.
+  source: data/raw/savings_glossary.csv
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_glossary.csv
+    purpose: To address and resolve customer disputes or errors.
+  purpose: To address and resolve customer disputes or errors.
+  transaction_id: reclamo
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Reclamo
+  normalized_name: reclamo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

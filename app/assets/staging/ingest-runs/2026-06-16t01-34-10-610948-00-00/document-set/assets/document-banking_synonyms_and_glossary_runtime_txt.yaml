@@ -1,0 +1,171 @@
+asset_id: document.banking_synonyms_and_glossary_runtime_txt
+asset_type: document
+name: banking_synonyms_and_glossary_runtime.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/banking_synonyms_and_glossary_runtime.txt
+text: "Banking Intent Platform - Synonyms, Glossary, and Concept Mapping Guidance\n\
+  \nPurpose:\nThis raw corpus file teaches ingestion which informal banking words\
+  \ should map\nto formal concepts, flow names, utterances, user tasks, and tools.\n\
+  The runtime ask process must not invent terms. It should retrieve validated\nconcepts,\
+  \ synonyms, flows, user tasks, and tools from the graph.\n\nCanonical concepts and\
+  \ aliases:\n\n1. Loan\n   Informal terms: prestamo, credito, financiamiento, loan,\
+  \ prestamo personal,\n   linea de credito.\n   Example utterances:\n   - \"Quiero\
+  \ pedir un credito\"\n   - \"Necesito un prestamo personal\"\n   - \"Me pueden financiar\
+  \ una compra?\"\n   Mapping rule: credito and prestamo are synonyms and must resolve\
+  \ to Loan.\n\n2. LoanRefinance\n   Informal terms: refinanciar, refinanciacion,\
+  \ reestructurar credito, bajar\n   cuota, renegociar prestamo, reprogramar deuda,\
+  \ cambiar condiciones.\n   Example utterances:\n   - \"Quiero bajar la cuota de\
+  \ mi credito\"\n   - \"Necesito refinanciar mi prestamo\"\n   - \"Quiero renegociar\
+  \ las condiciones\"\n   Mapping rule: bajar cuota should retrieve LoanRefinance\
+  \ and LoanConditions.\n\n3. LoanConditions\n   Informal terms: cuota, tasa, plazo,\
+  \ cronograma, condiciones crediticias,\n   monto aprobado, interes.\n   Example\
+  \ utterances:\n   - \"Cual seria mi nueva cuota?\"\n   - \"Quiero cambiar el plazo\"\
+  \n   - \"La tasa esta muy alta\"\n   Mapping rule: questions about quota, rate,\
+  \ term, or schedule must include\n   LoanConditions in concepts or concept_aliases.\n\
+  \n4. LoanPayment\n   Informal terms: pagar cuota, pago de credito, repayment, abono\
+  \ de prestamo,\n   debito automatico, vencimiento.\n   Example utterances:\n   -\
+  \ \"Quiero pagar mi cuota\"\n   - \"Como pago el credito?\"\n   - \"Puedo programar\
+  \ un debito automatico?\"\n   Mapping rule: payment registration is a flow; debit\
+  \ posting and balance\n   updates are backend_tools, not user_tasks.\n\n5. LoanApplication\n\
+  \   Informal terms: solicitar prestamo, pedir credito, aplicar a prestamo,\n   originacion,\
+  \ evaluar prestamo.\n   Example utterances:\n   - \"Quiero solicitar un prestamo\"\
+  \n   - \"Necesito pedir un credito\"\n   - \"Que documentos necesito para aplicar?\"\
+  \n   Mapping rule: application capture is a user/business task; scoring, bureau\n\
+  \   checks, and eligibility calculation are backend_tools.\n\n6. SavingsAccount\n\
+  \   Informal terms: cuenta de ahorro, cuenta, ahorro, savings account, cuenta\n\
+  \   bancaria, deposit account.\n   Example utterances:\n   - \"Quiero abrir una\
+  \ cuenta\"\n   - \"Necesito una cuenta de ahorro\"\n   - \"Como obtengo mi CBU?\"\
+  \n   Mapping rule: account opening should include Customer, SavingsAccount,\n  \
+  \ CustomerDocuments, and KYC concepts.\n\n7. Transfer\n   Informal terms: transferencia,\
+  \ transferir, envio de dinero, CBU,\n   beneficiario, interbancaria.\n   Example\
+  \ utterances:\n   - \"Quiero transferir dinero\"\n   - \"Necesito enviar plata a\
+  \ un CBU\"\n   - \"Como agrego un beneficiario?\"\n   Mapping rule: beneficiary\
+  \ registration can be a user_task; posting the\n   transfer is a backend_tool.\n\
+  \n8. Customer\n   Informal terms: cliente, titular, usuario, customer, persona natural.\n\
+  \   Example utterances:\n   - \"Soy cliente nuevo\"\n   - \"Necesito actualizar\
+  \ mis datos\"\n   - \"Quiero identificar al titular\"\n   Mapping rule: identity\
+  \ checks and customer lookup are required context for\n   regulated flows.\n\n9.\
+  \ CustomerDocuments\n   Informal terms: documentos, documentacion, recibos, comprobantes,\
+  \ ID,\n   soporte de ingresos, constancia.\n   Example utterances:\n   - \"Que documentos\
+  \ necesito?\"\n   - \"Tengo que subir recibos?\"\n   - \"Me falta comprobante de\
+  \ domicilio\"\n   Mapping rule: collecting documents is a user_task; OCR, validation,\
+  \ and\n   storage are backend_tools.\n\n10. Claim\n    Informal terms: reclamo,\
+  \ queja, disputa, cargo no reconocido, incidencia,\n    caso.\n    Example utterances:\n\
+  \    - \"Quiero hacer un reclamo\"\n    - \"No reconozco este debito\"\n    - \"\
+  Necesito disputar un cargo\"\n    Mapping rule: claim intake and evidence collection\
+  \ are user_tasks; movement\n    matching and case status updates are backend_tools.\n\
+  \n11. CreditNote\n    Informal terms: nota de credito, ajuste a favor, reversion\
+  \ positiva,\n    devolucion.\n    Example utterances:\n    - \"Necesito emitir una\
+  \ nota de credito\"\n    - \"Hay que devolver un cargo\"\n    Mapping rule: issuing\
+  \ a credit note requires review and audit evidence.\n\n12. DebitNote\n    Informal\
+  \ terms: nota de debito, cargo, ajuste en contra, debito adicional.\n    Example\
+  \ utterances:\n    - \"Necesito emitir una nota de debito\"\n    - \"Hay que registrar\
+  \ un cargo adicional\"\n    Mapping rule: issuing a debit note requires validated\
+  \ reason and approval.\n\nUser task modeling rules:\n- A UserTask is a human or\
+  \ business step: identify_customer,\n  collect_customer_documents, review_loan_status,\
+  \ review_refinance_options,\n  prepare_refinance_request, approve_business_case.\n\
+  - A backend API operation is never a UserTask. Backend operations belong in\n  backend_tools,\
+  \ for example loan.conditions.calculate, customer.profile.read,\n  account.balance.check,\
+  \ transfer.post, notification.send.\n- A frontend click, submit, screen, or UI command\
+  \ belongs in frontend_tools, for\n  example ui.loan_refinance.calculate or ui.transfer.submit.\n\
+  \nGraph retrieval expectations:\n- Utterance nodes should preserve representative\
+  \ customer phrases.\n- Concepts should use formal concepts such as Loan, LoanRefinance,\n\
+  \  LoanConditions, SavingsAccount, Transfer, Customer, CustomerDocuments, Claim,\n\
+  \  CreditNote, and DebitNote.\n- Synonym aliases should be linked to concepts so\
+  \ a question using\n  \"credito\" can retrieve flows that mention \"prestamo\",\
+  \ and a question using\n  \"bajar cuota\" can retrieve loan refinance flows.\n-\
+  \ The LLM classifier may choose only an existing flow_id from retrieved graph\n\
+  \  context. It must not create new plans, tasks, tools, events, or concepts at\n\
+  \  ask time."
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: data/raw/banking_synonyms_and_glossary_runtime.txt
+  kind: text
+  sequence: 3
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Informal terms: prestamo, credito, financiamiento, loan, prestamo personal,'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: '- "Necesito un prestamo personal"'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Mapping rule: credito and prestamo are synonyms and must resolve to
+      Loan.'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: cuota, renegociar prestamo, reprogramar deuda, cambiar condiciones.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: '- "Necesito refinanciar mi prestamo"'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Informal terms: pagar cuota, pago de credito, repayment, abono de prestamo,'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Informal terms: pagar cuota, pago de credito, repayment, abono de prestamo,'
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: '- "Como pago el credito?"'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: 'Informal terms: solicitar prestamo, pedir credito, aplicar a prestamo,'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: originacion, evaluar prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: '- "Quiero solicitar un prestamo"'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: 'Informal terms: cuenta de ahorro, cuenta, ahorro, savings account,
+      cuenta'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- "Quiero abrir una cuenta"'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- "Necesito una cuenta de ahorro"'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: 'Informal terms: cliente, titular, usuario, customer, persona natural.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- "Soy cliente nuevo"'
+  - type: has_step
+    family: structural
+    phrase: step
+    sentence: '- A UserTask is a human or business step: identify_customer,'
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: '"credito" can retrieve flows that mention "prestamo", and a question
+      using'
+  match_strategy: generated
+  canonical_name: banking_synonyms_and_glossary_runtime.txt
+  normalized_name: banking synonyms and glossary runtime.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

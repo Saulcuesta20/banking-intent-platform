@@ -1,0 +1,93 @@
+asset_id: flow.flow.personal.loan
+asset_type: flow
+name: Préstamo personal
+version: 1.0.0
+owner: process_kb
+description: Proceso de solicitud de préstamo personal que incluye validación de ingresos,
+  empleo, historial crediticio y definición de garantía.
+text: Proceso de solicitud de préstamo personal que incluye validación de ingresos,
+  empleo, historial crediticio y definición de garantía.
+tags:
+- solicitar.prestamo
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.proporcionar_informaci_n_de_ingresos
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.proporcionar_informaci_n_de_empleo
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.autorizar_verificaci_n_crediticia
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.definir_garant_a
+  metadata: {}
+payload:
+  flow_id: flow.personal.loan
+  flow_name: Préstamo personal
+  intent: solicitar.prestamo
+  confidence: 0.75
+  business_event: Solicitud de préstamo personal
+  utterances: []
+  plan: []
+  tasks:
+  - task: proporcionar_informaci_n_de_ingresos
+    type: document_submission
+  - task: proporcionar_informaci_n_de_empleo
+    type: document_submission
+  - task: autorizar_verificaci_n_crediticia
+    type: authorization
+  - task: definir_garant_a_si_aplica
+    type: selection
+  user_tasks:
+  - user_task_id: user_task_provide_income
+    task: proporcionar_informaci_n_de_ingresos
+    type: document_submission
+    name: Proporcionar información de ingresos
+    description: El usuario presenta comprobantes de ingresos (recibos de sueldo,
+      declaración de impuestos, etc.).
+    tools: []
+    user_actions: []
+  - user_task_id: user_task_provide_employment
+    task: proporcionar_informaci_n_de_empleo
+    type: document_submission
+    name: Proporcionar información de empleo
+    description: El usuario presenta constancia de empleo o contrato laboral.
+    tools: []
+    user_actions: []
+  - user_task_id: user_task_authorize_credit_check
+    task: autorizar_verificaci_n_crediticia
+    type: authorization
+    name: Autorizar verificación crediticia
+    description: El usuario autoriza al banco a verificar su historial crediticio.
+    tools: []
+    user_actions: []
+  - user_task_id: user_task_define_collateral
+    task: definir_garant_a_si_aplica
+    type: selection
+    name: Definir garantía
+    description: El usuario define si ofrece una garantía para el préstamo y proporciona
+      detalles.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso de solicitud de préstamo personal que incluye validación de
+    ingresos, empleo, historial crediticio y definición de garantía.
+  source: data/raw/savings_loans_domain_extra5.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra5.txt
+    purpose: Obtener un préstamo personal
+  purpose: Obtener un préstamo personal
+  transaction_id: flow.personal.loan
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Préstamo personal
+  normalized_name: préstamo personal
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

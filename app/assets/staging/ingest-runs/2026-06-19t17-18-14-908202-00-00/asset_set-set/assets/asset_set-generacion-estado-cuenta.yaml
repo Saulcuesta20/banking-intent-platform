@@ -1,0 +1,40 @@
+asset_id: asset_set.generacion.estado.cuenta
+asset_type: asset_set
+name: Generacion.estado.cuenta Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for generacion.estado.cuenta.
+text: 'estado de cuenta
+
+  Generación de estado de cuenta mensual y envío por mail'
+tags:
+- asset_set
+- generacion.estado.cuenta
+relations:
+- type: groups_entity
+  target_asset_id: entity.estado_de_cuenta
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.generacion.estado.cuenta
+  metadata: {}
+payload:
+  transaction_id: generacion.estado.cuenta
+  asset_ids:
+  - entity.estado_de_cuenta
+  - flow.generacion.estado.cuenta
+  asset_types:
+  - entity
+  - flow
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.estado_de_cuenta
+    asset_type: entity
+  - asset_id: flow.generacion.estado.cuenta
+    asset_type: flow
+  match_strategy: generated
+  canonical_name: Generacion.estado.cuenta Asset Set
+  normalized_name: generacion.estado.cuenta asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

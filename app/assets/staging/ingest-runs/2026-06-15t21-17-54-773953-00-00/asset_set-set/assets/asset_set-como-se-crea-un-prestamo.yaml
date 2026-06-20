@@ -1,0 +1,31 @@
+asset_id: asset_set.como.se.crea.un.prestamo
+asset_type: asset_set
+name: Como.se.crea.un.prestamo Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for como.se.crea.un.prestamo.
+text: Como se crea un prestamo?
+tags:
+- asset_set
+- como.se.crea.un.prestamo
+relations:
+- type: groups_qa
+  target_asset_id: qa.como_se_crea_un_prestamo
+  metadata: {}
+payload:
+  transaction_id: como.se.crea.un.prestamo
+  asset_ids:
+  - qa.como_se_crea_un_prestamo
+  asset_types:
+  - qa
+  primary_asset_type: qa
+  members:
+  - asset_id: qa.como_se_crea_un_prestamo
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Como.se.crea.un.prestamo Asset Set
+  normalized_name: como.se.crea.un.prestamo asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

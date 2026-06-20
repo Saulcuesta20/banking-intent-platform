@@ -1,0 +1,27 @@
+asset_id: user_task.explain_refinancing_options
+asset_type: user_task
+name: Explain Refinancing Options
+version: 1.0.0
+owner: business_model_kb
+description: Explain available refinancing options based on client profile and banking
+  policies.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: explain_options_task
+  task: explicar_opciones_de_refinanciamiento
+  type: advisory
+  name: Explain Refinancing Options
+  description: Explain available refinancing options based on client profile and banking
+    policies.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Explain Refinancing Options
+  normalized_name: explain refinancing options
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

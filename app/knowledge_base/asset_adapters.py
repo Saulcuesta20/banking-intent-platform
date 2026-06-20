@@ -15,7 +15,7 @@ class FlowAssetAdapter:
             asset_type="flow",
             name=record.flow_name,
             version="1.0.0",
-            status="approved",
+            status="draft",
             description=record.explanation,
             tags=[*record.concepts, record.intent],
             source_refs=[record.source] if record.source else [],

@@ -1,0 +1,25 @@
+asset_id: user_task.change_payment_date
+asset_type: user_task
+name: Change Payment Date
+version: 1.0.0
+owner: business_model_kb
+description: Adjust the payment date for the loan without causing default or penalties.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_tck_1004
+  task: change_payment_date
+  type: modification
+  name: Change Payment Date
+  description: Adjust the payment date for the loan without causing default or penalties.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Change Payment Date
+  normalized_name: change payment date
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

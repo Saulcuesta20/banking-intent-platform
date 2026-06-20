@@ -1,0 +1,25 @@
+asset_id: user_task.perform_beneficiary_screening
+asset_type: user_task
+name: Perform Beneficiary Screening
+version: 1.0.0
+owner: business_model_kb
+description: Beneficiary is screened through the compliance screening service.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: perform_beneficiary_screening
+  task: perform_beneficiary_screening
+  type: compliance
+  name: Perform Beneficiary Screening
+  description: Beneficiary is screened through the compliance screening service.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Perform Beneficiary Screening
+  normalized_name: perform beneficiary screening
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

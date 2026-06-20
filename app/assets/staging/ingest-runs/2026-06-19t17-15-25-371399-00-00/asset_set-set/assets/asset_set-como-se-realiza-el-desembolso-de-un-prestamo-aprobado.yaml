@@ -1,0 +1,48 @@
+asset_id: asset_set.como.se.realiza.el.desembolso.de.un.prestamo.aprobado
+asset_type: asset_set
+name: Como.se.realiza.el.desembolso.de.un.prestamo.aprobado Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for como.se.realiza.el.desembolso.de.un.prestamo.aprobado.
+text: 'desembolso
+
+  prestamo
+
+  Como se realiza el desembolso de un prestamo aprobado?'
+tags:
+- asset_set
+- como.se.realiza.el.desembolso.de.un.prestamo.aprobado
+relations:
+- type: groups_entity
+  target_asset_id: entity.desembolso
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.loan
+  metadata: {}
+- type: groups_qa
+  target_asset_id: qa.como_se_realiza_el_desembolso_de_un_prestamo_aprobado
+  metadata: {}
+payload:
+  transaction_id: como.se.realiza.el.desembolso.de.un.prestamo.aprobado
+  asset_ids:
+  - entity.desembolso
+  - entity.loan
+  - qa.como_se_realiza_el_desembolso_de_un_prestamo_aprobado
+  asset_types:
+  - entity
+  - qa
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.desembolso
+    asset_type: entity
+  - asset_id: entity.loan
+    asset_type: entity
+  - asset_id: qa.como_se_realiza_el_desembolso_de_un_prestamo_aprobado
+    asset_type: qa
+  match_strategy: generated
+  canonical_name: Como.se.realiza.el.desembolso.de.un.prestamo.aprobado Asset Set
+  normalized_name: como.se.realiza.el.desembolso.de.un.prestamo.aprobado asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

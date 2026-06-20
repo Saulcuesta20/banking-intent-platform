@@ -1,0 +1,42 @@
+asset_id: asset_set.el.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta
+asset_type: asset_set
+name: El.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for el.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta.
+text: 'El score alto de fraude causes congelamiento preventivo de la cuenta
+
+  ahorro'
+tags:
+- asset_set
+- el.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta
+relations:
+- type: groups_causality
+  target_asset_id: causality.el_score_alto_de_fraude_causes_congelamiento_preventivo_de_la_cuenta
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+payload:
+  transaction_id: el.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta
+  asset_ids:
+  - causality.el_score_alto_de_fraude_causes_congelamiento_preventivo_de_la_cuenta
+  - entity.savings_account
+  asset_types:
+  - causality
+  - entity
+  primary_asset_type: causality
+  members:
+  - asset_id: causality.el_score_alto_de_fraude_causes_congelamiento_preventivo_de_la_cuenta
+    asset_type: causality
+  - asset_id: entity.savings_account
+    asset_type: entity
+  match_strategy: generated
+  canonical_name: El.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta
+    Asset Set
+  normalized_name: el.score.alto.de.fraude.causes.congelamiento.preventivo.de.la.cuenta
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

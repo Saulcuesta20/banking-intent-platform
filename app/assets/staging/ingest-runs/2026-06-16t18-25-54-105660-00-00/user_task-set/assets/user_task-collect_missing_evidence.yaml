@@ -1,0 +1,25 @@
+asset_id: user_task.collect_missing_evidence
+asset_type: user_task
+name: Collect missing evidence
+version: 1.0.0
+owner: business_model_kb
+description: Collect missing evidence when required.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: loan_refinance_assistance_step_6
+  task: collect_missing_evidence_when_required
+  type: manual
+  name: Collect missing evidence
+  description: Collect missing evidence when required.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Collect missing evidence
+  normalized_name: collect missing evidence
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

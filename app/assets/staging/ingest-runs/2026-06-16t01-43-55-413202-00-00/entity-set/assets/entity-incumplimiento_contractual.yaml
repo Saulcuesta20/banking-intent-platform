@@ -1,0 +1,30 @@
+asset_id: entity.incumplimiento_contractual
+asset_type: entity
+name: incumplimiento contractual
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality effect_text: incumplimiento contractual'
+text: No pagar un prestamo causa incumplimiento contractual.
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: effect_text
+  business_layer: channel
+  entity_role: asset
+  relation_hints:
+  - type: causes
+    family: causality
+    phrase: causa
+    sentence: No pagar un prestamo causa incumplimiento contractual.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: No pagar un prestamo causa incumplimiento contractual.
+  match_strategy: generated
+  canonical_name: incumplimiento contractual
+  normalized_name: incumplimiento contractual
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

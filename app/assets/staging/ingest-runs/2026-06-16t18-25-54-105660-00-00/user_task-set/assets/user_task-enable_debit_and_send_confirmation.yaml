@@ -1,0 +1,25 @@
+asset_id: user_task.enable_debit_and_send_confirmation
+asset_type: user_task
+name: Enable debit and send confirmation
+version: 1.0.0
+owner: business_model_kb
+description: Enable automatic debit and send confirmation.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: automatic_payment_setup_step_7
+  task: enable_automatic_debit_and_send_confirmation
+  type: manual
+  name: Enable debit and send confirmation
+  description: Enable automatic debit and send confirmation.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Enable debit and send confirmation
+  normalized_name: enable debit and send confirmation
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

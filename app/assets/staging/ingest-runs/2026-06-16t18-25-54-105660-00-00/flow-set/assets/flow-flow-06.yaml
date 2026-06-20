@@ -1,0 +1,42 @@
+asset_id: flow.flow.06
+asset_type: flow
+name: Reporte de cargo no reconocido
+version: 1.0.0
+owner: process_kb
+description: El proceso de cargo no reconocido abre caso, congela tarjeta y notifica
+  investigaciones.
+text: El proceso de cargo no reconocido abre caso, congela tarjeta y notifica investigaciones.
+tags:
+- dispute.charge_report
+relations: []
+payload:
+  flow_id: flow.06
+  flow_name: Reporte de cargo no reconocido
+  intent: dispute.charge_report
+  confidence: 0.75
+  business_event: Cliente reporta cargo no reconocido
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: El proceso de cargo no reconocido abre caso, congela tarjeta y notifica
+    investigaciones.
+  source: data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/enterprise_asset_corpus_expanded.md#chunk-2
+    purpose: Reportar un cargo no reconocido
+  purpose: Reportar un cargo no reconocido
+  transaction_id: flow.06
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Reporte de cargo no reconocido
+  normalized_name: reporte de cargo no reconocido
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,28 @@
+asset_id: tool.account_reactivate
+asset_type: tool
+name: account.reactivate
+version: 1.0.0
+owner: business_model_kb
+description: El servicio account.reactivate actualiza el estado de la cuenta.
+text: El servicio account.reactivate actualiza el estado de la cuenta.
+tags: []
+relations: []
+payload:
+  description: El servicio account.reactivate actualiza el estado de la cuenta.
+  tool_id: account.reactivate
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El servicio account.reactivate actualiza el estado de la cuenta.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El servicio account.reactivate actualiza el estado de la cuenta.
+  match_strategy: generated
+  canonical_name: account.reactivate
+  normalized_name: account.reactivate
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

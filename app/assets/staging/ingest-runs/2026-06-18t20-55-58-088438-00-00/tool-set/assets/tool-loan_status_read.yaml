@@ -1,0 +1,28 @@
+asset_id: tool.loan_status_read
+asset_type: tool
+name: loan.status.read
+version: 1.0.0
+owner: business_model_kb
+description: El servicio loan.status.read obtiene el estado operativo del prestamo.
+text: El servicio loan.status.read obtiene el estado operativo del prestamo.
+tags: []
+relations: []
+payload:
+  description: El servicio loan.status.read obtiene el estado operativo del prestamo.
+  tool_id: loan.status.read
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El servicio loan.status.read obtiene el estado operativo del prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El servicio loan.status.read obtiene el estado operativo del prestamo.
+  match_strategy: generated
+  canonical_name: loan.status.read
+  normalized_name: loan.status.read
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.record_interaction
+asset_type: user_task
+name: Record Interaction
+version: 1.0.0
+owner: business_model_kb
+description: Record the details and outcome of the interaction with the client.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: record_interaction_task
+  task: registrar_el_resultado_de_la_interaccion
+  type: documentation
+  name: Record Interaction
+  description: Record the details and outcome of the interaction with the client.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Record Interaction
+  normalized_name: record interaction
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,27 @@
+asset_id: user_task.manager_review
+asset_type: user_task
+name: Manager Review
+version: 1.0.0
+owner: business_model_kb
+description: Manager reviews loan status, calculated options, customer income evidence,
+  and comparison summary before approving refinance request.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: manager_review
+  task: conduct_manager_review_for_refinance_approval
+  type: review
+  name: Manager Review
+  description: Manager reviews loan status, calculated options, customer income evidence,
+    and comparison summary before approving refinance request.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Manager Review
+  normalized_name: manager review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

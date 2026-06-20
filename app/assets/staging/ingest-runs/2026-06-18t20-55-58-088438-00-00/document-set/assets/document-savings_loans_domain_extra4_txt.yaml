@@ -1,0 +1,83 @@
+asset_id: document.savings_loans_domain_extra4_txt
+asset_type: document
+name: savings_loans_domain_extra4.txt
+version: 1.0.0
+owner: document_kb
+description: Raw corpus document loaded from data/raw/savings_loans_domain_extra4.txt
+text: 'Glosario Extendido - Ahorros y Préstamos (Parte 4)
+
+
+  Escenarios de negocio:
+
+  - Cliente nuevo quiere abrir cuenta y contratar débito automático.
+
+  - Cliente solicita préstamo y ofrece vehículo como garantía.
+
+  - Cliente solicita refinanciación por pérdida de ingresos.
+
+
+  Casos de excepción y manejo:
+
+  - Documentos incompletos: solicitar envío digital y marcar caso pendiente.
+
+  - Duplicidad de cuentas: verificar identidad y consolidar registros.
+
+  - Pagos rechazados por fondos insuficientes: notificar y ofrecer plan de reprogramación.
+
+
+  Operaciones técnicas de backend (posibles executors):
+
+  - api.customer.get
+
+  - api.account.create
+
+  - api.transaction.post
+
+  - api.loan.calculate
+
+  - api.notification.send
+
+
+  Indicadores de negocio (KPI) relevantes:
+
+  - Tiempo medio de apertura de cuenta (target: 24h)
+
+  - Tasa de aprobación de préstamos
+
+  - Porcentaje de cuentas inactivas'
+tags:
+- text
+- txt
+relations: []
+payload:
+  path: data/raw/savings_loans_domain_extra4.txt
+  kind: text
+  sequence: 31
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- Cliente nuevo quiere abrir cuenta y contratar débito automático.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Cliente nuevo quiere abrir cuenta y contratar débito automático.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- Cliente solicita préstamo y ofrece vehículo como garantía.'
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: '- Cliente solicita refinanciación por pérdida de ingresos.'
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: '- Tiempo medio de apertura de cuenta (target: 24h)'
+  match_strategy: generated
+  canonical_name: savings_loans_domain_extra4.txt
+  normalized_name: savings loans domain extra4.txt
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

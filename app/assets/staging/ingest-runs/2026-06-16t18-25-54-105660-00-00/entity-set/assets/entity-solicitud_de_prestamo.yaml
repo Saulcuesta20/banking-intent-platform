@@ -1,0 +1,24 @@
+asset_id: entity.solicitud_de_prestamo
+asset_type: entity
+name: solicitud de prestamo
+version: 1.0.0
+owner: business_model_kb
+description: Proceso de capturar datos, documentos e ingresos para evaluar un préstamo
+text: Proceso de capturar datos, documentos e ingresos para evaluar un préstamo
+tags: []
+relations: []
+payload:
+  aliases: []
+  business_layer: asset
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: solicitud de prestamo
+  match_strategy: generated
+  canonical_name: solicitud de prestamo
+  normalized_name: solicitud de prestamo
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

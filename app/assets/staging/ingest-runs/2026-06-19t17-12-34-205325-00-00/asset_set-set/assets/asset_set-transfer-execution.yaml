@@ -1,0 +1,40 @@
+asset_id: asset_set.transfer.execution
+asset_type: asset_set
+name: Transfer.execution Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for transfer.execution.
+text: 'Transfer Execution Process
+
+  Transfer Data Entry'
+tags:
+- asset_set
+- transfer.execution
+relations:
+- type: groups_flow
+  target_asset_id: flow.transfer.execution
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.transfer_data_entry
+  metadata: {}
+payload:
+  transaction_id: transfer.execution
+  asset_ids:
+  - flow.transfer.execution
+  - user_task.transfer_data_entry
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.transfer.execution
+    asset_type: flow
+  - asset_id: user_task.transfer_data_entry
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Transfer.execution Asset Set
+  normalized_name: transfer.execution asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

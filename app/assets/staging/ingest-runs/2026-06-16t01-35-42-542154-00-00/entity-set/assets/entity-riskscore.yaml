@@ -1,0 +1,26 @@
+asset_id: entity.riskscore
+asset_type: entity
+name: RiskScore
+version: 1.0.0
+owner: business_model_kb
+description: Valor numérico que indica el nivel de riesgo crediticio del cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Valor numérico que indica el nivel de riesgo crediticio del cliente.
+  inferred_from: llm_asset_extraction
+  business_layer: capability
+  entity_role: capability
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Valor numérico que indica el nivel de riesgo crediticio del cliente.
+  match_strategy: generated
+  canonical_name: RiskScore
+  normalized_name: riskscore
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,122 @@
+asset_id: flow.transfer.beneficiary.review
+asset_type: flow
+name: Transfers and Beneficiary Review
+version: 1.0.0
+owner: process_kb
+description: Agent identifies customer, captures transfer details, performs high-value
+  threshold check, requests clarification if needed, screens beneficiary via compliance
+  service, and records evidence before release.
+text: Agent identifies customer, captures transfer details, performs high-value threshold
+  check, requests clarification if needed, screens beneficiary via compliance service,
+  and records evidence before release.
+tags:
+- complete.a.transfer.while.ensuring.regulatory.and.operational.requirements.are.met
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.identify_customer
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.capture_transfer_details
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.check_high_value_threshold
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.request_clarification
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.perform_beneficiary_screening
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.record_evidence
+  metadata: {}
+payload:
+  flow_id: transfer.beneficiary.review
+  flow_name: Transfers and Beneficiary Review
+  intent: complete.a.transfer.while.ensuring.regulatory.and.operational.requirements.are.met
+  confidence: 0.75
+  business_event: customer requests transfer from savings account
+  utterances: []
+  plan: []
+  tasks:
+  - task: identificar_al_cliente_antes_de_cualquier_operacion_financiera
+    type: manual
+  - task: capture_transfer_details
+    type: data_entry
+  - task: check_high_value_threshold
+    type: decision
+  - task: request_clarification
+    type: communication
+  - task: perform_beneficiary_screening
+    type: compliance
+  - task: record_evidence
+    type: documentation
+  user_tasks:
+  - user_task_id: identify_customer
+    task: identificar_al_cliente_antes_de_cualquier_operacion_financiera
+    type: manual
+    name: Identify Customer
+    description: Identificar al cliente antes de cualquier operacion financiera.
+    tools: []
+    user_actions: []
+  - user_task_id: capture_transfer_details
+    task: capture_transfer_details
+    type: data_entry
+    name: Capture Transfer Details
+    description: Agent captures source account, beneficiary, amount, currency, and
+      transfer reason.
+    tools: []
+    user_actions: []
+  - user_task_id: check_high_value_threshold
+    task: check_high_value_threshold
+    type: decision
+    name: Check High-Value Threshold
+    description: If amount exceeds high-value threshold, additional review is required.
+    tools: []
+    user_actions: []
+  - user_task_id: request_clarification
+    task: request_clarification
+    type: communication
+    name: Request Clarification
+    description: If destination country or beneficiary data is incomplete, ask customer
+      for clarification.
+    tools: []
+    user_actions: []
+  - user_task_id: perform_beneficiary_screening
+    task: perform_beneficiary_screening
+    type: compliance
+    name: Perform Beneficiary Screening
+    description: Beneficiary is screened through the compliance screening service.
+    tools: []
+    user_actions: []
+  - user_task_id: record_evidence
+    task: record_evidence
+    type: documentation
+    name: Record Evidence
+    description: Agent records required evidence before releasing transfer.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Agent identifies customer, captures transfer details, performs high-value
+    threshold check, requests clarification if needed, screens beneficiary via compliance
+    service, and records evidence before release.
+  source: data/raw/enterprise_dump_2026/intranet_transfer_help.html
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/enterprise_dump_2026/intranet_transfer_help.html
+    purpose: Process customer transfer requests with required checks and compliance
+      screening
+  purpose: Process customer transfer requests with required checks and compliance
+    screening
+  transaction_id: transfer.beneficiary.review
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Transfers and Beneficiary Review
+  normalized_name: transfers and beneficiary review
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

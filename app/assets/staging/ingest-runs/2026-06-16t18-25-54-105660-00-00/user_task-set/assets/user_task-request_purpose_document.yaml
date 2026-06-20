@@ -1,0 +1,25 @@
+asset_id: user_task.request_purpose_document
+asset_type: user_task
+name: Request purpose document
+version: 1.0.0
+owner: business_model_kb
+description: Request purpose document when the control requires evidence.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_intl_request_purpose_document
+  task: request_purpose_document_if_needed
+  type: manual
+  name: Request Purpose Document
+  description: Request purpose of transfer document if required
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Request purpose document
+  normalized_name: request purpose document
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

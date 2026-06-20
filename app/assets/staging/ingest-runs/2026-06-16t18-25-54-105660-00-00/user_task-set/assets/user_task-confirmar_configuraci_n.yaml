@@ -1,0 +1,29 @@
+asset_id: user_task.confirmar_configuraci_n
+asset_type: user_task
+name: Confirmar configuración
+version: 1.0.0
+owner: business_model_kb
+description: El cliente revisa y confirma la domiciliación.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_setup
+  task: confirmar_configuraci_n_de_pago_autom_tico
+  type: confirmación
+  name: Confirmar configuración
+  description: El cliente revisa y confirma la domiciliación.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente revisa y confirma la domiciliación.
+  match_strategy: generated
+  canonical_name: Confirmar configuración
+  normalized_name: confirmar configuración
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

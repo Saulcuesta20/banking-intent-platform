@@ -1,0 +1,56 @@
+asset_id: asset_set.fl011
+asset_type: asset_set
+name: Fl011 Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for fl011.
+text: 'Reestructurar Deuda en Atraso
+
+  Calcular terminos de refinanciamiento
+
+  Revisar estado de mora del prestamo
+
+  Solicitar aprobacion humana para operaciones fuera de umbral'
+tags:
+- asset_set
+- fl011
+relations:
+- type: groups_flow
+  target_asset_id: flow.fl011
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.calcular_terminos_de_refinanciamiento
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.revisar_estado_de_mora_del_prestamo
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral
+  metadata: {}
+payload:
+  transaction_id: fl011
+  asset_ids:
+  - flow.fl011
+  - user_task.calcular_terminos_de_refinanciamiento
+  - user_task.revisar_estado_de_mora_del_prestamo
+  - user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.fl011
+    asset_type: flow
+  - asset_id: user_task.calcular_terminos_de_refinanciamiento
+    asset_type: user_task
+  - asset_id: user_task.revisar_estado_de_mora_del_prestamo
+    asset_type: user_task
+  - asset_id: user_task.solicitar_aprobacion_humana_para_operaciones_fuera_de_umbral
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Fl011 Asset Set
+  normalized_name: fl011 asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

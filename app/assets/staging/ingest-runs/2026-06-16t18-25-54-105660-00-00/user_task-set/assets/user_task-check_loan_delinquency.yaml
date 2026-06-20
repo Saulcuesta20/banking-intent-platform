@@ -1,0 +1,29 @@
+asset_id: user_task.check_loan_delinquency
+asset_type: user_task
+name: Check Loan Delinquency
+version: 1.0.0
+owner: business_model_kb
+description: Revisar estado de mora del prestamo.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: check_loan_delinquency
+  task: revisar_estado_de_mora_del_prestamo
+  type: system
+  name: Check Loan Delinquency
+  description: Revisar estado de mora del prestamo.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: Revisar estado de mora del prestamo.
+  match_strategy: generated
+  canonical_name: Check Loan Delinquency
+  normalized_name: check loan delinquency
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

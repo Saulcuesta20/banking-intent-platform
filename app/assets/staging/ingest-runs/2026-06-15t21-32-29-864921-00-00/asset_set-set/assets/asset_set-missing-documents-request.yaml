@@ -1,0 +1,40 @@
+asset_id: asset_set.missing.documents.request
+asset_type: asset_set
+name: Missing.documents.request Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for missing.documents.request.
+text: 'Missing documents request
+
+  Missing.documents.request Ruleset'
+tags:
+- asset_set
+- missing.documents.request
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.missing_documents_request
+  metadata: {}
+- type: groups_ruleset
+  target_asset_id: ruleset.missing.documents.request
+  metadata: {}
+payload:
+  transaction_id: missing.documents.request
+  asset_ids:
+  - business_rule.missing_documents_request
+  - ruleset.missing.documents.request
+  asset_types:
+  - business_rule
+  - ruleset
+  primary_asset_type: business_rule
+  members:
+  - asset_id: business_rule.missing_documents_request
+    asset_type: business_rule
+  - asset_id: ruleset.missing.documents.request
+    asset_type: ruleset
+  match_strategy: generated
+  canonical_name: Missing.documents.request Asset Set
+  normalized_name: missing.documents.request asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

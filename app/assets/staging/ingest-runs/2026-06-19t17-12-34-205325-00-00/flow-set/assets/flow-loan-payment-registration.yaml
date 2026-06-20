@@ -1,0 +1,43 @@
+asset_id: flow.loan.payment.registration
+asset_type: flow
+name: Loan Payment Registration
+version: 1.0.0
+owner: process_kb
+description: Payment registration is a flow that involves registering the payment,
+  with backend tools handling debit posting and balance updates.
+text: Payment registration is a flow that involves registering the payment, with backend
+  tools handling debit posting and balance updates.
+tags:
+- loan.payment
+relations: []
+payload:
+  flow_id: loan.payment.registration
+  flow_name: Loan Payment Registration
+  intent: loan.payment
+  confidence: 0.75
+  business_event: Paying a loan installment
+  utterances: []
+  plan: []
+  tasks: []
+  user_tasks: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Payment registration is a flow that involves registering the payment,
+    with backend tools handling debit posting and balance updates.
+  source: data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/banking_synonyms_and_glossary_runtime.txt#chunk-1
+    purpose: To allow users to pay their loans
+  purpose: To allow users to pay their loans
+  transaction_id: loan.payment.registration
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Loan Payment Registration
+  normalized_name: loan payment registration
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

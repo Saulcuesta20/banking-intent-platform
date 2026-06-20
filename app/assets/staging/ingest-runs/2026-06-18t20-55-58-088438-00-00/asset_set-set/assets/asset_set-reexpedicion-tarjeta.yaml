@@ -1,0 +1,40 @@
+asset_id: asset_set.reexpedicion.tarjeta
+asset_type: asset_set
+name: Reexpedicion.tarjeta Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for reexpedicion.tarjeta.
+text: 'Card Reissuance
+
+  Customer Lookup'
+tags:
+- asset_set
+- reexpedicion.tarjeta
+relations:
+- type: groups_flow
+  target_asset_id: flow.reexpedicion.tarjeta
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.customer_lookup
+  metadata: {}
+payload:
+  transaction_id: reexpedicion.tarjeta
+  asset_ids:
+  - flow.reexpedicion.tarjeta
+  - user_task.customer_lookup
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.reexpedicion.tarjeta
+    asset_type: flow
+  - asset_id: user_task.customer_lookup
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Reexpedicion.tarjeta Asset Set
+  normalized_name: reexpedicion.tarjeta asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

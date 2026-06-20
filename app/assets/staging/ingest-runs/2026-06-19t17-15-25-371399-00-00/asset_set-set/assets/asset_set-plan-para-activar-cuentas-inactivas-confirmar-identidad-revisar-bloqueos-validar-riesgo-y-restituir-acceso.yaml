@@ -1,0 +1,34 @@
+asset_id: asset_set.plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+asset_type: asset_set
+name: Plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso.
+text: Plan activar cuentas inactivas
+tags:
+- asset_set
+- plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+relations:
+- type: groups_plan
+  target_asset_id: plan.plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+  metadata: {}
+payload:
+  transaction_id: plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+  asset_ids:
+  - plan.plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+  asset_types:
+  - plan
+  primary_asset_type: plan
+  members:
+  - asset_id: plan.plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+    Asset Set
+  normalized_name: plan.para.activar.cuentas.inactivas.confirmar.identidad.revisar.bloqueos.validar.riesgo.y.restituir.acceso
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

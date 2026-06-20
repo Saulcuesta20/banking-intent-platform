@@ -25,6 +25,7 @@ class IngestionCoordinatorAgent(Agent):
             agent_id="agent.ingestion.coordinator",
             name="Ingestion Coordinator Agent",
             role="Coordinate corpus scanning, classification, extraction, validation, artifact writing, and audit.",
+            agent_class="coordinator",
             kind="coordinator",
             domain="ingestion",
             goals=[
@@ -32,6 +33,7 @@ class IngestionCoordinatorAgent(Agent):
                 "Keep extraction auditable and reviewable before knowledge-base sync.",
             ],
             skills=["corpus_scan", "semantic_classification", "asset_extraction", "asset_validation", "audit"],
+            tool_ids=[],
             graph_name="ingestion_orchestrator",
             state_schema="IngestionAgentState",
             policy=AgentPolicy(requires_human_review=True),

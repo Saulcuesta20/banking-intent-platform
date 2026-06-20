@@ -1,0 +1,42 @@
+asset_id: entity.ejecutar_el_pago_automatico
+asset_type: entity
+name: ejecutar el pago automatico
+version: 1.0.0
+owner: business_model_kb
+description: 'Entity inferred from causality effect_text: ejecutar el pago automatico'
+text: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: causality_endpoint
+  causality_field: effect_text
+  business_layer: transaction
+  entity_role: transaction
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: ejecutar el pago automatico
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: 'Entity inferred from causality effect_text: ejecutar el pago automatico'
+  - type: prevents
+    family: causality
+    phrase: impide
+    sentence: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: La cuenta sin saldo suficiente impide ejecutar el pago automatico.
+  match_strategy: generated
+  canonical_name: ejecutar el pago automatico
+  normalized_name: ejecutar el pago automatico
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,25 @@
+asset_id: user_task.policy_context_retrieval
+asset_type: user_task
+name: Policy Context Retrieval
+version: 1.0.0
+owner: business_model_kb
+description: Fetch relevant bank policies to assess loan eligibility.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: obtain_policy_context_task
+  task: obtain_policy_context_for_loan_evaluation
+  type: automated
+  name: Policy Context Retrieval
+  description: Fetch relevant bank policies to assess loan eligibility.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Policy Context Retrieval
+  normalized_name: policy context retrieval
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

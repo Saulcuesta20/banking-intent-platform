@@ -1,0 +1,25 @@
+asset_id: user_task.verify_identity
+asset_type: user_task
+name: Verify Identity
+version: 1.0.0
+owner: business_model_kb
+description: Customer completes identity verification via video call or biometrics.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_verify_identity
+  task: verify_identity
+  type: verification
+  name: Verify Identity
+  description: Customer completes identity verification via video call or biometrics.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Verify Identity
+  normalized_name: verify identity
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

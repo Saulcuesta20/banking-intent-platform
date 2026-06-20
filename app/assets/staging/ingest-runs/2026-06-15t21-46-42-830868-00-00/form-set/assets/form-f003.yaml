@@ -1,0 +1,28 @@
+asset_id: form.f003
+asset_type: form
+name: F003
+version: 1.0.0
+owner: config_kb
+description: Capture source account, beneficiary, amount and concept for a transfer.
+text: Capture source account, beneficiary, amount and concept for a transfer.
+tags:
+- form
+- configuration
+relations:
+- type: belongs_to_module
+  target_asset_id: module.m003
+  metadata: {}
+payload:
+  form_id: F003
+  module_id: M003
+  name: TransferForm
+  purpose: Capture source account, beneficiary, amount and concept for a transfer.
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: F003
+  normalized_name: f003
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

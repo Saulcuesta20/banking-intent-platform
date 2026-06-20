@@ -1,0 +1,29 @@
+asset_id: user_task.registro_de_resultado
+asset_type: user_task
+name: Registro de resultado
+version: 1.0.0
+owner: business_model_kb
+description: Registrar el resultado de la interacción con el cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut_registrar_resultado
+  task: registrar_resultado_de_la_interacci_n
+  type: manual
+  name: Registro de resultado
+  description: Registrar el resultado de la interacción con el cliente.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Registrar el resultado de la interacción con el cliente.
+  match_strategy: generated
+  canonical_name: Registro de resultado
+  normalized_name: registro de resultado
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

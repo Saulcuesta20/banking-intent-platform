@@ -1,0 +1,25 @@
+asset_id: user_task.check_mora
+asset_type: user_task
+name: Check Mora
+version: 1.0.0
+owner: business_model_kb
+description: Verify if the client has overdue payments exceeding 30 days.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: user_task_check_mora
+  task: check_mora
+  type: automated
+  name: Check Mora
+  description: Verify if the client has overdue payments exceeding 30 days.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Mora
+  normalized_name: check mora
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,32 @@
+asset_id: entity.el_documento_de_identidad
+asset_type: entity
+name: El documento de identidad
+version: 1.0.0
+owner: business_model_kb
+description: 'Business entity listed in corpus section: El documento de identidad
+  vigente se valida antes del alta.'
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  inferred_from: section_entities
+  structural_layer: business_resource
+  business_layer: business_resource
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: El documento de identidad
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: 'Business entity listed in corpus section: El documento de identidad
+      vigente se valida antes del alta.'
+  match_strategy: generated
+  canonical_name: El documento de identidad
+  normalized_name: el documento de identidad
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

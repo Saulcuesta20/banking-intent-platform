@@ -1,0 +1,25 @@
+asset_id: user_task.crear_caso
+asset_type: user_task
+name: Crear caso
+version: 1.0.0
+owner: business_model_kb
+description: Registrar el reclamo en el sistema
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: claims_create_case
+  task: crear_caso_de_reclamo
+  type: data_collection
+  name: Crear caso
+  description: Registrar el reclamo en el sistema
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Crear caso
+  normalized_name: crear caso
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

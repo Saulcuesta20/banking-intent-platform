@@ -1,0 +1,25 @@
+asset_id: user_task.approval_request
+asset_type: user_task
+name: Approval Request
+version: 1.0.0
+owner: business_model_kb
+description: Escalate borderline or high-risk cases for human decision.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: request_approval_task
+  task: request_human_approval_for_high_risk_loan
+  type: manual
+  name: Approval Request
+  description: Escalate borderline or high-risk cases for human decision.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Approval Request
+  normalized_name: approval request
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

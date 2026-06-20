@@ -1,0 +1,33 @@
+asset_id: ruleset.low.balance.commission
+asset_type: ruleset
+name: Low.balance.commission Ruleset
+version: 1.0.0
+owner: rules_kb
+description: Ruleset for transaction low.balance.commission with 1 business rules.
+text: Account handling commission applies if average balance falls below threshold.
+tags:
+- ruleset
+- low.balance.commission
+relations:
+- type: groups_rule
+  target_asset_id: business_rule.low_balance_commission
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.savings_account
+  metadata: {}
+payload:
+  transaction_id: low.balance.commission
+  ruleset_name: Low.balance.commission Ruleset
+  rule_ids:
+  - business_rule.low_balance_commission
+  conditions:
+  - Average balance < threshold
+  consequences:
+  - Apply commission
+  match_strategy: generated
+  canonical_name: Low.balance.commission Ruleset
+  normalized_name: low.balance.commission ruleset
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

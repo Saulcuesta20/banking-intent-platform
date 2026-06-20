@@ -1,0 +1,25 @@
+asset_id: user_task.document_check
+asset_type: user_task
+name: Document Check
+version: 1.0.0
+owner: business_model_kb
+description: Verify required documents for loan application.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: document_check
+  task: document_check
+  type: automated
+  name: Document Check
+  description: Verify required documents for loan application.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Document Check
+  normalized_name: document check
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

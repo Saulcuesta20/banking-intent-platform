@@ -1,0 +1,51 @@
+asset_id: asset_set.plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+asset_type: asset_set
+name: Plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+  Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta.
+text: 'cliente
+
+  mora
+
+  Plan reducir mora temprana'
+tags:
+- asset_set
+- plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_entity
+  target_asset_id: entity.mora
+  metadata: {}
+- type: groups_plan
+  target_asset_id: plan.plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+  metadata: {}
+payload:
+  transaction_id: plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+  asset_ids:
+  - entity.customer
+  - entity.mora
+  - plan.plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+  asset_types:
+  - entity
+  - plan
+  primary_asset_type: entity
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: entity.mora
+    asset_type: entity
+  - asset_id: plan.plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+    asset_type: plan
+  match_strategy: generated
+  canonical_name: Plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+    Asset Set
+  normalized_name: plan.para.reducir.mora.temprana.identificar.cuentas.vencidas.contactar.cliente.ofrecer.arreglo.y.monitorear.respuesta
+    asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

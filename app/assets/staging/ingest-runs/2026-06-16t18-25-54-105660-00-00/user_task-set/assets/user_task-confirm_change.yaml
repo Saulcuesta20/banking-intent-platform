@@ -1,0 +1,25 @@
+asset_id: user_task.confirm_change
+asset_type: user_task
+name: Confirm Change
+version: 1.0.0
+owner: business_model_kb
+description: Get customer confirmation for the requested change.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: confirm_change
+  task: confirm_change
+  type: manual
+  name: Confirm Change
+  description: Get customer confirmation for the requested change.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Confirm Change
+  normalized_name: confirm change
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

@@ -1,0 +1,65 @@
+asset_id: asset_set.incomplete.documents
+asset_type: asset_set
+name: Incomplete.documents Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for incomplete.documents.
+text: 'cliente
+
+  Manejo de documentos incompletos
+
+  Marcar caso como pendiente
+
+  Notificación de documentos incompletos
+
+  Recepción de documentos'
+tags:
+- asset_set
+- incomplete.documents
+relations:
+- type: groups_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: groups_flow
+  target_asset_id: flow.incomplete.documents
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.marcar_caso_como_pendiente
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.notificaci_n_de_documentos_incompletos
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.recepci_n_de_documentos
+  metadata: {}
+payload:
+  transaction_id: incomplete.documents
+  asset_ids:
+  - entity.customer
+  - flow.incomplete.documents
+  - user_task.marcar_caso_como_pendiente
+  - user_task.notificaci_n_de_documentos_incompletos
+  - user_task.recepci_n_de_documentos
+  asset_types:
+  - entity
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: entity.customer
+    asset_type: entity
+  - asset_id: flow.incomplete.documents
+    asset_type: flow
+  - asset_id: user_task.marcar_caso_como_pendiente
+    asset_type: user_task
+  - asset_id: user_task.notificaci_n_de_documentos_incompletos
+    asset_type: user_task
+  - asset_id: user_task.recepci_n_de_documentos
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Incomplete.documents Asset Set
+  normalized_name: incomplete.documents asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

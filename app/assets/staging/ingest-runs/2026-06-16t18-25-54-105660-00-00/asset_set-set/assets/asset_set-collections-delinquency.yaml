@@ -1,0 +1,48 @@
+asset_id: asset_set.collections.delinquency
+asset_type: asset_set
+name: Collections.delinquency Asset Set
+version: 1.0.0
+owner: config_kb
+description: Transaction-scoped bundle for collections.delinquency.
+text: 'Collections and Delinquency Management
+
+  Collections Escalation Handling
+
+  Payment Reminder Handling'
+tags:
+- asset_set
+- collections.delinquency
+relations:
+- type: groups_flow
+  target_asset_id: flow.collections.delinquency
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.collections_escalation_handling
+  metadata: {}
+- type: groups_user_task
+  target_asset_id: user_task.payment_reminder_handling
+  metadata: {}
+payload:
+  transaction_id: collections.delinquency
+  asset_ids:
+  - flow.collections.delinquency
+  - user_task.collections_escalation_handling
+  - user_task.payment_reminder_handling
+  asset_types:
+  - flow
+  - user_task
+  primary_asset_type: flow
+  members:
+  - asset_id: flow.collections.delinquency
+    asset_type: flow
+  - asset_id: user_task.collections_escalation_handling
+    asset_type: user_task
+  - asset_id: user_task.payment_reminder_handling
+    asset_type: user_task
+  match_strategy: generated
+  canonical_name: Collections.delinquency Asset Set
+  normalized_name: collections.delinquency asset set
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

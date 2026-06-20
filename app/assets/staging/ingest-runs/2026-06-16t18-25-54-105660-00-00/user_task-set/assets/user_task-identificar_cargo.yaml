@@ -1,0 +1,33 @@
+asset_id: user_task.identificar_cargo
+asset_type: user_task
+name: Identificar cargo
+version: 1.0.0
+owner: business_model_kb
+description: El cliente localiza el cargo en su estado de cuenta.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: identify_charge
+  task: identificar_cargo_no_reconocido
+  type: consulta
+  name: Identificar cargo
+  description: El cliente localiza el cargo en su estado de cuenta.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente localiza el cargo en su estado de cuenta.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: El cliente localiza el cargo en su estado de cuenta.
+  match_strategy: generated
+  canonical_name: Identificar cargo
+  normalized_name: identificar cargo
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

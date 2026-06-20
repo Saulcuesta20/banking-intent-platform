@@ -1,0 +1,25 @@
+asset_id: user_task.check_credit_history
+asset_type: user_task
+name: Check Credit History
+version: 1.0.0
+owner: business_model_kb
+description: Query credit bureau and retrieve credit score.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: ut103
+  task: check_credit_history
+  type: backend
+  name: Check Credit History
+  description: Query credit bureau and retrieve credit score.
+  user_actions: []
+  tools: []
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: Check Credit History
+  normalized_name: check credit history
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

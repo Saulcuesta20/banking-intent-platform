@@ -1,0 +1,28 @@
+asset_id: module.m004
+asset_type: module
+name: M004
+version: 1.0.0
+owner: config_kb
+description: Registro y resolución de reclamos de clientes.
+text: Registro y resolución de reclamos de clientes.
+tags:
+- module
+- configuration
+relations:
+- type: belongs_to_domain
+  target_asset_id: domain.d001
+  metadata: {}
+payload:
+  module_id: M004
+  domain_id: D001
+  name: Claims Management
+  purpose: Registro y resolución de reclamos de clientes.
+  source_section: LLMAssetExtraction
+  relation_hints: []
+  match_strategy: generated
+  canonical_name: M004
+  normalized_name: m004
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

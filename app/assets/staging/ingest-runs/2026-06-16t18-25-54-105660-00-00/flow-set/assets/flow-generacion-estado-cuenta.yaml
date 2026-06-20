@@ -1,0 +1,97 @@
+asset_id: flow.generacion.estado.cuenta
+asset_type: flow
+name: Generación de estado de cuenta mensual
+version: 1.0.0
+owner: process_kb
+description: Proceso mensual de generación del estado de cuenta y envío por correo
+  electrónico al cliente.
+text: Proceso mensual de generación del estado de cuenta y envío por correo electrónico
+  al cliente.
+tags:
+- el.banco.genera.y.envia.el.estado.de.cuenta
+relations:
+- type: decomposes_to_user_task
+  target_asset_id: user_task.generaci_n_de_pdf
+  metadata: {}
+- type: decomposes_to_user_task
+  target_asset_id: user_task.env_o_de_email
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.customer
+  metadata: {}
+- type: uses_entity
+  target_asset_id: entity.estado_de_cuenta
+  metadata: {}
+payload:
+  flow_id: generacion.estado.cuenta
+  flow_name: Generación de estado de cuenta mensual
+  intent: el.banco.genera.y.envia.el.estado.de.cuenta
+  confidence: 0.75
+  business_event: Fin de mes
+  utterances: []
+  plan: []
+  tasks:
+  - task: generar_pdf_de_estado_de_cuenta
+    type: generation
+  - task: enviar_email_con_estado_de_cuenta
+    type: communication
+  user_tasks:
+  - user_task_id: generar_pdf_estado
+    task: generar_pdf_de_estado_de_cuenta
+    type: generation
+    name: Generación de PDF
+    description: Generar el documento PDF con el estado de cuenta del mes.
+    tools: []
+    user_actions: []
+  - user_task_id: enviar_email_estado
+    task: enviar_email_con_estado_de_cuenta
+    type: communication
+    name: Envío de email
+    description: Enviar el estado de cuenta por correo electrónico al cliente.
+    tools: []
+    user_actions: []
+  capabilities: []
+  concepts: []
+  concept_aliases: {}
+  explanation: Proceso mensual de generación del estado de cuenta y envío por correo
+    electrónico al cliente.
+  source: data/raw/savings_loans_domain_extra1.txt
+  metadata:
+    generated_by: llm_corpus_flow_loader
+    source_files:
+    - data/raw/savings_loans_domain_extra1.txt
+    purpose: Informar al cliente sobre sus movimientos y saldos
+  purpose: Informar al cliente sobre sus movimientos y saldos
+  transaction_id: generacion.estado.cuenta
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Generación de estado de cuenta mensual
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso mensual de generación del estado de cuenta y envío por correo
+      electrónico al cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso mensual de generación del estado de cuenta y envío por correo
+      electrónico al cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Proceso mensual de generación del estado de cuenta y envío por correo
+      electrónico al cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: cuenta
+    sentence: Proceso mensual de generación del estado de cuenta y envío por correo
+      electrónico al cliente.
+  match_strategy: generated
+  canonical_name: Generación de estado de cuenta mensual
+  normalized_name: generación de estado de cuenta mensual
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

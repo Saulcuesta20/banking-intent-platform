@@ -1,0 +1,33 @@
+asset_id: user_task.configurar_monto
+asset_type: user_task
+name: Configurar monto
+version: 1.0.0
+owner: business_model_kb
+description: El cliente define el monto fijo o variable y la periodicidad del pago.
+text: ''
+tags: []
+relations: []
+payload:
+  user_task_id: set_amount
+  task: configurar_monto_y_frecuencia
+  type: configuración
+  name: Configurar monto
+  description: El cliente define el monto fijo o variable y la periodicidad del pago.
+  user_actions: []
+  tools: []
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: El cliente define el monto fijo o variable y la periodicidad del pago.
+  - type: uses_entity
+    family: semantic
+    phrase: pago
+    sentence: El cliente define el monto fijo o variable y la periodicidad del pago.
+  match_strategy: generated
+  canonical_name: Configurar monto
+  normalized_name: configurar monto
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

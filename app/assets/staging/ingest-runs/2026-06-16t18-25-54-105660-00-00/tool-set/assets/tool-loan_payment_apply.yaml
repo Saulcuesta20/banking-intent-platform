@@ -1,0 +1,28 @@
+asset_id: tool.loan_payment_apply
+asset_type: tool
+name: loan.payment.apply
+version: 1.0.0
+owner: business_model_kb
+description: El servicio loan.payment.apply registra el abono al prestamo.
+text: El servicio loan.payment.apply registra el abono al prestamo.
+tags: []
+relations: []
+payload:
+  description: El servicio loan.payment.apply registra el abono al prestamo.
+  tool_id: loan.payment.apply
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El servicio loan.payment.apply registra el abono al prestamo.
+  - type: uses_entity
+    family: semantic
+    phrase: prestamo
+    sentence: El servicio loan.payment.apply registra el abono al prestamo.
+  match_strategy: generated
+  canonical_name: loan.payment.apply
+  normalized_name: loan.payment.apply
+  aliases: []
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

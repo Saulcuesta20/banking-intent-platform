@@ -1,0 +1,29 @@
+asset_id: entity.creditnote
+asset_type: entity
+name: CreditNote
+version: 1.0.0
+owner: business_model_kb
+description: Documento que acredita un ajuste positivo a favor del cliente.
+text: ''
+tags: []
+relations: []
+payload:
+  aliases: []
+  definition: Documento que acredita un ajuste positivo a favor del cliente.
+  inferred_from: llm_asset_extraction
+  entity_role: asset
+  relation_hints:
+  - type: uses_entity
+    family: semantic
+    phrase: cliente
+    sentence: Documento que acredita un ajuste positivo a favor del cliente.
+  - type: uses_entity
+    family: semantic
+    phrase: documento
+    sentence: Documento que acredita un ajuste positivo a favor del cliente.
+  match_strategy: generated
+  canonical_name: CreditNote
+  normalized_name: creditnote
+  alignment:
+    matched_existing_asset_id: null
+    match_strategy: generated

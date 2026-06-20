@@ -75,13 +75,16 @@ def test_upsert_record_persists_concepts_tasks_tools_and_synonyms():
     assert "USES_TOOL" in statements
 
 
-def test_clear_graph_removes_legacy_ontology_nodes_during_migration():
+def test_clear_graph_removes_all_nodes_except_dimensions():
     tx = CapturingTransaction()
 
     Neo4jKnowledgeBaseGraphAdapter._clear_graph(tx)
 
-    assert "n:Concept" in tx.queries[0]
-    assert "n:Ontology" in tx.queries[0]
+    # New approach: delete everything EXCEPT dimension nodes
+    assert "NOT n:KnowledgeBase" in tx.queries[0]
+    assert "NOT n:Engine" in tx.queries[0]
+    assert "NOT n:StructuralLayer" in tx.queries[0]
+    assert "DETACH DELETE n" in tx.queries[0]
 
 
 def test_graph_context_text_serializes_structured_user_tasks_consistently():
@@ -94,8 +97,8 @@ def test_graph_context_text_serializes_structured_user_tasks_consistently():
         "concepts": ["Loan"],
         "concept_aliases": ["prestamo"],
         "user_tasks": [
-            {"task": "review_refinance_options", "type": "user_task", "sequence": 1},
-            {"task": "confirm_refinance_terms", "type": "user_task", "sequence": 2},
+            {"task": "review_refinance_options", "type": "user_task", "order_index": 1},
+            {"task": "confirm_refinance_terms", "type": "user_task", "order_index": 2},
         ],
         "tools": ["loan.refinance.calculate"],
         "explanation": "Matched refinance flow.",
@@ -103,8 +106,8 @@ def test_graph_context_text_serializes_structured_user_tasks_consistently():
 
     context = Neo4jKnowledgeBaseGraphAdapter._context_text(row)
 
-    assert "user_tasks: review_refinance_options type=user_task sequence=1" in context
-    assert "confirm_refinance_terms type=user_task sequence=2" in context
+    assert "user_tasks: review_refinance_options type=user_task" in context
+    assert "confirm_refinance_terms type=user_task" in context
     assert "tools: loan.refinance.calculate" in context
 
 
@@ -155,3 +158,5 @@ def test_knowledge_source_router_selects_sources_without_replacing_goal_routing(
 
     assert [route.source for route in routes] == ["qa", "process_flows", "rules_policies", "entities"]
     assert routes[0].views == ["repository", "vector"]
+    assert routes[2].views == ["repository", "document", "graph"]
+    assert routes[3].views == ["graph", "repository"]

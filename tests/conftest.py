@@ -33,12 +33,11 @@ def sample_records(*flow_ids: str) -> list[KnowledgeRecord]:
                 Task(task="approve_business_case", type="approval"),
             ],
             user_tasks=[
-                UserTask(task="identify_customer", type="user_task", sequence=1),
-                UserTask(task="review_loan_status", type="user_task", sequence=2),
+                UserTask(task="identify_customer", type="user_task"),
+                UserTask(task="review_loan_status", type="user_task"),
                 UserTask(
                     task="review_refinance_options",
                     type="user_task",
-                    sequence=3,
                     tools=[
                         ToolDefinition(
                             tool_id="ui.refinance.calculate",
@@ -57,8 +56,8 @@ def sample_records(*flow_ids: str) -> list[KnowledgeRecord]:
                     ],
                     description="Review refinance choices with the customer.",
                 ),
-                UserTask(task="prepare_refinance_request", type="user_task", sequence=4),
-                UserTask(task="approve_business_case", type="approval", sequence=5),
+                UserTask(task="prepare_refinance_request", type="user_task"),
+                UserTask(task="approve_business_case", type="approval"),
             ],
             capabilities=["loan.conditions.calculate"],
             concepts=["Loan", "LoanRefinance"],
